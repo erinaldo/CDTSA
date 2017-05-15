@@ -1,2 +1,2 @@
-# CDTSA_Inventario
-Control de Inventario de Trinidad
+# CDTSA
+Sistema de Administración de Operativa
