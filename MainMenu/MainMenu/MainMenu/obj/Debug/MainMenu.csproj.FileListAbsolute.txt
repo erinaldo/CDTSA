@@ -8,3 +8,4 @@ C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\M
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.exe
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csprojResolveAssemblyReference.cache
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CDTSA.exe.config
