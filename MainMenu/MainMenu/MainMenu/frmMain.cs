@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
-
+using CG;
 namespace MainMenu
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -123,6 +123,57 @@ namespace MainMenu
             }
 
             tl.EndUnboundLoad();
+        }
+
+
+        private void ShowPagesRibbonMan(bool valor)
+        {
+            this.ribbonHelp.Visible = valor;
+        }
+
+        private void treeListInventario_DoubleClick(object sender, EventArgs e)
+        {
+
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList) sender).FocusedNode;
+            switch (node.Tag.ToString())
+            {
+                case "optArticulo":
+                    break;
+                //Dim ofrm As New UI.Inventario.Form1()
+                //ofrm.MdiParent = Me
+                //ofrm.WindowState = FormWindowState.Maximized
+                //ofrm.Show()
+                //ribbonControl.SelectedPage = ofrm.Ribbon.Pages(0) ' ofrm.DefaultPage
+                //ShowPagesRibbonMan(False)
+                //AddHandler ofrm.FormClosed, AddressOf FomulariosClosed
+
+                //ribbonControl.SelectedPage = ribbonControl.Pages(1)
+                case "optLote":
+                    frmListadoCentroCosto ofrm = new frmListadoCentroCosto();
+                    ofrm.FormClosed += ofrm_FormClosed;
+                    ofrm.MdiParent = this;
+                    ofrm.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrm.Show();
+                    break;
+                case "optEjemplo":
+                    break;
+                case "optConsultaArticulo":
+                    break;
+                case "optConsultaExistenciaBodega":
+                    break;
+                case "optConsultaExistenciaLote":
+                    break;
+                case "optConsultaTransacciones":
+                    break;
+            }
+
+        }
+
+        void ofrm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ShowPagesRibbonMan(true);
         }
 
   

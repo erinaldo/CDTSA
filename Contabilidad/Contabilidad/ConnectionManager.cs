@@ -18,7 +18,7 @@ namespace CG
         {
             if (oConn == null)
             {
-                String ConnectionString = ConfigurationManager.ConnectionStrings["CG.Properties.Settings.StringConexion"].ConnectionString;
+                String ConnectionString = ConfigurationManager.ConnectionStrings["StringConexion"].ConnectionString;
                 oConn = new SqlConnection(ConnectionString);
             }
             //connection.Open();
