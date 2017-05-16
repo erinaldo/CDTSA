@@ -9,7 +9,7 @@ using Util;
 
 namespace CG
 {
-    public static class ArticuloDAC
+    public static class CentroCostoDAC
     {
         public static SqlDataAdapter oAdaptador = InicializarAdaptador();
 
@@ -99,11 +99,16 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(String CodSucursal, String NumSolicitud)
+        public static DataSet GetData(int IDCentro, String Nivel1,String Nivel2,String Nivel3,String Descr, bool? Acumulador)
         {
             DataSet DS = CreateDataSet();
-            oAdaptador.SelectCommand.Parameters["@CodSucursal"].Value = CodSucursal;
-            oAdaptador.SelectCommand.Parameters["@NumSolicitud"].Value = NumSolicitud;
+            oAdaptador.SelectCommand.Parameters["@IDCentro"].Value = IDCentro;
+            oAdaptador.SelectCommand.Parameters["@Nivel1"].Value = Nivel1;
+            oAdaptador.SelectCommand.Parameters["@Nivel2"].Value = Nivel2;
+            oAdaptador.SelectCommand.Parameters["@Nivel3"].Value = Nivel3;
+            oAdaptador.SelectCommand.Parameters["@Descr"].Value = Descr;
+            oAdaptador.SelectCommand.Parameters["@Acumulador"].Value = Acumulador;
+
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }

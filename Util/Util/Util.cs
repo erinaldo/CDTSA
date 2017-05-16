@@ -92,9 +92,9 @@ namespace Util
 
         public static void SetDefaultBehaviorControls(DevExpress.XtraGrid.Views.Grid.GridView pGridView, bool pEditable,
                                                             DevExpress.XtraGrid.GridControl pGrid,
-                                                                     DevExpress.XtraBars.Bar pBar,
-                                                   DevExpress.XtraEditors.LabelControl plblTitulo,
-                                                 DevExpress.XtraEditors.PanelControl pPanelTitulo,
+                                                                     //DevExpress.XtraBars.Bar pBar,
+                                                  // DevExpress.XtraEditors.LabelControl plblTitulo,
+                                                 //DevExpress.XtraEditors.PanelControl pPanelTitulo,
                                                                             String _tituloVentana,
                                                                    System.Windows.Forms.Form pForm)
         {
@@ -121,15 +121,15 @@ namespace Util
                 pGrid.EmbeddedNavigator.Enabled = true;
             }
             //Barra Prinicpal
-            pBar.OptionsBar.AllowQuickCustomization = false;
+            //pBar.OptionsBar.AllowQuickCustomization = false;
 
             //titulo
-            plblTitulo.Font = new Font(plblTitulo.Font.FontFamily, 12f, FontStyle.Bold);
-            plblTitulo.Size = new Size(pPanelTitulo.Size.Width / 2, pPanelTitulo.Size.Height / 2);
-            plblTitulo.Top = (pPanelTitulo.Height / 2) - (plblTitulo.Height / 2);
-            plblTitulo.Left = (pPanelTitulo.Width / 2) - (plblTitulo.Width / 2);
-            plblTitulo.ForeColor = Color.DodgerBlue;
-            plblTitulo.Text = _tituloVentana;
+            //plblTitulo.Font = new Font(plblTitulo.Font.FontFamily, 12f, FontStyle.Bold);
+            //plblTitulo.Size = new Size(pPanelTitulo.Size.Width / 2, pPanelTitulo.Size.Height / 2);
+            //plblTitulo.Top = (pPanelTitulo.Height / 2) - (plblTitulo.Height / 2);
+            //plblTitulo.Left = (pPanelTitulo.Width / 2) - (plblTitulo.Width / 2);
+            //plblTitulo.ForeColor = Color.DodgerBlue;
+            //plblTitulo.Text = _tituloVentana;
 
             ////Titulo e Icono de la ventana
             pForm.Text = _tituloVentana;
