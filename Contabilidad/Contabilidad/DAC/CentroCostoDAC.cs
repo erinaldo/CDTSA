@@ -15,7 +15,7 @@ namespace CG
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT *  FROM dbo.cntCentroCosto WHERE (IDCentro=@IDCentro OR @IDCentro=-1) AND (Nivel1=@Nivel2 OR @Nivel1='*') AND (Nivel2=@Nivel2 OR @Nivel2='*') AND (Nivel3=@Nivel3 OR @Nivel3='*') AND (Descr = @Descr OR @Descr='*')  AND (Acumulador=@Acumulador OR @Acumulador =-1)";
+            String getSQL = "SELECT *  FROM dbo.cntCentroCosto WHERE (IDCentro=@IDCentro OR @IDCentro=-1) AND (Nivel1=@Nivel1 OR @Nivel1='*') AND (Nivel2=@Nivel2 OR @Nivel2='*') AND (Nivel3=@Nivel3 OR @Nivel3='*') AND (Descr = @Descr OR @Descr='*')  AND (Acumulador=@Acumulador OR @Acumulador =-1)";
             String InsertSQL = "[dbo].[cntUpdateCentroCosto]";
             String UpdateSQL = "[dbo].[cntUpdateCentroCosto]";
             String DeleteSQL = "[dbo].[cntUpdateCentroCosto]";
@@ -99,7 +99,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(int IDCentro, String Nivel1,String Nivel2,String Nivel3,String Descr, bool? Acumulador)
+        public static DataSet GetData(int IDCentro, String Nivel1,String Nivel2,String Nivel3,String Descr, int Acumulador)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDCentro"].Value = IDCentro;

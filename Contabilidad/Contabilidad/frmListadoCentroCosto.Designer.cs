@@ -507,6 +507,7 @@
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar1;
             this.Text = "Listado de Centro de Costos";
+            this.Load += new System.EventHandler(this.frmListadoCentroCosto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

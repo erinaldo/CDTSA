@@ -8,6 +8,7 @@ namespace CG
     public partial class frmListadoCentroCosto : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private DataTable _dtCentro;
+        private DataTable _lstCentroAcumuladores;
         private DataSet _dsCentro;
         DataRow currentRow;
         const String _tituloVentana = "Listado de Centros de Costos";
@@ -32,15 +33,18 @@ namespace CG
             this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmListadoCentroCosto_Load(object sender, EventArgs e)
         {
             try
             {
                 HabilitarControles(false);
-                _dsCentro = CentroCostoDAC.GetData(-1,"*","*","*","*",null);
+                _dsCentro = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1);
 
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.dtg, _tituloVentana, this);
+
+                Util.Util.ConfigLookupEdit(this.slkupCentroAcumulador, CentroCostoDAC.GetData(-1,"*","*","*","*",1).Tables["Data"], "Descr", "IDCentro");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroAcumulador, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+
                 EnlazarEventos();
 
                 PopulateGrid();
@@ -51,6 +55,7 @@ namespace CG
             }
         }
 
+        
         private void PopulateGrid()
         {
             _dtCentro = _dsCentro.Tables[0];
@@ -288,5 +293,6 @@ namespace CG
             }
         }
 
+       
     }
 }
