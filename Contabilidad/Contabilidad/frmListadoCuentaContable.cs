@@ -251,11 +251,12 @@ namespace CG
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (!ValidarDatos())
+                return;
+
             if (currentRow != null)
             {
-                if (!ValidarDatos())
-                    return;
-
+                
                 lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
 
                 Application.DoEvents();
@@ -328,6 +329,7 @@ namespace CG
             }
             else
             {
+              
                 //nuevo registro
                 currentRow = _dtCuenta.NewRow();
 

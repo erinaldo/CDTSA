@@ -192,12 +192,12 @@ namespace CG
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            //ValidarDatos
+            if (!ValidarDatos())
+                return;
+
             if (currentRow != null)
             {
-                //ValidarDatos
-                if (!ValidarDatos())
-                    return;
-
                 lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
 
                 Application.DoEvents();
