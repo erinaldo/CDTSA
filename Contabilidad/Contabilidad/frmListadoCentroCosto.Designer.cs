@@ -57,6 +57,7 @@
             this.Centro = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Acumulador = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CentroAcumulador = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ReadOnlySist = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Activo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -74,7 +75,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.CentroAcumulador = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -399,6 +399,17 @@
             this.Acumulador.VisibleIndex = 2;
             this.Acumulador.Width = 88;
             // 
+            // CentroAcumulador
+            // 
+            this.CentroAcumulador.Caption = "Centro Acumulador";
+            this.CentroAcumulador.FieldName = "DescrCentroAcumulador";
+            this.CentroAcumulador.MinWidth = 90;
+            this.CentroAcumulador.Name = "CentroAcumulador";
+            this.CentroAcumulador.OptionsColumn.FixedWidth = true;
+            this.CentroAcumulador.Visible = true;
+            this.CentroAcumulador.VisibleIndex = 3;
+            this.CentroAcumulador.Width = 113;
+            // 
             // ReadOnlySist
             // 
             this.ReadOnlySist.Caption = "ReadOnlySist";
@@ -569,17 +580,6 @@
             this.layoutControlItem12.Text = "Centro:";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(96, 13);
             // 
-            // CentroAcumulador
-            // 
-            this.CentroAcumulador.Caption = "Centro Acumulador";
-            this.CentroAcumulador.FieldName = "DescrCentroAcumulador";
-            this.CentroAcumulador.MinWidth = 90;
-            this.CentroAcumulador.Name = "CentroAcumulador";
-            this.CentroAcumulador.OptionsColumn.FixedWidth = true;
-            this.CentroAcumulador.Visible = true;
-            this.CentroAcumulador.VisibleIndex = 3;
-            this.CentroAcumulador.Width = 113;
-            // 
             // frmListadoCentroCosto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,7 +591,7 @@
             this.Name = "frmListadoCentroCosto";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar1;
-            this.Text = "Listado de Centro de Costos";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.frmListadoCentroCosto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

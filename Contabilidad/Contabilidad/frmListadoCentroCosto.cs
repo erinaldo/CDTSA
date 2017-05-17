@@ -168,10 +168,36 @@ namespace CG
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
         }
 
+        private bool ValidarDatos() {
+            bool result = true;
+            String sMensaje = "";
+            //Este solo vale para el primer elemento
+            if (_dtCentro.Rows.Count > 1)
+                if (this.slkupCentroAnterior.EditValue == null)
+                    sMensaje = sMensaje + "     • Centro de Costo Anterior. \n\r";
+            if (this.txtNivel1.Text == "")
+                sMensaje = sMensaje + "     • Nivel 1. \n\r";
+            if (this.txtDescripcion.Text == "")
+                sMensaje = sMensaje + "     • Descripción del Centro de Costo. \n\r";
+            if (Convert.ToBoolean(this.chkAcumulador.EditValue) == true)
+                if (this.slkupCentroAcumulador.EditValue == null)
+                    sMensaje = sMensaje + "     • Centro Acumulador. \n\r";
+            if (sMensaje != "")
+            {
+                result = false;
+                MessageBox.Show("Por favor revise los siguientes campos, puede que sean obligatorios: \n\r\n\r" + sMensaje);
+            }
+            return result;
+        }
+
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (currentRow != null)
             {
+                //ValidarDatos
+                if (!ValidarDatos())
+                    return;
+
                 lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
 
                 Application.DoEvents();

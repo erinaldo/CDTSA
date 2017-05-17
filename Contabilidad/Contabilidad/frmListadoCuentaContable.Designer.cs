@@ -190,6 +190,7 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
+
             // 
             // btnCancelar
             // 
@@ -281,7 +282,7 @@
             this.chkActiva.Properties.Caption = "Activa";
             this.chkActiva.Size = new System.Drawing.Size(112, 19);
             this.chkActiva.StyleController = this.layoutControl1;
-            this.chkActiva.TabIndex = 21;
+            this.chkActiva.TabIndex = 10;
             // 
             // slkupCuentaMayor
             // 
@@ -293,7 +294,7 @@
             this.slkupCuentaMayor.Properties.View = this.searchLookUpEdit5View;
             this.slkupCuentaMayor.Size = new System.Drawing.Size(263, 20);
             this.slkupCuentaMayor.StyleController = this.layoutControl1;
-            this.slkupCuentaMayor.TabIndex = 20;
+            this.slkupCuentaMayor.TabIndex = 14;
             // 
             // searchLookUpEdit5View
             // 
@@ -312,7 +313,7 @@
             this.slkupCuentaAnterior.Properties.View = this.searchLookUpEdit4View;
             this.slkupCuentaAnterior.Size = new System.Drawing.Size(263, 20);
             this.slkupCuentaAnterior.StyleController = this.layoutControl1;
-            this.slkupCuentaAnterior.TabIndex = 19;
+            this.slkupCuentaAnterior.TabIndex = 15;
             // 
             // searchLookUpEdit4View
             // 
@@ -329,7 +330,7 @@
             this.chkEsMayor.Properties.Caption = "Es de Mayor";
             this.chkEsMayor.Size = new System.Drawing.Size(99, 19);
             this.chkEsMayor.StyleController = this.layoutControl1;
-            this.chkEsMayor.TabIndex = 18;
+            this.chkEsMayor.TabIndex = 9;
             this.chkEsMayor.CheckStateChanged += new System.EventHandler(this.chkEsMayor_CheckStateChanged);
             // 
             // chkAceptaDatos
@@ -340,7 +341,7 @@
             this.chkAceptaDatos.Properties.Caption = "Acepta Datos";
             this.chkAceptaDatos.Size = new System.Drawing.Size(128, 19);
             this.chkAceptaDatos.StyleController = this.layoutControl1;
-            this.chkAceptaDatos.TabIndex = 17;
+            this.chkAceptaDatos.TabIndex = 11;
             this.chkAceptaDatos.CheckStateChanged += new System.EventHandler(this.chkAceptaDatos_CheckStateChanged);
             // 
             // chkUsaCentroCosto
@@ -351,7 +352,7 @@
             this.chkUsaCentroCosto.Properties.Caption = "Usa CentroCosto";
             this.chkUsaCentroCosto.Size = new System.Drawing.Size(215, 19);
             this.chkUsaCentroCosto.StyleController = this.layoutControl1;
-            this.chkUsaCentroCosto.TabIndex = 16;
+            this.chkUsaCentroCosto.TabIndex = 12;
             // 
             // chkComplementaria
             // 
@@ -361,7 +362,7 @@
             this.chkComplementaria.Properties.Caption = "Complementaria";
             this.chkComplementaria.Size = new System.Drawing.Size(128, 19);
             this.chkComplementaria.StyleController = this.layoutControl1;
-            this.chkComplementaria.TabIndex = 15;
+            this.chkComplementaria.TabIndex = 8;
             // 
             // txtDescripcion
             // 
@@ -370,7 +371,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(263, 20);
             this.txtDescripcion.StyleController = this.layoutControl1;
-            this.txtDescripcion.TabIndex = 14;
+            this.txtDescripcion.TabIndex = 13;
             // 
             // txtCuenta
             // 
@@ -389,7 +390,7 @@
             this.txtNivel5.Name = "txtNivel5";
             this.txtNivel5.Size = new System.Drawing.Size(219, 20);
             this.txtNivel5.StyleController = this.layoutControl1;
-            this.txtNivel5.TabIndex = 12;
+            this.txtNivel5.TabIndex = 7;
             // 
             // txtNivel4
             // 
@@ -398,7 +399,7 @@
             this.txtNivel4.Name = "txtNivel4";
             this.txtNivel4.Size = new System.Drawing.Size(219, 20);
             this.txtNivel4.StyleController = this.layoutControl1;
-            this.txtNivel4.TabIndex = 11;
+            this.txtNivel4.TabIndex = 6;
             // 
             // txtNivel3
             // 
@@ -407,7 +408,7 @@
             this.txtNivel3.Name = "txtNivel3";
             this.txtNivel3.Size = new System.Drawing.Size(219, 20);
             this.txtNivel3.StyleController = this.layoutControl1;
-            this.txtNivel3.TabIndex = 10;
+            this.txtNivel3.TabIndex = 5;
             // 
             // txtNivel2
             // 
@@ -416,7 +417,7 @@
             this.txtNivel2.Name = "txtNivel2";
             this.txtNivel2.Size = new System.Drawing.Size(219, 20);
             this.txtNivel2.StyleController = this.layoutControl1;
-            this.txtNivel2.TabIndex = 9;
+            this.txtNivel2.TabIndex = 4;
             // 
             // txtNivel1
             // 
@@ -425,7 +426,7 @@
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Size = new System.Drawing.Size(219, 20);
             this.txtNivel1.StyleController = this.layoutControl1;
-            this.txtNivel1.TabIndex = 8;
+            this.txtNivel1.TabIndex = 3;
             // 
             // slkupSubTipo
             // 
@@ -437,7 +438,7 @@
             this.slkupSubTipo.Properties.View = this.searchLookUpEdit3View;
             this.slkupSubTipo.Size = new System.Drawing.Size(219, 20);
             this.slkupSubTipo.StyleController = this.layoutControl1;
-            this.slkupSubTipo.TabIndex = 7;
+            this.slkupSubTipo.TabIndex = 1;
             this.slkupSubTipo.EditValueChanged += new System.EventHandler(this.slkupSubTipo_EditValueChanged);
             // 
             // searchLookUpEdit3View
@@ -457,7 +458,7 @@
             this.slkupTipo.Properties.View = this.searchLookUpEdit2View;
             this.slkupTipo.Size = new System.Drawing.Size(219, 20);
             this.slkupTipo.StyleController = this.layoutControl1;
-            this.slkupTipo.TabIndex = 6;
+            this.slkupTipo.TabIndex = 0;
             this.slkupTipo.EditValueChanged += new System.EventHandler(this.slkupTipo_EditValueChanged);
             // 
             // searchLookUpEdit2View
@@ -477,7 +478,7 @@
             this.slkupGrupo.Properties.View = this.searchLookUpEdit1View;
             this.slkupGrupo.Size = new System.Drawing.Size(219, 20);
             this.slkupGrupo.StyleController = this.layoutControl1;
-            this.slkupGrupo.TabIndex = 5;
+            this.slkupGrupo.TabIndex = 2;
             // 
             // searchLookUpEdit1View
             // 
@@ -726,62 +727,75 @@
             // Tipo
             // 
             this.Tipo.Caption = "Tipo";
-            this.Tipo.FieldName = "IDTipo";
+            this.Tipo.FieldName = "DescrTipo";
+            this.Tipo.MinWidth = 60;
             this.Tipo.Name = "Tipo";
+            this.Tipo.OptionsColumn.FixedWidth = true;
             this.Tipo.Visible = true;
             this.Tipo.VisibleIndex = 0;
-            this.Tipo.Width = 61;
+            this.Tipo.Width = 74;
             // 
             // SubTipo
             // 
             this.SubTipo.Caption = "SubTipo";
-            this.SubTipo.FieldName = "SubTipo";
+            this.SubTipo.FieldName = "DescrSubTipo";
+            this.SubTipo.MinWidth = 40;
             this.SubTipo.Name = "SubTipo";
+            this.SubTipo.OptionsColumn.FixedWidth = true;
             this.SubTipo.Visible = true;
             this.SubTipo.VisibleIndex = 1;
-            this.SubTipo.Width = 99;
+            this.SubTipo.Width = 70;
             // 
             // Grupo
             // 
             this.Grupo.Caption = "Grupo";
-            this.Grupo.FieldName = "IDGrupo";
+            this.Grupo.FieldName = "DescrGrupo";
+            this.Grupo.MinWidth = 45;
             this.Grupo.Name = "Grupo";
+            this.Grupo.OptionsColumn.FixedWidth = true;
             this.Grupo.Visible = true;
             this.Grupo.VisibleIndex = 2;
-            this.Grupo.Width = 107;
+            this.Grupo.Width = 65;
             // 
             // Cuenta
             // 
             this.Cuenta.Caption = "Cuenta";
             this.Cuenta.FieldName = "Cuenta";
+            this.Cuenta.MinWidth = 90;
             this.Cuenta.Name = "Cuenta";
+            this.Cuenta.OptionsColumn.FixedWidth = true;
             this.Cuenta.Visible = true;
             this.Cuenta.VisibleIndex = 3;
-            this.Cuenta.Width = 107;
+            this.Cuenta.Width = 120;
             // 
             // Descripcion
             // 
             this.Descripcion.Caption = "Descripción";
             this.Descripcion.FieldName = "Descr";
+            this.Descripcion.MinWidth = 60;
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.Visible = true;
             this.Descripcion.VisibleIndex = 4;
-            this.Descripcion.Width = 194;
+            this.Descripcion.Width = 60;
             // 
             // CuentaMayor
             // 
             this.CuentaMayor.Caption = "Cuenta de Mayor";
             this.CuentaMayor.FieldName = "IDCuentaMayor";
+            this.CuentaMayor.MinWidth = 60;
             this.CuentaMayor.Name = "CuentaMayor";
+            this.CuentaMayor.OptionsColumn.FixedWidth = true;
             this.CuentaMayor.Visible = true;
             this.CuentaMayor.VisibleIndex = 5;
-            this.CuentaMayor.Width = 92;
+            this.CuentaMayor.Width = 90;
             // 
             // UsaCentroCosto
             // 
             this.UsaCentroCosto.Caption = "Usa Centro Costo";
             this.UsaCentroCosto.FieldName = "UsaCentroCosto";
+            this.UsaCentroCosto.MinWidth = 40;
             this.UsaCentroCosto.Name = "UsaCentroCosto";
+            this.UsaCentroCosto.OptionsColumn.FixedWidth = true;
             this.UsaCentroCosto.Visible = true;
             this.UsaCentroCosto.VisibleIndex = 6;
             this.UsaCentroCosto.Width = 92;
@@ -790,37 +804,45 @@
             // 
             this.Complementaria.Caption = "Complementaria";
             this.Complementaria.FieldName = "Complementaria";
+            this.Complementaria.MinWidth = 40;
             this.Complementaria.Name = "Complementaria";
+            this.Complementaria.OptionsColumn.FixedWidth = true;
             this.Complementaria.Visible = true;
             this.Complementaria.VisibleIndex = 7;
-            this.Complementaria.Width = 92;
+            this.Complementaria.Width = 88;
             // 
             // EsMayor
             // 
             this.EsMayor.Caption = "Es De Mayor";
             this.EsMayor.FieldName = "EsMayor";
+            this.EsMayor.MinWidth = 40;
             this.EsMayor.Name = "EsMayor";
+            this.EsMayor.OptionsColumn.FixedWidth = true;
             this.EsMayor.Visible = true;
             this.EsMayor.VisibleIndex = 8;
-            this.EsMayor.Width = 92;
+            this.EsMayor.Width = 66;
             // 
             // AceptaDatos
             // 
             this.AceptaDatos.Caption = "Acepta Datos";
             this.AceptaDatos.FieldName = "AceptaDatos";
+            this.AceptaDatos.MinWidth = 40;
             this.AceptaDatos.Name = "AceptaDatos";
+            this.AceptaDatos.OptionsColumn.FixedWidth = true;
             this.AceptaDatos.Visible = true;
             this.AceptaDatos.VisibleIndex = 9;
-            this.AceptaDatos.Width = 92;
+            this.AceptaDatos.Width = 88;
             // 
             // Activo
             // 
             this.Activo.Caption = "Activo";
             this.Activo.FieldName = "Activo";
+            this.Activo.MinWidth = 30;
             this.Activo.Name = "Activo";
+            this.Activo.OptionsColumn.FixedWidth = true;
             this.Activo.Visible = true;
             this.Activo.VisibleIndex = 10;
-            this.Activo.Width = 108;
+            this.Activo.Width = 71;
             // 
             // frmListadoCuentaContable
             // 

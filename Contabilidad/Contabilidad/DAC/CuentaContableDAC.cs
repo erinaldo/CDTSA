@@ -14,10 +14,13 @@ namespace CG
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT A.IDCuenta,A.IDGrupo,A.IDTipo,A.IDSubTipo,A.Tipo,A.SubTipo,A.Nivel1,A.Nivel2,A.Nivel3,A.Nivel4,A.Nivel5,A.Cuenta,A.Descr,A.Complementaria," +
+            String getSQL = "SELECT A.IDCuenta,A.IDGrupo,G.Descr DescrGrupo,A.IDTipo,T.Descr DescrTipo,A.IDSubTipo,ST.Descr DescrSubTipo,A.Tipo,A.SubTipo,A.Nivel1,A.Nivel2,A.Nivel3,A.Nivel4,A.Nivel5,A.Cuenta,A.Descr,A.Complementaria," +
                              "A.EsMayor,A.AceptaDatos,A.Activa,A.IDCuentaAnterior,A.IDCuentaMayor,B.Descr DescrCuentaMayor, A.UsaCentroCosto,A.IDSeccion " +
                             "FROM dbo.cntCuenta A" +
                             " LEFT JOIN dbo.cntCuenta B ON A.IDCuentaMayor = B.IDCuenta " +
+                            "INNER JOIN dbo.cntTipoCuenta T ON A.IDTipo=T.IDTipo " +
+                            "INNER JOIN dbo.cntSubTipoCuenta ST ON A.IDSubTipo = ST.IDSubTipo AND A.IDTipo = ST.IDTipo " +
+                            "INNER JOIN dbo.cntGrupoCuenta G ON A.IDTipo = G.IDTipo AND A.IDSubTipo = G.IDSubTipo AND A.IDGrupo = G.IDGrupo " +
                             "WHERE(A.IDCuenta = @IDCuenta OR @IDCuenta = -1) AND(A.IDGrupo = @IDGrupo OR  @IDGrupo = -1) " +
                             "AND(A.IDSubTipo = @IDSubTipo OR @IDSubTipo = -1) AND(A.Nivel1 = @Nivel1 OR @Nivel1 = '*') " +
                             "AND(A.Nivel2 = @Nivel2 OR @Nivel2 = '*')  AND(A.Nivel3 = @Nivel3 OR @Nivel3 = '*') " +

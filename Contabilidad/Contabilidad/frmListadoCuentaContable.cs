@@ -56,7 +56,7 @@ namespace CG
             dvCuentaMayor.RowFilter = "EsMayor=1";
 
             Util.Util.ConfigLookupEdit(this.slkupCuentaMayor, dvCuentaMayor.ToTable(), "Descr", "IDCuenta");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaAnterior, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaMayor, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
         }
 
         private void frmListadoCuentaContable_Load(object sender, EventArgs e)
@@ -142,7 +142,6 @@ namespace CG
             this.chkActiva.ReadOnly = !Activo;
             this.chkAceptaDatos.ReadOnly = !Activo;
             this.chkUsaCentroCosto.ReadOnly = !Activo;
-            this.txtCuenta.ReadOnly = !Activo;
             this.txtDescripcion.ReadOnly = !Activo;
             this.slkupCuentaMayor.ReadOnly = !Activo;
             this.slkupCuentaAnterior.ReadOnly = !Activo;
@@ -221,10 +220,42 @@ namespace CG
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
         }
 
+        private bool ValidarDatos()
+        {
+            bool result = true;
+            String sMensaje = "";
+            //Este solo vale para el primer elemento
+            if (_dtCuenta.Rows.Count > 1)
+                if (this.slkupCuentaAnterior.EditValue == null)
+                    sMensaje = sMensaje + "     • Cuenta Anterior. \n\r";
+            if (this.slkupTipo.EditValue == null)
+                sMensaje = sMensaje + "     • Tipo de Cuenta. \n\r";
+            if (this.slkupSubTipo.EditValue == null)
+                sMensaje = sMensaje + "     • Sub Tipo de Cuenta. \n\r";
+            if (this.slkupGrupo.EditValue == null)
+                sMensaje = sMensaje + "     • Grupo de Cuenta. \n\r";
+            if (this.txtNivel1.Text == "")
+                sMensaje = sMensaje + "     • Nivel 1. \n\r";
+            if (this.txtDescripcion.Text == "")
+                sMensaje = sMensaje + "     • Descripción de la Cuenta. \n\r";
+            if (Convert.ToBoolean(this.chkEsMayor.EditValue) == false)
+                if (this.slkupCuentaMayor.EditValue == null)
+                    sMensaje = sMensaje + "     • Cuenta de Mayor. \n\r";
+            if (sMensaje != "")
+            {
+                result = false;
+                MessageBox.Show("Por favor revise los siguientes campos, puede que sean obligatorios: \n\r\n\r" + sMensaje);
+            }
+            return result;
+        }
+
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (currentRow != null)
             {
+                if (!ValidarDatos())
+                    return;
+
                 lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
 
                 Application.DoEvents();
@@ -382,26 +413,6 @@ namespace CG
             }
         }
 
-       
-        //private void slkupCentroAnterior_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (this.slkupCentroAnterior.EditValue != null && this.slkupCentroAnterior.EditValue.ToString() != "")
-        //        {
-        //            DataView dv = new DataView();
-        //            dv.Table = _dtCuenta;
-        //            dv.RowFilter = "IDCentro='" + this.slkupCentroAnterior.EditValue.ToString() + "'";
-        //            this.txtNivel1.Text = dv[0].Row["Nivel1"].ToString();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        //}
-
         private void chkEsMayor_CheckStateChanged(object sender, EventArgs e)
         {
             if (this.chkEsMayor.EditValue == null)
@@ -480,5 +491,7 @@ namespace CG
                 MessageBox.Show(ex.Message);
             }
         }
+
+       
     }
 }
