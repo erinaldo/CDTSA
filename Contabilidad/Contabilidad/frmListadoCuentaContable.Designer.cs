@@ -574,7 +574,7 @@
             // CuentaMayor
             // 
             this.CuentaMayor.Caption = "Cuenta de Mayor";
-            this.CuentaMayor.FieldName = "IDCuentaMayor";
+            this.CuentaMayor.FieldName = "DescrCuentaMayor";
             this.CuentaMayor.MinWidth = 60;
             this.CuentaMayor.Name = "CuentaMayor";
             this.CuentaMayor.OptionsColumn.FixedWidth = true;

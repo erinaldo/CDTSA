@@ -253,6 +253,7 @@ namespace CG
                         {
                             i = Convert.ToInt32(dt.Rows[0]["Nivel4"]);
                             i++;
+                            this.txtNivel5.Text = "0";
                             this.txtNivel4.Text = i.ToString();
                             this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
                             this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
@@ -261,6 +262,8 @@ namespace CG
                         {
                             i = Convert.ToInt32(dt.Rows[0]["Nivel3"]);
                             i++;
+                            this.txtNivel5.Text = "0";
+                            this.txtNivel4.Text = "0";
                             this.txtNivel3.Text = i.ToString();
                             this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
                         }
@@ -268,6 +271,9 @@ namespace CG
                         {
                             i = Convert.ToInt32(dt.Rows[0]["Nivel2"]);
                             i++;
+                            this.txtNivel5.Text = "0";
+                            this.txtNivel4.Text = "0";
+                            this.txtNivel3.Text = "0";
                             this.txtNivel2.Text = i.ToString();
                         }
 
@@ -328,9 +334,12 @@ namespace CG
                 sMensaje = sMensaje + "     • Nivel 1. \n\r";
             if (this.txtDescripcion.Text == "")
                 sMensaje = sMensaje + "     • Descripción de la Cuenta. \n\r";
+            if (this.chkAceptaDatos.EditValue == null && this.chkEsMayor.EditValue == null)
+                sMensaje = sMensaje + "     • Debe seleccionar si la cuenta es Mayor o Acepta Datos";
             if (Convert.ToBoolean(this.chkEsMayor.EditValue) == false)
                 if (this.slkupCuentaMayor.EditValue == null)
                     sMensaje = sMensaje + "     • Cuenta de Mayor. \n\r";
+            
             if (sMensaje != "")
             {
                 result = false;
@@ -552,6 +561,8 @@ namespace CG
                     Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipo, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
                     this.slkupSubTipo.EditValue = null;
                     this.slkupGrupo.EditValue = null;
+                    this.slkupCuentaAnterior.EditValue = null;
+                    this.slkupCuentaMayor.EditValue = null;
                     this.slkupSubTipo.Enabled =true;
                     this.slkupGrupo.Enabled = false;
 
@@ -576,6 +587,8 @@ namespace CG
                     Util.Util.ConfigLookupEdit(this.slkupGrupo, dv.ToTable(), "Descr", "IDSubTipo");
                     Util.Util.ConfigLookupEditSetViewColumns(this.slkupGrupo, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
                     this.slkupGrupo.EditValue = null;
+                    this.slkupCuentaAnterior.EditValue = null;
+                    this.slkupCuentaMayor.EditValue = null;
                     this.slkupGrupo.Enabled = true;
 
                 }

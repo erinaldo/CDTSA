@@ -12,7 +12,7 @@ namespace CG
         private DataSet _dsCentro;
         DataRow currentRow;
         const String _tituloVentana = "Listado de Centros de Costos";
-
+        private bool isEdition = false;
         public frmListadoCentroCosto()
         {
             InitializeComponent();
@@ -21,8 +21,8 @@ namespace CG
             this.chkReadSystemOnly.Enabled = false;
         }
 
-        
-       
+
+
         private void EnlazarEventos()
         {
             this.btnAgregar.ItemClick += btnAgregar_ItemClick;
@@ -38,13 +38,13 @@ namespace CG
             try
             {
                 HabilitarControles(false);
-                
+
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.dtg, _tituloVentana, this);
 
                 PopulateGrid();
 
                 EnlazarEventos();
-                
+
             }
             catch (Exception ex)
             {
@@ -61,16 +61,16 @@ namespace CG
             Util.Util.ConfigLookupEdit(this.slkupCentroAnterior, _dtCentro, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroAnterior, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
         }
-        
+
         private void PopulateGrid()
         {
             _dsCentro = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1);
-            
+
             _dtCentro = _dsCentro.Tables[0];
             this.dtg.DataSource = _dtCentro;
 
             PopulateData();
-            
+
         }
 
         private void ClearControls()
@@ -84,7 +84,7 @@ namespace CG
             this.chkAcumulador.EditValue = false;
             this.slkupCentroAnterior.EditValue = null;
             this.slkupCentroAcumulador.EditValue = null;
-            
+
         }
 
         private void HabilitarControles(bool Activo)
@@ -130,7 +130,7 @@ namespace CG
             this.slkupCentroAnterior.EditValue = Row["IDCentroAnterior"].ToString();
             this.slkupCentroAcumulador.EditValue = Row["IDCentroAcumulador"].ToString();
             this.chkReadSystemOnly.EditValue = Row["ReadOnlySys"];
-            
+
         }
 
 
@@ -145,6 +145,7 @@ namespace CG
 
         private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEdition = true;
             HabilitarControles(true);
             ClearControls();
             currentRow = null;
@@ -164,11 +165,13 @@ namespace CG
                 lblStatus.Caption = "No se puede modificar un elemento de Sistema";
                 return;
             }
+            isEdition = true;
             HabilitarControles(true);
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
         }
 
-        private bool ValidarDatos() {
+        private bool ValidarDatos()
+        {
             bool result = true;
             String sMensaje = "";
             //Este solo vale para el primer elemento
@@ -203,9 +206,9 @@ namespace CG
                 Application.DoEvents();
                 currentRow.BeginEdit();
 
-                currentRow["Nivel1"] = (this.txtNivel1.Text=="") ? "0": this.txtNivel1.Text;
-                currentRow["Nivel2"] = (this.txtNivel2.Text=="") ? "0": this.txtNivel2.Text;
-                currentRow["Nivel3"] = (this.txtNivel3.Text=="") ? "0": this.txtNivel3.Text;
+                currentRow["Nivel1"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
+                currentRow["Nivel2"] = (this.txtNivel2.Text == "") ? "0" : this.txtNivel2.Text;
+                currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
                 currentRow["Centro"] = this.txtCentro.Text;
                 currentRow["Descr"] = this.txtDescripcion.Text;
                 currentRow["Activo"] = this.chkActivo.EditValue;
@@ -213,7 +216,7 @@ namespace CG
                 currentRow["IDCentroAnterior"] = this.slkupCentroAnterior.EditValue;
                 currentRow["IDCentroAcumulador"] = this.slkupCentroAcumulador.EditValue;
                 currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
-                
+
                 currentRow.EndEdit();
 
                 DataSet _dsChanged = _dsCentro.GetChanges(DataRowState.Modified);
@@ -247,7 +250,7 @@ namespace CG
                     CentroCostoDAC.oAdaptador.Update(_dsChanged, "Data");
                     lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                     Application.DoEvents();
-
+                    isEdition = false;
                     _dsCentro.AcceptChanges();
                     PopulateGrid();
                     HabilitarControles(false);
@@ -262,7 +265,7 @@ namespace CG
             {
                 //nuevo registro
                 currentRow = _dtCentro.NewRow();
-                 
+
                 currentRow["Nivel1"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
                 currentRow["Nivel2"] = (this.txtNivel2.Text == "") ? "0" : this.txtNivel2.Text;
                 currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
@@ -271,14 +274,14 @@ namespace CG
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["Acumulador"] = this.chkAcumulador.EditValue;
                 currentRow["IDCentroAnterior"] = this.slkupCentroAnterior.EditValue;
-                currentRow["IDCentroAcumulador"] = (this.slkupCentroAcumulador.EditValue == null) ? 0: this.slkupCentroAcumulador.EditValue;
+                currentRow["IDCentroAcumulador"] = (this.slkupCentroAcumulador.EditValue == null) ? 0 : this.slkupCentroAcumulador.EditValue;
                 currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
                 _dtCentro.Rows.Add(currentRow);
                 try
                 {
                     CentroCostoDAC.oAdaptador.Update(_dsCentro, "Data");
                     _dsCentro.AcceptChanges();
-
+                    isEdition = false;
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
                     Application.DoEvents();
                     PopulateGrid();
@@ -299,6 +302,7 @@ namespace CG
 
         private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            isEdition = false;
             HabilitarControles(false);
             SetCurrentRow();
             lblStatus.Caption = "";
@@ -349,15 +353,41 @@ namespace CG
 
         private void slkupCentroAnterior_EditValueChanged(object sender, EventArgs e)
         {
+
             try
             {
+                if (!isEdition)
+                    return;
+
                 if (this.slkupCentroAnterior.EditValue != null && this.slkupCentroAnterior.EditValue.ToString() != "")
                 {
                     DataView dv = new DataView();
                     dv.Table = _dtCentro;
                     dv.RowFilter = "IDCentro='" + this.slkupCentroAnterior.EditValue.ToString() + "'";
-                    this.txtNivel1.Text = dv[0].Row["Nivel1"].ToString();       
+                    this.txtNivel1.Text = dv[0].Row["Nivel1"].ToString();
+
+                    DataTable dt = dv.ToTable();
+                    int i = -1;
+                    if (dt.Rows[0]["Nivel3"].ToString() != "0")
+                    {
+                        i = Convert.ToInt32(dt.Rows[0]["Nivel3"]);
+                        i++;
+                        this.txtNivel3.Text = i.ToString();
+                        this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
+
+
+                    }
+                    else if (dt.Rows[0]["Nivel2"].ToString() != "0")
+                    {
+                        i = Convert.ToInt32(dt.Rows[0]["Nivel2"]);
+                        i++;
+                        this.txtNivel2.Text = i.ToString();
+                        this.txtNivel3.Text = "0";
+                    }
+
+
                 }
+
             }
             catch (Exception ex)
             {
@@ -366,6 +396,7 @@ namespace CG
 
         }
 
-      
+
+
     }
 }
