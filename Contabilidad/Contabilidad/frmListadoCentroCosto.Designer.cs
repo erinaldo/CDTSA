@@ -317,8 +317,8 @@
             this.txtNivel3.Location = new System.Drawing.Point(123, 399);
             this.txtNivel3.MenuManager = this.ribbonControl;
             this.txtNivel3.Name = "txtNivel3";
-            this.txtNivel3.Properties.Mask.EditMask = "f0";
-            this.txtNivel3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtNivel3.Properties.Mask.EditMask = "[0-9]*";
+            this.txtNivel3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtNivel3.Size = new System.Drawing.Size(206, 20);
             this.txtNivel3.StyleController = this.layoutControl1;
             this.txtNivel3.TabIndex = 3;
@@ -328,8 +328,8 @@
             this.txtNivel2.Location = new System.Drawing.Point(123, 375);
             this.txtNivel2.MenuManager = this.ribbonControl;
             this.txtNivel2.Name = "txtNivel2";
-            this.txtNivel2.Properties.Mask.EditMask = "f0";
-            this.txtNivel2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtNivel2.Properties.Mask.EditMask = "[0-9]*";
+            this.txtNivel2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtNivel2.Size = new System.Drawing.Size(206, 20);
             this.txtNivel2.StyleController = this.layoutControl1;
             this.txtNivel2.TabIndex = 2;
@@ -339,8 +339,8 @@
             this.txtNivel1.Location = new System.Drawing.Point(123, 351);
             this.txtNivel1.MenuManager = this.ribbonControl;
             this.txtNivel1.Name = "txtNivel1";
-            this.txtNivel1.Properties.Mask.EditMask = "f0";
-            this.txtNivel1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtNivel1.Properties.Mask.EditMask = "[0-9]*";
+            this.txtNivel1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtNivel1.Size = new System.Drawing.Size(206, 20);
             this.txtNivel1.StyleController = this.layoutControl1;
             this.txtNivel1.TabIndex = 1;

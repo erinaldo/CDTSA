@@ -14,30 +14,38 @@ namespace CG
 {
     public partial class frmAsiento : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-       
-        //private DataTable _dtAsiento;
-        //private DataTable _dtDetalle;
 
-        //private DataSet _dsAsiento;
-        //private DataSet _dsDetalle;
+        private DataTable _dtAsiento;
+        private DataTable _dtDetalle;
 
-        //private DataRow _currentRow;
-        //private String Accion = "NEW";
+        private DataSet _dsAsiento;
+        private DataSet _dsDetalle;
 
-        //String sUsuario = "jespinoza";
-        //String _tituloVentana = "Asiento";
+        private DataRow _currentRow;
+        private String Accion = "NEW";
+
+        String sUsuario = "jespinoza";
+        String _tituloVentana = "Asiento";
 
 
-        //public frmAsiento()
-        //{
-        //    InitializeComponent();
-        //    InicializarControles();
-        //    //Obtener el Siguiente consecutivo de la solicitud"
-        //    _dsAsiento = AsientoDAC.GetDataEmpty();
-        //    _dtAsiento = _dsAsiento.Tables[0];
-        //    InicializarNuevoElemento();
-        //    this.StartPosition = FormStartPosition.CenterScreen;
-        //}
+        public frmAsiento()
+        {
+            InitializeComponent();
+            InicializarControles();
+            //Obtener el Siguiente consecutivo de la solicitud"
+            _dsAsiento = AsientoDAC.GetDataEmpty();
+            _dtAsiento = _dsAsiento.Tables[0];
+            InicializarNuevoElemento();
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private void InicializarControles()
+        {
+            gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
+            gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+        }
+
+
 
         private void InicializarNuevoElemento()
         {
@@ -98,13 +106,7 @@ namespace CG
         //    this.dtgDetalle.DataSource = null;
         //}
 
-        //private void InicializarControles()
-        //{
-        //    gridViewDetalle.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
-        //    gridViewDetalle.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-        //}
-
-
+      
         //private void HabilitarControles(bool Activo)
         //{
         //    this.txtCodSucursal.ReadOnly = !Activo;

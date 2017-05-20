@@ -182,7 +182,7 @@ namespace CG
                 sMensaje = sMensaje + "     • Nivel 1. \n\r";
             if (this.txtDescripcion.Text == "")
                 sMensaje = sMensaje + "     • Descripción del Centro de Costo. \n\r";
-            if (Convert.ToBoolean(this.chkAcumulador.EditValue) == true)
+            if (Convert.ToBoolean(this.chkAcumulador.EditValue) == false)
                 if (this.slkupCentroAcumulador.EditValue == null)
                     sMensaje = sMensaje + "     • Centro Acumulador. \n\r";
             if (sMensaje != "")

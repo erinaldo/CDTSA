@@ -939,7 +939,7 @@ where IDTipo = @IDTipo
 
 Select @SubTipo = SubTipo, @Naturaleza = Naturaleza
 from dbo.cntSubTipoCuenta 
-where IDTipo = @Tipo and IDSubTipo = @IDSubTipo 
+where IDTipo = @IDTipo and IDSubTipo = @IDSubTipo 
 
 if @Complementaria = 1
 begin
