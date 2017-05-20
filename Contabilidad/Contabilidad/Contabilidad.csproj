@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManager.cs" />
+    <Compile Include="DAC\AsientoDAC.cs" />
     <Compile Include="DAC\CuentaContableDAC.cs" />
     <Compile Include="DAC\CentroCostoDAC.cs" />
     <Compile Include="DAC\GrupoDAC.cs" />

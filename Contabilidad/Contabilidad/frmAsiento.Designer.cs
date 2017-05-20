@@ -291,6 +291,7 @@
             this.grid.Name = "grid";
             this.grid.Size = new System.Drawing.Size(828, 273);
             this.grid.TabIndex = 14;
+            this.grid.UseEmbeddedNavigator = true;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 

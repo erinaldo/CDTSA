@@ -333,7 +333,7 @@ Alter Table dbo.cntEjercicio add constraint chkRangoAnio
 check ( DateDiff( day, FechaInicio, FechaFin) between 364 and 365 )				 
 go
 Create Table dbo.cntPeriodoContable ( IDEjercicio int not null, Periodo nvarchar(10) not null, FechaFinal date not null, Descr nvarchar(255) ,
-FinPeriodoFiscal bit default 0, Cerrado bit default 0, AjustesCierreFiscal bit default 0, Activo bit default 1 )
+FinPeriodoFiscal bit default 0, Cerrado bit default 0, AjustesCierreFiscal bit default 0, Activo bit default 1, PeriodoTrabajo bit default 0 )
 go 
 
 alter table dbo.cntPeriodoContable add constraint pkPeriodoContable primary key (IDEjercicio, Periodo)
@@ -345,6 +345,22 @@ go
 
 alter table dbo.cntPeriodoContable add constraint chkPeriodoContablecierre check  ((Cerrado = 1 and activo = 1 ) or (Cerrado = 0 and Activo = 1) or (Cerrado = 0 and Activo = 0))
 go
+
+
+Create Function dbo.cntEjercicioPeriodoDeTrabajo (@IDEjercicio int)
+RETURNS int
+BEGIN
+Declare @Resultado int 
+	set @Resultado =  ( Select count(*) 
+				From dbo.cntPeriodoContable 
+				Where IDEjercicio = @IDEjercicio and PeriodoTrabajo = 1 )	
+		if @Resultado is null
+			set @Resultado = 0
+
+return @Resultado
+END
+go
+
 
 
 Create Function dbo.cntEjercicioPeriodoAjusteCierreFiscal (@IDEjercicio int)
@@ -389,11 +405,12 @@ return @Resultado
 END
 go
 
-
+--drop trigger trPeriodoContable
 Create Trigger trPeriodoContable on dbo.cntPeriodoContable after Insert, Update
 as
-Declare @IDPeriodo int, @IDEjercicio int, @AjustesCierreFiscal bit, @FinPeriodoFiscal bit  
-SElect @IDEjercicio = i.IDEjercicio, @AjustesCierreFiscal = i.AjustesCierreFiscal, @FinPeriodoFiscal = i.FinPeriodoFiscal
+Declare @IDPeriodo int, @IDEjercicio int, @AjustesCierreFiscal bit, @FinPeriodoFiscal bit , @PeriodoTrabajo bit, @Activo bit
+SElect @IDEjercicio = i.IDEjercicio, @AjustesCierreFiscal = i.AjustesCierreFiscal, @FinPeriodoFiscal = i.FinPeriodoFiscal,
+@PeriodoTrabajo = PeriodoTrabajo, @Activo = Activo 
 from inserted i
 if @AjustesCierreFiscal = 1 and  dbo.cntEjercicioPeriodoAjusteCierreFiscal( @IDEjercicio)>1
 begin
@@ -406,6 +423,21 @@ begin
 		RAISERROR ( 'Se intenta crear un Periodo Contable indicando que es Fin de Ciclo, pero ya Existe uno en ese Ejercicio...', 16, 1) ;
 		rollback tran 
 end
+
+if @Activo = 0 and @PeriodoTrabajo = 1
+begin
+		RAISERROR ( 'Se intenta crear un Periodo Contable indicando que es Periodo de Trabajo, pero esta inactivo...', 16, 1) ;
+		rollback tran 
+end
+
+
+if @PeriodoTrabajo = 1 and  dbo.cntEjercicioPeriodoDeTrabajo( @IDEjercicio)>1
+begin
+		RAISERROR ( 'Se intenta crear un Periodo Contable indicando que es Periodo de Trabajo, pero ya Existe uno en ese Ejercicio...', 16, 1) ;
+		rollback tran 
+end
+
+
 go
 
 Create Procedure dbo.cntCreaPeriodos @IDEjercicio int,  @AnioInicialPeriodo int
@@ -544,9 +576,9 @@ from  dbo.cntParametros
 
 Update c set Centro = right(replicate ( @charPredecesorCentro, 2) +  ISNULL(i.Nivel1,'')  , 2 ) + 
 case when @UsaSeparadorCentro= 1 and i.Nivel2<> '' then @SeparadorCentro else '' end 
-+ case when ISNULL(i.Nivel2,'')<> '' then right (replicate ( @charPredecesorCentro, 2)+ i.Nivel2, 2)  else '' end 
++ case when ISNULL(i.Nivel2,'')<> '' then right (replicate ( @charPredecesorCentro, 2)+ isnull(i.Nivel2,''), 2)  else '' end 
 + case when @UsaSeparadorCentro= 1 and i.Nivel3<> '' then @SeparadorCentro else '' end
-+ case when ISNULL(i.Nivel3,'')<> '' then right (replicate ( @charPredecesorCentro, 2)+ i.Nivel3, 2)  else '' end
++ case when ISNULL(i.Nivel3,'')<> '' then right (replicate ( @charPredecesorCentro, 2)+ isnull(i.Nivel3,''), 2)  else '' end
 From inserted i inner join dbo.cntCentroCosto c
 on i.IDCentro = c.IDCentro
 
@@ -907,7 +939,7 @@ where IDTipo = @IDTipo
 
 Select @SubTipo = SubTipo, @Naturaleza = Naturaleza
 from dbo.cntSubTipoCuenta 
-where IDTipo = @IDTipo and IDSubTipo = @IDSubTipo 
+where IDTipo = @Tipo and IDSubTipo = @IDSubTipo 
 
 if @Complementaria = 1
 begin
@@ -1303,14 +1335,21 @@ exec dbo.cntGetSaldoAcumulado @IDEjercicio, @Periodo, @IDCuenta, @Centro, @SoloM
 
 
 /*
-Select * from dbo.vcntCatalogo
+
+
+
+
+Select * from dbo.cntCuenta order by idgrupo, idTipo, IDSubTipo, idCuentaAnterior
 
 SELECT * FROM dbo.cntAsiento 
 SELECT * FROM dbo.cntAsientoDetalle 
 
-select * from dbo.cntSaldo 
+select * from dbo.cntEjercicio 
+select * from dbo.cntperiodocontable 
 
 */
+
+
 
 -- ********************************************************************************************************************* 
 
@@ -1337,4 +1376,3 @@ go
 
 
 */
-
