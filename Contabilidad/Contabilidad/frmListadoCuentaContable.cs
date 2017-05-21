@@ -73,15 +73,25 @@ namespace CG
 
                 PopulateGrid();
 
+                Util.Util.ConfigLookupEdit(this.slkupGrupo, _dtGrupo, "Descr", "IDGrupo");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupGrupo, "[{'ColumnCaption':'IDGrupo','ColumnField':'IDGrupo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 Util.Util.ConfigLookupEdit(this.slkupTipo, _dtTipo, "Descr", "IDTipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'IDTipo','ColumnField':'IDTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-
+                Util.Util.ConfigLookupEdit(this.slkupSubTipo, _dtSubTipo, "Descr", "IDSubTipo");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipo, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 EnlazarEventos();
-                this.slkupSubTipo.Enabled = false;
-                this.slkupGrupo.Enabled = false;
+                
+                this.slkupSubTipo.ReadOnly = true;
+                this.slkupTipo.ReadOnly = true;
+                this.slkupCuentaAnterior.ReadOnly = true;
+                this.txtNivel2.ReadOnly = true;
+                this.txtNivel3.ReadOnly = true;
+                this.txtNivel4.ReadOnly = true;
+                this.txtNivel5.ReadOnly = true;
+
 
             }
             catch (Exception ex)
@@ -131,13 +141,7 @@ namespace CG
         private void HabilitarControles(bool Activo)
         {
             this.slkupGrupo.ReadOnly = !Activo;
-            this.slkupTipo.ReadOnly = !Activo;
-            this.slkupSubTipo.ReadOnly = !Activo;
-            //this.txtNivel1.ReadOnly = !Activo;
-            this.txtNivel2.ReadOnly = !Activo;
-            this.txtNivel3.ReadOnly = !Activo;
-            this.txtNivel4.ReadOnly = !Activo;
-            this.txtNivel5.ReadOnly = !Activo;
+            
             this.chkComplementaria.ReadOnly = !Activo;
             this.chkEsMayor.ReadOnly = !Activo;
             this.chkActiva.ReadOnly = !Activo;
@@ -145,8 +149,6 @@ namespace CG
             this.chkUsaCentroCosto.ReadOnly = !Activo;
             this.txtDescripcion.ReadOnly = !Activo;
             this.slkupCuentaMayor.ReadOnly = !Activo;
-            this.slkupCuentaAnterior.ReadOnly = !Activo;
-
 
             this.dtg.Enabled = !Activo;
 
@@ -224,98 +226,6 @@ namespace CG
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
         }
 
-        private void SlkupCuentaAnterior_EditValueChanged(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    if (!isEdition)
-            //        return;
-            //    if (this.slkupCuentaAnterior.EditValue != null && this.slkupCuentaAnterior.EditValue.ToString() != "")
-            //    {
-            //        DataView dv = new DataView();
-            //        dv.Table = _dtCuenta;
-            //        dv.RowFilter = "IDCuenta='" + this.slkupCuentaAnterior.EditValue.ToString() + "' ";
-
-            //        DataTable dt = dv.ToTable();
-            //        bool EsMayor = Convert.ToBoolean((this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue);
-            //        if (!EsMayor)
-            //        {
-            //            int i = -1;
-            //            if (dt.Rows[0]["Nivel5"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel5"]);
-            //                i++;
-            //                this.txtNivel5.Text = i.ToString();
-            //                this.txtNivel4.Text = dt.Rows[0]["Nivel4"].ToString();
-            //                this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
-            //                this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-            //            }
-            //            else if (dt.Rows[0]["Nivel4"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel4"]);
-            //                i++;
-            //                this.txtNivel5.Text = "0";
-            //                this.txtNivel4.Text = i.ToString();
-            //                this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
-            //                this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-            //            }
-            //            else if (dt.Rows[0]["Nivel3"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel3"]);
-            //                i++;
-            //                this.txtNivel5.Text = "0";
-            //                this.txtNivel4.Text = "0";
-            //                this.txtNivel3.Text = i.ToString();
-            //                this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-            //            }
-            //            else if (dt.Rows[0]["Nivel2"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel2"]);
-            //                i++;
-            //                this.txtNivel5.Text = "0";
-            //                this.txtNivel4.Text = "0";
-            //                this.txtNivel3.Text = "0";
-            //                this.txtNivel2.Text = i.ToString();
-            //            }
-
-            //        }
-            //        else
-            //        {
-            //            int i = -1;
-            //            if (dt.Rows[0]["Nivel5"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel4"]);
-            //                i++;
-            //                this.txtNivel4.Text = i.ToString();
-            //                this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
-            //                this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-
-            //            }
-            //            else if (dt.Rows[0]["Nivel4"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel3"]);
-            //                i++;
-            //                this.txtNivel3.Text = i.ToString();
-            //                this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-
-            //            }
-            //            else if (dt.Rows[0]["Nivel3"].ToString() != "0")
-            //            {
-            //                i = Convert.ToInt32(dt.Rows[0]["Nivel2"]);
-            //                i++;
-            //                this.txtNivel2.Text = i.ToString();
-            //            }
-
-            //        }
-            //this.txtNivel2.Text = dt.Rows[0]["Nivel1"].ToString();
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-        }
 
         private bool ValidarDatos()
         {
@@ -500,7 +410,7 @@ namespace CG
                     try
                     {
 
-                        CentroCostoDAC.oAdaptador.Update(_dsCuenta, "Data");
+                        CuentaContableDAC.oAdaptador.Update(_dsCuenta, "Data");
                         _dsCuenta.AcceptChanges();
 
                         PopulateGrid();
@@ -519,22 +429,28 @@ namespace CG
 
         private void chkEsMayor_CheckStateChanged(object sender, EventArgs e)
         {
+            if (!isEdition)
+                return;
             if (this.chkEsMayor.EditValue == null)
                 return;
             if ((bool)this.chkEsMayor.EditValue == true)
             {
                 this.chkAceptaDatos.Enabled = false;
                 this.chkAceptaDatos.EditValue = false;
+                this.chkUsaCentroCosto.Enabled = false;
             }
             else
             {
                 this.chkAceptaDatos.Enabled = true;
                 this.chkAceptaDatos.EditValue = true;
+                this.chkUsaCentroCosto.Enabled = true;
             }
         }
 
         private void chkAceptaDatos_CheckStateChanged(object sender, EventArgs e)
         {
+            if (!isEdition)
+                return;
             if (this.chkAceptaDatos.EditValue == null)
                 return;
             if ((bool)this.chkAceptaDatos.EditValue == true)
@@ -549,56 +465,9 @@ namespace CG
             }
         }
 
-        private void slkupTipo_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.slkupTipo.EditValue != null && this.slkupTipo.EditValue.ToString() != "")
-                {
-                    DataView dv = new DataView();
-                    dv.Table = _dtSubTipo;
-                    dv.RowFilter = "IDTipo='" + this.slkupTipo.EditValue.ToString() + "'";
-                    Util.Util.ConfigLookupEdit(this.slkupSubTipo, dv.ToTable(), "Descr", "IDSubTipo");
-                    Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipo, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-                    this.slkupSubTipo.EditValue = null;
-                    this.slkupGrupo.EditValue = null;
-                    this.slkupCuentaAnterior.EditValue = null;
-                    this.slkupCuentaMayor.EditValue = null;
-                    this.slkupSubTipo.Enabled = true;
-                    this.slkupGrupo.Enabled = false;
+      
 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void slkupSubTipo_EditValueChanged(object sender, EventArgs e)
-        {
-
-            try
-            {
-                if (this.slkupSubTipo.EditValue != null && this.slkupSubTipo.EditValue.ToString() != "")
-                {
-                    DataView dv = new DataView();
-                    dv.Table = _dtGrupo;
-                    dv.RowFilter = "IDTipo='" + this.slkupTipo.EditValue.ToString() + "' and IDSubTipo='" + this.slkupSubTipo.EditValue.ToString() + "'";
-                    Util.Util.ConfigLookupEdit(this.slkupGrupo, dv.ToTable(), "Descr", "IDGrupo");
-                    Util.Util.ConfigLookupEditSetViewColumns(this.slkupGrupo, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-                    this.slkupGrupo.EditValue = null;
-                    this.slkupCuentaAnterior.EditValue = null;
-                    this.slkupCuentaMayor.EditValue = null;
-                    this.slkupGrupo.Enabled = true;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+      
 
         private void slkupGrupo_EditValueChanged(object sender, EventArgs e)
         {
@@ -610,20 +479,38 @@ namespace CG
                 {
                     DataView dv = new DataView();
                     dv.Table = _dtGrupo;
-                    dv.RowFilter = "IDGrupo='" + this.slkupGrupo.EditValue.ToString() + "' and IDTipo='" + this.slkupTipo.EditValue.ToString() + "' and IDSubTipo='" + this.slkupSubTipo.EditValue.ToString() + "'";
-
+                    dv.RowFilter = "IDGrupo='" + this.slkupGrupo.EditValue.ToString() + "'";
+                    
                     DataTable dt = dv.ToTable();
 
+                    //Llenar tipo y sub Tipo
+                    this.slkupTipo.EditValue = dt.Rows[0]["IDTipo"].ToString();
+                    this.slkupSubTipo.EditValue = dt.Rows[0]["IDSubTipo"].ToString();
+
+                    this.txtDescripcion.Text = dt.Rows[0]["Descr"].ToString();
                     this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     this.chkComplementaria.Enabled = Convert.ToBoolean(dt.Rows[0]["UsaComplementaria"]);
                     this.chkComplementaria.EditValue = null;
-
+                 
+           
                     DataView dvCuentaAnt = new DataView();
                     dvCuentaAnt.Table = _dtCuenta;
                     dvCuentaAnt.RowFilter = "Nivel1 = " + dt.Rows[0]["Nivel1"].ToString();
 
                     Util.Util.ConfigLookupEdit(this.slkupCuentaAnterior, dvCuentaAnt.ToTable(), "Descr", "IDCuenta");
                     Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaAnterior, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+
+                    int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(-1, 0, 0, 0, 0);
+                    //Formar el anterior
+                    String CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(iProximoConsecutivo.ToString(), "0", "0", "0", "0");
+
+                    DataView dvCuentaAnt2 = new DataView();
+                    dvCuentaAnt2.Table = _dtCuenta;
+                    dvCuentaAnt2.RowFilter = "Cuenta = '" + CuentaAnterior + "'";
+
+
+                    this.slkupCuentaAnterior.EditValue = dvCuentaAnt2.ToTable().Rows[0]["IDCuenta"].ToString();
 
                     DataView dvCuentaMayor = new DataView();
                     dvCuentaMayor.Table = _dtCuenta;
@@ -645,6 +532,8 @@ namespace CG
         {
             try
             {
+                String CuentaAnterior = "";
+                
                 if (!isEdition)
                     return;
                 if (this.slkupCuentaMayor.EditValue != null && this.slkupCuentaMayor.EditValue.ToString() != "")
@@ -658,49 +547,65 @@ namespace CG
                     //if (!EsMayor)
                     //{
                     int i = -1;
-                    //nunca se dara
-                    if (dt.Rows[0]["Nivel5"].ToString() != "0")
+        
+                    if (dt.Rows[0]["Nivel4"].ToString() != "0")
                     {
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), -1);
+                        //Formar el anterior
+                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString() , dt.Rows[0]["Nivel2"].ToString(), dt.Rows[0]["Nivel3"].ToString(), dt.Rows[0]["Nivel4"].ToString(), iProximoConsecutivo.ToString());
+                        iProximoConsecutivo++;
 
-                        this.txtNivel5.Text = i.ToString();
-                        this.txtNivel4.Text = dt.Rows[0]["Nivel4"].ToString();
-                        this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
-                        this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-                    }
-                    else if (dt.Rows[0]["Nivel4"].ToString() != "0")
-                    {
-
-                        this.txtNivel5.Text = "9999";
+                        this.txtNivel5.Text = iProximoConsecutivo.ToString();
                         this.txtNivel4.Text = dt.Rows[0]["Nivel4"].ToString();
                         this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
                         this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
                     }
                     else if (dt.Rows[0]["Nivel3"].ToString() != "0")
                     {
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), -1, 0);
+                        //Formar el anterior
+                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString(), dt.Rows[0]["Nivel2"].ToString(), dt.Rows[0]["Nivel3"].ToString(), iProximoConsecutivo.ToString(), "0");
+                        iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
-                        this.txtNivel4.Text = "999";
+                        this.txtNivel4.Text = iProximoConsecutivo.ToString();
                         this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
                         this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
                     }
                     else if (dt.Rows[0]["Nivel2"].ToString() != "0")
                     {
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1, 0, 0);
+                        //Formar el anterior
+                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString(), dt.Rows[0]["Nivel2"].ToString(), iProximoConsecutivo.ToString(),"0" , "0");
+                        iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = "0";
-                        this.txtNivel3.Text = "999";
+                        this.txtNivel3.Text = iProximoConsecutivo.ToString();
                         this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
                     }
                     else if (dt.Rows[0]["Nivel1"].ToString() != "0")
                     {
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0, 0, 0);
+                        //Formar el anterior
+                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString(), iProximoConsecutivo.ToString(), "0","0" , "0");
+                        iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = "0";
                         this.txtNivel3.Text = "0";
-                        this.txtNivel2.Text = "9999";
+                        this.txtNivel2.Text = iProximoConsecutivo.ToString();
                         this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     }
 
+                    DataView dvCuenta = new DataView();
+                    dvCuenta.Table = _dtCuenta;
+                    dvCuenta.RowFilter = "Cuenta='" + CuentaAnterior + "'";
+
+                    DataTable dtCuenta = dvCuenta.ToTable();
+
+                    this.slkupCuentaAnterior.EditValue = dtCuenta.Rows[0]["IDCuenta"];
+                    this.txtDescripcion.Text = "";
                 }
               
             }

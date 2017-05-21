@@ -1316,6 +1316,73 @@ select @IDCuenta IDCuenta, @Cuenta Cuenta, @DescrCta DescrCta, @Naturaleza Natur
  @Fecha fecha, isnull(@TipoCambio,0) TipoCambio, isnull(@Saldo,0) SaldoInicial, isnull(@Debito,0) Debito, isnull(@Credito,0) Credito, isnull(@Movimiento,0) SaldoMes, (isnull(@Saldo,0) + isnull(@Movimiento,0)) SaldoAcumulado
 
 go
+-- Se le pasa -1 para el nivel que quiero tomar el maximo
+CREATE FUNCTION [dbo].[cntGetNextConsecutivoCuenta] (@Nivel1 AS INT,@Nivel2 AS INT,@Nivel3 AS INT,@Nivel4 AS INT,@Nivel5 AS INT)
+RETURNS int
+AS
+BEGIN
+Declare @Resultado BIGINT
+
+set @Resultado = (
+	SELECT CASE  WHEN @Nivel1=-1 THEN MAX(Nivel1) 
+					WHEN @Nivel2=-1 THEN	MAX(Nivel2)
+					WHEN @Nivel3=-1 THEN MAX(Nivel3)
+					WHEN @Nivel4=-1 THEN MAX(Nivel4)
+					WHEN @Nivel5=-1 THEN MAX(Nivel5) 
+					END  Consecutivo  FROM dbo.cntCuenta 
+	WHERE (Nivel1=@Nivel1 OR @Nivel1=-1) 
+	AND (Nivel2=@Nivel2 OR @Nivel2=-1)
+	AND (Nivel3=@Nivel3 OR @Nivel3=-1)
+	AND (Nivel4=@Nivel4 OR @Nivel4=-1)
+	AND (Nivel5=@Nivel5 OR @Nivel5=-1)
+	)
+if @Resultado is null
+	set @Resultado = 0
+
+	
+
+RETURN @Resultado
+END
+
+GO
+
+
+CREATE FUNCTION [dbo].[cntGetMascaraCuentaByNivel] (@Nivel1 AS NVARCHAR(50),@Nivel2 AS NVARCHAR(50),@Nivel3 AS NVARCHAR(50),@Nivel4 AS NVARCHAR(50),@Nivel5 AS NVARCHAR(50))
+RETURNS NVARCHAR(50)
+AS
+BEGIN
+
+Declare @Resultado NVARCHAR(50)
+Declare @UsaSeparadorCta bit, @SeparadorCta nvarchar(1), @iCantidad int , @UsaPredecesor bit, @charPredecesor nvarchar(1), 
+@cantCharNivel1 int,  @cantCharNivel2 int, @cantCharNivel3 int, @cantCharNivel4 int, @cantCharNivel5 int 
+
+
+Select top 1 @UsaSeparadorCta = UsaSeparadorCta, @SeparadorCta = SeparadorCta, @UsaPredecesor = UsaPredecesor,
+@charPredecesor = charPredecesor, @cantCharNivel1 = cantCharNivel1, @cantCharNivel2 = cantCharNivel2,
+@cantCharNivel3 = cantCharNivel3, @cantCharNivel4 = cantCharNivel4, @cantCharNivel5 = cantCharNivel5
+from  dbo.cntParametros
+	
+set @Resultado = (
+	
+SELECT right(replicate ( @charPredecesor, @cantCharNivel1) +  ISNULL(@Nivel1,'')  , @cantCharNivel1 ) + 
+case when @UsaSeparadorCta= 1 and @Nivel2<> '' then @SeparadorCta else '' end 
++ case when ISNULL(@Nivel2,'')<> '' then right (replicate ( @charPredecesor, @cantCharNivel2)+ @Nivel2, @cantCharNivel2)  else '' end 
++ case when @UsaSeparadorCta= 1 and @Nivel3<> '' then @SeparadorCta else '' end
++ case when ISNULL(@Nivel3,'')<> '' then right (replicate ( @charPredecesor, @cantCharNivel3)+ @Nivel3, @cantCharNivel3)  else '' end
++ case when @UsaSeparadorCta= 1 and @Nivel4<> '' then @SeparadorCta else '' end
++ case when ISNULL(@Nivel4,'')<> '' then right (replicate ( @charPredecesor, @cantCharNivel4)+ @Nivel4, @cantCharNivel4)  else '' end
++ case when @UsaSeparadorCta= 1 and @Nivel5<> '' then @SeparadorCta else '' end
++ case when ISNULL(@Nivel5,'')<> '' then right (replicate ( @charPredecesor, @cantCharNivel5)+ @Nivel5, @cantCharNivel5)  else '' end
+	)
+if @Resultado is null
+	set @Resultado = ''
+
+	
+
+RETURN @Resultado
+END
+
+
 
 /*
 

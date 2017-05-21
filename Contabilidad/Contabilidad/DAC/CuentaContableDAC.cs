@@ -184,16 +184,96 @@ namespace CG
             return DS;
         }
 
-        public static String GetNextConsecutivo(String sCodSucursal)
-        {
-            DataSet DS = new DataSet();
-            SqlCommand oCmd = new SqlCommand("SELECT fnica.fsolNextSolicitud(@CodSucursal) NumSolicitud", ConnectionManager.GetConnection());
-            oCmd.Parameters.Add("@CodSucursal", SqlDbType.NVarChar).Value = sCodSucursal;
-            SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
 
-            oAdaptador.Fill(DS, "Consecutivo");
-            return DS.Tables[0].Rows[0][0].ToString();
+
+    
+        public static int GetNextConsecutivo(int Nivel1,int Nivel2, int Nivel3, int Nivel4, int Nivel5)
+        {
+        int ID = 0;
+            DataSet DS = new DataSet();
+    
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetNextConsecutivoCuenta", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+               
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Nivel1", SqlDbType.Int).Value = Nivel1;
+                oCmd.Parameters.Add("@Nivel2", SqlDbType.Int).Value = Nivel2;
+                oCmd.Parameters.Add("@Nivel3", SqlDbType.Int).Value = Nivel3;
+                oCmd.Parameters.Add("@Nivel4", SqlDbType.Int).Value = Nivel4;
+                oCmd.Parameters.Add("@Nivel5", SqlDbType.Int).Value = Nivel5;
+                oCmd.Parameters.Add("@Resultado", SqlDbType.BigInt).Direction = ParameterDirection.ReturnValue;
+
+                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
+                    ID = (int)oCmd.Parameters["@Resultado"].Value;
+     
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+                
+            }
+            return ID;
+
         }
+
+
+
+        public static String GetMascaraByNivel(String Nivel1, String Nivel2, String Nivel3, String Nivel4, String Nivel5)
+        {
+            String ID = "";
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetMascaraCuentaByNivel", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Nivel1", SqlDbType.NVarChar,50).Value = Nivel1;
+                oCmd.Parameters.Add("@Nivel2", SqlDbType.NVarChar, 50).Value = Nivel2;
+                oCmd.Parameters.Add("@Nivel3", SqlDbType.NVarChar, 50).Value = Nivel3;
+                oCmd.Parameters.Add("@Nivel4", SqlDbType.NVarChar, 50).Value = Nivel4;
+                oCmd.Parameters.Add("@Nivel5", SqlDbType.NVarChar, 50).Value = Nivel5;
+                oCmd.Parameters.Add("@Resultado", SqlDbType.NVarChar, 50).Direction = ParameterDirection.ReturnValue;
+
+                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
+                    ID = oCmd.Parameters["@Resultado"].Value.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return ID;
+
+        }
+
 
 
         public static Task<DataSet> GetDataAsync(String CodSucursal, String NumSolicitud)
