@@ -16,8 +16,8 @@ namespace CG
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmListadoCuentaContable());
-            Application.Run(new frmListadoCentroCosto());
+            Application.Run(new frmListadoCuentaContable());
+            //Application.Run(new frmListadoCentroCosto());
         }
     }
 }
