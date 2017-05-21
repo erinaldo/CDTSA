@@ -158,6 +158,10 @@ namespace CG
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
 
+            //Habilitar los check por que se excluyen
+            this.chkEsMayor.Enabled = true;
+            this.chkAceptaDatos.Enabled = true;
+
         }
 
         private void SetCurrentRow()
@@ -206,8 +210,8 @@ namespace CG
         private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             isEdition = true;
-            HabilitarControles(true);
             ClearControls();
+            HabilitarControles(true);
             currentRow = null;
         }
 
@@ -231,10 +235,7 @@ namespace CG
         {
             bool result = true;
             String sMensaje = "";
-            //Este solo vale para el primer elemento
-            if (_dtCuenta.Rows.Count > 1)
-                if (this.slkupCuentaAnterior.EditValue == null)
-                    sMensaje = sMensaje + "     • Cuenta Anterior. \n\r";
+           
             if (this.slkupTipo.EditValue == null)
                 sMensaje = sMensaje + "     • Tipo de Cuenta. \n\r";
             if (this.slkupSubTipo.EditValue == null)
@@ -272,7 +273,7 @@ namespace CG
                 Application.DoEvents();
                 currentRow.BeginEdit();
 
-                //currentRow["IDCuenta"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
+
                 currentRow["IDGrupo"] = this.slkupGrupo.EditValue;
                 currentRow["IDTipo"] = this.slkupTipo.EditValue;
                 currentRow["IDSubTipo"] = this.slkupSubTipo.EditValue;
@@ -405,6 +406,16 @@ namespace CG
 
                 if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["Descr"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
+                    //Verificar si la cuenta a eliminar es de mayor
+                    if (Convert.ToBoolean(currentRow["EsMayor"])) {
+                        //Validar si tiene hijos
+                        if (CuentaContableDAC.GetCountCuentaByNivel(currentRow["Nivel1"].ToString(), currentRow["Nivel2"].ToString(), currentRow["Nivel3"].ToString(), currentRow["Nivel4"].ToString(), currentRow["Nivel5"].ToString()) > 1)
+                        {
+                            MessageBox.Show("La cuenta que desea eliminar es una cuenta de Mayor y tiene Sub Cuentas, por favor elimine las SubCuentas antes de proceguir");
+                            return;
+                        }
+                    }
+                    
                     currentRow.Delete();
 
                     try
@@ -500,18 +511,6 @@ namespace CG
                     Util.Util.ConfigLookupEdit(this.slkupCuentaAnterior, dvCuentaAnt.ToTable(), "Descr", "IDCuenta");
                     Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaAnterior, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-
-                    int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(-1, 0, 0, 0, 0);
-                    //Formar el anterior
-                    String CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(iProximoConsecutivo.ToString(), "0", "0", "0", "0");
-
-                    DataView dvCuentaAnt2 = new DataView();
-                    dvCuentaAnt2.Table = _dtCuenta;
-                    dvCuentaAnt2.RowFilter = "Cuenta = '" + CuentaAnterior + "'";
-
-
-                    this.slkupCuentaAnterior.EditValue = dvCuentaAnt2.ToTable().Rows[0]["IDCuenta"].ToString();
-
                     DataView dvCuentaMayor = new DataView();
                     dvCuentaMayor.Table = _dtCuenta;
                     dvCuentaMayor.RowFilter = "EsMayor=1 and Nivel1= " + dt.Rows[0]["Nivel1"].ToString();
@@ -532,7 +531,7 @@ namespace CG
         {
             try
             {
-                String CuentaAnterior = "";
+                
                 
                 if (!isEdition)
                     return;
@@ -551,8 +550,7 @@ namespace CG
                     if (dt.Rows[0]["Nivel4"].ToString() != "0")
                     {
                         int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), -1);
-                        //Formar el anterior
-                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString() , dt.Rows[0]["Nivel2"].ToString(), dt.Rows[0]["Nivel3"].ToString(), dt.Rows[0]["Nivel4"].ToString(), iProximoConsecutivo.ToString());
+                       
                         iProximoConsecutivo++;
 
                         this.txtNivel5.Text = iProximoConsecutivo.ToString();
@@ -563,8 +561,6 @@ namespace CG
                     else if (dt.Rows[0]["Nivel3"].ToString() != "0")
                     {
                         int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), -1, 0);
-                        //Formar el anterior
-                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString(), dt.Rows[0]["Nivel2"].ToString(), dt.Rows[0]["Nivel3"].ToString(), iProximoConsecutivo.ToString(), "0");
                         iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
@@ -575,8 +571,7 @@ namespace CG
                     else if (dt.Rows[0]["Nivel2"].ToString() != "0")
                     {
                         int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1, 0, 0);
-                        //Formar el anterior
-                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString(), dt.Rows[0]["Nivel2"].ToString(), iProximoConsecutivo.ToString(),"0" , "0");
+                        
                         iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
@@ -587,8 +582,6 @@ namespace CG
                     else if (dt.Rows[0]["Nivel1"].ToString() != "0")
                     {
                         int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0, 0, 0);
-                        //Formar el anterior
-                        CuentaAnterior = CuentaContableDAC.GetMascaraByNivel(dt.Rows[0]["Nivel1"].ToString(), iProximoConsecutivo.ToString(), "0","0" , "0");
                         iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
@@ -598,13 +591,7 @@ namespace CG
                         this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     }
 
-                    DataView dvCuenta = new DataView();
-                    dvCuenta.Table = _dtCuenta;
-                    dvCuenta.RowFilter = "Cuenta='" + CuentaAnterior + "'";
-
-                    DataTable dtCuenta = dvCuenta.ToTable();
-
-                    this.slkupCuentaAnterior.EditValue = dtCuenta.Rows[0]["IDCuenta"];
+                   
                     this.txtDescripcion.Text = "";
                 }
               

@@ -275,6 +275,50 @@ namespace CG
         }
 
 
+        public static int GetCountCuentaByNivel(String Nivel1, String Nivel2, String Nivel3, String Nivel4, String Nivel5)
+        {
+            int ID = 0;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetCountCuentaByNivel", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Nivel1", SqlDbType.NVarChar, 50).Value = Nivel1;
+                oCmd.Parameters.Add("@Nivel2", SqlDbType.NVarChar, 50).Value = Nivel2;
+                oCmd.Parameters.Add("@Nivel3", SqlDbType.NVarChar, 50).Value = Nivel3;
+                oCmd.Parameters.Add("@Nivel4", SqlDbType.NVarChar, 50).Value = Nivel4;
+                oCmd.Parameters.Add("@Nivel5", SqlDbType.NVarChar, 50).Value = Nivel5;
+                oCmd.Parameters.Add("@Resultado", SqlDbType.NVarChar, 50).Direction = ParameterDirection.ReturnValue;
+
+                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
+                    ID = Convert.ToInt32( oCmd.Parameters["@Resultado"].Value);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return ID;
+
+        }
+
+
 
         public static Task<DataSet> GetDataAsync(String CodSucursal, String NumSolicitud)
         {
