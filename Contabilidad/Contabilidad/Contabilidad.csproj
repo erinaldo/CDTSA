@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAC\EjercicioDAC.cs" />
+    <Compile Include="DAC\PeriodoContableDAC.cs" />
+    <Compile Include="DAC\TipoAsientoDAC.cs" />
     <Compile Include="frmAsociarCentroCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
