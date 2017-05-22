@@ -36,6 +36,7 @@
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.btnAsociarCentroCosto = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -157,9 +158,10 @@
             this.btnGuardar,
             this.btnCancelar,
             this.btnEliminar,
-            this.lblStatus});
+            this.lblStatus,
+            this.btnAsociarCentroCosto});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 2;
+            this.ribbonControl.MaxItemId = 3;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -213,6 +215,14 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // btnAsociarCentroCosto
+            // 
+            this.btnAsociarCentroCosto.Caption = "Asociar Centro de Costo";
+            this.btnAsociarCentroCosto.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAsociarCentroCosto.Glyph")));
+            this.btnAsociarCentroCosto.Id = 2;
+            this.btnAsociarCentroCosto.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAsociarCentroCosto.LargeGlyph")));
+            this.btnAsociarCentroCosto.Name = "btnAsociarCentroCosto";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -227,6 +237,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnGuardar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnAsociarCentroCosto);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -555,6 +566,7 @@
             this.Cuenta.MinWidth = 90;
             this.Cuenta.Name = "Cuenta";
             this.Cuenta.OptionsColumn.FixedWidth = true;
+            this.Cuenta.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.Cuenta.Visible = true;
             this.Cuenta.VisibleIndex = 3;
             this.Cuenta.Width = 120;
@@ -565,6 +577,7 @@
             this.Descripcion.FieldName = "Descr";
             this.Descripcion.MinWidth = 90;
             this.Descripcion.Name = "Descripcion";
+            this.Descripcion.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.Descripcion.Visible = true;
             this.Descripcion.VisibleIndex = 4;
             this.Descripcion.Width = 90;
@@ -576,6 +589,7 @@
             this.CuentaMayor.MinWidth = 60;
             this.CuentaMayor.Name = "CuentaMayor";
             this.CuentaMayor.OptionsColumn.FixedWidth = true;
+            this.CuentaMayor.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.CuentaMayor.Visible = true;
             this.CuentaMayor.VisibleIndex = 5;
             this.CuentaMayor.Width = 90;
@@ -980,5 +994,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn AceptaDatos;
         private DevExpress.XtraGrid.Columns.GridColumn Activo;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraBars.BarButtonItem btnAsociarCentroCosto;
     }
 }

@@ -62,8 +62,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAsociarCentroCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAsociarCentroCuenta.Designer.cs">
+      <DependentUpon>frmAsociarCentroCuenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="DAC\AsientoDAC.cs" />
+    <Compile Include="DAC\CuentaCentroDAC.cs" />
     <Compile Include="DAC\CuentaContableDAC.cs" />
     <Compile Include="DAC\CentroCostoDAC.cs" />
     <Compile Include="DAC\GrupoDAC.cs" />
@@ -73,6 +80,12 @@
     </Compile>
     <Compile Include="frmAsiento.Designer.cs">
       <DependentUpon>frmAsiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCentroACuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCentroACuenta.Designer.cs">
+      <DependentUpon>frmCentroACuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoCentroCosto.cs">
       <SubType>Form</SubType>
@@ -91,6 +104,12 @@
     <Compile Include="DAC\SubTipoCuentaDAC.cs" />
     <EmbeddedResource Include="frmAsiento.resx">
       <DependentUpon>frmAsiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAsociarCentroCuenta.resx">
+      <DependentUpon>frmAsociarCentroCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCentroACuenta.resx">
+      <DependentUpon>frmCentroACuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoCentroCosto.resx">
       <DependentUpon>frmListadoCentroCosto.cs</DependentUpon>

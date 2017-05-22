@@ -1383,6 +1383,26 @@ RETURN @Resultado
 END
 
 
+GO
+
+Create Procedure [dbo].[cntUpdateCuentaCentroCosto] @Operacion nvarchar(1), @IDCentro int, @IDCuenta int
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT  dbo.cntCuentaCentro( IDCuenta, IDCentro ) 
+	VALUES  ( @IDCuenta,@IDCentro ) 
+end
+
+if upper(@Operacion) = 'D'
+begin
+	DELETE  FROM dbo.cntCuentaCentro WHERE IDCentro = @IDCentro AND IDCuenta=@IDCuenta
+end
+
+
+
+
 
 /*
 

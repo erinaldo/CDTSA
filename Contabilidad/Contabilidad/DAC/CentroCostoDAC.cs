@@ -117,18 +117,7 @@ namespace CG
             return DS;
         }
 
-        public static String GetNextConsecutivo(String sCodSucursal)
-        {
-            DataSet DS = new DataSet();
-            SqlCommand oCmd = new SqlCommand("SELECT fnica.fsolNextSolicitud(@CodSucursal) NumSolicitud", ConnectionManager.GetConnection());
-            oCmd.Parameters.Add("@CodSucursal", SqlDbType.NVarChar).Value = sCodSucursal;
-            SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
-
-            oAdaptador.Fill(DS, "Consecutivo");
-            return DS.Tables[0].Rows[0][0].ToString();
-        }
-
-
+     
         public static Task<DataSet> GetDataAsync(String CodSucursal, String NumSolicitud)
         {
             return Task.Factory.StartNew<DataSet>(() => {

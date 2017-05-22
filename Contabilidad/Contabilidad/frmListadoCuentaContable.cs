@@ -44,7 +44,19 @@ namespace CG
             this.btnEliminar.ItemClick += btnEliminar_ItemClick;
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
+            this.btnAsociarCentroCosto.ItemClick += BtnAsociarCentroCosto_ItemClick;
             this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
+        }
+
+        private void BtnAsociarCentroCosto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currentRow != null) {
+                if (Convert.ToBoolean(currentRow["UsaCentroCosto"]))
+                {
+                    frmCentroACuenta ofrmCentroCuenta = new frmCentroACuenta(currentRow);
+                    ofrmCentroCuenta.ShowDialog();
+                }
+            }
         }
 
         private void PopulateDataSearchLookup()
@@ -171,7 +183,16 @@ namespace CG
             {
                 currentRow = gridView.GetDataRow(index);
                 UpdateControlsFromCurrentRow(currentRow);
+                HabilitarBotones(currentRow);
             }
+        }
+
+        private void HabilitarBotones(DataRow currentRow)
+        {
+            if (Convert.ToBoolean(currentRow["UsaCentroCosto"]))
+                this.btnAsociarCentroCosto.Enabled = true;
+            else
+                this.btnAsociarCentroCosto.Enabled = false;
         }
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
@@ -204,6 +225,8 @@ namespace CG
             SetCurrentRow();
         }
 
+
+        
 
 
 
@@ -601,5 +624,7 @@ namespace CG
                 MessageBox.Show(ex.Message);
             }
         }
+
+        
     }
 }

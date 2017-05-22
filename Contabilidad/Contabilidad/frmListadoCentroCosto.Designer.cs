@@ -375,6 +375,7 @@
             this.Centro.MinWidth = 90;
             this.Centro.Name = "Centro";
             this.Centro.OptionsColumn.FixedWidth = true;
+            this.Centro.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.Centro.Visible = true;
             this.Centro.VisibleIndex = 0;
             this.Centro.Width = 123;
@@ -384,6 +385,7 @@
             this.Descripcion.Caption = "Descripción";
             this.Descripcion.FieldName = "Descr";
             this.Descripcion.Name = "Descripcion";
+            this.Descripcion.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.Descripcion.Visible = true;
             this.Descripcion.VisibleIndex = 1;
             this.Descripcion.Width = 647;
@@ -406,6 +408,7 @@
             this.CentroAcumulador.MinWidth = 90;
             this.CentroAcumulador.Name = "CentroAcumulador";
             this.CentroAcumulador.OptionsColumn.FixedWidth = true;
+            this.CentroAcumulador.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.CentroAcumulador.Visible = true;
             this.CentroAcumulador.VisibleIndex = 3;
             this.CentroAcumulador.Width = 113;
