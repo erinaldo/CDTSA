@@ -112,8 +112,6 @@ namespace CG
 
                 oAdaptador.Fill(DS, "Data");
                 result = Convert.ToInt32(DS.Tables["Data"].Rows[0]["ID"]);
-                
-
             }
             catch (Exception ex)
             {
@@ -129,7 +127,30 @@ namespace CG
 
         }
 
-        
+
+        public static DataSet GetEjercicioActivo()
+        {
+            DataSet DS = new DataSet();
+            SqlCommand oCmd = new SqlCommand("SELECT A.IDEjercicio,A.Descr DescrEjercicio,Periodo,b.Descr DescrPeriodo   FROM dbo.cntEjercicio A "+
+                                                "INNER JOIN dbo.cntPeriodoContable B ON A.IDEjercicio = B.IDEjercicio " +
+                                                "WHERE A.Activo = 1 AND B.Activo = 1 AND B.PeriodoTrabajo = 1 AND B.Cerrado = 0 ", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+                oCmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+                oAdaptador.Fill(DS, "Data");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+            return DS;
+
+        }
+
+
 
 
     }

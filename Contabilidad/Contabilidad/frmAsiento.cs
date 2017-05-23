@@ -21,6 +21,8 @@ namespace CG
         private DataSet _dsAsiento;
         private DataSet _dsDetalle;
 
+        private DataSet _dsEjercicioPeriodo;
+
         private DataRow _currentRow;
         private String Accion = "NEW";
 
@@ -106,7 +108,7 @@ namespace CG
         //    this.dtgDetalle.DataSource = null;
         //}
 
-      
+
         //private void HabilitarControles(bool Activo)
         //{
         //    this.txtCodSucursal.ReadOnly = !Activo;
@@ -135,38 +137,45 @@ namespace CG
         //}
 
 
-        //private void frmMaestroDetalleUpdate_Load(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        HabilitarControles(true);
+        private void frmMaestroDetalleUpdate_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                CargarPeriodoActivo();
 
-        //        //SetDefaultBehaviorControls();
-        //        Util.SetDefaultBehaviorControls(this.gridViewDetalle, true, null, this.bar1, this.lblTitulo, this.panelTitulo, _tituloVentana, this);
-        //        EnlazarEventos();
+                //        HabilitarControles(true);
 
-        //        this.gridViewDetalle.EditFormPrepared += gridViewDetalle_EditFormPrepared;
-        //        this.gridViewDetalle.NewItemRowText = Util.constNewItemTextGrid;
-        //        this.gridViewDetalle.ValidatingEditor += gridViewDetalle_ValidatingEditor;
+                //        //SetDefaultBehaviorControls();
+                //        Util.SetDefaultBehaviorControls(this.gridViewDetalle, true, null, this.bar1, this.lblTitulo, this.panelTitulo, _tituloVentana, this);
+                //        EnlazarEventos();
+
+                //        this.gridViewDetalle.EditFormPrepared += gridViewDetalle_EditFormPrepared;
+                //        this.gridViewDetalle.NewItemRowText = Util.constNewItemTextGrid;
+                //        this.gridViewDetalle.ValidatingEditor += gridViewDetalle_ValidatingEditor;
 
 
-        //        //Configurar searchLookUp
+                //        //Configurar searchLookUp
 
-        //        this.slkupArticulo.DataSource = ArticuloDAC.GetData("*").Tables["Data"];
-        //        this.slkupArticulo.DisplayMember = "DESCRIPCION";
-        //        this.slkupArticulo.ValueMember = "ARTICULO";
-        //        this.slkupArticulo.NullText = " --- ---";
+                //        this.slkupArticulo.DataSource = ArticuloDAC.GetData("*").Tables["Data"];
+                //        this.slkupArticulo.DisplayMember = "DESCRIPCION";
+                //        this.slkupArticulo.ValueMember = "ARTICULO";
+                //        this.slkupArticulo.NullText = " --- ---";
 
-        //        Util.ConfigLookupEdit(this.slkupCategoria, CategoriaDAC.GetData().Tables["Categoria"], "Descripcion", "CodCategoria");
-        //        Util.ConfigLookupEditSetViewColumns(this.slkupCategoria, "[{'ColumnCaption':'CodCategoria','ColumnField':'CodCategoria','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descripcion','width':70}]");
-        //        dtgDetalle.ProcessGridKey += dtgDetalle_ProcessGridKey;
-        //        UpdateControlsFromDataRow(_currentRow);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+                //        Util.ConfigLookupEdit(this.slkupCategoria, CategoriaDAC.GetData().Tables["Categoria"], "Descripcion", "CodCategoria");
+                //        Util.ConfigLookupEditSetViewColumns(this.slkupCategoria, "[{'ColumnCaption':'CodCategoria','ColumnField':'CodCategoria','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descripcion','width':70}]");
+                //        dtgDetalle.ProcessGridKey += dtgDetalle_ProcessGridKey;
+                //        UpdateControlsFromDataRow(_currentRow);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CargarPeriodoActivo()
+        {
+            _dsEjercicioPeriodo = EjercicioDAC.GetData()
+        }
 
         //void gridViewDetalle_EditFormPrepared(object sender, EditFormPreparedEventArgs e)
         //{
