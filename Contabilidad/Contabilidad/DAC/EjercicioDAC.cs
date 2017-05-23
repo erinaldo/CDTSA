@@ -96,5 +96,41 @@ namespace CG
         }
 
 
+        public static int GetNextConsecutivo()
+        {
+            int result = -1;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("SELECT isnull(MAX(IDEjercicio),-1) ID FROM dbo.cntEjercicio", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                
+                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+
+                oAdaptador.Fill(DS, "Data");
+                result = Convert.ToInt32(DS.Tables["Data"].Rows[0]["ID"]);
+                
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return result;
+
+        }
+
+        
+
+
     }
 }
