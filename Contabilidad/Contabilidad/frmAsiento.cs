@@ -174,7 +174,10 @@ namespace CG
 
         private void CargarPeriodoActivo()
         {
-            _dsEjercicioPeriodo = EjercicioDAC.GetData()
+            _dsEjercicioPeriodo = EjercicioDAC.GetEjercicioActivo();
+            this.txtEjercicio.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrEjercicio"].ToString();
+            this.txtPeriodo.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrPeriodo"].ToString();
+
         }
 
         //void gridViewDetalle_EditFormPrepared(object sender, EditFormPreparedEventArgs e)

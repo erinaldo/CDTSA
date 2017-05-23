@@ -36,9 +36,18 @@
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.btnMayorizar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAnular = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCuadreTemporal = new DevExpress.XtraBars.BarButtonItem();
+            this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtAnuladoPor = new DevExpress.XtraEditors.TextEdit();
+            this.txtFechaMayorizado = new DevExpress.XtraEditors.TextEdit();
+            this.txtFechaCreacion = new DevExpress.XtraEditors.TextEdit();
+            this.txtAnuladorPor = new DevExpress.XtraEditors.TextEdit();
+            this.txtMayorizadoPor = new DevExpress.XtraEditors.TextEdit();
             this.txtCreadoPor = new DevExpress.XtraEditors.TextEdit();
             this.txtTipoCambio = new DevExpress.XtraEditors.TextEdit();
             this.txtFecha = new DevExpress.XtraEditors.TextEdit();
@@ -57,6 +66,15 @@
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -69,27 +87,14 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMayorizadoPor = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtAnuladorPor = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtFechaCreacion = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtFechaMayorizado = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtAnuladoPor = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnMayorizar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnAnular = new DevExpress.XtraBars.BarButtonItem();
-            this.btnCuadreTemporal = new DevExpress.XtraBars.BarButtonItem();
-            this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladorPor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMayorizadoPor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreadoPor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoCambio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFecha.Properties)).BeginInit();
@@ -108,6 +113,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -120,20 +134,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMayorizadoPor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladorPor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -205,6 +205,38 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // btnMayorizar
+            // 
+            this.btnMayorizar.Caption = "Mayorizar";
+            this.btnMayorizar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.Glyph")));
+            this.btnMayorizar.Id = 2;
+            this.btnMayorizar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.LargeGlyph")));
+            this.btnMayorizar.Name = "btnMayorizar";
+            // 
+            // btnAnular
+            // 
+            this.btnAnular.Caption = "Anular";
+            this.btnAnular.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAnular.Glyph")));
+            this.btnAnular.Id = 3;
+            this.btnAnular.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAnular.LargeGlyph")));
+            this.btnAnular.Name = "btnAnular";
+            // 
+            // btnCuadreTemporal
+            // 
+            this.btnCuadreTemporal.Caption = "Cuadre Temporal";
+            this.btnCuadreTemporal.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCuadreTemporal.Glyph")));
+            this.btnCuadreTemporal.Id = 4;
+            this.btnCuadreTemporal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCuadreTemporal.LargeGlyph")));
+            this.btnCuadreTemporal.Name = "btnCuadreTemporal";
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Caption = "Imprimir";
+            this.btnImprimir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Glyph")));
+            this.btnImprimir.Id = 5;
+            this.btnImprimir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.LargeGlyph")));
+            this.btnImprimir.Name = "btnImprimir";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -253,6 +285,51 @@
             this.layoutControl1.Size = new System.Drawing.Size(852, 514);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtAnuladoPor
+            // 
+            this.txtAnuladoPor.Location = new System.Drawing.Point(415, 127);
+            this.txtAnuladoPor.MenuManager = this.ribbonControl;
+            this.txtAnuladoPor.Name = "txtAnuladoPor";
+            this.txtAnuladoPor.Size = new System.Drawing.Size(403, 20);
+            this.txtAnuladoPor.StyleController = this.layoutControl1;
+            this.txtAnuladoPor.TabIndex = 22;
+            // 
+            // txtFechaMayorizado
+            // 
+            this.txtFechaMayorizado.Location = new System.Drawing.Point(415, 103);
+            this.txtFechaMayorizado.MenuManager = this.ribbonControl;
+            this.txtFechaMayorizado.Name = "txtFechaMayorizado";
+            this.txtFechaMayorizado.Size = new System.Drawing.Size(403, 20);
+            this.txtFechaMayorizado.StyleController = this.layoutControl1;
+            this.txtFechaMayorizado.TabIndex = 21;
+            // 
+            // txtFechaCreacion
+            // 
+            this.txtFechaCreacion.Location = new System.Drawing.Point(415, 79);
+            this.txtFechaCreacion.MenuManager = this.ribbonControl;
+            this.txtFechaCreacion.Name = "txtFechaCreacion";
+            this.txtFechaCreacion.Size = new System.Drawing.Size(403, 20);
+            this.txtFechaCreacion.StyleController = this.layoutControl1;
+            this.txtFechaCreacion.TabIndex = 20;
+            // 
+            // txtAnuladorPor
+            // 
+            this.txtAnuladorPor.Location = new System.Drawing.Point(105, 127);
+            this.txtAnuladorPor.MenuManager = this.ribbonControl;
+            this.txtAnuladorPor.Name = "txtAnuladorPor";
+            this.txtAnuladorPor.Size = new System.Drawing.Size(275, 20);
+            this.txtAnuladorPor.StyleController = this.layoutControl1;
+            this.txtAnuladorPor.TabIndex = 19;
+            // 
+            // txtMayorizadoPor
+            // 
+            this.txtMayorizadoPor.Location = new System.Drawing.Point(105, 103);
+            this.txtMayorizadoPor.MenuManager = this.ribbonControl;
+            this.txtMayorizadoPor.Name = "txtMayorizadoPor";
+            this.txtMayorizadoPor.Size = new System.Drawing.Size(275, 20);
+            this.txtMayorizadoPor.StyleController = this.layoutControl1;
+            this.txtMayorizadoPor.TabIndex = 18;
             // 
             // txtCreadoPor
             // 
@@ -406,8 +483,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup3;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(832, 217);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2,
@@ -440,6 +517,83 @@
             this.layoutControlItem12.Size = new System.Drawing.Size(360, 24);
             this.layoutControlItem12.Text = "Creado por:";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(78, 13);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.txtMayorizadoPor;
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 57);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(360, 24);
+            this.layoutControlItem13.Text = "Mayorizado por:";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(78, 13);
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.txtAnuladorPor;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 81);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(360, 24);
+            this.layoutControlItem14.Text = "Anulado por:";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(78, 13);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 105);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(798, 66);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.txtFechaCreacion;
+            this.layoutControlItem15.Location = new System.Drawing.Point(391, 33);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(407, 24);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.txtFechaMayorizado;
+            this.layoutControlItem16.Location = new System.Drawing.Point(391, 57);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(407, 24);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.txtAnuladoPor;
+            this.layoutControlItem17.Location = new System.Drawing.Point(391, 81);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(407, 24);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(360, 33);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(31, 72);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(798, 33);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(798, 0);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(10, 171);
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup2
             // 
@@ -571,160 +725,6 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // txtMayorizadoPor
-            // 
-            this.txtMayorizadoPor.Location = new System.Drawing.Point(105, 103);
-            this.txtMayorizadoPor.MenuManager = this.ribbonControl;
-            this.txtMayorizadoPor.Name = "txtMayorizadoPor";
-            this.txtMayorizadoPor.Size = new System.Drawing.Size(275, 20);
-            this.txtMayorizadoPor.StyleController = this.layoutControl1;
-            this.txtMayorizadoPor.TabIndex = 18;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.txtMayorizadoPor;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 57);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(360, 24);
-            this.layoutControlItem13.Text = "Mayorizado por:";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(78, 13);
-            // 
-            // txtAnuladorPor
-            // 
-            this.txtAnuladorPor.Location = new System.Drawing.Point(105, 127);
-            this.txtAnuladorPor.MenuManager = this.ribbonControl;
-            this.txtAnuladorPor.Name = "txtAnuladorPor";
-            this.txtAnuladorPor.Size = new System.Drawing.Size(275, 20);
-            this.txtAnuladorPor.StyleController = this.layoutControl1;
-            this.txtAnuladorPor.TabIndex = 19;
-            // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.txtAnuladorPor;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 81);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(360, 24);
-            this.layoutControlItem14.Text = "Anulado por:";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(78, 13);
-            // 
-            // txtFechaCreacion
-            // 
-            this.txtFechaCreacion.Location = new System.Drawing.Point(415, 79);
-            this.txtFechaCreacion.MenuManager = this.ribbonControl;
-            this.txtFechaCreacion.Name = "txtFechaCreacion";
-            this.txtFechaCreacion.Size = new System.Drawing.Size(403, 20);
-            this.txtFechaCreacion.StyleController = this.layoutControl1;
-            this.txtFechaCreacion.TabIndex = 20;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.txtFechaCreacion;
-            this.layoutControlItem15.Location = new System.Drawing.Point(391, 33);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(407, 24);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // txtFechaMayorizado
-            // 
-            this.txtFechaMayorizado.Location = new System.Drawing.Point(415, 103);
-            this.txtFechaMayorizado.MenuManager = this.ribbonControl;
-            this.txtFechaMayorizado.Name = "txtFechaMayorizado";
-            this.txtFechaMayorizado.Size = new System.Drawing.Size(403, 20);
-            this.txtFechaMayorizado.StyleController = this.layoutControl1;
-            this.txtFechaMayorizado.TabIndex = 21;
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.txtFechaMayorizado;
-            this.layoutControlItem16.Location = new System.Drawing.Point(391, 57);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(407, 24);
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem16.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 105);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(798, 66);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // txtAnuladoPor
-            // 
-            this.txtAnuladoPor.Location = new System.Drawing.Point(415, 127);
-            this.txtAnuladoPor.MenuManager = this.ribbonControl;
-            this.txtAnuladoPor.Name = "txtAnuladoPor";
-            this.txtAnuladoPor.Size = new System.Drawing.Size(403, 20);
-            this.txtAnuladoPor.StyleController = this.layoutControl1;
-            this.txtAnuladoPor.TabIndex = 22;
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.txtAnuladoPor;
-            this.layoutControlItem17.Location = new System.Drawing.Point(391, 81);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(407, 24);
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem17.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(360, 33);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(31, 72);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(798, 33);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem4
-            // 
-            this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(798, 0);
-            this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(10, 171);
-            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnMayorizar
-            // 
-            this.btnMayorizar.Caption = "Mayorizar";
-            this.btnMayorizar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.Glyph")));
-            this.btnMayorizar.Id = 2;
-            this.btnMayorizar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.LargeGlyph")));
-            this.btnMayorizar.Name = "btnMayorizar";
-            // 
-            // btnAnular
-            // 
-            this.btnAnular.Caption = "Anular";
-            this.btnAnular.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAnular.Glyph")));
-            this.btnAnular.Id = 3;
-            this.btnAnular.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAnular.LargeGlyph")));
-            this.btnAnular.Name = "btnAnular";
-            // 
-            // btnCuadreTemporal
-            // 
-            this.btnCuadreTemporal.Caption = "Cuadre Temporal";
-            this.btnCuadreTemporal.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCuadreTemporal.Glyph")));
-            this.btnCuadreTemporal.Id = 4;
-            this.btnCuadreTemporal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCuadreTemporal.LargeGlyph")));
-            this.btnCuadreTemporal.Name = "btnCuadreTemporal";
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.Caption = "Imprimir";
-            this.btnImprimir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Glyph")));
-            this.btnImprimir.Id = 5;
-            this.btnImprimir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.LargeGlyph")));
-            this.btnImprimir.Name = "btnImprimir";
-            // 
             // frmAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -738,6 +738,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladorPor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMayorizadoPor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreadoPor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoCambio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFecha.Properties)).EndInit();
@@ -756,6 +761,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -768,20 +782,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMayorizadoPor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladorPor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
