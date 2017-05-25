@@ -137,7 +137,7 @@ namespace CG
             SqlConnection oConn = oCmd.Connection;
             try
             {
-                oCmd.CommandType = CommandType.StoredProcedure;
+                
                 SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
                 oAdaptador.Fill(DS, "Data");
             }

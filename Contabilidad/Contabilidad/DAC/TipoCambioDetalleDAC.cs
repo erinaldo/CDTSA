@@ -81,7 +81,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(int IDTipoCambio,DateTime Fecha)
+        public static DataSet GetData(String IDTipoCambio,DateTime Fecha)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDTipoCambio"].Value = IDTipoCambio;
@@ -94,5 +94,5 @@ namespace CG
 
 
     }
-}
+
 }

@@ -27,6 +27,7 @@ namespace CG
         private String Accion = "NEW";
 
         String sUsuario = "jespinoza";
+        String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
 
 
@@ -34,11 +35,37 @@ namespace CG
         {
             InitializeComponent();
             InicializarControles();
+            Accion = "New";
             //Obtener el Siguiente consecutivo de la solicitud"
             _dsAsiento = AsientoDAC.GetDataEmpty();
             _dtAsiento = _dsAsiento.Tables[0];
+            _ModuloFuente = "CG";
             InicializarNuevoElemento();
             this.StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        public frmAsiento(String Asiento)
+        {
+            InitializeComponent();
+            InicializarControles();
+
+            _dsAsiento = AsientoDAC.GetDataByAsiento(Asiento);
+            _dtAsiento = _dsAsiento.Tables[0];
+            //_ModuloFuente = ModuloFuente;
+            _currentRow = _dsAsiento.Tables[0].Rows[0];
+
+        }
+
+        public frmAsiento( DataSet ds, DataRow dr)
+        {
+           // Accion = "Edit";
+            InitializeComponent();
+            InicializarControles();
+            _dsAsiento = ds;
+            _dtAsiento = ds.Tables[0];
+            //_ModuloFuente = ModuloFuente;
+            _currentRow = dr;
+
         }
 
         private void InicializarControles()
@@ -51,42 +78,63 @@ namespace CG
 
         private void InicializarNuevoElemento()
         {
-            //_currentRow = _dtAsiento.NewRow();
-            //_currentRow["NumSolicitud"] = SolicitudDAC.GetNextConsecutivo(sCodSucursal);
-            //_currentRow["CodSucursal"] = sCodSucursal;
-            //_currentRow["FechaSolicitud"] = DateTime.Now;
-            //_currentRow["Estado"] = "INI";
-            //_currentRow["UsuarioSolicitud"] = sUsuario;
+            _dsEjercicioPeriodo = EjercicioDAC.GetEjercicioActivo();
+            DataSet DS = new DataSet();
+            DS = TipoCambioDetalleDAC.GetData("TVEN", DateTime.Now);
+
+            //this.txtEjercicio.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrEjercicio"].ToString();
+            //this.txtPeriodo.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrPeriodo"].ToString();
+
+            //this.txtTipoCambio.Text = (DS.Tables[0].Rows.Count==0) ? "0" : DS.Tables[0].Rows[0]["Monto"].ToString();
+            _currentRow = _dtAsiento.NewRow();
+            _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
+            _currentRow["Periodo"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+            _currentRow["TipoCambio"] = Convert.ToDecimal((DS.Tables[0].Rows.Count == 0) ? 0 : DS.Tables[0].Rows[0]["Monto"]);
+            _currentRow["ModuloFuente"] = _ModuloFuente;
+            _currentRow["FechaHora"] = DateTime.Now;
+            _currentRow["Fecha"] = DateTime.Now;
+            _currentRow["Tipo"] = "CG";
+            _currentRow["Concepto"] = null;
+            _currentRow["Mayorizado"] = false; 
+            _currentRow["Anulado"] = false;
+            _currentRow["CuadreTemporal"] = false;
+            //_dtAsiento.Rows.Add(_currentRow);
+            
         }
 
 
+        private String EstadoAsiento()
+        {
+            String sEstado = "";
+            if (Convert.ToBoolean(_currentRow["Mayorizado"]))
+                sEstado = "Mayorizado";
+            else if (Convert.ToBoolean(_currentRow["Anulado"]))
+                sEstado = "Anulado";
+            else if (Convert.ToBoolean(_currentRow["CuadreTemporal"]))
+                sEstado = "Cuadre Temporal";
+            else
+                sEstado = "Editando..";
+            return sEstado;
+        }
 
 
-        //public frmAsiento(DataSet ds, DataRow dr)
-        //{
-        //    InitializeComponent();
-        //    InicializarControles();
-        //    _dsAsiento = ds;
-        //    _dtAsiento = ds.Tables[0];
-        //    _currentRow = dr;
-        //    Accion = "Edit";
-        //}
+        
 
-        //public void UpdateControlsFromDataRow(DataRow row)
-        //{
-
-
-        //    this.txtNumSolicitud.Text = row["NumSolicitud"].ToString();
-        //    this.txtCodSucursal.Text = row["CodSucursal"].ToString();
-        //    this.txtDescr.Text = row["Descripcion"].ToString();
-        //    this.txtEstado.Text = row["Estado"].ToString();
-        //    this.txtUsuario.Text = row["UsuarioSolicitud"].ToString();
-        //    this.txtFecha.Text = row["FechaSolicitud"].ToString();
-        //    this.slkupCategoria.EditValue = row["CodCategoria"].ToString().Trim();
-
-        //    //Obtener los datos segun cabecera
-        //    PopulateGrid();
-        //}
+        public void UpdateControlsFromDataRow(DataRow row)
+        {
+            //_currentRow = _dtAsiento.NewRow();
+            this.txtEjercicio.EditValue = _currentRow["IDEjercicio"].ToString();
+            this.txtPeriodo.EditValue = _currentRow["Periodo"].ToString();
+            this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N4");
+            this.txtModuloFuente.EditValue = _currentRow["ModuloFuente"].ToString();
+            this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
+            this.txtFecha.EditValue = _currentRow["FechaHora"].ToString();
+            this.slkupTipo.EditValue = "CG"; //_currentRow["Tipo"].ToString();
+            this.txtConcepto.Text = _currentRow["Concepto"].ToString();
+            this.txtEstado.Text = EstadoAsiento();
+            //Obtener los datos segun cabecera
+            //PopulateGrid();
+        }
 
         //private void PopulateGrid()
         //{
@@ -96,36 +144,25 @@ namespace CG
         //    // this.dtNavigator.DataSource = _dtDetalle;
         //}
 
-        //private void ClearControls()
-        //{
-        //    this.txtNumSolicitud.Text = "";
-        //    this.txtCodSucursal.Text = "";
-        //    this.txtDescr.Text = "";
-        //    this.txtEstado.Text = "";
-        //    this.txtUsuario.Text = "";
-        //    this.txtFecha.Text = "";
-        //    this.slkupCategoria.EditValue = null;
-        //    this.dtgDetalle.DataSource = null;
-        //}
+        private void ClearControls()
+        {
+            this.txtConcepto.Text= "";
+        }
 
 
-        //private void HabilitarControles(bool Activo)
-        //{
-        //    this.txtCodSucursal.ReadOnly = !Activo;
-        //    this.txtDescr.ReadOnly = !Activo;
-        //    this.txtEstado.ReadOnly = !Activo;
-        //    this.txtFecha.ReadOnly = !Activo;
-        //    this.txtNumSolicitud.ReadOnly = !Activo;
-        //    this.txtUsuario.ReadOnly = !Activo;
-        //    this.slkupCategoria.ReadOnly = !Activo;
-        //    this.gridViewDetalle.OptionsBehavior.Editable = Activo;
+        private void HabilitarControles(bool Activo)
+        {
+            this.dtpFecha.ReadOnly = !Activo;
+            this.txtTipoCambio.ReadOnly = !Activo;
+            this.txtConcepto.ReadOnly = !Activo;
+            this.txtFecha.ReadOnly = !Activo;
 
-        //    this.btnAgregar.Enabled = !Activo;
-        //    this.btnEditar.Enabled = !Activo;
-        //    this.btnGuardar.Enabled = Activo;
-        //    this.btnCancelar.Enabled = Activo;
-        //    this.btnEliminar.Enabled = !Activo;
-        //}
+            this.btnAgregar.Enabled = !Activo;
+            this.btnEditar.Enabled = !Activo;
+            this.btnGuardar.Enabled = Activo;
+            this.btnCancelar.Enabled = Activo;
+            this.btnEliminar.Enabled = !Activo;
+        }
 
         //private void EnlazarEventos()
         //{
@@ -137,13 +174,14 @@ namespace CG
         //}
 
 
-        private void frmMaestroDetalleUpdate_Load(object sender, EventArgs e)
+        private void frmAsiento_Load(object sender, EventArgs e)
         {
             try
             {
-                CargarPeriodoActivo();
+                //if (Accion=="New")
+                //    CargarDatosPeriodoActivo();
 
-                //        HabilitarControles(true);
+                HabilitarControles(true);
 
                 //        //SetDefaultBehaviorControls();
                 //        Util.SetDefaultBehaviorControls(this.gridViewDetalle, true, null, this.bar1, this.lblTitulo, this.panelTitulo, _tituloVentana, this);
@@ -160,11 +198,28 @@ namespace CG
                 //        this.slkupArticulo.DisplayMember = "DESCRIPCION";
                 //        this.slkupArticulo.ValueMember = "ARTICULO";
                 //        this.slkupArticulo.NullText = " --- ---";
+                
+                Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetData().Tables["Data"], "Descr", "Tipo");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                //dtgDetalle.ProcessGridKey += dtgDetalle_ProcessGridKey;
+                UpdateControlsFromDataRow(_currentRow);
+                if (Accion == "New")
+                {
+                    ClearControls();
+                    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                }
+                else if (Convert.ToBoolean(_currentRow["Mayorizado"]) || Convert.ToBoolean(_currentRow["Anulado"]))
+                {
+                    Accion = "View";
+                    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                }
+                else
+                {
+                    Accion = "Edit";
+                    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                }
 
-                //        Util.ConfigLookupEdit(this.slkupCategoria, CategoriaDAC.GetData().Tables["Categoria"], "Descripcion", "CodCategoria");
-                //        Util.ConfigLookupEditSetViewColumns(this.slkupCategoria, "[{'ColumnCaption':'CodCategoria','ColumnField':'CodCategoria','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descripcion','width':70}]");
-                //        dtgDetalle.ProcessGridKey += dtgDetalle_ProcessGridKey;
-                //        UpdateControlsFromDataRow(_currentRow);
+                //Cargar Grilla
             }
             catch (Exception ex)
             {
@@ -172,11 +227,19 @@ namespace CG
             }
         }
 
-        private void CargarPeriodoActivo()
+        private void CargarDatosPeriodoActivo()
         {
             _dsEjercicioPeriodo = EjercicioDAC.GetEjercicioActivo();
             this.txtEjercicio.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrEjercicio"].ToString();
             this.txtPeriodo.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrPeriodo"].ToString();
+            DataSet DS = new DataSet();
+            DS = TipoCambioDetalleDAC.GetData("TVEN", DateTime.Now);
+            this.txtTipoCambio.Text = DS.Tables[0].Rows[0]["Monto"].ToString();
+        }
+
+        private void EnlazarDatos()
+        {
+            this.txtFecha.Text = DateTime.Now.ToShortDateString();
 
         }
 

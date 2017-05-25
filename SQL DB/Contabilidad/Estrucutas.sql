@@ -1418,7 +1418,7 @@ GO
 
 CREATE TABLE [dbo].[globalTipoCambioDetalle](
 	[IDTipoCambio] [nvarchar](20) NOT NULL,
-	[Fecha] [datetime] NOT NULL,
+	[Fecha] [date] NOT NULL,
 	[Monto] [decimal](28, 8) NULL,
  CONSTRAINT [pkTipoCambioDetalle] PRIMARY KEY CLUSTERED 
 (
@@ -1494,7 +1494,95 @@ begin
 end
 
 
+GO
 
+INSERT INTO dbo.globalTipoCambio
+        ( IDTipoCambio, Descr )
+VALUES  ( N'TVEN', -- IDTipoCambio - nvarchar(20)
+          N'Tipo de Cambio de Venta'  -- Descr - nvarchar(50)
+          )
+GO
+
+
+Create Procedure dbo.cntGetProximaCuenta @Nivel1 nvarchar(50)  , @Nivel2 nvarchar(50), @Nivel3 nvarchar(50) , @Nivel4 nvarchar(50)  , @Nivel5 nvarchar(50) , @NextCuenta nvarchar(50) output
+as
+set nocount on
+Declare @Resultado nvarchar(50)
+Declare @Str nvarchar(250), @i int, @Anterior int, @Actual int, @CantItems int, @Found bit , @Siguiente int
+
+set @Str = case when @Nivel1 = '-1' then '' else '%' + @Nivel1 + '%' end
+set @Str = @Str + case when @Nivel2 = '-1' then '' else  @Nivel2 + '%' end
+set @Str = @Str + case when @Nivel3 = '-1' then '' else  @Nivel3 + '%' end
+set @Str = @Str + case when @Nivel4 = '-1' then '' else  @Nivel4 + '%' end
+set @Str = @Str + case when @Nivel5 = '-1' then '' else  @Nivel5 + '%' end
+
+
+Create Table #Cuenta ( ID int identity(1,1), nivel1 nvarchar(50), nivel2 nvarchar(50),
+nivel3 nvarchar(50),  nivel4 nvarchar(50), nivel5 nvarchar(50), Cuenta nvarchar(50))
+insert #Cuenta ( nivel1 , nivel2 , nivel3 ,nivel4 , nivel5 , Cuenta )
+select Nivel1, Nivel2 , Nivel3 , Nivel4, Nivel5, Cuenta 
+from dbo.cntCuenta 
+where @Str = '' or Cuenta like @Str 
+order by Nivel1,Nivel2, Nivel3, Nivel4, nivel5
+
+set @CantItems = @@IDENTITY 
+
+declare @First int, @Second int
+
+set @i = 1
+set @Found = 0
+set @Anterior = -1
+set @First = -1
+while @i <= @CantItems and @Found = 0
+begin
+set @Anterior = @First 
+Select @First = case when @nivel1 = '-1' then cast(nivel1 AS int)
+				else
+					case when @nivel2 = '-1' then cast(nivel2 AS int )
+					else
+						case when @nivel3 = '-1' then cast(nivel3 AS int )
+						else
+							case when @nivel4 = '-1' then cast(nivel4 AS int )
+							else
+								case when @nivel5 = '-1' then CAST( nivel5 AS int ) end
+							end
+						end
+					end
+				end 
+			 
+
+from #Cuenta
+where ID = @i 
+if @First <>  0 and @Anterior = -1	
+begin
+	set @Siguiente = @First + 1
+	set @Found = 1
+end
+else
+begin
+
+	if (@i <= @CantItems)  and (@first - @Anterior ) >1 
+	begin
+
+		set @Found = 1
+		set @Siguiente = @Anterior + 1
+	end
+	else
+	begin
+		if @i = @CantItems and (@first - @Anterior ) =1
+		begin
+			set @Found = 1
+			set @Siguiente = @First + 1
+		end
+	end
+end
+set @i = @i + 1
+end
+
+set @NextCuenta = @Siguiente 
+drop table #Cuenta
+return @NextCuenta
+go
 
 
 /*
