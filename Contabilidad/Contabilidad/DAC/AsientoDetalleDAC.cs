@@ -16,11 +16,11 @@ namespace CG
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT Asiento,Linea,A.IDCentro,C.Descr DescrCentro,A.IDCuenta,CC.Descr DescrCuentaContable,Referencia,Debito,Credito,Documento,daterecord  " +
-                                "FROM dbo.cntAsientoDetalle a  " + 
-                            "INNER JOIN dbo.cntCentroCosto C ON A.IDCentro = C.IDCentro " + 
-                            "INNER JOIN dbo.cntCuenta CC ON A.IDCuenta = CC.Cuenta " +
-                            "WHERE(Asiento = @Asiento  OR  @Asiento = '*')  AND(IDCuenta = @IDCuenta OR @IDCuenta = -1)  AND(IDCentro = @IDCentro OR @IDCentro = -1)"; 
+            String getSQL = "SELECT Asiento,Linea,A.IDCentro,C.Descr DescrCentro,A.IDCuenta,CC.Descr DescrCuenta,Referencia,Debito,Credito,Documento,daterecord  " +
+                               "FROM dbo.cntAsientoDetalle a " +
+                               "INNER JOIN dbo.cntCentroCosto C ON A.IDCentro=C.IDCentro " +
+                                "INNER JOIN dbo.cntCuenta CC ON A.IDCuenta = CC.IDCuenta " +
+                                "WHERE(Asiento = @Asiento  OR  @Asiento = '*')  AND(A.IDCuenta = @IDCuenta OR @IDCuenta = -1)  AND(A.IDCentro = @IDCentro OR @IDCentro = -1)"; 
             
             try
             {
@@ -56,7 +56,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetDataByAsiento(String Asiento,int IDCentro,int IDCuenta)
+        public static DataSet GetData(String Asiento,int IDCentro,int IDCuenta)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@Asiento"].Value = Asiento;

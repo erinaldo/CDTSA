@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Util;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace CG
 {
@@ -21,12 +23,16 @@ namespace CG
         private DataSet _dsAsiento;
         private DataSet _dsDetalle;
 
+        private DataTable _dtCuentas;
+        private DataTable _dtCentros;
+
         private DataSet _dsEjercicioPeriodo;
 
         private DataRow _currentRow;
         private String Accion = "NEW";
 
         String sUsuario = "jespinoza";
+        String _Asiento = "";
         String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
 
@@ -51,6 +57,7 @@ namespace CG
 
             _dsAsiento = AsientoDAC.GetDataByAsiento(Asiento);
             _dtAsiento = _dsAsiento.Tables[0];
+            
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsAsiento.Tables[0].Rows[0];
 
@@ -133,16 +140,18 @@ namespace CG
             this.txtConcepto.Text = _currentRow["Concepto"].ToString();
             this.txtEstado.Text = EstadoAsiento();
             //Obtener los datos segun cabecera
-            //PopulateGrid();
+            PopulateGrid();
         }
 
-        //private void PopulateGrid()
-        //{
-        //    _dsDetalle = SolicitudDetalleDAC.GetData(_currentRow["CodSucursal"].ToString(), _currentRow["NumSolicitud"].ToString());
-        //    _dtDetalle = _dsDetalle.Tables[0];
-        //    this.dtgDetalle.DataSource = _dtDetalle;
-        //    // this.dtNavigator.DataSource = _dtDetalle;
-        //}
+        private void PopulateGrid()
+        {
+            String sAsiento = (this.Accion == "New") ? "--------" : _Asiento;
+            _dsDetalle = AsientoDetalleDAC.GetData(sAsiento, -1, -1);
+            _dtDetalle = _dsDetalle.Tables[0];
+
+            this.grid.DataSource = _dtDetalle;
+            
+        }
 
         private void ClearControls()
         {
@@ -184,24 +193,31 @@ namespace CG
                 HabilitarControles(true);
 
                 //        //SetDefaultBehaviorControls();
-                //        Util.SetDefaultBehaviorControls(this.gridViewDetalle, true, null, this.bar1, this.lblTitulo, this.panelTitulo, _tituloVentana, this);
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null,  _tituloVentana, this);
                 //        EnlazarEventos();
 
-                //        this.gridViewDetalle.EditFormPrepared += gridViewDetalle_EditFormPrepared;
-                //        this.gridViewDetalle.NewItemRowText = Util.constNewItemTextGrid;
-                //        this.gridViewDetalle.ValidatingEditor += gridViewDetalle_ValidatingEditor;
-
-
+                this.gridView1.EditFormPrepared += GridView1_EditFormPrepared;
+                this.gridView1.NewItemRowText = Util.Util.constNewItemTextGrid;
+                this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
+                this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
+                //this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
                 //        //Configurar searchLookUp
+                _dtCentros = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0];
+                this.slkupCentroCostoGrid.DataSource = _dtCentros;
+                this.slkupCentroCostoGrid.DisplayMember = "Centro";
+                this.slkupCentroCostoGrid.ValueMember = "IDCentro";
+                this.slkupCentroCostoGrid.NullText = " --- ---";
+               // this.slkupCentroCostoGrid.EditValueChanged += SlkupCentroCostoGrid_EditValueChanged;
 
-                //        this.slkupArticulo.DataSource = ArticuloDAC.GetData("*").Tables["Data"];
-                //        this.slkupArticulo.DisplayMember = "DESCRIPCION";
-                //        this.slkupArticulo.ValueMember = "ARTICULO";
-                //        this.slkupArticulo.NullText = " --- ---";
-                
+                _dtCuentas = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, 1, 1, -1, -1).Tables[0];
+                this.slkupCuentaContableGrid.DataSource = _dtCuentas;
+                this.slkupCuentaContableGrid.DisplayMember = "Cuenta";
+                this.slkupCuentaContableGrid.ValueMember = "IDCuenta";
+                this.slkupCuentaContableGrid.NullText = " --- ---" ;
+
                 Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetData().Tables["Data"], "Descr", "Tipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-                //dtgDetalle.ProcessGridKey += dtgDetalle_ProcessGridKey;
+                grid.ProcessGridKey += Grid_ProcessGridKey;
                 UpdateControlsFromDataRow(_currentRow);
                 if (Accion == "New")
                 {
@@ -227,6 +243,105 @@ namespace CG
             }
         }
 
+        private void GridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "IDCentro")
+            {
+                if (e.Value == null) return;
+                DataView dt = new DataView();
+                dt.Table = _dtCentros;
+                dt.RowFilter = "IDCentro=" + e.Value.ToString();
+
+                e.DisplayText = dt.ToTable().Rows[0]["Centro"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+            }
+            else if (e.Column.FieldName == "IDCuenta")
+            {
+                if (e.Value == null) return;
+                DataView dt = new DataView();
+                dt.Table = _dtCuentas;
+                dt.RowFilter = "IDCuenta=" + e.Value.ToString();
+
+                e.DisplayText = dt.ToTable().Rows[0]["Cuenta"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+            }
+        }
+
+        //private void SlkupCentroCostoGrid_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        //if (!isEdition)
+        //        //    return;
+        //        SearchLookUpEdit slkup = (sender as DevExpress.XtraEditors.SearchLookUpEdit);
+
+        //        if (slkup.EditValue != null && slkup.EditValue.ToString() != "")
+        //        {
+
+        //            DataRowView rowView = (DataRowView)slkup.GetSelectedDataRow();
+        //            DataRow row = rowView.Row;
+
+
+        //            //slkup.row
+        //            //DataRow row = slkup.getdata(theIndex);
+        //            ////        e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
+        //            //slkup.GetSelectedDataRow if (e.Value == null) return;
+        //            //DataView dt = new DataView();
+        //            //dt.Table = _dtCentros;
+        //            //dt.RowFilter = "IDCentro=" + e.Value.ToString();
+
+        //            //e.DisplayText = dt.ToTable().Rows[0]["Centro"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+        //private void SlkupCentroCostoGrid_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
+        //{
+        //    SearchLookUpEdit edit = sender as SearchLookUpEdit;
+        //    if (edit == null) return;
+        //    int theIndex = edit.Properties.GetIndexByKeyValue(edit.EditValue);
+        //    if (edit.Properties.View.IsDataRow(theIndex))
+        //    {
+        //        DataRow row = edit.Properties.View.GetDataRow(theIndex);
+        //        e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
+        //    }
+        //}
+
+        private void Grid_ProcessGridKey(object sender, KeyEventArgs e)
+        {
+            var grid = sender as GridControl;
+            var view = grid.FocusedView as GridView;
+            if (e.KeyData == Keys.Delete)
+            {
+                if (MessageBox.Show("Esta seguro que desea eliminar el elemento seleccionado?", "Asiento de Diario", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    view.DeleteSelectedRows();
+                    e.Handled = true;
+                }
+                else
+                    e.Handled = false;
+            }
+        }
+
+        private void GridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
+        {
+            
+        }
+
+        private void GridView1_EditFormPrepared(object sender, EditFormPreparedEventArgs e)
+        {
+            Control ctrl = Util.Util.FindControl(e.Panel, "Update");
+            if (ctrl != null)
+                ctrl.Text = "Actualizar";
+            ctrl = Util.Util.FindControl(e.Panel, "Cancel");
+            if (ctrl != null)
+                ctrl.Text = "Cancelar";
+        }
+
         private void CargarDatosPeriodoActivo()
         {
             _dsEjercicioPeriodo = EjercicioDAC.GetEjercicioActivo();
@@ -243,38 +358,71 @@ namespace CG
 
         }
 
-        //void gridViewDetalle_EditFormPrepared(object sender, EditFormPreparedEventArgs e)
-        //{
-        //    Control ctrl = Util.FindControl(e.Panel, "Update");
-        //    if (ctrl != null)
-        //        ctrl.Text = "Actualizar";
-        //    ctrl = Util.FindControl(e.Panel, "Cancel");
-        //    if (ctrl != null)
-        //        ctrl.Text = "Cancelar";
-        //}
+  
+ 
+        private void gridView1_InitNewRow(object sender, InitNewRowEventArgs e)
+        {
+                DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            
+            var count = _dsDetalle.Tables[0].AsEnumerable().Max(a => a.Field<int>("Linea"));
+                    
+            view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], _currentRow["Asiento"]);
+            view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], 1);
+            //    view.SetRowCellValue(e.RowHandle, view.Columns["CodSucursal"], _currentRow["CodSucursal"]);
+        }
 
-        //void dtgDetalle_ProcessGridKey(object sender, KeyEventArgs e)
-        //{
-        //    var grid = sender as GridControl;
-        //    var view = grid.FocusedView as GridView;
-        //    if (e.KeyData == Keys.Delete)
-        //    {
-        //        if (MessageBox.Show("Esta seguro que desea eliminar el elemento seleccionado?", "Maestro Detalle Update", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-        //        {
-        //            view.DeleteSelectedRows();
-        //            e.Handled = true;
-        //        }
-        //        else
-        //            e.Handled = false;
-        //    }
-        //}
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            GridView view = (GridView)sender;
+            if (view == null) return;
+            if (e.Column.FieldName == "IDCentro")
+            {
+                string cellValue = e.Value.ToString();
+                DataView dt = new DataView();
+                dt.Table = _dtCentros;
+                dt.RowFilter = "IDCentro=" + cellValue;
 
-        //private void gridViewDetalle_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+                view.SetRowCellValue(e.RowHandle, view.Columns["DescrCentro"], dt.ToTable().Rows[0]["Descr"].ToString());
+            }
+            if (e.Column.FieldName == "IDCuenta")
+            {
+                string cellValue = e.Value.ToString();
+                DataView dt = new DataView();
+                dt.Table = _dtCuentas;
+                dt.RowFilter = "IDCuenta=" + cellValue;
+
+                view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], dt.ToTable().Rows[0]["Descr"].ToString());
+            }
+        }
+
+        //if (e.Value == null) return;
+        //MessageBox.Show(e.Column.ColumnEdit.ToString());
+
+        //SearchLookUpEdit edit = e.Column.ColumnEdit.ed as SearchLookUpEdit;
+        //if (edit == null) return;
+        //int theIndex = edit.Properties.GetIndexByKeyValue(edit.EditValue);
+        //if (edit.Properties.View.IsDataRow(theIndex))
         //{
-        //    DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-        //    view.SetRowCellValue(e.RowHandle, view.Columns["NumSolicitud"], _currentRow["NumSolicitud"]);
-        //    view.SetRowCellValue(e.RowHandle, view.Columns["CodSucursal"], _currentRow["CodSucursal"]);
+        //    DataRow row = edit.Properties.View.GetDataRow(theIndex);
+        //    e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
         //}
+        //this.slkupCentroCostoGrid.GetIndexByKeyValue(e.Value);
+        //if (ed)
+
+
+        //SearchLookUpEdit edit = sender as SearchLookUpEdit;
+        //if (edit == null) return;
+        //int theIndex = edit.Properties.GetIndexByKeyValue(edit.EditValue);
+        //if (edit.Properties.View.IsDataRow(theIndex))
+        //{
+        //    DataRow row = edit.Properties.View.GetDataRow(theIndex);
+        //    e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
+        //}
+        //if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
+
+
+
+
 
 
 

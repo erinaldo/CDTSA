@@ -53,6 +53,21 @@
             this.txtFecha = new DevExpress.XtraEditors.TextEdit();
             this.grid = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Linea = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CentroCosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.slkupCentroCostoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Centro = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CuentaContable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.slkupCuentaContableGrid = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescripcionCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Debito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Documento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Referencia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtAsiento = new DevExpress.XtraEditors.TextEdit();
             this.txtEjercicio = new DevExpress.XtraEditors.TextEdit();
             this.txtConcepto = new System.Windows.Forms.RichTextBox();
@@ -87,6 +102,8 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.DescrCentro = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCuentaContable = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -100,6 +117,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFecha.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCentroCostoGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
@@ -366,6 +387,9 @@
             this.grid.MainView = this.gridView1;
             this.grid.MenuManager = this.ribbonControl;
             this.grid.Name = "grid";
+            this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.slkupCentroCostoGrid,
+            this.slkupCuentaContableGrid});
             this.grid.Size = new System.Drawing.Size(828, 273);
             this.grid.TabIndex = 14;
             this.grid.UseEmbeddedNavigator = true;
@@ -374,8 +398,145 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Linea,
+            this.CentroCosto,
+            this.DescrCentro,
+            this.CuentaContable,
+            this.DescrCuentaContable,
+            this.Debito,
+            this.Creditos,
+            this.Documento,
+            this.Referencia});
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
+            // 
+            // Linea
+            // 
+            this.Linea.Caption = "Linea";
+            this.Linea.FieldName = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.Visible = true;
+            this.Linea.VisibleIndex = 0;
+            // 
+            // CentroCosto
+            // 
+            this.CentroCosto.Caption = "Centro Costo";
+            this.CentroCosto.ColumnEdit = this.slkupCentroCostoGrid;
+            this.CentroCosto.FieldName = "IDCentro";
+            this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.Visible = true;
+            this.CentroCosto.VisibleIndex = 1;
+            // 
+            // slkupCentroCostoGrid
+            // 
+            this.slkupCentroCostoGrid.AutoHeight = false;
+            this.slkupCentroCostoGrid.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupCentroCostoGrid.Name = "slkupCentroCostoGrid";
+            this.slkupCentroCostoGrid.View = this.repositoryItemSearchLookUpEdit1View;
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Centro,
+            this.Descripcion});
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // Centro
+            // 
+            this.Centro.Caption = "Centro";
+            this.Centro.FieldName = "Centro";
+            this.Centro.Name = "Centro";
+            this.Centro.Visible = true;
+            this.Centro.VisibleIndex = 0;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.Caption = "Descripción";
+            this.Descripcion.FieldName = "Descr";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.Visible = true;
+            this.Descripcion.VisibleIndex = 1;
+            // 
+            // CuentaContable
+            // 
+            this.CuentaContable.Caption = "Cuenta Contable";
+            this.CuentaContable.ColumnEdit = this.slkupCuentaContableGrid;
+            this.CuentaContable.FieldName = "IDCuenta";
+            this.CuentaContable.Name = "CuentaContable";
+            this.CuentaContable.Visible = true;
+            this.CuentaContable.VisibleIndex = 3;
+            // 
+            // slkupCuentaContableGrid
+            // 
+            this.slkupCuentaContableGrid.AutoHeight = false;
+            this.slkupCuentaContableGrid.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupCuentaContableGrid.Name = "slkupCuentaContableGrid";
+            this.slkupCuentaContableGrid.View = this.gridView2;
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Cuenta,
+            this.DescripcionCuenta});
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // Cuenta
+            // 
+            this.Cuenta.Caption = "Cuenta";
+            this.Cuenta.FieldName = "Cuenta";
+            this.Cuenta.Name = "Cuenta";
+            this.Cuenta.Visible = true;
+            this.Cuenta.VisibleIndex = 0;
+            // 
+            // DescripcionCuenta
+            // 
+            this.DescripcionCuenta.Caption = "Descripción";
+            this.DescripcionCuenta.FieldName = "Descr";
+            this.DescripcionCuenta.Name = "DescripcionCuenta";
+            this.DescripcionCuenta.Visible = true;
+            this.DescripcionCuenta.VisibleIndex = 1;
+            // 
+            // Debito
+            // 
+            this.Debito.Caption = "Débito";
+            this.Debito.FieldName = "Debito";
+            this.Debito.Name = "Debito";
+            this.Debito.Visible = true;
+            this.Debito.VisibleIndex = 5;
+            // 
+            // Creditos
+            // 
+            this.Creditos.Caption = "Créditos";
+            this.Creditos.FieldName = "Credito";
+            this.Creditos.Name = "Creditos";
+            this.Creditos.Visible = true;
+            this.Creditos.VisibleIndex = 6;
+            // 
+            // Documento
+            // 
+            this.Documento.Caption = "Documento";
+            this.Documento.FieldName = "Documento";
+            this.Documento.Name = "Documento";
+            this.Documento.Visible = true;
+            this.Documento.VisibleIndex = 7;
+            // 
+            // Referencia
+            // 
+            this.Referencia.Caption = "Referencia";
+            this.Referencia.FieldName = "Referencia";
+            this.Referencia.Name = "Referencia";
+            this.Referencia.Visible = true;
+            this.Referencia.VisibleIndex = 8;
             // 
             // txtAsiento
             // 
@@ -483,8 +644,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.TabAuditoria;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
+            this.tabbedControlGroup1.SelectedTabPage = this.TabGeneral;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(832, 217);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.TabGeneral,
@@ -725,6 +886,26 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
+            // DescrCentro
+            // 
+            this.DescrCentro.Caption = "Descr CentroCosto";
+            this.DescrCentro.FieldName = "DescrCentro";
+            this.DescrCentro.Name = "DescrCentro";
+            this.DescrCentro.OptionsColumn.AllowEdit = false;
+            this.DescrCentro.OptionsColumn.ReadOnly = true;
+            this.DescrCentro.Visible = true;
+            this.DescrCentro.VisibleIndex = 2;
+            // 
+            // DescrCuentaContable
+            // 
+            this.DescrCuentaContable.Caption = "Descr Cuenta Contable";
+            this.DescrCuentaContable.FieldName = "DescrCuenta";
+            this.DescrCuentaContable.Name = "DescrCuentaContable";
+            this.DescrCuentaContable.OptionsColumn.AllowEdit = false;
+            this.DescrCuentaContable.OptionsColumn.ReadOnly = true;
+            this.DescrCuentaContable.Visible = true;
+            this.DescrCuentaContable.VisibleIndex = 4;
+            // 
             // frmAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -749,6 +930,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFecha.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCentroCostoGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
@@ -848,5 +1033,22 @@
         private DevExpress.XtraBars.BarButtonItem btnAnular;
         private DevExpress.XtraBars.BarButtonItem btnCuadreTemporal;
         private DevExpress.XtraBars.BarButtonItem btnImprimir;
+        private DevExpress.XtraGrid.Columns.GridColumn Linea;
+        private DevExpress.XtraGrid.Columns.GridColumn CentroCosto;
+        private DevExpress.XtraGrid.Columns.GridColumn CuentaContable;
+        private DevExpress.XtraGrid.Columns.GridColumn Debito;
+        private DevExpress.XtraGrid.Columns.GridColumn Creditos;
+        private DevExpress.XtraGrid.Columns.GridColumn Documento;
+        private DevExpress.XtraGrid.Columns.GridColumn Referencia;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit slkupCentroCostoGrid;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit slkupCuentaContableGrid;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn Centro;
+        private DevExpress.XtraGrid.Columns.GridColumn Descripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn Cuenta;
+        private DevExpress.XtraGrid.Columns.GridColumn DescripcionCuenta;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrCentro;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrCuentaContable;
     }
 }
