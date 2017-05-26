@@ -199,6 +199,7 @@ namespace CG
                 this.gridView1.EditFormPrepared += GridView1_EditFormPrepared;
                 this.gridView1.NewItemRowText = Util.Util.constNewItemTextGrid;
                 this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
+                
                 this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
                 //this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
                 //        //Configurar searchLookUp
@@ -362,13 +363,19 @@ namespace CG
  
         private void gridView1_InitNewRow(object sender, InitNewRowEventArgs e)
         {
-                DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-            
-            var count = _dsDetalle.Tables[0].AsEnumerable().Max(a => a.Field<int>("Linea"));
-                    
-            view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], _currentRow["Asiento"]);
-            view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], 1);
-            //    view.SetRowCellValue(e.RowHandle, view.Columns["CodSucursal"], _currentRow["CodSucursal"]);
+             DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            try
+            {
+                if (view == null) return;
+                int count = (_dtDetalle.Rows.Count > 0) ? _dtDetalle.AsEnumerable().Max(a => a.Field<int>("Linea")) + 1 : 1;
+
+                ////view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], _currentRow["Asiento"]);
+                view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], count);
+                ////    view.SetRowCellValue(e.RowHandle, view.Columns["CodSucursal"], _currentRow["CodSucursal"]);
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)

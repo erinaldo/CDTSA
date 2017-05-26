@@ -59,11 +59,13 @@
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Centro = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCentro = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CuentaContable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.slkupCuentaContableGrid = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DescripcionCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCuentaContable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Debito = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Documento = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -102,8 +104,6 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.DescrCentro = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DescrCuentaContable = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -398,6 +398,12 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.gridView1.Appearance.TopNewRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.TopNewRow.ForeColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.TopNewRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.TopNewRow.Options.UseFont = true;
+            this.gridView1.Appearance.TopNewRow.Options.UseForeColor = true;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Linea,
             this.CentroCosto,
@@ -410,24 +416,39 @@
             this.Referencia});
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
+            this.gridView1.OptionsEditForm.FormCaptionFormat = "Línea de Asiento";
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             // 
             // Linea
             // 
             this.Linea.Caption = "Linea";
             this.Linea.FieldName = "Linea";
+            this.Linea.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.Linea.MinWidth = 40;
             this.Linea.Name = "Linea";
+            this.Linea.OptionsColumn.AllowEdit = false;
+            this.Linea.OptionsColumn.FixedWidth = true;
             this.Linea.Visible = true;
             this.Linea.VisibleIndex = 0;
+            this.Linea.Width = 60;
             // 
             // CentroCosto
             // 
             this.CentroCosto.Caption = "Centro Costo";
             this.CentroCosto.ColumnEdit = this.slkupCentroCostoGrid;
             this.CentroCosto.FieldName = "IDCentro";
+            this.CentroCosto.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.CentroCosto.MinWidth = 90;
             this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.OptionsEditForm.StartNewRow = true;
+            this.CentroCosto.OptionsEditForm.VisibleIndex = 1;
             this.CentroCosto.Visible = true;
             this.CentroCosto.VisibleIndex = 1;
+            this.CentroCosto.Width = 120;
             // 
             // slkupCentroCostoGrid
             // 
@@ -463,14 +484,33 @@
             this.Descripcion.Visible = true;
             this.Descripcion.VisibleIndex = 1;
             // 
+            // DescrCentro
+            // 
+            this.DescrCentro.Caption = "Descr CentroCosto";
+            this.DescrCentro.FieldName = "DescrCentro";
+            this.DescrCentro.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.DescrCentro.MinWidth = 100;
+            this.DescrCentro.Name = "DescrCentro";
+            this.DescrCentro.OptionsColumn.AllowEdit = false;
+            this.DescrCentro.OptionsColumn.ReadOnly = true;
+            this.DescrCentro.OptionsEditForm.VisibleIndex = 2;
+            this.DescrCentro.Visible = true;
+            this.DescrCentro.VisibleIndex = 2;
+            this.DescrCentro.Width = 179;
+            // 
             // CuentaContable
             // 
             this.CuentaContable.Caption = "Cuenta Contable";
             this.CuentaContable.ColumnEdit = this.slkupCuentaContableGrid;
             this.CuentaContable.FieldName = "IDCuenta";
+            this.CuentaContable.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.CuentaContable.MinWidth = 90;
             this.CuentaContable.Name = "CuentaContable";
+            this.CuentaContable.OptionsEditForm.StartNewRow = true;
+            this.CuentaContable.OptionsEditForm.VisibleIndex = 3;
             this.CuentaContable.Visible = true;
             this.CuentaContable.VisibleIndex = 3;
+            this.CuentaContable.Width = 120;
             // 
             // slkupCuentaContableGrid
             // 
@@ -506,37 +546,63 @@
             this.DescripcionCuenta.Visible = true;
             this.DescripcionCuenta.VisibleIndex = 1;
             // 
+            // DescrCuentaContable
+            // 
+            this.DescrCuentaContable.Caption = "Descr Cuenta Contable";
+            this.DescrCuentaContable.FieldName = "DescrCuenta";
+            this.DescrCuentaContable.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.DescrCuentaContable.MinWidth = 100;
+            this.DescrCuentaContable.Name = "DescrCuentaContable";
+            this.DescrCuentaContable.OptionsColumn.AllowEdit = false;
+            this.DescrCuentaContable.OptionsColumn.ReadOnly = true;
+            this.DescrCuentaContable.OptionsEditForm.VisibleIndex = 4;
+            this.DescrCuentaContable.Visible = true;
+            this.DescrCuentaContable.VisibleIndex = 4;
+            this.DescrCuentaContable.Width = 179;
+            // 
             // Debito
             // 
             this.Debito.Caption = "Débito";
+            this.Debito.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Debito.FieldName = "Debito";
             this.Debito.Name = "Debito";
+            this.Debito.OptionsEditForm.StartNewRow = true;
+            this.Debito.OptionsEditForm.VisibleIndex = 5;
             this.Debito.Visible = true;
             this.Debito.VisibleIndex = 5;
+            this.Debito.Width = 114;
             // 
             // Creditos
             // 
             this.Creditos.Caption = "Créditos";
+            this.Creditos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Creditos.FieldName = "Credito";
             this.Creditos.Name = "Creditos";
+            this.Creditos.OptionsEditForm.VisibleIndex = 6;
             this.Creditos.Visible = true;
             this.Creditos.VisibleIndex = 6;
+            this.Creditos.Width = 117;
             // 
             // Documento
             // 
             this.Documento.Caption = "Documento";
             this.Documento.FieldName = "Documento";
             this.Documento.Name = "Documento";
+            this.Documento.OptionsEditForm.StartNewRow = true;
+            this.Documento.OptionsEditForm.VisibleIndex = 7;
             this.Documento.Visible = true;
             this.Documento.VisibleIndex = 7;
+            this.Documento.Width = 114;
             // 
             // Referencia
             // 
             this.Referencia.Caption = "Referencia";
             this.Referencia.FieldName = "Referencia";
             this.Referencia.Name = "Referencia";
+            this.Referencia.OptionsEditForm.VisibleIndex = 8;
             this.Referencia.Visible = true;
             this.Referencia.VisibleIndex = 8;
+            this.Referencia.Width = 178;
             // 
             // txtAsiento
             // 
@@ -885,26 +951,6 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(832, 277);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
-            // 
-            // DescrCentro
-            // 
-            this.DescrCentro.Caption = "Descr CentroCosto";
-            this.DescrCentro.FieldName = "DescrCentro";
-            this.DescrCentro.Name = "DescrCentro";
-            this.DescrCentro.OptionsColumn.AllowEdit = false;
-            this.DescrCentro.OptionsColumn.ReadOnly = true;
-            this.DescrCentro.Visible = true;
-            this.DescrCentro.VisibleIndex = 2;
-            // 
-            // DescrCuentaContable
-            // 
-            this.DescrCuentaContable.Caption = "Descr Cuenta Contable";
-            this.DescrCuentaContable.FieldName = "DescrCuenta";
-            this.DescrCuentaContable.Name = "DescrCuentaContable";
-            this.DescrCuentaContable.OptionsColumn.AllowEdit = false;
-            this.DescrCuentaContable.OptionsColumn.ReadOnly = true;
-            this.DescrCuentaContable.Visible = true;
-            this.DescrCuentaContable.VisibleIndex = 4;
             // 
             // frmAsiento
             // 
