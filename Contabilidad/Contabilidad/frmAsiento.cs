@@ -57,6 +57,11 @@ namespace CG
         {
             InitializeComponent();
             InicializarControles();
+            CargarAsiento(Asiento);
+        }
+
+        private void CargarAsiento(String Asiento)
+        {
 
             _dsAsiento = AsientoDAC.GetDataByAsiento(Asiento);
             _dtAsiento = _dsAsiento.Tables[0];
@@ -182,7 +187,7 @@ namespace CG
             //    this.btnEditar.ItemClick += btnEditar_ItemClick;
             //    this.btnEliminar.ItemClick += btnEliminar_ItemClick;
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
-            //    this.btnCancelar.ItemClick += btnCancelar_ItemClick;
+            this.btnCancelar.ItemClick += btnCancelar_ItemClick;
         }
 
 
@@ -193,7 +198,7 @@ namespace CG
                 //if (Accion=="New")
                 //    CargarDatosPeriodoActivo();
 
-                HabilitarControles(true);
+               
 
                 //        //SetDefaultBehaviorControls();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
@@ -228,6 +233,7 @@ namespace CG
                 UpdateControlsFromDataRow(_currentRow);
                 if (Accion == "New")
                 {
+                    HabilitarControles(true);
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 }
@@ -242,7 +248,7 @@ namespace CG
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 }
 
-                //Cargar Grilla
+            
             }
             catch (Exception ex)
             {
@@ -368,11 +374,6 @@ namespace CG
             this.txtTipoCambio.Text = DS.Tables[0].Rows[0]["Monto"].ToString();
         }
 
-        private void EnlazarDatos()
-        {
-            this.txtFecha.Text = DateTime.Now.ToShortDateString();
-
-        }
 
 
 
@@ -469,13 +470,7 @@ namespace CG
             return result;
         }
 
-        public static string ToStringAsXml(DataSet ds)
-        {
-            StringWriter sw = new StringWriter();
-            ds.WriteXml(sw, XmlWriteMode.IgnoreSchema);
-            string s = sw.ToString();
-            return s;
-        }
+
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -544,84 +539,26 @@ namespace CG
 
 
 
-        //private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-        //    HabilitarControles(false);
-        //    UpdateControlsFromDataRow(_currentRow);
-        //    this.lblStatusBar.Caption = "";
-        //}
+        private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+            if (Accion == "Edit")
+            {
+                HabilitarControles(false);
+                CargarAsiento(_currentRow["Asiento"].ToString());
+                UpdateControlsFromDataRow(_currentRow);
+            }
+            else
+                this.Close();
+            
+        }
 
         //private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         //{
-        //    if (_currentRow != null)
-        //    {
-        //        if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + _currentRow["NumSolicitud"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-        //        {
-        //            string msg = _currentRow["NumSolicitud"] + " eliminado..";
-        //            string sNumSolicitud = _currentRow["NumSolicitud"].ToString();
-        //            _currentRow.Delete();
 
-        //            try
-        //            {
-        //                ConnectionManager.BeginTran();
-        //                SolicitudDAC.SetTransactionToAdaptador(true);
-
-
-        //                System.Data.SqlClient.SqlCommand oCmd = new System.Data.SqlClient.SqlCommand("Delete from fnica.solSolicituddetalle where numsolicitud=@Solicitud", ConnectionManager.GetConnection(), ConnectionManager.Tran);
-        //                oCmd.Parameters.Add("@Solicitud", SqlDbType.NVarChar).Value = sNumSolicitud;
-        //                int i = oCmd.ExecuteNonQuery();
-
-        //                SolicitudDAC.oAdaptador.Update(_dsAsiento, "Data");
-        //                _dsAsiento.AcceptChanges();
-
-
-        //                ConnectionManager.CommitTran();
-        //                SolicitudDAC.SetTransactionToAdaptador(false);
-
-
-        //                PopulateGrid();
-        //                this.lblStatusBar.Caption = msg;
-        //                Application.DoEvents();
-
-        //                this.Close();
-        //            }
-        //            catch (System.Data.SqlClient.SqlException ex)
-        //            {
-        //                ConnectionManager.RollBackTran();
-        //                _dsAsiento.RejectChanges();
-        //                this.lblStatusBar.Caption = "";
-        //                MessageBox.Show(ex.Message);
-        //            }
-        //        }
-        //    }
         //}
 
 
 
-        //private void gridViewDetalle_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
-        //{
-        //    if (this.gridViewDetalle.FocusedRowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
-        //        return;
-
-        //    DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-        //    DataView dataView = view.DataSource as DataView;
-        //    System.Collections.IEnumerator en = dataView.GetEnumerator();
-
-        //    en.Reset();
-
-        //    string currentCode = e.Value.ToString();
-
-        //    while (en.MoveNext())
-        //    {
-        //        DataRowView row = en.Current as DataRowView;
-        //        object colValue = row["Articulo"];
-        //        if (colValue.ToString() == currentCode)
-        //        {
-        //            e.ErrorText = "El elemento ya existe.";
-        //            e.Valid = false;
-        //            break;
-        //        }
-        //    }
-        //}
     }
 }
