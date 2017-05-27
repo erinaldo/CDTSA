@@ -203,7 +203,6 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
-
             // 
             // btnCancelar
             // 
@@ -420,6 +419,7 @@
             this.gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
             this.gridView1.OptionsEditForm.FormCaptionFormat = "Línea de Asiento";
             this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             // 
@@ -565,6 +565,8 @@
             this.Debito.Name = "Debito";
             this.Debito.OptionsEditForm.StartNewRow = true;
             this.Debito.OptionsEditForm.VisibleIndex = 5;
+            this.Debito.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debito", " {0:C2}")});
             this.Debito.Visible = true;
             this.Debito.VisibleIndex = 5;
             this.Debito.Width = 114;
@@ -577,6 +579,8 @@
             this.Creditos.FieldName = "Credito";
             this.Creditos.Name = "Creditos";
             this.Creditos.OptionsEditForm.VisibleIndex = 6;
+            this.Creditos.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credito", "{0:C2}")});
             this.Creditos.Visible = true;
             this.Creditos.VisibleIndex = 6;
             this.Creditos.Width = 117;

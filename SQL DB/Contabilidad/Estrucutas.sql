@@ -1047,7 +1047,76 @@ select * from dbo.cntTipoAsiento
 */
 
 --drop procedure dbo.cntUpdateAsientoWithXML 
-create procedure dbo.cntUpdateAsientoWithXML @Operacion nvarchar(1), @XML xml, @Asiento nvarchar(20), @Tipo nvarchar(2)
+USE [CedetsaS4U]
+GO
+/****** Object:  StoredProcedure [dbo].[cntUpdateAsientoWithXML]    Script Date: 05/26/2017 22:45:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+--************ para grabar el Asiento Contable 
+/*
+DECLARE @XML xml
+set @XML =
+'<Root>
+ <Asiento>
+  <IDEjercicio>2017</IDEjercicio>
+  <Periodo>201701</Periodo>
+  <Asiento>FA0000000001</Asiento>
+  <FechaHora>2017-01-02T00:00:00</FechaHora>
+  <Tipo>FA</Tipo>
+  <Createdby>azepeda</Createdby>
+  <CreateDate>2017-01-01T00:00:00</CreateDate>
+  <Modifiedby>azepeda</Modifiedby>
+  <UpdatedDate>2017-01-01T00:00:00</UpdatedDate>
+  <Concepto>APERTURA</Concepto>
+  <Mayorizado>0</Mayorizado>
+  <Anulado>0</Anulado>
+  <TipoCambio>29.3000</TipoCambio>
+  <CuadreTemporal>0</CuadreTemporal>
+  <Detalle>
+    <Asiento>FA0000000001</Asiento>
+    <Linea>1</Linea>
+    <IDCentro>0</IDCentro>
+    <IDCuenta>5</IDCuenta>
+    <Referencia>APERTURA</Referencia>
+    <Debito>2500.0000</Debito>
+    <Credito>0.0000</Credito>
+    <Documento>APERTURA</Documento>
+  </Detalle>
+  <Detalle>
+    <Asiento>FA0000000001</Asiento>
+    <Linea>2</Linea>
+    <IDCentro>0</IDCentro>
+    <IDCuenta>6</IDCuenta>
+    <Referencia>APERTURA</Referencia>
+    <Debito>0.0000</Debito>
+    <Credito>2500.0000</Credito>
+    <Documento>APERTURA</Documento>
+  </Detalle>
+  <Detalle>
+    <Asiento>FA0000000001</Asiento>
+    <Linea>8</Linea>
+    <IDCentro>0</IDCentro>
+    <IDCuenta>7</IDCuenta>
+    <Referencia>APERTURA</Referencia>
+    <Debito>2500.0000</Debito>
+    <Credito>2500.0000</Credito>
+    <Documento>APERTURA</Documento>
+  </Detalle>  
+</Asiento>
+</Root>'
+--select @XML
+
+exec dbo.cntUpdateAsientowithXML 'I', @XML , 'FA0000000001', 'FA'
+select * from dbo.cntAsiento where Asiento = 'FA0000000005'
+select * from dbo.cntAsientoDetalle  where Asiento = 'FA0000000005'
+select * from dbo.cntTipoAsiento 
+*/
+
+--drop procedure dbo.cntUpdateAsientoWithXML 
+create procedure [dbo].[cntUpdateAsientoWithXML] @Operacion nvarchar(1), @XML xml, @Asiento nvarchar(20), @Tipo nvarchar(2)
 -- El Tipo se pasa para el proceso de insercion, para crear el numero del asiento en el tipo correspondiente...
 as
 
@@ -1091,7 +1160,9 @@ select
     Tab1.Col1.value('Credito[1]', 'float') as Credito,
     Tab1.Col1.value('Documento[1]', 'nvarchar(255)') as Documento
 into #AsientoDetalle    
-from @XML.nodes('//Root/Asiento/Detalle') as Tab1(Col1)
+from @XML.nodes('//Root/Detalle') as Tab1(Col1)
+
+
 
 declare @msgDescuadre nvarchar(250), @Descuadrado bit
 Select @Descuadrado = case when (SUM(Debito) <> sum(Credito) ) then  1 else 0 end,

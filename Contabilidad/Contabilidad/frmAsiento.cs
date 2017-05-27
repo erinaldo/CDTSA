@@ -65,9 +65,9 @@ namespace CG
 
             _dsAsiento = AsientoDAC.GetDataByAsiento(Asiento);
             _dtAsiento = _dsAsiento.Tables[0];
-
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsAsiento.Tables[0].Rows[0];
+            _Asiento = _currentRow["Asiento"].ToString();
 
         }
 
@@ -97,10 +97,6 @@ namespace CG
             DataSet DS = new DataSet();
             DS = TipoCambioDetalleDAC.GetData("TVEN", DateTime.Now);
 
-            //this.txtEjercicio.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrEjercicio"].ToString();
-            //this.txtPeriodo.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrPeriodo"].ToString();
-
-            //this.txtTipoCambio.Text = (DS.Tables[0].Rows.Count==0) ? "0" : DS.Tables[0].Rows[0]["Monto"].ToString();
             _currentRow = _dtAsiento.NewRow();
             _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
             _currentRow["Periodo"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
@@ -113,7 +109,7 @@ namespace CG
             _currentRow["Mayorizado"] = false;
             _currentRow["Anulado"] = false;
             _currentRow["CuadreTemporal"] = false;
-            //_dtAsiento.Rows.Add(_currentRow);
+            
 
         }
 
@@ -138,6 +134,7 @@ namespace CG
         public void UpdateControlsFromDataRow(DataRow row)
         {
             //_currentRow = _dtAsiento.NewRow();
+            this.txtAsiento.EditValue = _currentRow["Asiento"].ToString();
             this.txtEjercicio.EditValue = _currentRow["IDEjercicio"].ToString();
             this.txtPeriodo.EditValue = _currentRow["Periodo"].ToString();
             this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N4");
@@ -184,7 +181,7 @@ namespace CG
         private void EnlazarEventos()
         {
             //    this.btnAgregar.ItemClick += btnAgregar_ItemClick;
-            //    this.btnEditar.ItemClick += btnEditar_ItemClick;
+            this.btnEditar.ItemClick += btnEditar_ItemClick;
             //    this.btnEliminar.ItemClick += btnEliminar_ItemClick;
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
@@ -198,7 +195,7 @@ namespace CG
                 //if (Accion=="New")
                 //    CargarDatosPeriodoActivo();
 
-               
+                HabilitarControles(false);
 
                 //        //SetDefaultBehaviorControls();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
@@ -237,18 +234,18 @@ namespace CG
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 }
-                else if (Convert.ToBoolean(_currentRow["Mayorizado"]) || Convert.ToBoolean(_currentRow["Anulado"]))
-                {
-                    Accion = "View";
-                    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                }
-                else
-                {
-                    Accion = "Edit";
-                    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                }
+                //else if (Convert.ToBoolean(_currentRow["Mayorizado"]) || Convert.ToBoolean(_currentRow["Anulado"]))
+                //{
+                //    Accion = "View";
+                //    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                //}
+                //else
+                //{
+                //    Accion = "Edit";
+                //    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                //}
 
-            
+
             }
             catch (Exception ex)
             {
@@ -432,21 +429,20 @@ namespace CG
 
         //}
 
-        //private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-        //    Accion = "Edit";
-        //    if (_currentRow == null)
-        //    {
-        //        lblStatusBar.Caption = "Por favor seleccion un elemento";
-        //        return;
-        //    }
-        //    else
-        //        lblStatusBar.Caption = "";
-
-        //    HabilitarControles(true);
-        //    lblStatusBar.Caption = "Editando :" + _currentRow["NumSolicitud"].ToString();
-
-        //}
+        private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+            if (_currentRow == null)
+            {
+                return;
+            }
+            if (Convert.ToBoolean(_currentRow["Mayorizado"])==false && Convert.ToBoolean(_currentRow["Anulado"])==false)
+            {
+                Accion = "Edit";
+                HabilitarControles(true);
+            }
+           
+        }
 
 
         private bool ValidaDatos()
@@ -501,12 +497,15 @@ namespace CG
 
 
                 String xml = "";
-
+                if (_dsAsiento.Tables[0].Rows.Count > 0)
+                    _dsAsiento.Tables[0].Rows.Clear();
                 _dsAsiento.Tables[0].Rows.Add(_currentRow);
                 _dsAsiento.Tables[0].TableName = "Asiento";
                 DataTable dt = new DataTable();
                 dt = _dtDetalle.Clone();
                 dt.TableName = "Detalle";
+                if (_dsAsiento.Tables["Detalle"] != null)
+                    _dsAsiento.Tables.Remove(_dsAsiento.Tables["Detalle"]);
                 foreach (DataRow dr in _dsDetalle.Tables[0].Rows)
                 {
 
@@ -518,16 +517,20 @@ namespace CG
                 _dsAsiento.DataSetName = "Root";
                 xml = _dsAsiento.GetXml(); //ToStringAsXml(_dsAsiento);
 
+               
                 if (Accion == "Edit")
                 {
-                    AsientoDAC.InsertUpdateAsiento("U", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                    _Asiento= AsientoDAC.InsertUpdateAsiento("U", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                  
                 }
                 else if (Accion == "New")
                 {
-                    AsientoDAC.InsertUpdateAsiento("I", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                   _Asiento = AsientoDAC.InsertUpdateAsiento("I", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                  
                 }
-            
-              
+                Accion = "Edit";
+                CargarAsiento(_Asiento);
+                UpdateControlsFromDataRow(_currentRow);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -553,10 +556,17 @@ namespace CG
             
         }
 
-        //private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
+        private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (_currentRow != null)
+            {
+                if (MessageBox.Show("Esta seguro que desea eliminar el asiento de diario? ", "Asiento de Diario", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
 
-        //}
+                    AsientoDAC.InsertUpdateAsiento("D", "", _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                }
+            }
+        }
 
 
 
