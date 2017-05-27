@@ -11,6 +11,9 @@ using DevExpress.XtraEditors;
 using Util;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace CG
 {
@@ -57,15 +60,15 @@ namespace CG
 
             _dsAsiento = AsientoDAC.GetDataByAsiento(Asiento);
             _dtAsiento = _dsAsiento.Tables[0];
-            
+
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsAsiento.Tables[0].Rows[0];
 
         }
 
-        public frmAsiento( DataSet ds, DataRow dr)
+        public frmAsiento(DataSet ds, DataRow dr)
         {
-           // Accion = "Edit";
+            // Accion = "Edit";
             InitializeComponent();
             InicializarControles();
             _dsAsiento = ds;
@@ -77,8 +80,8 @@ namespace CG
 
         private void InicializarControles()
         {
-            gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
-            gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            //gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
+            gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
         }
 
 
@@ -102,11 +105,11 @@ namespace CG
             _currentRow["Fecha"] = DateTime.Now;
             _currentRow["Tipo"] = "CG";
             _currentRow["Concepto"] = null;
-            _currentRow["Mayorizado"] = false; 
+            _currentRow["Mayorizado"] = false;
             _currentRow["Anulado"] = false;
             _currentRow["CuadreTemporal"] = false;
             //_dtAsiento.Rows.Add(_currentRow);
-            
+
         }
 
 
@@ -125,7 +128,7 @@ namespace CG
         }
 
 
-        
+
 
         public void UpdateControlsFromDataRow(DataRow row)
         {
@@ -150,12 +153,12 @@ namespace CG
             _dtDetalle = _dsDetalle.Tables[0];
 
             this.grid.DataSource = _dtDetalle;
-            
+
         }
 
         private void ClearControls()
         {
-            this.txtConcepto.Text= "";
+            this.txtConcepto.Text = "";
         }
 
 
@@ -173,14 +176,14 @@ namespace CG
             this.btnEliminar.Enabled = !Activo;
         }
 
-        //private void EnlazarEventos()
-        //{
-        //    this.btnAgregar.ItemClick += btnAgregar_ItemClick;
-        //    this.btnEditar.ItemClick += btnEditar_ItemClick;
-        //    this.btnEliminar.ItemClick += btnEliminar_ItemClick;
-        //    this.btnGuardar.ItemClick += btnGuardar_ItemClick;
-        //    this.btnCancelar.ItemClick += btnCancelar_ItemClick;
-        //}
+        private void EnlazarEventos()
+        {
+            //    this.btnAgregar.ItemClick += btnAgregar_ItemClick;
+            //    this.btnEditar.ItemClick += btnEditar_ItemClick;
+            //    this.btnEliminar.ItemClick += btnEliminar_ItemClick;
+            this.btnGuardar.ItemClick += btnGuardar_ItemClick;
+            //    this.btnCancelar.ItemClick += btnCancelar_ItemClick;
+        }
 
 
         private void frmAsiento_Load(object sender, EventArgs e)
@@ -193,13 +196,15 @@ namespace CG
                 HabilitarControles(true);
 
                 //        //SetDefaultBehaviorControls();
-                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null,  _tituloVentana, this);
-                //        EnlazarEventos();
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
+                EnlazarEventos();
 
                 this.gridView1.EditFormPrepared += GridView1_EditFormPrepared;
                 this.gridView1.NewItemRowText = Util.Util.constNewItemTextGrid;
-                this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
-                
+                //this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
+                this.gridView1.ValidateRow += GridView1_ValidateRow;
+                this.gridView1.InvalidRowException += GridView1_InvalidRowException;
+
                 this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
                 //this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
                 //        //Configurar searchLookUp
@@ -208,13 +213,14 @@ namespace CG
                 this.slkupCentroCostoGrid.DisplayMember = "Centro";
                 this.slkupCentroCostoGrid.ValueMember = "IDCentro";
                 this.slkupCentroCostoGrid.NullText = " --- ---";
-               // this.slkupCentroCostoGrid.EditValueChanged += SlkupCentroCostoGrid_EditValueChanged;
+                // this.slkupCentroCostoGrid.EditValueChanged += SlkupCentroCostoGrid_EditValueChanged;
 
                 _dtCuentas = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, 1, 1, -1, -1).Tables[0];
                 this.slkupCuentaContableGrid.DataSource = _dtCuentas;
                 this.slkupCuentaContableGrid.DisplayMember = "Cuenta";
                 this.slkupCuentaContableGrid.ValueMember = "IDCuenta";
-                this.slkupCuentaContableGrid.NullText = " --- ---" ;
+                this.slkupCuentaContableGrid.NullText = " --- ---";
+
 
                 Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetData().Tables["Data"], "Descr", "Tipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
@@ -244,6 +250,37 @@ namespace CG
             }
         }
 
+        private void GridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+
+        }
+
+        private void GridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            GridView view = sender as GridView;
+            GridColumn CentroCol = view.Columns["IDCentro"];
+            GridColumn CuentaCol = view.Columns["IDCuenta"];
+            //Get the value of the first column
+            int iCentro = (int)view.GetRowCellValue(e.RowHandle, CentroCol);
+            //Get the value of the second column
+            int iCuenta = (int)view.GetRowCellValue(e.RowHandle, CuentaCol);
+            //Validity criterion
+
+            DataView Dv = new DataView();
+            Dv.Table = ((DataView)view.DataSource).ToTable();
+            Dv.RowFilter = "IDCuenta=" + iCuenta.ToString() + " and IDCentro =" + iCentro.ToString();
+
+            if (Dv.ToTable().Rows.Count > 1)
+            {
+                e.Valid = false;
+                //Set errors with specific descriptions for the columns
+                view.SetColumnError(CentroCol, "The value must be greater than Units On Order");
+                view.SetColumnError(CuentaCol, "The value must be less than Units In Stock");
+            }
+
+        }
+
         private void GridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == "IDCentro")
@@ -266,51 +303,7 @@ namespace CG
             }
         }
 
-        //private void SlkupCentroCostoGrid_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        //if (!isEdition)
-        //        //    return;
-        //        SearchLookUpEdit slkup = (sender as DevExpress.XtraEditors.SearchLookUpEdit);
 
-        //        if (slkup.EditValue != null && slkup.EditValue.ToString() != "")
-        //        {
-
-        //            DataRowView rowView = (DataRowView)slkup.GetSelectedDataRow();
-        //            DataRow row = rowView.Row;
-
-
-        //            //slkup.row
-        //            //DataRow row = slkup.getdata(theIndex);
-        //            ////        e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
-        //            //slkup.GetSelectedDataRow if (e.Value == null) return;
-        //            //DataView dt = new DataView();
-        //            //dt.Table = _dtCentros;
-        //            //dt.RowFilter = "IDCentro=" + e.Value.ToString();
-
-        //            //e.DisplayText = dt.ToTable().Rows[0]["Centro"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
-
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
-
-        //private void SlkupCentroCostoGrid_CustomDisplayText(object sender, DevExpress.XtraEditors.Controls.CustomDisplayTextEventArgs e)
-        //{
-        //    SearchLookUpEdit edit = sender as SearchLookUpEdit;
-        //    if (edit == null) return;
-        //    int theIndex = edit.Properties.GetIndexByKeyValue(edit.EditValue);
-        //    if (edit.Properties.View.IsDataRow(theIndex))
-        //    {
-        //        DataRow row = edit.Properties.View.GetDataRow(theIndex);
-        //        e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
-        //    }
-        //}
 
         private void Grid_ProcessGridKey(object sender, KeyEventArgs e)
         {
@@ -330,7 +323,29 @@ namespace CG
 
         private void GridView1_ValidatingEditor(object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e)
         {
-            
+            if (this.gridView1.FocusedRowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
+                return;
+
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            DataView dataView = view.DataSource as DataView;
+            System.Collections.IEnumerator en = dataView.GetEnumerator();
+
+            en.Reset();
+
+            string currentCode = e.Value.ToString();
+
+
+            while (en.MoveNext())
+            {
+                DataRowView row = en.Current as DataRowView;
+                object colValue = row["IDCentro"] + " " + row["IDCuenta"];
+                if (colValue.ToString() == currentCode)
+                {
+                    e.ErrorText = "El elemento ya existe.";
+                    e.Valid = false;
+                    break;
+                }
+            }
         }
 
         private void GridView1_EditFormPrepared(object sender, EditFormPreparedEventArgs e)
@@ -359,21 +374,22 @@ namespace CG
 
         }
 
-  
- 
+
+
         private void gridView1_InitNewRow(object sender, InitNewRowEventArgs e)
         {
-             DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
             try
             {
                 if (view == null) return;
                 int count = (_dtDetalle.Rows.Count > 0) ? _dtDetalle.AsEnumerable().Max(a => a.Field<int>("Linea")) + 1 : 1;
 
-                ////view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], _currentRow["Asiento"]);
+                view.SetRowCellValue(e.RowHandle, view.Columns["Asiento"], _currentRow["Asiento"]);
                 view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], count);
-                ////    view.SetRowCellValue(e.RowHandle, view.Columns["CodSucursal"], _currentRow["CodSucursal"]);
+
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
@@ -401,34 +417,6 @@ namespace CG
                 view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], dt.ToTable().Rows[0]["Descr"].ToString());
             }
         }
-
-        //if (e.Value == null) return;
-        //MessageBox.Show(e.Column.ColumnEdit.ToString());
-
-        //SearchLookUpEdit edit = e.Column.ColumnEdit.ed as SearchLookUpEdit;
-        //if (edit == null) return;
-        //int theIndex = edit.Properties.GetIndexByKeyValue(edit.EditValue);
-        //if (edit.Properties.View.IsDataRow(theIndex))
-        //{
-        //    DataRow row = edit.Properties.View.GetDataRow(theIndex);
-        //    e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
-        //}
-        //this.slkupCentroCostoGrid.GetIndexByKeyValue(e.Value);
-        //if (ed)
-
-
-        //SearchLookUpEdit edit = sender as SearchLookUpEdit;
-        //if (edit == null) return;
-        //int theIndex = edit.Properties.GetIndexByKeyValue(edit.EditValue);
-        //if (edit.Properties.View.IsDataRow(theIndex))
-        //{
-        //    DataRow row = edit.Properties.View.GetDataRow(theIndex);
-        //    e.DisplayText = row["Centro"].ToString() + "; " + row["Descr"].ToString();
-        //}
-        //if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
-
-
-
 
 
 
@@ -459,127 +447,102 @@ namespace CG
 
         //}
 
-        //private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-        //    if (Accion == "Edit")
-        //    {
-        //        lblStatusBar.Caption = "Actualizando : " + _currentRow["NumSolicitud"].ToString();
 
-        //        Application.DoEvents();
-        //        _currentRow.BeginEdit();
-        //        _currentRow["NumSolicitud"] = this.txtNumSolicitud.Text.Trim();
-        //        _currentRow["CodSucursal"] = this.txtCodSucursal.Text.Trim();
-        //        _currentRow["CodCategoria"] = this.slkupCategoria.EditValue;
-        //        _currentRow["Descripcion"] = this.txtDescr.Text.Trim();
-        //        _currentRow["Estado"] = this.txtEstado.Text.Trim();
-        //        _currentRow["UsuarioSolicitud"] = this.txtUsuario.Text.Trim();
-        //        _currentRow["FechaSolicitud"] = this.txtFecha.Text.Trim();
+        private bool ValidaDatos()
+        {
+            bool result = true;
+            String sMensaje = "";
 
-        //        _currentRow.EndEdit();
+            if (this.dtpFecha.EditValue == null)
+                sMensaje = sMensaje + "     • Ingrese la fecha del asiento \n\r";
+            if (this.slkupTipo.EditValue == null)
+                sMensaje = sMensaje + "     • Ingrese el tipo de Asiento \n\r";
+            if (this.txtConcepto.Text == "")
+                sMensaje = sMensaje + "     • Digite el concepto del Asiento \n\r";
+            if (_dsDetalle.Tables[0].Rows.Count == 0)
+                sMensaje = sMensaje + "     • El asiento no tiene detalle en sus lineas \n\r";
+            if (sMensaje != "")
+            {
+                MessageBox.Show("Estimado usuario, favor revise los siguientes errores: \n\r" + sMensaje);
+                result = false;
+            }
+            return result;
+        }
 
-        //        DataSet _dsChanged = _dsAsiento.GetChanges(DataRowState.Modified | DataRowState.Added);
+        public static string ToStringAsXml(DataSet ds)
+        {
+            StringWriter sw = new StringWriter();
+            ds.WriteXml(sw, XmlWriteMode.IgnoreSchema);
+            string s = sw.ToString();
+            return s;
+        }
 
-        //        bool okFlag = true;
-        //        if (_dsChanged != null && _dsChanged.HasErrors)
-        //        {
-        //            okFlag = false;
-        //            string msg = "Error en la fila con el tipo Id";
+        private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                //Validar Datos 
+                if (!ValidaDatos()) return;
 
-        //            foreach (DataTable tb in _dsChanged.Tables)
-        //            {
-        //                if (tb.HasErrors)
-        //                {
-        //                    DataRow[] errosRow = tb.GetErrors();
+                //Obtener los datos
 
-        //                    foreach (DataRow dr in errosRow)
-        //                    {
-        //                        msg = msg + dr["NumSolicitud"].ToString();
-        //                    }
-        //                }
-        //            }
-
-        //            this.lblStatusBar.Caption = msg;
-        //        }
-
-
-
-
-        //        //Si no hay errores
-
-        //        if (okFlag)
-        //        {
-
-        //            ConnectionManager.BeginTran();
-        //            SolicitudDAC.SetTransactionToAdaptador(true);
-        //            SolicitudDetalleDAC.SetTransactionToAdaptador(true);
-
-        //            SolicitudDAC.oAdaptador.Update(_dsChanged, "Data");
-        //            SolicitudDetalleDAC.oAdaptador.Update(_dsDetalle, "Data");
-
-        //            this.lblStatusBar.Caption = "Actualizado " + _currentRow["Numsolicitud"].ToString();
-        //            Application.DoEvents();
-
-        //            _dsAsiento.AcceptChanges();
-        //            _dsDetalle.AcceptChanges();
-
-        //            ConnectionManager.CommitTran();
-        //            SolicitudDAC.SetTransactionToAdaptador(false);
-        //            SolicitudDetalleDAC.SetTransactionToAdaptador(false);
-
-        //            PopulateGrid();
-        //            HabilitarControles(false);
-        //        }
-        //        else
-        //        {
-        //            _dsAsiento.RejectChanges();
+                _currentRow["IDEjercicio"] = this.txtEjercicio.Text.Trim();
+                _currentRow["Periodo"] = this.txtPeriodo.Text.Trim();
+                _currentRow["Asiento"] = "---";
+                _currentRow["Tipo"] = this.slkupTipo.EditValue;
+                _currentRow["Fecha"] = this.dtpFecha.EditValue;
+                _currentRow["FechaHora"] = DateTime.Now;
+                _currentRow["Createdby"] = "jespinoza";
+                _currentRow["CreateDate"] = DateTime.Now;
+                //no incluir:
+                //mayorizado
+                //mayorizadoDate
+                _currentRow["Concepto"] = this.txtConcepto.Text.Trim();
+                _currentRow["Mayorizado"] = false;
+                _currentRow["Anulado"] = false;
+                _currentRow["TipoCambio"] = this.txtTipoCambio.Text.Trim();
+                _currentRow["ModuloFuente"] = _ModuloFuente;
+                _currentRow["CuadreTemporal"] = false;
 
 
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //nuevo registro
+                String xml = "";
 
-        //        _currentRow["NumSolicitud"] = this.txtNumSolicitud.Text.Trim();
-        //        _currentRow["CodSucursal"] = this.txtCodSucursal.Text.Trim();
-        //        _currentRow["CodCategoria"] = this.slkupCategoria.EditValue;
-        //        _currentRow["Descripcion"] = this.txtDescr.Text.Trim();
-        //        _currentRow["Estado"] = this.txtEstado.Text.Trim();
-        //        _currentRow["UsuarioSolicitud"] = this.txtUsuario.Text.Trim();
-        //        _currentRow["FechaSolicitud"] = this.txtFecha.Text.Trim();
+                _dsAsiento.Tables[0].Rows.Add(_currentRow);
+                _dsAsiento.Tables[0].TableName = "Asiento";
+                DataTable dt = new DataTable();
+                dt = _dtDetalle.Clone();
+                dt.TableName = "Detalle";
+                foreach (DataRow dr in _dsDetalle.Tables[0].Rows)
+                {
 
-        //        _dtAsiento.Rows.Add(_currentRow);
-        //        try
-        //        {
-        //            ConnectionManager.BeginTran();
-        //            SolicitudDAC.SetTransactionToAdaptador(true);
-        //            SolicitudDetalleDAC.SetTransactionToAdaptador(true);
+                    dt.Rows.Add(dr.ItemArray);
+                }
+                _dsAsiento.Tables.Add(dt);
 
-        //            SolicitudDAC.oAdaptador.Update(_dsAsiento, "Data");
-        //            _dsAsiento.AcceptChanges();
+                DataRelation rel = new DataRelation("CabeceraDetalle", _dsAsiento.Tables[0].Columns["Asiento"], _dsAsiento.Tables[1].Columns["Asiento"], true);
+                _dsAsiento.DataSetName = "Root";
+                xml = _dsAsiento.GetXml(); //ToStringAsXml(_dsAsiento);
 
-        //            //Agregar el detalle
-        //            SolicitudDetalleDAC.oAdaptador.Update(_dsDetalle, "Data");
-        //            _dsDetalle.AcceptChanges();
+                if (Accion == "Edit")
+                {
+                    AsientoDAC.InsertUpdateAsiento("U", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                }
+                else if (Accion == "New")
+                {
+                    AsientoDAC.InsertUpdateAsiento("I", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+                }
+            
+              
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+               
+                MessageBox.Show(ex.Message);
+            }
 
-        //            ConnectionManager.CommitTran();
-        //            SolicitudDAC.SetTransactionToAdaptador(false);
-        //            SolicitudDetalleDAC.SetTransactionToAdaptador(false);
+        }
 
-        //            this.lblStatusBar.Caption = "Se ha ingresado un nuevo registro";
-        //            Application.DoEvents();
-        //            PopulateGrid();
-        //            HabilitarControles(false);
-        //        }
-        //        catch (System.Data.SqlClient.SqlException ex)
-        //        {
-        //            _dsAsiento.RejectChanges();
-        //            _dsDetalle.RejectChanges();
-        //            ConnectionManager.RollBackTran();
-        //            MessageBox.Show(ex.Message);
-        //        }
-        //    }
-        //}
+
 
         //private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         //{
