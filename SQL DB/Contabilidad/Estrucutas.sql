@@ -919,7 +919,30 @@ end
 go
 
 
-Create Procedure dbo.cntUpdateCuenta @Operacion nvarchar(1), @IDCuenta int , @IDGrupo int , @IDTipo int , @Complementaria bit, 
+Create Procedure dbo.cntSeteaCuentaAnterior @Activa bit
+-- @Aciva = 0 ==> incluye cuentas activas e inactivos, @Activo = 1 solo activos
+as
+set nocount on
+Create Table #CuentaAnterior (ID int identity(1,1) not null, IDCuenta int default 0, cuenta nvarchar(50), IDCuentaAnterior int default 0) 
+
+insert #CuentaAnterior (IDCuenta, Cuenta )
+select IDCuenta, Cuenta
+from dbo.cntCuenta 
+where (@Activa = 0 and Activa in (0,1) ) or (@Activa = 1 and Activa = @Activa )
+order by Nivel1, Nivel2, Nivel3, Nivel4, nivel5
+
+Update A set IDCuentaAnterior =  isnull(( Select  IDCuenta from #CuentaAnterior B where ( A.ID - 1 ) = B.ID ), 0 ) 
+from #CuentaAnterior A 
+
+Update C set IDCuentaAnterior = A.IDCuentaAnterior
+from #CuentaAnterior A inner join dbo.cntCuenta C
+on A.IDCuenta = C.IDCuenta 
+
+drop table #CuentaAnterior
+
+GO
+
+CREATE Procedure dbo.cntUpdateCuenta @Operacion nvarchar(1), @IDCuenta int , @IDGrupo int , @IDTipo int , @Complementaria bit, 
 @IDSubTipo int ,  @Nivel1 nvarchar(50)  , 
 @Nivel2 nvarchar(50)  , @Nivel3 nvarchar(50) , @Nivel4 nvarchar(50)   , @Nivel5 nvarchar(50)  ,
  @Descr nvarchar(255),  @EsMayor bit , 
@@ -954,6 +977,7 @@ begin
 	values ( @IDGrupo , @IDTipo , @IDSubTipo , @Tipo , @SubTipo , @Nivel1 , @Nivel2 , @Nivel3 , @Nivel4 , @Nivel5 , 
 							@Descr, @Complementaria, @EsMayor, @AceptaDatos , @IDCuentaAnterior , @IDCuentaMayor,
 							@UsaCentroCosto , @IDSeccion )
+	exec dbo.cntSeteaCuentaAnterior	1						
 end
 
 if upper(@Operacion) = 'U'
@@ -981,7 +1005,7 @@ begin
 		RAISERROR ( 'La Cuenta no puede eliminarse porque tiene dependencias en asientos contables', 16, 1) ;
 		return				
 	end
-
+	exec dbo.cntSeteaCuentaAnterior	1				
 	Delete from dbo.cntcuenta Where IDCuenta = @IDCuenta 
 end
 go
