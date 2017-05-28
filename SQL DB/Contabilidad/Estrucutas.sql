@@ -1656,6 +1656,30 @@ return @NextCuenta
 go
 
 
+CREATE  PROCEDURE cntRptGetAsiento @Asiento AS NVARCHAR(20)
+AS
+--SET @Asiento='CG0000000016'
+
+SELECT IDEjercicio,Periodo,Asiento,A.Tipo,B.Descr DescrTipo,Fecha,FechaHora,Createdby,CreateDate,Mayorizado,Mayorizadoby,MayorizadoDate,Concepto,Anulado, TipoCambio,ModuloFuente,CuadreTemporal
+FROM dbo.cntAsiento A
+INNER JOIN dbo.cntTipoAsiento B ON a.Tipo=B.Tipo
+WHERE Asiento=@Asiento
+
+
+
+GO 
+
+ALTER  PROCEDURE cntRptGetAsientoDetalle @Asiento AS NVARCHAR(20)
+AS
+--SET @Asiento='CG0000000016'
+
+SELECT Asiento,Linea,A.IDCentro,CC.Centro,cc.Descr DescrCentro,C.IDCuenta,C.Cuenta,C.Descr DescrCuenta,Debito,Credito,Documento,A.Referencia,daterecord  FROM dbo.cntAsientoDetalle A
+INNER JOIN dbo.cntCuenta C ON a.IDCuenta=c.IDCuenta
+INNER JOIN dbo.cntCentroCosto CC ON A.IDCentro=cc.IDCentro
+WHERE Asiento=@Asiento
+
+GO
+
 /*
 
 Select * from dbo.cntCuenta

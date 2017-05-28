@@ -16,7 +16,7 @@ namespace CG
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAsiento());
+            Application.Run(new frmAsiento("CG0000000016"));
             //Application.Run(new frmListadoCuentaContable());
         }
     }

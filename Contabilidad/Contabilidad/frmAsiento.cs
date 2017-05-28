@@ -38,6 +38,7 @@ namespace CG
         String _Asiento = "";
         String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
+        double _TipoCambio = 0;
 
 
         public frmAsiento()
@@ -68,6 +69,7 @@ namespace CG
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsAsiento.Tables[0].Rows[0];
             _Asiento = _currentRow["Asiento"].ToString();
+            _TipoCambio = Convert.ToDouble(_currentRow["TipoCambio"]);
 
         }
 
@@ -80,7 +82,7 @@ namespace CG
             _dtAsiento = ds.Tables[0];
             //_ModuloFuente = ModuloFuente;
             _currentRow = dr;
-
+            _TipoCambio = Convert.ToDouble(_currentRow["TipoCambio"]);
         }
 
         private void InicializarControles()
@@ -143,6 +145,12 @@ namespace CG
             this.txtFecha.EditValue = _currentRow["FechaHora"].ToString();
             this.slkupTipo.EditValue = "CG"; //_currentRow["Tipo"].ToString();
             this.txtConcepto.Text = _currentRow["Concepto"].ToString();
+            //Pagina de auditoria
+            this.txtCreadoPor.Text = _currentRow["Createdby"].ToString();
+            this.txtFechaCreacion.Text = _currentRow["CreateDate"].ToString();
+            this.txtMayorizadoPor.Text = _currentRow["Mayorizadoby"].ToString();
+            this.txtFechaMayorizado.Text = _currentRow["MayorizadoDate"].ToString();
+
             this.txtEstado.Text = EstadoAsiento();
             //Obtener los datos segun cabecera
             PopulateGrid();
@@ -155,7 +163,7 @@ namespace CG
             _dtDetalle = _dsDetalle.Tables[0];
 
             this.grid.DataSource = _dtDetalle;
-
+            CalcularFooterAsiento();
         }
 
         private void ClearControls()
@@ -170,7 +178,11 @@ namespace CG
             this.txtTipoCambio.ReadOnly = !Activo;
             this.txtConcepto.ReadOnly = !Activo;
             this.txtFecha.ReadOnly = !Activo;
-
+            this.slkupTipo.ReadOnly =!Activo;
+            this.gridView1.OptionsBehavior.ReadOnly = !Activo;
+            this.gridView1.OptionsBehavior.AllowAddRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            this.grid.UseEmbeddedNavigator = Activo;
             this.btnAgregar.Enabled = !Activo;
             this.btnEditar.Enabled = !Activo;
             this.btnGuardar.Enabled = Activo;
@@ -185,19 +197,37 @@ namespace CG
             //    this.btnEliminar.ItemClick += btnEliminar_ItemClick;
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
+            this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
         }
 
+        private void BtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (_Asiento != null && _Asiento != "")
+            {
+
+                Reporte.Asiento.rptAsiento report = new Reporte.Asiento.rptAsiento();
+
+                // Obtain a parameter, and set its value.
+                report.Parameters["Asiento"].Value = _Asiento;
+                
+                // Show the report's print preview.
+                DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+                tool.ShowPreview();
+
+                
+            }
+        }
 
         private void frmAsiento_Load(object sender, EventArgs e)
         {
             try
             {
-                //if (Accion=="New")
-                //    CargarDatosPeriodoActivo();
+                CargarDatosPeriodoActivo();
 
                 HabilitarControles(false);
 
-                //        //SetDefaultBehaviorControls();
+               
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
                 EnlazarEventos();
 
@@ -206,6 +236,7 @@ namespace CG
                 //this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
                 this.gridView1.ValidateRow += GridView1_ValidateRow;
                 this.gridView1.InvalidRowException += GridView1_InvalidRowException;
+                this.gridView1.RowUpdated += GridView1_RowUpdated;
 
                 this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
                 //this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
@@ -234,16 +265,7 @@ namespace CG
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 }
-                //else if (Convert.ToBoolean(_currentRow["Mayorizado"]) || Convert.ToBoolean(_currentRow["Anulado"]))
-                //{
-                //    Accion = "View";
-                //    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                //}
-                //else
-                //{
-                //    Accion = "Edit";
-                //    this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                //}
+            
 
 
             }
@@ -251,6 +273,48 @@ namespace CG
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void CalcularFooterAsiento()
+        {
+            //Actualizar los totales
+            DataView dvDebito = new DataView();
+            dvDebito.Table = _dsDetalle.Tables[0];
+            dvDebito.RowFilter = "Debito is not null";
+            DataTable dtDebito = dvDebito.ToTable();
+
+            DataView dvCredito = new DataView();
+            dvCredito.Table = _dsDetalle.Tables[0];
+            dvCredito.RowFilter = "Credito is not null";
+            DataTable dtCredito = dvCredito.ToTable();
+
+            double dDebito = (dtDebito.Rows.Count == 0) ? 0 : Convert.ToDouble(dtDebito.Compute("SUM(Debito)", ""));
+            double dCredito = (dtCredito.Rows.Count == 0) ? 0 : Convert.ToDouble(dtCredito.Compute("SUM(Credito)", ""));
+
+            this.txtDebitoLocal.EditValue = dDebito.ToString("N4");
+            this.txtCreditoLocal.EditValue = dCredito.ToString("N4");
+            this.txtDiferencia.EditValue = (dDebito - dCredito).ToString("N4");
+            //Dolar
+            this.txtDebitoDolar.EditValue = (_TipoCambio == 0) ? "0" : (dDebito / _TipoCambio).ToString("N4");
+            this.txtCreditoDolar.EditValue = (_TipoCambio == 0) ? "0" : (dCredito / _TipoCambio).ToString("N4");
+            this.txtDirenciaDolar.EditValue = (_TipoCambio == 0) ? "0" : ((dDebito / _TipoCambio) - (dCredito / _TipoCambio)).ToString("N4");
+
+            if ((dDebito - dCredito) != 0)
+            {
+                //En rojo las casillas
+                this.txtDiferencia.ForeColor = Color.Red;
+                this.txtDirenciaDolar.ForeColor = Color.Red;
+            }
+            else
+            {
+                this.txtDiferencia.ForeColor = Color.Black;
+                this.txtDirenciaDolar.ForeColor = Color.Black;
+            }
+        }
+
+        private void GridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+            CalcularFooterAsiento();
         }
 
         private void GridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
@@ -264,6 +328,44 @@ namespace CG
             GridView view = sender as GridView;
             GridColumn CentroCol = view.Columns["IDCentro"];
             GridColumn CuentaCol = view.Columns["IDCuenta"];
+            GridColumn DebitoCol = view.Columns["Debito"];
+            GridColumn CreditoCol = view.Columns["Credito"];
+
+            object vCentro = (object)(view.GetRowCellValue(e.RowHandle, CentroCol));
+            object vCuenta = (object)(view.GetRowCellValue(e.RowHandle, CuentaCol));
+            object vDebito = (object)(view.GetRowCellValue(e.RowHandle, DebitoCol));
+            object vCredito = (object)(view.GetRowCellValue(e.RowHandle, CreditoCol));
+            if (Convert.IsDBNull(vCentro))
+            {
+                e.Valid = false;
+                view.SetColumnError(CentroCol, "El campo no deberia ser vacio");
+                return;
+            }
+
+            if (Convert.IsDBNull(vCuenta))
+            {
+                e.Valid = false;
+                view.SetColumnError(CuentaCol, "El campo no deberia ser vacio");
+                return;
+            }
+
+            if (Convert.IsDBNull(vDebito) && Convert.IsDBNull(vCredito))
+            {
+                if (Convert.IsDBNull(vDebito))
+                {
+                    e.Valid = false;
+                    view.SetColumnError(DebitoCol, "El campo no deberia ser vacio");
+                    return;
+                }
+                if (Convert.IsDBNull(vCredito))
+                {
+                    e.Valid = false;
+                    view.SetColumnError(CreditoCol, "El campo no deberia ser vacio");
+                    return;
+                }
+            }
+
+
             //Get the value of the first column
             int iCentro = (int)view.GetRowCellValue(e.RowHandle, CentroCol);
             //Get the value of the second column
@@ -278,8 +380,8 @@ namespace CG
             {
                 e.Valid = false;
                 //Set errors with specific descriptions for the columns
-                view.SetColumnError(CentroCol, "The value must be greater than Units On Order");
-                view.SetColumnError(CuentaCol, "The value must be less than Units In Stock");
+                view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
+                view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
             }
 
         }
@@ -368,7 +470,9 @@ namespace CG
             this.txtPeriodo.Text = _dsEjercicioPeriodo.Tables[0].Rows[0]["DescrPeriodo"].ToString();
             DataSet DS = new DataSet();
             DS = TipoCambioDetalleDAC.GetData("TVEN", DateTime.Now);
-            this.txtTipoCambio.Text = DS.Tables[0].Rows[0]["Monto"].ToString();
+            double TipoCambio = (DS.Tables[0].Rows.Count > 0) ? Convert.ToDouble(DS.Tables[0].Rows[0]["Monto"]) : 0;
+            this.txtTipoCambio.Text = TipoCambio.ToString();
+            _TipoCambio = TipoCambio;
         }
 
 
@@ -414,20 +518,11 @@ namespace CG
 
                 view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], dt.ToTable().Rows[0]["Descr"].ToString());
             }
+            
         }
 
 
 
-
-        //private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-        //    HabilitarControles(true);
-        //    ClearControls();
-        //    Accion = "New";
-        //    InicializarNuevoElemento();
-        //    UpdateControlsFromDataRow(_currentRow);
-
-        //}
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -476,7 +571,7 @@ namespace CG
                 if (!ValidaDatos()) return;
 
                 //Obtener los datos
-
+                
                 _currentRow["IDEjercicio"] = this.txtEjercicio.Text.Trim();
                 _currentRow["Periodo"] = this.txtPeriodo.Text.Trim();
                 _currentRow["Asiento"] = "---";
@@ -534,7 +629,8 @@ namespace CG
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-               
+                _dsAsiento.RejectChanges();
+                _dsDetalle.RejectChanges();
                 MessageBox.Show(ex.Message);
             }
 
@@ -550,6 +646,7 @@ namespace CG
                 HabilitarControles(false);
                 CargarAsiento(_currentRow["Asiento"].ToString());
                 UpdateControlsFromDataRow(_currentRow);
+                CalcularFooterAsiento();
             }
             else
                 this.Close();
@@ -568,7 +665,6 @@ namespace CG
             }
         }
 
-
-
+     
     }
 }
