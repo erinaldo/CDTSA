@@ -47,7 +47,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(int IDEjercicio, String Periodo)
+        public static DataSet GetData(int IDEjercicio)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDEjercicio"].Value = IDEjercicio;
