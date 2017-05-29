@@ -20,6 +20,60 @@ namespace MainMenu
             InitializeComponent();
             CreateNodes(treeListInventario);
             CreateNodes(treeListContabilidad);
+            this.Load += frmMain_Load;
+            ShowPagesRibbonMan(false);
+        }
+
+        void frmMain_Load(object sender, EventArgs e)
+        {
+            this.treeListContabilidad.DoubleClick += treeListContabilidad_DoubleClick;
+        }
+
+        void treeListContabilidad_DoubleClick(object sender, EventArgs e)
+        {
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList)sender).FocusedNode;
+            switch (node.Tag.ToString())
+            {
+                case "optCuenta":
+                    frmListadoCuentaContable ofrmCuenta = new frmListadoCuentaContable();
+                    ofrmCuenta.MdiParent = this;
+                    ofrmCuenta.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmCuenta.Show();
+                    break;
+                 case "optCentroCosto":
+                    frmListadoCentroCosto ofrmCentro = new frmListadoCentroCosto();
+                    ofrmCentro.MdiParent = this;
+                    ofrmCentro.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmCentro.Show();
+                    break;
+                 case "optTransaccionesDiario":
+                    frmListadoAsientoDiario ofrmListadoAsientoDiario = new frmListadoAsientoDiario();
+                    ofrmListadoAsientoDiario.MdiParent = this;
+                    ofrmListadoAsientoDiario.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoAsientoDiario.Show();
+                    break;
+                case "optParametrosModuloContable":
+                    frmParametrosContables ofrmParametrosContabilidad = new frmParametrosContables();
+                    ofrmParametrosContabilidad.MdiParent = this;
+                    ofrmParametrosContabilidad.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmParametrosContabilidad.Show();
+                    break;
+                case "optAbrirPeriodosCerrados":
+                    frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
+                    ofrmListadoPeriodos.MdiParent = this;
+                    ofrmListadoPeriodos.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoPeriodos.Show();
+                    break;
+                    
+              
+            }
+
         }
 
 
@@ -56,21 +110,23 @@ namespace MainMenu
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas" }, -1, 11, 11, 11);
                     nodeCuentas.Tag = "optCuenta";
+                    TreeListNode nodeCentroCosto = tl.AppendNode(new object[] { "CentroCosto" }, -1, 11, 11, 11);
+                    nodeCentroCosto.Tag = "optCentroCosto";
                     //Carpeta
                     TreeListNode nodeTransaccionesContabilidad = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
                     //Items
                     TreeListNode nodeTransaccionesDiario = tl.AppendNode(new object[] { "Diario" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
                     nodeTransaccionesDiario.Tag = "optTransaccionesDiario";
-                    TreeListNode nodeTransaccionesRecurrente = tl.AppendNode(new object[] { "Recurrente" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
-                    nodeTransaccionesRecurrente.Tag = "optTransaccionesRecurrente";
-                    TreeListNode nodeTransaccionesAnulacion = tl.AppendNode(new object[] { "Anulación" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
-                    nodeTransaccionesAnulacion.Tag = "optTransaccionesAnulacion";
-                    TreeListNode nodeTransaccionesReversion = tl.AppendNode(new object[] { "Reversión" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
-                    nodeTransaccionesReversion.Tag = "optTransaccionesReversion";
-                    TreeListNode nodeTransaccionesDistribuidas = tl.AppendNode(new object[] { "Distribuidas" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
-                    nodeTransaccionesDistribuidas.Tag = "optTransaccionesDistribuidas";
-                    TreeListNode nodeTransaccionesReferido = tl.AppendNode(new object[] { "Referido" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
-                    nodeTransaccionesReferido.Tag = "optTransaccionesReferido";
+                    //TreeListNode nodeTransaccionesRecurrente = tl.AppendNode(new object[] { "Recurrente" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
+                    //nodeTransaccionesRecurrente.Tag = "optTransaccionesRecurrente";
+                    //TreeListNode nodeTransaccionesAnulacion = tl.AppendNode(new object[] { "Anulación" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
+                    //nodeTransaccionesAnulacion.Tag = "optTransaccionesAnulacion";
+                    //TreeListNode nodeTransaccionesReversion = tl.AppendNode(new object[] { "Reversión" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
+                    //nodeTransaccionesReversion.Tag = "optTransaccionesReversion";
+                    //TreeListNode nodeTransaccionesDistribuidas = tl.AppendNode(new object[] { "Distribuidas" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
+                    //nodeTransaccionesDistribuidas.Tag = "optTransaccionesDistribuidas";
+                    //TreeListNode nodeTransaccionesReferido = tl.AppendNode(new object[] { "Referido" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
+                    //nodeTransaccionesReferido.Tag = "optTransaccionesReferido";
                     //Carpeta
                     TreeListNode nodeConsultasContabilidad = tl.AppendNode(new object[] { "Consultas" }, -1, 9, 10, 9);
                     //Items
@@ -118,7 +174,10 @@ namespace MainMenu
                     nodeReportesReporteDeDiferencias.Tag = "optReportesDeDiferencias";
                     //Carpeta
                     TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administracion" }, -1, 9, 10, 9);
-
+                    TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parametros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeParametrosModulo.Tag = "optParametrosModuloContable";
+                    TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Abrir Periodos Cerrados" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeAbrirPeriodoCerrado.Tag = "optAbrirPeriodosCerrados";
                     break;
             }
 
@@ -138,6 +197,13 @@ namespace MainMenu
             node = ((TreeList) sender).FocusedNode;
             switch (node.Tag.ToString())
             {
+                case "optCuenta":
+                    frmListadoCuentaContable ofrmCuenta = new frmListadoCuentaContable();
+                    ofrmCuenta.MdiParent = this;
+                    ofrmCuenta.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmCuenta.Show();
+                    break;
                 case "optArticulo":
                     break;
                 //Dim ofrm As New UI.Inventario.Form1()
@@ -150,12 +216,12 @@ namespace MainMenu
 
                 //ribbonControl.SelectedPage = ribbonControl.Pages(1)
                 case "optLote":
-                    frmListadoCentroCosto ofrm = new frmListadoCentroCosto();
-                    ofrm.FormClosed += ofrm_FormClosed;
-                    ofrm.MdiParent = this;
-                    ofrm.WindowState = FormWindowState.Maximized;
-                    ShowPagesRibbonMan(false);
-                    ofrm.Show();
+                    //frmListadoCentroCosto ofrm = new frmListadoCentroCosto();
+                    //ofrm.FormClosed += ofrm_FormClosed;
+                    //ofrm.MdiParent = this;
+                    //ofrm.WindowState = FormWindowState.Maximized;
+                    //ShowPagesRibbonMan(false);
+                    //ofrm.Show();
                     break;
                 case "optEjemplo":
                     break;

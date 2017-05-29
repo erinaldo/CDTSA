@@ -37,19 +37,19 @@
             this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
             this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.navBarControl = new DevExpress.XtraNavBar.NavBarControl();
-            this.navGroupInventario = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navGroupCuentasXCobrar = new DevExpress.XtraNavBar.NavBarGroup();
             this.NavBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.treeListInventario = new DevExpress.XtraTreeList.TreeList();
             this.TreeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.NavBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.treeListContabilidad = new DevExpress.XtraTreeList.TreeList();
             this.TreeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.navGroupInventario = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupFacturación = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupTeleVenta = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupControlBancario = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupCuentasxPagar = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navGroupCuentasXCobrar = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupCompras = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupAdministracion = new DevExpress.XtraNavBar.NavBarGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
@@ -130,7 +130,7 @@
             // 
             // navBarControl
             // 
-            this.navBarControl.ActiveGroup = this.navGroupInventario;
+            this.navBarControl.ActiveGroup = this.navGroupCuentasXCobrar;
             this.navBarControl.Controls.Add(this.NavBarGroupControlContainer1);
             this.navBarControl.Controls.Add(this.NavBarGroupControlContainer2);
             this.navBarControl.Dock = System.Windows.Forms.DockStyle.Left;
@@ -156,17 +156,15 @@
             this.navBarControl.Text = "navBarControl1";
             this.navBarControl.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             // 
-            // navGroupInventario
+            // navGroupCuentasXCobrar
             // 
-            this.navGroupInventario.Caption = "Inventario";
-            this.navGroupInventario.ControlContainer = this.NavBarGroupControlContainer1;
-            this.navGroupInventario.Expanded = true;
-            this.navGroupInventario.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
-            this.navGroupInventario.GroupClientHeight = 80;
-            this.navGroupInventario.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navGroupInventario.LargeImageIndex = 0;
-            this.navGroupInventario.Name = "navGroupInventario";
-            this.navGroupInventario.SmallImageIndex = 0;
+            this.navGroupCuentasXCobrar.Caption = "Cuentas por Cobrar";
+            this.navGroupCuentasXCobrar.Expanded = true;
+            this.navGroupCuentasXCobrar.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
+            this.navGroupCuentasXCobrar.LargeImageIndex = 6;
+            this.navGroupCuentasXCobrar.Name = "navGroupCuentasXCobrar";
+            this.navGroupCuentasXCobrar.SmallImageIndex = 6;
+            this.navGroupCuentasXCobrar.Visible = false;
             // 
             // NavBarGroupControlContainer1
             // 
@@ -245,6 +243,18 @@
             this.TreeListColumn1.VisibleIndex = 0;
             this.TreeListColumn1.Width = 87;
             // 
+            // navGroupInventario
+            // 
+            this.navGroupInventario.Caption = "Inventario";
+            this.navGroupInventario.ControlContainer = this.NavBarGroupControlContainer1;
+            this.navGroupInventario.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
+            this.navGroupInventario.GroupClientHeight = 80;
+            this.navGroupInventario.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navGroupInventario.LargeImageIndex = 0;
+            this.navGroupInventario.Name = "navGroupInventario";
+            this.navGroupInventario.SmallImageIndex = 0;
+            this.navGroupInventario.Visible = false;
+            // 
             // navGroupFacturación
             // 
             this.navGroupFacturación.Caption = "Facturación";
@@ -252,6 +262,7 @@
             this.navGroupFacturación.LargeImageIndex = 1;
             this.navGroupFacturación.Name = "navGroupFacturación";
             this.navGroupFacturación.SmallImageIndex = 1;
+            this.navGroupFacturación.Visible = false;
             // 
             // navGroupTeleVenta
             // 
@@ -260,6 +271,7 @@
             this.navGroupTeleVenta.LargeImageIndex = 2;
             this.navGroupTeleVenta.Name = "navGroupTeleVenta";
             this.navGroupTeleVenta.SmallImageIndex = 2;
+            this.navGroupTeleVenta.Visible = false;
             // 
             // navGroupContabilidad
             // 
@@ -279,6 +291,7 @@
             this.navGroupControlBancario.LargeImageIndex = 4;
             this.navGroupControlBancario.Name = "navGroupControlBancario";
             this.navGroupControlBancario.SmallImageIndex = 4;
+            this.navGroupControlBancario.Visible = false;
             // 
             // navGroupCuentasxPagar
             // 
@@ -287,14 +300,7 @@
             this.navGroupCuentasxPagar.LargeImageIndex = 5;
             this.navGroupCuentasxPagar.Name = "navGroupCuentasxPagar";
             this.navGroupCuentasxPagar.SmallImageIndex = 5;
-            // 
-            // navGroupCuentasXCobrar
-            // 
-            this.navGroupCuentasXCobrar.Caption = "Cuentas por Cobrar";
-            this.navGroupCuentasXCobrar.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
-            this.navGroupCuentasXCobrar.LargeImageIndex = 6;
-            this.navGroupCuentasXCobrar.Name = "navGroupCuentasXCobrar";
-            this.navGroupCuentasXCobrar.SmallImageIndex = 6;
+            this.navGroupCuentasxPagar.Visible = false;
             // 
             // navGroupCompras
             // 
@@ -303,6 +309,7 @@
             this.navGroupCompras.LargeImageIndex = 7;
             this.navGroupCompras.Name = "navGroupCompras";
             this.navGroupCompras.SmallImageIndex = 7;
+            this.navGroupCompras.Visible = false;
             // 
             // navGroupAdministracion
             // 
