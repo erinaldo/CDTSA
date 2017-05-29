@@ -32,19 +32,19 @@
             this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
             this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
             this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
-            this.searchLookUpEdit2 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCuentaUtilidadAcumulada = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCuentaUtilidadPeriodo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.txtCantNivel5 = new DevExpress.XtraEditors.TextEdit();
+            this.txtCantNivel4 = new DevExpress.XtraEditors.TextEdit();
+            this.txtCantNivel3 = new DevExpress.XtraEditors.TextEdit();
+            this.txtCantNivel2 = new DevExpress.XtraEditors.TextEdit();
+            this.txtCantNivel1 = new DevExpress.XtraEditors.TextEdit();
+            this.txtCaracterPredecesor = new DevExpress.XtraEditors.TextEdit();
+            this.chkUsaPredecesor = new DevExpress.XtraEditors.CheckEdit();
+            this.txtSimboloSeparadorCuenta = new DevExpress.XtraEditors.TextEdit();
+            this.chkUsaSeparadorCuenta = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -66,31 +66,31 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtLogitudAsiento = new DevExpress.XtraEditors.TextEdit();
+            this.dtMesInicioPeriodo = new DevExpress.XtraEditors.DateEdit();
+            this.dpMesFinPeriodo = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.textEdit10 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaUtilidadAcumulada.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaUtilidadPeriodo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCaracterPredecesor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkUsaPredecesor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSimboloSeparadorCuenta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkUsaSeparadorCuenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
@@ -112,37 +112,37 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLogitudAsiento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMesInicioPeriodo.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMesInicioPeriodo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dpMesFinPeriodo.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dpMesFinPeriodo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.dateEdit2);
-            this.layoutControl1.Controls.Add(this.dateEdit1);
-            this.layoutControl1.Controls.Add(this.textEdit10);
+            this.layoutControl1.Controls.Add(this.dpMesFinPeriodo);
+            this.layoutControl1.Controls.Add(this.dtMesInicioPeriodo);
+            this.layoutControl1.Controls.Add(this.txtLogitudAsiento);
             this.layoutControl1.Controls.Add(this.textEdit9);
             this.layoutControl1.Controls.Add(this.checkEdit4);
             this.layoutControl1.Controls.Add(this.checkEdit3);
             this.layoutControl1.Controls.Add(this.textEdit8);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit2);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit1);
-            this.layoutControl1.Controls.Add(this.textEdit7);
-            this.layoutControl1.Controls.Add(this.textEdit6);
-            this.layoutControl1.Controls.Add(this.textEdit5);
-            this.layoutControl1.Controls.Add(this.textEdit4);
-            this.layoutControl1.Controls.Add(this.textEdit3);
-            this.layoutControl1.Controls.Add(this.textEdit2);
-            this.layoutControl1.Controls.Add(this.checkEdit2);
-            this.layoutControl1.Controls.Add(this.textEdit1);
-            this.layoutControl1.Controls.Add(this.checkEdit1);
+            this.layoutControl1.Controls.Add(this.slkupCuentaUtilidadAcumulada);
+            this.layoutControl1.Controls.Add(this.slkupCuentaUtilidadPeriodo);
+            this.layoutControl1.Controls.Add(this.txtCantNivel5);
+            this.layoutControl1.Controls.Add(this.txtCantNivel4);
+            this.layoutControl1.Controls.Add(this.txtCantNivel3);
+            this.layoutControl1.Controls.Add(this.txtCantNivel2);
+            this.layoutControl1.Controls.Add(this.txtCantNivel1);
+            this.layoutControl1.Controls.Add(this.txtCaracterPredecesor);
+            this.layoutControl1.Controls.Add(this.chkUsaPredecesor);
+            this.layoutControl1.Controls.Add(this.txtSimboloSeparadorCuenta);
+            this.layoutControl1.Controls.Add(this.chkUsaSeparadorCuenta);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -154,40 +154,40 @@
             // 
             // checkEdit4
             // 
-            this.checkEdit4.Location = new System.Drawing.Point(24, 93);
+            this.checkEdit4.Location = new System.Drawing.Point(24, 70);
             this.checkEdit4.Name = "checkEdit4";
             this.checkEdit4.Properties.Caption = "Usa Predecesor Centro";
-            this.checkEdit4.Size = new System.Drawing.Size(484, 19);
+            this.checkEdit4.Size = new System.Drawing.Size(134, 19);
             this.checkEdit4.StyleController = this.layoutControl1;
             this.checkEdit4.TabIndex = 17;
             // 
             // checkEdit3
             // 
-            this.checkEdit3.Location = new System.Drawing.Point(24, 70);
+            this.checkEdit3.Location = new System.Drawing.Point(24, 46);
             this.checkEdit3.Name = "checkEdit3";
             this.checkEdit3.Properties.Caption = "Usa separador Centro";
-            this.checkEdit3.Size = new System.Drawing.Size(484, 19);
+            this.checkEdit3.Size = new System.Drawing.Size(134, 19);
             this.checkEdit3.StyleController = this.layoutControl1;
             this.checkEdit3.TabIndex = 16;
             // 
             // textEdit8
             // 
-            this.textEdit8.Location = new System.Drawing.Point(166, 46);
+            this.textEdit8.Location = new System.Drawing.Point(304, 46);
             this.textEdit8.Name = "textEdit8";
-            this.textEdit8.Size = new System.Drawing.Size(342, 20);
+            this.textEdit8.Size = new System.Drawing.Size(204, 20);
             this.textEdit8.StyleController = this.layoutControl1;
             this.textEdit8.TabIndex = 15;
             // 
-            // searchLookUpEdit2
+            // slkupCuentaUtilidadAcumulada
             // 
-            this.searchLookUpEdit2.Location = new System.Drawing.Point(166, 70);
-            this.searchLookUpEdit2.Name = "searchLookUpEdit2";
-            this.searchLookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCuentaUtilidadAcumulada.Location = new System.Drawing.Point(166, 70);
+            this.slkupCuentaUtilidadAcumulada.Name = "slkupCuentaUtilidadAcumulada";
+            this.slkupCuentaUtilidadAcumulada.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit2.Properties.View = this.searchLookUpEdit2View;
-            this.searchLookUpEdit2.Size = new System.Drawing.Size(342, 20);
-            this.searchLookUpEdit2.StyleController = this.layoutControl1;
-            this.searchLookUpEdit2.TabIndex = 14;
+            this.slkupCuentaUtilidadAcumulada.Properties.View = this.searchLookUpEdit2View;
+            this.slkupCuentaUtilidadAcumulada.Size = new System.Drawing.Size(342, 20);
+            this.slkupCuentaUtilidadAcumulada.StyleController = this.layoutControl1;
+            this.slkupCuentaUtilidadAcumulada.TabIndex = 14;
             // 
             // searchLookUpEdit2View
             // 
@@ -196,16 +196,16 @@
             this.searchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit1
+            // slkupCuentaUtilidadPeriodo
             // 
-            this.searchLookUpEdit1.Location = new System.Drawing.Point(166, 46);
-            this.searchLookUpEdit1.Name = "searchLookUpEdit1";
-            this.searchLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCuentaUtilidadPeriodo.Location = new System.Drawing.Point(166, 46);
+            this.slkupCuentaUtilidadPeriodo.Name = "slkupCuentaUtilidadPeriodo";
+            this.slkupCuentaUtilidadPeriodo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit1.Properties.View = this.searchLookUpEdit1View;
-            this.searchLookUpEdit1.Size = new System.Drawing.Size(342, 20);
-            this.searchLookUpEdit1.StyleController = this.layoutControl1;
-            this.searchLookUpEdit1.TabIndex = 13;
+            this.slkupCuentaUtilidadPeriodo.Properties.View = this.searchLookUpEdit1View;
+            this.slkupCuentaUtilidadPeriodo.Size = new System.Drawing.Size(342, 20);
+            this.slkupCuentaUtilidadPeriodo.StyleController = this.layoutControl1;
+            this.slkupCuentaUtilidadPeriodo.TabIndex = 13;
             // 
             // searchLookUpEdit1View
             // 
@@ -214,79 +214,79 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
-            // textEdit7
+            // txtCantNivel5
             // 
-            this.textEdit7.Location = new System.Drawing.Point(166, 190);
-            this.textEdit7.Name = "textEdit7";
-            this.textEdit7.Size = new System.Drawing.Size(342, 20);
-            this.textEdit7.StyleController = this.layoutControl1;
-            this.textEdit7.TabIndex = 12;
+            this.txtCantNivel5.Location = new System.Drawing.Point(166, 190);
+            this.txtCantNivel5.Name = "txtCantNivel5";
+            this.txtCantNivel5.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel5.StyleController = this.layoutControl1;
+            this.txtCantNivel5.TabIndex = 12;
             // 
-            // textEdit6
+            // txtCantNivel4
             // 
-            this.textEdit6.Location = new System.Drawing.Point(166, 166);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Size = new System.Drawing.Size(342, 20);
-            this.textEdit6.StyleController = this.layoutControl1;
-            this.textEdit6.TabIndex = 11;
+            this.txtCantNivel4.Location = new System.Drawing.Point(166, 166);
+            this.txtCantNivel4.Name = "txtCantNivel4";
+            this.txtCantNivel4.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel4.StyleController = this.layoutControl1;
+            this.txtCantNivel4.TabIndex = 11;
             // 
-            // textEdit5
+            // txtCantNivel3
             // 
-            this.textEdit5.Location = new System.Drawing.Point(166, 142);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(342, 20);
-            this.textEdit5.StyleController = this.layoutControl1;
-            this.textEdit5.TabIndex = 10;
+            this.txtCantNivel3.Location = new System.Drawing.Point(166, 142);
+            this.txtCantNivel3.Name = "txtCantNivel3";
+            this.txtCantNivel3.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel3.StyleController = this.layoutControl1;
+            this.txtCantNivel3.TabIndex = 10;
             // 
-            // textEdit4
+            // txtCantNivel2
             // 
-            this.textEdit4.Location = new System.Drawing.Point(166, 118);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(342, 20);
-            this.textEdit4.StyleController = this.layoutControl1;
-            this.textEdit4.TabIndex = 9;
+            this.txtCantNivel2.Location = new System.Drawing.Point(166, 118);
+            this.txtCantNivel2.Name = "txtCantNivel2";
+            this.txtCantNivel2.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel2.StyleController = this.layoutControl1;
+            this.txtCantNivel2.TabIndex = 9;
             // 
-            // textEdit3
+            // txtCantNivel1
             // 
-            this.textEdit3.Location = new System.Drawing.Point(166, 94);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(342, 20);
-            this.textEdit3.StyleController = this.layoutControl1;
-            this.textEdit3.TabIndex = 8;
+            this.txtCantNivel1.Location = new System.Drawing.Point(166, 94);
+            this.txtCantNivel1.Name = "txtCantNivel1";
+            this.txtCantNivel1.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel1.StyleController = this.layoutControl1;
+            this.txtCantNivel1.TabIndex = 8;
             // 
-            // textEdit2
+            // txtCaracterPredecesor
             // 
-            this.textEdit2.Location = new System.Drawing.Point(310, 70);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(198, 20);
-            this.textEdit2.StyleController = this.layoutControl1;
-            this.textEdit2.TabIndex = 7;
+            this.txtCaracterPredecesor.Location = new System.Drawing.Point(310, 70);
+            this.txtCaracterPredecesor.Name = "txtCaracterPredecesor";
+            this.txtCaracterPredecesor.Size = new System.Drawing.Size(198, 20);
+            this.txtCaracterPredecesor.StyleController = this.layoutControl1;
+            this.txtCaracterPredecesor.TabIndex = 7;
             // 
-            // checkEdit2
+            // chkUsaPredecesor
             // 
-            this.checkEdit2.Location = new System.Drawing.Point(24, 70);
-            this.checkEdit2.Name = "checkEdit2";
-            this.checkEdit2.Properties.Caption = "Usa Predecesor";
-            this.checkEdit2.Size = new System.Drawing.Size(140, 19);
-            this.checkEdit2.StyleController = this.layoutControl1;
-            this.checkEdit2.TabIndex = 6;
+            this.chkUsaPredecesor.Location = new System.Drawing.Point(24, 70);
+            this.chkUsaPredecesor.Name = "chkUsaPredecesor";
+            this.chkUsaPredecesor.Properties.Caption = "Usa Predecesor";
+            this.chkUsaPredecesor.Size = new System.Drawing.Size(140, 19);
+            this.chkUsaPredecesor.StyleController = this.layoutControl1;
+            this.chkUsaPredecesor.TabIndex = 6;
             // 
-            // textEdit1
+            // txtSimboloSeparadorCuenta
             // 
-            this.textEdit1.Location = new System.Drawing.Point(310, 46);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(198, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 5;
+            this.txtSimboloSeparadorCuenta.Location = new System.Drawing.Point(310, 46);
+            this.txtSimboloSeparadorCuenta.Name = "txtSimboloSeparadorCuenta";
+            this.txtSimboloSeparadorCuenta.Size = new System.Drawing.Size(198, 20);
+            this.txtSimboloSeparadorCuenta.StyleController = this.layoutControl1;
+            this.txtSimboloSeparadorCuenta.TabIndex = 5;
             // 
-            // checkEdit1
+            // chkUsaSeparadorCuenta
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(24, 46);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Usa Separador Cuenta";
-            this.checkEdit1.Size = new System.Drawing.Size(140, 19);
-            this.checkEdit1.StyleController = this.layoutControl1;
-            this.checkEdit1.TabIndex = 4;
+            this.chkUsaSeparadorCuenta.Location = new System.Drawing.Point(24, 46);
+            this.chkUsaSeparadorCuenta.Name = "chkUsaSeparadorCuenta";
+            this.chkUsaSeparadorCuenta.Properties.Caption = "Usa Separador Cuenta";
+            this.chkUsaSeparadorCuenta.Size = new System.Drawing.Size(140, 19);
+            this.chkUsaSeparadorCuenta.StyleController = this.layoutControl1;
+            this.chkUsaSeparadorCuenta.TabIndex = 4;
             // 
             // layoutControlGroup1
             // 
@@ -303,21 +303,21 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup5;
             this.tabbedControlGroup1.SelectedTabPageIndex = 0;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(512, 376);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroup5,
             this.layoutControlGroup2,
             this.layoutControlGroup3,
-            this.layoutControlGroup4,
-            this.layoutControlGroup5});
+            this.layoutControlGroup4});
             // 
             // layoutControlGroup4
             // 
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem12,
-            this.layoutControlItem13,
             this.layoutControlItem14,
+            this.layoutControlItem13,
             this.layoutControlItem15});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
@@ -327,27 +327,27 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.textEdit8;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem12.Location = new System.Drawing.Point(138, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem12.Size = new System.Drawing.Size(350, 24);
             this.layoutControlItem12.Text = "Separador Centro:";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.checkEdit3;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(488, 23);
+            this.layoutControlItem13.Size = new System.Drawing.Size(138, 24);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.checkEdit4;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 47);
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(488, 23);
+            this.layoutControlItem14.Size = new System.Drawing.Size(138, 306);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -370,16 +370,16 @@
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.textEdit1;
+            this.layoutControlItem2.Control = this.txtSimboloSeparadorCuenta;
             this.layoutControlItem2.Location = new System.Drawing.Point(144, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(344, 24);
-            this.layoutControlItem2.Text = "Simbolo Separados Cuenta";
+            this.layoutControlItem2.Text = "Simbolo Separador Cuenta";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.checkEdit1;
+            this.layoutControlItem1.Control = this.chkUsaSeparadorCuenta;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(144, 24);
@@ -388,7 +388,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.checkEdit2;
+            this.layoutControlItem3.Control = this.chkUsaPredecesor;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(144, 24);
@@ -397,7 +397,7 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.textEdit2;
+            this.layoutControlItem4.Control = this.txtCaracterPredecesor;
             this.layoutControlItem4.Location = new System.Drawing.Point(144, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(344, 24);
@@ -406,7 +406,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.textEdit3;
+            this.layoutControlItem5.Control = this.txtCantNivel1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(488, 24);
@@ -415,7 +415,7 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.textEdit4;
+            this.layoutControlItem6.Control = this.txtCantNivel2;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(488, 24);
@@ -424,7 +424,7 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.textEdit5;
+            this.layoutControlItem7.Control = this.txtCantNivel3;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(488, 24);
@@ -433,7 +433,7 @@
             // 
             // layoutControlItem8
             // 
-            this.layoutControlItem8.Control = this.textEdit6;
+            this.layoutControlItem8.Control = this.txtCantNivel4;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(488, 24);
@@ -442,7 +442,7 @@
             // 
             // layoutControlItem9
             // 
-            this.layoutControlItem9.Control = this.textEdit7;
+            this.layoutControlItem9.Control = this.txtCantNivel5;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(488, 186);
@@ -461,7 +461,7 @@
             // 
             // layoutControlItem10
             // 
-            this.layoutControlItem10.Control = this.searchLookUpEdit1;
+            this.layoutControlItem10.Control = this.slkupCuentaUtilidadPeriodo;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(488, 24);
@@ -470,7 +470,7 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.searchLookUpEdit2;
+            this.layoutControlItem11.Control = this.slkupCuentaUtilidadAcumulada;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(488, 306);
@@ -479,20 +479,54 @@
             // 
             // textEdit9
             // 
-            this.textEdit9.Location = new System.Drawing.Point(166, 116);
+            this.textEdit9.Location = new System.Drawing.Point(304, 70);
             this.textEdit9.Name = "textEdit9";
-            this.textEdit9.Size = new System.Drawing.Size(342, 20);
+            this.textEdit9.Size = new System.Drawing.Size(204, 20);
             this.textEdit9.StyleController = this.layoutControl1;
             this.textEdit9.TabIndex = 18;
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.textEdit9;
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 70);
+            this.layoutControlItem15.Location = new System.Drawing.Point(138, 24);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(488, 260);
+            this.layoutControlItem15.Size = new System.Drawing.Size(350, 306);
             this.layoutControlItem15.Text = "Carácter predecesor Centro:";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(139, 13);
+            // 
+            // txtLogitudAsiento
+            // 
+            this.txtLogitudAsiento.Location = new System.Drawing.Point(166, 46);
+            this.txtLogitudAsiento.Name = "txtLogitudAsiento";
+            this.txtLogitudAsiento.Size = new System.Drawing.Size(342, 20);
+            this.txtLogitudAsiento.StyleController = this.layoutControl1;
+            this.txtLogitudAsiento.TabIndex = 19;
+            // 
+            // dtMesInicioPeriodo
+            // 
+            this.dtMesInicioPeriodo.EditValue = null;
+            this.dtMesInicioPeriodo.Location = new System.Drawing.Point(166, 70);
+            this.dtMesInicioPeriodo.Name = "dtMesInicioPeriodo";
+            this.dtMesInicioPeriodo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtMesInicioPeriodo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtMesInicioPeriodo.Size = new System.Drawing.Size(342, 20);
+            this.dtMesInicioPeriodo.StyleController = this.layoutControl1;
+            this.dtMesInicioPeriodo.TabIndex = 20;
+            // 
+            // dpMesFinPeriodo
+            // 
+            this.dpMesFinPeriodo.EditValue = null;
+            this.dpMesFinPeriodo.Location = new System.Drawing.Point(166, 94);
+            this.dpMesFinPeriodo.Name = "dpMesFinPeriodo";
+            this.dpMesFinPeriodo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dpMesFinPeriodo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dpMesFinPeriodo.Size = new System.Drawing.Size(342, 20);
+            this.dpMesFinPeriodo.StyleController = this.layoutControl1;
+            this.dpMesFinPeriodo.TabIndex = 21;
             // 
             // layoutControlGroup5
             // 
@@ -505,61 +539,27 @@
             this.layoutControlGroup5.Size = new System.Drawing.Size(488, 330);
             this.layoutControlGroup5.Text = "General";
             // 
-            // textEdit10
-            // 
-            this.textEdit10.Location = new System.Drawing.Point(166, 46);
-            this.textEdit10.Name = "textEdit10";
-            this.textEdit10.Size = new System.Drawing.Size(342, 20);
-            this.textEdit10.StyleController = this.layoutControl1;
-            this.textEdit10.TabIndex = 19;
-            // 
             // layoutControlItem16
             // 
-            this.layoutControlItem16.Control = this.textEdit10;
+            this.layoutControlItem16.Control = this.txtLogitudAsiento;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem16.Name = "layoutControlItem16";
             this.layoutControlItem16.Size = new System.Drawing.Size(488, 24);
             this.layoutControlItem16.Text = "Longitud Asiento Contable:";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(139, 13);
             // 
-            // dateEdit1
-            // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(166, 70);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(342, 20);
-            this.dateEdit1.StyleController = this.layoutControl1;
-            this.dateEdit1.TabIndex = 20;
-            // 
             // layoutControlItem17
             // 
-            this.layoutControlItem17.Control = this.dateEdit1;
+            this.layoutControlItem17.Control = this.dtMesInicioPeriodo;
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(488, 24);
             this.layoutControlItem17.Text = "Mes Inicio Periodo Fiscal:";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(139, 13);
             // 
-            // dateEdit2
-            // 
-            this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(166, 94);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Size = new System.Drawing.Size(342, 20);
-            this.dateEdit2.StyleController = this.layoutControl1;
-            this.dateEdit2.TabIndex = 21;
-            // 
             // layoutControlItem18
             // 
-            this.layoutControlItem18.Control = this.dateEdit2;
+            this.layoutControlItem18.Control = this.dpMesFinPeriodo;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(488, 282);
@@ -579,19 +579,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaUtilidadAcumulada.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaUtilidadPeriodo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCaracterPredecesor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkUsaPredecesor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSimboloSeparadorCuenta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkUsaSeparadorCuenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
@@ -613,14 +613,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLogitudAsiento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMesInicioPeriodo.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMesInicioPeriodo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dpMesFinPeriodo.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dpMesFinPeriodo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit10.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.ResumeLayout(false);
 
@@ -633,19 +633,19 @@
         private DevExpress.XtraEditors.CheckEdit checkEdit4;
         private DevExpress.XtraEditors.CheckEdit checkEdit3;
         private DevExpress.XtraEditors.TextEdit textEdit8;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit2;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaUtilidadAcumulada;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit2View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit1;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaUtilidadPeriodo;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraEditors.TextEdit textEdit7;
-        private DevExpress.XtraEditors.TextEdit textEdit6;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.TextEdit txtCantNivel5;
+        private DevExpress.XtraEditors.TextEdit txtCantNivel4;
+        private DevExpress.XtraEditors.TextEdit txtCantNivel3;
+        private DevExpress.XtraEditors.TextEdit txtCantNivel2;
+        private DevExpress.XtraEditors.TextEdit txtCantNivel1;
+        private DevExpress.XtraEditors.TextEdit txtCaracterPredecesor;
+        private DevExpress.XtraEditors.CheckEdit chkUsaPredecesor;
+        private DevExpress.XtraEditors.TextEdit txtSimboloSeparadorCuenta;
+        private DevExpress.XtraEditors.CheckEdit chkUsaSeparadorCuenta;
         private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
@@ -664,9 +664,9 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit10;
+        private DevExpress.XtraEditors.DateEdit dpMesFinPeriodo;
+        private DevExpress.XtraEditors.DateEdit dtMesInicioPeriodo;
+        private DevExpress.XtraEditors.TextEdit txtLogitudAsiento;
         private DevExpress.XtraEditors.TextEdit textEdit9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
