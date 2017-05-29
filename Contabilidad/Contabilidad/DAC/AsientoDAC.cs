@@ -99,6 +99,7 @@ namespace CG
             String strSQL = "dbo.cntGetAsientoByCriterio";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            
             oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
             oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
             oCmd.Parameters.Add(new SqlParameter("@Tipo", Tipo));
@@ -106,11 +107,12 @@ namespace CG
             oCmd.Parameters.Add(new SqlParameter("@ModuloFuente", ModuloFuente));
             oCmd.Parameters.Add(new SqlParameter("@Anulado", Anulado));
             oCmd.Parameters.Add(new SqlParameter("@CuadreTemporal", CuadreTemporal));
+            oCmd.CommandType = CommandType.StoredProcedure;
 
-            SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
             DataSet DS = CreateDataSet();
 
-            oAdaptador.Fill(DS.Tables["Data"]);
+            oAdap.Fill(DS.Tables["Data"]);
             return DS;
         }
 

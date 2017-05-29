@@ -43,10 +43,15 @@
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnFiltro = new DevExpress.XtraBars.BarButtonItem();
+            this.Asiento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Tipo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Fecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Concepto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Mayorizado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Anulado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CuadreTemporal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -54,9 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -134,18 +136,17 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAgregar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEditar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnGuardar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit1);
             this.layoutControl1.Controls.Add(this.grid);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
@@ -157,17 +158,26 @@
             // 
             // grid
             // 
-            this.grid.Location = new System.Drawing.Point(12, 36);
+            this.grid.Location = new System.Drawing.Point(12, 12);
             this.grid.MainView = this.gridView;
             this.grid.MenuManager = this.ribbonControl;
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(656, 317);
+            this.grid.Size = new System.Drawing.Size(656, 341);
             this.grid.TabIndex = 4;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
             // 
             // gridView
             // 
+            this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Asiento,
+            this.Tipo,
+            this.Fecha,
+            this.Concepto,
+            this.Mayorizado,
+            this.Anulado,
+            this.CuadreTemporal,
+            this.Usuario});
             this.gridView.GridControl = this.grid;
             this.gridView.Name = "gridView";
             // 
@@ -176,8 +186,7 @@
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1,
-            this.layoutControlItem2});
+            this.layoutControlItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(680, 365);
@@ -186,39 +195,11 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.grid;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(660, 321);
+            this.layoutControlItem1.Size = new System.Drawing.Size(660, 345);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // searchLookUpEdit1
-            // 
-            this.searchLookUpEdit1.Location = new System.Drawing.Point(59, 12);
-            this.searchLookUpEdit1.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit1.Name = "searchLookUpEdit1";
-            this.searchLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit1.Properties.View = this.searchLookUpEdit1View;
-            this.searchLookUpEdit1.Size = new System.Drawing.Size(609, 20);
-            this.searchLookUpEdit1.StyleController = this.layoutControl1;
-            this.searchLookUpEdit1.TabIndex = 5;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.searchLookUpEdit1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(660, 24);
-            this.layoutControlItem2.Text = "Paquete:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(44, 13);
-            // 
-            // searchLookUpEdit1View
-            // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // btnFiltro
             // 
@@ -227,6 +208,78 @@
             this.btnFiltro.Id = 2;
             this.btnFiltro.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.LargeGlyph")));
             this.btnFiltro.Name = "btnFiltro";
+            // 
+            // Asiento
+            // 
+            this.Asiento.Caption = "Asiento";
+            this.Asiento.FieldName = "Asiento";
+            this.Asiento.Name = "Asiento";
+            this.Asiento.Visible = true;
+            this.Asiento.VisibleIndex = 0;
+            this.Asiento.Width = 126;
+            // 
+            // Tipo
+            // 
+            this.Tipo.Caption = "Tipo";
+            this.Tipo.FieldName = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.Visible = true;
+            this.Tipo.VisibleIndex = 1;
+            this.Tipo.Width = 44;
+            // 
+            // Fecha
+            // 
+            this.Fecha.Caption = "Fecha";
+            this.Fecha.FieldName = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = true;
+            this.Fecha.VisibleIndex = 2;
+            this.Fecha.Width = 64;
+            // 
+            // Concepto
+            // 
+            this.Concepto.Caption = "Concepto";
+            this.Concepto.FieldName = "Concepto";
+            this.Concepto.Name = "Concepto";
+            this.Concepto.Visible = true;
+            this.Concepto.VisibleIndex = 3;
+            this.Concepto.Width = 361;
+            // 
+            // Mayorizado
+            // 
+            this.Mayorizado.Caption = "Mayorizado";
+            this.Mayorizado.FieldName = "Mayorizado";
+            this.Mayorizado.Name = "Mayorizado";
+            this.Mayorizado.Visible = true;
+            this.Mayorizado.VisibleIndex = 4;
+            this.Mayorizado.Width = 64;
+            // 
+            // Anulado
+            // 
+            this.Anulado.Caption = "Anulado";
+            this.Anulado.FieldName = "Anulado";
+            this.Anulado.Name = "Anulado";
+            this.Anulado.Visible = true;
+            this.Anulado.VisibleIndex = 5;
+            this.Anulado.Width = 77;
+            // 
+            // CuadreTemporal
+            // 
+            this.CuadreTemporal.Caption = "Cuadre Temporal";
+            this.CuadreTemporal.FieldName = "CuadreTemporal";
+            this.CuadreTemporal.Name = "CuadreTemporal";
+            this.CuadreTemporal.Visible = true;
+            this.CuadreTemporal.VisibleIndex = 6;
+            this.CuadreTemporal.Width = 94;
+            // 
+            // Usuario
+            // 
+            this.Usuario.Caption = "Usuario";
+            this.Usuario.FieldName = "Createdby";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.Visible = true;
+            this.Usuario.VisibleIndex = 7;
+            this.Usuario.Width = 99;
             // 
             // frmListadoAsientoDiario
             // 
@@ -245,9 +298,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,9 +319,14 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit1;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraBars.BarButtonItem btnFiltro;
+        private DevExpress.XtraGrid.Columns.GridColumn Asiento;
+        private DevExpress.XtraGrid.Columns.GridColumn Tipo;
+        private DevExpress.XtraGrid.Columns.GridColumn Fecha;
+        private DevExpress.XtraGrid.Columns.GridColumn Concepto;
+        private DevExpress.XtraGrid.Columns.GridColumn Mayorizado;
+        private DevExpress.XtraGrid.Columns.GridColumn Anulado;
+        private DevExpress.XtraGrid.Columns.GridColumn CuadreTemporal;
+        private DevExpress.XtraGrid.Columns.GridColumn Usuario;
     }
 }

@@ -32,7 +32,15 @@ namespace CG
             try
             {
                 //HabilitarControles(false);
-               
+                _FechaInicial = DateTime.Now.AddDays(-15);
+                _FechaFinal = DateTime.Now;
+
+                _TipoAsiento = "CG";
+                _ModuloFuente = "CG";
+                _Mayorizado = 0;
+                _Anulado = 0;
+                _CuadreTemporal = 0;
+
                 this.gridView.FocusedRowChanged += GridView_FocusedRowChanged;
 
                 //PopulateGrid();
@@ -92,7 +100,7 @@ namespace CG
 
         private void BtnFiltro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmParametrosFiltroAsiento ofrmFiltro = new frmParametrosFiltroAsiento();
+            frmParametrosFiltroAsiento ofrmFiltro = new frmParametrosFiltroAsiento(_FechaInicial, _FechaFinal, _ModuloFuente, _TipoAsiento, (_Mayorizado == 1) ? true : false, (_Anulado == 1) ? true:false,(_CuadreTemporal==1) ? true:false);
             ofrmFiltro.FormClosed += OfrmFiltro_FormClosed;
             ofrmFiltro.ShowDialog();
         }
@@ -121,12 +129,26 @@ namespace CG
      
         private void BtnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+         if (_currentRow != null)
+            {
+                frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
+                ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
+                ofrmAsiento.ShowDialog();
+
+            }
+        }
+
+        private void OfrmAsiento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            PopulateGrid();
         }
 
         private void BtnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            frmAsiento ofrmAsiento = new frmAsiento();
+            ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
+            ofrmAsiento.ShowDialog();
+
         }
 
 
