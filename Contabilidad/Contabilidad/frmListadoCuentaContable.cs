@@ -625,6 +625,9 @@ namespace CG
             }
         }
 
-        
+        private void btnGuardar_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

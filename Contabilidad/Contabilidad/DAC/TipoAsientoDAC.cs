@@ -58,13 +58,6 @@ namespace CG
         public static DataSet GetData()
         {
             DataSet DS = CreateDataSet();
-            //oAdaptador.SelectCommand.Parameters["@IDCentro"].Value = IDCentro;
-            //oAdaptador.SelectCommand.Parameters["@Nivel1"].Value = Nivel1;
-            //oAdaptador.SelectCommand.Parameters["@Nivel2"].Value = Nivel2;
-            //oAdaptador.SelectCommand.Parameters["@Nivel3"].Value = Nivel3;
-            //oAdaptador.SelectCommand.Parameters["@Descr"].Value = Descr;
-            //oAdaptador.SelectCommand.Parameters["@Acumulador"].Value = Acumulador;
-
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }

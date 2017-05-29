@@ -110,6 +110,12 @@
     <Compile Include="frmCreaEjercicio.Designer.cs">
       <DependentUpon>frmCreaEjercicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmListadoAsientoDiario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoAsientoDiario.Designer.cs">
+      <DependentUpon>frmListadoAsientoDiario.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListadoCentroCosto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,12 @@
     </Compile>
     <Compile Include="frmListadoPeriodos.Designer.cs">
       <DependentUpon>frmListadoPeriodos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmParametrosFiltroAsiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmParametrosFiltroAsiento.Designer.cs">
+      <DependentUpon>frmParametrosFiltroAsiento.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +161,9 @@
     <EmbeddedResource Include="frmCreaEjercicio.resx">
       <DependentUpon>frmCreaEjercicio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoAsientoDiario.resx">
+      <DependentUpon>frmListadoAsientoDiario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListadoCentroCosto.resx">
       <DependentUpon>frmListadoCentroCosto.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoPeriodos.resx">
       <DependentUpon>frmListadoPeriodos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmParametrosFiltroAsiento.resx">
+      <DependentUpon>frmParametrosFiltroAsiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

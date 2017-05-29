@@ -96,17 +96,14 @@ namespace CG
 
         public static DataSet GetDataByCriterio(DateTime FechaInicial,DateTime FechaFinal,String Tipo,int Mayorizado,int Anulado,String ModuloFuente, int CuadreTemporal)
         {
-            String strSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, " +
-                            "Concepto, Mayorizado, Anulado, TipoCambio, ModuloFuente, CuadreTemporal " +
-                            "  FROM dbo.cntAsiento WHERE Fecha BETWEEN @FechaInicial AND @FechaFinal  AND (Tipo = @Tipo OR @Tipo	='*') " +
-                            "AND(Mayorizado = @Mayorizado OR @Mayorizado = -1) AND(Anulado = @Anulado OR @Anulado = -1) AND(ModuloFuente = @ModuloFuente OR @ModuloFuente = '*') " +
-                            "AND(CuadreTemporal = @CuadreTemporal OR @CuadreTemporal = -1)";
+            String strSQL = "dbo.cntGetAsientoByCriterio";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
             oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
             oCmd.Parameters.Add(new SqlParameter("@Tipo", Tipo));
             oCmd.Parameters.Add(new SqlParameter("@Mayorizado", Mayorizado));
+            oCmd.Parameters.Add(new SqlParameter("@ModuloFuente", ModuloFuente));
             oCmd.Parameters.Add(new SqlParameter("@Anulado", Anulado));
             oCmd.Parameters.Add(new SqlParameter("@CuadreTemporal", CuadreTemporal));
 
