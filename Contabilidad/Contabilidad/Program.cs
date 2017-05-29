@@ -17,7 +17,7 @@ namespace CG
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmAsiento("CG0000000016"));
-            Application.Run(new frmListadoAsientoDiario());
+            Application.Run(new frmParametrosContables());
             //Application.Run(new frmListadoCuentaContable());
         }
     }
