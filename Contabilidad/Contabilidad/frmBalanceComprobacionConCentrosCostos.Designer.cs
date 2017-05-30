@@ -32,77 +32,77 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.checkEdit2 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit3 = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.chkImprimirUnidades = new DevExpress.XtraEditors.CheckEdit();
+            this.chkSaldoAntesCierre = new DevExpress.XtraEditors.CheckEdit();
+            this.chkIncluirAsientosdeDiario = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
+            this.dgMoneda = new DevExpress.XtraEditors.RadioGroup();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.dateEdit2 = new DevExpress.XtraEditors.DateEdit();
+            this.dtpFechaFinal = new DevExpress.XtraEditors.DateEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.dtpFechaInicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.searchLookUpEdit2 = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.checkEdit4 = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.radioGroup2 = new DevExpress.XtraEditors.RadioGroup();
+            this.rgCuentasSinMovimiento = new DevExpress.XtraEditors.RadioGroup();
+            this.chkSolodeMayor = new DevExpress.XtraEditors.CheckEdit();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.slkupCuentaContableHasta = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.slkupCuentaContableDesde = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
+            this.dgCentroSinMovimiento = new DevExpress.XtraEditors.RadioGroup();
+            this.chkDetallarCuentasqueAceptenmovimietos = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.searchLookUpEdit3 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCentroCostoHasta = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit4 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkpCentroCostoDesde = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.checkEdit5 = new DevExpress.XtraEditors.CheckEdit();
-            this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
-            this.radioGroup3 = new DevExpress.XtraEditors.RadioGroup();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkImprimirUnidades.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSaldoAntesCierre.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncluirAsientosdeDiario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMoneda.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
-            this.xtraTabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
-            this.groupControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgCuentasSinMovimiento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSolodeMayor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableHasta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableDesde.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgCentroSinMovimiento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDetallarCuentasqueAceptenmovimietos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
+            this.groupControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCentroCostoHasta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkpCentroCostoDesde.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -128,66 +128,66 @@
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.checkEdit2);
-            this.xtraTabPage1.Controls.Add(this.checkEdit3);
-            this.xtraTabPage1.Controls.Add(this.checkEdit1);
+            this.xtraTabPage1.Controls.Add(this.chkImprimirUnidades);
+            this.xtraTabPage1.Controls.Add(this.chkSaldoAntesCierre);
+            this.xtraTabPage1.Controls.Add(this.chkIncluirAsientosdeDiario);
             this.xtraTabPage1.Controls.Add(this.groupControl2);
             this.xtraTabPage1.Controls.Add(this.groupControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(486, 329);
             this.xtraTabPage1.Text = "General";
             // 
-            // checkEdit2
+            // chkImprimirUnidades
             // 
-            this.checkEdit2.Location = new System.Drawing.Point(23, 224);
-            this.checkEdit2.Name = "checkEdit2";
-            this.checkEdit2.Properties.Caption = "Imprimir Unidades";
-            this.checkEdit2.Size = new System.Drawing.Size(169, 19);
-            this.checkEdit2.TabIndex = 5;
+            this.chkImprimirUnidades.Location = new System.Drawing.Point(23, 224);
+            this.chkImprimirUnidades.Name = "chkImprimirUnidades";
+            this.chkImprimirUnidades.Properties.Caption = "Imprimir Unidades";
+            this.chkImprimirUnidades.Size = new System.Drawing.Size(169, 19);
+            this.chkImprimirUnidades.TabIndex = 5;
             // 
-            // checkEdit3
+            // chkSaldoAntesCierre
             // 
-            this.checkEdit3.Location = new System.Drawing.Point(325, 194);
-            this.checkEdit3.Name = "checkEdit3";
-            this.checkEdit3.Properties.Caption = "Saldo antes de cierre";
-            this.checkEdit3.Size = new System.Drawing.Size(126, 19);
-            this.checkEdit3.TabIndex = 5;
+            this.chkSaldoAntesCierre.Location = new System.Drawing.Point(325, 194);
+            this.chkSaldoAntesCierre.Name = "chkSaldoAntesCierre";
+            this.chkSaldoAntesCierre.Properties.Caption = "Saldo antes de cierre";
+            this.chkSaldoAntesCierre.Size = new System.Drawing.Size(126, 19);
+            this.chkSaldoAntesCierre.TabIndex = 5;
             // 
-            // checkEdit1
+            // chkIncluirAsientosdeDiario
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(23, 194);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Incluir asientos de diario";
-            this.checkEdit1.Size = new System.Drawing.Size(169, 19);
-            this.checkEdit1.TabIndex = 5;
+            this.chkIncluirAsientosdeDiario.Location = new System.Drawing.Point(23, 194);
+            this.chkIncluirAsientosdeDiario.Name = "chkIncluirAsientosdeDiario";
+            this.chkIncluirAsientosdeDiario.Properties.Caption = "Incluir asientos de diario";
+            this.chkIncluirAsientosdeDiario.Size = new System.Drawing.Size(169, 19);
+            this.chkIncluirAsientosdeDiario.TabIndex = 5;
             // 
             // groupControl2
             // 
-            this.groupControl2.Controls.Add(this.radioGroup1);
+            this.groupControl2.Controls.Add(this.dgMoneda);
             this.groupControl2.Location = new System.Drawing.Point(251, 69);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(200, 100);
             this.groupControl2.TabIndex = 4;
             this.groupControl2.Text = "Moneda";
             // 
-            // radioGroup1
+            // dgMoneda
             // 
-            this.radioGroup1.Location = new System.Drawing.Point(17, 31);
-            this.radioGroup1.Name = "radioGroup1";
-            this.radioGroup1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.radioGroup1.Properties.Appearance.Options.UseBackColor = true;
-            this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Cordoba"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Local"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Ambas")});
-            this.radioGroup1.Size = new System.Drawing.Size(168, 53);
-            this.radioGroup1.TabIndex = 0;
+            this.dgMoneda.Location = new System.Drawing.Point(17, 31);
+            this.dgMoneda.Name = "dgMoneda";
+            this.dgMoneda.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.dgMoneda.Properties.Appearance.Options.UseBackColor = true;
+            this.dgMoneda.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(0)), "Cordoba"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Local"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Ambas")});
+            this.dgMoneda.Size = new System.Drawing.Size(168, 53);
+            this.dgMoneda.TabIndex = 0;
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.dateEdit2);
+            this.groupControl1.Controls.Add(this.dtpFechaFinal);
             this.groupControl1.Controls.Add(this.labelControl3);
-            this.groupControl1.Controls.Add(this.dateEdit1);
+            this.groupControl1.Controls.Add(this.dtpFechaInicial);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Location = new System.Drawing.Point(23, 69);
             this.groupControl1.Name = "groupControl1";
@@ -195,17 +195,17 @@
             this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "Fechas";
             // 
-            // dateEdit2
+            // dtpFechaFinal
             // 
-            this.dateEdit2.EditValue = null;
-            this.dateEdit2.Location = new System.Drawing.Point(68, 64);
-            this.dateEdit2.Name = "dateEdit2";
-            this.dateEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpFechaFinal.EditValue = null;
+            this.dtpFechaFinal.Location = new System.Drawing.Point(68, 64);
+            this.dtpFechaFinal.Name = "dtpFechaFinal";
+            this.dtpFechaFinal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpFechaFinal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit2.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit2.TabIndex = 1;
+            this.dtpFechaFinal.Size = new System.Drawing.Size(100, 20);
+            this.dtpFechaFinal.TabIndex = 1;
             // 
             // labelControl3
             // 
@@ -215,17 +215,17 @@
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "Hasta:";
             // 
-            // dateEdit1
+            // dtpFechaInicial
             // 
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(68, 28);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpFechaInicial.EditValue = null;
+            this.dtpFechaInicial.Location = new System.Drawing.Point(68, 28);
+            this.dtpFechaInicial.Name = "dtpFechaInicial";
+            this.dtpFechaInicial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtpFechaInicial.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(100, 20);
-            this.dateEdit1.TabIndex = 0;
+            this.dtpFechaInicial.Size = new System.Drawing.Size(100, 20);
+            this.dtpFechaInicial.TabIndex = 0;
             // 
             // labelControl2
             // 
@@ -238,57 +238,51 @@
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.groupControl4);
-            this.xtraTabPage2.Controls.Add(this.checkEdit4);
+            this.xtraTabPage2.Controls.Add(this.chkSolodeMayor);
             this.xtraTabPage2.Controls.Add(this.groupControl3);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(486, 329);
             this.xtraTabPage2.Text = "Cuentas Contables";
             // 
-            // xtraTabPage3
+            // groupControl4
             // 
-            this.xtraTabPage3.Controls.Add(this.groupControl6);
-            this.xtraTabPage3.Controls.Add(this.checkEdit5);
-            this.xtraTabPage3.Controls.Add(this.groupControl5);
-            this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(486, 329);
-            this.xtraTabPage3.Text = "Centros de Costos";
+            this.groupControl4.Controls.Add(this.rgCuentasSinMovimiento);
+            this.groupControl4.Location = new System.Drawing.Point(266, 173);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(200, 100);
+            this.groupControl4.TabIndex = 2;
+            this.groupControl4.Text = "Cuentas sin Movimiento";
+            // 
+            // rgCuentasSinMovimiento
+            // 
+            this.rgCuentasSinMovimiento.Location = new System.Drawing.Point(18, 27);
+            this.rgCuentasSinMovimiento.Name = "rgCuentasSinMovimiento";
+            this.rgCuentasSinMovimiento.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Inlcuir Todas"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Incluir Cuentas con Saldo"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Excluir")});
+            this.rgCuentasSinMovimiento.Size = new System.Drawing.Size(166, 62);
+            this.rgCuentasSinMovimiento.TabIndex = 0;
+            // 
+            // chkSolodeMayor
+            // 
+            this.chkSolodeMayor.Location = new System.Drawing.Point(13, 170);
+            this.chkSolodeMayor.Name = "chkSolodeMayor";
+            this.chkSolodeMayor.Properties.Caption = "Solo de Mayor";
+            this.chkSolodeMayor.Size = new System.Drawing.Size(134, 19);
+            this.chkSolodeMayor.TabIndex = 1;
             // 
             // groupControl3
             // 
             this.groupControl3.Controls.Add(this.labelControl5);
             this.groupControl3.Controls.Add(this.labelControl4);
-            this.groupControl3.Controls.Add(this.searchLookUpEdit2);
-            this.groupControl3.Controls.Add(this.searchLookUpEdit1);
+            this.groupControl3.Controls.Add(this.slkupCuentaContableHasta);
+            this.groupControl3.Controls.Add(this.slkupCuentaContableDesde);
             this.groupControl3.Location = new System.Drawing.Point(13, 51);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Size = new System.Drawing.Size(450, 100);
             this.groupControl3.TabIndex = 0;
             this.groupControl3.Text = "Rango";
-            // 
-            // searchLookUpEdit1
-            // 
-            this.searchLookUpEdit1.Location = new System.Drawing.Point(70, 35);
-            this.searchLookUpEdit1.Name = "searchLookUpEdit1";
-            this.searchLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit1.Properties.View = this.searchLookUpEdit1View;
-            this.searchLookUpEdit1.Size = new System.Drawing.Size(354, 20);
-            this.searchLookUpEdit1.TabIndex = 0;
-            // 
-            // searchLookUpEdit1View
-            // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(19, 38);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(34, 13);
-            this.labelControl4.TabIndex = 1;
-            this.labelControl4.Text = "Desde:";
             // 
             // labelControl5
             // 
@@ -298,15 +292,23 @@
             this.labelControl5.TabIndex = 1;
             this.labelControl5.Text = "Hasta:";
             // 
-            // searchLookUpEdit2
+            // labelControl4
             // 
-            this.searchLookUpEdit2.Location = new System.Drawing.Point(70, 64);
-            this.searchLookUpEdit2.Name = "searchLookUpEdit2";
-            this.searchLookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.labelControl4.Location = new System.Drawing.Point(19, 38);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(34, 13);
+            this.labelControl4.TabIndex = 1;
+            this.labelControl4.Text = "Desde:";
+            // 
+            // slkupCuentaContableHasta
+            // 
+            this.slkupCuentaContableHasta.Location = new System.Drawing.Point(70, 64);
+            this.slkupCuentaContableHasta.Name = "slkupCuentaContableHasta";
+            this.slkupCuentaContableHasta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit2.Properties.View = this.gridView1;
-            this.searchLookUpEdit2.Size = new System.Drawing.Size(354, 20);
-            this.searchLookUpEdit2.TabIndex = 0;
+            this.slkupCuentaContableHasta.Properties.View = this.gridView1;
+            this.slkupCuentaContableHasta.Size = new System.Drawing.Size(354, 20);
+            this.slkupCuentaContableHasta.TabIndex = 0;
             // 
             // gridView1
             // 
@@ -315,40 +317,66 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // checkEdit4
+            // slkupCuentaContableDesde
             // 
-            this.checkEdit4.Location = new System.Drawing.Point(13, 170);
-            this.checkEdit4.Name = "checkEdit4";
-            this.checkEdit4.Properties.Caption = "Solo de Mayor";
-            this.checkEdit4.Size = new System.Drawing.Size(134, 19);
-            this.checkEdit4.TabIndex = 1;
+            this.slkupCuentaContableDesde.Location = new System.Drawing.Point(70, 35);
+            this.slkupCuentaContableDesde.Name = "slkupCuentaContableDesde";
+            this.slkupCuentaContableDesde.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupCuentaContableDesde.Properties.View = this.searchLookUpEdit1View;
+            this.slkupCuentaContableDesde.Size = new System.Drawing.Size(354, 20);
+            this.slkupCuentaContableDesde.TabIndex = 0;
             // 
-            // groupControl4
+            // searchLookUpEdit1View
             // 
-            this.groupControl4.Controls.Add(this.radioGroup2);
-            this.groupControl4.Location = new System.Drawing.Point(263, 173);
-            this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(200, 100);
-            this.groupControl4.TabIndex = 2;
-            this.groupControl4.Text = "Cuenas sin Movimiento";
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
-            // radioGroup2
+            // xtraTabPage3
             // 
-            this.radioGroup2.Location = new System.Drawing.Point(18, 27);
-            this.radioGroup2.Name = "radioGroup2";
-            this.radioGroup2.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Inlcuir Todas"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Incluir Cuentas con Saldo"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Excluir")});
-            this.radioGroup2.Size = new System.Drawing.Size(166, 62);
-            this.radioGroup2.TabIndex = 0;
+            this.xtraTabPage3.Controls.Add(this.groupControl6);
+            this.xtraTabPage3.Controls.Add(this.chkDetallarCuentasqueAceptenmovimietos);
+            this.xtraTabPage3.Controls.Add(this.groupControl5);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(486, 329);
+            this.xtraTabPage3.Text = "Centros de Costos";
+            // 
+            // groupControl6
+            // 
+            this.groupControl6.Controls.Add(this.dgCentroSinMovimiento);
+            this.groupControl6.Location = new System.Drawing.Point(262, 171);
+            this.groupControl6.Name = "groupControl6";
+            this.groupControl6.Size = new System.Drawing.Size(200, 100);
+            this.groupControl6.TabIndex = 3;
+            this.groupControl6.Text = "Centros sin Movimiento";
+            // 
+            // dgCentroSinMovimiento
+            // 
+            this.dgCentroSinMovimiento.Location = new System.Drawing.Point(18, 27);
+            this.dgCentroSinMovimiento.Name = "dgCentroSinMovimiento";
+            this.dgCentroSinMovimiento.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Inlcuir Todas"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Incluir Centros con Saldo"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(3)), "Excluir")});
+            this.dgCentroSinMovimiento.Size = new System.Drawing.Size(166, 62);
+            this.dgCentroSinMovimiento.TabIndex = 0;
+            // 
+            // chkDetallarCuentasqueAceptenmovimietos
+            // 
+            this.chkDetallarCuentasqueAceptenmovimietos.Location = new System.Drawing.Point(13, 168);
+            this.chkDetallarCuentasqueAceptenmovimietos.Name = "chkDetallarCuentasqueAceptenmovimietos";
+            this.chkDetallarCuentasqueAceptenmovimietos.Properties.Caption = "Detallar solo cuentas que aceptan movmiento";
+            this.chkDetallarCuentasqueAceptenmovimietos.Size = new System.Drawing.Size(258, 19);
+            this.chkDetallarCuentasqueAceptenmovimietos.TabIndex = 2;
             // 
             // groupControl5
             // 
             this.groupControl5.Controls.Add(this.labelControl6);
             this.groupControl5.Controls.Add(this.labelControl7);
-            this.groupControl5.Controls.Add(this.searchLookUpEdit3);
-            this.groupControl5.Controls.Add(this.searchLookUpEdit4);
+            this.groupControl5.Controls.Add(this.slkupCentroCostoHasta);
+            this.groupControl5.Controls.Add(this.slkpCentroCostoDesde);
             this.groupControl5.Location = new System.Drawing.Point(13, 52);
             this.groupControl5.Name = "groupControl5";
             this.groupControl5.Size = new System.Drawing.Size(450, 100);
@@ -371,15 +399,15 @@
             this.labelControl7.TabIndex = 1;
             this.labelControl7.Text = "Desde:";
             // 
-            // searchLookUpEdit3
+            // slkupCentroCostoHasta
             // 
-            this.searchLookUpEdit3.Location = new System.Drawing.Point(70, 64);
-            this.searchLookUpEdit3.Name = "searchLookUpEdit3";
-            this.searchLookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCentroCostoHasta.Location = new System.Drawing.Point(70, 64);
+            this.slkupCentroCostoHasta.Name = "slkupCentroCostoHasta";
+            this.slkupCentroCostoHasta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit3.Properties.View = this.gridView2;
-            this.searchLookUpEdit3.Size = new System.Drawing.Size(354, 20);
-            this.searchLookUpEdit3.TabIndex = 0;
+            this.slkupCentroCostoHasta.Properties.View = this.gridView2;
+            this.slkupCentroCostoHasta.Size = new System.Drawing.Size(354, 20);
+            this.slkupCentroCostoHasta.TabIndex = 0;
             // 
             // gridView2
             // 
@@ -388,15 +416,15 @@
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit4
+            // slkpCentroCostoDesde
             // 
-            this.searchLookUpEdit4.Location = new System.Drawing.Point(70, 35);
-            this.searchLookUpEdit4.Name = "searchLookUpEdit4";
-            this.searchLookUpEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkpCentroCostoDesde.Location = new System.Drawing.Point(70, 35);
+            this.slkpCentroCostoDesde.Name = "slkpCentroCostoDesde";
+            this.slkpCentroCostoDesde.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit4.Properties.View = this.gridView3;
-            this.searchLookUpEdit4.Size = new System.Drawing.Size(354, 20);
-            this.searchLookUpEdit4.TabIndex = 0;
+            this.slkpCentroCostoDesde.Properties.View = this.gridView3;
+            this.slkpCentroCostoDesde.Size = new System.Drawing.Size(354, 20);
+            this.slkpCentroCostoDesde.TabIndex = 0;
             // 
             // gridView3
             // 
@@ -404,34 +432,6 @@
             this.gridView3.Name = "gridView3";
             this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView3.OptionsView.ShowGroupPanel = false;
-            // 
-            // checkEdit5
-            // 
-            this.checkEdit5.Location = new System.Drawing.Point(13, 168);
-            this.checkEdit5.Name = "checkEdit5";
-            this.checkEdit5.Properties.Caption = "Detallar solo cuentas que aceptan movmiento";
-            this.checkEdit5.Size = new System.Drawing.Size(258, 19);
-            this.checkEdit5.TabIndex = 2;
-            // 
-            // groupControl6
-            // 
-            this.groupControl6.Controls.Add(this.radioGroup3);
-            this.groupControl6.Location = new System.Drawing.Point(263, 171);
-            this.groupControl6.Name = "groupControl6";
-            this.groupControl6.Size = new System.Drawing.Size(200, 100);
-            this.groupControl6.TabIndex = 3;
-            this.groupControl6.Text = "Cuenas sin Movimiento";
-            // 
-            // radioGroup3
-            // 
-            this.radioGroup3.Location = new System.Drawing.Point(18, 27);
-            this.radioGroup3.Name = "radioGroup3";
-            this.radioGroup3.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Inlcuir Todas"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Incluir Cuentas con Saldo"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Excluir")});
-            this.radioGroup3.Size = new System.Drawing.Size(166, 62);
-            this.radioGroup3.TabIndex = 0;
             // 
             // simpleButton1
             // 
@@ -465,43 +465,43 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkImprimirUnidades.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSaldoAntesCierre.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIncluirAsientosdeDiario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMoneda.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
-            this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rgCuentasSinMovimiento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSolodeMayor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableHasta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
-            this.groupControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableDesde.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
+            this.groupControl6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgCentroSinMovimiento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkDetallarCuentasqueAceptenmovimietos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             this.groupControl5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCentroCostoHasta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkpCentroCostoDesde.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
-            this.groupControl6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup3.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,37 +512,37 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit3;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
+        private DevExpress.XtraEditors.CheckEdit chkImprimirUnidades;
+        private DevExpress.XtraEditors.CheckEdit chkSaldoAntesCierre;
+        private DevExpress.XtraEditors.CheckEdit chkIncluirAsientosdeDiario;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.RadioGroup radioGroup1;
+        private DevExpress.XtraEditors.RadioGroup dgMoneda;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.DateEdit dateEdit2;
+        private DevExpress.XtraEditors.DateEdit dtpFechaFinal;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.DateEdit dateEdit1;
+        private DevExpress.XtraEditors.DateEdit dtpFechaInicial;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraEditors.GroupControl groupControl4;
-        private DevExpress.XtraEditors.RadioGroup radioGroup2;
-        private DevExpress.XtraEditors.CheckEdit checkEdit4;
+        private DevExpress.XtraEditors.RadioGroup rgCuentasSinMovimiento;
+        private DevExpress.XtraEditors.CheckEdit chkSolodeMayor;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit2;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaContableHasta;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit1;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaContableDesde;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraEditors.GroupControl groupControl6;
-        private DevExpress.XtraEditors.RadioGroup radioGroup3;
-        private DevExpress.XtraEditors.CheckEdit checkEdit5;
+        private DevExpress.XtraEditors.RadioGroup dgCentroSinMovimiento;
+        private DevExpress.XtraEditors.CheckEdit chkDetallarCuentasqueAceptenmovimietos;
         private DevExpress.XtraEditors.GroupControl groupControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit3;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCentroCostoHasta;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit4;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkpCentroCostoDesde;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
