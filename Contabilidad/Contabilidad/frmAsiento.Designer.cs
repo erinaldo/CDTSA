@@ -43,6 +43,12 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtDirenciaDolar = new DevExpress.XtraEditors.TextEdit();
+            this.txtCreditoDolar = new DevExpress.XtraEditors.TextEdit();
+            this.txtDebitoDolar = new DevExpress.XtraEditors.TextEdit();
+            this.txtDiferencia = new DevExpress.XtraEditors.TextEdit();
+            this.txtCreditoLocal = new DevExpress.XtraEditors.TextEdit();
+            this.txtDebitoLocal = new DevExpress.XtraEditors.TextEdit();
             this.txtAnuladoPor = new DevExpress.XtraEditors.TextEdit();
             this.txtFechaMayorizado = new DevExpress.XtraEditors.TextEdit();
             this.txtFechaCreacion = new DevExpress.XtraEditors.TextEdit();
@@ -87,11 +93,11 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.TabAuditoria = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -104,21 +110,15 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtDebitoLocal = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCreditoLocal = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtDiferencia = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtDebitoDolar = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCreditoDolar = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtDirenciaDolar = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -126,6 +126,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDirenciaDolar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoDolar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoDolar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiferencia.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoLocal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoLocal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).BeginInit();
@@ -157,11 +163,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabAuditoria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
@@ -174,21 +180,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoLocal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoLocal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiferencia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoDolar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoDolar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDirenciaDolar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
@@ -350,6 +350,60 @@
             this.layoutControl1.Size = new System.Drawing.Size(852, 514);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtDirenciaDolar
+            // 
+            this.txtDirenciaDolar.Location = new System.Drawing.Point(468, 465);
+            this.txtDirenciaDolar.MenuManager = this.ribbonControl;
+            this.txtDirenciaDolar.Name = "txtDirenciaDolar";
+            this.txtDirenciaDolar.Size = new System.Drawing.Size(194, 20);
+            this.txtDirenciaDolar.StyleController = this.layoutControl1;
+            this.txtDirenciaDolar.TabIndex = 28;
+            // 
+            // txtCreditoDolar
+            // 
+            this.txtCreditoDolar.Location = new System.Drawing.Point(276, 465);
+            this.txtCreditoDolar.MenuManager = this.ribbonControl;
+            this.txtCreditoDolar.Name = "txtCreditoDolar";
+            this.txtCreditoDolar.Size = new System.Drawing.Size(178, 20);
+            this.txtCreditoDolar.StyleController = this.layoutControl1;
+            this.txtCreditoDolar.TabIndex = 27;
+            // 
+            // txtDebitoDolar
+            // 
+            this.txtDebitoDolar.Location = new System.Drawing.Point(92, 465);
+            this.txtDebitoDolar.MenuManager = this.ribbonControl;
+            this.txtDebitoDolar.Name = "txtDebitoDolar";
+            this.txtDebitoDolar.Size = new System.Drawing.Size(170, 20);
+            this.txtDebitoDolar.StyleController = this.layoutControl1;
+            this.txtDebitoDolar.TabIndex = 26;
+            // 
+            // txtDiferencia
+            // 
+            this.txtDiferencia.Location = new System.Drawing.Point(468, 441);
+            this.txtDiferencia.MenuManager = this.ribbonControl;
+            this.txtDiferencia.Name = "txtDiferencia";
+            this.txtDiferencia.Size = new System.Drawing.Size(194, 20);
+            this.txtDiferencia.StyleController = this.layoutControl1;
+            this.txtDiferencia.TabIndex = 25;
+            // 
+            // txtCreditoLocal
+            // 
+            this.txtCreditoLocal.Location = new System.Drawing.Point(276, 441);
+            this.txtCreditoLocal.MenuManager = this.ribbonControl;
+            this.txtCreditoLocal.Name = "txtCreditoLocal";
+            this.txtCreditoLocal.Size = new System.Drawing.Size(178, 20);
+            this.txtCreditoLocal.StyleController = this.layoutControl1;
+            this.txtCreditoLocal.TabIndex = 24;
+            // 
+            // txtDebitoLocal
+            // 
+            this.txtDebitoLocal.Location = new System.Drawing.Point(92, 441);
+            this.txtDebitoLocal.MenuManager = this.ribbonControl;
+            this.txtDebitoLocal.Name = "txtDebitoLocal";
+            this.txtDebitoLocal.Size = new System.Drawing.Size(170, 20);
+            this.txtDebitoLocal.StyleController = this.layoutControl1;
+            this.txtDebitoLocal.TabIndex = 23;
             // 
             // txtAnuladoPor
             // 
@@ -845,17 +899,6 @@
             this.layoutControlItem8.Text = "Fecha:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(78, 13);
             // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.txtAsiento;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(133, 24);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(404, 24);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.Text = "Asiento:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(78, 13);
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtEstado;
@@ -864,6 +907,17 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(404, 24);
             this.layoutControlItem7.Text = "Estado:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(78, 13);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.slkupTipo;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem10.MinSize = new System.Drawing.Size(133, 24);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(808, 24);
+            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem10.Text = "Tipo:";
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(78, 13);
             // 
             // layoutControlItem1
             // 
@@ -876,6 +930,17 @@
             this.layoutControlItem1.Text = "Fecha:";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(78, 13);
             // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.txtAsiento;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(133, 24);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(404, 24);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.Text = "Asiento:";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(78, 13);
+            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtTipoCambio;
@@ -884,17 +949,6 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(404, 24);
             this.layoutControlItem2.Text = "Tipo Cambio:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(78, 13);
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.slkupTipo;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 96);
-            this.layoutControlItem10.MinSize = new System.Drawing.Size(133, 24);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(808, 24);
-            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem10.Text = "Tipo:";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(78, 13);
             // 
             // TabAuditoria
             // 
@@ -1010,15 +1064,6 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // txtDebitoLocal
-            // 
-            this.txtDebitoLocal.Location = new System.Drawing.Point(92, 441);
-            this.txtDebitoLocal.MenuManager = this.ribbonControl;
-            this.txtDebitoLocal.Name = "txtDebitoLocal";
-            this.txtDebitoLocal.Size = new System.Drawing.Size(170, 20);
-            this.txtDebitoLocal.StyleController = this.layoutControl1;
-            this.txtDebitoLocal.TabIndex = 23;
-            // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.txtDebitoLocal;
@@ -1029,15 +1074,6 @@
             this.layoutControlItem18.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem18.TextSize = new System.Drawing.Size(78, 13);
             // 
-            // txtCreditoLocal
-            // 
-            this.txtCreditoLocal.Location = new System.Drawing.Point(276, 441);
-            this.txtCreditoLocal.MenuManager = this.ribbonControl;
-            this.txtCreditoLocal.Name = "txtCreditoLocal";
-            this.txtCreditoLocal.Size = new System.Drawing.Size(178, 20);
-            this.txtCreditoLocal.StyleController = this.layoutControl1;
-            this.txtCreditoLocal.TabIndex = 24;
-            // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.txtCreditoLocal;
@@ -1047,16 +1083,6 @@
             this.layoutControlItem19.Text = "Total Creditos";
             this.layoutControlItem19.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem19.TextSize = new System.Drawing.Size(78, 13);
-            // 
-            // txtDiferencia
-            // 
-            this.txtDiferencia.Location = new System.Drawing.Point(468, 441);
-            this.txtDiferencia.MenuManager = this.ribbonControl;
-            this.txtDiferencia.Name = "txtDiferencia";
-            this.txtDiferencia.Size = new System.Drawing.Size(194, 20);
-            this.txtDiferencia.StyleController = this.layoutControl1;
-            this.txtDiferencia.TabIndex = 25;
-            
             // 
             // layoutControlItem20
             // 
@@ -1109,15 +1135,6 @@
             this.emptySpaceItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtDebitoDolar
-            // 
-            this.txtDebitoDolar.Location = new System.Drawing.Point(92, 465);
-            this.txtDebitoDolar.MenuManager = this.ribbonControl;
-            this.txtDebitoDolar.Name = "txtDebitoDolar";
-            this.txtDebitoDolar.Size = new System.Drawing.Size(170, 20);
-            this.txtDebitoDolar.StyleController = this.layoutControl1;
-            this.txtDebitoDolar.TabIndex = 26;
-            // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.txtDebitoDolar;
@@ -1127,15 +1144,6 @@
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
-            // txtCreditoDolar
-            // 
-            this.txtCreditoDolar.Location = new System.Drawing.Point(276, 465);
-            this.txtCreditoDolar.MenuManager = this.ribbonControl;
-            this.txtCreditoDolar.Name = "txtCreditoDolar";
-            this.txtCreditoDolar.Size = new System.Drawing.Size(178, 20);
-            this.txtCreditoDolar.StyleController = this.layoutControl1;
-            this.txtCreditoDolar.TabIndex = 27;
-            // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.txtCreditoDolar;
@@ -1144,15 +1152,6 @@
             this.layoutControlItem22.Size = new System.Drawing.Size(182, 24);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
-            // 
-            // txtDirenciaDolar
-            // 
-            this.txtDirenciaDolar.Location = new System.Drawing.Point(468, 465);
-            this.txtDirenciaDolar.MenuManager = this.ribbonControl;
-            this.txtDirenciaDolar.Name = "txtDirenciaDolar";
-            this.txtDirenciaDolar.Size = new System.Drawing.Size(194, 20);
-            this.txtDirenciaDolar.StyleController = this.layoutControl1;
-            this.txtDirenciaDolar.TabIndex = 28;
             // 
             // layoutControlItem23
             // 
@@ -1199,11 +1198,17 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmAsiento";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmAsiento";
+            this.Text = "Asiento Contable";
             this.Load += new System.EventHandler(this.frmAsiento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtDirenciaDolar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoDolar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoDolar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiferencia.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoLocal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoLocal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).EndInit();
@@ -1235,11 +1240,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabAuditoria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
@@ -1252,21 +1257,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoLocal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoLocal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiferencia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoDolar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoDolar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDirenciaDolar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
