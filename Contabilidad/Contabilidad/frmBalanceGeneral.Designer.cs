@@ -247,7 +247,7 @@
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.labelControl1);
             this.Name = "frmBalanceGeneral";
-            this.Text = "frmBalanceGeneral";
+            this.Text = "Balance General";
             this.Load += new System.EventHandler(this.frmBalanceGeneral_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
