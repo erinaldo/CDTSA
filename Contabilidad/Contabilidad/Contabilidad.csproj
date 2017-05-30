@@ -36,9 +36,10 @@
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.2.Drawing, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2.UI, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -52,8 +53,10 @@
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.2.Extensions, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -75,6 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\frmConsultaSaldoCentroCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaSaldoCentroCosto.Designer.cs">
+      <DependentUpon>frmConsultaSaldoCentroCosto.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAC\AsientoDetalleDAC.cs" />
     <Compile Include="DAC\EjercicioDAC.cs" />
     <Compile Include="DAC\ParametrosContabilidadDAC.cs" />
@@ -101,17 +110,59 @@
     <Compile Include="frmAsiento.Designer.cs">
       <DependentUpon>frmAsiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBalanceComprobacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBalanceComprobacion.Designer.cs">
+      <DependentUpon>frmBalanceComprobacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBalanceComprobacionConCentrosCostos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBalanceComprobacionConCentrosCostos.Designer.cs">
+      <DependentUpon>frmBalanceComprobacionConCentrosCostos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBalanceGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBalanceGeneral.Designer.cs">
+      <DependentUpon>frmBalanceGeneral.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCentroACuenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCentroACuenta.Designer.cs">
       <DependentUpon>frmCentroACuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Consultas\frmConsultaSaldoCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaSaldoCuenta.Designer.cs">
+      <DependentUpon>frmConsultaSaldoCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaAsiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaAsiento.Designer.cs">
+      <DependentUpon>frmConsultaAsiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaSaldoCentro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaSaldoCentro.Designer.cs">
+      <DependentUpon>frmConsultaSaldoCentro.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCreaEjercicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCreaEjercicio.Designer.cs">
       <DependentUpon>frmCreaEjercicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEstadoResultado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEstadoResultado.Designer.cs">
+      <DependentUpon>frmEstadoResultado.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoAsientoDiario.cs">
       <SubType>Form</SubType>
@@ -149,6 +200,18 @@
     <Compile Include="frmParametrosFiltroAsiento.Designer.cs">
       <DependentUpon>frmParametrosFiltroAsiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteDelMayor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteDelMayor.Designer.cs">
+      <DependentUpon>frmReporteDelMayor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteMayorporAsiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteMayorporAsiento.Designer.cs">
+      <DependentUpon>frmReporteMayorporAsiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DAC\SubTipoCuentaDAC.cs" />
@@ -158,17 +221,41 @@
     <Compile Include="Reporte\Asiento\rptAsiento.Designer.cs">
       <DependentUpon>rptAsiento.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Consultas\frmConsultaSaldoCentroCosto.resx">
+      <DependentUpon>frmConsultaSaldoCentroCosto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAsiento.resx">
       <DependentUpon>frmAsiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAsociarCentroCuenta.resx">
       <DependentUpon>frmAsociarCentroCuenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBalanceComprobacion.resx">
+      <DependentUpon>frmBalanceComprobacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBalanceComprobacionConCentrosCostos.resx">
+      <DependentUpon>frmBalanceComprobacionConCentrosCostos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBalanceGeneral.resx">
+      <DependentUpon>frmBalanceGeneral.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCentroACuenta.resx">
       <DependentUpon>frmCentroACuenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmConsultaSaldoCuenta.resx">
+      <DependentUpon>frmConsultaSaldoCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmConsultaAsiento.resx">
+      <DependentUpon>frmConsultaAsiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmConsultaSaldoCentro.resx">
+      <DependentUpon>frmConsultaSaldoCentro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCreaEjercicio.resx">
       <DependentUpon>frmCreaEjercicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEstadoResultado.resx">
+      <DependentUpon>frmEstadoResultado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoAsientoDiario.resx">
       <DependentUpon>frmListadoAsientoDiario.cs</DependentUpon>
@@ -187,6 +274,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmParametrosFiltroAsiento.resx">
       <DependentUpon>frmParametrosFiltroAsiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteDelMayor.resx">
+      <DependentUpon>frmReporteDelMayor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteMayorporAsiento.resx">
+      <DependentUpon>frmReporteMayorporAsiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
