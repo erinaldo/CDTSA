@@ -206,8 +206,7 @@ namespace CG
                 oCmd.Parameters.Add("@Nivel5", SqlDbType.Int).Value = Nivel5;
                 oCmd.Parameters.Add("@Resultado", SqlDbType.BigInt).Direction = ParameterDirection.ReturnValue;
 
-                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
-
+            
                 if (oConn.State == ConnectionState.Closed)
                     oConn.Open();
                 oCmd.ExecuteNonQuery();
@@ -250,7 +249,6 @@ namespace CG
                 oCmd.Parameters.Add("@Nivel5", SqlDbType.NVarChar, 50).Value = Nivel5;
                 oCmd.Parameters.Add("@Resultado", SqlDbType.NVarChar, 50).Direction = ParameterDirection.ReturnValue;
 
-                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
 
                 if (oConn.State == ConnectionState.Closed)
                     oConn.Open();
@@ -294,8 +292,7 @@ namespace CG
                 oCmd.Parameters.Add("@Nivel5", SqlDbType.NVarChar, 50).Value = Nivel5;
                 oCmd.Parameters.Add("@Resultado", SqlDbType.NVarChar, 50).Direction = ParameterDirection.ReturnValue;
 
-                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
-
+             
                 if (oConn.State == ConnectionState.Closed)
                     oConn.Open();
                 oCmd.ExecuteNonQuery();

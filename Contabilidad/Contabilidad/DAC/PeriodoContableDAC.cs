@@ -17,9 +17,6 @@ namespace CG
             String getSQL = "SELECT IDEjercicio, Periodo, FechaFinal, Descr, FinPeriodoFiscal, Cerrado, AjustesCierreFiscal, Activo, PeriodoTrabajo " +
                             "FROM dbo.cntPeriodoContable WHERE (IDEjercicio = @IDEjercicio OR @IDEjercicio = -1) AND(Periodo = @Periodo OR @Periodo = '*')";
             
-            //String InsertSQL = "[dbo].[cntUpdateCentroCosto]";
-            //String UpdateSQL = "[dbo].[cntUpdateCentroCosto]";
-            //String DeleteSQL = "[dbo].[cntUpdateCentroCosto]";
 
             try
             {

@@ -11,6 +11,8 @@ using DevExpress.XtraBars;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
 using CG;
+using Security;
+
 namespace MainMenu
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -26,7 +28,41 @@ namespace MainMenu
 
         void frmMain_Load(object sender, EventArgs e)
         {
+           
             this.treeListContabilidad.DoubleClick += treeListContabilidad_DoubleClick;
+        
+            CargarPrivilegios();
+        }
+
+        
+        private void SetNodeDisable(String Tag){
+            try
+            {
+                foreach (TreeListNode node in treeListContabilidad.Nodes)
+                    if (node.Tag == Tag)
+                        node.Visible = false;
+        //                node.TreeList.ForeColor = Color.Gray;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CargarPrivilegios()
+        {
+            DataSet DS = new DataSet();
+            DataTable DT = new DataTable();
+            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+            DT = DS.Tables[0];
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.CatalogoCuentaContable, DT))
+                SetNodeDisable("optCuenta");
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.CatalogoCentroCosto, DT))
+                SetNodeDisable("optCentroCosto");  
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AsientodeDiario, DT))
+                SetNodeDisable("optTransaccionesDiario");  
+            
+          
         }
 
         void treeListContabilidad_DoubleClick(object sender, EventArgs e)
@@ -88,6 +124,7 @@ namespace MainMenu
                 case "treeListInventario":
                     TreeListNode nodeArticulo = tl.AppendNode(new object[] { "Articulo" }, -1, 11, 11, 11);
                     nodeArticulo.Tag = "optArticulo";
+                    
                     TreeListNode nodeLotes = tl.AppendNode(new object[] { "Lotes" }, -1, 11, 11, 11);
                     nodeLotes.Tag = "optLote";
                     TreeListNode nodeTransacciones = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
@@ -242,6 +279,7 @@ namespace MainMenu
             ShowPagesRibbonMan(true);
         }
 
+    
   
 
     }

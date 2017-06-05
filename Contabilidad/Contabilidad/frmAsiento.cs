@@ -14,6 +14,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using System.IO;
 using System.Xml.Serialization;
+using Security;
 
 namespace CG
 {
@@ -34,7 +35,7 @@ namespace CG
         private DataRow _currentRow;
         private String Accion = "NEW";
 
-        String sUsuario = "jespinoza";
+        String sUsuario = "administrator";
         String _Asiento = "";
         String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
@@ -49,6 +50,7 @@ namespace CG
             //Obtener el Siguiente consecutivo de la solicitud"
             _dsAsiento = AsientoDAC.GetDataEmpty();
             _dtAsiento = _dsAsiento.Tables[0];
+            sUsuario = (UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() != "") ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "Admin";
             _ModuloFuente = "CG";
             InicializarNuevoElemento();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -578,7 +580,7 @@ namespace CG
                 _currentRow["Tipo"] = this.slkupTipo.EditValue;
                 _currentRow["Fecha"] = this.dtpFecha.EditValue;
                 _currentRow["FechaHora"] = DateTime.Now;
-                _currentRow["Createdby"] = "jespinoza";
+                _currentRow["Createdby"] = sUsuario;
                 _currentRow["CreateDate"] = DateTime.Now;
                 //no incluir:
                 //mayorizado

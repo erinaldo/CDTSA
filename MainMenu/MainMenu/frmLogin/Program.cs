@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.UserSkins;
+using DevExpress.Skins;
+using DevExpress.LookAndFeel;
 
-namespace MainMenu
+namespace frmLogin
 {
     static class Program
     {
@@ -16,7 +18,11 @@ namespace MainMenu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CDTSA.frmLogin());
+
+            BonusSkins.Register();
+            SkinManager.EnableFormSkins();
+            UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
+            Application.Run(new Form1());
         }
     }
 }

@@ -13,11 +13,11 @@ namespace Security
     public static class UsuarioDAC
     {
         public static SqlDataAdapter oAdaptador = InicializarAdaptador();
-
+        public static DataSet _DS = new DataSet();
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, " +
-                             "Concepto, Mayorizado, Anulado, TipoCambio, ModuloFuente, CuadreTemporal  FROM dbo.cntAsiento WHERE (Asiento = @Asiento or @Asiento='*')";
+            String getSQL = "SELECT USUARIO,DESCR  FROM secUSUARIO " +
+                              "WHERE USUARIO = @Usuario AND[PASSWORD] = @Contrasena   AND ACTIVO = 1";
 
             try
             {
@@ -27,7 +27,8 @@ namespace Security
                 };
 
                 //Paremetros Select 
-                oAdaptador.SelectCommand.Parameters.Add("@Asiento", SqlDbType.NVarChar).SourceColumn = "Asiento";
+                oAdaptador.SelectCommand.Parameters.Add("@Usuario", SqlDbType.NVarChar).SourceColumn = "Usuario";
+                oAdaptador.SelectCommand.Parameters.Add("@Contrasena", SqlDbType.NVarChar).SourceColumn = "PASSWORD";
 
 
                 return oAdaptador;
@@ -39,6 +40,11 @@ namespace Security
         }
 
 
+        public static void SetDataSetUsuario(DataSet pDS)
+        {
+            _DS = pDS;
+        }
+
 
 
         private static DataSet CreateDataSet()
@@ -48,38 +54,33 @@ namespace Security
             return DS;
         }
 
-        public static DataSet GetDataByAsiento(String Aseinto)
+        public static DataSet ValidaUsuario(String Usuario,String Contrasena)
         {
             DataSet DS = CreateDataSet();
-            oAdaptador.SelectCommand.Parameters["@Asiento"].Value = Aseinto;
-
+            oAdaptador.SelectCommand.Parameters["@Usuario"].Value = Usuario;
+            oAdaptador.SelectCommand.Parameters["@Contrasena"].Value = Contrasena;
+        
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }
 
-        public static String InsertUpdateAsiento(String Operacion, String XML, String Asiento, String Tipo)
+        public static DataSet GetAccionModuloFromRole(int IDModulo, string Usuario)
         {
-            String sResult = "OK";
-            String strSQL = "dbo.cntUpdateAsientoWithXML";
-
+            
+            String strSQL = "dbo.secGetAccionesFromModuloUsuario";
+            DataSet DS = new DataSet();
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             try
             {
                 SqlDataAdapter oAdapter = new SqlDataAdapter(oCmd);
 
-                oCmd.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
-                oCmd.Parameters.Add("@XML", SqlDbType.Xml).Value = XML;
-                oCmd.Parameters.Add("@Asiento", SqlDbType.NVarChar, 20).Value = Asiento;
-                oCmd.Parameters["@Asiento"].Direction = ParameterDirection.InputOutput;
-                oCmd.Parameters.Add("@Tipo", SqlDbType.NChar).Value = Tipo;
+                oCmd.Parameters.Add("@IDModulo", SqlDbType.Int).Value = IDModulo;
+                oCmd.Parameters.Add("@Usuario", SqlDbType.NVarChar).Value = Usuario;
                 oCmd.CommandType = CommandType.StoredProcedure;
 
-
-                if (oCmd.Connection.State == ConnectionState.Closed)
-                    oCmd.Connection.Open();
-                oCmd.ExecuteNonQuery();
-                sResult = oCmd.Parameters["@Asiento"].Value.ToString();
-                return sResult;
+                oAdapter.Fill(DS, "Data");
+               
+                return DS;
 
             }
             catch (Exception ex)
@@ -87,67 +88,16 @@ namespace Security
                 throw ex;
 
             }
-            finally
-            {
-                if (oCmd.Connection.State == ConnectionState.Open)
-                    oCmd.Connection.Close();
-            }
+            
         }
 
 
-
-        public static DataSet GetDataByCriterio(DateTime FechaInicial, DateTime FechaFinal, String Tipo, int Mayorizado, int Anulado, String ModuloFuente, int CuadreTemporal)
+        public static bool PermiteAccion(int IDAccion, DataTable DT)
         {
-            String strSQL = "dbo.cntGetAsientoByCriterio";
-
-            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
-
-            oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
-            oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
-            oCmd.Parameters.Add(new SqlParameter("@Tipo", Tipo));
-            oCmd.Parameters.Add(new SqlParameter("@Mayorizado", Mayorizado));
-            oCmd.Parameters.Add(new SqlParameter("@ModuloFuente", ModuloFuente));
-            oCmd.Parameters.Add(new SqlParameter("@Anulado", Anulado));
-            oCmd.Parameters.Add(new SqlParameter("@CuadreTemporal", CuadreTemporal));
-            oCmd.CommandType = CommandType.StoredProcedure;
-
-            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
-            DataSet DS = CreateDataSet();
-
-            oAdap.Fill(DS.Tables["Data"]);
-            return DS;
+            DataView dv = new DataView();
+            dv.Table = DT;
+            dv.RowFilter = "IDAccion=" + IDAccion.ToString();
+            return (dv.ToTable().Rows.Count > 0);
         }
-
-
-        public static DataSet GetDataEmpty()
-        {
-            String strSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, " +
-                            "Concepto, Mayorizado, Anulado, TipoCambio, ModuloFuente, CuadreTemporal " +
-                            "  FROM dbo.cntAsiento where 1=3";
-
-            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
-            SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
-            DataSet DS = CreateDataSet();
-
-            oAdaptador.Fill(DS.Tables["Data"]);
-            return DS;
-        }
-
-        public static DataSet GetData(int IDCentro, String Nivel1, String Nivel2, String Nivel3, String Descr, int Acumulador)
-        {
-            DataSet DS = CreateDataSet();
-            oAdaptador.SelectCommand.Parameters["@IDCentro"].Value = IDCentro;
-            oAdaptador.SelectCommand.Parameters["@Nivel1"].Value = Nivel1;
-            oAdaptador.SelectCommand.Parameters["@Nivel2"].Value = Nivel2;
-            oAdaptador.SelectCommand.Parameters["@Nivel3"].Value = Nivel3;
-            oAdaptador.SelectCommand.Parameters["@Descr"].Value = Descr;
-            oAdaptador.SelectCommand.Parameters["@Acumulador"].Value = Acumulador;
-
-            oAdaptador.Fill(DS.Tables["Data"]);
-            return DS;
-        }
-
-
-
     }
 }

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
+using Security;
+
 
 namespace CG
 {
@@ -32,7 +34,7 @@ namespace CG
             InitializeComponent();
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.StartPosition = FormStartPosition.CenterScreen;
-
+            MessageBox.Show(Security.UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
         }
 
 

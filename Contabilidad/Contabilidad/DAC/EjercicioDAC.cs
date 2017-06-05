@@ -73,8 +73,7 @@ namespace CG
                 oCmd.Parameters.Add("@InicioOperaciones", SqlDbType.Bit, 50).Value = InicioOperaciones;
                 oCmd.Parameters.Add("@MesInicioOperaciones", SqlDbType.Int, 50).Value = MesInicioOperaciones;
                 
-                SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
-
+             
                 if (oConn.State == ConnectionState.Closed)
                     oConn.Open();
                  oCmd.ExecuteNonQuery();

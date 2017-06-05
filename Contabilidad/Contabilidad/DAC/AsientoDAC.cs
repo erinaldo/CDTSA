@@ -64,8 +64,6 @@ namespace CG
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             try
             {
-                SqlDataAdapter oAdapter = new SqlDataAdapter(oCmd);
-
                 oCmd.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
                 oCmd.Parameters.Add("@XML", SqlDbType.Xml).Value = XML;
                 oCmd.Parameters.Add("@Asiento", SqlDbType.NVarChar,20).Value = Asiento;

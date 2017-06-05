@@ -21,6 +21,7 @@ namespace CG
 
         private void frmBalanceGeneral_Load(object sender, EventArgs e)
         {
+
             DateTime fechatemp = DateTime.Today;
             this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
             this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);

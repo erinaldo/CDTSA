@@ -147,6 +147,15 @@ where U.IDModulo = @IDModulo and  U.Usuario = @Usuario
 GO
 
 
+Create procedure dbo.secGetAccionesFromModuloUsuario @IDModulo int, @Usuario nvarchar(50)
+as 
+Select distinct RA.IDRole, A.IDAccion,A.Descr DescrAccion, R.Descr DescrRole, U.IDModulo, U.Usuario
+From dbo.secRoleAccion RA inner join dbo.secRole R  on R.IDRole = RA.IDRole 
+inner join dbo.secUsuarioRole U on RA.IDRole = U.IDRole and R.IDRole = U.IDRole
+INNER JOIN dbo.secAccion A ON RA.IDACCION=A.IDAccion AND RA.IDMODULO=A.IDModulo
+where U.IDModulo = @IDModulo and  U.Usuario = @Usuario
+
+
 --INGRESO DE DATOS
 
 insert [dbo].[secUSUARIO](

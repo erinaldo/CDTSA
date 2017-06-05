@@ -23,17 +23,7 @@ namespace CG
                 {
                     SelectCommand = new SqlCommand(getSQL, ConnectionManager.GetConnection()),
                     
-                };
-
-                //Paremetros Select 
-                //oAdaptador.SelectCommand.Parameters.Add("@IDCentro", SqlDbType.Int).SourceColumn = "IDCentro";
-                //oAdaptador.SelectCommand.Parameters.Add("@Nivel1", SqlDbType.NChar).SourceColumn = "Nivel1";
-                //oAdaptador.SelectCommand.Parameters.Add("@Nivel2", SqlDbType.NChar).SourceColumn = "Nivel2";
-                //oAdaptador.SelectCommand.Parameters.Add("@Nivel3", SqlDbType.NChar).SourceColumn = "Nivel3";
-                //oAdaptador.SelectCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                //oAdaptador.SelectCommand.Parameters.Add("@Acumulador", SqlDbType.Int).SourceColumn = "Acumulador";
-
-
+                }
 
                
                 return oAdaptador;
@@ -57,13 +47,7 @@ namespace CG
         public static DataSet GetData()
         {
             DataSet DS = CreateDataSet();
-            //oAdaptador.SelectCommand.Parameters["@IDCentro"].Value = IDCentro;
-            //oAdaptador.SelectCommand.Parameters["@Nivel1"].Value = Nivel1;
-            //oAdaptador.SelectCommand.Parameters["@Nivel2"].Value = Nivel2;
-            //oAdaptador.SelectCommand.Parameters["@Nivel3"].Value = Nivel3;
-            //oAdaptador.SelectCommand.Parameters["@Descr"].Value = Descr;
-            //oAdaptador.SelectCommand.Parameters["@Acumulador"].Value = Acumulador;
-
+        
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }
