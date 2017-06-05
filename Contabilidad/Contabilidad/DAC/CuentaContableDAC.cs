@@ -136,9 +136,9 @@ namespace CG
                 
                 return oAdaptador;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -214,9 +214,9 @@ namespace CG
                 if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
                     ID = (int)oCmd.Parameters["@Resultado"].Value;
      
-            }catch (Exception ex)
+            }catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -258,9 +258,9 @@ namespace CG
                     ID = oCmd.Parameters["@Resultado"].Value.ToString();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -301,9 +301,9 @@ namespace CG
                     ID = Convert.ToInt32( oCmd.Parameters["@Resultado"].Value);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

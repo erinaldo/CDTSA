@@ -192,7 +192,6 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGuardar_ItemClick_1);
             // 
             // btnCancelar
             // 
@@ -869,6 +868,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoCuentaContable";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar1;
             this.Text = "frmListadoCuentaContable";
             this.Load += new System.EventHandler(this.frmListadoCuentaContable_Load);

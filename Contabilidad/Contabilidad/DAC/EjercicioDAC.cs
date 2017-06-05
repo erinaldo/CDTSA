@@ -31,9 +31,9 @@ namespace CG
                 
                 return oAdaptador;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -80,9 +80,9 @@ namespace CG
                 result = true;
                 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -112,9 +112,9 @@ namespace CG
                 oAdaptador.Fill(DS, "Data");
                 result = Convert.ToInt32(DS.Tables["Data"].Rows[0]["ID"]);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -140,9 +140,9 @@ namespace CG
                 SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
                 oAdaptador.Fill(DS, "Data");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             
             return DS;

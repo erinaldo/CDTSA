@@ -264,6 +264,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "frmCentroACuenta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAsociarCentroACuenta";
             this.Load += new System.EventHandler(this.frmAsociarCentroACuenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

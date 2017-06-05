@@ -34,12 +34,12 @@
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.grid = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.CentroCosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.CentroCosto = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -107,6 +107,32 @@
             this.gridView.OptionsSelection.MultiSelect = true;
             this.gridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             // 
+            // CentroCosto
+            // 
+            this.CentroCosto.Caption = "Centro Costo";
+            this.CentroCosto.FieldName = "Centro";
+            this.CentroCosto.MinWidth = 80;
+            this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.OptionsColumn.AllowEdit = false;
+            this.CentroCosto.OptionsColumn.FixedWidth = true;
+            this.CentroCosto.OptionsColumn.ReadOnly = true;
+            this.CentroCosto.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
+            this.CentroCosto.Visible = true;
+            this.CentroCosto.VisibleIndex = 1;
+            this.CentroCosto.Width = 90;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.Caption = "Descripción";
+            this.Descripcion.FieldName = "Descr";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.OptionsColumn.AllowEdit = false;
+            this.Descripcion.OptionsColumn.ReadOnly = true;
+            this.Descripcion.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
+            this.Descripcion.Visible = true;
+            this.Descripcion.VisibleIndex = 2;
+            this.Descripcion.Width = 254;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -148,32 +174,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // CentroCosto
-            // 
-            this.CentroCosto.Caption = "Centro Costo";
-            this.CentroCosto.FieldName = "Centro";
-            this.CentroCosto.MinWidth = 80;
-            this.CentroCosto.Name = "CentroCosto";
-            this.CentroCosto.OptionsColumn.AllowEdit = false;
-            this.CentroCosto.OptionsColumn.FixedWidth = true;
-            this.CentroCosto.OptionsColumn.ReadOnly = true;
-            this.CentroCosto.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
-            this.CentroCosto.Visible = true;
-            this.CentroCosto.VisibleIndex = 1;
-            this.CentroCosto.Width = 90;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.Caption = "Descripción";
-            this.Descripcion.FieldName = "Descr";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.OptionsColumn.AllowEdit = false;
-            this.Descripcion.OptionsColumn.ReadOnly = true;
-            this.Descripcion.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
-            this.Descripcion.Visible = true;
-            this.Descripcion.VisibleIndex = 2;
-            this.Descripcion.Width = 254;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
@@ -192,6 +192,7 @@
             this.ClientSize = new System.Drawing.Size(461, 370);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmAsociarCentroCuenta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de Centros de Costos";
             this.Load += new System.EventHandler(this.frmAsociarCentroCuenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

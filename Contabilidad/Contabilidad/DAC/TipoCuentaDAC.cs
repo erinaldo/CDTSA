@@ -21,16 +21,16 @@ namespace CG
             {
                 SqlDataAdapter oAdaptador = new SqlDataAdapter()
                 {
-                    SelectCommand = new SqlCommand(getSQL, ConnectionManager.GetConnection()),
-                    
-                }
+                    SelectCommand = new SqlCommand(getSQL, ConnectionManager.GetConnection())
+
+                };
 
                
                 return oAdaptador;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

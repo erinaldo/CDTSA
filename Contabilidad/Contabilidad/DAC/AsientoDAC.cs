@@ -31,9 +31,9 @@ namespace CG
                 
                 return oAdaptador;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -78,9 +78,9 @@ namespace CG
                 sResult = oCmd.Parameters["@Asiento"].Value.ToString();
                 return sResult;
 
-            } catch (Exception ex)
+            } catch (Exception)
             {
-                throw ex;
+                throw ;
                 
             }
             finally

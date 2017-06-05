@@ -23,6 +23,8 @@ namespace CG
         private DataTable _dtTipo;
         private DataTable _dtSubTipo;
         private DataTable _dtGrupo;
+        private DataTable _dtSecurity;
+        string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         private bool isEdition = false;
 
         DataRow currentRow;
@@ -53,16 +55,20 @@ namespace CG
         private void CargarPrivilegios()
         {
             DataSet DS = new DataSet();
-            DataTable DT = new DataTable();
-            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
-            DT = DS.Tables[0];
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCuentaContable, DT))
-                this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCuentaContable, DT))
-                this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCuentaContable, DT))
-                this.btnEliminar.Enabled = false;
+            DS = UsuarioDAC.GetAccionModuloFromRole(0,_sUsuario);
+            _dtSecurity = DS.Tables[0];
 
+            AplicarPrivilegios();
+        }
+
+        private void AplicarPrivilegios()
+        {
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCuentaContable, _dtSecurity))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCuentaContable, _dtSecurity))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCuentaContable, _dtSecurity))
+                this.btnEliminar.Enabled = false;
         }
 
 
@@ -375,6 +381,7 @@ namespace CG
                     _dsCuenta.AcceptChanges();
                     PopulateGrid();
                     HabilitarControles(false);
+                    AplicarPrivilegios();
                 }
                 else
                 {
@@ -419,6 +426,7 @@ namespace CG
 
                     ClearControls();
                     HabilitarControles(false);
+                    AplicarPrivilegios();
                     ColumnView view = this.gridView;
                     view.MoveLast();
                 }
@@ -437,6 +445,7 @@ namespace CG
         {
             isEdition = false;
             HabilitarControles(false);
+            AplicarPrivilegios();
             SetCurrentRow();
             lblStatus.Caption = "";
         }
@@ -588,7 +597,7 @@ namespace CG
                     bool EsMayor = Convert.ToBoolean((this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue);
                     //if (!EsMayor)
                     //{
-                    int i = -1;
+                    
         
                     if (dt.Rows[0]["Nivel4"].ToString() != "0")
                     {
@@ -645,9 +654,6 @@ namespace CG
             }
         }
 
-        private void btnGuardar_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
+      
     }
 }

@@ -459,6 +459,7 @@
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.xtraTabControl1);
             this.Name = "frmReporteMayorporAsiento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReporteMayorporAsiento";
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);

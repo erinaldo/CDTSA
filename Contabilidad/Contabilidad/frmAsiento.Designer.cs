@@ -356,6 +356,7 @@
             this.txtDirenciaDolar.Location = new System.Drawing.Point(468, 465);
             this.txtDirenciaDolar.MenuManager = this.ribbonControl;
             this.txtDirenciaDolar.Name = "txtDirenciaDolar";
+            this.txtDirenciaDolar.Properties.Mask.EditMask = "n4";
             this.txtDirenciaDolar.Size = new System.Drawing.Size(194, 20);
             this.txtDirenciaDolar.StyleController = this.layoutControl1;
             this.txtDirenciaDolar.TabIndex = 28;
@@ -365,6 +366,7 @@
             this.txtCreditoDolar.Location = new System.Drawing.Point(276, 465);
             this.txtCreditoDolar.MenuManager = this.ribbonControl;
             this.txtCreditoDolar.Name = "txtCreditoDolar";
+            this.txtCreditoDolar.Properties.Mask.EditMask = "n4";
             this.txtCreditoDolar.Size = new System.Drawing.Size(178, 20);
             this.txtCreditoDolar.StyleController = this.layoutControl1;
             this.txtCreditoDolar.TabIndex = 27;
@@ -374,6 +376,7 @@
             this.txtDebitoDolar.Location = new System.Drawing.Point(92, 465);
             this.txtDebitoDolar.MenuManager = this.ribbonControl;
             this.txtDebitoDolar.Name = "txtDebitoDolar";
+            this.txtDebitoDolar.Properties.Mask.EditMask = "n4";
             this.txtDebitoDolar.Size = new System.Drawing.Size(170, 20);
             this.txtDebitoDolar.StyleController = this.layoutControl1;
             this.txtDebitoDolar.TabIndex = 26;
@@ -383,6 +386,8 @@
             this.txtDiferencia.Location = new System.Drawing.Point(468, 441);
             this.txtDiferencia.MenuManager = this.ribbonControl;
             this.txtDiferencia.Name = "txtDiferencia";
+            this.txtDiferencia.Properties.Mask.EditMask = "n4";
+            this.txtDiferencia.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDiferencia.Size = new System.Drawing.Size(194, 20);
             this.txtDiferencia.StyleController = this.layoutControl1;
             this.txtDiferencia.TabIndex = 25;
@@ -392,6 +397,8 @@
             this.txtCreditoLocal.Location = new System.Drawing.Point(276, 441);
             this.txtCreditoLocal.MenuManager = this.ribbonControl;
             this.txtCreditoLocal.Name = "txtCreditoLocal";
+            this.txtCreditoLocal.Properties.Mask.EditMask = "n4";
+            this.txtCreditoLocal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtCreditoLocal.Size = new System.Drawing.Size(178, 20);
             this.txtCreditoLocal.StyleController = this.layoutControl1;
             this.txtCreditoLocal.TabIndex = 24;
@@ -401,6 +408,8 @@
             this.txtDebitoLocal.Location = new System.Drawing.Point(92, 441);
             this.txtDebitoLocal.MenuManager = this.ribbonControl;
             this.txtDebitoLocal.Name = "txtDebitoLocal";
+            this.txtDebitoLocal.Properties.Mask.EditMask = "n4";
+            this.txtDebitoLocal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDebitoLocal.Size = new System.Drawing.Size(170, 20);
             this.txtDebitoLocal.StyleController = this.layoutControl1;
             this.txtDebitoLocal.TabIndex = 23;
@@ -410,6 +419,7 @@
             this.txtAnuladoPor.Location = new System.Drawing.Point(415, 132);
             this.txtAnuladoPor.MenuManager = this.ribbonControl;
             this.txtAnuladoPor.Name = "txtAnuladoPor";
+            this.txtAnuladoPor.Properties.ReadOnly = true;
             this.txtAnuladoPor.Size = new System.Drawing.Size(403, 20);
             this.txtAnuladoPor.StyleController = this.layoutControl1;
             this.txtAnuladoPor.TabIndex = 22;
@@ -419,6 +429,7 @@
             this.txtFechaMayorizado.Location = new System.Drawing.Point(415, 108);
             this.txtFechaMayorizado.MenuManager = this.ribbonControl;
             this.txtFechaMayorizado.Name = "txtFechaMayorizado";
+            this.txtFechaMayorizado.Properties.ReadOnly = true;
             this.txtFechaMayorizado.Size = new System.Drawing.Size(403, 20);
             this.txtFechaMayorizado.StyleController = this.layoutControl1;
             this.txtFechaMayorizado.TabIndex = 21;
@@ -428,6 +439,7 @@
             this.txtFechaCreacion.Location = new System.Drawing.Point(415, 84);
             this.txtFechaCreacion.MenuManager = this.ribbonControl;
             this.txtFechaCreacion.Name = "txtFechaCreacion";
+            this.txtFechaCreacion.Properties.ReadOnly = true;
             this.txtFechaCreacion.Size = new System.Drawing.Size(403, 20);
             this.txtFechaCreacion.StyleController = this.layoutControl1;
             this.txtFechaCreacion.TabIndex = 20;
@@ -437,6 +449,7 @@
             this.txtAnuladorPor.Location = new System.Drawing.Point(105, 132);
             this.txtAnuladorPor.MenuManager = this.ribbonControl;
             this.txtAnuladorPor.Name = "txtAnuladorPor";
+            this.txtAnuladorPor.Properties.ReadOnly = true;
             this.txtAnuladorPor.Size = new System.Drawing.Size(275, 20);
             this.txtAnuladorPor.StyleController = this.layoutControl1;
             this.txtAnuladorPor.TabIndex = 19;
@@ -446,6 +459,7 @@
             this.txtMayorizadoPor.Location = new System.Drawing.Point(105, 108);
             this.txtMayorizadoPor.MenuManager = this.ribbonControl;
             this.txtMayorizadoPor.Name = "txtMayorizadoPor";
+            this.txtMayorizadoPor.Properties.ReadOnly = true;
             this.txtMayorizadoPor.Size = new System.Drawing.Size(275, 20);
             this.txtMayorizadoPor.StyleController = this.layoutControl1;
             this.txtMayorizadoPor.TabIndex = 18;
@@ -455,6 +469,7 @@
             this.txtCreadoPor.Location = new System.Drawing.Point(105, 84);
             this.txtCreadoPor.MenuManager = this.ribbonControl;
             this.txtCreadoPor.Name = "txtCreadoPor";
+            this.txtCreadoPor.Properties.ReadOnly = true;
             this.txtCreadoPor.Size = new System.Drawing.Size(275, 20);
             this.txtCreadoPor.StyleController = this.layoutControl1;
             this.txtCreadoPor.TabIndex = 17;
@@ -1198,6 +1213,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmAsiento";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asiento Contable";
             this.Load += new System.EventHandler(this.frmAsiento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();

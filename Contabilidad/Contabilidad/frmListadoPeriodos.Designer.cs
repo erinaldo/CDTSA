@@ -316,6 +316,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "frmListadoPeriodos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListadoPeriodos";
             this.Load += new System.EventHandler(this.frmListadoPeriodos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

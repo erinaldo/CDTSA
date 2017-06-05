@@ -461,6 +461,7 @@
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.labelControl1);
             this.Name = "frmBalanceComprobacionConCentrosCostos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Balance de Comprobación de centros de costos";
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);

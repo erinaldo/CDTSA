@@ -19,7 +19,7 @@ namespace CG
         DataRow currentRow;
         const String _tituloVentana = "Listado de Centros de Costos Asociados a una Cuenta";
         private DataRow _drCuenta;
-        private bool isEdition = false;
+
 
         public frmCentroACuenta(DataRow drCuenta)
         {

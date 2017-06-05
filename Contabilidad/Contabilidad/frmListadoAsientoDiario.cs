@@ -20,6 +20,7 @@ namespace CG
         int _Mayorizado;
         int _Anulado;
         int _CuadreTemporal;
+        string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         String _ModuloFuente;
         
         public frmListadoAsientoDiario()
@@ -33,7 +34,7 @@ namespace CG
         {
             DataSet DS = new DataSet();
             DataTable DT = new DataTable();
-            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+            DS = UsuarioDAC.GetAccionModuloFromRole(0, _sUsuario);
             DT = DS.Tables[0];
             if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, DT))
                 this.btnAgregar.Enabled = false;

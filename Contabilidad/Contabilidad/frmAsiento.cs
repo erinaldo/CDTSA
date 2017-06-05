@@ -30,12 +30,15 @@ namespace CG
         private DataTable _dtCuentas;
         private DataTable _dtCentros;
 
+        private DataTable _dtSecurity;
+
         private DataSet _dsEjercicioPeriodo;
 
         private DataRow _currentRow;
         private String Accion = "NEW";
 
-        String sUsuario = "administrator";
+
+        String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         String _Asiento = "";
         String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
@@ -50,7 +53,7 @@ namespace CG
             //Obtener el Siguiente consecutivo de la solicitud"
             _dsAsiento = AsientoDAC.GetDataEmpty();
             _dtAsiento = _dsAsiento.Tables[0];
-            sUsuario = (UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() != "") ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "Admin";
+            
             _ModuloFuente = "CG";
             InicializarNuevoElemento();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -61,6 +64,25 @@ namespace CG
             InitializeComponent();
             InicializarControles();
             CargarAsiento(Asiento);
+        }
+
+        private void CargarPrivilegios()
+        {
+            DataSet DS = new DataSet();
+            DataTable DT = new DataTable();
+            DS = UsuarioDAC.GetAccionModuloFromRole(0, sUsuario);
+            _dtSecurity= DS.Tables[0];
+
+        }
+
+        private void AplicarPrivilegios()
+        {
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, _dtSecurity))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarAsientodeDiario, _dtSecurity))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarAsientodeDiario, _dtSecurity))
+                this.btnEliminar.Enabled = false;
         }
 
         private void CargarAsiento(String Asiento)
@@ -229,7 +251,7 @@ namespace CG
 
                 HabilitarControles(false);
 
-               
+                CargarPrivilegios();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
                 EnlazarEventos();
 
@@ -264,6 +286,7 @@ namespace CG
                 if (Accion == "New")
                 {
                     HabilitarControles(true);
+                    AplicarPrivilegios();
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 }
@@ -297,9 +320,9 @@ namespace CG
             this.txtCreditoLocal.EditValue = dCredito.ToString("N4");
             this.txtDiferencia.EditValue = (dDebito - dCredito).ToString("N4");
             //Dolar
-            this.txtDebitoDolar.EditValue = (_TipoCambio == 0) ? "0" : (dDebito / _TipoCambio).ToString("N4");
-            this.txtCreditoDolar.EditValue = (_TipoCambio == 0) ? "0" : (dCredito / _TipoCambio).ToString("N4");
-            this.txtDirenciaDolar.EditValue = (_TipoCambio == 0) ? "0" : ((dDebito / _TipoCambio) - (dCredito / _TipoCambio)).ToString("N4");
+            this.txtDebitoDolar.EditValue = (_TipoCambio == 0) ? "0.0000" : (dDebito / _TipoCambio).ToString("N4");
+            this.txtCreditoDolar.EditValue = (_TipoCambio == 0) ? "0.0000" : (dCredito / _TipoCambio).ToString("N4");
+            this.txtDirenciaDolar.EditValue = (_TipoCambio == 0) ? "0.0000" : ((dDebito / _TipoCambio) - (dCredito / _TipoCambio)).ToString("N4");
 
             if ((dDebito - dCredito) != 0)
             {
@@ -537,6 +560,7 @@ namespace CG
             {
                 Accion = "Edit";
                 HabilitarControles(true);
+                AplicarPrivilegios();
             }
            
         }
@@ -628,6 +652,7 @@ namespace CG
                 Accion = "Edit";
                 CargarAsiento(_Asiento);
                 UpdateControlsFromDataRow(_currentRow);
+                AplicarPrivilegios();
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -646,6 +671,7 @@ namespace CG
             if (Accion == "Edit")
             {
                 HabilitarControles(false);
+                AplicarPrivilegios();
                 CargarAsiento(_currentRow["Asiento"].ToString());
                 UpdateControlsFromDataRow(_currentRow);
                 CalcularFooterAsiento();

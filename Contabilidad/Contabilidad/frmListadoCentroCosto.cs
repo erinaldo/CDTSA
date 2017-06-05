@@ -11,7 +11,10 @@ namespace CG
         private DataTable _dtCentro;
         private DataTable _lstCentroAcumuladores;
         private DataSet _dsCentro;
+        private DataTable _dtSecurity;
+
         DataRow currentRow;
+        string _sUsuario = (UsuarioDAC._DS.Tables.Count>0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         const String _tituloVentana = "Listado de Centros de Costos";
         private bool isEdition = false;
         public frmListadoCentroCosto()
@@ -25,16 +28,20 @@ namespace CG
         private void CargarPrivilegios()
         {
             DataSet DS = new DataSet();
-            DataTable DT = new DataTable();
-            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
-            DT = DS.Tables[0];
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCentroCosto, DT))
-                this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCentroCosto, DT))
-                this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCentroCosto, DT))
-                this.btnEliminar.Enabled = false;
+            DS = UsuarioDAC.GetAccionModuloFromRole(0,_sUsuario );
+            _dtSecurity = DS.Tables[0];
 
+            AplicarPrivilegios();
+        }
+
+        private void AplicarPrivilegios()
+        {
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCentroCosto, _dtSecurity))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCentroCosto, _dtSecurity))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCentroCosto, _dtSecurity))
+                this.btnEliminar.Enabled = false;
         }
 
 
@@ -271,6 +278,7 @@ namespace CG
                     _dsCentro.AcceptChanges();
                     PopulateGrid();
                     HabilitarControles(false);
+                    AplicarPrivilegios();
                 }
                 else
                 {
@@ -304,6 +312,7 @@ namespace CG
                     PopulateGrid();
                     ClearControls();
                     HabilitarControles(false);
+                    AplicarPrivilegios();
                     ColumnView view = this.gridView;
                     view.MoveLast();
                 }
@@ -321,6 +330,7 @@ namespace CG
         {
             isEdition = false;
             HabilitarControles(false);
+            AplicarPrivilegios();
             SetCurrentRow();
             lblStatus.Caption = "";
         }

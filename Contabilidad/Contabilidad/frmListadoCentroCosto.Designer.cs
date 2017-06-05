@@ -593,6 +593,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoCentroCosto";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar1;
             this.Text = " ";
             this.Load += new System.EventHandler(this.frmListadoCentroCosto_Load);

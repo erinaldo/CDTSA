@@ -675,6 +675,7 @@
             this.ClientSize = new System.Drawing.Size(660, 458);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmBalanceComprobacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Balance de Comprobacion";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

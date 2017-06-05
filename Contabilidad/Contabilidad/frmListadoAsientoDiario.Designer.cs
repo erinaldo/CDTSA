@@ -182,10 +182,11 @@
             // 
             this.Asiento.Caption = "Asiento";
             this.Asiento.FieldName = "Asiento";
+            this.Asiento.MinWidth = 90;
             this.Asiento.Name = "Asiento";
             this.Asiento.Visible = true;
             this.Asiento.VisibleIndex = 0;
-            this.Asiento.Width = 126;
+            this.Asiento.Width = 90;
             // 
             // Tipo
             // 
@@ -194,16 +195,18 @@
             this.Tipo.Name = "Tipo";
             this.Tipo.Visible = true;
             this.Tipo.VisibleIndex = 1;
-            this.Tipo.Width = 44;
+            this.Tipo.Width = 54;
             // 
             // Fecha
             // 
             this.Fecha.Caption = "Fecha";
             this.Fecha.FieldName = "Fecha";
+            this.Fecha.MaxWidth = 90;
+            this.Fecha.MinWidth = 80;
             this.Fecha.Name = "Fecha";
             this.Fecha.Visible = true;
             this.Fecha.VisibleIndex = 2;
-            this.Fecha.Width = 64;
+            this.Fecha.Width = 80;
             // 
             // Concepto
             // 
@@ -212,43 +215,48 @@
             this.Concepto.Name = "Concepto";
             this.Concepto.Visible = true;
             this.Concepto.VisibleIndex = 3;
-            this.Concepto.Width = 361;
+            this.Concepto.Width = 433;
             // 
             // Mayorizado
             // 
             this.Mayorizado.Caption = "Mayorizado";
             this.Mayorizado.FieldName = "Mayorizado";
+            this.Mayorizado.MaxWidth = 80;
+            this.Mayorizado.MinWidth = 70;
             this.Mayorizado.Name = "Mayorizado";
             this.Mayorizado.Visible = true;
             this.Mayorizado.VisibleIndex = 4;
-            this.Mayorizado.Width = 64;
+            this.Mayorizado.Width = 72;
             // 
             // Anulado
             // 
             this.Anulado.Caption = "Anulado";
             this.Anulado.FieldName = "Anulado";
+            this.Anulado.MinWidth = 50;
             this.Anulado.Name = "Anulado";
             this.Anulado.Visible = true;
             this.Anulado.VisibleIndex = 5;
-            this.Anulado.Width = 77;
+            this.Anulado.Width = 57;
             // 
             // CuadreTemporal
             // 
             this.CuadreTemporal.Caption = "Cuadre Temporal";
             this.CuadreTemporal.FieldName = "CuadreTemporal";
+            this.CuadreTemporal.MinWidth = 50;
             this.CuadreTemporal.Name = "CuadreTemporal";
             this.CuadreTemporal.Visible = true;
             this.CuadreTemporal.VisibleIndex = 6;
-            this.CuadreTemporal.Width = 94;
+            this.CuadreTemporal.Width = 53;
             // 
             // Usuario
             // 
             this.Usuario.Caption = "Usuario";
             this.Usuario.FieldName = "Createdby";
+            this.Usuario.MinWidth = 80;
             this.Usuario.Name = "Usuario";
             this.Usuario.Visible = true;
             this.Usuario.VisibleIndex = 7;
-            this.Usuario.Width = 99;
+            this.Usuario.Width = 95;
             // 
             // layoutControlGroup1
             // 
@@ -279,6 +287,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoAsientoDiario";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de Asientos Contables";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
