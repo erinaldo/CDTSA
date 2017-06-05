@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using Security;
 
 namespace CG
 {
@@ -27,10 +28,29 @@ namespace CG
             this.Load += FrmListadoAsientoDiario_Load;
         }
 
+
+        private void CargarPrivilegios()
+        {
+            DataSet DS = new DataSet();
+            DataTable DT = new DataTable();
+            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+            DT = DS.Tables[0];
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, DT))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarAsientodeDiario, DT))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarAsientodeDiario, DT))
+                this.btnEliminar.Enabled = false;
+            
+        }
+
+
         private void FrmListadoAsientoDiario_Load(object sender, EventArgs e)
         {
             try
             {
+
+
                 //HabilitarControles(false);
                 _FechaInicial = DateTime.Now.AddDays(-15);
                 _FechaFinal = DateTime.Now;
@@ -46,7 +66,7 @@ namespace CG
                 //PopulateGrid();
                 EnlazarEventos();
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
-
+                CargarPrivilegios();
 
             }
             catch (Exception ex)
@@ -74,21 +94,7 @@ namespace CG
             }
         }
 
-        //private void UpdateControlsFromCurrentRow(object currentRow)
-        //{
-        //    if (((bool)_currentRow["PeriodoTrabajo"]) == true)
-        //    {
-        //        this.btnAbrirPeriodo.Enabled = false;
-        //        this.btnCerrarPeriodo.Enabled = false;
-        //    }
-        //    if (Convert.ToBoolean(_currentRow["Cerrado"]) == true)
-        //    {
-        //        this.btnCerrarPeriodo.Enabled = false;
-        //        this.btnAbrirPeriodo.Enabled = false;
-        //    }
-        //    //if (Convert.ToBoolean(_currentRow[""]))
-
-        //}
+   
 
         private void EnlazarEventos()
         {

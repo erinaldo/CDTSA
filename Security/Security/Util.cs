@@ -21,8 +21,9 @@ namespace Security
             EliminarCentroCosto = 108,
             AsientodeDiario = 109,
             AgregarAsientodeDiario = 110,
-            MayorizarAsientodediario = 111,
-            VisualizarAsientoMayorizado = 112
+            EditarAsientodeDiario = 111,
+            EliminarAsientodeDiario = 112,
+            MayorizarAsientodeDiario = 113
             
         }
     }

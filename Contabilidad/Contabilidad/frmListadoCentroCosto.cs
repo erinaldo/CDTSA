@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Base;
+using Security;
 
 namespace CG
 {
@@ -21,6 +22,20 @@ namespace CG
             this.chkReadSystemOnly.Enabled = false;
         }
 
+        private void CargarPrivilegios()
+        {
+            DataSet DS = new DataSet();
+            DataTable DT = new DataTable();
+            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+            DT = DS.Tables[0];
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCentroCosto, DT))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCentroCosto, DT))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCentroCosto, DT))
+                this.btnEliminar.Enabled = false;
+
+        }
 
 
         private void EnlazarEventos()
@@ -44,6 +59,8 @@ namespace CG
                 PopulateGrid();
 
                 EnlazarEventos();
+
+                CargarPrivilegios();
 
             }
             catch (Exception ex)

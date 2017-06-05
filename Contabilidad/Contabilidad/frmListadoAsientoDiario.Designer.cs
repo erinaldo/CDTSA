@@ -32,7 +32,6 @@
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
@@ -68,7 +67,6 @@
             this.ribbonControl.ExpandCollapseItem,
             this.btnAgregar,
             this.btnEditar,
-            this.btnGuardar,
             this.btnCancelar,
             this.btnEliminar,
             this.lblStatus,
@@ -96,14 +94,6 @@
             this.btnEditar.Id = 2;
             this.btnEditar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEditar.LargeGlyph")));
             this.btnEditar.Name = "btnEditar";
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Caption = "Guardar";
-            this.btnGuardar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Glyph")));
-            this.btnGuardar.Id = 3;
-            this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
-            this.btnGuardar.Name = "btnGuardar";
             // 
             // btnCancelar
             // 
@@ -147,9 +137,8 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAgregar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEditar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnGuardar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -308,7 +297,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
         private DevExpress.XtraBars.BarButtonItem btnAgregar;
         private DevExpress.XtraBars.BarButtonItem btnEditar;
-        private DevExpress.XtraBars.BarButtonItem btnGuardar;
         private DevExpress.XtraBars.BarButtonItem btnCancelar;
         private DevExpress.XtraBars.BarButtonItem btnEliminar;
         private DevExpress.XtraBars.BarStaticItem lblStatus;

@@ -34,7 +34,7 @@ namespace CG
             InitializeComponent();
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.StartPosition = FormStartPosition.CenterScreen;
-            MessageBox.Show(Security.UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+            
         }
 
 
@@ -49,6 +49,22 @@ namespace CG
             this.btnAsociarCentroCosto.ItemClick += BtnAsociarCentroCosto_ItemClick;
             this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
+
+        private void CargarPrivilegios()
+        {
+            DataSet DS = new DataSet();
+            DataTable DT = new DataTable();
+            DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+            DT = DS.Tables[0];
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCuentaContable, DT))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCuentaContable, DT))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCuentaContable, DT))
+                this.btnEliminar.Enabled = false;
+
+        }
+
 
         private void BtnAsociarCentroCosto_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -105,6 +121,8 @@ namespace CG
                 this.txtNivel3.ReadOnly = true;
                 this.txtNivel4.ReadOnly = true;
                 this.txtNivel5.ReadOnly = true;
+
+                CargarPrivilegios();
 
 
             }
