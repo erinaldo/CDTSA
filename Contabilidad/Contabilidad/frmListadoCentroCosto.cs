@@ -52,7 +52,26 @@ namespace CG
             this.btnEliminar.ItemClick += btnEliminar_ItemClick;
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
+            this.btnExportar.ItemClick += BtnExportar_ItemClick;
             this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
+        }
+
+        private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string tempPath = System.IO.Path.GetTempPath();
+            String FileName = System.IO.Path.Combine(tempPath, "lstCentrosCostos.xlsx");
+            DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
+            {
+                SheetName = "Listado Centros de Costos"
+            };
+
+
+            this.gridView.ExportToXlsx(FileName, options);
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = FileName;
+            process.StartInfo.Verb = "Open";
+            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            process.Start();
         }
 
         private void frmListadoCentroCosto_Load(object sender, EventArgs e)

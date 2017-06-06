@@ -1211,6 +1211,7 @@
             this.ClientSize = new System.Drawing.Size(852, 657);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAsiento";
             this.Ribbon = this.ribbonControl;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

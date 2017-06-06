@@ -37,6 +37,7 @@
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnAsociarCentroCosto = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -159,9 +160,10 @@
             this.btnCancelar,
             this.btnEliminar,
             this.lblStatus,
-            this.btnAsociarCentroCosto});
+            this.btnAsociarCentroCosto,
+            this.btnExportar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 3;
+            this.ribbonControl.MaxItemId = 4;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -223,6 +225,14 @@
             this.btnAsociarCentroCosto.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAsociarCentroCosto.LargeGlyph")));
             this.btnAsociarCentroCosto.Name = "btnAsociarCentroCosto";
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Caption = "Exportar";
+            this.btnExportar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.Glyph")));
+            this.btnExportar.Id = 3;
+            this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
+            this.btnExportar.Name = "btnExportar";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -238,6 +248,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAsociarCentroCosto);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -866,6 +877,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonStatusBar1);
             this.Controls.Add(this.ribbonControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmListadoCuentaContable";
             this.Ribbon = this.ribbonControl;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -996,5 +1008,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Activo;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraBars.BarButtonItem btnAsociarCentroCosto;
+        private DevExpress.XtraBars.BarButtonItem btnExportar;
     }
 }

@@ -460,6 +460,7 @@
             this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.labelControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBalanceComprobacionConCentrosCostos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Balance de Comprobación de centros de costos";

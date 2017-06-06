@@ -246,6 +246,7 @@
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.labelControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBalanceGeneral";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Balance General";

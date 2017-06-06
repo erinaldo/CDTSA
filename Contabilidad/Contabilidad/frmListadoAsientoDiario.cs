@@ -63,6 +63,7 @@ namespace CG
                 _CuadreTemporal = 0;
 
                 this.gridView.FocusedRowChanged += GridView_FocusedRowChanged;
+                this.gridView.DoubleClick += GridView_DoubleClick;
 
                 //PopulateGrid();
                 EnlazarEventos();
@@ -73,6 +74,17 @@ namespace CG
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void GridView_DoubleClick(object sender, EventArgs e)
+        {
+            if (_currentRow != null)
+            {
+                frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
+                ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
+                ofrmAsiento.ShowDialog();
+
             }
         }
 
@@ -103,6 +115,25 @@ namespace CG
             this.btnEditar.ItemClick += BtnEditar_ItemClick;
             this.btnEliminar.ItemClick += BtnEliminar_ItemClick;
             this.btnFiltro.ItemClick += BtnFiltro_ItemClick;
+            this.btnExportar.ItemClick += BtnExportar_ItemClick;
+        }
+
+        private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string tempPath = System.IO.Path.GetTempPath();
+            String FileName = System.IO.Path.Combine(tempPath, "lstAsientos.xlsx");
+            DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
+            {
+                SheetName = "Listado Asientos"
+            };
+
+
+            this.gridView.ExportToXlsx(FileName, options);
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = FileName;
+            process.StartInfo.Verb = "Open";
+            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            process.Start();
         }
 
         private void BtnFiltro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

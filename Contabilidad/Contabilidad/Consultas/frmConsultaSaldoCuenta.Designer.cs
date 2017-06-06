@@ -316,6 +316,7 @@
             this.ClientSize = new System.Drawing.Size(574, 420);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConsultaSaldoCuenta";
             this.Ribbon = this.ribbonControl;
             this.Text = "Consulta de Saldos de Cuentas";

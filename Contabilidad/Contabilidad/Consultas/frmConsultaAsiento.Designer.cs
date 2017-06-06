@@ -591,6 +591,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConsultaSaldoCuentaContable";
             this.Text = "Consulta Saldo Cuenta";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

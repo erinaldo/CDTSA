@@ -521,6 +521,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.labelControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmReporteDelMayor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReporteDelMayor";
