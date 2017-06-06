@@ -26,6 +26,10 @@ namespace CG
         {
             try
             {
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.MaximizeBox = false;
+                this.StartPosition = FormStartPosition.CenterScreen;
+
                 //Obtener los datos
                 _dtCentroCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0]; //No estamos tomando los acumuladores
                 _dtCuentaContable = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];

@@ -145,6 +145,10 @@ namespace CG
         }
         private void FrmParametrosContables_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             CargarParametros();
             //configurar los searchlokup
             _lstCuentasContable = CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*",-1,-1,1,1,-1,-1).Tables["Data"];

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.ribbonHelp = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection();
-            this.navbarImageCollection = new DevExpress.Utils.ImageCollection();
+            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
+            this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.navBarControl = new DevExpress.XtraNavBar.NavBarControl();
             this.navGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.NavBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -195,7 +196,6 @@
             this.treeListContabilidad.Size = new System.Drawing.Size(198, 223);
             this.treeListContabilidad.StateImageList = this.navbarImageCollection;
             this.treeListContabilidad.TabIndex = 1;
-            
             // 
             // TreeListColumn1
             // 
@@ -331,8 +331,11 @@
             this.IsMdiContainer = true;
             this.Name = "frmMain";
             this.Ribbon = this.ribbon;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "frmMain";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).EndInit();

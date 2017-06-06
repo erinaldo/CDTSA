@@ -74,7 +74,12 @@ namespace CG
 
         private void frmCreaEjercicio_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             //Validar si ya existen periodos
+
             int IDEjercicio = EjercicioDAC.GetNextConsecutivo();
             if (IDEjercicio == -1)
             {

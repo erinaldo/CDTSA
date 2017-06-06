@@ -95,14 +95,12 @@ namespace MainMenu
                 case "optParametrosModuloContable":
                     frmParametrosContables ofrmParametrosContabilidad = new frmParametrosContables();
                     ofrmParametrosContabilidad.MdiParent = this;
-                    ofrmParametrosContabilidad.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmParametrosContabilidad.Show();
                     break;
                 case "optAbrirPeriodosCerrados":
                     frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
                     ofrmListadoPeriodos.MdiParent = this;
-                    ofrmListadoPeriodos.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmListadoPeriodos.Show();
                     break;
@@ -277,6 +275,11 @@ namespace MainMenu
         void ofrm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ShowPagesRibbonMan(true);
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
     

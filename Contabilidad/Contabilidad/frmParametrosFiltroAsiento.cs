@@ -84,6 +84,10 @@ namespace CG
 
         private void FrmParametrosFiltroAsiento_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             //Inicializar Fechas
             this.dtpDesde.EditValue = DateTime.Now.AddDays(-15);
             this.dtpHasta.EditValue = DateTime.Now;

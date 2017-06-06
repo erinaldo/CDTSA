@@ -83,6 +83,7 @@
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpMesFinPeriodoFiscal.Properties)).BeginInit();
@@ -130,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -155,9 +157,9 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 47);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(523, 197, 250, 350);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(809, 159, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(532, 349);
+            this.layoutControl1.Size = new System.Drawing.Size(551, 349);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -168,7 +170,7 @@
             this.dtpMesFinPeriodoFiscal.Name = "dtpMesFinPeriodoFiscal";
             this.dtpMesFinPeriodoFiscal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpMesFinPeriodoFiscal.Size = new System.Drawing.Size(342, 20);
+            this.dtpMesFinPeriodoFiscal.Size = new System.Drawing.Size(361, 20);
             this.dtpMesFinPeriodoFiscal.StyleController = this.layoutControl1;
             this.dtpMesFinPeriodoFiscal.TabIndex = 23;
             // 
@@ -216,14 +218,14 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(532, 47);
+            this.barDockControlTop.Size = new System.Drawing.Size(551, 47);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 396);
-            this.barDockControlBottom.Size = new System.Drawing.Size(532, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(551, 0);
             // 
             // barDockControlLeft
             // 
@@ -236,7 +238,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(532, 47);
+            this.barDockControlRight.Location = new System.Drawing.Point(551, 47);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 349);
             // 
             // dtpMesInicioPeriodoFiscal
@@ -246,7 +248,7 @@
             this.dtpMesInicioPeriodoFiscal.Name = "dtpMesInicioPeriodoFiscal";
             this.dtpMesInicioPeriodoFiscal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpMesInicioPeriodoFiscal.Size = new System.Drawing.Size(342, 20);
+            this.dtpMesInicioPeriodoFiscal.Size = new System.Drawing.Size(361, 20);
             this.dtpMesInicioPeriodoFiscal.StyleController = this.layoutControl1;
             this.dtpMesInicioPeriodoFiscal.TabIndex = 22;
             // 
@@ -254,24 +256,24 @@
             // 
             this.txtLogitudAsiento.Location = new System.Drawing.Point(166, 46);
             this.txtLogitudAsiento.Name = "txtLogitudAsiento";
-            this.txtLogitudAsiento.Size = new System.Drawing.Size(342, 20);
+            this.txtLogitudAsiento.Size = new System.Drawing.Size(361, 20);
             this.txtLogitudAsiento.StyleController = this.layoutControl1;
             this.txtLogitudAsiento.TabIndex = 19;
             // 
             // txtPredecesorCentro
             // 
-            this.txtPredecesorCentro.Location = new System.Drawing.Point(304, 70);
+            this.txtPredecesorCentro.Location = new System.Drawing.Point(335, 70);
             this.txtPredecesorCentro.Name = "txtPredecesorCentro";
-            this.txtPredecesorCentro.Size = new System.Drawing.Size(204, 20);
+            this.txtPredecesorCentro.Size = new System.Drawing.Size(192, 20);
             this.txtPredecesorCentro.StyleController = this.layoutControl1;
             this.txtPredecesorCentro.TabIndex = 18;
             // 
             // chkUsaPredecesorCentro
             // 
-            this.chkUsaPredecesorCentro.Location = new System.Drawing.Point(24, 70);
+            this.chkUsaPredecesorCentro.Location = new System.Drawing.Point(24, 69);
             this.chkUsaPredecesorCentro.Name = "chkUsaPredecesorCentro";
             this.chkUsaPredecesorCentro.Properties.Caption = "Usa Predecesor Centro";
-            this.chkUsaPredecesorCentro.Size = new System.Drawing.Size(134, 19);
+            this.chkUsaPredecesorCentro.Size = new System.Drawing.Size(139, 19);
             this.chkUsaPredecesorCentro.StyleController = this.layoutControl1;
             this.chkUsaPredecesorCentro.TabIndex = 17;
             // 
@@ -280,15 +282,15 @@
             this.chkUsaSeparadorCentro.Location = new System.Drawing.Point(24, 46);
             this.chkUsaSeparadorCentro.Name = "chkUsaSeparadorCentro";
             this.chkUsaSeparadorCentro.Properties.Caption = "Usa separador Centro";
-            this.chkUsaSeparadorCentro.Size = new System.Drawing.Size(134, 19);
+            this.chkUsaSeparadorCentro.Size = new System.Drawing.Size(139, 19);
             this.chkUsaSeparadorCentro.StyleController = this.layoutControl1;
             this.chkUsaSeparadorCentro.TabIndex = 16;
             // 
             // txtSeparadorCentro
             // 
-            this.txtSeparadorCentro.Location = new System.Drawing.Point(304, 46);
+            this.txtSeparadorCentro.Location = new System.Drawing.Point(335, 46);
             this.txtSeparadorCentro.Name = "txtSeparadorCentro";
-            this.txtSeparadorCentro.Size = new System.Drawing.Size(204, 20);
+            this.txtSeparadorCentro.Size = new System.Drawing.Size(192, 20);
             this.txtSeparadorCentro.StyleController = this.layoutControl1;
             this.txtSeparadorCentro.TabIndex = 15;
             // 
@@ -299,7 +301,7 @@
             this.slkupCuentaUtilidadAcumulada.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupCuentaUtilidadAcumulada.Properties.View = this.searchLookUpEdit2View;
-            this.slkupCuentaUtilidadAcumulada.Size = new System.Drawing.Size(342, 20);
+            this.slkupCuentaUtilidadAcumulada.Size = new System.Drawing.Size(361, 20);
             this.slkupCuentaUtilidadAcumulada.StyleController = this.layoutControl1;
             this.slkupCuentaUtilidadAcumulada.TabIndex = 14;
             // 
@@ -317,7 +319,7 @@
             this.slkupCuentaUtilidadPeriodo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupCuentaUtilidadPeriodo.Properties.View = this.searchLookUpEdit1View;
-            this.slkupCuentaUtilidadPeriodo.Size = new System.Drawing.Size(342, 20);
+            this.slkupCuentaUtilidadPeriodo.Size = new System.Drawing.Size(361, 20);
             this.slkupCuentaUtilidadPeriodo.StyleController = this.layoutControl1;
             this.slkupCuentaUtilidadPeriodo.TabIndex = 13;
             // 
@@ -332,7 +334,7 @@
             // 
             this.txtCantNivel5.Location = new System.Drawing.Point(166, 190);
             this.txtCantNivel5.Name = "txtCantNivel5";
-            this.txtCantNivel5.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel5.Size = new System.Drawing.Size(361, 20);
             this.txtCantNivel5.StyleController = this.layoutControl1;
             this.txtCantNivel5.TabIndex = 12;
             // 
@@ -340,7 +342,7 @@
             // 
             this.txtCantNivel4.Location = new System.Drawing.Point(166, 166);
             this.txtCantNivel4.Name = "txtCantNivel4";
-            this.txtCantNivel4.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel4.Size = new System.Drawing.Size(361, 20);
             this.txtCantNivel4.StyleController = this.layoutControl1;
             this.txtCantNivel4.TabIndex = 11;
             // 
@@ -348,7 +350,7 @@
             // 
             this.txtCantNivel3.Location = new System.Drawing.Point(166, 142);
             this.txtCantNivel3.Name = "txtCantNivel3";
-            this.txtCantNivel3.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel3.Size = new System.Drawing.Size(361, 20);
             this.txtCantNivel3.StyleController = this.layoutControl1;
             this.txtCantNivel3.TabIndex = 10;
             // 
@@ -356,7 +358,7 @@
             // 
             this.txtCantNivel2.Location = new System.Drawing.Point(166, 118);
             this.txtCantNivel2.Name = "txtCantNivel2";
-            this.txtCantNivel2.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel2.Size = new System.Drawing.Size(361, 20);
             this.txtCantNivel2.StyleController = this.layoutControl1;
             this.txtCantNivel2.TabIndex = 9;
             // 
@@ -364,15 +366,15 @@
             // 
             this.txtCantNivel1.Location = new System.Drawing.Point(166, 94);
             this.txtCantNivel1.Name = "txtCantNivel1";
-            this.txtCantNivel1.Size = new System.Drawing.Size(342, 20);
+            this.txtCantNivel1.Size = new System.Drawing.Size(361, 20);
             this.txtCantNivel1.StyleController = this.layoutControl1;
             this.txtCantNivel1.TabIndex = 8;
             // 
             // txtCaracterPredecesor
             // 
-            this.txtCaracterPredecesor.Location = new System.Drawing.Point(310, 70);
+            this.txtCaracterPredecesor.Location = new System.Drawing.Point(315, 70);
             this.txtCaracterPredecesor.Name = "txtCaracterPredecesor";
-            this.txtCaracterPredecesor.Size = new System.Drawing.Size(198, 20);
+            this.txtCaracterPredecesor.Size = new System.Drawing.Size(212, 20);
             this.txtCaracterPredecesor.StyleController = this.layoutControl1;
             this.txtCaracterPredecesor.TabIndex = 7;
             // 
@@ -381,15 +383,15 @@
             this.chkUsaPredecesor.Location = new System.Drawing.Point(24, 70);
             this.chkUsaPredecesor.Name = "chkUsaPredecesor";
             this.chkUsaPredecesor.Properties.Caption = "Usa Predecesor";
-            this.chkUsaPredecesor.Size = new System.Drawing.Size(140, 19);
+            this.chkUsaPredecesor.Size = new System.Drawing.Size(145, 19);
             this.chkUsaPredecesor.StyleController = this.layoutControl1;
             this.chkUsaPredecesor.TabIndex = 6;
             // 
             // txtSimboloSeparadorCuenta
             // 
-            this.txtSimboloSeparadorCuenta.Location = new System.Drawing.Point(310, 46);
+            this.txtSimboloSeparadorCuenta.Location = new System.Drawing.Point(315, 46);
             this.txtSimboloSeparadorCuenta.Name = "txtSimboloSeparadorCuenta";
-            this.txtSimboloSeparadorCuenta.Size = new System.Drawing.Size(198, 20);
+            this.txtSimboloSeparadorCuenta.Size = new System.Drawing.Size(212, 20);
             this.txtSimboloSeparadorCuenta.StyleController = this.layoutControl1;
             this.txtSimboloSeparadorCuenta.TabIndex = 5;
             // 
@@ -398,7 +400,7 @@
             this.chkUsaSeparadorCuenta.Location = new System.Drawing.Point(24, 46);
             this.chkUsaSeparadorCuenta.Name = "chkUsaSeparadorCuenta";
             this.chkUsaSeparadorCuenta.Properties.Caption = "Usa Separador Cuenta";
-            this.chkUsaSeparadorCuenta.Size = new System.Drawing.Size(140, 19);
+            this.chkUsaSeparadorCuenta.Size = new System.Drawing.Size(145, 19);
             this.chkUsaSeparadorCuenta.StyleController = this.layoutControl1;
             this.chkUsaSeparadorCuenta.TabIndex = 4;
             // 
@@ -410,16 +412,16 @@
             this.tabbedControlGroup1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(532, 349);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(551, 349);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tabbedControlGroup1
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup5;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
-            this.tabbedControlGroup1.Size = new System.Drawing.Size(512, 329);
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup4;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 3;
+            this.tabbedControlGroup1.Size = new System.Drawing.Size(531, 329);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup5,
             this.layoutControlGroup2,
@@ -434,7 +436,7 @@
             this.layoutControlItem17});
             this.layoutControlGroup5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
-            this.layoutControlGroup5.Size = new System.Drawing.Size(488, 283);
+            this.layoutControlGroup5.Size = new System.Drawing.Size(507, 283);
             this.layoutControlGroup5.Text = "General";
             // 
             // layoutControlItem16
@@ -442,7 +444,7 @@
             this.layoutControlItem16.Control = this.txtLogitudAsiento;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem16.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem16.Text = "Longitud Asiento Contable:";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -451,7 +453,7 @@
             this.layoutControlItem19.Control = this.dtpMesInicioPeriodoFiscal;
             this.layoutControlItem19.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem19.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem19.Text = "Mes Inicio Periodo Fiscal:";
             this.layoutControlItem19.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -460,7 +462,7 @@
             this.layoutControlItem17.Control = this.dtpMesFinPeriodoFiscal;
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(488, 235);
+            this.layoutControlItem17.Size = new System.Drawing.Size(507, 235);
             this.layoutControlItem17.Text = "Mes Fin Periodo Fiscal";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -478,7 +480,7 @@
             this.layoutControlItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(488, 283);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(507, 283);
             this.layoutControlGroup2.Text = "Configuración Cuenta Contable";
             // 
             // layoutControlItem1
@@ -486,7 +488,7 @@
             this.layoutControlItem1.Control = this.chkUsaSeparadorCuenta;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(144, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(149, 24);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -495,7 +497,7 @@
             this.layoutControlItem3.Control = this.chkUsaPredecesor;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(144, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(149, 24);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -504,7 +506,7 @@
             this.layoutControlItem5.Control = this.txtCantNivel1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem5.Text = "Cant Caracteres Nivel 1:";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -513,7 +515,7 @@
             this.layoutControlItem6.Control = this.txtCantNivel2;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem6.Text = "Cant Caracteres Nivel2:";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -522,7 +524,7 @@
             this.layoutControlItem7.Control = this.txtCantNivel3;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem7.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem7.Text = "Cant Carácteres Nivel3:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -531,7 +533,7 @@
             this.layoutControlItem8.Control = this.txtCantNivel4;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem8.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem8.Text = "Cant Carácteres Nivel4:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -540,25 +542,25 @@
             this.layoutControlItem9.Control = this.txtCantNivel5;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(488, 139);
+            this.layoutControlItem9.Size = new System.Drawing.Size(507, 139);
             this.layoutControlItem9.Text = "Cant Carácteres Nivel5:";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtCaracterPredecesor;
-            this.layoutControlItem4.Location = new System.Drawing.Point(144, 24);
+            this.layoutControlItem4.Location = new System.Drawing.Point(149, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(344, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(358, 24);
             this.layoutControlItem4.Text = "Carácter Predecesor:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtSimboloSeparadorCuenta;
-            this.layoutControlItem2.Location = new System.Drawing.Point(144, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(149, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(344, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(358, 24);
             this.layoutControlItem2.Text = "Simbolo Separador Cuenta";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -569,7 +571,7 @@
             this.layoutControlItem11});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(488, 283);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(507, 283);
             this.layoutControlGroup3.Text = "Cuentas EF";
             // 
             // layoutControlItem10
@@ -577,7 +579,7 @@
             this.layoutControlItem10.Control = this.slkupCuentaUtilidadPeriodo;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(488, 24);
+            this.layoutControlItem10.Size = new System.Drawing.Size(507, 24);
             this.layoutControlItem10.Text = "Cuenta Utilidad Periodo:";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -586,7 +588,7 @@
             this.layoutControlItem11.Control = this.slkupCuentaUtilidadAcumulada;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(488, 259);
+            this.layoutControlItem11.Size = new System.Drawing.Size(507, 259);
             this.layoutControlItem11.Text = "Cuenta Utilidad Acumulada:";
             this.layoutControlItem11.TextSize = new System.Drawing.Size(139, 13);
             // 
@@ -596,27 +598,28 @@
             this.layoutControlItem12,
             this.layoutControlItem14,
             this.layoutControlItem13,
-            this.layoutControlItem15});
+            this.layoutControlItem15,
+            this.emptySpaceItem1});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(488, 283);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(507, 283);
             this.layoutControlGroup4.Text = "Configuración Centros Costos";
             // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.txtSeparadorCentro;
-            this.layoutControlItem12.Location = new System.Drawing.Point(138, 0);
+            this.layoutControlItem12.Location = new System.Drawing.Point(169, 0);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(350, 24);
+            this.layoutControlItem12.Size = new System.Drawing.Size(338, 24);
             this.layoutControlItem12.Text = "Separador Centro:";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.chkUsaPredecesorCentro;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 23);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(138, 259);
+            this.layoutControlItem14.Size = new System.Drawing.Size(143, 260);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -625,30 +628,41 @@
             this.layoutControlItem13.Control = this.chkUsaSeparadorCentro;
             this.layoutControlItem13.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(138, 24);
+            this.layoutControlItem13.Size = new System.Drawing.Size(143, 23);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.txtPredecesorCentro;
-            this.layoutControlItem15.Location = new System.Drawing.Point(138, 24);
+            this.layoutControlItem15.Location = new System.Drawing.Point(169, 24);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(350, 259);
+            this.layoutControlItem15.Size = new System.Drawing.Size(338, 259);
             this.layoutControlItem15.Text = "Carácter predecesor Centro:";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(139, 13);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(143, 0);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(26, 283);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmParametrosContables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 396);
+            this.ClientSize = new System.Drawing.Size(551, 396);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmParametrosContables";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmParametrosContables";
@@ -699,6 +713,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -759,5 +774,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
         private DevExpress.XtraScheduler.UI.MonthEdit dtpMesFinPeriodoFiscal;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }
