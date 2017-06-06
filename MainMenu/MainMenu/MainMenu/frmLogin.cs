@@ -99,5 +99,15 @@ namespace CDTSA
                 this.btnAceptar.Focus();
             }
         }
+
+        private void txtUsuario_Enter(object sender, EventArgs e)
+        {
+            this.txtUsuario.SelectAll();
+        }
+
+        private void txtPass_Enter(object sender, EventArgs e)
+        {
+            this.txtPass.SelectAll();
+        }
     }
 }
