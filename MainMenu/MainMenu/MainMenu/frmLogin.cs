@@ -61,15 +61,42 @@ namespace CDTSA
                 DataTable DT = new DataTable();
                 DSUsuario = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
                 DT = DSUsuario.Tables[0];
-                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AccesoAlSistema, DT))
+                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AccesoAlSistema, DT))
                 {
+                    this.Hide();
                     MainMenu.frmMain ofrmMain = new MainMenu.frmMain();
                     ofrmMain.Show();
                 }
-                else MessageBox.Show("Usted no tiene privilegios para acceder al modulo");
+                else {
+                    MessageBox.Show("Usted no tiene privilegios para acceder al modulo");
+                    this.txtUsuario.Focus();
+                };
             }
             else {
                 MessageBox.Show("Las credenciales utilizadas no son validas, por favor verifique");
+                this.txtUsuario.Focus();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Exit();
+        }
+
+        private void txtUsuario_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                this.txtPass.Focus();
+            }
+        }
+
+        private void txtPass_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                this.btnAceptar.Focus();
             }
         }
     }

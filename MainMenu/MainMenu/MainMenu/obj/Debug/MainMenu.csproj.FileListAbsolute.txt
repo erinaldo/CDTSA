@@ -1,6 +1,5 @@
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.frmMain.resources
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csproj.GenerateResource.Cache
-C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csprojResolveAssemblyReference.cache
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CDTSA.exe.config
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.Properties.Resources.resources
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.exe.licenses
@@ -18,3 +17,4 @@ C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\S
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Security.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.frmLogin.resources
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.splash.resources
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csprojResolveAssemblyReference.cache
