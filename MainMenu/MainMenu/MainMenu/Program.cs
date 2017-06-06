@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraSplashScreen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace MainMenu
         static void Main()
         {
             Application.EnableVisualStyles();
+            SplashScreenManager.ShowForm(null, typeof(CDTSA.splash), true, true, false, 0);
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CDTSA.frmLogin());
         }

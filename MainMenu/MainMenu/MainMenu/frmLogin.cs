@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Security;
+using System.Threading;
+using DevExpress.XtraSplashScreen;
 
 namespace CDTSA
 {
@@ -22,7 +24,20 @@ namespace CDTSA
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+           Thread.Sleep(1500); 
+           if (SplashScreenManager.Default != null) {
+               splash ofrm = new splash();
+               Form frm = (Form)ofrm;
+	            if (frm != null) {
+		            if (SplashScreenManager.FormInPendingState) {
+			            SplashScreenManager.CloseForm();
+		            } else {
+			            SplashScreenManager.CloseForm(false, 100, frm);
+		            }
+	            } else {
+		            SplashScreenManager.CloseForm();
+	            }
+            }
         
         }
 
