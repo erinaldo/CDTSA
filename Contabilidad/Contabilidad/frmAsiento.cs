@@ -228,8 +228,8 @@ namespace CG
         {
             if (_Asiento != null && _Asiento != "")
             {
-
-                Reporte.Asiento.rptAsiento report = new Reporte.Asiento.rptAsiento();
+                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("../../Reporte/Asiento/Plantillas/rptAsiento.repx", true);
+                //Reporte.Asiento.rptAsiento report = new Reporte.Asiento.rptAsiento();
 
                 // Obtain a parameter, and set its value.
                 report.Parameters["Asiento"].Value = _Asiento;
@@ -390,7 +390,7 @@ namespace CG
                 }
             }
 
-
+            if (e.Row == null) return;
             //Get the value of the first column
             int iCentro = (int)view.GetRowCellValue(e.RowHandle, CentroCol);
             //Get the value of the second column
@@ -572,13 +572,16 @@ namespace CG
             String sMensaje = "";
 
             if (this.dtpFecha.EditValue == null)
-                sMensaje = sMensaje + "     • Ingrese la fecha del asiento \n\r";
+                sMensaje = sMensaje + "     • Ingrese la fecha del asiento. \n\r";
             if (this.slkupTipo.EditValue == null)
-                sMensaje = sMensaje + "     • Ingrese el tipo de Asiento \n\r";
+                sMensaje = sMensaje + "     • Ingrese el tipo de Asiento. \n\r";
             if (this.txtConcepto.Text == "")
-                sMensaje = sMensaje + "     • Digite el concepto del Asiento \n\r";
+                sMensaje = sMensaje + "     • Digite el concepto del Asiento. \n\r";
             if (_dsDetalle.Tables[0].Rows.Count == 0)
-                sMensaje = sMensaje + "     • El asiento no tiene detalle en sus lineas \n\r";
+                sMensaje = sMensaje + "     • El asiento no tiene detalle en sus lineas. \n\r";
+            if (_dsDetalle.Tables[0].Rows.Count == 1)
+                sMensaje = sMensaje + "     • El asiento debe de contener al menos dos lineas en su detalle. \n\r";
+
             if (sMensaje != "")
             {
                 MessageBox.Show("Estimado usuario, favor revise los siguientes errores: \n\r" + sMensaje);
@@ -593,11 +596,15 @@ namespace CG
         {
             try
             {
+
+                //this.gridView1.PostEditor();
                 //Validar Datos 
                 if (!ValidaDatos()) return;
 
                 //Obtener los datos
-                
+                if (_dsAsiento.Tables[0].Rows.Count > 0)
+                    _dsAsiento.Tables[0].Rows.Clear();
+                _dsAsiento.Tables[0].Rows.Add(_currentRow);
                 _currentRow["IDEjercicio"] = this.txtEjercicio.Text.Trim();
                 _currentRow["Periodo"] = this.txtPeriodo.Text.Trim();
                 _currentRow["Asiento"] = "---";
@@ -618,10 +625,9 @@ namespace CG
 
 
                 String xml = "";
-                if (_dsAsiento.Tables[0].Rows.Count > 0)
-                    _dsAsiento.Tables[0].Rows.Clear();
-                _dsAsiento.Tables[0].Rows.Add(_currentRow);
+               
                 _dsAsiento.Tables[0].TableName = "Asiento";
+
                 DataTable dt = new DataTable();
                 dt = _dtDetalle.Clone();
                 dt.TableName = "Detalle";
@@ -656,8 +662,8 @@ namespace CG
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                _dsAsiento.RejectChanges();
-                _dsDetalle.RejectChanges();
+                //_dsAsiento.RejectChanges();
+                //_dsDetalle.RejectChanges();
                 MessageBox.Show(ex.Message);
             }
 
@@ -693,6 +699,16 @@ namespace CG
             }
         }
 
-     
+        private void grid_FocusedViewChanged(object sender, ViewFocusEventArgs e)
+        {
+            if (e.PreviousView != null)
+            {
+
+                e.PreviousView.CloseEditor();
+
+                (e.PreviousView as DevExpress.XtraGrid.Views.Base.ColumnView).UpdateCurrentRow();
+
+            }
+        }
     }
 }

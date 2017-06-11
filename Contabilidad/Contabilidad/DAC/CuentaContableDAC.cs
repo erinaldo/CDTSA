@@ -28,7 +28,7 @@ namespace CG
                             "AND(A.Cuenta = @Cuenta OR @Cuenta = '*') AND(A.Complementaria = @Complementaria OR  @Complementaria = -1) " +
                             "AND(A.EsMayor = @EsMayor OR @EsMayor = -1) AND(A.AceptaDatos = @AceptaDatos  OR @AceptaDatos = -1) " +
                             "AND(A.Activa = @Activa OR @Activa = -1) AND(A.IDCuentaMayor = @IDCuentaMayor OR @IDCuentaMayor = -1) " +
-                            "AND(A.UsaCentroCosto = @UsaCentroCosto OR @UsaCentroCosto = -1)";
+                            "AND(A.UsaCentroCosto = @UsaCentroCosto OR @UsaCentroCosto = -1) order by A.Cuenta";
             String InsertSQL = "[dbo].[cntUpdateCuenta]";
             String UpdateSQL = "[dbo].[cntUpdateCuenta]";
             String DeleteSQL = "[dbo].[cntUpdateCuenta]";

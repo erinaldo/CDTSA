@@ -301,7 +301,7 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Operaciones Centro Costo";
+            this.ribbonPage1.Text = "Operaciones Asiento Contable";
             // 
             // ribbonPageGroup1
             // 
@@ -508,6 +508,7 @@
             this.grid.UseEmbeddedNavigator = true;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.grid.FocusedViewChanged += new DevExpress.XtraGrid.ViewFocusEventHandler(this.grid_FocusedViewChanged);
             // 
             // gridView1
             // 
@@ -555,6 +556,7 @@
             this.CentroCosto.FieldName = "IDCentro";
             this.CentroCosto.MinWidth = 90;
             this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.True;
             this.CentroCosto.OptionsEditForm.StartNewRow = true;
             this.CentroCosto.OptionsEditForm.VisibleIndex = 1;
             this.CentroCosto.Visible = true;

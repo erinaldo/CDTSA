@@ -24,6 +24,10 @@ namespace CG
         private void FrmBalanceComprobacionConCentrosCostos_Load(object sender, EventArgs e)
         {
             try{
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.MaximizeBox = false;
+                this.StartPosition = FormStartPosition.CenterScreen;
+
                 DateTime fechatemp = DateTime.Today;
                 this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
                 this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);

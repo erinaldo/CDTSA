@@ -21,6 +21,9 @@ namespace CG
 
         private void frmBalanceGeneral_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             DateTime fechatemp = DateTime.Today;
             this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
