@@ -20,6 +20,7 @@ namespace CG
 {
     public partial class frmAsiento : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        public List<clsColumnGrid> lstColumnas = new List<clsColumnGrid>();
 
         private DataTable _dtAsiento;
         private DataTable _dtDetalle;
@@ -222,13 +223,31 @@ namespace CG
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
+            this.btnColumnas.ItemClick += BtnColumnas_ItemClick;
+        }
+
+        private void BtnColumnas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmShowHideColumns ofrmLista = new frmShowHideColumns(lstColumnas);
+            ofrmLista.FormClosed += OfrmLista_FormClosed;
+            ofrmLista.Show();
+        }
+
+        private void OfrmLista_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmShowHideColumns ofrm = (frmShowHideColumns)sender;
+            this.lstColumnas = ofrm.GetLista();
+            foreach (GridColumn oCol in this.gridView1.Columns)
+            {
+                oCol.Visible = (lstColumnas.FirstOrDefault(a => a.Name == oCol.Name).Visible);
+            }
         }
 
         private void BtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (_Asiento != null && _Asiento != "")
             {
-                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("../../Reporte/Asiento/Plantillas/rptAsiento.repx", true);
+                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/Asiento/Plantillas/rptAsiento.repx", true);
                 //Reporte.Asiento.rptAsiento report = new Reporte.Asiento.rptAsiento();
 
                 // Obtain a parameter, and set its value.
@@ -241,6 +260,30 @@ namespace CG
 
                 
             }
+        }
+
+        private void ActivateEditGrid(bool Activate)
+        {
+            this.gridView1.OptionsBehavior.AllowAddRows =(Activate)? DevExpress.Utils.DefaultBoolean.True:DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = (Activate) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsView.NewItemRowPosition = (Activate) ? NewItemRowPosition.Bottom: NewItemRowPosition.None;
+        }
+
+        private void CargarColumnas()
+        {
+            lstColumnas.Clear();
+            foreach (GridColumn oCol in this.gridView1.Columns)
+            {
+                clsColumnGrid oColumna = new clsColumnGrid()
+                {
+                    Caption = oCol.Caption,
+                    Name = oCol.Name,
+                    Visible = oCol.Visible
+                };
+
+                lstColumnas.Add(oColumna);
+            }
+
         }
 
         private void frmAsiento_Load(object sender, EventArgs e)
@@ -289,6 +332,10 @@ namespace CG
                     AplicarPrivilegios();
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                }
+                else
+                {
+                    ActivateEditGrid(false);
                 }
             
 
