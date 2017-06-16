@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAsiento));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
@@ -40,6 +41,8 @@
             this.btnAnular = new DevExpress.XtraBars.BarButtonItem();
             this.btnCuadreTemporal = new DevExpress.XtraBars.BarButtonItem();
             this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
+            this.btnColumnas = new DevExpress.XtraBars.BarButtonItem();
+            this.btnShowLessColumns = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -123,7 +126,7 @@
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnColumnas = new DevExpress.XtraBars.BarButtonItem();
+            this.imgCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -194,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -211,9 +215,10 @@
             this.btnAnular,
             this.btnCuadreTemporal,
             this.btnImprimir,
-            this.btnColumnas});
+            this.btnColumnas,
+            this.btnShowLessColumns});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 7;
+            this.ribbonControl.MaxItemId = 10;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -298,6 +303,22 @@
             this.btnImprimir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.LargeGlyph")));
             this.btnImprimir.Name = "btnImprimir";
             // 
+            // btnColumnas
+            // 
+            this.btnColumnas.Caption = "Columnas";
+            this.btnColumnas.Glyph = ((System.Drawing.Image)(resources.GetObject("btnColumnas.Glyph")));
+            this.btnColumnas.Id = 6;
+            this.btnColumnas.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnColumnas.LargeGlyph")));
+            this.btnColumnas.Name = "btnColumnas";
+            // 
+            // btnShowLessColumns
+            // 
+            this.btnShowLessColumns.Caption = "Ocultar Detalle";
+            this.btnShowLessColumns.Glyph = ((System.Drawing.Image)(resources.GetObject("btnShowLessColumns.Glyph")));
+            this.btnShowLessColumns.Id = 9;
+            this.btnShowLessColumns.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnShowLessColumns.LargeGlyph")));
+            this.btnShowLessColumns.Name = "btnShowLessColumns";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -317,6 +338,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCuadreTemporal);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnImprimir);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnColumnas);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnShowLessColumns);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -554,6 +576,7 @@
             this.Linea.MinWidth = 40;
             this.Linea.Name = "Linea";
             this.Linea.OptionsColumn.AllowEdit = false;
+            this.Linea.OptionsColumn.AllowMove = false;
             this.Linea.OptionsColumn.FixedWidth = true;
             this.Linea.Visible = true;
             this.Linea.VisibleIndex = 0;
@@ -567,6 +590,7 @@
             this.CentroCosto.MaxWidth = 96;
             this.CentroCosto.MinWidth = 96;
             this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.OptionsColumn.AllowMove = false;
             this.CentroCosto.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.True;
             this.CentroCosto.OptionsEditForm.StartNewRow = true;
             this.CentroCosto.OptionsEditForm.VisibleIndex = 1;
@@ -616,6 +640,7 @@
             this.DescrCentro.Name = "DescrCentro";
             this.DescrCentro.OptionsColumn.AllowEdit = false;
             this.DescrCentro.OptionsColumn.AllowFocus = false;
+            this.DescrCentro.OptionsColumn.AllowMove = false;
             this.DescrCentro.OptionsColumn.ReadOnly = true;
             this.DescrCentro.OptionsEditForm.VisibleIndex = 2;
             this.DescrCentro.Visible = true;
@@ -630,6 +655,7 @@
             this.CuentaContable.MaxWidth = 128;
             this.CuentaContable.MinWidth = 128;
             this.CuentaContable.Name = "CuentaContable";
+            this.CuentaContable.OptionsColumn.AllowMove = false;
             this.CuentaContable.OptionsEditForm.StartNewRow = true;
             this.CuentaContable.OptionsEditForm.VisibleIndex = 3;
             this.CuentaContable.Visible = true;
@@ -678,6 +704,7 @@
             this.DescrCuentaContable.Name = "DescrCuentaContable";
             this.DescrCuentaContable.OptionsColumn.AllowEdit = false;
             this.DescrCuentaContable.OptionsColumn.AllowFocus = false;
+            this.DescrCuentaContable.OptionsColumn.AllowMove = false;
             this.DescrCuentaContable.OptionsColumn.ReadOnly = true;
             this.DescrCuentaContable.OptionsEditForm.VisibleIndex = 4;
             this.DescrCuentaContable.Visible = true;
@@ -692,6 +719,7 @@
             this.Debito.FieldName = "Debito";
             this.Debito.MinWidth = 93;
             this.Debito.Name = "Debito";
+            this.Debito.OptionsColumn.AllowMove = false;
             this.Debito.OptionsEditForm.StartNewRow = true;
             this.Debito.OptionsEditForm.VisibleIndex = 5;
             this.Debito.Visible = true;
@@ -706,6 +734,7 @@
             this.Creditos.FieldName = "Credito";
             this.Creditos.MinWidth = 93;
             this.Creditos.Name = "Creditos";
+            this.Creditos.OptionsColumn.AllowMove = false;
             this.Creditos.OptionsEditForm.VisibleIndex = 6;
             this.Creditos.Visible = true;
             this.Creditos.VisibleIndex = 6;
@@ -716,6 +745,7 @@
             this.Documento.Caption = "Documento";
             this.Documento.FieldName = "Documento";
             this.Documento.Name = "Documento";
+            this.Documento.OptionsColumn.AllowMove = false;
             this.Documento.OptionsEditForm.StartNewRow = true;
             this.Documento.OptionsEditForm.VisibleIndex = 7;
             this.Documento.Visible = true;
@@ -727,6 +757,7 @@
             this.Referencia.Caption = "Referencia";
             this.Referencia.FieldName = "Referencia";
             this.Referencia.Name = "Referencia";
+            this.Referencia.OptionsColumn.AllowMove = false;
             this.Referencia.OptionsEditForm.VisibleIndex = 8;
             this.Referencia.Visible = true;
             this.Referencia.VisibleIndex = 8;
@@ -1226,13 +1257,14 @@
             this.emptySpaceItem11.Size = new System.Drawing.Size(10, 64);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnColumnas
+            // imgCollection
             // 
-            this.btnColumnas.Caption = "Columnas";
-            this.btnColumnas.Glyph = ((System.Drawing.Image)(resources.GetObject("btnColumnas.Glyph")));
-            this.btnColumnas.Id = 6;
-            this.btnColumnas.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnColumnas.LargeGlyph")));
-            this.btnColumnas.Name = "btnColumnas";
+            this.imgCollection.ImageSize = new System.Drawing.Size(32, 32);
+            this.imgCollection.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imgCollection.ImageStream")));
+            this.imgCollection.InsertGalleryImage("showdetail_32x32.png", "images/spreadsheet/showdetail_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/showdetail_32x32.png"), 0);
+            this.imgCollection.Images.SetKeyName(0, "showdetail_32x32.png");
+            this.imgCollection.InsertGalleryImage("hidedetail_32x32.png", "images/spreadsheet/hidedetail_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/hidedetail_32x32.png"), 1);
+            this.imgCollection.Images.SetKeyName(1, "hidedetail_32x32.png");
             // 
             // frmAsiento
             // 
@@ -1317,6 +1349,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1419,5 +1452,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
         private DevExpress.XtraBars.BarButtonItem btnColumnas;
+        private DevExpress.Utils.ImageCollection imgCollection;
+
+        private DevExpress.XtraBars.BarButtonItem btnShowLessColumns;
     }
 }

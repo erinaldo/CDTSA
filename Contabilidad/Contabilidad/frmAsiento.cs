@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Util;
 using DevExpress.XtraGrid;
+
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using System.IO;
@@ -37,6 +38,7 @@ namespace CG
 
         private DataRow _currentRow;
         private String Accion = "NEW";
+        private bool _ShowLessColumns = false;
 
 
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
@@ -224,6 +226,65 @@ namespace CG
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
             this.btnColumnas.ItemClick += BtnColumnas_ItemClick;
+            this.btnShowLessColumns.ItemClick += BtnShowLessColumns_ItemClick;
+        }
+
+        private void BtnShowLessColumns_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (_ShowLessColumns)
+                {
+                    //this.btnShowLessColumns.LargeGlyph = null;
+                    this.btnShowLessColumns.LargeGlyph = imgCollection.Images[1];//DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/clear_32x32.png");
+                    this.btnShowLessColumns.Glyph = imgCollection.Images[1]; //DevExpress.Images.ImageResourceCache.Default.GetImage("office2013/actions/clear_32x32.png");
+                    this.btnShowLessColumns.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+                    //Mostrar Detalle
+                    this.btnShowLessColumns.Caption = "Ocultar Detalle";
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCentro").Visible = true;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCuentaContable").Visible = true;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Referencia").Visible = true;
+
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Linea").VisibleIndex = 0;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "CentroCosto").VisibleIndex = 1;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCentro").VisibleIndex = 2;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "CuentaContable").VisibleIndex = 4;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCuentaContable").VisibleIndex = 5;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Debito").VisibleIndex = 6;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Creditos").VisibleIndex = 7;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Documento").VisibleIndex = 8;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Referencia").VisibleIndex = 9;
+
+                }
+                else
+                {
+                    this.btnShowLessColumns.LargeGlyph = imgCollection.Images[0]; //DevExpress.Images.ImageResourceCache.Default.GetImage("images/Spreadsheet/showdetail_32x32.png");
+                    this.btnShowLessColumns.Glyph = imgCollection.Images[0];//DevExpress.Images.ImageResourceCache.Default.GetImage("images/Spreadsheet/showdetail_32x32.png");
+                    this.btnShowLessColumns.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+                    this.btnShowLessColumns.Caption = "Mostrar Detalle";
+                    //Ocultar Detalle
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCentro").Visible = false;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCuentaContable").Visible = false;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Referencia").Visible = false;
+
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Linea").VisibleIndex = 0;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "CentroCosto").VisibleIndex = 1;
+                    //this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCentro").VisibleIndex = 2;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "CuentaContable").VisibleIndex = 4;
+                    //this.gridView1.Columns.FirstOrDefault(a => a.Name == "DescrCuentaContable").VisibleIndex = 5;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Debito").VisibleIndex = 6;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Creditos").VisibleIndex = 7;
+                    //this.gridView1.Columns.FirstOrDefault(a => a.Name == "Documento").VisibleIndex = 8;
+                    this.gridView1.Columns.FirstOrDefault(a => a.Name == "Referencia").VisibleIndex = 9;
+
+
+                }
+                this.btnShowLessColumns.Refresh();
+                _ShowLessColumns = !_ShowLessColumns;
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnColumnas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -321,7 +382,7 @@ namespace CG
                 this.slkupCuentaContableGrid.ValueMember = "IDCuenta";
                 this.slkupCuentaContableGrid.NullText = " --- ---";
 
-
+                CargarColumnas();
                 Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetData().Tables["Data"], "Descr", "Tipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
                 grid.ProcessGridKey += Grid_ProcessGridKey;

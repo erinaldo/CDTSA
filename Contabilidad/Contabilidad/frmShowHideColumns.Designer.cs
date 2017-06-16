@@ -112,6 +112,7 @@
             this.ClientSize = new System.Drawing.Size(284, 331);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmShowHideColumns";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mostrar / Ocultar Columnas";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
