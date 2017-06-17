@@ -18,3 +18,4 @@ C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\S
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.frmLogin.resources
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.splash.resources
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.frmParametrosGenerales.resources
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csprojResolveAssemblyReference.cache

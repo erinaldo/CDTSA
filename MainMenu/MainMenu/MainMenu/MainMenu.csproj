@@ -143,7 +143,6 @@
     <None Include="Resources\SF4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\CEDETSA.jpg" />
     <None Include="Resources\CEDETSA.png" />
     <Content Include="Solution4ULogo.ico" />
   </ItemGroup>

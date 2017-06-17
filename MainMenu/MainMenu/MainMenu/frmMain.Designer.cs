@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.lblUsuario = new DevExpress.XtraBars.BarStaticItem();
+            this.lblTipoCambio = new DevExpress.XtraBars.BarStaticItem();
+            this.lblCompania = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonHelp = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -56,8 +58,6 @@
             this.navGroupCuentasxPagar = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupCuentasXCobrar = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupCompras = new DevExpress.XtraNavBar.NavBarGroup();
-            this.lblTipoCambio = new DevExpress.XtraBars.BarStaticItem();
-            this.lblCompania = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
@@ -96,6 +96,24 @@
             this.lblUsuario.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("lblUsuario.LargeGlyph")));
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // lblTipoCambio
+            // 
+            this.lblTipoCambio.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.lblTipoCambio.Caption = "barStaticItem2";
+            this.lblTipoCambio.Glyph = ((System.Drawing.Image)(resources.GetObject("lblTipoCambio.Glyph")));
+            this.lblTipoCambio.Id = 6;
+            this.lblTipoCambio.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("lblTipoCambio.LargeGlyph")));
+            this.lblTipoCambio.Name = "lblTipoCambio";
+            this.lblTipoCambio.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // lblCompania
+            // 
+            this.lblCompania.Caption = "barStaticItem1";
+            this.lblCompania.Glyph = ((System.Drawing.Image)(resources.GetObject("lblCompania.Glyph")));
+            this.lblCompania.Id = 8;
+            this.lblCompania.Name = "lblCompania";
+            this.lblCompania.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // ribbonHelp
             // 
@@ -387,24 +405,6 @@
             this.navGroupCompras.SmallImageIndex = 7;
             this.navGroupCompras.Visible = false;
             // 
-            // lblTipoCambio
-            // 
-            this.lblTipoCambio.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.lblTipoCambio.Caption = "barStaticItem2";
-            this.lblTipoCambio.Glyph = ((System.Drawing.Image)(resources.GetObject("lblTipoCambio.Glyph")));
-            this.lblTipoCambio.Id = 6;
-            this.lblTipoCambio.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("lblTipoCambio.LargeGlyph")));
-            this.lblTipoCambio.Name = "lblTipoCambio";
-            this.lblTipoCambio.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // lblCompania
-            // 
-            this.lblCompania.Caption = "barStaticItem1";
-            this.lblCompania.Glyph = ((System.Drawing.Image)(resources.GetObject("lblCompania.Glyph")));
-            this.lblCompania.Id = 8;
-            this.lblCompania.Name = "lblCompania";
-            this.lblCompania.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
             // frmMain
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -415,7 +415,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Center;
-            this.BackgroundImageStore = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImageStore")));
+            this.BackgroundImageStore = global::CDTSA.Properties.Resources.CEDETSA;
             this.ClientSize = new System.Drawing.Size(748, 656);
             this.Controls.Add(this.navBarControl);
             this.Controls.Add(this.ribbonStatusBar);
