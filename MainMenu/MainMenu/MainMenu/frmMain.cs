@@ -20,8 +20,9 @@ namespace MainMenu
         public frmMain()
         {
             InitializeComponent();
-            CreateNodes(treeListInventario);
+            //CreateNodes(treeListInventario);
             CreateNodes(treeListContabilidad);
+            CreateNodes(treeListAdministracion);
             this.Load += frmMain_Load;
             ShowPagesRibbonMan(false);
         }
@@ -30,8 +31,33 @@ namespace MainMenu
         {
            
             this.treeListContabilidad.DoubleClick += treeListContabilidad_DoubleClick;
-        
+            this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
             CargarPrivilegios();
+            CargarDatosGenerales();
+        }
+
+        private void CargarDatosGenerales() {
+            DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetDatosGeneralesCompania();
+            this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
+            this.lblTipoCambio.Caption = string.Format("{0} :{1}", DS.Tables[0].Rows[0]["IDTipoCambio"], DS.Tables[0].Rows[0]["Monto"].ToString());
+            this.lblUsuario.Caption = "Usuario: "  + ((UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "");
+        }
+
+        void treeListAdministracion_DoubleClick(object sender, EventArgs e)
+        {
+             DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList)sender).FocusedNode;
+            switch (node.Tag.ToString())
+            {
+                case "optParametrosGenerales":
+                    CDTSA.frmParametrosGenerales ofrmParametrosGenerales = new CDTSA.frmParametrosGenerales();
+                    ofrmParametrosGenerales.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmParametrosGenerales.FormClosed+=ofrmParametrosGenerales_FormClosed;
+                    ofrmParametrosGenerales.Show();
+                    break;
+
+            }
         }
 
         
@@ -104,11 +130,17 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoPeriodos.Show();
                     break;
-                    
-              
+                
             }
 
         }
+
+        void ofrmParametrosGenerales_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Recargar los parametros del sistema
+            CargarDatosGenerales();
+        }
+
 
 
         private void CreateNodes(TreeList tl)
@@ -141,6 +173,10 @@ namespace MainMenu
                     TreeListNode nodeReportes = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
                     TreeListNode nodeProcesos = tl.AppendNode(new object[] { "Processos" }, -1, 9, 10, 9);
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
+                    break;
+                case "treeListAdministracion":
+                    TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
+                    nodeParametros.Tag = "optParametrosGenerales";
                     break;
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas" }, -1, 11, 11, 11);
@@ -282,8 +318,6 @@ namespace MainMenu
             Application.Exit();
         }
 
-    
-  
-
+     
     }
 }
