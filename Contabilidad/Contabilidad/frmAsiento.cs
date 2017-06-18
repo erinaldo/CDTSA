@@ -16,6 +16,8 @@ using DevExpress.XtraGrid.Columns;
 using System.IO;
 using System.Xml.Serialization;
 using Security;
+using DevExpress.XtraGrid.Views.Base;
+using System.Globalization;
 
 namespace CG
 {
@@ -140,6 +142,34 @@ namespace CG
             _currentRow["CuadreTemporal"] = false;
             
 
+        }
+
+        private void CargarParametrosMonedas()
+        {
+            DataSet DS = ParametrosContabilidadDAC.GetMonedasFuncionales();
+            Util.Util.DecimalLenght = Convert.ToInt32(DS.Tables[0].Rows[0]["CantDigitosDecimales"]);
+            Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["MonedaFuncional"].ToString();
+            Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["MonedaExtrangera"].ToString();
+        }
+
+
+        private void CargarSimbolosMoneda()
+        {
+          
+            if (Util.Util.LocalSimbolCurrency ==null ){
+                CargarParametrosMonedas();
+            }
+
+            Util.Util.SetFormatTextEdit(this.txtCreditoLocal, Util.Util.FormatType.MonedaLocal);
+            Util.Util.SetFormatTextEdit(this.txtDebitoLocal, Util.Util.FormatType.MonedaLocal);
+            Util.Util.SetFormatTextEdit(this.txtDiferencia, Util.Util.FormatType.MonedaLocal);
+
+            Util.Util.SetFormatTextEdit(this.txtDebitoDolar, Util.Util.FormatType.MonedaExtrangera);
+            Util.Util.SetFormatTextEdit(this.txtCreditoDolar, Util.Util.FormatType.MonedaExtrangera);
+            Util.Util.SetFormatTextEdit(this.txtDirenciaDolar, Util.Util.FormatType.MonedaExtrangera);
+            
+
+            //this.gridView1.Columns["asdfs"].DisplayFormat = 
         }
 
 
@@ -354,7 +384,7 @@ namespace CG
                 CargarDatosPeriodoActivo();
 
                 HabilitarControles(false);
-
+                CargarSimbolosMoneda();
                 CargarPrivilegios();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
                 EnlazarEventos();
@@ -367,7 +397,7 @@ namespace CG
                 this.gridView1.RowUpdated += GridView1_RowUpdated;
 
                 this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
-                //this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
+                this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
                 //        //Configurar searchLookUp
                 _dtCentros = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0];
                 this.slkupCentroCostoGrid.DataSource = _dtCentros;
@@ -519,25 +549,64 @@ namespace CG
 
         }
 
+          
+
+
         private void GridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
-            if (e.Column.FieldName == "IDCentro")
+            try
             {
-                if (e.Value == null) return;
-                DataView dt = new DataView();
-                dt.Table = _dtCentros;
-                dt.RowFilter = "IDCentro=" + e.Value.ToString();
+                
+                ColumnView view = sender as ColumnView;
+                //if (e.Column.FieldName == "IDCentro")
+                //{
+                //    if (e.Value == null) return;
+                //    DataView dt = new DataView();
+                //    dt.Table = _dtCentros;
+                //    dt.RowFilter = "IDCentro=" + e.Value.ToString();
 
-                e.DisplayText = dt.ToTable().Rows[0]["Centro"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+                //    e.DisplayText = dt.ToTable().Rows[0]["Centro"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+                //}
+                //else if (e.Column.FieldName == "IDCuenta")
+                //{
+                //    if (e.Value == null) return;
+                //    DataView dt = new DataView();
+                //    dt.Table = _dtCuentas;
+                //    dt.RowFilter = "IDCuenta=" + e.Value.ToString();
+
+                //    e.DisplayText = dt.ToTable().Rows[0]["Cuenta"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+                //}
+
+                if (e.Column.FieldName == "Debito" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                {
+                    if (e.Value == null || e.Value.ToString() == "") return;
+                    decimal Value = Convert.ToDecimal(e.Value);
+
+
+                    NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
+                    nfi.CurrencySymbol = Util.Util.LocalSimbolCurrency;
+                    // Use the ToString method to format the value as currency ("c").
+                    e.DisplayText = ((decimal)e.Value).ToString("C" + Util.Util.DecimalLenght, nfi);
+
+
+                }
+                if (e.Column.FieldName == "Credito" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                {
+                    if (e.Value == null || e.Value.ToString() == "") return;
+                    decimal Value = Convert.ToDecimal(e.Value);
+
+
+                    NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
+                    nfi.CurrencySymbol = Util.Util.LocalSimbolCurrency;
+                    // Use the ToString method to format the value as currency ("c").
+                    e.DisplayText = ((decimal)e.Value).ToString("C" + Util.Util.DecimalLenght, nfi);
+
+
+                }
             }
-            else if (e.Column.FieldName == "IDCuenta")
+            catch (Exception ex)
             {
-                if (e.Value == null) return;
-                DataView dt = new DataView();
-                dt.Table = _dtCuentas;
-                dt.RowFilter = "IDCuenta=" + e.Value.ToString();
-
-                e.DisplayText = dt.ToTable().Rows[0]["Cuenta"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -818,5 +887,7 @@ namespace CG
 
             }
         }
+
+        
     }
 }

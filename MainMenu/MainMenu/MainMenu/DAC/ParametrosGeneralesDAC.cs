@@ -16,7 +16,7 @@ namespace CDTSA.DAC
         private static SqlDataAdapter InicializarAdaptador()
         {
             String getSQL = "SELECT *  FROM dbo.globalCompania";
-            String UpdateSQL = "UPDATE dbo.globalCompania SET Nombre =@Nombre,Direccion=@Direccion,Telefono=@Telefono,Logo=@Logo,UsaCentroCosto=@UsaCentroCosto,MonedaFuncional=@MonedaFuncional WHERE Compania='CDTSA'";
+            String UpdateSQL = "UPDATE dbo.globalCompania SET Nombre =@Nombre,Direccion=@Direccion,Telefono=@Telefono,Logo=@Logo,UsaCentroCosto=@UsaCentroCosto,MonedaFuncional=@MonedaFuncional,MonedaExtrangera=@MonedaExtrangera,CantDigitosDecimales=@CantDigitosDecimales WHERE Compania='CDTSA'";
             
 
             try
@@ -37,7 +37,8 @@ namespace CDTSA.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Logo", SqlDbType.Image).SourceColumn = "Logo";
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
                 oAdaptador.UpdateCommand.Parameters.Add("@MonedaFuncional", SqlDbType.NVarChar).SourceColumn = "MonedaFuncional";
-                
+                oAdaptador.UpdateCommand.Parameters.Add("@MonedaExtrangera",SqlDbType.NVarChar).SourceColumn="MonedaExtrangera";
+                oAdaptador.UpdateCommand.Parameters.Add("@CantDigitosDecimales", SqlDbType.Int).SourceColumn = "CantDigitosDecimales";
 
           
                 return oAdaptador;
@@ -84,6 +85,7 @@ namespace CDTSA.DAC
             return ds;
             
         }
-        
+
+    
     }
 }

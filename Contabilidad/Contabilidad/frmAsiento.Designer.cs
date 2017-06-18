@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAsiento));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
@@ -113,9 +112,9 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyTotalDebito = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyTotalCredito = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyDiferencia = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -184,9 +183,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyTotalDebito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyTotalCredito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyDiferencia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
@@ -205,7 +204,6 @@
             this.ribbonControl.ExpandCollapseItem.Id = 0;
             this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
-            this.btnAgregar,
             this.btnEditar,
             this.btnGuardar,
             this.btnCancelar,
@@ -224,14 +222,6 @@
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl.Size = new System.Drawing.Size(852, 143);
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Caption = "Agregar";
-            this.btnAgregar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Glyph")));
-            this.btnAgregar.Id = 1;
-            this.btnAgregar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAgregar.LargeGlyph")));
-            this.btnAgregar.Name = "btnAgregar";
             // 
             // btnEditar
             // 
@@ -328,7 +318,6 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnAgregar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEditar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnGuardar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
@@ -862,9 +851,9 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.tabbedControlGroup1,
             this.layoutControlItem11,
-            this.layoutControlItem18,
-            this.layoutControlItem19,
-            this.layoutControlItem20,
+            this.lyTotalDebito,
+            this.lyTotalCredito,
+            this.lyDiferencia,
             this.emptySpaceItem5,
             this.emptySpaceItem6,
             this.emptySpaceItem7,
@@ -1126,41 +1115,41 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // layoutControlItem18
+            // lyTotalDebito
             // 
-            this.layoutControlItem18.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem18.Control = this.txtDebitoLocal;
-            this.layoutControlItem18.Location = new System.Drawing.Point(80, 413);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(174, 40);
-            this.layoutControlItem18.Text = "Total Débitos";
-            this.layoutControlItem18.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(79, 13);
+            this.lyTotalDebito.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lyTotalDebito.AppearanceItemCaption.Options.UseFont = true;
+            this.lyTotalDebito.Control = this.txtDebitoLocal;
+            this.lyTotalDebito.Location = new System.Drawing.Point(80, 413);
+            this.lyTotalDebito.Name = "lyTotalDebito";
+            this.lyTotalDebito.Size = new System.Drawing.Size(174, 40);
+            this.lyTotalDebito.Text = "Total Débitos";
+            this.lyTotalDebito.TextLocation = DevExpress.Utils.Locations.Top;
+            this.lyTotalDebito.TextSize = new System.Drawing.Size(79, 13);
             // 
-            // layoutControlItem19
+            // lyTotalCredito
             // 
-            this.layoutControlItem19.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem19.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem19.Control = this.txtCreditoLocal;
-            this.layoutControlItem19.Location = new System.Drawing.Point(264, 413);
-            this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(182, 40);
-            this.layoutControlItem19.Text = "Total Créditos";
-            this.layoutControlItem19.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(79, 13);
+            this.lyTotalCredito.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lyTotalCredito.AppearanceItemCaption.Options.UseFont = true;
+            this.lyTotalCredito.Control = this.txtCreditoLocal;
+            this.lyTotalCredito.Location = new System.Drawing.Point(264, 413);
+            this.lyTotalCredito.Name = "lyTotalCredito";
+            this.lyTotalCredito.Size = new System.Drawing.Size(182, 40);
+            this.lyTotalCredito.Text = "Total Créditos";
+            this.lyTotalCredito.TextLocation = DevExpress.Utils.Locations.Top;
+            this.lyTotalCredito.TextSize = new System.Drawing.Size(79, 13);
             // 
-            // layoutControlItem20
+            // lyDiferencia
             // 
-            this.layoutControlItem20.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem20.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem20.Control = this.txtDiferencia;
-            this.layoutControlItem20.Location = new System.Drawing.Point(456, 413);
-            this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(198, 40);
-            this.layoutControlItem20.Text = "Diferencia:";
-            this.layoutControlItem20.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem20.TextSize = new System.Drawing.Size(79, 13);
+            this.lyDiferencia.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lyDiferencia.AppearanceItemCaption.Options.UseFont = true;
+            this.lyDiferencia.Control = this.txtDiferencia;
+            this.lyDiferencia.Location = new System.Drawing.Point(456, 413);
+            this.lyDiferencia.Name = "lyDiferencia";
+            this.lyDiferencia.Size = new System.Drawing.Size(198, 40);
+            this.lyDiferencia.Text = "Diferencia:";
+            this.lyDiferencia.TextLocation = DevExpress.Utils.Locations.Top;
+            this.lyDiferencia.TextSize = new System.Drawing.Size(79, 13);
             // 
             // emptySpaceItem5
             // 
@@ -1336,9 +1325,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyTotalDebito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyTotalCredito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyDiferencia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
@@ -1358,7 +1347,6 @@
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
-        private DevExpress.XtraBars.BarButtonItem btnAgregar;
         private DevExpress.XtraBars.BarButtonItem btnEditar;
         private DevExpress.XtraBars.BarButtonItem btnGuardar;
         private DevExpress.XtraBars.BarButtonItem btnCancelar;
@@ -1435,9 +1423,9 @@
         private DevExpress.XtraEditors.TextEdit txtDiferencia;
         private DevExpress.XtraEditors.TextEdit txtCreditoLocal;
         private DevExpress.XtraEditors.TextEdit txtDebitoLocal;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
+        private DevExpress.XtraLayout.LayoutControlItem lyTotalDebito;
+        private DevExpress.XtraLayout.LayoutControlItem lyTotalCredito;
+        private DevExpress.XtraLayout.LayoutControlItem lyDiferencia;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;

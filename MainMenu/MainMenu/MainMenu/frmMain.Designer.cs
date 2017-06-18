@@ -171,7 +171,7 @@
             // 
             // navBarControl
             // 
-            this.navBarControl.ActiveGroup = this.navGroupAdministracion;
+            this.navBarControl.ActiveGroup = this.navGroupContabilidad;
             this.navBarControl.Controls.Add(this.NavBarGroupControlContainer1);
             this.navBarControl.Controls.Add(this.NavBarGroupControlContainer2);
             this.navBarControl.Controls.Add(this.navBarGroupControlContainer3);
@@ -202,7 +202,6 @@
             // 
             this.navGroupAdministracion.Caption = "Administración";
             this.navGroupAdministracion.ControlContainer = this.navBarGroupControlContainer3;
-            this.navGroupAdministracion.Expanded = true;
             this.navGroupAdministracion.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
             this.navGroupAdministracion.GroupClientHeight = 223;
             this.navGroupAdministracion.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
@@ -362,6 +361,7 @@
             // 
             this.navGroupContabilidad.Caption = "Contabilidad";
             this.navGroupContabilidad.ControlContainer = this.NavBarGroupControlContainer2;
+            this.navGroupContabilidad.Expanded = true;
             this.navGroupContabilidad.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
             this.navGroupContabilidad.GroupClientHeight = 223;
             this.navGroupContabilidad.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
@@ -426,7 +426,7 @@
             this.Ribbon = this.ribbon;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "frmMain";
+            this.Text = "ERP CEDETSA";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);

@@ -11,6 +11,7 @@ using DevExpress.Utils;
 using System.Windows.Forms;
 
 using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace Util
 {
@@ -18,6 +19,118 @@ namespace Util
     {
         //constantes
         public const String constNewItemTextGrid = "Click para agregar un nuevo elemento";
+
+        public enum FormatType
+        {
+            MonedaLocal,
+            MonedaExtrangera,
+            FechaCorta,
+            FechaLarga,
+            TiempoCorto,
+            TiempoLargo,
+            FechaCompletaTiempoCorto,
+            FechaCompletaTiempoLargo,
+            FechaGeneralTiempoCorto,
+            FechaGeneralTiempoLargo,
+            MesDia,
+            AnoMes,
+            Porcentaje,
+            Personalizado
+        }
+
+
+        public static String LocalSimbolCurrency { get; set; }
+        public static String ForeingSimbolCurrency { get; set; }
+        public static int DecimalLenght { get; set; }
+
+        public static void LocalCurrency(object sender, ConvertEventArgs cevent)
+        {
+            // The method converts only to string type. Test this using the DesiredType.
+            if ((cevent.DesiredType != typeof(string)) || cevent.Value == null) return;
+            NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
+            nfi.CurrencySymbol = LocalSimbolCurrency;
+            // Use the ToString method to format the value as currency ("c").
+            cevent.Value = ((decimal)cevent.Value).ToString("c" + DecimalLenght, nfi);
+
+        }
+
+        public static void ForeingCurrency(object sender, ConvertEventArgs cevent)
+        {
+            // The method converts only to string type. Test this using the DesiredType.
+
+            if (cevent.DesiredType != typeof(string) || cevent.Value == null) return;
+            NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
+            nfi.CurrencySymbol = ForeingSimbolCurrency;
+            // Use the ToString method to format the value as currency ("c").
+            cevent.Value = ((decimal)cevent.Value).ToString("C" + DecimalLenght, nfi);
+
+        }
+
+        public static void SetFormatTextEdit(TextEdit texto, FormatType typeFormat, String Mask = "")
+        {
+            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
+            switch (typeFormat)
+            {
+                case FormatType.MonedaExtrangera:
+
+                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency;
+                    texto.Properties.Mask.Culture = ci;
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Properties.Mask.EditMask = "c" + DecimalLenght;
+                    texto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    break;
+                case FormatType.MonedaLocal:
+
+                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency;
+                    texto.Properties.Mask.Culture = ci;
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Properties.Mask.EditMask = "c" + DecimalLenght;//string.Format("#,###,###,##0.00", Config.LocalSimbolCurrency);
+                    texto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+
+                    break;
+                case FormatType.FechaCorta:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "d";
+                    break;
+                case FormatType.FechaLarga:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "D";
+                    break;
+                case FormatType.TiempoCorto:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "t";
+                    break;
+                case FormatType.TiempoLargo:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "T";
+                    break;
+                case FormatType.FechaGeneralTiempoCorto:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "g";
+                    break;
+                case FormatType.FechaGeneralTiempoLargo:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "G";
+                    break;
+                case FormatType.MesDia:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "m";
+                    break;
+                case FormatType.AnoMes:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Properties.Mask.EditMask = "y";
+                    break;
+                case FormatType.Porcentaje:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Properties.Mask.EditMask = "p";
+                    break;
+                case FormatType.Personalizado:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Custom;
+                    texto.Properties.Mask.EditMask = Mask;
+                    break;
+            }
+            texto.Properties.Mask.UseMaskAsDisplayFormat = true;
+        }
 
 
         public static void ConfigLookupEdit(SearchLookUpEdit lkupControl, Object DataSource,

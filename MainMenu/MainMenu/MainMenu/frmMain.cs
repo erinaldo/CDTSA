@@ -34,6 +34,14 @@ namespace MainMenu
             this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
             CargarPrivilegios();
             CargarDatosGenerales();
+            CargarParametrosMonedas();
+        }
+
+        private void CargarParametrosMonedas() {
+            DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetData();
+            Util.Util.DecimalLenght = Convert.ToInt32(DS.Tables[0].Rows[0]["CantDigitosDecimales"]);
+            Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["MonedaFuncional"].ToString();
+            Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["MonedaExtrangera"].ToString();
         }
 
         private void CargarDatosGenerales() {

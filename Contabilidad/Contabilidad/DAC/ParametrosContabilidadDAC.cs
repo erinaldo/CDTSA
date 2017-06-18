@@ -111,7 +111,19 @@ namespace CG
             return DS;
         }
 
-     
+        
+
+        public static DataSet GetMonedasFuncionales()
+        {
+            DataSet ds = CreateDataSet();
+            String GetDatosGeneralesSQL = "SELECT MonedaFuncional,MonedaExtrangera,CantDigitosDecimales  FROM dbo.globalCompania";
+
+            SqlCommand ocmd = new SqlCommand(GetDatosGeneralesSQL, ConnectionManager.GetConnection());
+            SqlDataAdapter oAdap = new SqlDataAdapter(ocmd);
+            oAdap.Fill(ds, "Data");
+            return ds;
+
+        }
 
 
 
