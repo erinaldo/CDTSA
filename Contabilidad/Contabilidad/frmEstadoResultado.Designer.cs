@@ -157,7 +157,7 @@
             this.rgBaseReporte.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Movimiento del Periodo"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Saldo Final")});
-            this.rgBaseReporte.Size = new System.Drawing.Size(100, 54);
+            this.rgBaseReporte.Size = new System.Drawing.Size(145, 54);
             this.rgBaseReporte.TabIndex = 0;
             // 
             // groupControl3

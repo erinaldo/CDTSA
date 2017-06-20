@@ -45,10 +45,33 @@ namespace MainMenu
         }
 
         private void CargarDatosGenerales() {
-            DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetDatosGeneralesCompania();
-            this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
-            this.lblTipoCambio.Caption = string.Format("{0} :{1}", DS.Tables[0].Rows[0]["IDTipoCambio"], DS.Tables[0].Rows[0]["Monto"].ToString());
-            this.lblUsuario.Caption = "Usuario: "  + ((UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "");
+            try
+            {
+                DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetDatosGeneralesCompania();
+                if (DS.Tables[0].Rows.Count > 0)
+                {
+                    this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
+                    this.lblTipoCambio.Caption = string.Format("{0} :{1}", DS.Tables[0].Rows[0]["IDTipoCambio"], DS.Tables[0].Rows[0]["Monto"].ToString());
+                    
+                }
+                else {
+                    this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
+                    this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
+                    String sMensaje = "";
+                    if ( DS.Tables[0].Rows[0]["Compania"].ToString()==""){
+                           sMensaje = sMensaje + "No se ha configurado el nombre de la compañia, por favor llamar a sistemas \n\r";
+                    }
+                    if (DS.Tables[0].Rows[0]["Monto"].ToString()==""){
+                            sMensaje = sMensaje + "No existe tipo de cambio para el dia corriente  \n\r";
+                    }
+                    MessageBox.Show("Se han encontrado los siguientes errores: ");
+                }
+                    this.lblUsuario.Caption = "Usuario: " + ((UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         void treeListAdministracion_DoubleClick(object sender, EventArgs e)

@@ -73,11 +73,8 @@ namespace CDTSA.DAC
         public static DataSet GetDatosGeneralesCompania()
         {
             DataSet ds = CreateDataSet();
-            String GetDatosGeneralesSQL = "SELECT  Nombre Compania,B.IDTipoCambio,ISNULL(MAX(B.Monto),0) Monto " +
-                                    "FROM dbo.globalCompania A " +
-                                    "INNER JOIN dbo.globalTipoCambioDetalle B ON 1=1 " +
-                                    "WHERE B.Fecha= CAST(GETDATE() AS DATE) AND B.IDTipoCambio='TVEN' " +
-                                    "GROUP BY  Nombre,B.IDTipoCambio";
+            String GetDatosGeneralesSQL = "SELECT  Nombre Compania " +
+                                    "FROM dbo.globalCompania A where 1=3 ";
 
             SqlCommand ocmd = new SqlCommand(GetDatosGeneralesSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdap = new SqlDataAdapter(ocmd);

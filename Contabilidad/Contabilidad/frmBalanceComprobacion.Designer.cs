@@ -38,9 +38,7 @@
             this.rbDolar = new System.Windows.Forms.RadioButton();
             this.rbLocal = new System.Windows.Forms.RadioButton();
             this.chkDetalleMovimiento = new DevExpress.XtraEditors.CheckEdit();
-            this.chkIdentarCuentas = new DevExpress.XtraEditors.CheckEdit();
             this.chkSaldosAntesdeCierre = new DevExpress.XtraEditors.CheckEdit();
-            this.chkImprimeUnidades = new DevExpress.XtraEditors.CheckEdit();
             this.chkSoloCuentadeMayor = new DevExpress.XtraEditors.CheckEdit();
             this.chkIncluirAsientosdeDiario = new DevExpress.XtraEditors.CheckEdit();
             this.slkupCuentasHasta = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -59,8 +57,6 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -88,9 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDetalleMovimiento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIdentarCuentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSaldosAntesdeCierre.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkImprimeUnidades.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSoloCuentadeMayor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncluirAsientosdeDiario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentasHasta.Properties)).BeginInit();
@@ -108,8 +102,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
@@ -141,9 +133,7 @@
             this.layoutControl1.Controls.Add(this.rbDolar);
             this.layoutControl1.Controls.Add(this.rbLocal);
             this.layoutControl1.Controls.Add(this.chkDetalleMovimiento);
-            this.layoutControl1.Controls.Add(this.chkIdentarCuentas);
             this.layoutControl1.Controls.Add(this.chkSaldosAntesdeCierre);
-            this.layoutControl1.Controls.Add(this.chkImprimeUnidades);
             this.layoutControl1.Controls.Add(this.chkSoloCuentadeMayor);
             this.layoutControl1.Controls.Add(this.chkIncluirAsientosdeDiario);
             this.layoutControl1.Controls.Add(this.slkupCuentasHasta);
@@ -248,32 +238,14 @@
             this.chkDetalleMovimiento.TabIndex = 14;
             this.chkDetalleMovimiento.CheckedChanged += new System.EventHandler(this.chkDetalleMovimiento_CheckedChanged);
             // 
-            // chkIdentarCuentas
-            // 
-            this.chkIdentarCuentas.Location = new System.Drawing.Point(331, 237);
-            this.chkIdentarCuentas.Name = "chkIdentarCuentas";
-            this.chkIdentarCuentas.Properties.Caption = "Identar Cuentas";
-            this.chkIdentarCuentas.Size = new System.Drawing.Size(317, 19);
-            this.chkIdentarCuentas.StyleController = this.layoutControl1;
-            this.chkIdentarCuentas.TabIndex = 12;
-            // 
             // chkSaldosAntesdeCierre
             // 
             this.chkSaldosAntesdeCierre.Location = new System.Drawing.Point(12, 214);
             this.chkSaldosAntesdeCierre.Name = "chkSaldosAntesdeCierre";
             this.chkSaldosAntesdeCierre.Properties.Caption = "Saldos ante de Cierre";
-            this.chkSaldosAntesdeCierre.Size = new System.Drawing.Size(315, 19);
+            this.chkSaldosAntesdeCierre.Size = new System.Drawing.Size(636, 19);
             this.chkSaldosAntesdeCierre.StyleController = this.layoutControl1;
             this.chkSaldosAntesdeCierre.TabIndex = 11;
-            // 
-            // chkImprimeUnidades
-            // 
-            this.chkImprimeUnidades.Location = new System.Drawing.Point(331, 214);
-            this.chkImprimeUnidades.Name = "chkImprimeUnidades";
-            this.chkImprimeUnidades.Properties.Caption = "Imprime Unidades";
-            this.chkImprimeUnidades.Size = new System.Drawing.Size(317, 19);
-            this.chkImprimeUnidades.StyleController = this.layoutControl1;
-            this.chkImprimeUnidades.TabIndex = 10;
             // 
             // chkSoloCuentadeMayor
             // 
@@ -290,7 +262,7 @@
             this.chkIncluirAsientosdeDiario.Location = new System.Drawing.Point(12, 237);
             this.chkIncluirAsientosdeDiario.Name = "chkIncluirAsientosdeDiario";
             this.chkIncluirAsientosdeDiario.Properties.Caption = "Incluir los asientos de diarios";
-            this.chkIncluirAsientosdeDiario.Size = new System.Drawing.Size(315, 19);
+            this.chkIncluirAsientosdeDiario.Size = new System.Drawing.Size(636, 19);
             this.chkIncluirAsientosdeDiario.StyleController = this.layoutControl1;
             this.chkIncluirAsientosdeDiario.TabIndex = 8;
             // 
@@ -370,8 +342,6 @@
             this.layoutControlItem8,
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.layoutControlItem7,
-            this.layoutControlItem9,
             this.layoutControlGroup4,
             this.emptySpaceItem1,
             this.emptySpaceItem2,
@@ -445,7 +415,7 @@
             this.layoutControlItem8.Control = this.chkSaldosAntesdeCierre;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 202);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(319, 23);
+            this.layoutControlItem8.Size = new System.Drawing.Size(640, 23);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -454,7 +424,7 @@
             this.layoutControlItem5.Control = this.chkIncluirAsientosdeDiario;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 225);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(319, 23);
+            this.layoutControlItem5.Size = new System.Drawing.Size(640, 23);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -466,24 +436,6 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(320, 23);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.chkImprimeUnidades;
-            this.layoutControlItem7.Location = new System.Drawing.Point(319, 202);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(321, 23);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.chkIdentarCuentas;
-            this.layoutControlItem9.Location = new System.Drawing.Point(319, 225);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(321, 23);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
             // 
             // layoutControlGroup4
             // 
@@ -686,9 +638,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDetalleMovimiento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIdentarCuentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSaldosAntesdeCierre.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkImprimeUnidades.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSoloCuentadeMayor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncluirAsientosdeDiario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentasHasta.Properties)).EndInit();
@@ -706,8 +656,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
@@ -735,9 +683,7 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.CheckEdit chkIdentarCuentas;
         private DevExpress.XtraEditors.CheckEdit chkSaldosAntesdeCierre;
-        private DevExpress.XtraEditors.CheckEdit chkImprimeUnidades;
         private DevExpress.XtraEditors.CheckEdit chkSoloCuentadeMayor;
         private DevExpress.XtraEditors.CheckEdit chkIncluirAsientosdeDiario;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentasHasta;
@@ -752,9 +698,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraEditors.CheckEdit chkDetalleMovimiento;

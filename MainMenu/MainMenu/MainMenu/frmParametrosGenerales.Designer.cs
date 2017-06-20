@@ -107,6 +107,7 @@
             this.btnSalir.StyleController = this.layoutControl1;
             this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
+        
             // 
             // btnGuardar
             // 

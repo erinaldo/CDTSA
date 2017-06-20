@@ -32,7 +32,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.chkImprimirUnidades = new DevExpress.XtraEditors.CheckEdit();
             this.chkSaldoAntesCierre = new DevExpress.XtraEditors.CheckEdit();
             this.chkIncluirAsientosdeDiario = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -69,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkImprimirUnidades.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSaldoAntesCierre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncluirAsientosdeDiario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -128,7 +126,6 @@
             // 
             // xtraTabPage1
             // 
-            this.xtraTabPage1.Controls.Add(this.chkImprimirUnidades);
             this.xtraTabPage1.Controls.Add(this.chkSaldoAntesCierre);
             this.xtraTabPage1.Controls.Add(this.chkIncluirAsientosdeDiario);
             this.xtraTabPage1.Controls.Add(this.groupControl2);
@@ -136,14 +133,6 @@
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(486, 329);
             this.xtraTabPage1.Text = "General";
-            // 
-            // chkImprimirUnidades
-            // 
-            this.chkImprimirUnidades.Location = new System.Drawing.Point(23, 224);
-            this.chkImprimirUnidades.Name = "chkImprimirUnidades";
-            this.chkImprimirUnidades.Properties.Caption = "Imprimir Unidades";
-            this.chkImprimirUnidades.Size = new System.Drawing.Size(169, 19);
-            this.chkImprimirUnidades.TabIndex = 5;
             // 
             // chkSaldoAntesCierre
             // 
@@ -467,7 +456,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chkImprimirUnidades.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSaldoAntesCierre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIncluirAsientosdeDiario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
@@ -514,7 +502,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraEditors.CheckEdit chkImprimirUnidades;
         private DevExpress.XtraEditors.CheckEdit chkSaldoAntesCierre;
         private DevExpress.XtraEditors.CheckEdit chkIncluirAsientosdeDiario;
         private DevExpress.XtraEditors.GroupControl groupControl2;
