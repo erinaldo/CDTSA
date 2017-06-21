@@ -82,8 +82,7 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, _dtSecurity))
-                this.btnAgregar.Enabled = false;
+            
             if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarAsientodeDiario, _dtSecurity))
                 this.btnEditar.Enabled = false;
             if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarAsientodeDiario, _dtSecurity))
@@ -127,7 +126,7 @@ namespace CG
             _dsEjercicioPeriodo = EjercicioDAC.GetEjercicioActivo();
             DataSet DS = new DataSet();
             DS = TipoCambioDetalleDAC.GetData("TVEN", DateTime.Now);
-
+            
             _currentRow = _dtAsiento.NewRow();
             _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
             _currentRow["Periodo"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
@@ -148,8 +147,8 @@ namespace CG
         {
             DataSet DS = ParametrosContabilidadDAC.GetMonedasFuncionales();
             Util.Util.DecimalLenght = Convert.ToInt32(DS.Tables[0].Rows[0]["CantDigitosDecimales"]);
-            Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["MonedaFuncional"].ToString();
-            Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["MonedaExtrangera"].ToString();
+            Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["SimboloMonedaFuncional"].ToString();
+            Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["SimboloMonedaExtrangera"].ToString();
         }
 
 
@@ -240,7 +239,6 @@ namespace CG
             this.gridView1.OptionsBehavior.AllowAddRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.grid.UseEmbeddedNavigator = Activo;
-            this.btnAgregar.Enabled = !Activo;
             this.btnEditar.Enabled = !Activo;
             this.btnGuardar.Enabled = Activo;
             this.btnCancelar.Enabled = Activo;

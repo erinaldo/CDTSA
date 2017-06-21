@@ -16,7 +16,7 @@ namespace CDTSA.DAC
         private static SqlDataAdapter InicializarAdaptador()
         {
             String getSQL = "SELECT *  FROM dbo.globalCompania";
-            String UpdateSQL = "UPDATE dbo.globalCompania SET Nombre =@Nombre,Direccion=@Direccion,Telefono=@Telefono,Logo=@Logo,UsaCentroCosto=@UsaCentroCosto,MonedaFuncional=@MonedaFuncional,MonedaExtrangera=@MonedaExtrangera,CantDigitosDecimales=@CantDigitosDecimales WHERE Compania='CDTSA'";
+            String UpdateSQL = "UPDATE dbo.globalCompania SET Nombre =@Nombre,Direccion=@Direccion,Telefono=@Telefono,Logo=@Logo,UsaCentroCosto=@UsaCentroCosto,SimboloMonedaFuncional=@SimboloMonedaFuncional,SimboloMonedaExtrangera=@SimboloMonedaExtrangera,CantDigitosDecimales=@CantDigitosDecimales,TipoCambio=@TipoCambio WHERE Compania='CDTSA'";
             
 
             try
@@ -36,9 +36,10 @@ namespace CDTSA.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Telefono", SqlDbType.NVarChar).SourceColumn = "Telefono";
                 oAdaptador.UpdateCommand.Parameters.Add("@Logo", SqlDbType.Image).SourceColumn = "Logo";
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
-                oAdaptador.UpdateCommand.Parameters.Add("@MonedaFuncional", SqlDbType.NVarChar).SourceColumn = "MonedaFuncional";
-                oAdaptador.UpdateCommand.Parameters.Add("@MonedaExtrangera",SqlDbType.NVarChar).SourceColumn="MonedaExtrangera";
+                oAdaptador.UpdateCommand.Parameters.Add("@SimboloMonedaFuncional", SqlDbType.NVarChar).SourceColumn = "SimboloMonedaFuncional";
+                oAdaptador.UpdateCommand.Parameters.Add("@simboloMonedaExtrangera",SqlDbType.NVarChar).SourceColumn="SimboloMonedaExtrangera";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantDigitosDecimales", SqlDbType.Int).SourceColumn = "CantDigitosDecimales";
+                oAdaptador.UpdateCommand.Parameters.Add("@TipoCambio", SqlDbType.NVarChar).SourceColumn = "TipoCambio";
 
           
                 return oAdaptador;
@@ -81,6 +82,15 @@ namespace CDTSA.DAC
             oAdap.Fill(ds,"Data");
             return ds;
             
+        }
+
+        public static DataSet GetTipoCambio(String TipoCambio,DateTime Fecha){
+            String strSQL = string.Format("SELECT A.IDTipoCambio,Fecha,MAX(Monto) Monto  FROM dbo.globalTipoCambio A INNER JOIN dbo.globalTipoCambioDetalle B ON	A.IDTipoCambio = B.IDTipoCambio WHERE A.IDTipoCambio='{0}' AND Fecha='{1}' GROUP BY A.IDTipoCambio,Fecha", TipoCambio, Fecha.ToString("yyyyMMdd"));
+            DataSet ds = CreateDataSet();
+            SqlCommand ocmd =  new SqlCommand(strSQL,ConnectionManager.GetConnection());
+            SqlDataAdapter oAdap= new SqlDataAdapter(ocmd);
+            oAdap.Fill(ds,"Data");
+            return ds;
         }
 
     

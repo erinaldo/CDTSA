@@ -27,52 +27,103 @@ namespace MainMenu
             ShowPagesRibbonMan(false);
         }
 
+        private void enlazarEventos()
+        {
+            this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
+            this.treeListContabilidad.DoubleClick += treeListContabilidad_DoubleClick;
+
+            this.treeListAdministracion.DoubleClick -= treeListAdministracion_DoubleClick;
+            this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
+        }
+
         void frmMain_Load(object sender, EventArgs e)
         {
-           
-            this.treeListContabilidad.DoubleClick += treeListContabilidad_DoubleClick;
-            this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
+
+            enlazarEventos();
             CargarPrivilegios();
-            CargarDatosGenerales();
-            CargarParametrosMonedas();
+            CargarParametrosSistema();
+            CargarConfiguracionRegional();
         }
 
-        private void CargarParametrosMonedas() {
-            DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetData();
-            Util.Util.DecimalLenght = Convert.ToInt32(DS.Tables[0].Rows[0]["CantDigitosDecimales"]);
-            Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["MonedaFuncional"].ToString();
-            Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["MonedaExtrangera"].ToString();
+        private void CargarConfiguracionRegional() {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         }
 
-        private void CargarDatosGenerales() {
+        private void ObtenerTipoCambio(String TipoCambio) {
+            DataSet DS =  CDTSA.DAC.ParametrosGeneralesDAC.GetTipoCambio(TipoCambio, DateTime.Now);
+            if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+            {
+                this.lblFecha.Caption = "Fecha: " + Convert.ToDateTime(DS.Tables[0].Rows[0]["Fecha"]).ToShortDateString();
+                this.lblTipoCambio.Caption = "TC: " + Convert.ToDecimal(DS.Tables[0].Rows[0]["Monto"]).ToString("N4");
+
+                enlazarEventos();
+            }
+            else {
+                this.lblFecha.Caption = "Fecha: --" ;
+                this.lblTipoCambio.Caption = "TC: --" ;
+                MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor contacte el administrador del sistema : \n\r " );
+                this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
+            }
+        }
+
+        private void CargarParametrosSistema() {
+
             try
             {
-                DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetDatosGeneralesCompania();
-                if (DS.Tables[0].Rows.Count > 0)
+                DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetData();
+                if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
                 {
-                    this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
-                    this.lblTipoCambio.Caption = string.Format("{0} :{1}", DS.Tables[0].Rows[0]["IDTipoCambio"], DS.Tables[0].Rows[0]["Monto"].ToString());
-                    
+                    String sMensaje = "";
+                    //Validar los datos de configuracion
+                    if (DS.Tables[0].Rows[0]["Compania"].ToString() == "")
+                    {
+                        sMensaje = sMensaje + " • El nombre de la compania no se ha establecido \n\r";
+                        this.lblCompania.Caption = "Compañia: ";
+                    }
+                    if (DS.Tables[0].Rows[0]["CantDigitosDecimales"].ToString() == "") {
+                        sMensaje = sMensaje + " • La cantidad de Digitos de decimales que se visualizan en sistema \n\r";
+                    }
+                    if (DS.Tables[0].Rows[0]["SimboloMonedaFuncional"].ToString() == "")
+                        sMensaje = sMensaje + " • El simbolo de la moneda funcional no se ha establecido \n\r";
+                    if (DS.Tables[0].Rows[0]["SimboloMonedaExtrangera"].ToString() == "")
+                        sMensaje = sMensaje + " • El simbolo de la moneda extrangera no se ha establecido \n\r";
+                    if (DS.Tables[0].Rows[0]["TipoCambio"].ToString() == "")
+                        sMensaje = sMensaje + " • El tipo de Cambio con el trabajara el sistema no se ha establecido \n\r";
+
+                    if (sMensaje != "")
+                    {
+                        
+                        this.lblFecha.Caption = "Fecha: --";
+                        this.lblTipoCambio.Caption = "TC: --";
+                        this.lblCompania.Caption = "Compañia: ";
+                        MessageBox.Show("Por favor notifique a su administrador del sistema la validaciion de los siguientes campos: \n\r " + sMensaje);
+                        this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
+                    }
+                    else
+                    {
+                        String sTipoCambio = "";
+                        Util.Util.DecimalLenght = Convert.ToInt32(DS.Tables[0].Rows[0]["CantDigitosDecimales"]);
+                        Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["SimboloMonedaFuncional"].ToString();
+                        Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["SimboloMonedaExtrangera"].ToString();
+                        sTipoCambio = DS.Tables[0].Rows[0]["TipoCambio"].ToString();
+                        ObtenerTipoCambio(sTipoCambio);
+                        this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
+                        
+                    }
                 }
                 else {
+                    MessageBox.Show("Los parametros generales de la aplicacion estan incompletos, por favor contacte al administrador del sistema");
+                    //Quitar  todas las acciones a los menus.
                     this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
-                    this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
-                    String sMensaje = "";
-                    if ( DS.Tables[0].Rows[0]["Compania"].ToString()==""){
-                           sMensaje = sMensaje + "No se ha configurado el nombre de la compañia, por favor llamar a sistemas \n\r";
-                    }
-                    if (DS.Tables[0].Rows[0]["Monto"].ToString()==""){
-                            sMensaje = sMensaje + "No existe tipo de cambio para el dia corriente  \n\r";
-                    }
-                    MessageBox.Show("Se han encontrado los siguientes errores: ");
                 }
-                    this.lblUsuario.Caption = "Usuario: " + ((UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "");
+                this.lblUsuario.Caption = "Usuario: " + ((UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "");
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
         }
+
+    
 
         void treeListAdministracion_DoubleClick(object sender, EventArgs e)
         {
@@ -96,7 +147,7 @@ namespace MainMenu
             try
             {
                 foreach (TreeListNode node in treeListContabilidad.Nodes)
-                    if (node.Tag == Tag)
+                    if (node.Tag.ToString() == Tag)
                         node.Visible = false;
         //                node.TreeList.ForeColor = Color.Gray;
             }
@@ -169,7 +220,7 @@ namespace MainMenu
         void ofrmParametrosGenerales_FormClosed(object sender, FormClosedEventArgs e)
         {
             //Recargar los parametros del sistema
-            CargarDatosGenerales();
+            CargarParametrosSistema();
         }
 
 
@@ -177,8 +228,6 @@ namespace MainMenu
         private void CreateNodes(TreeList tl)
         {
             tl.BeginUnboundLoad();
-
-            TreeListNode parentForRootNodes = null;
             // Create a child node for the node1
             switch (tl.Name)
             {

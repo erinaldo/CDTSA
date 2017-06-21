@@ -80,7 +80,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(int IDTipoCambio)
+        public static DataSet GetData(String IDTipoCambio)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDTipoCambio"].Value = IDTipoCambio;

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Drawing.Drawing2D;
+using CG;
 
 namespace CDTSA
 {
@@ -49,8 +50,9 @@ namespace CDTSA
             _CurrentRow["Telefono"] = this.txtTelefono.EditValue;
             _CurrentRow["Logo"] = ImageToByte( this.picLogo.Image);
             _CurrentRow["UsaCentroCosto"] = this.chkUsaCentroCosto.EditValue;
-            _CurrentRow["MonedaFuncional"] = this.txtMoneda.EditValue;
-            _CurrentRow["MonedaExtrangera"] = this.txtMonedaExtrangera.EditValue;
+            _CurrentRow["SimboloMonedaFuncional"] = this.txtMoneda.EditValue;
+            _CurrentRow["SimboloMonedaExtrangera"] = this.txtMonedaExtrangera.EditValue;
+            _CurrentRow["TipoCambio"] = this.slkupTipoCambio.EditValue;
         }
 
         void btnSalir_Click(object sender, EventArgs e)
@@ -154,9 +156,10 @@ namespace CDTSA
                 this.txtNombre.EditValue = _CurrentRow["Nombre"].ToString();
                 this.txtDireccion.EditValue = _CurrentRow["Direccion"].ToString();
                 this.txtTelefono.EditValue = _CurrentRow["Telefono"].ToString();
-                this.txtMoneda.EditValue = _CurrentRow["MonedaFuncional"].ToString();
-                this.txtMonedaExtrangera.EditValue = _CurrentRow["MonedaExtrangera"].ToString();
+                this.txtMoneda.EditValue = _CurrentRow["SimboloMonedaFuncional"].ToString();
+                this.txtMonedaExtrangera.EditValue = _CurrentRow["SimboloMonedaExtrangera"].ToString();
                 this.picLogo.EditValue = _CurrentRow["Logo"];
+                this.slkupTipoCambio.EditValue = _CurrentRow["TipoCambio"].ToString() ;
                 
             }
             catch (Exception ex)
@@ -173,6 +176,9 @@ namespace CDTSA
             this.StartPosition = FormStartPosition.CenterScreen;
 
             CargarParametros();
+
+            Util.Util.ConfigLookupEdit(this.slkupTipoCambio, CG.TipoCambioDAC.GetData("*").Tables["Data"], "Descr", "IDTipoCambio");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoCambio, "[{'ColumnCaption':'Tipo','ColumnField':'IDTipoCambio','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
             //configurar los searchlokup
             
             
