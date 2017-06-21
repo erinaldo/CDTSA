@@ -208,6 +208,12 @@
     <Compile Include="frmListadoPeriodos.Designer.cs">
       <DependentUpon>frmListadoPeriodos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmListadoTipoCambio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoTipoCambio.Designer.cs">
+      <DependentUpon>frmListadoTipoCambio.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmParametrosContables.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoPeriodos.resx">
       <DependentUpon>frmListadoPeriodos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoTipoCambio.resx">
+      <DependentUpon>frmListadoTipoCambio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmParametrosContables.resx">
       <DependentUpon>frmParametrosContables.cs</DependentUpon>
