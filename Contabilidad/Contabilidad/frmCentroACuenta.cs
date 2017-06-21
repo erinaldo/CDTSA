@@ -52,10 +52,10 @@ namespace CG
             {
                
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
+                
+                EnlazarEventos();
 
                 PopulateGrid();
-
-                EnlazarEventos();
 
                 UpdateControlsFromCurrentRow(_drCuenta);
 

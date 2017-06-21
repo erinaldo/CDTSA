@@ -126,6 +126,8 @@ namespace CG
 
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.dtg, _tituloVentana, this);
 
+                EnlazarEventos();
+
                 PopulateGrid();
 
                 Util.Util.ConfigLookupEdit(this.slkupGrupo, _dtGrupo, "Descr", "IDGrupo");
@@ -136,8 +138,6 @@ namespace CG
 
                 Util.Util.ConfigLookupEdit(this.slkupSubTipo, _dtSubTipo, "Descr", "IDSubTipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipo, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
-                EnlazarEventos();
                 
                 this.slkupSubTipo.ReadOnly = true;
                 this.slkupTipo.ReadOnly = true;

@@ -82,9 +82,9 @@ namespace CG
 
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.dtg, _tituloVentana, this);
 
-                PopulateGrid();
-
                 EnlazarEventos();
+
+                PopulateGrid();
 
                 CargarPrivilegios();
 
