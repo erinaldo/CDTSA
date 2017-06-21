@@ -92,9 +92,9 @@ namespace CG
 
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
 
-                PopulateGrid();
-
                 EnlazarEventos();
+
+                PopulateGrid();
 
                 CargarPrivilegios();
 
@@ -116,10 +116,11 @@ namespace CG
             _dsTipoCambio = TipoCambioDAC.GetData("*");
 
             _dtTipoCambio = _dsTipoCambio.Tables[0];
+            this.grid.DataSource = null;
             this.grid.DataSource = _dtTipoCambio;
-            this.gridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle;
-            gridView.ClearSelection();
-            this.gridView.UnselectRow(0);
+            //this.gridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle;
+           // gridView.ClearSelection();
+            //this.gridView.UnselectRow(0);
 
         }
 
@@ -257,8 +258,8 @@ namespace CG
                     Application.DoEvents();
                     isEdition = false;
                     _dsTipoCambio.AcceptChanges();
-                    ClearControls();
                     PopulateGrid();
+                    SetCurrentRow();
                     HabilitarControles(false);
                     AplicarPrivilegios();
                 }
@@ -284,7 +285,7 @@ namespace CG
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
                     Application.DoEvents();
                     PopulateGrid();
-                    ClearControls();
+                    SetCurrentRow();
                     HabilitarControles(false);
                     AplicarPrivilegios();
                     ColumnView view = this.gridView;

@@ -64,9 +64,9 @@ namespace CG
 
                 this.gridView.FocusedRowChanged += GridView_FocusedRowChanged;
                 this.gridView.DoubleClick += GridView_DoubleClick;
-
-                PopulateGrid();
+                
                 EnlazarEventos();
+                PopulateGrid();
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
                 CargarPrivilegios();
 

@@ -384,7 +384,6 @@ namespace CG
                 HabilitarControles(false);
                 CargarSimbolosMoneda();
                 CargarPrivilegios();
-                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
                 EnlazarEventos();
 
                 this.gridView1.EditFormPrepared += GridView1_EditFormPrepared;
@@ -394,8 +393,12 @@ namespace CG
                 this.gridView1.InvalidRowException += GridView1_InvalidRowException;
                 this.gridView1.RowUpdated += GridView1_RowUpdated;
 
+
                 this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
                 this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
+
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
+
                 //        //Configurar searchLookUp
                 _dtCentros = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0];
                 this.slkupCentroCostoGrid.DataSource = _dtCentros;
