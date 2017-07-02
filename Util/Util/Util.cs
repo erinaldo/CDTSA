@@ -66,6 +66,72 @@ namespace Util
 
         }
 
+        public static void SetFormatTextEditGrid(RepositoryItemTextEdit texto, FormatType typeFormat, String Mask = "")
+        {
+            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
+            switch (typeFormat)
+            {
+                case FormatType.MonedaExtrangera:
+
+                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency;
+                    texto.Mask.Culture = ci;
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Mask.EditMask = "c" + DecimalLenght;
+                    texto.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    break;
+                case FormatType.MonedaLocal:
+
+                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency;
+                    texto.Mask.Culture = ci;
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Mask.EditMask = "c" + DecimalLenght;//string.Format("#,###,###,##0.00", Config.LocalSimbolCurrency);
+                    texto.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+
+                    break;
+                case FormatType.FechaCorta:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "d";
+                    break;
+                case FormatType.FechaLarga:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "D";
+                    break;
+                case FormatType.TiempoCorto:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "t";
+                    break;
+                case FormatType.TiempoLargo:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "T";
+                    break;
+                case FormatType.FechaGeneralTiempoCorto:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "g";
+                    break;
+                case FormatType.FechaGeneralTiempoLargo:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "G";
+                    break;
+                case FormatType.MesDia:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "m";
+                    break;
+                case FormatType.AnoMes:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+                    texto.Mask.EditMask = "y";
+                    break;
+                case FormatType.Porcentaje:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Mask.EditMask = "p";
+                    break;
+                case FormatType.Personalizado:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Custom;
+                    texto.Mask.EditMask = Mask;
+                    break;
+            }
+            texto.Mask.UseMaskAsDisplayFormat = true;
+        }
+
         public static void SetFormatTextEdit(TextEdit texto, FormatType typeFormat, String Mask = "")
         {
             System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");

@@ -126,6 +126,8 @@
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.imgCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.txtDebitoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.txtCreditoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -197,6 +199,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -518,7 +522,9 @@
             this.grid.Name = "grid";
             this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.slkupCentroCostoGrid,
-            this.slkupCuentaContableGrid});
+            this.slkupCuentaContableGrid,
+            this.txtDebitoGrid,
+            this.txtCreditoGrid});
             this.grid.Size = new System.Drawing.Size(828, 175);
             this.grid.TabIndex = 14;
             this.grid.UseEmbeddedNavigator = true;
@@ -703,6 +709,7 @@
             // Debito
             // 
             this.Debito.Caption = "Débito";
+            this.Debito.ColumnEdit = this.txtDebitoGrid;
             this.Debito.DisplayFormat.FormatString = "C2";
             this.Debito.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Debito.FieldName = "Debito";
@@ -718,6 +725,7 @@
             // Creditos
             // 
             this.Creditos.Caption = "Créditos";
+            this.Creditos.ColumnEdit = this.txtCreditoGrid;
             this.Creditos.DisplayFormat.FormatString = "C2";
             this.Creditos.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Creditos.FieldName = "Credito";
@@ -1255,6 +1263,16 @@
             this.imgCollection.InsertGalleryImage("hidedetail_32x32.png", "images/spreadsheet/hidedetail_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/hidedetail_32x32.png"), 1);
             this.imgCollection.Images.SetKeyName(1, "hidedetail_32x32.png");
             // 
+            // txtDebitoGrid
+            // 
+            this.txtDebitoGrid.AutoHeight = false;
+            this.txtDebitoGrid.Name = "txtDebitoGrid";
+            // 
+            // txtCreditoGrid
+            // 
+            this.txtCreditoGrid.AutoHeight = false;
+            this.txtCreditoGrid.Name = "txtCreditoGrid";
+            // 
             // frmAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1339,6 +1357,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1443,5 +1463,7 @@
         private DevExpress.Utils.ImageCollection imgCollection;
 
         private DevExpress.XtraBars.BarButtonItem btnShowLessColumns;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtDebitoGrid;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtCreditoGrid;
     }
 }

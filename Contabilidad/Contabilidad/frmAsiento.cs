@@ -162,12 +162,14 @@ namespace CG
             Util.Util.SetFormatTextEdit(this.txtCreditoLocal, Util.Util.FormatType.MonedaLocal);
             Util.Util.SetFormatTextEdit(this.txtDebitoLocal, Util.Util.FormatType.MonedaLocal);
             Util.Util.SetFormatTextEdit(this.txtDiferencia, Util.Util.FormatType.MonedaLocal);
+            
 
             Util.Util.SetFormatTextEdit(this.txtDebitoDolar, Util.Util.FormatType.MonedaExtrangera);
             Util.Util.SetFormatTextEdit(this.txtCreditoDolar, Util.Util.FormatType.MonedaExtrangera);
             Util.Util.SetFormatTextEdit(this.txtDirenciaDolar, Util.Util.FormatType.MonedaExtrangera);
-            
 
+            Util.Util.SetFormatTextEditGrid(this.txtDebitoGrid, Util.Util.FormatType.MonedaLocal);
+            Util.Util.SetFormatTextEditGrid(this.txtCreditoGrid, Util.Util.FormatType.MonedaLocal);
             //this.gridView1.Columns["asdfs"].DisplayFormat = 
         }
 
