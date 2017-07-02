@@ -126,6 +126,18 @@ namespace CG
         }
 
 
+        public static String GetTipoCambioModulo()
+        {
+            DataSet ds = CreateDataSet();
+            String GetDatosGeneralesSQL = "SELECT TipoCambio  FROM dbo.globalCompania";
+
+            SqlCommand ocmd = new SqlCommand(GetDatosGeneralesSQL, ConnectionManager.GetConnection());
+            SqlDataAdapter oAdap = new SqlDataAdapter(ocmd);
+            oAdap.Fill(ds, "Data");
+            return ds.Tables[0].Rows[0]["TipoCambio"].ToString();
+
+        }
+
 
     }
 }

@@ -125,7 +125,9 @@ namespace CG
         {
             _dsEjercicioPeriodo = EjercicioDAC.GetEjercicioActivo();
             DataSet DS = new DataSet();
-            DS = TipoCambioDetalleDAC.GetData("TVEN", DateTime.Now);
+            //Cargar el tipo de cambio por defecto
+            String sTipoCambio = ParametrosContabilidadDAC.GetTipoCambioModulo();
+            DS = TipoCambioDetalleDAC.GetData(sTipoCambio, DateTime.Now);
             
             _currentRow = _dtAsiento.NewRow();
             _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
