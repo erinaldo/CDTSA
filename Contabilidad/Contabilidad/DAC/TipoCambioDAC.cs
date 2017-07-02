@@ -89,7 +89,33 @@ namespace CG
             return DS;
         }
 
+        public static bool ExisteTipoCambioInDetalle(String TipoCambio)
+        {
+            bool Resultado = false;
+            String strSQL = "SELECT TOP 1 IDTipoCambio  FROM dbo.globalTipoCambioDetalle WHERE IDTipoCambio=@IDTipoCambio";
 
-        
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDTipoCambio", TipoCambio));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = CreateDataSet();
+
+            oAdap.Fill(DS.Tables["Data"]);
+
+            if (DS.Tables.Count > 0) {
+                if (DS.Tables[0].Rows.Count > 0)
+                    Resultado = true;
+                else
+                    Resultado = false;
+            }
+            else
+                Resultado = false;
+
+            return Resultado;
+        }
+
+
     }
 }

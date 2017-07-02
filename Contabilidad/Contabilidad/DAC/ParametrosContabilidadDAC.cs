@@ -116,7 +116,7 @@ namespace CG
         public static DataSet GetMonedasFuncionales()
         {
             DataSet ds = CreateDataSet();
-            String GetDatosGeneralesSQL = "SELECT MonedaFuncional,MonedaExtrangera,CantDigitosDecimales  FROM dbo.globalCompania";
+            String GetDatosGeneralesSQL = "SELECT SimboloMonedaFuncional,SimboloMonedaExtrangera,CantDigitosDecimales  FROM dbo.globalCompania";
 
             SqlCommand ocmd = new SqlCommand(GetDatosGeneralesSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdap = new SqlDataAdapter(ocmd);

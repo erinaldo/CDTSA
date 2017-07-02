@@ -91,7 +91,51 @@ namespace CG
             return DS;
         }
 
+        public static DataSet GetDetalleTipoCambioByID(String TipoCambio,DateTime FechaInicial,DateTime FechaFinal)
+        {
+            String strSQL = "SELECT *  FROM dbo.globalTipoCambioDetalle WHERE (IDTipoCambio=@IDTipoCambio or @IDTipoCambio='*') and Fecha  between @FechaInicial and @FechaFinal";
 
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDTipoCambio", TipoCambio));
+            oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
+            oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
+            
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = CreateDataSet();
+
+            oAdap.Fill(DS.Tables["Data"]);
+
+            
+            return DS;
+        }
+
+
+        public static DateTime GetNetFechaByIDTipoCambio(String TipoCambio)
+        {
+            DateTime Fecha = DateTime.Now;
+            String strSQL = "SELECT DATEADD(DAY,1, MAX(Fecha)) NextFecha FROM dbo.globalTipoCambioDetalle WHERE IDTipoCambio=@IDTipoCambio";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDTipoCambio", TipoCambio));
+            
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = CreateDataSet();
+
+            oAdap.Fill(DS.Tables["Data"]);
+
+            if (DS.Tables.Count > 0) {
+                if (DS.Tables[0].Rows.Count > 0)
+                    Fecha = Convert.ToDateTime(DS.Tables[0].Rows[0]["NextFecha"]);
+            }
+
+            return Fecha;
+        }
+
+        
 
     }
 

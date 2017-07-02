@@ -195,7 +195,7 @@ namespace CG
             this.txtAsiento.EditValue = _currentRow["Asiento"].ToString();
             this.txtEjercicio.EditValue = _currentRow["IDEjercicio"].ToString();
             this.txtPeriodo.EditValue = _currentRow["Periodo"].ToString();
-            this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N4");
+            this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght);
             this.txtModuloFuente.EditValue = _currentRow["ModuloFuente"].ToString();
             this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
             this.txtFecha.EditValue = _currentRow["FechaHora"].ToString();
@@ -455,13 +455,13 @@ namespace CG
             double dDebito = (dtDebito.Rows.Count == 0) ? 0 : Convert.ToDouble(dtDebito.Compute("SUM(Debito)", ""));
             double dCredito = (dtCredito.Rows.Count == 0) ? 0 : Convert.ToDouble(dtCredito.Compute("SUM(Credito)", ""));
 
-            this.txtDebitoLocal.EditValue = dDebito.ToString("N4");
-            this.txtCreditoLocal.EditValue = dCredito.ToString("N4");
-            this.txtDiferencia.EditValue = (dDebito - dCredito).ToString("N4");
+            this.txtDebitoLocal.EditValue = dDebito.ToString("N" + Util.Util.DecimalLenght);
+            this.txtCreditoLocal.EditValue = dCredito.ToString("N" + Util.Util.DecimalLenght);
+            this.txtDiferencia.EditValue = (dDebito - dCredito).ToString("N" + Util.Util.DecimalLenght);
             //Dolar
-            this.txtDebitoDolar.EditValue = (_TipoCambio == 0) ? "0.0000" : (dDebito / _TipoCambio).ToString("N4");
-            this.txtCreditoDolar.EditValue = (_TipoCambio == 0) ? "0.0000" : (dCredito / _TipoCambio).ToString("N4");
-            this.txtDirenciaDolar.EditValue = (_TipoCambio == 0) ? "0.0000" : ((dDebito / _TipoCambio) - (dCredito / _TipoCambio)).ToString("N4");
+            this.txtDebitoDolar.EditValue = (_TipoCambio == 0) ? (0).ToString("N" + Util.Util.DecimalLenght) : (dDebito / _TipoCambio).ToString("N" + Util.Util.DecimalLenght);
+            this.txtCreditoDolar.EditValue = (_TipoCambio == 0) ? (0).ToString("N" + Util.Util.DecimalLenght) : (dCredito / _TipoCambio).ToString("N" + Util.Util.DecimalLenght);
+            this.txtDirenciaDolar.EditValue = (_TipoCambio == 0) ? (0).ToString("N" + Util.Util.DecimalLenght) : ((dDebito / _TipoCambio) - (dCredito / _TipoCambio)).ToString("N" + Util.Util.DecimalLenght);
 
             if ((dDebito - dCredito) != 0)
             {

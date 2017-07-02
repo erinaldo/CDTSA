@@ -296,6 +296,7 @@ namespace CG
                     isEdition = false;
                     _dsCentro.AcceptChanges();
                     PopulateGrid();
+                    SetCurrentRow();
                     HabilitarControles(false);
                     AplicarPrivilegios();
                 }
@@ -329,7 +330,7 @@ namespace CG
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
                     Application.DoEvents();
                     PopulateGrid();
-                    ClearControls();
+                    SetCurrentRow();
                     HabilitarControles(false);
                     AplicarPrivilegios();
                     ColumnView view = this.gridView;

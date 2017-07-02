@@ -106,6 +106,12 @@
     </Compile>
     <Compile Include="DAC\AsientoDetalleDAC.cs" />
     <Compile Include="DAC\EjercicioDAC.cs" />
+    <Compile Include="frmTipoCambioDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTipoCambioDetalle.Designer.cs">
+      <DependentUpon>frmTipoCambioDetalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAC\ParametrosContabilidadDAC.cs" />
     <Compile Include="DAC\PeriodoContableDAC.cs" />
     <Compile Include="DAC\TipoAsientoDAC.cs" />
@@ -255,6 +261,9 @@
     </Compile>
     <EmbeddedResource Include="Consultas\frmConsultaSaldoCentroCosto.resx">
       <DependentUpon>frmConsultaSaldoCentroCosto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTipoCambioDetalle.resx">
+      <DependentUpon>frmTipoCambioDetalle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAsiento.resx">
       <DependentUpon>frmAsiento.cs</DependentUpon>

@@ -13,27 +13,26 @@ using DevExpress.XtraGrid.Views.Base;
 
 namespace CG
 {
-    public partial class frmListadoTipoCambio : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmTipoCambioDetalle : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        private DataSet _dsTipoCambio;
+        private String IDTipoCambio;
+        private String Descr;
         private DataTable _dtSecurity;
-        private DataTable _dtTipoCambio;
-
+        private DataSet _dsTipoCambioDetalle;
+        private DataTable _dtTipoCambioDetalle;
         DataRow currentRow;
-        string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
-        const String _tituloVentana = "Listado de Tipos de Cambio";
-        private bool isEdition = false;
+        bool isEdition;
 
-        public frmListadoTipoCambio()
+        string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
+        const String _tituloVentana = "Detalle de Tipos de Cambio";
+        public frmTipoCambioDetalle(String IDTipoCambio, String Descr)
         {
             InitializeComponent();
-            this.Load += FrmListadoTipoCambio_Load;
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            
-        }
 
-        
+            this.IDTipoCambio = IDTipoCambio;
+            this.Descr = Descr;
+            this.Load += FrmTipoCambioDetalle_Load;
+        }
 
         private void CargarPrivilegios()
         {
@@ -46,44 +45,22 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCentroCosto, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, _dtSecurity))
                 this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCentroCosto, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCuentaContable, _dtSecurity))
                 this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCentroCosto, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCuentaContable, _dtSecurity))
                 this.btnEliminar.Enabled = false;
         }
 
 
-        private void EnlazarEventos()
-        {
-            this.btnAgregar.ItemClick += btnAgregar_ItemClick;
-            this.btnEditar.ItemClick += btnEditar_ItemClick;
-            this.btnEliminar.ItemClick += btnEliminar_ItemClick;
-            this.btnGuardar.ItemClick += btnGuardar_ItemClick;
-            this.btnCancelar.ItemClick += btnCancelar_ItemClick;
-            this.btnExportar.ItemClick += BtnExportar_ItemClick;
-            this.btnDetalleTipoCambio.ItemClick += BtnDetalleTipoCambio_ItemClick;
-            this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
-        }
-
-        private void BtnDetalleTipoCambio_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //Validar que exista un elemento selecionado.
-            if (currentRow != null)
-            {
-                frmTipoCambioDetalle ofrmTipoDetalle = new frmTipoCambioDetalle(currentRow["IDTipoCambio"].ToString(), currentRow["Descr"].ToString());
-                ofrmTipoDetalle.ShowDialog();
-            }
-        }
-
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string tempPath = System.IO.Path.GetTempPath();
-            String FileName = System.IO.Path.Combine(tempPath, "lstTiposdeCambio.xlsx");
+            String FileName = System.IO.Path.Combine(tempPath, "lstTiposdeCambioDetalle.xlsx");
             DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
             {
-                SheetName = "Listado Tipos Cambio"
+                SheetName = "Listado Tipos Cambio Detalle"
             };
 
 
@@ -95,57 +72,33 @@ namespace CG
             process.Start();
         }
 
-        private void FrmListadoTipoCambio_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                HabilitarControles(false);
 
-                Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
-
-                EnlazarEventos();
-
-                PopulateGrid();
-
-                CargarPrivilegios();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void PopulateData()
-        {
-            
-        }
 
         private void PopulateGrid()
         {
-            _dsTipoCambio = TipoCambioDAC.GetData("*");
+            DateTime FechaInicial = Convert.ToDateTime(this.dtpFechaInicial.EditValue);
+            DateTime FechaFinal = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
 
-            _dtTipoCambio = _dsTipoCambio.Tables[0];
+            _dsTipoCambioDetalle = TipoCambioDetalleDAC.GetDetalleTipoCambioByID("*", FechaInicial, FechaFinal);
+
+            _dtTipoCambioDetalle = _dsTipoCambioDetalle.Tables[0];
             this.grid.DataSource = null;
-            this.grid.DataSource = _dtTipoCambio;
-            //this.gridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle;
-           // gridView.ClearSelection();
-            //this.gridView.UnselectRow(0);
+            this.grid.DataSource = _dtTipoCambioDetalle;
+
 
         }
 
         private void ClearControls()
         {
-            this.txtDescr.Text = "";
-            this.txtIDTipoCambio.Text = "";
+            this.dtpFecha.Text = "";
+            this.txtMonto.Text = "";
         }
 
         private void HabilitarControles(bool Activo)
         {
-            this.txtDescr.ReadOnly = !Activo;
+            this.txtMonto.ReadOnly = !Activo;
             this.txtIDTipoCambio.ReadOnly = !Activo;
-            
+
             this.grid.Enabled = !Activo;
 
             this.btnAgregar.Enabled = !Activo;
@@ -155,6 +108,18 @@ namespace CG
             this.btnEliminar.Enabled = !Activo;
 
         }
+
+        private void UpdateControlsFromCurrentRow(DataRow Row)
+        {
+            this.dtpFecha.Text = Row["Fecha"].ToString();
+            this.txtMonto.Text = Row["Monto"].ToString();
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            SetCurrentRow();
+        }
+
 
         private void SetCurrentRow()
         {
@@ -166,24 +131,60 @@ namespace CG
             }
         }
 
-        private void UpdateControlsFromCurrentRow(DataRow Row)
+        private void EnlazarEventos()
         {
-            this.txtIDTipoCambio.Text = Row["IDTipoCambio"].ToString();
-            this.txtDescr.Text = Row["Descr"].ToString();
+            this.btnAgregar.ItemClick += btnAgregar_ItemClick;
+            this.btnEditar.ItemClick += btnEditar_ItemClick;
+            this.btnEliminar.ItemClick += btnEliminar_ItemClick;
+            this.btnGuardar.ItemClick += btnGuardar_ItemClick;
+            this.btnCancelar.ItemClick += btnCancelar_ItemClick;
+            this.btnExportar.ItemClick += BtnExportar_ItemClick;
+            this.btnRefrescar.Click += BtnRefrescar_Click;
+            this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
-
-        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void BtnRefrescar_Click(object sender, EventArgs e)
         {
-            SetCurrentRow();
+            PopulateGrid();
+        }
+
+        private void FrmTipoCambioDetalle_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                HabilitarControles(false);
+
+                this.dtpFechaInicial.EditValue = DateTime.Now.AddMonths(-1);
+                this.dtpFechaFinal.EditValue = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1)).Day;
+                this.txtIDTipoCambio.Text = this.IDTipoCambio + " " + this.Descr;
+                Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
+
+                EnlazarEventos();
+
+                PopulateGrid();
+                
+                CargarPrivilegios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            isEdition = true;
-            HabilitarControles(true);
-            ClearControls();
-            currentRow = null;
+            try
+            {
+                isEdition = true;
+                HabilitarControles(true);
+                ClearControls();
+                this.dtpFecha.EditValue= TipoCambioDetalleDAC.GetNetFechaByIDTipoCambio(this.IDTipoCambio);
+
+                currentRow = null;
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -198,19 +199,20 @@ namespace CG
                 lblStatus.Caption = "";
             isEdition = true;
             HabilitarControles(true);
-            this.txtIDTipoCambio.ReadOnly = true;
+            this.dtpFecha.ReadOnly = true;
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
         }
+
 
         private bool ValidarDatos()
         {
             bool result = true;
             String sMensaje = "";
             //Este solo vale para el primer elemento
-            if (this.txtIDTipoCambio.Text == "")
-                sMensaje = sMensaje + "     • ID TipoCambio  \n\r";
-            if (this.txtDescr.Text == "")
-                sMensaje = sMensaje + "     • Descripción del Tipo de Cambio. \n\r";
+            if (this.dtpFecha.EditValue.ToString() == "")
+                sMensaje = sMensaje + "     • Fecha del Tipo de Cambio  \n\r";
+            if (this.txtMonto.Text == "")
+                sMensaje = sMensaje + "     • El monto del Tipo de Cambio. \n\r";
             if (sMensaje != "")
             {
                 result = false;
@@ -218,6 +220,7 @@ namespace CG
             }
             return result;
         }
+
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -232,12 +235,13 @@ namespace CG
                 Application.DoEvents();
                 currentRow.BeginEdit();
 
-                currentRow["IDTipoCambio"] = this.txtIDTipoCambio.Text ;
-                currentRow["Descr"] = this.txtDescr.Text;
-                
+                currentRow["IDTipoCambio"] = this.IDTipoCambio;
+                currentRow["Fecha"] = this.dtpFecha.EditValue;
+                currentRow["Monto"] = this.txtMonto.Value;
+
                 currentRow.EndEdit();
 
-                DataSet _dsChanged = _dsTipoCambio.GetChanges(DataRowState.Modified);
+                DataSet _dsChanged = _dsTipoCambioDetalle.GetChanges(DataRowState.Modified);
 
                 bool okFlag = true;
                 if (_dsChanged.HasErrors)
@@ -265,11 +269,11 @@ namespace CG
 
                 if (okFlag)
                 {
-                    TipoCambioDAC.oAdaptador.Update(_dsChanged, "Data");
+                    TipoCambioDetalleDAC.oAdaptador.Update(_dsChanged, "Data");
                     lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                     Application.DoEvents();
                     isEdition = false;
-                    _dsTipoCambio.AcceptChanges();
+                    _dsTipoCambioDetalle.AcceptChanges();
                     PopulateGrid();
                     SetCurrentRow();
                     HabilitarControles(false);
@@ -277,22 +281,23 @@ namespace CG
                 }
                 else
                 {
-                    _dsTipoCambio.RejectChanges();
+                    _dsTipoCambioDetalle.RejectChanges();
 
                 }
             }
             else
             {
                 //nuevo registro
-                currentRow = _dtTipoCambio.NewRow();
+                currentRow = _dtTipoCambioDetalle.NewRow();
 
-                currentRow["IDTipoCambio"] = this.txtIDTipoCambio.Text;
-                currentRow["Descr"] = this.txtDescr.Text;
-                _dtTipoCambio.Rows.Add(currentRow);
+                currentRow["IDTipoCambio"] = this.IDTipoCambio;
+                currentRow["Fecha"] = this.dtpFecha.EditValue;
+                currentRow["Monto"] = this.txtMonto.Value;
+                _dtTipoCambioDetalle.Rows.Add(currentRow);
                 try
                 {
-                    TipoCambioDAC.oAdaptador.Update(_dsTipoCambio, "Data");
-                    _dsTipoCambio.AcceptChanges();
+                    TipoCambioDetalleDAC.oAdaptador.Update(_dsTipoCambioDetalle, "Data");
+                    _dsTipoCambioDetalle.AcceptChanges();
                     isEdition = false;
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
                     Application.DoEvents();
@@ -305,13 +310,14 @@ namespace CG
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
-                    _dsTipoCambio.RejectChanges();
+                    _dsTipoCambioDetalle.RejectChanges();
                     currentRow = null;
                     MessageBox.Show(ex.Message);
                 }
             }
 
         }
+
 
         private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -322,27 +328,24 @@ namespace CG
             lblStatus.Caption = "";
         }
 
+
         private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (currentRow != null)
             {
                 string msg = currentRow["Descr"] + " eliminado..";
-                
+
                 if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["Descr"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
 
-                    if (TipoCambioDAC.ExisteTipoCambioInDetalle(currentRow["IDTipoCambio"].ToString())){
-                        MessageBox.Show("El tipo de cambio que desea eliminar tiene detalle asociados por favor verifique");
-                        return;
-                    }
 
                     currentRow.Delete();
 
                     try
                     {
 
-                        TipoCambioDAC.oAdaptador.Update(_dsTipoCambio, "Data");
-                        _dsTipoCambio.AcceptChanges();
+                        TipoCambioDetalleDAC.oAdaptador.Update(_dsTipoCambioDetalle, "Data");
+                        _dsTipoCambioDetalle.AcceptChanges();
 
                         PopulateGrid();
                         lblStatus.Caption = msg;
@@ -350,14 +353,12 @@ namespace CG
                     }
                     catch (System.Data.SqlClient.SqlException ex)
                     {
-                        _dsTipoCambio.RejectChanges();
+                        _dsTipoCambioDetalle.RejectChanges();
                         lblStatus.Caption = "";
                         MessageBox.Show(ex.Message);
                     }
                 }
             }
         }
-
-
     }
 }
