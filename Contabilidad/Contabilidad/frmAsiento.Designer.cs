@@ -75,7 +75,9 @@
             this.DescripcionCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DescrCuentaContable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Debito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtDebitoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtCreditoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Documento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Referencia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtAsiento = new DevExpress.XtraEditors.TextEdit();
@@ -126,8 +128,6 @@
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.imgCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.txtDebitoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.txtCreditoGrid = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -151,6 +151,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
@@ -199,8 +201,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -722,6 +722,11 @@
             this.Debito.VisibleIndex = 5;
             this.Debito.Width = 93;
             // 
+            // txtDebitoGrid
+            // 
+            this.txtDebitoGrid.AutoHeight = false;
+            this.txtDebitoGrid.Name = "txtDebitoGrid";
+            // 
             // Creditos
             // 
             this.Creditos.Caption = "Créditos";
@@ -736,6 +741,11 @@
             this.Creditos.Visible = true;
             this.Creditos.VisibleIndex = 6;
             this.Creditos.Width = 95;
+            // 
+            // txtCreditoGrid
+            // 
+            this.txtCreditoGrid.AutoHeight = false;
+            this.txtCreditoGrid.Name = "txtCreditoGrid";
             // 
             // Documento
             // 
@@ -1263,16 +1273,6 @@
             this.imgCollection.InsertGalleryImage("hidedetail_32x32.png", "images/spreadsheet/hidedetail_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/hidedetail_32x32.png"), 1);
             this.imgCollection.Images.SetKeyName(1, "hidedetail_32x32.png");
             // 
-            // txtDebitoGrid
-            // 
-            this.txtDebitoGrid.AutoHeight = false;
-            this.txtDebitoGrid.Name = "txtDebitoGrid";
-            // 
-            // txtCreditoGrid
-            // 
-            this.txtCreditoGrid.AutoHeight = false;
-            this.txtCreditoGrid.Name = "txtCreditoGrid";
-            // 
             // frmAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1309,6 +1309,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContableGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
@@ -1357,8 +1359,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDebitoGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

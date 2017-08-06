@@ -155,7 +155,7 @@ namespace CG
                 HabilitarControles(false);
 
                 this.dtpFechaInicial.EditValue = DateTime.Now.AddMonths(-1);
-                this.dtpFechaFinal.EditValue = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1)).Day;
+                this.dtpFechaFinal.EditValue = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1));
                 this.txtIDTipoCambio.Text = this.IDTipoCambio + " " + this.Descr;
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
 
@@ -190,7 +190,7 @@ namespace CG
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (currentRow == null)
+            if (currentRow == null && this.gridView.SelectedRowsCount>0)
             {
                 lblStatus.Caption = "Por favor seleccione un elemento de la Lista";
                 return;
@@ -200,7 +200,7 @@ namespace CG
             isEdition = true;
             HabilitarControles(true);
             this.dtpFecha.ReadOnly = true;
-            lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
+            //lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
         }
 
 
@@ -278,6 +278,8 @@ namespace CG
                     SetCurrentRow();
                     HabilitarControles(false);
                     AplicarPrivilegios();
+                    this.ribbonPageGroup1.ItemLinks[0].Focus();
+
                 }
                 else
                 {
@@ -307,6 +309,8 @@ namespace CG
                     AplicarPrivilegios();
                     ColumnView view = this.gridView;
                     view.MoveLast();
+                    this.ribbonPageGroup1.ItemLinks[0].Focus();
+
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
@@ -333,9 +337,9 @@ namespace CG
         {
             if (currentRow != null)
             {
-                string msg = currentRow["Descr"] + " eliminado..";
+                string msg = currentRow["Fecha"] + " eliminado..";
 
-                if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["Descr"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show("Esta seguro que desea eliminar el tipo de cambio para la fecha de  " + currentRow["Fecha"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
 
 
@@ -358,6 +362,15 @@ namespace CG
                         MessageBox.Show(ex.Message);
                     }
                 }
+            }
+        }
+
+        private void txtMonto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.ribbonPageGroup1.ItemLinks[2].Focus();
+                
             }
         }
     }

@@ -23,7 +23,8 @@ namespace Security
             AgregarAsientodeDiario = 110,
             EditarAsientodeDiario = 111,
             EliminarAsientodeDiario = 112,
-            MayorizarAsientodeDiario = 113
+            MayorizarAsientodeDiario = 113,
+            RegistrarTipoCambio=114
             
         }
     }

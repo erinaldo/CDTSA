@@ -16,10 +16,10 @@ namespace CG
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmListadoAsientoDiario());
+           // Application.Run(new frmListadoAsientoDiario());
             //Application.Run(new frmAsiento("CG0000000016"));
             //Application.Run(new frmListadoTipoCambio());
-            //Application.Run(new frmListadoCuentaContable());
+            Application.Run(new frmListadoCuentaContable());
         }
     }
 }

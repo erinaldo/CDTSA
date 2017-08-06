@@ -17,6 +17,9 @@ namespace MainMenu
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private String CodTipoCambio;
+        private String DescrTipoCambio;
+
         public frmMain()
         {
             InitializeComponent();
@@ -61,9 +64,37 @@ namespace MainMenu
             else {
                 this.lblFecha.Caption = "Fecha: --" ;
                 this.lblTipoCambio.Caption = "TC: --" ;
-                MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor contacte el administrador del sistema : \n\r " );
+                //validar si tiene privilegios para modificar el tipo de cambio.
+                DataSet DSS = new DataSet();
+                DataTable DT = new DataTable();
+                DSS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+                DT = DSS.Tables[0];
+                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.RegistrarTipoCambio, DT))
+                {
+                    MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor ingrese el detalle del tipo de cambios \n\r ");
+                    foreach (Form frm in Application.OpenForms)
+                    {
+                        if (frm.GetType() == typeof(CG.frmTipoCambioDetalle))
+                        {
+                           // MessageBox.Show("El formulario 2 esta abierto");
+                            break;
+                        }
+                    }
+                    CG.frmTipoCambioDetalle ofrmTipoCambio = new frmTipoCambioDetalle(CodTipoCambio, "");
+                    ofrmTipoCambio.FormClosed += ofrmTipoCambio_FormClosed;
+                    ofrmTipoCambio.MdiParent = this;
+                    ofrmTipoCambio.StartPosition = FormStartPosition.CenterScreen;
+                    ofrmTipoCambio.Show();
+                }else 
+                    MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor contacte el administrador del sistema. \n\r " );
                 this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
             }
+        }
+
+        void ofrmTipoCambio_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            CargarParametrosSistema();
         }
 
         private void CargarParametrosSistema() {
@@ -106,6 +137,7 @@ namespace MainMenu
                         Util.Util.LocalSimbolCurrency = DS.Tables[0].Rows[0]["SimboloMonedaFuncional"].ToString();
                         Util.Util.ForeingSimbolCurrency = DS.Tables[0].Rows[0]["SimboloMonedaExtrangera"].ToString();
                         sTipoCambio = DS.Tables[0].Rows[0]["TipoCambio"].ToString();
+                        CodTipoCambio = sTipoCambio;
                         ObtenerTipoCambio(sTipoCambio);
                         this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
                         
@@ -139,6 +171,13 @@ namespace MainMenu
                     ofrmParametrosGenerales.Show();
                     break;
 
+                case "optTipoCambio":
+                    
+                    CG.frmTipoCambioDetalle ofrmTipoCambio = new frmTipoCambioDetalle(CodTipoCambio,"");
+                    ofrmTipoCambio.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmTipoCambio.Show();
+                    break;
             }
         }
 
@@ -212,6 +251,12 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoPeriodos.Show();
                     break;
+                //case "optAbrirPeriodosCerrados":
+                //    frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
+                //    ofrmListadoPeriodos.MdiParent = this;
+                //    ShowPagesRibbonMan(false);
+                //    ofrmListadoPeriodos.Show();
+                //    break;
                 
             }
 
@@ -255,6 +300,9 @@ namespace MainMenu
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
                     break;
                 case "treeListAdministracion":
+                    TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catalogos" }, -1, 9, 10, 9);
+                    TreeListNode nodeTiposCambio = tl.AppendNode(new object[] { "Tipo de Cambio" }, nodeTipos.Id, 11, 11, 11);
+                    nodeTiposCambio.Tag = "optTipoCambio";
                     TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
                     nodeParametros.Tag = "optParametrosGenerales";
                     break;
