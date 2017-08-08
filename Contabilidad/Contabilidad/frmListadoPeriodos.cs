@@ -18,7 +18,7 @@ namespace CG
         private DataTable _dtEjericio;
 
         DataRow _currentRow;
-        const String _tituloVentana = "Abrir Periodos Cerrados";
+        const String _tituloVentana = "Listado de Periodos";
 
         public frmListadoPeriodos()
         {
@@ -61,15 +61,19 @@ namespace CG
 
         private void UpdateControlsFromCurrentRow(object currentRow)
         {
-            if (((bool)_currentRow["PeriodoTrabajo"]) == true)
-            {
-                this.btnAbrirPeriodo.Enabled = false;
-                this.btnCerrarPeriodo.Enabled = false;
-            }
+            //if (((bool)_currentRow["PeriodoTrabajo"]) == true)
+            //{
+            //    this.btnAbrirPeriodo.Enabled = false;
+                
+            //}
             if (Convert.ToBoolean(_currentRow["Cerrado"]) == true)
             {
                 this.btnCerrarPeriodo.Enabled = false;
-                this.btnAbrirPeriodo.Enabled = false;
+                //this.btnAbrirPeriodo.Enabled = true;
+            }
+            else
+            {
+                this.btnCerrarPeriodo.Enabled = true;
             }
             //if (Convert.ToBoolean(_currentRow[""]))
 
@@ -85,12 +89,13 @@ namespace CG
 
         private void BtnSalir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            this.Close();
         }
 
         private void BtnCerrarPeriodo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.Close();
+            
         }
 
         private void BtnAbrirPeriodo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

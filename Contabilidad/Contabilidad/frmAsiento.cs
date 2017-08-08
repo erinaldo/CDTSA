@@ -300,12 +300,33 @@ namespace CG
             this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
             this.btnColumnas.ItemClick += BtnColumnas_ItemClick;
             this.btnAnular.ItemClick += BtnAnular_ItemClick;
+            this.btnCuadreTemporal.ItemClick += BtnCuadreTemporal_ItemClick;
             this.btnShowLessColumns.ItemClick += BtnShowLessColumns_ItemClick;
+        }
+
+        private void BtnCuadreTemporal_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+            {
+                bool bExito = false;
+                bExito = AsientoDAC.CuadreTemporal(_Asiento);
+
+                if (bExito)
+                {
+                    MessageBox.Show("Se ha cuadrado temporalmente el asiento contable.");
+                    //Mostrar el asiento anulado. (como poner la referencia de anulacion en el primero asiento)
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ha ocurrido un error tratando de cuadrar el asiento..");
+                }
+            }
         }
 
         private void BtnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
             {
                 int IdEjercicio = (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
                 String Periodo = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();

@@ -138,7 +138,7 @@ namespace CG
                 Result = (bool)oCmd.Parameters["@Exito"].Value;
             }catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -177,7 +177,7 @@ namespace CG
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -187,7 +187,32 @@ namespace CG
             return (Result) ? sAsientoReversion:"";
         }
 
-        
+        public static bool CuadreTemporal(String Asiento)
+        {
+            String strSQL = "dbo.cntRevertirAsiento";
+            bool Result = false;
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+                oCmd.Parameters.Add(new SqlParameter("@Asiento", Asiento));
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+                Result = true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return Result;
+        }
+
+
 
         public static DataSet GetDataEmpty()
         {

@@ -256,6 +256,7 @@
             this.btnAbrirPeriodo.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAbrirPeriodo.Glyph")));
             this.btnAbrirPeriodo.Id = 0;
             this.btnAbrirPeriodo.Name = "btnAbrirPeriodo";
+            this.btnAbrirPeriodo.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnSalir
             // 
