@@ -299,7 +299,31 @@ namespace CG
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
             this.btnColumnas.ItemClick += BtnColumnas_ItemClick;
+            this.btnAnular.ItemClick += BtnAnular_ItemClick;
             this.btnShowLessColumns.ItemClick += BtnShowLessColumns_ItemClick;
+        }
+
+        private void BtnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+            {
+                int IdEjercicio = (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                String Periodo = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+                String sAsientoAmulacion = "";
+                bool bExito = false;
+                sAsientoAmulacion = AsientoDAC.Revertir(IdEjercicio, Periodo, _Asiento, sUsuario);
+
+                if (sAsientoAmulacion!="")
+                {
+                    MessageBox.Show("El asiento contable, se ha revertido con exito");
+                    //Mostrar el asiento anulado. (como poner la referencia de anulacion en el primero asiento)
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ha ocurrido un error tratando de revertir el asiento..");
+                }
+            }
         }
 
         private void BtnShowLessColumns_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -149,6 +149,46 @@ namespace CG
         }
 
 
+        public static String Revertir(int IdEjercicio, String Periodo, String Asiento, String Usuario)
+        {
+            String strSQL = "dbo.cntRevertirAsiento";
+            bool Result = false;
+            bool Exito = false;
+            String sAsientoReversion = "";
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+
+
+                oCmd.Parameters.Add(new SqlParameter("@IDEjercicio", IdEjercicio));
+                oCmd.Parameters.Add(new SqlParameter("@Periodo", Periodo));
+                oCmd.Parameters.Add(new SqlParameter("@Asiento", Asiento));
+                oCmd.Parameters.Add(new SqlParameter("@AsientoReversion", sAsientoReversion));
+                oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+                oCmd.Parameters.Add(new SqlParameter("@Exito", Exito));
+                oCmd.Parameters["@Exito"].Direction = ParameterDirection.InputOutput;
+                oCmd.Parameters["@AsientoReversion"].Direction = ParameterDirection.InputOutput;
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+
+                Result = (bool)oCmd.Parameters["@Exito"].Value;
+                sAsientoReversion = oCmd.Parameters["@AsientoReversion"].ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return (Result) ? sAsientoReversion:"";
+        }
+
+        
+
         public static DataSet GetDataEmpty()
         {
             String strSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, " +
