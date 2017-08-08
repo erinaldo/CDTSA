@@ -171,6 +171,7 @@
             this.btnEliminar.Id = 5;
             this.btnEliminar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEliminar.LargeGlyph")));
             this.btnEliminar.Name = "btnEliminar";
+
             // 
             // lblStatus
             // 

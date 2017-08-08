@@ -48,7 +48,7 @@ namespace CG
         String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
         double _TipoCambio = 0;
-
+        
 
         public frmAsiento()
         {
@@ -82,11 +82,48 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarAsientodeDiario, _dtSecurity))
+
+            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarAsientodeDiario, _dtSecurity))
+            {
+                if (_dsAsiento.Tables[0].Rows.Count > 0 && Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
+                    this.btnEditar.Enabled = false;
+                else
+                    this.btnEditar.Enabled = true;
+            }else
                 this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarAsientodeDiario, _dtSecurity))
+
+            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarAsientodeDiario, _dtSecurity))
+            {
+                if (_dsAsiento.Tables[0].Rows.Count > 0 && Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
+                    this.btnEliminar.Enabled = false;
+                else
+                    this.btnEliminar.Enabled = true;
+            }
+            else
                 this.btnEliminar.Enabled = false;
+
+
+           
+            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.MayorizarAsientodeDiario, _dtSecurity))
+            {
+                if (_dsAsiento.Tables[0].Rows.Count > 0 && Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
+                    this.btnMayorizar.Enabled = false;
+                else
+                    this.btnMayorizar.Enabled = true;
+            }
+            else
+                this.btnMayorizar.Enabled = false;
+
+            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AnularAsientoMayorizado, _dtSecurity))
+            {
+                if (_dsAsiento.Tables[0].Rows.Count > 0 && Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
+                    this.btnAnular.Enabled = true;
+                else
+                    this.btnAnular.Enabled = false;
+            }
+            else
+                this.btnAnular.Enabled = false;
+
         }
 
         private void CargarAsiento(String Asiento)
@@ -179,7 +216,7 @@ namespace CG
         private String EstadoAsiento()
         {
             String sEstado = "";
-            if (Convert.ToBoolean(_currentRow["Mayorizado"]))
+            if (Convert.ToBoolean(_currentRow["Mayorizado"])) 
                 sEstado = "Mayorizado";
             else if (Convert.ToBoolean(_currentRow["Anulado"]))
                 sEstado = "Anulado";
@@ -190,7 +227,7 @@ namespace CG
             return sEstado;
         }
 
-
+        
 
 
         public void UpdateControlsFromDataRow(DataRow row)
@@ -247,9 +284,13 @@ namespace CG
             this.btnGuardar.Enabled = Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
-        }
 
-        private void EnlazarEventos()
+         
+          
+
+    }
+
+    private void EnlazarEventos()
         {
             //    this.btnAgregar.ItemClick += btnAgregar_ItemClick;
             this.btnEditar.ItemClick += btnEditar_ItemClick;
@@ -379,6 +420,8 @@ namespace CG
 
         }
 
+ 
+
         private void frmAsiento_Load(object sender, EventArgs e)
         {
             try
@@ -425,7 +468,7 @@ namespace CG
                 if (Accion == "New")
                 {
                     HabilitarControles(true);
-                    AplicarPrivilegios();
+                    
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 }
@@ -433,7 +476,7 @@ namespace CG
                 {
                     ActivateEditGrid(false);
                 }
-            
+                AplicarPrivilegios();
 
 
             }
@@ -442,6 +485,9 @@ namespace CG
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+
 
         private void CalcularFooterAsiento()
         {
@@ -776,6 +822,12 @@ namespace CG
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            GuardarAsiento();
+        }
+
+
+        private void GuardarAsiento()
+        {
             try
             {
 
@@ -807,7 +859,7 @@ namespace CG
 
 
                 String xml = "";
-               
+
                 _dsAsiento.Tables[0].TableName = "Asiento";
 
                 DataTable dt = new DataTable();
@@ -826,16 +878,16 @@ namespace CG
                 _dsAsiento.DataSetName = "Root";
                 xml = _dsAsiento.GetXml(); //ToStringAsXml(_dsAsiento);
 
-               
+
                 if (Accion == "Edit")
                 {
-                    _Asiento= AsientoDAC.InsertUpdateAsiento("U", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
-                  
+                    _Asiento = AsientoDAC.InsertUpdateAsiento("U", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+
                 }
                 else if (Accion == "New")
                 {
-                   _Asiento = AsientoDAC.InsertUpdateAsiento("I", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
-                  
+                    _Asiento = AsientoDAC.InsertUpdateAsiento("I", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+
                 }
                 Accion = "Edit";
                 CargarAsiento(_Asiento);
@@ -848,9 +900,7 @@ namespace CG
                 //_dsDetalle.RejectChanges();
                 MessageBox.Show(ex.Message);
             }
-
         }
-
 
 
         private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -893,6 +943,30 @@ namespace CG
             }
         }
 
-        
+        private void btnMayorizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Vlidar si el documento esta guardado si no lo esta realizar el save
+            GuardarAsiento();
+
+            //Validar situaciones comunes al momento de mayorizar
+            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+            {
+                //Validar situaciones comunes al momento de mayorizar
+
+                int IdEjercicio = (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                String Periodo = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+                bool bExito = false;
+                bExito=AsientoDAC.Mayorizar(IdEjercicio, Periodo, _Asiento, sUsuario);
+
+                if (bExito)
+                {
+                    MessageBox.Show("El asiento contable, se ha mayotizado con exito");
+                    this.Close();
+                } else
+                {
+                    MessageBox.Show("Ha ocurrido un error tratando de mayorizar el asiento..");
+                }
+            }
+        }
     }
 }

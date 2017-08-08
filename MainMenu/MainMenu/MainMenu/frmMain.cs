@@ -69,7 +69,7 @@ namespace MainMenu
                 DataTable DT = new DataTable();
                 DSS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
                 DT = DSS.Tables[0];
-                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.RegistrarTipoCambio, DT))
+                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.RegistrarTipoCambio, DT))
                 {
                     MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor ingrese el detalle del tipo de cambios \n\r ");
                     foreach (Form frm in Application.OpenForms)
@@ -202,11 +202,11 @@ namespace MainMenu
             DataTable DT = new DataTable();
             DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
             DT = DS.Tables[0];
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.CatalogoCuentaContable, DT))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCuentaContable, DT))
                 SetNodeDisable("optCuenta");
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.CatalogoCentroCosto, DT))
-                SetNodeDisable("optCentroCosto");  
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AsientodeDiario, DT))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCentroCosto, DT))
+                SetNodeDisable("optCentroCosto");
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AsientodeDiario, DT))
                 SetNodeDisable("optTransaccionesDiario");  
             
           
@@ -251,12 +251,12 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoPeriodos.Show();
                     break;
-                //case "optAbrirPeriodosCerrados":
-                //    frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
-                //    ofrmListadoPeriodos.MdiParent = this;
-                //    ShowPagesRibbonMan(false);
-                //    ofrmListadoPeriodos.Show();
-                //    break;
+                case "optCrearEjercicios":
+                    CG.frmCreaEjercicio ofrmCrearEjercicio = new CG.frmCreaEjercicio();
+                    ofrmCrearEjercicio.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmCrearEjercicio.Show();
+                    break;
                 
             }
 
@@ -377,6 +377,8 @@ namespace MainMenu
                     nodeParametrosModulo.Tag = "optParametrosModuloContable";
                     TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Abrir Periodos Cerrados" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeAbrirPeriodoCerrado.Tag = "optAbrirPeriodosCerrados";
+                    TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeCrearEjercicio.Tag = "optCrearEjercicios";
                     break;
             }
 

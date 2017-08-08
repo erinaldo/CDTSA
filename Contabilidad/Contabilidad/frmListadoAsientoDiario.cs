@@ -22,7 +22,15 @@ namespace CG
         int _CuadreTemporal;
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         String _ModuloFuente;
-        
+
+        private DataSet _dsAsiento;
+        private DataTable _dtAsiento;
+
+
+        DataRow _currentRow = null;
+        const String _tituloVentana = "Listado de Asientos";
+
+
         public frmListadoAsientoDiario()
         {
             InitializeComponent();
@@ -36,13 +44,13 @@ namespace CG
             DataTable DT = new DataTable();
             DS = UsuarioDAC.GetAccionModuloFromRole(0, _sUsuario);
             DT = DS.Tables[0];
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, DT))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarAsientodeDiario, DT))
                 this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarAsientodeDiario, DT))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarAsientodeDiario, DT))
                 this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarAsientodeDiario, DT))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarAsientodeDiario, DT))
                 this.btnEliminar.Enabled = false;
-            
+
         }
 
 
@@ -64,12 +72,11 @@ namespace CG
 
                 this.gridView.FocusedRowChanged += GridView_FocusedRowChanged;
                 this.gridView.DoubleClick += GridView_DoubleClick;
-                
+                Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
+
                 EnlazarEventos();
                 PopulateGrid();
-                Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
                 CargarPrivilegios();
-
             }
             catch (Exception ex)
             {
@@ -79,7 +86,7 @@ namespace CG
 
         private void GridView_DoubleClick(object sender, EventArgs e)
         {
-            if (_currentRow != null)
+            if (_currentRow != null && this.gridView.SelectedRowsCount == 1)
             {
                 frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
                 ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
@@ -88,14 +95,8 @@ namespace CG
             }
         }
 
-        private DataSet _dsAsiento;
-        private DataTable _dtAsiento;
-        
 
-        DataRow _currentRow;
-        const String _tituloVentana = "Listado de Asientos";
 
-        
 
         private void GridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -105,9 +106,10 @@ namespace CG
                 _currentRow = gridView.GetDataRow(index);
                 //UpdateControlsFromCurrentRow(_currentRow);
             }
+            else _currentRow = null;
         }
 
-   
+
 
         private void EnlazarEventos()
         {
@@ -138,7 +140,7 @@ namespace CG
 
         private void BtnFiltro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmParametrosFiltroAsiento ofrmFiltro = new frmParametrosFiltroAsiento(_FechaInicial, _FechaFinal, _ModuloFuente, _TipoAsiento, (_Mayorizado == 1) ? true : false, (_Anulado == 1) ? true:false,(_CuadreTemporal==1) ? true:false);
+            frmParametrosFiltroAsiento ofrmFiltro = new frmParametrosFiltroAsiento(_FechaInicial, _FechaFinal, _ModuloFuente, _TipoAsiento, (_Mayorizado == 1) ? true : false, (_Anulado == 1) ? true : false, (_CuadreTemporal == 1) ? true : false);
             ofrmFiltro.FormClosed += OfrmFiltro_FormClosed;
             ofrmFiltro.ShowDialog();
         }
@@ -161,13 +163,76 @@ namespace CG
 
         private void BtnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            if (_currentRow != null)
+            {
+                string msg = _currentRow["Asiento"] + " eliminado..";
+                if (Convert.ToBoolean(_currentRow["Mayorizado"]) == true)
+                {
+                    lblStatus.Caption = "No puede eliminar asientos que se encuentran mayorizados";
+                    return;
+                }
+
+                if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + _currentRow["Asiento"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    DataSet _dsAsientotmp = new DataSet();
+                    DataSet _dsDetalle = new DataSet();
+                    DataTable _dtAsientotmp = new DataTable();
+                    DataTable _dtDetalle = new DataTable();
+
+                    String sAsiento = _currentRow["Asiento"].ToString();
+
+                    _dsAsientotmp = AsientoDAC.GetDataByAsiento(sAsiento);
+                    _dtAsiento = _dsAsiento.Tables[0];
+
+                    _dsDetalle = AsientoDetalleDAC.GetData(sAsiento, -1, -1);
+                    _dtDetalle = _dsDetalle.Tables[0];
+
+
+                    try
+                    {
+                        
+                        String xml = "";
+
+                        _dsAsientotmp.Tables[0].TableName = "Asiento";
+
+                        DataTable dt = new DataTable();
+                        dt = _dtDetalle.Clone();
+                        dt.TableName = "Detalle";
+                        if (_dsAsientotmp.Tables["Detalle"] != null)
+                            _dsAsientotmp.Tables.Remove(_dsAsientotmp.Tables["Detalle"]);
+                        foreach (DataRow dr in _dsDetalle.Tables[0].Rows)
+                        {
+                            dt.Rows.Add(dr.ItemArray);
+                        }
+                        _dsAsientotmp.Tables.Add(dt);
+
+                        DataRelation rel = new DataRelation("CabeceraDetalle", _dsAsientotmp.Tables[0].Columns["Asiento"], _dsAsientotmp.Tables[1].Columns["Asiento"], true);
+                        _dsAsientotmp.DataSetName = "Root";
+                        xml = _dsAsientotmp.GetXml(); //ToStringAsXml(_dsAsiento);
+
+                      
+                         AsientoDAC.InsertUpdateAsiento("D", xml, _currentRow["Asiento"].ToString(), _currentRow["Tipo"].ToString());
+
+                        MessageBox.Show("El asiento se ha eliminado correctamente.");
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        //_dsAsiento.RejectChanges();
+                        //_dsDetalle.RejectChanges();
+                        MessageBox.Show("Han ocurrido errores al momento de eliminar el asiento por favor verifique" + ex.Message);
+                    }
+
+                    PopulateGrid();
+
+                }
+
+            }
         }
 
-     
+
         private void BtnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-         if (_currentRow != null)
+            if (_currentRow != null)
             {
                 frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
                 ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
@@ -194,31 +259,14 @@ namespace CG
 
         private void PopulateGrid()
         {
-            _dsAsiento = AsientoDAC.GetDataByCriterio(_FechaInicial,_FechaFinal,_TipoAsiento,_Mayorizado,_Anulado,_ModuloFuente,_CuadreTemporal);
+            _dsAsiento = AsientoDAC.GetDataByCriterio(_FechaInicial, _FechaFinal, _TipoAsiento, _Mayorizado, _Anulado, _ModuloFuente, _CuadreTemporal);
             _dtAsiento = _dsAsiento.Tables[0];
+            this.grid.DataSource = null;
             this.grid.DataSource = _dtAsiento;
+
+
         }
 
 
-
-        private void SetCurrentRow()
-        {
-            int index = (int)this.gridView.FocusedRowHandle;
-            if (index > -1)
-            {
-                _currentRow = gridView.GetDataRow(index);
-                //UpdateControlsFromCurrentRow(_currentRow);
-            }
-        }
-
-
-
-
-        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            SetCurrentRow();
-        }
-
-      
     }
 }

@@ -103,6 +103,7 @@ namespace CG
         private void PopulateGrid()
         {
             _dtPeriodo = _dsPeriodo.Tables[0];
+            this.grid.DataSource = null;
             this.grid.DataSource = _dtPeriodo;
         }
 

@@ -171,5 +171,23 @@ namespace CG
         {
             this.Close();
         }
+
+        private void chkSeleccAllTipoAsiento_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkSeleccAllTipoAsiento.Checked == true)
+                this.lstchkTipoAsiento.CheckAll();
+            else
+                this.lstchkTipoAsiento.UnCheckAll();
+            
+        }
+
+        private void chkSeleccAllFuente_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkSeleccAllFuente.Checked == true)
+                this.lstChkModuloFuente.CheckAll();
+            else
+                this.lstChkModuloFuente.UnCheckAll();
+
+        }
     }
 }

@@ -64,7 +64,7 @@ namespace CG
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             try
             {
-                oCmd.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oCmd.Parameters.Add("@Operacion", SqlDbType.NChar).Value = Operacion;
                 oCmd.Parameters.Add("@XML", SqlDbType.Xml).Value = XML;
                 oCmd.Parameters.Add("@Asiento", SqlDbType.NVarChar,20).Value = Asiento;
                 oCmd.Parameters["@Asiento"].Direction = ParameterDirection.InputOutput;
@@ -112,6 +112,40 @@ namespace CG
 
             oAdap.Fill(DS.Tables["Data"]);
             return DS;
+        }
+
+        public static bool Mayorizar(int IdEjercicio,String Periodo,String Asiento,String Usuario)
+        {
+            String strSQL = "dbo.cntMayorizarAsiento";
+            bool Result = false;
+            bool Exito = false;
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+                
+
+                oCmd.Parameters.Add(new SqlParameter("@IDEjercicio", IdEjercicio));
+                oCmd.Parameters.Add(new SqlParameter("@Periodo", Periodo));
+                oCmd.Parameters.Add(new SqlParameter("@Asiento", Asiento));
+                oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+                oCmd.Parameters.Add(new SqlParameter("@Exito", Exito));
+                oCmd.Parameters["@Exito"].Direction = ParameterDirection.InputOutput;
+                
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+                
+                Result = (bool)oCmd.Parameters["@Exito"].Value;
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return Result;
         }
 
 

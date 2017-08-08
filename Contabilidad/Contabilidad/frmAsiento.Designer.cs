@@ -272,6 +272,7 @@
             this.btnMayorizar.Id = 2;
             this.btnMayorizar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.LargeGlyph")));
             this.btnMayorizar.Name = "btnMayorizar";
+            this.btnMayorizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMayorizar_ItemClick);
             // 
             // btnAnular
             // 

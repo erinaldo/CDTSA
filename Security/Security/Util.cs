@@ -8,9 +8,13 @@ namespace Security
 {
     public static class Acciones
     {
-        public enum PrivilegiosType
+        public enum PrivilegiosGeneralesType
         {
             AccesoAlSistema = 1,
+            Contabilidad = 100
+        }
+        public enum PrivilegiosContableType
+        {
             CatalogoCuentaContable = 101,
             AgregarCuentaContable = 102,
             EditarCuentaContable = 103,
@@ -24,8 +28,9 @@ namespace Security
             EditarAsientodeDiario = 111,
             EliminarAsientodeDiario = 112,
             MayorizarAsientodeDiario = 113,
-            RegistrarTipoCambio=114
-            
+            RegistrarTipoCambio=114,
+            AnularAsientoMayorizado = 115,
+
         }
     }
 }

@@ -45,11 +45,11 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarAsientodeDiario, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarAsientodeDiario, _dtSecurity))
                 this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCuentaContable, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCuentaContable, _dtSecurity))
                 this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCuentaContable, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCuentaContable, _dtSecurity))
                 this.btnEliminar.Enabled = false;
         }
 
@@ -230,7 +230,7 @@ namespace CG
 
             if (currentRow != null)
             {
-                lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
+                lblStatus.Caption = "Actualizando tipo de cambio para la fecha : " + currentRow["Fecha"].ToString();
 
                 Application.DoEvents();
                 currentRow.BeginEdit();
@@ -270,7 +270,7 @@ namespace CG
                 if (okFlag)
                 {
                     TipoCambioDetalleDAC.oAdaptador.Update(_dsChanged, "Data");
-                    lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
+                    lblStatus.Caption = "Actualizado Tipo de cambio para la fecha " + currentRow["Fecha"].ToString();
                     Application.DoEvents();
                     isEdition = false;
                     _dsTipoCambioDetalle.AcceptChanges();

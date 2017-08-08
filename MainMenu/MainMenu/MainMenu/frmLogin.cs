@@ -61,7 +61,7 @@ namespace CDTSA
                 DataTable DT = new DataTable();
                 DSUsuario = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
                 DT = DSUsuario.Tables[0];
-                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AccesoAlSistema, DT))
+                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.AccesoAlSistema, DT))
                 {
                     this.Hide();
                     MainMenu.frmMain ofrmMain = new MainMenu.frmMain();

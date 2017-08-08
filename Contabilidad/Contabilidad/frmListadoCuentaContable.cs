@@ -82,11 +82,11 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCuentaContable, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarCuentaContable, _dtSecurity))
                 this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCuentaContable, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCuentaContable, _dtSecurity))
                 this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCuentaContable, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCuentaContable, _dtSecurity))
                 this.btnEliminar.Enabled = false;
         }
 
@@ -164,6 +164,7 @@ namespace CG
             _dsCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, -1, -1, -1);
 
             _dtCuenta = _dsCuenta.Tables[0];
+            this.dtg.DataSource = null;
             this.dtg.DataSource = _dtCuenta;
             this.gridView.SelectRow(-1);
 

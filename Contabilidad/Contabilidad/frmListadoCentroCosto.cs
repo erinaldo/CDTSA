@@ -36,11 +36,11 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.AgregarCentroCosto, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarCentroCosto, _dtSecurity))
                 this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EditarCentroCosto, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCentroCosto, _dtSecurity))
                 this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosType.EliminarCentroCosto, _dtSecurity))
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCentroCosto, _dtSecurity))
                 this.btnEliminar.Enabled = false;
         }
 
@@ -110,6 +110,7 @@ namespace CG
             _dsCentro = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1);
 
             _dtCentro = _dsCentro.Tables[0];
+            this.dtg.DataSource = null;
             this.dtg.DataSource = _dtCentro;
 
             PopulateData();
@@ -443,7 +444,6 @@ namespace CG
 
         }
 
-
-
+       
     }
 }
