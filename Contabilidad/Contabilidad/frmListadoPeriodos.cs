@@ -39,7 +39,7 @@ namespace CG
                     this.slkupEjercicio.EditValue = _dtEjericio.Rows[_dtEjericio.Rows.Count-1]["IDEjercicio"];
                  
                 EnlazarEventos();
-                Util.Util.SetDefaultBehaviorControls(this.gridView,false, this.grid, _tituloVentana, this);
+                Util.Util.SetDefaultBehaviorControls(this.gridView,true, this.grid, _tituloVentana, this);
 
               
             }
@@ -69,11 +69,17 @@ namespace CG
             if (Convert.ToBoolean(_currentRow["Cerrado"]) == true)
             {
                 this.btnCerrarPeriodo.Enabled = false;
-                //this.btnAbrirPeriodo.Enabled = true;
+                
             }
             else
             {
+                
                 this.btnCerrarPeriodo.Enabled = true;
+                if (Convert.ToBoolean(_currentRow["PeriodoTrabajo"]) == true)
+                    this.btnSetPeriodoTrabajo.Caption = "Quitar Periodo de Trabajo";
+                else
+                    this.btnSetPeriodoTrabajo.Caption = "Establecer Periodo de Trabajo";
+                this.btnSetPeriodoTrabajo.Enabled = true;
             }
             //if (Convert.ToBoolean(_currentRow[""]))
 
@@ -81,10 +87,25 @@ namespace CG
 
         private void EnlazarEventos()
         {
-            this.btnAbrirPeriodo.ItemClick += BtnAbrirPeriodo_ItemClick;
+            this.btnSetPeriodoTrabajo.ItemClick += btnSetPeriodoTrabajo_ItemClick;
             this.btnCerrarPeriodo.ItemClick += BtnCerrarPeriodo_ItemClick;
             this.btnSalir.ItemClick += BtnSalir_ItemClick;
 
+        }
+
+        void btnSetPeriodoTrabajo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.gridView.SelectedRowsCount > 0)
+            {
+
+                String sPeriodo = _currentRow["Periodo"].ToString();
+                int IdEjercicio = (int)_currentRow["IdEjercicio"];
+                if (PeriodoContableDAC.SetPeriodoTrabajoActivo(IdEjercicio, sPeriodo))
+                {
+                    _dsPeriodo = PeriodoContableDAC.GetData((int)this.slkupEjercicio.EditValue, "*");
+                    PopulateGrid();
+                }
+            }
         }
 
         private void BtnSalir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -98,11 +119,7 @@ namespace CG
             
         }
 
-        private void BtnAbrirPeriodo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-           
-        }
-
+     
 
 
         private void PopulateGrid()

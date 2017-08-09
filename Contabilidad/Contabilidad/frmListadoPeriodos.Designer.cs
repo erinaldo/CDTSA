@@ -40,6 +40,7 @@
             this.Cerrado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.AjusteCierreFiscal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PeriodoTrabajo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkGridPeriodoTrabajo = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.slkupEjercicio = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -48,7 +49,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnCerrarPeriodo = new DevExpress.XtraBars.BarButtonItem();
-            this.btnAbrirPeriodo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSetPeriodoTrabajo = new DevExpress.XtraBars.BarButtonItem();
             this.btnSalir = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -59,6 +60,7 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkGridPeriodoTrabajo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupEjercicio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -84,6 +86,8 @@
             this.grid.Location = new System.Drawing.Point(12, 36);
             this.grid.MainView = this.gridView;
             this.grid.Name = "grid";
+            this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.chkGridPeriodoTrabajo});
             this.grid.Size = new System.Drawing.Size(858, 322);
             this.grid.TabIndex = 6;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -109,6 +113,7 @@
             this.Periodo.Caption = "Periodo";
             this.Periodo.FieldName = "Periodo";
             this.Periodo.Name = "Periodo";
+            this.Periodo.OptionsColumn.AllowEdit = false;
             this.Periodo.Visible = true;
             this.Periodo.VisibleIndex = 0;
             // 
@@ -117,6 +122,7 @@
             this.Fecha.Caption = "Fecha";
             this.Fecha.FieldName = "FechaFinal";
             this.Fecha.Name = "Fecha";
+            this.Fecha.OptionsColumn.AllowEdit = false;
             this.Fecha.Visible = true;
             this.Fecha.VisibleIndex = 1;
             this.Fecha.Width = 161;
@@ -126,6 +132,7 @@
             this.Descripcion.Caption = "Descripción";
             this.Descripcion.FieldName = "Descr";
             this.Descripcion.Name = "Descripcion";
+            this.Descripcion.OptionsColumn.AllowEdit = false;
             this.Descripcion.Visible = true;
             this.Descripcion.VisibleIndex = 2;
             this.Descripcion.Width = 194;
@@ -135,6 +142,7 @@
             this.FinPeridoFiscal.Caption = "Fin Periodo Fiscal";
             this.FinPeridoFiscal.FieldName = "FinPeriodoFiscal";
             this.FinPeridoFiscal.Name = "FinPeridoFiscal";
+            this.FinPeridoFiscal.OptionsColumn.AllowEdit = false;
             this.FinPeridoFiscal.Visible = true;
             this.FinPeridoFiscal.VisibleIndex = 3;
             this.FinPeridoFiscal.Width = 104;
@@ -144,6 +152,7 @@
             this.Cerrado.Caption = "Cerrado";
             this.Cerrado.FieldName = "Cerrado";
             this.Cerrado.Name = "Cerrado";
+            this.Cerrado.OptionsColumn.AllowEdit = false;
             this.Cerrado.Visible = true;
             this.Cerrado.VisibleIndex = 4;
             // 
@@ -152,6 +161,7 @@
             this.AjusteCierreFiscal.Caption = "Ajuste Cierre Fiscal";
             this.AjusteCierreFiscal.FieldName = "AjustesCierreFiscal";
             this.AjusteCierreFiscal.Name = "AjusteCierreFiscal";
+            this.AjusteCierreFiscal.OptionsColumn.AllowEdit = false;
             this.AjusteCierreFiscal.Visible = true;
             this.AjusteCierreFiscal.VisibleIndex = 5;
             this.AjusteCierreFiscal.Width = 114;
@@ -164,6 +174,11 @@
             this.PeriodoTrabajo.Visible = true;
             this.PeriodoTrabajo.VisibleIndex = 6;
             this.PeriodoTrabajo.Width = 114;
+            // 
+            // chkGridPeriodoTrabajo
+            // 
+            this.chkGridPeriodoTrabajo.AutoHeight = false;
+            this.chkGridPeriodoTrabajo.Name = "chkGridPeriodoTrabajo";
             // 
             // slkupEjercicio
             // 
@@ -225,7 +240,7 @@
             this.barManager1.DockControls.Add(this.barDockControlRight);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btnAbrirPeriodo,
+            this.btnSetPeriodoTrabajo,
             this.btnCerrarPeriodo,
             this.btnSalir});
             this.barManager1.MaxItemId = 3;
@@ -239,7 +254,7 @@
             this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCerrarPeriodo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnAbrirPeriodo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSetPeriodoTrabajo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSalir, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar1.Text = "Herramientas";
             // 
@@ -250,13 +265,12 @@
             this.btnCerrarPeriodo.Id = 1;
             this.btnCerrarPeriodo.Name = "btnCerrarPeriodo";
             // 
-            // btnAbrirPeriodo
+            // btnSetPeriodoTrabajo
             // 
-            this.btnAbrirPeriodo.Caption = "Abrir Periodo";
-            this.btnAbrirPeriodo.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAbrirPeriodo.Glyph")));
-            this.btnAbrirPeriodo.Id = 0;
-            this.btnAbrirPeriodo.Name = "btnAbrirPeriodo";
-            this.btnAbrirPeriodo.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnSetPeriodoTrabajo.Caption = "Establecer Periodo Trabajo";
+            this.btnSetPeriodoTrabajo.Glyph = ((System.Drawing.Image)(resources.GetObject("btnSetPeriodoTrabajo.Glyph")));
+            this.btnSetPeriodoTrabajo.Id = 0;
+            this.btnSetPeriodoTrabajo.Name = "btnSetPeriodoTrabajo";
             // 
             // btnSalir
             // 
@@ -325,6 +339,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkGridPeriodoTrabajo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupEjercicio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -349,7 +364,7 @@
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnCerrarPeriodo;
-        private DevExpress.XtraBars.BarButtonItem btnAbrirPeriodo;
+        private DevExpress.XtraBars.BarButtonItem btnSetPeriodoTrabajo;
         private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
@@ -363,5 +378,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Cerrado;
         private DevExpress.XtraGrid.Columns.GridColumn AjusteCierreFiscal;
         private DevExpress.XtraGrid.Columns.GridColumn PeriodoTrabajo;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chkGridPeriodoTrabajo;
     }
 }

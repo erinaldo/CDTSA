@@ -998,8 +998,8 @@ namespace CG
             {
                 //Validar situaciones comunes al momento de mayorizar
 
-                int IdEjercicio = (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
-                String Periodo = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+                int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];// (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                String Periodo = _dsAsiento.Tables[0].Rows[0]["Periodo"].ToString();
                 bool bExito = false;
                 bExito=AsientoDAC.Mayorizar(IdEjercicio, Periodo, _Asiento, sUsuario);
 

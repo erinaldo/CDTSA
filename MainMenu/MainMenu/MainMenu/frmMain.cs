@@ -173,10 +173,10 @@ namespace MainMenu
 
                 case "optTipoCambio":
                     
-                    CG.frmTipoCambioDetalle ofrmTipoCambio = new frmTipoCambioDetalle(CodTipoCambio,"");
-                    ofrmTipoCambio.MdiParent = this;
+                    CG.frmListadoTipoCambio ofrmlstTipoCambio = new frmListadoTipoCambio();
+                    ofrmlstTipoCambio.MdiParent = this;
                     ShowPagesRibbonMan(false);
-                    ofrmTipoCambio.Show();
+                    ofrmlstTipoCambio.Show();
                     break;
             }
         }
@@ -245,7 +245,7 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmParametrosContabilidad.Show();
                     break;
-                case "optAbrirPeriodosCerrados":
+                case "optAbrirPeriodosContable":
                     frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
                     ofrmListadoPeriodos.MdiParent = this;
                     ShowPagesRibbonMan(false);
@@ -277,7 +277,7 @@ namespace MainMenu
             switch (tl.Name)
             {
                 case "treeListInventario":
-                    TreeListNode nodeArticulo = tl.AppendNode(new object[] { "Articulo" }, -1, 11, 11, 11);
+                    TreeListNode nodeArticulo = tl.AppendNode(new object[] { "Artículo" }, -1, 11, 11, 11);
                     nodeArticulo.Tag = "optArticulo";
                     
                     TreeListNode nodeLotes = tl.AppendNode(new object[] { "Lotes" }, -1, 11, 11, 11);
@@ -286,7 +286,7 @@ namespace MainMenu
                     TreeListNode nodeEjemplo = tl.AppendNode(new object[] { "Ejemplo" }, nodeTransacciones.Id, 11, 11, 11);
                     nodeEjemplo.Tag = "optEjemplo";
                     TreeListNode nodeConsultas = tl.AppendNode(new object[] { "Consultas" }, -1, 9, 10, 9);
-                    TreeListNode nodeConsultaArticulos = tl.AppendNode(new object[] { "Articulos" }, nodeConsultas.Id, 11, 11, 11);
+                    TreeListNode nodeConsultaArticulos = tl.AppendNode(new object[] { "Artículos" }, nodeConsultas.Id, 11, 11, 11);
                     nodeConsultaArticulos.Tag = "optConsultaArticulo";
                     TreeListNode nodeConsultaExistencias = tl.AppendNode(new object[] { "Existencias" }, nodeConsultas.Id, 9, 10, 9);
                     TreeListNode nodeConsultaExistenciasBodega = tl.AppendNode(new object[] { "Bodega" }, nodeConsultaExistencias.Id, 11, 11, 11);
@@ -300,8 +300,8 @@ namespace MainMenu
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
                     break;
                 case "treeListAdministracion":
-                    TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catalogos" }, -1, 9, 10, 9);
-                    TreeListNode nodeTiposCambio = tl.AppendNode(new object[] { "Tipo de Cambio" }, nodeTipos.Id, 11, 11, 11);
+                    TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
+                    TreeListNode nodeTiposCambio = tl.AppendNode(new object[] { "Tipos de Cambio" }, nodeTipos.Id, 11, 11, 11);
                     nodeTiposCambio.Tag = "optTipoCambio";
                     TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
                     nodeParametros.Tag = "optParametrosGenerales";
@@ -375,8 +375,8 @@ namespace MainMenu
                     TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administracion" }, -1, 9, 10, 9);
                     TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parametros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeParametrosModulo.Tag = "optParametrosModuloContable";
-                    TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Abrir Periodos Cerrados" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
-                    nodeAbrirPeriodoCerrado.Tag = "optAbrirPeriodosCerrados";
+                    TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Periodos Contables" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeAbrirPeriodoCerrado.Tag = "optAbrirPeriodosContables";
                     TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeCrearEjercicio.Tag = "optCrearEjercicios";
                     break;

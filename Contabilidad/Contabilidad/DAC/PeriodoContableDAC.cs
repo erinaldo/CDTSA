@@ -62,5 +62,37 @@ namespace CG
         }
 
 
+        public static bool SetPeriodoTrabajoActivo(int IdEjercicio, String Periodo)
+        {
+            String strSQL = "UPDATE dbo.cntPeriodoContable SET PeriodoTrabajo=~PeriodoTrabajo WHERE Periodo=@Periodo AND IDEjercicio=@IdEjercicio";
+            
+            bool Exito = false;
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+
+
+                oCmd.Parameters.Add(new SqlParameter("@IDEjercicio", IdEjercicio));
+                oCmd.Parameters.Add(new SqlParameter("@Periodo", Periodo));
+                
+                oCmd.CommandType = CommandType.Text;
+                oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+
+                Exito = true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return Exito;
+        }
+
+
     }
 }
