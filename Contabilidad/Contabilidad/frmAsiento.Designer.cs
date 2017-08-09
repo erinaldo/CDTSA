@@ -814,6 +814,9 @@
             this.dtpFecha.Size = new System.Drawing.Size(318, 20);
             this.dtpFecha.StyleController = this.layoutControl1;
             this.dtpFecha.TabIndex = 8;
+            this.dtpFecha.EditValueChanged += new System.EventHandler(this.dtpFecha_EditValueChanged);
+            this.dtpFecha.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFecha_Validating);
+            this.dtpFecha.Validated += new System.EventHandler(this.dtpFecha_Validated);
             // 
             // txtEstado
             // 

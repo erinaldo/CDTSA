@@ -94,5 +94,42 @@ namespace CG
         }
 
 
+         public static bool ValidaFechaInPeriodoContable(DateTime Fecha)
+        {
+            bool bResult  = false;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntValidaFechaInPeriodoContables", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Fecha", SqlDbType.Date, 50).Value = Fecha;
+                
+             
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+                bResult = true;
+              
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return bResult;
+
+        }
+
+        
+
     }
 }

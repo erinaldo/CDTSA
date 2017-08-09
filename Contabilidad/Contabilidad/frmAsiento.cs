@@ -1013,5 +1013,32 @@ namespace CG
                 }
             }
         }
+
+        private void dtpFecha_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpFecha_Validated(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void dtpFecha_Validating(object sender, CancelEventArgs e)
+        {
+             //Tomar el periodo
+           
+            DateTime Fecha =  Convert.ToDateTime(((DateEdit)sender).EditValue);
+            try
+            {
+                if (PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
+                    e.Cancel = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Han ocurido los siguientes errores: \r\n" + ex.Message);
+                e.Cancel = true;
+            }
+        }
     }
 }
