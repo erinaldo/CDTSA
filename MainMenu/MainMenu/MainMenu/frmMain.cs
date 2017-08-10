@@ -178,6 +178,13 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmlstTipoCambio.Show();
                     break;
+
+                case "optReportDesigner":
+
+                    CDTSA.frmDesigner ofrmReportDesigner = new CDTSA.frmDesigner();
+                    ShowPagesRibbonMan(false);
+                    ofrmReportDesigner.Show();
+                    break;
             }
         }
 
@@ -305,6 +312,9 @@ namespace MainMenu
                     nodeTiposCambio.Tag = "optTipoCambio";
                     TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
                     nodeParametros.Tag = "optParametrosGenerales";
+                    TreeListNode nodeReportDesigner = tl.AppendNode(new object[] { "Diseñador de Reportes" }, -1, 11, 11, 11);
+                    nodeParametros.Tag = "optReportDesigner";
+                    
                     break;
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas" }, -1, 11, 11, 11);
