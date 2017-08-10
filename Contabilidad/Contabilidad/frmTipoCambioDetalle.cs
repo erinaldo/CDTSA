@@ -21,7 +21,7 @@ namespace CG
         private DataSet _dsTipoCambioDetalle;
         private DataTable _dtTipoCambioDetalle;
         DataRow currentRow;
-        bool isEdition;
+        bool isEdition= false;
 
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         const String _tituloVentana = "Detalle de Tipos de Cambio";

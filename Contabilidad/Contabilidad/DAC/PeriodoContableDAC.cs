@@ -81,7 +81,7 @@ namespace CG
 
                 Exito = true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 throw;
             }
@@ -91,6 +91,43 @@ namespace CG
                     oCmd.Connection.Close();
             }
             return Exito;
+        }
+
+
+        public static bool CierraPeriodoContable(int IDEjercicio,String Periodo)
+        {
+            bool bResult = false;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntCierraPeriodoContable", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@IDEjercicio", SqlDbType.Int).Value = IDEjercicio;
+                oCmd.Parameters.Add("@Periodo", SqlDbType.NVarChar).Value = Periodo;
+
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+                bResult = true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return bResult;
+
         }
 
 

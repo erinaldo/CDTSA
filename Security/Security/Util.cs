@@ -11,6 +11,7 @@ namespace Security
         public enum PrivilegiosGeneralesType
         {
             AccesoAlSistema = 1,
+            ModificacionReportes =2,
             Contabilidad = 100
         }
         public enum PrivilegiosContableType

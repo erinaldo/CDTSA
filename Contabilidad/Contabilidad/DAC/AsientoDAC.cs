@@ -136,7 +136,7 @@ namespace CG
                 oCmd.ExecuteNonQuery();
                 
                 Result = (bool)oCmd.Parameters["@Exito"].Value;
-            }catch (Exception ex)
+            }catch (Exception )
             {
                 throw;
             }
@@ -175,7 +175,7 @@ namespace CG
                 Result = (bool)oCmd.Parameters["@Exito"].Value;
                 sAsientoReversion = oCmd.Parameters["@AsientoReversion"].ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -200,7 +200,7 @@ namespace CG
                 oCmd.ExecuteNonQuery();
                 Result = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

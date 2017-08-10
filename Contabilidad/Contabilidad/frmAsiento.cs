@@ -328,8 +328,8 @@ namespace CG
         {
             if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
             {
-                int IdEjercicio = (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
-                String Periodo = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+                int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];//(int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                String Periodo = _dsAsiento.Tables[0].Rows[0]["Periodo"].ToString();//_dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
                 String sAsientoAmulacion = "";
                 bool bExito = false;
                 sAsientoAmulacion = AsientoDAC.Revertir(IdEjercicio, Periodo, _Asiento, sUsuario);
@@ -1036,7 +1036,7 @@ namespace CG
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Han ocurido los siguientes errores: \r\n" + ex.Message);
+                MessageBox.Show("Han ocurrido los siguientes errores: \r\n" + ex.Message);
                 e.Cancel = true;
             }
         }

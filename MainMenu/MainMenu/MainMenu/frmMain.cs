@@ -18,7 +18,7 @@ namespace MainMenu
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private String CodTipoCambio;
-        private String DescrTipoCambio;
+        
 
         public frmMain()
         {

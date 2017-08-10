@@ -116,7 +116,25 @@ namespace CG
 
         private void BtnCerrarPeriodo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+            try
+            {
+                if (this.gridView.SelectedRowsCount > 0)
+                {
+
+                    String sPeriodo = _currentRow["Periodo"].ToString();
+                    int IdEjercicio = (int)_currentRow["IdEjercicio"];
+                    if (PeriodoContableDAC.CierraPeriodoContable(IdEjercicio, sPeriodo))
+                    {
+                        _dsPeriodo = PeriodoContableDAC.GetData((int)this.slkupEjercicio.EditValue, "*");
+                        PopulateGrid();
+                        MessageBox.Show("El periodo contable se ha cerrado con éxito");
+                    }
+                }
+            }
+            catch (Exception )
+            {
+
+            }
         }
 
      
