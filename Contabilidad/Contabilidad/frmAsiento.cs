@@ -1005,7 +1005,7 @@ namespace CG
 
                 if (bExito)
                 {
-                    MessageBox.Show("El asiento contable, se ha mayotizado con exito");
+                    MessageBox.Show("El asiento contable, se ha mayorizado con exito");
                     this.Close();
                 } else
                 {
