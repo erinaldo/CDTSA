@@ -313,7 +313,7 @@ namespace MainMenu
                     TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
                     nodeParametros.Tag = "optParametrosGenerales";
                     TreeListNode nodeReportDesigner = tl.AppendNode(new object[] { "Diseñador de Reportes" }, -1, 11, 11, 11);
-                    nodeParametros.Tag = "optReportDesigner";
+                    nodeReportDesigner.Tag = "optReportDesigner";
                     
                     break;
                 case "treeListContabilidad":
