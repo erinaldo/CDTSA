@@ -189,11 +189,11 @@ namespace MainMenu
         }
 
         
-        private void SetNodeDisable(String Tag){
+        private void SetNodeDisable(String Tag, DevExpress.XtraTreeList.TreeList tree){
             try
             {
-                foreach (TreeListNode node in treeListContabilidad.Nodes)
-                    if (node.Tag.ToString() == Tag)
+                foreach (TreeListNode node in tree.Nodes)
+                    if (node.Tag != null && node.Tag.ToString() == Tag)
                         node.Visible = false;
         //                node.TreeList.ForeColor = Color.Gray;
             }
@@ -209,14 +209,42 @@ namespace MainMenu
             DataTable DT = new DataTable();
             DS = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
             DT = DS.Tables[0];
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCuentaContable, DT))
-                SetNodeDisable("optCuenta");
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCentroCosto, DT))
-                SetNodeDisable("optCentroCosto");
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AsientodeDiario, DT))
-                SetNodeDisable("optTransaccionesDiario");  
-            
-          
+            //Modulos principales
+            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.Contabilidad, DT))
+            {
+                navGroupContabilidad.Visible = true;
+                //activar las opciones de la contabilidad
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCuentaContable, DT))
+                    SetNodeDisable("optCuenta",treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCentroCosto, DT))
+                    SetNodeDisable("optCentroCosto", treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AsientodeDiario, DT))
+                    SetNodeDisable("optTransaccionesDiario", treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.ParemtrosModuloContable, DT))
+                    SetNodeDisable("optParametrosModuloContable", treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.PeriodosContables, DT))
+                    SetNodeDisable("optListaPeriodosContables", treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CrearEjerciciosContables, DT))
+                    SetNodeDisable("optCrearEjercicios", treeListContabilidad);  
+            }
+            else
+                navGroupContabilidad.Visible = false;
+
+           //Validar el Resto de modulos
+            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.AdministracionSistema, DT))
+            {
+                this.navGroupAdministracion.Visible = true;
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.RegistrarTipoCambio, DT))
+                    SetNodeDisable("optTipoCambio",treeListAdministracion);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.ParametrosGenerales, DT))
+                    SetNodeDisable("optParametrosGenerales", treeListAdministracion);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.ModificacionReportes, DT))
+                    SetNodeDisable("optReportDesigner", treeListAdministracion);
+            } else
+                this.navGroupAdministracion.Visible = false;
+
+            //Desactivar Factura
+            this.navGroupFacturación.Visible = false;
         }
 
         void treeListContabilidad_DoubleClick(object sender, EventArgs e)
@@ -252,7 +280,7 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmParametrosContabilidad.Show();
                     break;
-                case "optAbrirPeriodosContable":
+                case "optListaPeriodosContables":
                     frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
                     ofrmListadoPeriodos.MdiParent = this;
                     ShowPagesRibbonMan(false);
@@ -386,7 +414,7 @@ namespace MainMenu
                     TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parametros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeParametrosModulo.Tag = "optParametrosModuloContable";
                     TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Periodos Contables" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
-                    nodeAbrirPeriodoCerrado.Tag = "optAbrirPeriodosContables";
+                    nodeAbrirPeriodoCerrado.Tag = "optListaPeriodosContables";
                     TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeCrearEjercicio.Tag = "optCrearEjercicios";
                     break;

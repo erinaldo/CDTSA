@@ -12,7 +12,12 @@ namespace Security
         {
             AccesoAlSistema = 1,
             ModificacionReportes =2,
-            Contabilidad = 100
+            AdministracionSistema = 3,
+            Contabilidad = 100,
+            
+
+            //Parametros que salen del modulo principal
+            ParametrosGenerales = 4,
         }
         public enum PrivilegiosContableType
         {
@@ -31,7 +36,13 @@ namespace Security
             MayorizarAsientodeDiario = 113,
             RegistrarTipoCambio=114,
             AnularAsientoMayorizado = 115,
-
+            ParemtrosModuloContable = 116,
+            PeriodosContables = 117,
+            CerrarPeridoContable = 118,
+            EstablecerPeridoTrabajo = 119,
+            CrearEjerciciosContables = 120
         }
+
+        
     }
 }
