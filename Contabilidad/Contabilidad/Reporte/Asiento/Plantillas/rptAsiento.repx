@@ -48,12 +48,12 @@
             <Item1 Ref="20" PropertyName="Text" DataMember="cntRptGetAsientoDetalle.DescrCuenta" />
           </DataBindings>
         </Item4>
-        <Item5 Ref="21" ControlType="XRLabel" Name="xrLabel10" Text="xrLabel10" SizeF="111.4997,23" LocationFloat="281.25, 0" Padding="2,2,0,0,100">
+        <Item5 Ref="21" ControlType="XRLabel" Name="xrLabel10" Text="xrLabel10" SizeF="147.958,23" LocationFloat="244.791733, 0" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="22" PropertyName="Text" DataMember="cntRptGetAsientoDetalle.Cuenta" />
           </DataBindings>
         </Item5>
-        <Item6 Ref="23" ControlType="XRLabel" Name="xrLabel9" Multiline="true" Text="xrLabel9" SizeF="156.25,23" LocationFloat="125.0001, 0" Padding="2,2,0,0,100">
+        <Item6 Ref="23" ControlType="XRLabel" Name="xrLabel9" Multiline="true" Text="xrLabel9" SizeF="119.791634,23" LocationFloat="125.0001, 0" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="24" PropertyName="Text" DataMember="cntRptGetAsientoDetalle.DescrCentro" />
           </DataBindings>
@@ -69,7 +69,7 @@
     <Item3 Ref="28" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="100" TextAlignment="TopLeft" Padding="0,0,0,0,100" />
     <Item4 Ref="29" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="210.6666">
       <Controls>
-        <Item1 Ref="30" ControlType="XRLabel" Name="xrLabel33" Text="xrLabel33" TextAlignment="TopCenter" SizeF="568.7499,23.0000019" LocationFloat="125.0001, 10.0000067" Font="Times New Roman, 12pt, style=Bold" Padding="2,2,0,0,96">
+        <Item1 Ref="30" ControlType="XRLabel" Name="xrLabel33" Text="xrLabel33" TextAlignment="TopCenter" SizeF="568.7499,23" LocationFloat="125.0001, 10.00001" Font="Times New Roman, 12pt, style=Bold" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="31" PropertyName="Text" DataMember="DatosGenerales.Nombre" />
           </DataBindings>
@@ -87,7 +87,7 @@
         <Item5 Ref="39" ControlType="XRLabel" Name="xrLabel26" Text="Descr Cuenta Contable" SizeF="156.25,23" LocationFloat="392.7497, 187.6666" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="40" UseFont="false" />
         </Item5>
-        <Item6 Ref="41" ControlType="XRLabel" Name="xrLabel25" Text="Cuenta Contable" SizeF="111.4997,23" LocationFloat="281.25, 187.6666" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item6 Ref="41" ControlType="XRLabel" Name="xrLabel25" Text="Cuenta Contable" SizeF="111.4997,23" LocationFloat="244.791733, 187.66658" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="42" UseFont="false" />
         </Item6>
         <Item7 Ref="43" ControlType="XRLabel" Name="xrLabel24" Text="Descr Centro Costo" SizeF="119.7916,23" LocationFloat="125.0001, 187.6666" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
@@ -96,48 +96,48 @@
         <Item8 Ref="45" ControlType="XRLabel" Name="xrLabel23" Text="Centro Costo" SizeF="84.37503,23" LocationFloat="40.62503, 187.6666" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="46" UseFont="false" />
         </Item8>
-        <Item9 Ref="47" ControlType="XRLabel" Name="xrLabel22" Text="TC:" SizeF="55.20833,23" LocationFloat="603.7916, 100.333252" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item9 Ref="47" ControlType="XRLabel" Name="xrLabel22" Text="TC:" SizeF="55.20833,23" LocationFloat="603.7916, 100.3333" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="48" UseFont="false" />
         </Item9>
-        <Item10 Ref="49" ControlType="XRLabel" Name="xrLabel21" Text="Fecha:" SizeF="55.20833,23" LocationFloat="603.7916, 77.3333054" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item10 Ref="49" ControlType="XRLabel" Name="xrLabel21" Text="Fecha:" SizeF="55.20833,23" LocationFloat="603.7916, 77.33331" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="50" UseFont="false" />
         </Item10>
         <Item11 Ref="51" ControlType="XRLabel" Name="xrLabel20" Text="Modulo: Fuente:" SizeF="56.24992,23" LocationFloat="291.6667, 128.0416" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="52" UseFont="false" />
         </Item11>
-        <Item12 Ref="53" ControlType="XRLabel" Name="xrLabel19" Text="Fecha:" SizeF="44.79164,23" LocationFloat="291.6667, 105.041588" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item12 Ref="53" ControlType="XRLabel" Name="xrLabel19" Text="Fecha:" SizeF="44.79164,23" LocationFloat="291.6667, 105.0416" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="54" UseFont="false" />
         </Item12>
-        <Item13 Ref="55" ControlType="XRLabel" Name="xrLabel18" Text="Concepto:" SizeF="84.37503,23" LocationFloat="0, 151.041626" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item13 Ref="55" ControlType="XRLabel" Name="xrLabel18" Text="Concepto:" SizeF="84.37503,23" LocationFloat="0, 151.0416" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="56" UseFont="false" />
         </Item13>
-        <Item14 Ref="57" ControlType="XRLabel" Name="xrLabel17" Text="Tipo Asiento:" SizeF="84.37503,23" LocationFloat="0, 128.041626" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item14 Ref="57" ControlType="XRLabel" Name="xrLabel17" Text="Tipo Asiento:" SizeF="84.37503,23" LocationFloat="0, 128.0416" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="58" UseFont="false" />
         </Item14>
-        <Item15 Ref="59" ControlType="XRLabel" Name="xrLabel16" Text="Asiento:" SizeF="55.20833,23" LocationFloat="0, 105.041641" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item15 Ref="59" ControlType="XRLabel" Name="xrLabel16" Text="Asiento:" SizeF="55.20833,23" LocationFloat="0, 105.0416" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="60" UseFont="false" />
         </Item15>
-        <Item16 Ref="61" ControlType="XRLabel" Name="xrLabel3" Text="xrLabel3" SizeF="160.4167,23" LocationFloat="84.37503, 128.041626" Padding="2,2,0,0,100">
+        <Item16 Ref="61" ControlType="XRLabel" Name="xrLabel3" Text="xrLabel3" SizeF="160.4167,23" LocationFloat="84.37503, 128.0416" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="62" PropertyName="Text" DataMember="cntRptGetAsiento.DescrTipo" />
           </DataBindings>
         </Item16>
-        <Item17 Ref="63" ControlType="XRLabel" Name="xrLabel2" Text="xrLabel2" SizeF="160.4167,23" LocationFloat="84.37503, 105.041641" Padding="2,2,0,0,100">
+        <Item17 Ref="63" ControlType="XRLabel" Name="xrLabel2" Text="xrLabel2" SizeF="160.4167,23" LocationFloat="84.37503, 105.0416" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="64" PropertyName="Text" DataMember="cntRptGetAsiento.Asiento" />
           </DataBindings>
         </Item17>
-        <Item18 Ref="65" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="100,23" LocationFloat="658.9999, 77.3333054" Padding="2,2,0,0,100">
+        <Item18 Ref="65" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="100,23" LocationFloat="658.9999, 77.33331" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="66" PropertyName="Text" DataMember="cntRptGetAsiento.Fecha" />
           </DataBindings>
         </Item18>
-        <Item19 Ref="67" ControlType="XRLabel" Name="xrLabel4" Multiline="true" Text="xrLabel4" SizeF="674.6249,23" LocationFloat="84.37503, 151.041626" Padding="2,2,0,0,100">
+        <Item19 Ref="67" ControlType="XRLabel" Name="xrLabel4" Multiline="true" Text="xrLabel4" SizeF="674.6249,23" LocationFloat="84.37503, 151.0416" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="68" PropertyName="Text" DataMember="cntRptGetAsiento.Concepto" />
           </DataBindings>
         </Item19>
-        <Item20 Ref="69" ControlType="XRLabel" Name="xrLabel5" Text="xrLabel5" SizeF="100,23" LocationFloat="347.9167, 105.041611" Padding="2,2,0,0,100">
+        <Item20 Ref="69" ControlType="XRLabel" Name="xrLabel5" Text="xrLabel5" SizeF="100,23" LocationFloat="347.9167, 105.0416" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="70" PropertyName="Text" DataMember="cntRptGetAsiento.Fecha" />
           </DataBindings>
@@ -152,7 +152,7 @@
             <Item1 Ref="74" PropertyName="Text" DataMember="cntRptGetAsiento.TipoCambio" />
           </DataBindings>
         </Item22>
-        <Item23 Ref="75" ControlType="XRPictureBox" Name="xrPictureBox1" Sizing="Squeeze" ImageAlignment="MiddleCenter" SizeF="103.54174,77.2916641" LocationFloat="10.0000067, 10.0000067">
+        <Item23 Ref="75" ControlType="XRPictureBox" Name="xrPictureBox1" Sizing="Squeeze" ImageAlignment="MiddleCenter" SizeF="103.5417,77.29166" LocationFloat="10.00001, 10.00001">
           <DataBindings>
             <Item1 Ref="76" PropertyName="Image" DataMember="DatosGenerales.Logo" />
           </DataBindings>
