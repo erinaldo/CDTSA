@@ -16,7 +16,9 @@ namespace CDTSA.DAC
         private static SqlDataAdapter InicializarAdaptador()
         {
             String getSQL = "SELECT *  FROM dbo.globalCompania";
-            String UpdateSQL = "UPDATE dbo.globalCompania SET Nombre =@Nombre,Direccion=@Direccion,Telefono=@Telefono,Logo=@Logo,UsaCentroCosto=@UsaCentroCosto,SimboloMonedaFuncional=@SimboloMonedaFuncional,SimboloMonedaExtrangera=@SimboloMonedaExtrangera,CantDigitosDecimales=@CantDigitosDecimales,TipoCambio=@TipoCambio WHERE Compania='CDTSA'";
+            String UpdateSQL = "UPDATE dbo.globalCompania SET Nombre =@Nombre,Direccion=@Direccion,Telefono=@Telefono,Logo=@Logo,UsaCentroCosto=@UsaCentroCosto,SimboloMonedaFuncional=@SimboloMonedaFuncional,SimboloMonedaExtrangera=@SimboloMonedaExtrangera,CantDigitosDecimales=@CantDigitosDecimales,TipoCambio=@TipoCambio WHERE IDCompania=@IDCompania";
+            String InsertSQL = "INSERT INTO dbo.globalCompania( Nombre ,Direccion ,Telefono ,Logo ,UsaCentroCosto ,SimboloMonedaFuncional ,SimboloMonedaExtrangera ,CantDigitosDecimales ,TipoCambio) " +
+                                "VALUES  (@Nombre ,@Direccion,@Telefono,@Logo, @UsaCentroCosto,@SimboloMonedaFuncional,@SimboloMonedaExtrangera,@CantDigitosDecimales, @TipoCambio)";
             
 
             try
@@ -25,21 +27,36 @@ namespace CDTSA.DAC
                 {
                     SelectCommand = new SqlCommand(getSQL, ConnectionManager.GetConnection()),
                     UpdateCommand = new SqlCommand(UpdateSQL, ConnectionManager.GetConnection()),
-
+                    InsertCommand =  new SqlCommand(InsertSQL,ConnectionManager.GetConnection())
                 };
 
 
                 //Paremetros Update 
                 //oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCompania", SqlDbType.NVarChar).SourceColumn = "IDCompania";
                 oAdaptador.UpdateCommand.Parameters.Add("@Nombre", SqlDbType.NVarChar).SourceColumn = "Nombre";
                 oAdaptador.UpdateCommand.Parameters.Add("@Direccion", SqlDbType.NVarChar).SourceColumn = "Direccion";
                 oAdaptador.UpdateCommand.Parameters.Add("@Telefono", SqlDbType.NVarChar).SourceColumn = "Telefono";
                 oAdaptador.UpdateCommand.Parameters.Add("@Logo", SqlDbType.Image).SourceColumn = "Logo";
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
                 oAdaptador.UpdateCommand.Parameters.Add("@SimboloMonedaFuncional", SqlDbType.NVarChar).SourceColumn = "SimboloMonedaFuncional";
-                oAdaptador.UpdateCommand.Parameters.Add("@simboloMonedaExtrangera",SqlDbType.NVarChar).SourceColumn="SimboloMonedaExtrangera";
+                oAdaptador.UpdateCommand.Parameters.Add("@SimboloMonedaExtrangera",SqlDbType.NVarChar).SourceColumn="SimboloMonedaExtrangera";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantDigitosDecimales", SqlDbType.Int).SourceColumn = "CantDigitosDecimales";
                 oAdaptador.UpdateCommand.Parameters.Add("@TipoCambio", SqlDbType.NVarChar).SourceColumn = "TipoCambio";
+
+
+
+                //Paremetros Insert
+                //oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
+                oAdaptador.InsertCommand.Parameters.Add("@Nombre", SqlDbType.NVarChar).SourceColumn = "Nombre";
+                oAdaptador.InsertCommand.Parameters.Add("@Direccion", SqlDbType.NVarChar).SourceColumn = "Direccion";
+                oAdaptador.InsertCommand.Parameters.Add("@Telefono", SqlDbType.NVarChar).SourceColumn = "Telefono";
+                oAdaptador.InsertCommand.Parameters.Add("@Logo", SqlDbType.Image).SourceColumn = "Logo";
+                oAdaptador.InsertCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
+                oAdaptador.InsertCommand.Parameters.Add("@SimboloMonedaFuncional", SqlDbType.NVarChar).SourceColumn = "SimboloMonedaFuncional";
+                oAdaptador.InsertCommand.Parameters.Add("@SimboloMonedaExtrangera", SqlDbType.NVarChar).SourceColumn = "SimboloMonedaExtrangera";
+                oAdaptador.InsertCommand.Parameters.Add("@CantDigitosDecimales", SqlDbType.Int).SourceColumn = "CantDigitosDecimales";
+                oAdaptador.InsertCommand.Parameters.Add("@TipoCambio", SqlDbType.NVarChar).SourceColumn = "TipoCambio";
 
           
                 return oAdaptador;
@@ -74,7 +91,7 @@ namespace CDTSA.DAC
         public static DataSet GetDatosGeneralesCompania()
         {
             DataSet ds = CreateDataSet();
-            String GetDatosGeneralesSQL = "SELECT  Nombre Compania " +
+            String GetDatosGeneralesSQL = "SELECT  Nombre  " +
                                     "FROM dbo.globalCompania A where 1=3 ";
 
             SqlCommand ocmd = new SqlCommand(GetDatosGeneralesSQL, ConnectionManager.GetConnection());

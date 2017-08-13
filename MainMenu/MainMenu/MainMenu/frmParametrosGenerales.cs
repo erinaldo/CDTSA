@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Drawing.Drawing2D;
 using CG;
+using CDTSA.DAC;
 
 namespace CDTSA
 {
@@ -48,7 +49,7 @@ namespace CDTSA
             _CurrentRow["Nombre"] = this.txtNombre.EditValue;
             _CurrentRow["Direccion"] = this.txtDireccion.EditValue;
             _CurrentRow["Telefono"] = this.txtTelefono.EditValue;
-            _CurrentRow["Logo"] = ImageToByte( this.picLogo.Image);
+            _CurrentRow["Logo"] = (this.picLogo.Image!= null)? ImageToByte( this.picLogo.Image):null;
             _CurrentRow["UsaCentroCosto"] = this.chkUsaCentroCosto.EditValue;
             _CurrentRow["SimboloMonedaFuncional"] = this.txtMoneda.EditValue;
             _CurrentRow["SimboloMonedaExtrangera"] = this.txtMonedaExtrangera.EditValue;
@@ -86,7 +87,7 @@ namespace CDTSA
 
                             foreach (DataRow dr in errosRow)
                             {
-                                msg = msg + dr["Centro"].ToString();
+                                msg = msg + dr["Nombre"].ToString();
                             }
                         }
                     }
@@ -110,6 +111,27 @@ namespace CDTSA
                 {
                     _dsParametros.RejectChanges();
 
+                }
+            }
+            else
+            {
+                //nuevo registro
+                _CurrentRow = _dtParametros.NewRow();
+                ObtenerDatos();
+                _dtParametros.Rows.Add(_CurrentRow);
+                try
+                {
+                    ParametrosGeneralesDAC.oAdaptador.Update(_dsParametros, "Data");
+                    _dsParametros.AcceptChanges();
+                    
+                    Application.DoEvents();
+                    
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    _dsParametros.RejectChanges();
+                    _CurrentRow = null;
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -151,16 +173,18 @@ namespace CDTSA
             {
                 _dsParametros = DAC.ParametrosGeneralesDAC.GetData();
                 _dtParametros = _dsParametros.Tables[0];
-                _CurrentRow = _dsParametros.Tables[0].Rows[0];
-                this.chkUsaCentroCosto.EditValue = Convert.ToBoolean(_CurrentRow["UsaCentroCosto"]);
-                this.txtNombre.EditValue = _CurrentRow["Nombre"].ToString();
-                this.txtDireccion.EditValue = _CurrentRow["Direccion"].ToString();
-                this.txtTelefono.EditValue = _CurrentRow["Telefono"].ToString();
-                this.txtMoneda.EditValue = _CurrentRow["SimboloMonedaFuncional"].ToString();
-                this.txtMonedaExtrangera.EditValue = _CurrentRow["SimboloMonedaExtrangera"].ToString();
-                this.picLogo.EditValue = _CurrentRow["Logo"];
-                this.slkupTipoCambio.EditValue = _CurrentRow["TipoCambio"].ToString() ;
-                
+                if (_dsParametros.Tables[0].Rows.Count > 0)
+                {
+                    _CurrentRow = _dsParametros.Tables[0].Rows[0];
+                    this.chkUsaCentroCosto.EditValue = Convert.ToBoolean(_CurrentRow["UsaCentroCosto"]);
+                    this.txtNombre.EditValue = _CurrentRow["Nombre"].ToString();
+                    this.txtDireccion.EditValue = _CurrentRow["Direccion"].ToString();
+                    this.txtTelefono.EditValue = _CurrentRow["Telefono"].ToString();
+                    this.txtMoneda.EditValue = _CurrentRow["SimboloMonedaFuncional"].ToString();
+                    this.txtMonedaExtrangera.EditValue = _CurrentRow["SimboloMonedaExtrangera"].ToString();
+                    this.picLogo.EditValue = _CurrentRow["Logo"];
+                    this.slkupTipoCambio.EditValue = _CurrentRow["TipoCambio"].ToString();
+                }
             }
             catch (Exception ex)
             {

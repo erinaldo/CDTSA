@@ -106,7 +106,7 @@ namespace MainMenu
                 {
                     String sMensaje = "";
                     //Validar los datos de configuracion
-                    if (DS.Tables[0].Rows[0]["Compania"].ToString() == "")
+                    if (DS.Tables[0].Rows[0]["Nombre"].ToString() == "")
                     {
                         sMensaje = sMensaje + " • El nombre de la compania no se ha establecido \n\r";
                         this.lblCompania.Caption = "Compañia: ";
@@ -139,7 +139,7 @@ namespace MainMenu
                         sTipoCambio = DS.Tables[0].Rows[0]["TipoCambio"].ToString();
                         CodTipoCambio = sTipoCambio;
                         ObtenerTipoCambio(sTipoCambio);
-                        this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Compania"].ToString();
+                        this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Nombre"].ToString();
                         
                     }
                 }

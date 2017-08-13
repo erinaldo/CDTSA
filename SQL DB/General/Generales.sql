@@ -1,7 +1,7 @@
 
 
 CREATE TABLE [dbo].[globalCompania](
-	[Compania] [nvarchar](10) NOT NULL,
+	[IDCompania] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](100) NULL,
 	[Direccion] [nvarchar](100) NULL,
 	[Telefono] [nvarchar](30) NULL,
@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[globalCompania](
 	[TipoCambio] [nvarchar](20) NULL,
  CONSTRAINT [pk_GlobalCompania] PRIMARY KEY CLUSTERED 
 (
-	[Compania] ASC
+	[IDCompania] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
