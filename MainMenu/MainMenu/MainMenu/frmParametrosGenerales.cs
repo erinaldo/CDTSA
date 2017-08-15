@@ -52,6 +52,7 @@ namespace CDTSA
             _CurrentRow["Logo"] = (this.picLogo.Image!= null)? ImageToByte( this.picLogo.Image):null;
             _CurrentRow["UsaCentroCosto"] = this.chkUsaCentroCosto.EditValue;
             _CurrentRow["SimboloMonedaFuncional"] = this.txtMoneda.EditValue;
+            _CurrentRow["CantDigitosDecimales"] = Convert.ToInt32(this.txtCantDigitosDecimales.EditValue);
             _CurrentRow["SimboloMonedaExtrangera"] = this.txtMonedaExtrangera.EditValue;
             _CurrentRow["TipoCambio"] = this.slkupTipoCambio.EditValue;
         }
@@ -181,6 +182,7 @@ namespace CDTSA
                     this.txtDireccion.EditValue = _CurrentRow["Direccion"].ToString();
                     this.txtTelefono.EditValue = _CurrentRow["Telefono"].ToString();
                     this.txtMoneda.EditValue = _CurrentRow["SimboloMonedaFuncional"].ToString();
+                    this.txtCantDigitosDecimales.EditValue = _CurrentRow["CantDigitosDecimales"].ToString();
                     this.txtMonedaExtrangera.EditValue = _CurrentRow["SimboloMonedaExtrangera"].ToString();
                     this.picLogo.EditValue = _CurrentRow["Logo"];
                     this.slkupTipoCambio.EditValue = _CurrentRow["TipoCambio"].ToString();

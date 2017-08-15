@@ -131,6 +131,39 @@ namespace CG
         }
 
 
+        public static DataSet GetPeriodoContableByFecha(DateTime Fecha)
+        {
+            
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetPeriodoContableByFecha", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Fecha", SqlDbType.Date, 50).Value = Fecha;
+                SqlDataAdapter oAdapatadorTmp = new SqlDataAdapter(oCmd);
+                oAdapatadorTmp.Fill(DS,"Data");
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return DS;
+
+        }
+
+
          public static bool ValidaFechaInPeriodoContable(DateTime Fecha)
         {
             bool bResult  = false;

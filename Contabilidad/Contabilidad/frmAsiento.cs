@@ -516,13 +516,14 @@ namespace CG
                     
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                    this.ValidateChildren();
                 }
                 else
                 {
                     ActivateEditGrid(false);
                 }
                 AplicarPrivilegios();
-
+                
 
             }
             catch (Exception ex)
@@ -1014,10 +1015,7 @@ namespace CG
             }
         }
 
-        private void dtpFecha_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void dtpFecha_Validated(object sender, EventArgs e)
         {
@@ -1027,17 +1025,32 @@ namespace CG
         private void dtpFecha_Validating(object sender, CancelEventArgs e)
         {
              //Tomar el periodo
-           
+            
             DateTime Fecha =  Convert.ToDateTime(((DateEdit)sender).EditValue);
             try
             {
-                if (PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
+                if (Fecha == null || PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
                     e.Cancel = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Han ocurrido los siguientes errores: \r\n" + ex.Message);
                 e.Cancel = true;
+            }
+        }
+
+        private void dtpFecha_EditValueChanged(object sender, EventArgs e)
+        {
+            //Tomar el periodo y 
+            if (this.dtpFecha.EditValue != null)
+            {
+                _dsEjercicioPeriodo = PeriodoContableDAC.GetPeriodoContableByFecha(Convert.ToDateTime(this.dtpFecha.EditValue));
+                _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
+                _currentRow["Periodo"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+                _currentRow["TipoCambio"] = (_dsEjercicioPeriodo.Tables[0].Rows[0]["TipoCambio"].ToString() == "") ? 0 : Convert.ToDecimal(_dsEjercicioPeriodo.Tables[0].Rows[0]["TipoCambio"]);
+                this.txtEjercicio.Text = _currentRow["IDEjercicio"].ToString();
+                this.txtPeriodo.Text = _currentRow["Periodo"].ToString();
+                this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght);
             }
         }
     }

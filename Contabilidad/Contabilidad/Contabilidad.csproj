@@ -349,7 +349,6 @@
     <EmbeddedResource Include="Reporte\Asiento\rptAsiento.resx">
       <DependentUpon>rptAsiento.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Contabilidad_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

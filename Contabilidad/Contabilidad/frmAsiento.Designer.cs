@@ -376,6 +376,7 @@
             this.txtDirenciaDolar.MenuManager = this.ribbonControl;
             this.txtDirenciaDolar.Name = "txtDirenciaDolar";
             this.txtDirenciaDolar.Properties.Mask.EditMask = "n4";
+            this.txtDirenciaDolar.Properties.ReadOnly = true;
             this.txtDirenciaDolar.Size = new System.Drawing.Size(194, 20);
             this.txtDirenciaDolar.StyleController = this.layoutControl1;
             this.txtDirenciaDolar.TabIndex = 28;
@@ -386,6 +387,7 @@
             this.txtCreditoDolar.MenuManager = this.ribbonControl;
             this.txtCreditoDolar.Name = "txtCreditoDolar";
             this.txtCreditoDolar.Properties.Mask.EditMask = "n4";
+            this.txtCreditoDolar.Properties.ReadOnly = true;
             this.txtCreditoDolar.Size = new System.Drawing.Size(178, 20);
             this.txtCreditoDolar.StyleController = this.layoutControl1;
             this.txtCreditoDolar.TabIndex = 27;
@@ -396,6 +398,7 @@
             this.txtDebitoDolar.MenuManager = this.ribbonControl;
             this.txtDebitoDolar.Name = "txtDebitoDolar";
             this.txtDebitoDolar.Properties.Mask.EditMask = "n4";
+            this.txtDebitoDolar.Properties.ReadOnly = true;
             this.txtDebitoDolar.Size = new System.Drawing.Size(170, 20);
             this.txtDebitoDolar.StyleController = this.layoutControl1;
             this.txtDebitoDolar.TabIndex = 26;
@@ -407,6 +410,7 @@
             this.txtDiferencia.Name = "txtDiferencia";
             this.txtDiferencia.Properties.Mask.EditMask = "n4";
             this.txtDiferencia.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtDiferencia.Properties.ReadOnly = true;
             this.txtDiferencia.Size = new System.Drawing.Size(194, 20);
             this.txtDiferencia.StyleController = this.layoutControl1;
             this.txtDiferencia.TabIndex = 25;
@@ -418,6 +422,7 @@
             this.txtCreditoLocal.Name = "txtCreditoLocal";
             this.txtCreditoLocal.Properties.Mask.EditMask = "n4";
             this.txtCreditoLocal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtCreditoLocal.Properties.ReadOnly = true;
             this.txtCreditoLocal.Size = new System.Drawing.Size(178, 20);
             this.txtCreditoLocal.StyleController = this.layoutControl1;
             this.txtCreditoLocal.TabIndex = 24;
@@ -429,6 +434,7 @@
             this.txtDebitoLocal.Name = "txtDebitoLocal";
             this.txtDebitoLocal.Properties.Mask.EditMask = "n4";
             this.txtDebitoLocal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtDebitoLocal.Properties.ReadOnly = true;
             this.txtDebitoLocal.Size = new System.Drawing.Size(170, 20);
             this.txtDebitoLocal.StyleController = this.layoutControl1;
             this.txtDebitoLocal.TabIndex = 23;
