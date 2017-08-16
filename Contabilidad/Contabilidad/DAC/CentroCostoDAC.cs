@@ -14,7 +14,7 @@ namespace CG
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT A.IDCentro,A.Nivel1,A.Nivel2,A.Nivel3,A.Centro,A.Descr,A.IDCentroAnterior,A.Acumulador,A.IDCentroAcumulador,B.Descr DescrCentroAcumulador,A.ReadOnlySys,A.Activo  FROM dbo.cntCentroCosto  A LEFT  JOIN dbo.cntCentroCosto B ON A.IDCentroAcumulador=B.IDCentro WHERE (A.IDCentro=@IDCentro OR @IDCentro=-1) AND (A.Nivel1=@Nivel1 OR @Nivel1='*') AND (A.Nivel2=@Nivel2 OR @Nivel2='*') AND (A.Nivel3=@Nivel3 OR @Nivel3='*') AND (A.Descr = @Descr OR @Descr='*')  AND (A.Acumulador=@Acumulador OR @Acumulador =-1)";
+            String getSQL = "SELECT A.IDCentro,A.Nivel1,A.Nivel2,A.Nivel3,A.Centro,A.Descr,A.IDCentroAnterior,A.Acumulador,A.IDCentroAcumulador,B.Descr DescrCentroAcumulador,A.ReadOnlySys,A.Activo  FROM dbo.cntCentroCosto  A LEFT  JOIN dbo.cntCentroCosto B ON A.IDCentroAcumulador=B.IDCentro WHERE (A.IDCentro=@IDCentro OR @IDCentro=-1) AND (A.Nivel1=@Nivel1 OR @Nivel1='*') AND (A.Nivel2=@Nivel2 OR @Nivel2='*') AND (A.Nivel3=@Nivel3 OR @Nivel3='*') AND (A.Descr = @Descr OR @Descr='*')  AND (A.Acumulador=@Acumulador OR @Acumulador =-1) order by Cast(A.Nivel1 as int), Cast(A.Nivel2 as int), cast(A.Nivel3 as int)";
             String InsertSQL = "[dbo].[cntUpdateCentroCosto]";
             String UpdateSQL = "[dbo].[cntUpdateCentroCosto]";
             String DeleteSQL = "[dbo].[cntUpdateCentroCosto]";
@@ -128,6 +128,47 @@ namespace CG
                 return DS;
             });
 
+
+        }
+
+
+        public static int GetNextConsecutivo(int Nivel1, int Nivel2, int Nivel3)
+        {
+            int ID = 0;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetNextConsecutivoCentroCosto", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Nivel1", SqlDbType.Int).Value = Nivel1;
+                oCmd.Parameters.Add("@Nivel2", SqlDbType.Int).Value = Nivel2;
+                oCmd.Parameters.Add("@Nivel3", SqlDbType.Int).Value = Nivel3;
+                oCmd.Parameters.Add("@Resultado", SqlDbType.BigInt).Direction = ParameterDirection.ReturnValue;
+
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
+                    ID = (int)oCmd.Parameters["@Resultado"].Value;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return ID;
 
         }
     }

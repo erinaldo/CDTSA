@@ -44,8 +44,6 @@
             this.txtCentro = new DevExpress.XtraEditors.TextEdit();
             this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
             this.chkReadSystemOnly = new DevExpress.XtraEditors.CheckEdit();
-            this.slkupCentroAnterior = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.chkAcumulador = new DevExpress.XtraEditors.CheckEdit();
             this.slkupCentroAcumulador = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -74,7 +72,6 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -82,8 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCentro.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkReadSystemOnly.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCentroAnterior.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAcumulador.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCentroAcumulador.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -106,7 +101,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,7 +149,6 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
-
             // 
             // btnCancelar
             // 
@@ -218,7 +211,6 @@
             this.layoutControl1.Controls.Add(this.txtCentro);
             this.layoutControl1.Controls.Add(this.chkActivo);
             this.layoutControl1.Controls.Add(this.chkReadSystemOnly);
-            this.layoutControl1.Controls.Add(this.slkupCentroAnterior);
             this.layoutControl1.Controls.Add(this.chkAcumulador);
             this.layoutControl1.Controls.Add(this.slkupCentroAcumulador);
             this.layoutControl1.Controls.Add(this.txtDescripcion);
@@ -265,26 +257,6 @@
             this.chkReadSystemOnly.StyleController = this.layoutControl1;
             this.chkReadSystemOnly.TabIndex = 13;
             // 
-            // slkupCentroAnterior
-            // 
-            this.slkupCentroAnterior.Location = new System.Drawing.Point(123, 327);
-            this.slkupCentroAnterior.MenuManager = this.ribbonControl;
-            this.slkupCentroAnterior.Name = "slkupCentroAnterior";
-            this.slkupCentroAnterior.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupCentroAnterior.Properties.View = this.searchLookUpEdit2View;
-            this.slkupCentroAnterior.Size = new System.Drawing.Size(206, 20);
-            this.slkupCentroAnterior.StyleController = this.layoutControl1;
-            this.slkupCentroAnterior.TabIndex = 0;
-            this.slkupCentroAnterior.EditValueChanged += new System.EventHandler(this.slkupCentroAnterior_EditValueChanged);
-            // 
-            // searchLookUpEdit2View
-            // 
-            this.searchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit2View.Name = "searchLookUpEdit2View";
-            this.searchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
-            // 
             // chkAcumulador
             // 
             this.chkAcumulador.Location = new System.Drawing.Point(522, 327);
@@ -298,15 +270,16 @@
             // 
             // slkupCentroAcumulador
             // 
-            this.slkupCentroAcumulador.Location = new System.Drawing.Point(452, 398);
+            this.slkupCentroAcumulador.Location = new System.Drawing.Point(123, 327);
             this.slkupCentroAcumulador.MenuManager = this.ribbonControl;
             this.slkupCentroAcumulador.Name = "slkupCentroAcumulador";
             this.slkupCentroAcumulador.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupCentroAcumulador.Properties.View = this.searchLookUpEdit1View;
-            this.slkupCentroAcumulador.Size = new System.Drawing.Size(328, 20);
+            this.slkupCentroAcumulador.Size = new System.Drawing.Size(206, 20);
             this.slkupCentroAcumulador.StyleController = this.layoutControl1;
             this.slkupCentroAcumulador.TabIndex = 8;
+            this.slkupCentroAcumulador.EditValueChanged += new System.EventHandler(this.slkupCentroAcumulador_EditValueChanged);
             // 
             // searchLookUpEdit1View
             // 
@@ -481,7 +454,6 @@
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem7,
             this.layoutControlItem5,
             this.layoutControlItem4,
             this.layoutControlItem6,
@@ -490,8 +462,8 @@
             this.layoutControlItem10,
             this.emptySpaceItem2,
             this.layoutControlItem3,
-            this.layoutControlItem9,
-            this.layoutControlItem12});
+            this.layoutControlItem12,
+            this.layoutControlItem7});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 285);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(784, 138);
@@ -500,9 +472,9 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.slkupCentroAcumulador;
-            this.layoutControlItem7.Location = new System.Drawing.Point(329, 71);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(431, 25);
+            this.layoutControlItem7.Size = new System.Drawing.Size(309, 24);
             this.layoutControlItem7.Text = "Centro Acumulador:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(96, 13);
             // 
@@ -529,7 +501,7 @@
             this.layoutControlItem6.Control = this.txtDescripcion;
             this.layoutControlItem6.Location = new System.Drawing.Point(329, 47);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(431, 24);
+            this.layoutControlItem6.Size = new System.Drawing.Size(431, 49);
             this.layoutControlItem6.Text = "Descripción:";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(96, 13);
             // 
@@ -577,15 +549,6 @@
             this.layoutControlItem3.Text = "Nivel 1:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(96, 13);
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.slkupCentroAnterior;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(309, 24);
-            this.layoutControlItem9.Text = "Centro Anterior:";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(96, 13);
-            // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.txtCentro;
@@ -616,8 +579,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCentro.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkReadSystemOnly.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCentroAnterior.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAcumulador.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCentroAcumulador.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
@@ -640,7 +601,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -665,8 +625,6 @@
         private DevExpress.XtraEditors.TextEdit txtCentro;
         private DevExpress.XtraEditors.CheckEdit chkActivo;
         private DevExpress.XtraEditors.CheckEdit chkReadSystemOnly;
-        private DevExpress.XtraEditors.SearchLookUpEdit slkupCentroAnterior;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit2View;
         private DevExpress.XtraEditors.CheckEdit chkAcumulador;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCentroAcumulador;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
@@ -677,7 +635,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;

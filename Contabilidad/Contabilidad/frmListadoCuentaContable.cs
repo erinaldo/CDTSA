@@ -622,9 +622,9 @@ namespace CG
         
                     if (dt.Rows[0]["Nivel4"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), -1);
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), -1);
                        
-                        iProximoConsecutivo++;
+                       // iProximoConsecutivo++;
 
                         this.txtNivel5.Text = iProximoConsecutivo.ToString();
                         this.txtNivel4.Text = dt.Rows[0]["Nivel4"].ToString();
@@ -633,8 +633,8 @@ namespace CG
                     }
                     else if (dt.Rows[0]["Nivel3"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), -1, 0);
-                        iProximoConsecutivo++;
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), -1, 0);
+                       // iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = iProximoConsecutivo.ToString();
@@ -643,9 +643,9 @@ namespace CG
                     }
                     else if (dt.Rows[0]["Nivel2"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1, 0, 0);
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1, 0, 0);
                         
-                        iProximoConsecutivo++;
+                       // iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = "0";
@@ -654,8 +654,8 @@ namespace CG
                     }
                     else if (dt.Rows[0]["Nivel1"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0, 0, 0);
-                        iProximoConsecutivo++;
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0, 0, 0);
+                       // iProximoConsecutivo++;
 
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = "0";

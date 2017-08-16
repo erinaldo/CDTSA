@@ -229,6 +229,50 @@ namespace CG
         }
 
 
+        public static int GetNextConsecutivoFinal(int Nivel1, int Nivel2, int Nivel3, int Nivel4, int Nivel5)
+        {
+            int ID = 0;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetProximaCuenta", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@iNivel1", SqlDbType.Int).Value = Nivel1;
+                oCmd.Parameters.Add("@iNivel2", SqlDbType.Int).Value = Nivel2;
+                oCmd.Parameters.Add("@iNivel3", SqlDbType.Int).Value = Nivel3;
+                oCmd.Parameters.Add("@iNivel4", SqlDbType.Int).Value = Nivel4;
+                oCmd.Parameters.Add("@iNivel5", SqlDbType.Int).Value = Nivel5;
+                oCmd.Parameters.Add("@NextCuenta", SqlDbType.Int).Value = 0;
+                oCmd.Parameters["@NextCuenta"].Direction = ParameterDirection.Output;
+
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@NextCuenta"].Value != DBNull.Value)
+                    ID = (int)oCmd.Parameters["@NextCuenta"].Value;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return ID;
+
+        }
+
+
 
         public static String GetMascaraByNivel(String Nivel1, String Nivel2, String Nivel3, String Nivel4, String Nivel5)
         {

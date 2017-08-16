@@ -17,6 +17,7 @@ namespace CG
         string _sUsuario = (UsuarioDAC._DS.Tables.Count>0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         const String _tituloVentana = "Listado de Centros de Costos";
         private bool isEdition = false;
+
         public frmListadoCentroCosto()
         {
             InitializeComponent();
@@ -36,12 +37,12 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarCentroCosto, _dtSecurity))
-                this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCentroCosto, _dtSecurity))
-                this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCentroCosto, _dtSecurity))
-                this.btnEliminar.Enabled = false;
+            //if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarCentroCosto, _dtSecurity))
+            //    this.btnAgregar.Enabled = false;
+            //if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCentroCosto, _dtSecurity))
+            //    this.btnEditar.Enabled = false;
+            //if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCentroCosto, _dtSecurity))
+            //    this.btnEliminar.Enabled = false;
         }
 
 
@@ -101,8 +102,7 @@ namespace CG
             Util.Util.ConfigLookupEdit(this.slkupCentroAcumulador, _lstCentroAcumuladores, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroAcumulador, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            Util.Util.ConfigLookupEdit(this.slkupCentroAnterior, _dtCentro, "Descr", "IDCentro");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroAnterior, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+            
         }
 
         private void PopulateGrid()
@@ -126,8 +126,15 @@ namespace CG
             this.txtDescripcion.Text = "";
             this.chkActivo.EditValue = true;
             this.chkAcumulador.EditValue = false;
-            this.slkupCentroAnterior.EditValue = null;
+            
             this.slkupCentroAcumulador.EditValue = null;
+
+            if (this._lstCentroAcumuladores.Rows.Count < 1)
+            {
+                this.txtNivel1.Text = "1";
+                this.txtNivel2.Text = "0";
+                this.txtNivel3.Text = "0";
+            }
 
         }
 
@@ -139,7 +146,7 @@ namespace CG
             this.txtDescripcion.ReadOnly = !Activo;
             this.chkActivo.ReadOnly = !Activo;
             this.chkAcumulador.ReadOnly = !Activo;
-            this.slkupCentroAnterior.ReadOnly = !Activo;
+            
             this.slkupCentroAcumulador.ReadOnly = !Activo;
 
             this.dtg.Enabled = !Activo;
@@ -171,7 +178,7 @@ namespace CG
             this.txtDescripcion.Text = Row["Descr"].ToString();
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
             this.chkAcumulador.EditValue = Convert.ToBoolean(Row["Acumulador"]);
-            this.slkupCentroAnterior.EditValue = Row["IDCentroAnterior"].ToString();
+            
             this.slkupCentroAcumulador.EditValue = Row["IDCentroAcumulador"].ToString();
             this.chkReadSystemOnly.EditValue = Row["ReadOnlySys"];
 
@@ -219,9 +226,6 @@ namespace CG
             bool result = true;
             String sMensaje = "";
             //Este solo vale para el primer elemento
-            if (_dtCentro.Rows.Count > 1)
-                if (this.slkupCentroAnterior.EditValue == null)
-                    sMensaje = sMensaje + "     • Centro de Costo Anterior. \n\r";
             if (this.txtNivel1.Text == "")
                 sMensaje = sMensaje + "     • Nivel 1. \n\r";
             if (this.txtDescripcion.Text == "")
@@ -257,7 +261,7 @@ namespace CG
                 currentRow["Descr"] = this.txtDescripcion.Text;
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["Acumulador"] = this.chkAcumulador.EditValue;
-                currentRow["IDCentroAnterior"] = this.slkupCentroAnterior.EditValue;
+                
                 currentRow["IDCentroAcumulador"] = this.slkupCentroAcumulador.EditValue;
                 currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
 
@@ -319,7 +323,6 @@ namespace CG
                 currentRow["Descr"] = this.txtDescripcion.Text;
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["Acumulador"] = this.chkAcumulador.EditValue;
-                currentRow["IDCentroAnterior"] = this.slkupCentroAnterior.EditValue;
                 currentRow["IDCentroAcumulador"] = (this.slkupCentroAcumulador.EditValue == null) ? 0 : this.slkupCentroAcumulador.EditValue;
                 currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
                 _dtCentro.Rows.Add(currentRow);
@@ -394,54 +397,127 @@ namespace CG
         private void chkAcumulador_CheckStateChanged(object sender, EventArgs e)
         {
             if ((bool)this.chkAcumulador.EditValue == true)
+            {
                 this.slkupCentroAcumulador.Enabled = false;
+                if (this.slkupCentroAcumulador.EditValue == null || this.slkupCentroAcumulador.EditValue.ToString() == "")
+                {
+                    DataView dv = new DataView();
+                    dv.Table = _dtCentro;
+                    dv.RowFilter = string.Format("IDCentro='{0}' ", 0);
+                    DataTable dt = dv.ToTable();
+
+                    bool EsAcumulador = Convert.ToBoolean((this.chkAcumulador.EditValue == null) ? false : this.chkAcumulador.EditValue);
+
+
+                    int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(-1, 0, 0);
+                    iProximoConsecutivo++;
+
+                    this.txtNivel3.Text = "0";
+                    this.txtNivel2.Text = "0";
+                    this.txtNivel1.Text = iProximoConsecutivo.ToString();
+
+
+
+                    this.txtDescripcion.Text = "";
+
+                }
+            }
             else
+            {
                 this.slkupCentroAcumulador.Enabled = true;
+                this.txtNivel3.Text = "";
+                this.txtNivel2.Text = "";
+                this.txtNivel1.Text = "";
+            }
         }
 
-        private void slkupCentroAnterior_EditValueChanged(object sender, EventArgs e)
-        {
+        //private void slkupCentroAnterior_EditValueChanged(object sender, EventArgs e)
+        //{
 
+        //    try
+        //    {
+        //        if (!isEdition)
+        //            return;
+
+        //        if (this.slkupCentroAnterior.EditValue != null && this.slkupCentroAnterior.EditValue.ToString() != "")
+        //        {
+        //            DataView dv = new DataView();
+        //            dv.Table = _dtCentro;
+        //            dv.RowFilter = "IDCentro='" + this.slkupCentroAnterior.EditValue.ToString() + "'";
+        //            this.txtNivel1.Text = dv[0].Row["Nivel1"].ToString();
+
+        //            DataTable dt = dv.ToTable();
+        //            int i = -1;
+        //            if (dt.Rows[0]["Nivel3"].ToString() != "0")
+        //            {
+        //                i = Convert.ToInt32(dt.Rows[0]["Nivel3"]);
+        //                i++;
+        //                this.txtNivel3.Text = i.ToString();
+        //                this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
+
+
+        //            }
+        //            else if (dt.Rows[0]["Nivel2"].ToString() != "0")
+        //            {
+        //                i = Convert.ToInt32(dt.Rows[0]["Nivel2"]);
+        //                i++;
+        //                this.txtNivel2.Text = i.ToString();
+        //                this.txtNivel3.Text = "0";
+        //            }
+
+
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+
+        //}
+
+        private void slkupCentroAcumulador_EditValueChanged(object sender, EventArgs e)
+        {
             try
             {
                 if (!isEdition)
                     return;
-
-                if (this.slkupCentroAnterior.EditValue != null && this.slkupCentroAnterior.EditValue.ToString() != "")
+                if (this.slkupCentroAcumulador.EditValue != null && this.slkupCentroAcumulador.EditValue.ToString() != "")
                 {
                     DataView dv = new DataView();
                     dv.Table = _dtCentro;
-                    dv.RowFilter = "IDCentro='" + this.slkupCentroAnterior.EditValue.ToString() + "'";
-                    this.txtNivel1.Text = dv[0].Row["Nivel1"].ToString();
-
+                    dv.RowFilter = string.Format("IDCentro='{0}' ", this.slkupCentroAcumulador.EditValue);
                     DataTable dt = dv.ToTable();
-                    int i = -1;
-                    if (dt.Rows[0]["Nivel3"].ToString() != "0")
+
+                    bool EsAcumulador = Convert.ToBoolean((this.chkAcumulador.EditValue == null) ? false : this.chkAcumulador.EditValue);
+                    
+                   if (dt.Rows[0]["Nivel2"].ToString() != "0")
                     {
-                        i = Convert.ToInt32(dt.Rows[0]["Nivel3"]);
-                        i++;
-                        this.txtNivel3.Text = i.ToString();
+                        int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1);
+                        
+                        iProximoConsecutivo++;
+
+                        this.txtNivel3.Text = iProximoConsecutivo.ToString();
                         this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
-
-
+                        this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     }
-                    else if (dt.Rows[0]["Nivel2"].ToString() != "0")
+                    else if (dt.Rows[0]["Nivel1"].ToString() != "0")
                     {
-                        i = Convert.ToInt32(dt.Rows[0]["Nivel2"]);
-                        i++;
-                        this.txtNivel2.Text = i.ToString();
+                        int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0);
+                        iProximoConsecutivo++;
+
                         this.txtNivel3.Text = "0";
+                        this.txtNivel2.Text = iProximoConsecutivo.ToString();
+                        this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     }
 
-
+                   
+                    this.txtDescripcion.Text = "";
+                
                 }
-
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
             }
-
         }
 
       
