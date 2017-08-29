@@ -858,6 +858,7 @@
             this.txtModuloFuente.Location = new System.Drawing.Point(106, 118);
             this.txtModuloFuente.MenuManager = this.ribbonControl;
             this.txtModuloFuente.Name = "txtModuloFuente";
+            this.txtModuloFuente.Properties.ReadOnly = true;
             this.txtModuloFuente.Size = new System.Drawing.Size(318, 20);
             this.txtModuloFuente.StyleController = this.layoutControl1;
             this.txtModuloFuente.TabIndex = 5;

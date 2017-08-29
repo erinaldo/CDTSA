@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery2 = new DevExpress.DataAccess.Sql.StoredProcQuery();
@@ -48,7 +49,7 @@
             this.OcultarReferencia = new DevExpress.XtraReports.UI.FormattingRule();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.Asiento = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -464,17 +465,19 @@
             // xrLabel20
             // 
             this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(291.6667F, 128.0416F);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(244.7917F, 128.0416F);
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel20.SizeF = new System.Drawing.SizeF(56.24992F, 23F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(103.1248F, 23.00002F);
             this.xrLabel20.StylePriority.UseFont = false;
-            this.xrLabel20.Text = "Modulo: Fuente:";
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "Modulo Fuente:";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // xrLabel19
             // 
             this.xrLabel19.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(291.6667F, 105.0416F);
+            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(303.1249F, 105.0416F);
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel19.SizeF = new System.Drawing.SizeF(44.79164F, 23F);
@@ -533,19 +536,19 @@
             // 
             this.xrLabel32.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntRptGetAsientoDetalle.Credito")});
-            this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(616.6668F, 9.999974F);
+            this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(658.9999F, 3.458341F);
             this.xrLabel32.Name = "xrLabel32";
             this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel32.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel32.SizeF = new System.Drawing.SizeF(110F, 23F);
             // 
             // xrLabel31
             // 
             this.xrLabel31.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntRptGetAsientoDetalle.Debito")});
-            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(532.2918F, 9.999974F);
+            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(548.9997F, 3.458341F);
             this.xrLabel31.Name = "xrLabel31";
             this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel31.SizeF = new System.Drawing.SizeF(84.375F, 23F);
+            this.xrLabel31.SizeF = new System.Drawing.SizeF(110.0001F, 23F);
             // 
             // rptAsiento
             // 

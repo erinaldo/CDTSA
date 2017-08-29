@@ -178,6 +178,8 @@ namespace CG
             _currentRow["Mayorizado"] = false;
             _currentRow["Anulado"] = false;
             _currentRow["CuadreTemporal"] = false;
+            _currentRow["MayorizadoBy"] = "";
+            _currentRow["MayorizadoDate"] = null;
             
 
         }
@@ -238,7 +240,8 @@ namespace CG
             this.txtPeriodo.EditValue = _currentRow["Periodo"].ToString();
             this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght);
             this.txtModuloFuente.EditValue = _currentRow["ModuloFuente"].ToString();
-            this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
+            this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]);
+            //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
             this.txtFecha.EditValue = _currentRow["FechaHora"].ToString();
             this.slkupTipo.EditValue = "CG"; //_currentRow["Tipo"].ToString();
             this.txtConcepto.Text = _currentRow["Concepto"].ToString();
@@ -269,16 +272,18 @@ namespace CG
         }
 
 
-        private void HabilitarControles(bool Activo)
+        private void HabilitarControles(bool Activo,bool Mayorizado)
         {
-            this.dtpFecha.ReadOnly = !Activo;
-            this.txtTipoCambio.ReadOnly = !Activo;
-            this.txtConcepto.ReadOnly = !Activo;
+            this.dtpFecha.Enabled = (Mayorizado==true) ? false :  (Activo);
+            this.txtTipoCambio.ReadOnly = true;
+            this.txtConcepto.ReadOnly = (Mayorizado==true) ?  true:!(Activo);
             this.txtFecha.ReadOnly = !Activo;
-            this.slkupTipo.ReadOnly =!Activo;
+            this.slkupTipo.ReadOnly =(Mayorizado==true) ? true:!(Activo);
             this.gridView1.OptionsBehavior.ReadOnly = !Activo;
             this.gridView1.OptionsBehavior.AllowAddRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
+            this.slkupCentroCostoGrid.ReadOnly = (Mayorizado == true) ? true : !(Activo); 
+            this.slkupCuentaContableGrid.ReadOnly = (Mayorizado == true) ? true : !(Activo);
             this.grid.UseEmbeddedNavigator = Activo;
             this.btnEditar.Enabled = !Activo;
             this.btnGuardar.Enabled = Activo;
@@ -473,7 +478,7 @@ namespace CG
             {
                 CargarDatosPeriodoActivo();
 
-                HabilitarControles(false);
+                HabilitarControles(false,false);
                 CargarSimbolosMoneda();
                 CargarPrivilegios();
                 EnlazarEventos();
@@ -512,7 +517,7 @@ namespace CG
                 UpdateControlsFromDataRow(_currentRow);
                 if (Accion == "New")
                 {
-                    HabilitarControles(true);
+                    HabilitarControles(true,false);
                     
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -520,9 +525,12 @@ namespace CG
                 }
                 else
                 {
+                    Accion = "Edit";
+                    bool bMayorizado = Convert.ToBoolean( _dsAsiento.Tables[0].Rows[0]["Mayorizado"]);
+                    HabilitarControles(true, bMayorizado);
                     ActivateEditGrid(false);
                 }
-                AplicarPrivilegios();
+                AplicarPrivilegios(); 
                 
 
             }
@@ -833,7 +841,7 @@ namespace CG
             if (Convert.ToBoolean(_currentRow["Mayorizado"])==false && Convert.ToBoolean(_currentRow["Anulado"])==false)
             {
                 Accion = "Edit";
-                HabilitarControles(true);
+                HabilitarControles(true,false);
                 AplicarPrivilegios();
             }
            
@@ -868,6 +876,7 @@ namespace CG
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            
             GuardarAsiento();
         }
 
@@ -881,26 +890,43 @@ namespace CG
                 //Validar Datos 
                 if (!ValidaDatos()) return;
 
+                //Validar si la fecha del asiento contable corresponde a una fecha valida
+                DateTime Fecha = Convert.ToDateTime(this.dtpFecha.EditValue);
+                try
+                {
+                    //if (Fecha == null || PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
+                    PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Han ocurrido los siguientes errores: \r\n" + ex.Message);
+                    return;  
+                }
+
+
                 //Obtener los datos
                 if (_dsAsiento.Tables[0].Rows.Count > 0)
                     _dsAsiento.Tables[0].Rows.Clear();
                 _dsAsiento.Tables[0].Rows.Add(_currentRow);
                 _currentRow["IDEjercicio"] = this.txtEjercicio.Text.Trim();
                 _currentRow["Periodo"] = this.txtPeriodo.Text.Trim();
-                _currentRow["Asiento"] = "---";
+                _currentRow["Asiento"] = this.txtAsiento.Text.Trim() != "" ? this.txtAsiento.Text.Trim():  "---";
                 _currentRow["Tipo"] = this.slkupTipo.EditValue;
                 _currentRow["Fecha"] = this.dtpFecha.EditValue;
                 _currentRow["FechaHora"] = DateTime.Now;
                 _currentRow["Createdby"] = sUsuario;
                 _currentRow["CreateDate"] = DateTime.Now;
+               // _currentRow["ModuloFuente"] = this.txtModuloFuente.Text.Trim();
                 //no incluir:
                 //mayorizado
                 //mayorizadoDate
+                _currentRow["Mayorizadoby"] = "";
+                _currentRow["MayorizadoDate"] = DBNull.Value;
                 _currentRow["Concepto"] = this.txtConcepto.Text.Trim();
                 _currentRow["Mayorizado"] = false;
                 _currentRow["Anulado"] = false;
                 _currentRow["TipoCambio"] = this.txtTipoCambio.Text.Trim();
-                _currentRow["ModuloFuente"] = _ModuloFuente;
+                _currentRow["ModuloFuente"] = this.txtModuloFuente.Text.Trim(); ;
                 _currentRow["CuadreTemporal"] = false;
 
 
@@ -954,7 +980,7 @@ namespace CG
             
             if (Accion == "Edit")
             {
-                HabilitarControles(false);
+                HabilitarControles(false,true);
                 AplicarPrivilegios();
                 CargarAsiento(_currentRow["Asiento"].ToString());
                 UpdateControlsFromDataRow(_currentRow);

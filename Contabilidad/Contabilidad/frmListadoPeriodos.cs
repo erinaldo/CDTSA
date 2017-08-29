@@ -69,12 +69,13 @@ namespace CG
             if (Convert.ToBoolean(_currentRow["Cerrado"]) == true)
             {
                 this.btnCerrarPeriodo.Enabled = false;
-                
+                this.btnSetPeriodoTrabajo.Enabled = false;
             }
             else
             {
                 
                 this.btnCerrarPeriodo.Enabled = true;
+                this.btnSetPeriodoTrabajo.Enabled = true;
                 if (Convert.ToBoolean(_currentRow["PeriodoTrabajo"]) == true)
                     this.btnSetPeriodoTrabajo.Caption = "Quitar Periodo de Trabajo";
                 else
