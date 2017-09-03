@@ -345,9 +345,9 @@ namespace MainMenu
                     
                     break;
                 case "treeListContabilidad":
-                    TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas" }, -1, 11, 11, 11);
+                    TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);
                     nodeCuentas.Tag = "optCuenta";
-                    TreeListNode nodeCentroCosto = tl.AppendNode(new object[] { "CentroCosto" }, -1, 11, 11, 11);
+                    TreeListNode nodeCentroCosto = tl.AppendNode(new object[] { "Centro de Costos" }, -1, 11, 11, 11);
                     nodeCentroCosto.Tag = "optCentroCosto";
                     //Carpeta
                     TreeListNode nodeTransaccionesContabilidad = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
@@ -393,7 +393,7 @@ namespace MainMenu
                     //Carpeta
                     TreeListNode nodeReportesContabilidad = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
                     //Carpeta
-                    TreeListNode nodeReportesBalanceDeComprobacion = tl.AppendNode(new object[] { "Balance de Comprobacion" }, nodeReportesContabilidad.Id, 9, 10, 9);
+                    TreeListNode nodeReportesBalanceDeComprobacion = tl.AppendNode(new object[] { "Balance de Comprobación" }, nodeReportesContabilidad.Id, 9, 10, 9);
                     //Items
                     TreeListNode nodeReportesBalanceDeComprobacionPorCuentaContable = tl.AppendNode(new object[] { "Por Cuenta Contable" }, nodeReportesBalanceDeComprobacion.Id, 11, 11, 11);
                     nodeReportesBalanceDeComprobacionPorCuentaContable.Tag = "optReportesBalanceDeComprobacionPorCuentaContable";
@@ -410,8 +410,8 @@ namespace MainMenu
                     TreeListNode nodeReportesReporteDeDiferencias = tl.AppendNode(new object[] { "Reporte de Diferencias" }, nodeReportesContabilidad.Id, 11, 11, 11);
                     nodeReportesReporteDeDiferencias.Tag = "optReportesDeDiferencias";
                     //Carpeta
-                    TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administracion" }, -1, 9, 10, 9);
-                    TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parametros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
+                    TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parámetros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeParametrosModulo.Tag = "optParametrosModuloContable";
                     TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Periodos Contables" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeAbrirPeriodoCerrado.Tag = "optListaPeriodosContables";
