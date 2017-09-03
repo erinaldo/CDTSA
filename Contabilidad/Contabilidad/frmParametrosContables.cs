@@ -159,8 +159,8 @@ namespace CG
             Util.Util.ConfigLookupEdit(this.slkupCuentaUtilidadPeriodo, _lstCuentasContable, "Descr", "IDCuenta");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaUtilidadPeriodo, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            
-
+            this.slkupCuentaUtilidadAcumulada.Properties.ShowClearButton = true;
+            this.slkupCuentaUtilidadPeriodo.Properties.ShowClearButton = true;
 
         }
     }

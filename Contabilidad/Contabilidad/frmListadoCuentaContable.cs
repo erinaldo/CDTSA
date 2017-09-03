@@ -235,33 +235,38 @@ namespace CG
 
         private void HabilitarBotones(DataRow currentRow)
         {
-            if (Convert.ToBoolean(currentRow["UsaCentroCosto"]))
-                this.btnAsociarCentroCosto.Enabled = true;
-            else
-                this.btnAsociarCentroCosto.Enabled = false;
+            if (currentRow != null)
+            {
+                if (Convert.ToBoolean(currentRow["UsaCentroCosto"]))
+                    this.btnAsociarCentroCosto.Enabled = true;
+                else
+                    this.btnAsociarCentroCosto.Enabled = false;
+            }
         }
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
 
-
-            this.slkupTipo.EditValue = Row["IDTipo"].ToString();
-            this.slkupSubTipo.EditValue = Row["IDSubtipo"].ToString();
-            this.slkupGrupo.EditValue = Row["IDGrupo"].ToString();
-            this.txtNivel1.Text = Row["Nivel1"].ToString();
-            this.txtNivel2.Text = Row["Nivel2"].ToString();
-            this.txtNivel3.Text = Row["Nivel3"].ToString();
-            this.txtNivel4.Text = Row["Nivel4"].ToString();
-            this.txtNivel5.Text = Row["Nivel5"].ToString();
-            this.chkComplementaria.EditValue = Convert.ToBoolean(Row["Complementaria"]);
-            this.chkEsMayor.EditValue = Convert.ToBoolean(Row["EsMayor"]);
-            this.chkActiva.EditValue = Convert.ToBoolean(Row["Activa"]);
-            this.chkAceptaDatos.EditValue = Convert.ToBoolean(Row["AceptaDatos"]);
-            this.chkUsaCentroCosto.EditValue = Convert.ToBoolean(Row["UsaCentroCosto"]);
-            this.txtCuenta.Text = Row["Cuenta"].ToString();
-            this.txtDescripcion.Text = Row["Descr"].ToString();
-            this.slkupCuentaMayor.EditValue = Row["IDCuentaMayor"].ToString();
-            this.slkupCuentaAnterior.EditValue = Row["IDCuentaAnterior"].ToString();
+            if (Row != null)
+            {
+                this.slkupTipo.EditValue = Row["IDTipo"].ToString();
+                this.slkupSubTipo.EditValue = Row["IDSubtipo"].ToString();
+                this.slkupGrupo.EditValue = Row["IDGrupo"].ToString();
+                this.txtNivel1.Text = Row["Nivel1"].ToString();
+                this.txtNivel2.Text = Row["Nivel2"].ToString();
+                this.txtNivel3.Text = Row["Nivel3"].ToString();
+                this.txtNivel4.Text = Row["Nivel4"].ToString();
+                this.txtNivel5.Text = Row["Nivel5"].ToString();
+                this.chkComplementaria.EditValue = Convert.ToBoolean(Row["Complementaria"]);
+                this.chkEsMayor.EditValue = Convert.ToBoolean(Row["EsMayor"]);
+                this.chkActiva.EditValue = Convert.ToBoolean(Row["Activa"]);
+                this.chkAceptaDatos.EditValue = Convert.ToBoolean(Row["AceptaDatos"]);
+                this.chkUsaCentroCosto.EditValue = Convert.ToBoolean(Row["UsaCentroCosto"]);
+                this.txtCuenta.Text = Row["Cuenta"].ToString();
+                this.txtDescripcion.Text = Row["Descr"].ToString();
+                this.slkupCuentaMayor.EditValue = Row["IDCuentaMayor"].ToString();
+                this.slkupCuentaAnterior.EditValue = Row["IDCuentaAnterior"].ToString();
+            }
         }
 
 
@@ -282,6 +287,7 @@ namespace CG
             ClearControls();
             HabilitarControles(true);
             currentRow = null;
+            this.slkupGrupo.Focus();
         }
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -316,11 +322,20 @@ namespace CG
             if (this.txtDescripcion.Text == "")
                 sMensaje = sMensaje + "     • Descripción de la Cuenta. \n\r";
             if (this.chkAceptaDatos.EditValue == null && this.chkEsMayor.EditValue == null)
-                sMensaje = sMensaje + "     • Debe seleccionar si la cuenta es de Mayor o Acepta Datos";
-            if (Convert.ToBoolean(this.chkEsMayor.EditValue) == false)
-                if (this.slkupCuentaMayor.EditValue == null)
-                    sMensaje = sMensaje + "     • Cuenta de Mayor. \n\r";
-
+                sMensaje = sMensaje + "     • Debe seleccionar si la cuenta es de Mayor o Acepta Datos. \n\r";
+           
+            //if (this.chkEsMayor.EditValue != null && Convert.ToBoolean(this.chkEsMayor.EditValue) == false)
+            //    if (this.slkupCuentaMayor.EditValue == null)
+            //        sMensaje = sMensaje + "     • Cuenta de Mayor. \n\r";
+            if (this.slkupCuentaMayor.EditValue == null)
+            {
+                //Validar que la cuenta de mayor no este ingresadas
+                if (CuentaContableDAC.ExisteCuentaPrimerNivel(Convert.ToInt32(this.txtNivel1.Text)))
+                
+                    sMensaje = sMensaje +"     • Por favor seleccione la cuenta de mayor.";
+                    
+                
+            }
             if (sMensaje != "")
             {
                 result = false;
@@ -433,8 +448,9 @@ namespace CG
                 currentRow["Complementaria"] = (this.chkComplementaria.EditValue == null) ? false : this.chkComplementaria.EditValue;
                 currentRow["IDSeccion"] = 0;
 
-
+      
                 _dtCuenta.Rows.Add(currentRow);
+                //_dsCuenta.Tables[0].Rows.Add(currentRow);
                 try
                 {
                     CuentaContableDAC.oAdaptador.Update(_dsCuenta, "Data");
@@ -561,38 +577,45 @@ namespace CG
                     return;
                 if (this.slkupGrupo.EditValue != null && this.slkupGrupo.EditValue.ToString() != "")
                 {
-                    DataView dv = new DataView();
-                    dv.Table = _dtGrupo;
-                    dv.RowFilter = "IDGrupo='" + this.slkupGrupo.EditValue.ToString() + "'";
                     
-                    DataTable dt = dv.ToTable();
+                        DataView dv = new DataView();
+                        dv.Table = _dtGrupo;
+                        dv.RowFilter = "IDGrupo='" + this.slkupGrupo.EditValue.ToString() + "'";
 
-                    //Llenar tipo y sub Tipo
-                    this.slkupTipo.EditValue = dt.Rows[0]["IDTipo"].ToString();
-                    this.slkupSubTipo.EditValue = dt.Rows[0]["IDSubTipo"].ToString();
+                        DataTable dt = dv.ToTable();
+                        if (dt.Rows.Count == 0)
+                            return;
+                        //Llenar tipo y sub Tipo
+                        this.slkupTipo.EditValue = dt.Rows[0]["IDTipo"].ToString();
+                        this.slkupSubTipo.EditValue = dt.Rows[0]["IDSubTipo"].ToString();
+//#Aqui
+                        //Validar si el tipo seleccionado ya tiene el elemento del primer nivel
+                        if (CuentaContableDAC.ExisteCuentaPrimerNivel(Convert.ToInt32(dt.Rows[0]["Nivel1"].ToString())))
+                            this.txtDescripcion.Text = "";
+                        else
+                            this.txtDescripcion.Text = dt.Rows[0]["Descr"].ToString();
 
-                    this.txtDescripcion.Text = dt.Rows[0]["Descr"].ToString();
-                    this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
-                    this.chkComplementaria.Enabled = Convert.ToBoolean(dt.Rows[0]["UsaComplementaria"]);
-                    this.chkComplementaria.EditValue = null;
-                 
-           
-                    DataView dvCuentaAnt = new DataView();
-                    dvCuentaAnt.Table = _dtCuenta;
-                    dvCuentaAnt.RowFilter = "Nivel1 = " + dt.Rows[0]["Nivel1"].ToString();
-
-                    Util.Util.ConfigLookupEdit(this.slkupCuentaAnterior, dvCuentaAnt.ToTable(), "Descr", "IDCuenta");
-                    Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaAnterior, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
-                    DataView dvCuentaMayor = new DataView();
-                    dvCuentaMayor.Table = _dtCuenta;
-                    dvCuentaMayor.RowFilter = "EsMayor=1 and Nivel1= " + dt.Rows[0]["Nivel1"].ToString();
-
-                    Util.Util.ConfigLookupEdit(this.slkupCuentaMayor, dvCuentaMayor.ToTable(), "Descr", "IDCuenta");
-                    Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaMayor, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                        this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
+                        this.chkComplementaria.Enabled = Convert.ToBoolean(dt.Rows[0]["UsaComplementaria"]);
+                        this.chkComplementaria.EditValue = null;
 
 
-                }
+                        DataView dvCuentaAnt = new DataView();
+                        dvCuentaAnt.Table = _dtCuenta;
+                        dvCuentaAnt.RowFilter = "Nivel1 = " + dt.Rows[0]["Nivel1"].ToString();
+
+                        Util.Util.ConfigLookupEdit(this.slkupCuentaAnterior, dvCuentaAnt.ToTable(), "Descr", "IDCuenta");
+                        Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaAnterior, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+                        DataView dvCuentaMayor = new DataView();
+                        dvCuentaMayor.Table = _dtCuenta;
+                        dvCuentaMayor.RowFilter = "EsMayor=1 and Nivel1= " + dt.Rows[0]["Nivel1"].ToString();
+
+                        Util.Util.ConfigLookupEdit(this.slkupCuentaMayor, dvCuentaMayor.ToTable(), "Descr", "IDCuenta");
+                        Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaMayor, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                    }
+
+               
             }
             catch (Exception ex)
             {
@@ -610,11 +633,13 @@ namespace CG
                     return;
                 if (this.slkupCuentaMayor.EditValue != null && this.slkupCuentaMayor.EditValue.ToString() != "")
                 {
+                    
                     DataView dv = new DataView();
                     dv.Table = _dtCuenta;
                     dv.RowFilter = "IDCuenta='" + this.slkupCuentaMayor.EditValue.ToString() + "' ";
                     DataTable dt = dv.ToTable();
-
+                    if (dt.Rows.Count == 0)
+                        return;
                     bool EsMayor = Convert.ToBoolean((this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue);
                     //if (!EsMayor)
                     //{

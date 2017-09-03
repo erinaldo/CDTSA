@@ -307,15 +307,15 @@
             // 
             // slkupCuentaMayor
             // 
-            this.slkupCuentaMayor.Location = new System.Drawing.Point(108, 399);
+            this.slkupCuentaMayor.Location = new System.Drawing.Point(114, 399);
             this.slkupCuentaMayor.MenuManager = this.ribbonControl;
             this.slkupCuentaMayor.Name = "slkupCuentaMayor";
             this.slkupCuentaMayor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupCuentaMayor.Properties.View = this.searchLookUpEdit5View;
-            this.slkupCuentaMayor.Size = new System.Drawing.Size(219, 20);
+            this.slkupCuentaMayor.Size = new System.Drawing.Size(213, 20);
             this.slkupCuentaMayor.StyleController = this.layoutControl1;
-            this.slkupCuentaMayor.TabIndex = 14;
+            this.slkupCuentaMayor.TabIndex = 5;
             this.slkupCuentaMayor.EditValueChanged += new System.EventHandler(this.slkupCuentaMayor_EditValueChanged);
             // 
             // searchLookUpEdit5View
@@ -327,15 +327,15 @@
             // 
             // slkupCuentaAnterior
             // 
-            this.slkupCuentaAnterior.Location = new System.Drawing.Point(108, 423);
+            this.slkupCuentaAnterior.Location = new System.Drawing.Point(114, 423);
             this.slkupCuentaAnterior.MenuManager = this.ribbonControl;
             this.slkupCuentaAnterior.Name = "slkupCuentaAnterior";
             this.slkupCuentaAnterior.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupCuentaAnterior.Properties.View = this.searchLookUpEdit4View;
-            this.slkupCuentaAnterior.Size = new System.Drawing.Size(219, 20);
+            this.slkupCuentaAnterior.Size = new System.Drawing.Size(213, 20);
             this.slkupCuentaAnterior.StyleController = this.layoutControl1;
-            this.slkupCuentaAnterior.TabIndex = 15;
+            this.slkupCuentaAnterior.TabIndex = 99999;
             // 
             // searchLookUpEdit4View
             // 
@@ -352,7 +352,7 @@
             this.chkEsMayor.Properties.Caption = "Es de Mayor";
             this.chkEsMayor.Size = new System.Drawing.Size(87, 19);
             this.chkEsMayor.StyleController = this.layoutControl1;
-            this.chkEsMayor.TabIndex = 9;
+            this.chkEsMayor.TabIndex = 3;
             this.chkEsMayor.CheckStateChanged += new System.EventHandler(this.chkEsMayor_CheckStateChanged);
             // 
             // chkAceptaDatos
@@ -363,7 +363,7 @@
             this.chkAceptaDatos.Properties.Caption = "Acepta Datos";
             this.chkAceptaDatos.Size = new System.Drawing.Size(87, 19);
             this.chkAceptaDatos.StyleController = this.layoutControl1;
-            this.chkAceptaDatos.TabIndex = 11;
+            this.chkAceptaDatos.TabIndex = 4;
             this.chkAceptaDatos.CheckStateChanged += new System.EventHandler(this.chkAceptaDatos_CheckStateChanged);
             // 
             // chkUsaCentroCosto
@@ -371,10 +371,10 @@
             this.chkUsaCentroCosto.Location = new System.Drawing.Point(24, 376);
             this.chkUsaCentroCosto.MenuManager = this.ribbonControl;
             this.chkUsaCentroCosto.Name = "chkUsaCentroCosto";
-            this.chkUsaCentroCosto.Properties.Caption = "Usa CentroCosto";
+            this.chkUsaCentroCosto.Properties.Caption = "Usa Centro de Costo";
             this.chkUsaCentroCosto.Size = new System.Drawing.Size(149, 19);
             this.chkUsaCentroCosto.StyleController = this.layoutControl1;
-            this.chkUsaCentroCosto.TabIndex = 12;
+            this.chkUsaCentroCosto.TabIndex = 3;
             // 
             // chkComplementaria
             // 
@@ -384,84 +384,84 @@
             this.chkComplementaria.Properties.Caption = "Complementaria";
             this.chkComplementaria.Size = new System.Drawing.Size(149, 19);
             this.chkComplementaria.StyleController = this.layoutControl1;
-            this.chkComplementaria.TabIndex = 8;
+            this.chkComplementaria.TabIndex = 2;
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(448, 305);
+            this.txtDescripcion.Location = new System.Drawing.Point(454, 305);
             this.txtDescripcion.MenuManager = this.ribbonControl;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(263, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(257, 20);
             this.txtDescripcion.StyleController = this.layoutControl1;
-            this.txtDescripcion.TabIndex = 13;
+            this.txtDescripcion.TabIndex = 6;
             // 
             // txtCuenta
             // 
-            this.txtCuenta.Location = new System.Drawing.Point(448, 281);
+            this.txtCuenta.Location = new System.Drawing.Point(454, 281);
             this.txtCuenta.MenuManager = this.ribbonControl;
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.Properties.ReadOnly = true;
-            this.txtCuenta.Size = new System.Drawing.Size(263, 20);
+            this.txtCuenta.Size = new System.Drawing.Size(257, 20);
             this.txtCuenta.StyleController = this.layoutControl1;
             this.txtCuenta.TabIndex = 13;
             // 
             // txtNivel5
             // 
-            this.txtNivel5.Location = new System.Drawing.Point(448, 425);
+            this.txtNivel5.Location = new System.Drawing.Point(454, 425);
             this.txtNivel5.MenuManager = this.ribbonControl;
             this.txtNivel5.Name = "txtNivel5";
-            this.txtNivel5.Size = new System.Drawing.Size(263, 20);
+            this.txtNivel5.Size = new System.Drawing.Size(257, 20);
             this.txtNivel5.StyleController = this.layoutControl1;
             this.txtNivel5.TabIndex = 7;
             // 
             // txtNivel4
             // 
-            this.txtNivel4.Location = new System.Drawing.Point(448, 401);
+            this.txtNivel4.Location = new System.Drawing.Point(454, 401);
             this.txtNivel4.MenuManager = this.ribbonControl;
             this.txtNivel4.Name = "txtNivel4";
-            this.txtNivel4.Size = new System.Drawing.Size(263, 20);
+            this.txtNivel4.Size = new System.Drawing.Size(257, 20);
             this.txtNivel4.StyleController = this.layoutControl1;
             this.txtNivel4.TabIndex = 6;
             // 
             // txtNivel3
             // 
-            this.txtNivel3.Location = new System.Drawing.Point(448, 377);
+            this.txtNivel3.Location = new System.Drawing.Point(454, 377);
             this.txtNivel3.MenuManager = this.ribbonControl;
             this.txtNivel3.Name = "txtNivel3";
-            this.txtNivel3.Size = new System.Drawing.Size(263, 20);
+            this.txtNivel3.Size = new System.Drawing.Size(257, 20);
             this.txtNivel3.StyleController = this.layoutControl1;
             this.txtNivel3.TabIndex = 5;
             // 
             // txtNivel2
             // 
-            this.txtNivel2.Location = new System.Drawing.Point(448, 353);
+            this.txtNivel2.Location = new System.Drawing.Point(454, 353);
             this.txtNivel2.MenuManager = this.ribbonControl;
             this.txtNivel2.Name = "txtNivel2";
-            this.txtNivel2.Size = new System.Drawing.Size(263, 20);
+            this.txtNivel2.Size = new System.Drawing.Size(257, 20);
             this.txtNivel2.StyleController = this.layoutControl1;
             this.txtNivel2.TabIndex = 4;
             // 
             // txtNivel1
             // 
-            this.txtNivel1.Location = new System.Drawing.Point(448, 329);
+            this.txtNivel1.Location = new System.Drawing.Point(454, 329);
             this.txtNivel1.MenuManager = this.ribbonControl;
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Properties.ReadOnly = true;
-            this.txtNivel1.Size = new System.Drawing.Size(263, 20);
+            this.txtNivel1.Size = new System.Drawing.Size(257, 20);
             this.txtNivel1.StyleController = this.layoutControl1;
             this.txtNivel1.TabIndex = 3;
             // 
             // slkupSubTipo
             // 
-            this.slkupSubTipo.Location = new System.Drawing.Point(108, 329);
+            this.slkupSubTipo.Location = new System.Drawing.Point(114, 329);
             this.slkupSubTipo.MenuManager = this.ribbonControl;
             this.slkupSubTipo.Name = "slkupSubTipo";
             this.slkupSubTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupSubTipo.Properties.View = this.searchLookUpEdit3View;
-            this.slkupSubTipo.Size = new System.Drawing.Size(219, 20);
+            this.slkupSubTipo.Size = new System.Drawing.Size(213, 20);
             this.slkupSubTipo.StyleController = this.layoutControl1;
-            this.slkupSubTipo.TabIndex = 1;
+            this.slkupSubTipo.TabIndex = 99999;
             // 
             // searchLookUpEdit3View
             // 
@@ -472,15 +472,15 @@
             // 
             // slkupTipo
             // 
-            this.slkupTipo.Location = new System.Drawing.Point(108, 305);
+            this.slkupTipo.Location = new System.Drawing.Point(114, 305);
             this.slkupTipo.MenuManager = this.ribbonControl;
             this.slkupTipo.Name = "slkupTipo";
             this.slkupTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupTipo.Properties.View = this.searchLookUpEdit2View;
-            this.slkupTipo.Size = new System.Drawing.Size(219, 20);
+            this.slkupTipo.Size = new System.Drawing.Size(213, 20);
             this.slkupTipo.StyleController = this.layoutControl1;
-            this.slkupTipo.TabIndex = 0;
+            this.slkupTipo.TabIndex = 9999;
             // 
             // searchLookUpEdit2View
             // 
@@ -491,15 +491,15 @@
             // 
             // slkupGrupo
             // 
-            this.slkupGrupo.Location = new System.Drawing.Point(108, 281);
+            this.slkupGrupo.Location = new System.Drawing.Point(114, 281);
             this.slkupGrupo.MenuManager = this.ribbonControl;
             this.slkupGrupo.Name = "slkupGrupo";
             this.slkupGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupGrupo.Properties.View = this.searchLookUpEdit1View;
-            this.slkupGrupo.Size = new System.Drawing.Size(219, 20);
+            this.slkupGrupo.Size = new System.Drawing.Size(213, 20);
             this.slkupGrupo.StyleController = this.layoutControl1;
-            this.slkupGrupo.TabIndex = 2;
+            this.slkupGrupo.TabIndex = 0;
             this.slkupGrupo.EditValueChanged += new System.EventHandler(this.slkupGrupo_EditValueChanged);
             // 
             // searchLookUpEdit1View
@@ -713,8 +713,8 @@
             this.layoutControlItem11.Location = new System.Drawing.Point(340, 24);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(351, 24);
-            this.layoutControlItem11.Text = "Decripción:";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem11.Text = "Descripción:";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem3
             // 
@@ -723,7 +723,7 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(307, 24);
             this.layoutControlItem3.Text = "Tipo:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem4
             // 
@@ -732,7 +732,7 @@
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(307, 24);
             this.layoutControlItem4.Text = "Sub Tipo:";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem10
             // 
@@ -741,7 +741,7 @@
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem10.Text = "Cuenta";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(87, 13);
             // 
             // emptySpaceItem1
             // 
@@ -758,7 +758,7 @@
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem5.Text = "Nivel 1:";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem6
             // 
@@ -767,7 +767,7 @@
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem6.Text = "Nivel 2:";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem7
             // 
@@ -776,7 +776,7 @@
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem7.Text = "Nivel 3:";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem8
             // 
@@ -785,7 +785,7 @@
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem8.Text = "Nivel 4:";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem9
             // 
@@ -794,7 +794,7 @@
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(351, 24);
             this.layoutControlItem9.Text = "Nivel 5:";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem12
             // 
@@ -849,7 +849,7 @@
             this.layoutControlItem16.Name = "layoutControlItem16";
             this.layoutControlItem16.Size = new System.Drawing.Size(307, 26);
             this.layoutControlItem16.Text = "Cuenta Anterior:";
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem17
             // 
@@ -857,8 +857,8 @@
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 118);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(307, 24);
-            this.layoutControlItem17.Text = "Cuenta Mayor:";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem17.Text = "Cuenta de Mayor:";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem2
             // 
@@ -867,7 +867,7 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(307, 24);
             this.layoutControlItem2.Text = "Grupo:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(81, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(87, 13);
             // 
             // frmListadoCuentaContable
             // 

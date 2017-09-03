@@ -272,6 +272,46 @@ namespace CG
 
         }
 
+        public static bool ExisteCuentaPrimerNivel(int Nivel1)
+        {
+            bool result = false;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntExisteCuentaPrimerNivel", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Nivel", SqlDbType.Int).Value = Nivel1;
+                oCmd.Parameters.Add("@Result", SqlDbType.Bit).Direction = ParameterDirection.ReturnValue;
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@Result"].Value != DBNull.Value)
+                    result = (bool)oCmd.Parameters["@Result"].Value;
+
+           
+                
+
+             }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return result;
+
+        }
+
 
 
         public static String GetMascaraByNivel(String Nivel1, String Nivel2, String Nivel3, String Nivel4, String Nivel5)
