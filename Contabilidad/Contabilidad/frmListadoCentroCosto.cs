@@ -140,9 +140,9 @@ namespace CG
 
         private void HabilitarControles(bool Activo)
         {
-            this.txtNivel1.ReadOnly = !Activo;
-            this.txtNivel2.ReadOnly = !Activo;
-            this.txtNivel3.ReadOnly = !Activo;
+            //this.txtNivel1.ReadOnly = Activo;
+            //this.txtNivel2.ReadOnly = Activo;
+            //this.txtNivel3.ReadOnly = Activo;
             this.txtDescripcion.ReadOnly = !Activo;
             this.chkActivo.ReadOnly = !Activo;
             this.chkAcumulador.ReadOnly = !Activo;
@@ -200,6 +200,17 @@ namespace CG
             HabilitarControles(true);
             ClearControls();
             currentRow = null;
+
+            //Agregar  los consecutivos
+
+            int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(-1, 0, 0);
+            iProximoConsecutivo++;
+
+            this.txtNivel3.Text = "0";
+            this.txtNivel2.Text = "0";
+            this.txtNivel1.Text = iProximoConsecutivo.ToString();
+
+            this.txtDescripcion.Focus();
         }
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -218,7 +229,10 @@ namespace CG
             }
             isEdition = true;
             HabilitarControles(true);
+            this.slkupCentroAcumulador.ReadOnly = true;
+
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
+            this.txtDescripcion.Focus();
         }
 
         private bool ValidarDatos()
@@ -398,7 +412,7 @@ namespace CG
         {
             if ((bool)this.chkAcumulador.EditValue == true)
             {
-                this.slkupCentroAcumulador.Enabled = false;
+                //this.slkupCentroAcumulador.Enabled = false;
                 if (this.slkupCentroAcumulador.EditValue == null || this.slkupCentroAcumulador.EditValue.ToString() == "")
                 {
                     DataView dv = new DataView();
@@ -418,17 +432,15 @@ namespace CG
 
 
 
-                    this.txtDescripcion.Text = "";
+                    //this.txtDescripcion.Text = "";
 
                 }
             }
-            else
-            {
-                this.slkupCentroAcumulador.Enabled = true;
-                this.txtNivel3.Text = "";
-                this.txtNivel2.Text = "";
-                this.txtNivel1.Text = "";
-            }
+            //else
+            //{
+            //    this.slkupCentroAcumulador.Enabled = true;
+              
+            //}
         }
 
         //private void slkupCentroAnterior_EditValueChanged(object sender, EventArgs e)
@@ -511,8 +523,14 @@ namespace CG
                         this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     }
 
-                   
+                   //Inactivar  los acumuladores
+                   if (this.txtNivel3.Text != "0")
+                       this.chkAcumulador.Enabled = false;
+                   else
+                       this.chkAcumulador.Enabled = true;
+
                     this.txtDescripcion.Text = "";
+                    this.txtDescripcion.Focus();
                 
                 }
             } catch (Exception ex)

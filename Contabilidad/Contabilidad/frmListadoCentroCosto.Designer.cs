@@ -63,7 +63,6 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -73,6 +72,7 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -92,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -102,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -278,7 +278,7 @@
             this.slkupCentroAcumulador.Properties.View = this.searchLookUpEdit1View;
             this.slkupCentroAcumulador.Size = new System.Drawing.Size(206, 20);
             this.slkupCentroAcumulador.StyleController = this.layoutControl1;
-            this.slkupCentroAcumulador.TabIndex = 8;
+            this.slkupCentroAcumulador.TabIndex = 0;
             this.slkupCentroAcumulador.EditValueChanged += new System.EventHandler(this.slkupCentroAcumulador_EditValueChanged);
             // 
             // searchLookUpEdit1View
@@ -295,7 +295,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(328, 20);
             this.txtDescripcion.StyleController = this.layoutControl1;
-            this.txtDescripcion.TabIndex = 7;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // txtNivel3
             // 
@@ -304,6 +304,7 @@
             this.txtNivel3.Name = "txtNivel3";
             this.txtNivel3.Properties.Mask.EditMask = "[0-9]*";
             this.txtNivel3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtNivel3.Properties.ReadOnly = true;
             this.txtNivel3.Size = new System.Drawing.Size(206, 20);
             this.txtNivel3.StyleController = this.layoutControl1;
             this.txtNivel3.TabIndex = 3;
@@ -315,6 +316,7 @@
             this.txtNivel2.Name = "txtNivel2";
             this.txtNivel2.Properties.Mask.EditMask = "[0-9]*";
             this.txtNivel2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtNivel2.Properties.ReadOnly = true;
             this.txtNivel2.Size = new System.Drawing.Size(206, 20);
             this.txtNivel2.StyleController = this.layoutControl1;
             this.txtNivel2.TabIndex = 2;
@@ -326,6 +328,7 @@
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Properties.Mask.EditMask = "[0-9]*";
             this.txtNivel1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtNivel1.Properties.ReadOnly = true;
             this.txtNivel1.Size = new System.Drawing.Size(206, 20);
             this.txtNivel1.StyleController = this.layoutControl1;
             this.txtNivel1.TabIndex = 1;
@@ -469,15 +472,6 @@
             this.layoutControlGroup2.Size = new System.Drawing.Size(784, 138);
             this.layoutControlGroup2.Text = "Datos del Centro de Costo";
             // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.slkupCentroAcumulador;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(309, 24);
-            this.layoutControlItem7.Text = "Centro Acumulador:";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(96, 13);
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtNivel3;
@@ -558,6 +552,15 @@
             this.layoutControlItem12.Text = "Centro:";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(96, 13);
             // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.slkupCentroAcumulador;
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(309, 24);
+            this.layoutControlItem7.Text = "Centro Acumulador:";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(96, 13);
+            // 
             // frmListadoCentroCosto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,7 +595,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -602,6 +604,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
