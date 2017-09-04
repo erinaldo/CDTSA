@@ -103,6 +103,7 @@ namespace CG
                     _dsParametros.AcceptChanges();
                    // PopulateGrid();
                     //HabilitarControles(false);
+                    MessageBox.Show("Los Parámetros contables han sido Actualizados");
                 }
                 else
                 {

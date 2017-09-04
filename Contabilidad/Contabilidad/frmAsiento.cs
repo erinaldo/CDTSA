@@ -179,7 +179,7 @@ namespace CG
             _currentRow["Anulado"] = false;
             _currentRow["CuadreTemporal"] = false;
             _currentRow["MayorizadoBy"] = "";
-            _currentRow["MayorizadoDate"] = null;
+            _currentRow["MayorizadoDate"] = DBNull.Value;
             
 
         }
@@ -243,7 +243,7 @@ namespace CG
             this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]);
             //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
             this.txtFecha.EditValue = _currentRow["FechaHora"].ToString();
-            this.slkupTipo.EditValue = "CG"; //_currentRow["Tipo"].ToString();
+            this.slkupTipo.EditValue = _currentRow["Tipo"].ToString();
             this.txtConcepto.Text = _currentRow["Concepto"].ToString();
             //Pagina de auditoria
             this.txtCreadoPor.Text = _currentRow["Createdby"].ToString();
@@ -282,11 +282,11 @@ namespace CG
             this.gridView1.OptionsBehavior.ReadOnly = !Activo;
             this.gridView1.OptionsBehavior.AllowAddRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            this.slkupCentroCostoGrid.ReadOnly = (Mayorizado == true) ? true : !(Activo); 
-            this.slkupCuentaContableGrid.ReadOnly = (Mayorizado == true) ? true : !(Activo);
+            this.gridView1.OptionsBehavior.ReadOnly= (Mayorizado==true) ? true:!(Activo);
+            this.btnCuadreTemporal.Enabled = (Mayorizado == true) ? false : !(Activo);
             this.grid.UseEmbeddedNavigator = Activo;
             this.btnEditar.Enabled = !Activo;
-            this.btnGuardar.Enabled = Activo;
+            this.btnGuardar.Enabled = (Mayorizado == true) ? false :  Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
 
@@ -451,6 +451,9 @@ namespace CG
             this.gridView1.OptionsBehavior.AllowAddRows =(Activate)? DevExpress.Utils.DefaultBoolean.True:DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activate) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsView.NewItemRowPosition = (Activate) ? NewItemRowPosition.Bottom: NewItemRowPosition.None;
+            
+
+
         }
 
         private void CargarColumnas()
