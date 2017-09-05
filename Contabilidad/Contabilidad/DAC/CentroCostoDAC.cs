@@ -132,30 +132,72 @@ namespace CG
         }
 
 
+        //public static int GetNextConsecutivo(int Nivel1, int Nivel2, int Nivel3)
+        //{
+        //    int ID = 0;
+        //    DataSet DS = new DataSet();
+
+        //    SqlCommand oCmd = new SqlCommand("dbo.cntGetNextConsecutivoCentroCosto", ConnectionManager.GetConnection());
+        //    SqlConnection oConn = oCmd.Connection;
+        //    try
+        //    {
+
+
+        //        oCmd.CommandType = CommandType.StoredProcedure;
+        //        oCmd.Parameters.Add("@iNivel1", SqlDbType.Int).Value = Nivel1;
+        //        oCmd.Parameters.Add("@iNivel2", SqlDbType.Int).Value = Nivel2;
+        //        oCmd.Parameters.Add("@iNivel3", SqlDbType.Int).Value = Nivel3;
+        //        oCmd.Parameters.Add("@Resultado", SqlDbType.BigInt).Direction = ParameterDirection.ReturnValue;
+
+
+        //        if (oConn.State == ConnectionState.Closed)
+        //            oConn.Open();
+        //        oCmd.ExecuteNonQuery();
+
+        //        if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
+        //            ID = (int)oCmd.Parameters["@Resultado"].Value;
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        if (oConn.State == ConnectionState.Open)
+        //            oConn.Close();
+
+        //    }
+        //    return ID;
+
+        //}
+
+
         public static int GetNextConsecutivo(int Nivel1, int Nivel2, int Nivel3)
         {
             int ID = 0;
             DataSet DS = new DataSet();
 
-            SqlCommand oCmd = new SqlCommand("dbo.cntGetNextConsecutivoCentroCosto", ConnectionManager.GetConnection());
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetNextConsecutivoCentroCostoFinal", ConnectionManager.GetConnection());
             SqlConnection oConn = oCmd.Connection;
             try
             {
 
 
                 oCmd.CommandType = CommandType.StoredProcedure;
-                oCmd.Parameters.Add("@Nivel1", SqlDbType.Int).Value = Nivel1;
-                oCmd.Parameters.Add("@Nivel2", SqlDbType.Int).Value = Nivel2;
-                oCmd.Parameters.Add("@Nivel3", SqlDbType.Int).Value = Nivel3;
-                oCmd.Parameters.Add("@Resultado", SqlDbType.BigInt).Direction = ParameterDirection.ReturnValue;
+                oCmd.Parameters.Add("@iNivel1", SqlDbType.Int).Value = Nivel1;
+                oCmd.Parameters.Add("@iNivel2", SqlDbType.Int).Value = Nivel2;
+                oCmd.Parameters.Add("@iNivel3", SqlDbType.Int).Value = Nivel3;
+                oCmd.Parameters.Add("@NextCentro", SqlDbType.Int).Value = 0;
+                oCmd.Parameters["@NextCentro"].Direction = ParameterDirection.Output;
 
 
                 if (oConn.State == ConnectionState.Closed)
                     oConn.Open();
                 oCmd.ExecuteNonQuery();
 
-                if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
-                    ID = (int)oCmd.Parameters["@Resultado"].Value;
+                if (oCmd.Parameters["@NextCentro"].Value != DBNull.Value)
+                    ID = (int)oCmd.Parameters["@NextCentro"].Value;
 
             }
             catch (Exception)

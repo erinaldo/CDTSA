@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.lblUsuario = new DevExpress.XtraBars.BarStaticItem();
             this.lblTipoCambio = new DevExpress.XtraBars.BarStaticItem();
             this.lblCompania = new DevExpress.XtraBars.BarStaticItem();
+            this.lblFecha = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonHelp = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
-            this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection();
+            this.navbarImageCollection = new DevExpress.Utils.ImageCollection();
             this.navBarControl = new DevExpress.XtraNavBar.NavBarControl();
             this.navGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.NavBarGroupControlContainer2 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
@@ -58,7 +58,6 @@
             this.navGroupCuentasXCobrar = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupCompras = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupAdministracion = new DevExpress.XtraNavBar.NavBarGroup();
-            this.lblFecha = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
@@ -116,6 +115,16 @@
             this.lblCompania.Id = 8;
             this.lblCompania.Name = "lblCompania";
             this.lblCompania.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.lblFecha.Caption = "barStaticItem1";
+            this.lblFecha.Glyph = ((System.Drawing.Image)(resources.GetObject("lblFecha.Glyph")));
+            this.lblFecha.Id = 9;
+            this.lblFecha.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("lblFecha.LargeGlyph")));
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // ribbonHelp
             // 
@@ -407,16 +416,6 @@
             this.navGroupAdministracion.LargeImageIndex = 8;
             this.navGroupAdministracion.Name = "navGroupAdministracion";
             this.navGroupAdministracion.SmallImageIndex = 8;
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.lblFecha.Caption = "barStaticItem1";
-            this.lblFecha.Glyph = ((System.Drawing.Image)(resources.GetObject("lblFecha.Glyph")));
-            this.lblFecha.Id = 9;
-            this.lblFecha.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("lblFecha.LargeGlyph")));
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // frmMain
             // 

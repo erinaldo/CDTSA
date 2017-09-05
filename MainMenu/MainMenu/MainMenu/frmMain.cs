@@ -274,6 +274,13 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoAsientoDiario.Show();
                     break;
+                case "optConsultasDeCuentasContables":
+                    frmConsultaSaldoCuenta ofrmConsultaSaldoCuenta = new frmConsultaSaldoCuenta();
+                    ofrmConsultaSaldoCuenta.MdiParent = this;
+                    ofrmConsultaSaldoCuenta.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmConsultaSaldoCuenta.Show();
+                    break;
                 case "optParametrosModuloContable":
                     frmParametrosContables ofrmParametrosContabilidad = new frmParametrosContables();
                     ofrmParametrosContabilidad.MdiParent = this;

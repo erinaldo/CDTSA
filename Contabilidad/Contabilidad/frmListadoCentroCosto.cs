@@ -204,7 +204,7 @@ namespace CG
             //Agregar  los consecutivos
 
             int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(-1, 0, 0);
-            iProximoConsecutivo++;
+            //iProximoConsecutivo++;
 
             this.txtNivel3.Text = "0";
             this.txtNivel2.Text = "0";
@@ -424,7 +424,7 @@ namespace CG
 
 
                     int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(-1, 0, 0);
-                    iProximoConsecutivo++;
+                    //iProximoConsecutivo++;
 
                     this.txtNivel3.Text = "0";
                     this.txtNivel2.Text = "0";
@@ -507,7 +507,7 @@ namespace CG
                     {
                         int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1);
                         
-                        iProximoConsecutivo++;
+                        //iProximoConsecutivo++;
 
                         this.txtNivel3.Text = iProximoConsecutivo.ToString();
                         this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
@@ -516,7 +516,7 @@ namespace CG
                     else if (dt.Rows[0]["Nivel1"].ToString() != "0")
                     {
                         int iProximoConsecutivo = CentroCostoDAC.GetNextConsecutivo(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0);
-                        iProximoConsecutivo++;
+                        //iProximoConsecutivo++;
 
                         this.txtNivel3.Text = "0";
                         this.txtNivel2.Text = iProximoConsecutivo.ToString();
