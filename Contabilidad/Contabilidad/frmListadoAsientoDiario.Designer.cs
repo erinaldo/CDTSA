@@ -112,7 +112,6 @@
             this.btnEliminar.Id = 5;
             this.btnEliminar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEliminar.LargeGlyph")));
             this.btnEliminar.Name = "btnEliminar";
-
             // 
             // lblStatus
             // 
@@ -141,7 +140,7 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Operaciones Centro Costo";
+            this.ribbonPage1.Text = "Operaciones Asientos";
             // 
             // ribbonPageGroup1
             // 

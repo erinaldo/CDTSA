@@ -414,7 +414,7 @@ namespace CG
         {
             frmShowHideColumns ofrmLista = new frmShowHideColumns(lstColumnas);
             ofrmLista.FormClosed += OfrmLista_FormClosed;
-            ofrmLista.Show();
+            ofrmLista.ShowDialog();
         }
 
         private void OfrmLista_FormClosed(object sender, FormClosedEventArgs e)
