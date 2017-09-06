@@ -117,7 +117,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionManager.cs" />
     <Compile Include="DAC\ParametrosGeneralesDAC.cs" />
     <Compile Include="frmDesigner.cs">
       <SubType>Form</SubType>
@@ -195,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CEDETSA.png" />
+    <None Include="Resources\DASA.png" />
     <Content Include="Solution4ULogo.ico" />
   </ItemGroup>
   <ItemGroup>

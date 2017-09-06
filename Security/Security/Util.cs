@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Security
 {
+    public static class Esquema
+    {
+        public static String Compania { get; set; }
+    }
     public static class Acciones
     {
         public enum PrivilegiosGeneralesType

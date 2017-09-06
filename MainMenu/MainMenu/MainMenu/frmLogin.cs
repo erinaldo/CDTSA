@@ -52,8 +52,27 @@ namespace CDTSA
             else return false;
         }
 
+        private bool ValidarDatos() { 
+            String sMensaje = "";
+            if (this.cmbCompania.SelectedIndex == -1)
+                sMensaje = sMensaje + "  •   Seleccione la compañia./n/r";
+            if (this.txtUsuario.Text == "")
+                sMensaje = sMensaje + " •  Ingrese el usuario./n/r";
+            if (this.txtPass.Text == "")
+                sMensaje = sMensaje + " •   Ingrese la Contraseña./n/r";
+            if (sMensaje != ""){
+                MessageBox.Show("Por favor verifique los siguiente datos: /n/r" + sMensaje);
+                return false;
+            }else
+                return true;
+        }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            //Validar que ingresen los datos
+            if (!ValidarDatos())
+                return;
+
             if (ValidarUsuario())
             {
                 //Validar privilegios del usuario
@@ -68,7 +87,7 @@ namespace CDTSA
                     ofrmMain.Show();
                 }
                 else {
-                    MessageBox.Show("Usted no tiene privilegios para acceder al modulo");
+                    MessageBox.Show("Usted no tiene privilegios para acceder al módulo");
                     this.txtUsuario.Focus();
                 };
             }
@@ -108,6 +127,14 @@ namespace CDTSA
         private void txtPass_Enter(object sender, EventArgs e)
         {
             this.txtPass.SelectAll();
+        }
+
+        private void cmbCompania_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cmbCompania.SelectedIndex > -1)
+            {
+                Security.Esquema.Compania = this.cmbCompania.SelectedItem.ToString();
+            }
         }
     }
 }
