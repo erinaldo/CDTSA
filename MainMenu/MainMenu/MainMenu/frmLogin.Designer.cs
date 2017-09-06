@@ -35,13 +35,13 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cmbCompania = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCompania.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsuario
@@ -49,7 +49,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(40, 257);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(100, 20);
-            this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TabIndex = 1;
             this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
             this.txtUsuario.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyUp);
             // 
@@ -59,7 +59,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Properties.PasswordChar = '•';
             this.txtPass.Size = new System.Drawing.Size(100, 20);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 2;
             this.txtPass.Enter += new System.EventHandler(this.txtPass_Enter);
             this.txtPass.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPass_KeyUp);
             // 
@@ -68,7 +68,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(309, 208);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.TabIndex = 3;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -93,23 +93,9 @@
             this.btnCancelar.Location = new System.Drawing.Point(309, 239);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // pictureEdit2
-            // 
-            this.pictureEdit2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
-            this.pictureEdit2.Location = new System.Drawing.Point(-2, 1);
-            this.pictureEdit2.Name = "pictureEdit2";
-            this.pictureEdit2.Properties.AllowFocused = false;
-            this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit2.Properties.ShowMenu = false;
-            this.pictureEdit2.Size = new System.Drawing.Size(426, 180);
-            this.pictureEdit2.TabIndex = 21;
             // 
             // labelControl4
             // 
@@ -129,9 +115,24 @@
             this.cmbCompania.Properties.Items.AddRange(new object[] {
             "CEDETSA",
             "DASA"});
+            this.cmbCompania.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cmbCompania.Size = new System.Drawing.Size(226, 20);
-            this.cmbCompania.TabIndex = 24;
+            this.cmbCompania.TabIndex = 0;
             this.cmbCompania.SelectedIndexChanged += new System.EventHandler(this.cmbCompania_SelectedIndexChanged);
+            // 
+            // pictureEdit2
+            // 
+            this.pictureEdit2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
+            this.pictureEdit2.Location = new System.Drawing.Point(-2, 1);
+            this.pictureEdit2.Name = "pictureEdit2";
+            this.pictureEdit2.Properties.AllowFocused = false;
+            this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit2.Properties.ShowMenu = false;
+            this.pictureEdit2.Size = new System.Drawing.Size(426, 180);
+            this.pictureEdit2.TabIndex = 21;
             // 
             // frmLogin
             // 
@@ -157,8 +158,8 @@
             this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCompania.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -315,7 +315,9 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmCrearEjercicio.Show();
                     break;
-                
+
+                case "optConsultasDeCentrosDeCostos":
+                    break;
             }
 
         }
