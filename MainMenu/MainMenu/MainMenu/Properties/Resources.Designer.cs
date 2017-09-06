@@ -73,6 +73,16 @@ namespace CDTSA.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DASA {
+            get {
+                object obj = ResourceManager.GetObject("DASA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SF4 {
             get {
                 object obj = ResourceManager.GetObject("SF4", resourceCulture);

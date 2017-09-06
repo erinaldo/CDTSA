@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Util;
+using Security;
+
 namespace CG
 {
     public static class CentroCostoDAC

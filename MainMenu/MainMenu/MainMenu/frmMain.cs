@@ -12,6 +12,7 @@ using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
 using CG;
 using Security;
+using CDTSA.Properties;
 
 namespace MainMenu
 {
@@ -39,9 +40,13 @@ namespace MainMenu
             this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
         }
 
+        private void CargarImagenFondo() { 
+            this.BackgroundImage = (Security.Esquema.Compania=="CEDETSA")? Resources.CEDETSA: Resources.DASA;
+        }
+
         void frmMain_Load(object sender, EventArgs e)
         {
-
+            CargarImagenFondo();
             enlazarEventos();
             CargarPrivilegios();
             CargarParametrosSistema();
@@ -161,9 +166,15 @@ namespace MainMenu
         {
              DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
             node = ((TreeList)sender).FocusedNode;
+            if (Application.OpenForms[node.Tag.ToString()] != null)
+            {
+                Application.OpenForms[node.Tag.ToString()].Activate();
+                return;
+            }
             switch (node.Tag.ToString())
             {
-                case "optParametrosGenerales":
+                case "frmParametrosGenerales":
+                    
                     CDTSA.frmParametrosGenerales ofrmParametrosGenerales = new CDTSA.frmParametrosGenerales();
                     ofrmParametrosGenerales.MdiParent = this;
                     ShowPagesRibbonMan(false);
@@ -171,7 +182,7 @@ namespace MainMenu
                     ofrmParametrosGenerales.Show();
                     break;
 
-                case "optTipoCambio":
+                case "frmListadoTipoCambio":
                     
                     CG.frmListadoTipoCambio ofrmlstTipoCambio = new frmListadoTipoCambio();
                     ofrmlstTipoCambio.MdiParent = this;
@@ -179,7 +190,7 @@ namespace MainMenu
                     ofrmlstTipoCambio.Show();
                     break;
 
-                case "optReportDesigner":
+                case "frmDesigner":
 
                     CDTSA.frmDesigner ofrmReportDesigner = new CDTSA.frmDesigner();
                     ShowPagesRibbonMan(false);
@@ -251,49 +262,54 @@ namespace MainMenu
         {
             DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
             node = ((TreeList)sender).FocusedNode;
+            if (Application.OpenForms[node.Tag.ToString()] != null)
+            {
+                Application.OpenForms[node.Tag.ToString()].Activate();
+                return;
+            }
             switch (node.Tag.ToString())
             {
-                case "optCuenta":
+                case "frmListadoCuentaContable":
                     frmListadoCuentaContable ofrmCuenta = new frmListadoCuentaContable();
                     ofrmCuenta.MdiParent = this;
                     ofrmCuenta.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmCuenta.Show();
                     break;
-                 case "optCentroCosto":
+                case "frmListadoCentroCosto":
                     frmListadoCentroCosto ofrmCentro = new frmListadoCentroCosto();
                     ofrmCentro.MdiParent = this;
                     ofrmCentro.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmCentro.Show();
                     break;
-                 case "optTransaccionesDiario":
+                case "frmListadoAsientoDiario":
                     frmListadoAsientoDiario ofrmListadoAsientoDiario = new frmListadoAsientoDiario();
                     ofrmListadoAsientoDiario.MdiParent = this;
                     ofrmListadoAsientoDiario.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmListadoAsientoDiario.Show();
                     break;
-                case "optConsultasDeCuentasContables":
+                case "frmConsultaSaldoCuenta":
                     frmConsultaSaldoCuenta ofrmConsultaSaldoCuenta = new frmConsultaSaldoCuenta();
                     ofrmConsultaSaldoCuenta.MdiParent = this;
                     ofrmConsultaSaldoCuenta.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmConsultaSaldoCuenta.Show();
                     break;
-                case "optParametrosModuloContable":
+                case "frmParametrosContables":
                     frmParametrosContables ofrmParametrosContabilidad = new frmParametrosContables();
                     ofrmParametrosContabilidad.MdiParent = this;
                     ShowPagesRibbonMan(false);
                     ofrmParametrosContabilidad.Show();
                     break;
-                case "optListaPeriodosContables":
+                case "frmListadoPeriodos":
                     frmListadoPeriodos ofrmListadoPeriodos = new frmListadoPeriodos();
                     ofrmListadoPeriodos.MdiParent = this;
                     ShowPagesRibbonMan(false);
                     ofrmListadoPeriodos.Show();
                     break;
-                case "optCrearEjercicios":
+                case "frmCreaEjercicio":
                     CG.frmCreaEjercicio ofrmCrearEjercicio = new CG.frmCreaEjercicio();
                     ofrmCrearEjercicio.MdiParent = this;
                     ShowPagesRibbonMan(false);
@@ -344,23 +360,23 @@ namespace MainMenu
                 case "treeListAdministracion":
                     TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
                     TreeListNode nodeTiposCambio = tl.AppendNode(new object[] { "Tipos de Cambio" }, nodeTipos.Id, 11, 11, 11);
-                    nodeTiposCambio.Tag = "optTipoCambio";
+                    nodeTiposCambio.Tag = "frmListadoTipoCambio";
                     TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
-                    nodeParametros.Tag = "optParametrosGenerales";
+                    nodeParametros.Tag = "frmParametrosGenerales";
                     TreeListNode nodeReportDesigner = tl.AppendNode(new object[] { "Diseñador de Reportes" }, -1, 11, 11, 11);
-                    nodeReportDesigner.Tag = "optReportDesigner";
+                    nodeReportDesigner.Tag = "frmDesigner";
                     
                     break;
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);
-                    nodeCuentas.Tag = "optCuenta";
+                    nodeCuentas.Tag = "frmListadoCuentaContable";
                     TreeListNode nodeCentroCosto = tl.AppendNode(new object[] { "Centro de Costos" }, -1, 11, 11, 11);
-                    nodeCentroCosto.Tag = "optCentroCosto";
+                    nodeCentroCosto.Tag = "frmListadoCentroCosto";
                     //Carpeta
                     TreeListNode nodeTransaccionesContabilidad = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
                     //Items
                     TreeListNode nodeTransaccionesDiario = tl.AppendNode(new object[] { "Diario" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
-                    nodeTransaccionesDiario.Tag = "optTransaccionesDiario";
+                    nodeTransaccionesDiario.Tag = "frmListadoAsientoDiario";
                     //TreeListNode nodeTransaccionesRecurrente = tl.AppendNode(new object[] { "Recurrente" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
                     //nodeTransaccionesRecurrente.Tag = "optTransaccionesRecurrente";
                     //TreeListNode nodeTransaccionesAnulacion = tl.AppendNode(new object[] { "Anulación" }, nodeTransaccionesContabilidad.Id, 11, 11, 11);
@@ -375,7 +391,7 @@ namespace MainMenu
                     TreeListNode nodeConsultasContabilidad = tl.AppendNode(new object[] { "Consultas" }, -1, 9, 10, 9);
                     //Items
                     TreeListNode nodeConsultasDeCuentasContables = tl.AppendNode(new object[] { "De Cuentas Contables" }, nodeConsultasContabilidad.Id, 11, 11, 11);
-                    nodeConsultasDeCuentasContables.Tag = "optConsultasDeCuentasContables";
+                    nodeConsultasDeCuentasContables.Tag = "frmConsultaSaldoCuenta";
                     TreeListNode nodeConsultasDeCentrosDeCostos = tl.AppendNode(new object[] { "De Centros de Costos" }, nodeConsultasContabilidad.Id, 11, 11, 11);
                     nodeConsultasDeCentrosDeCostos.Tag = "optConsultasDeCentrosDeCostos";
                     TreeListNode nodeConsultasPorPeriodoContable = tl.AppendNode(new object[] { "Por Periodo Contable" }, nodeConsultasContabilidad.Id, 11, 11, 11);
@@ -419,11 +435,11 @@ namespace MainMenu
                     //Carpeta
                     TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
                     TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parámetros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
-                    nodeParametrosModulo.Tag = "optParametrosModuloContable";
+                    nodeParametrosModulo.Tag = "frmParametrosContables";
                     TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Periodos Contables" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
-                    nodeAbrirPeriodoCerrado.Tag = "optListaPeriodosContables";
+                    nodeAbrirPeriodoCerrado.Tag = "frmListadoPeriodos";
                     TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
-                    nodeCrearEjercicio.Tag = "optCrearEjercicios";
+                    nodeCrearEjercicio.Tag = "frmCreaEjercicio";
                     break;
             }
 

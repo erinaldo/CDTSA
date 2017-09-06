@@ -27,9 +27,19 @@ namespace CDTSA.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=CedetsaS4U;User ID=sa;Password=admin911!")]
-        public string StringCon {
+        public string StringConCedetsa {
             get {
-                return ((string)(this["StringCon"]));
+                return ((string)(this["StringConCedetsa"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=CedetsaS4U;User ID=sa;Password=admin911!")]
+        public string StringConDasa {
+            get {
+                return ((string)(this["StringConDasa"]));
             }
         }
     }

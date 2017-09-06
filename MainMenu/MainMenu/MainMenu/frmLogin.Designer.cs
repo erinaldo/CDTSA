@@ -36,15 +36,17 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cmbCompania = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCompania.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(29, 220);
+            this.txtUsuario.Location = new System.Drawing.Point(40, 257);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtUsuario.TabIndex = 0;
@@ -53,7 +55,7 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(155, 220);
+            this.txtPass.Location = new System.Drawing.Point(166, 257);
             this.txtPass.Name = "txtPass";
             this.txtPass.Properties.PasswordChar = '•';
             this.txtPass.Size = new System.Drawing.Size(100, 20);
@@ -63,7 +65,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(319, 187);
+            this.btnAceptar.Location = new System.Drawing.Point(309, 208);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 2;
@@ -72,7 +74,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(29, 202);
+            this.labelControl1.Location = new System.Drawing.Point(40, 239);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(40, 13);
             this.labelControl1.TabIndex = 2;
@@ -80,7 +82,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(155, 201);
+            this.labelControl2.Location = new System.Drawing.Point(166, 238);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 13);
             this.labelControl2.TabIndex = 2;
@@ -88,7 +90,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(319, 218);
+            this.btnCancelar.Location = new System.Drawing.Point(309, 239);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -109,21 +111,35 @@
             this.pictureEdit2.Size = new System.Drawing.Size(426, 180);
             this.pictureEdit2.TabIndex = 21;
             // 
-            // labelControl3
+            // labelControl4
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(406, 240);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(12, 11);
-            this.labelControl3.TabIndex = 22;
-            this.labelControl3.Text = "V1";
+            this.labelControl4.Location = new System.Drawing.Point(40, 193);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(51, 13);
+            this.labelControl4.TabIndex = 23;
+            this.labelControl4.Text = "Compañia:";
+            // 
+            // cmbCompania
+            // 
+            this.cmbCompania.Location = new System.Drawing.Point(40, 212);
+            this.cmbCompania.Name = "cmbCompania";
+            this.cmbCompania.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCompania.Properties.DropDownRows = 2;
+            this.cmbCompania.Properties.Items.AddRange(new object[] {
+            "CEDETSA",
+            "DASA"});
+            this.cmbCompania.Size = new System.Drawing.Size(226, 20);
+            this.cmbCompania.TabIndex = 24;
+            this.cmbCompania.SelectedIndexChanged += new System.EventHandler(this.cmbCompania_SelectedIndexChanged);
             // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 252);
-            this.Controls.Add(this.labelControl3);
+            this.ClientSize = new System.Drawing.Size(421, 295);
+            this.Controls.Add(this.cmbCompania);
+            this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.btnCancelar);
@@ -142,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCompania.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +173,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton btnCancelar;
         private DevExpress.XtraEditors.PictureEdit pictureEdit2;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.ComboBoxEdit cmbCompania;
     }
 }

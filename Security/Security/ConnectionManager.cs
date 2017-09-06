@@ -10,16 +10,17 @@ using System.Configuration;
 namespace Security
 {
 
-    internal sealed class ConnectionManager
+    public  sealed class ConnectionManager
     {
         public static SqlTransaction Tran;
         private static SqlConnection oConn;
 
-        public static SqlConnection GetConnection()
+        public static  SqlConnection GetConnection()
         {
             if (oConn == null)
             {
-                String ConnectionString = ConfigurationManager.ConnectionStrings["StringConexion"].ConnectionString;
+                String sNameConexion = (Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                String ConnectionString =  ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString;
                 oConn = new SqlConnection(ConnectionString);
             }
             //connection.Open();

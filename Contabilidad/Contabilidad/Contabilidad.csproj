@@ -138,7 +138,6 @@
     <Compile Include="frmAsociarCentroCuenta.Designer.cs">
       <DependentUpon>frmAsociarCentroCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConnectionManager.cs" />
     <Compile Include="DAC\AsientoDAC.cs" />
     <Compile Include="DAC\CuentaCentroDAC.cs" />
     <Compile Include="DAC\CuentaContableDAC.cs" />
