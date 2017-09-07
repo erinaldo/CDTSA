@@ -309,6 +309,12 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoPeriodos.Show();
                     break;
+                case "frmGrupoEstadosFinancieros":
+                    frmGrupoEstadosFinancieros ofrmGrupoEstadosFinancieros = new frmGrupoEstadosFinancieros();
+                    ofrmGrupoEstadosFinancieros.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmGrupoEstadosFinancieros.Show();
+                    break;
                 case "frmCreaEjercicio":
                     CG.frmCreaEjercicio ofrmCrearEjercicio = new CG.frmCreaEjercicio();
                     ofrmCrearEjercicio.MdiParent = this;
@@ -440,6 +446,8 @@ namespace MainMenu
                     nodeParametrosModulo.Tag = "frmParametrosContables";
                     TreeListNode nodeAbrirPeriodoCerrado = tl.AppendNode(new object[] { "Periodos Contables" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeAbrirPeriodoCerrado.Tag = "frmListadoPeriodos";
+                    TreeListNode nodeGruposEstadosFinancieros = tl.AppendNode(new object[] { "Grupos Estados Financieros" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeGruposEstadosFinancieros.Tag = "frmGrupoEstadosFinancieros";
                     TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeCrearEjercicio.Tag = "frmCreaEjercicio";
                     break;
