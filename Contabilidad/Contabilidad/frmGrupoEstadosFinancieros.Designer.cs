@@ -41,6 +41,7 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.cmbTipoGrupo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.slkupGrupoAcumulador = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.chkAcumulador = new DevExpress.XtraEditors.CheckEdit();
@@ -70,12 +71,12 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cmbTipoGrupo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoGrupo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupGrupoAcumulador.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAcumulador.Properties)).BeginInit();
@@ -100,7 +101,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoGrupo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
@@ -150,6 +150,7 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
+
             // 
             // btnCancelar
             // 
@@ -227,6 +228,24 @@
             this.layoutControl1.Size = new System.Drawing.Size(804, 443);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // cmbTipoGrupo
+            // 
+            this.cmbTipoGrupo.Location = new System.Drawing.Point(86, 12);
+            this.cmbTipoGrupo.MenuManager = this.ribbonControl;
+            this.cmbTipoGrupo.Name = "cmbTipoGrupo";
+            this.cmbTipoGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbTipoGrupo.Properties.DropDownRows = 3;
+            this.cmbTipoGrupo.Properties.Items.AddRange(new object[] {
+            "Balanza de Comprobación",
+            "Estado de Resultado",
+            "Balance General"});
+            this.cmbTipoGrupo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cmbTipoGrupo.Size = new System.Drawing.Size(249, 20);
+            this.cmbTipoGrupo.StyleController = this.layoutControl1;
+            this.cmbTipoGrupo.TabIndex = 9;
+            this.cmbTipoGrupo.SelectedIndexChanged += new System.EventHandler(this.cmbTipoGrupo_SelectedIndexChanged);
             // 
             // slkupGrupoAcumulador
             // 
@@ -530,24 +549,6 @@
             this.layoutControlItem7.Text = "Grupo Padre:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // cmbTipoGrupo
-            // 
-            this.cmbTipoGrupo.Location = new System.Drawing.Point(86, 12);
-            this.cmbTipoGrupo.MenuManager = this.ribbonControl;
-            this.cmbTipoGrupo.Name = "cmbTipoGrupo";
-            this.cmbTipoGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbTipoGrupo.Properties.DropDownRows = 3;
-            this.cmbTipoGrupo.Properties.Items.AddRange(new object[] {
-            "Balanza de Comprobación",
-            "Estado de Resultado",
-            "Balance General"});
-            this.cmbTipoGrupo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbTipoGrupo.Size = new System.Drawing.Size(249, 20);
-            this.cmbTipoGrupo.StyleController = this.layoutControl1;
-            this.cmbTipoGrupo.TabIndex = 9;
-            this.cmbTipoGrupo.SelectedIndexChanged += new System.EventHandler(this.cmbTipoGrupo_SelectedIndexChanged);
-            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.cmbTipoGrupo;
@@ -582,6 +583,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoGrupo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupGrupoAcumulador.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAcumulador.Properties)).EndInit();
@@ -606,7 +608,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoGrupo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);

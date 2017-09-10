@@ -164,7 +164,7 @@ namespace CG.DAC
             int ID = 0;
             DataSet DS = new DataSet();
             //String sSQL = "SELECT  IDCuenta , Cuenta , DescrCuenta ,Tag , IDCuentaMayor FROM (SELECT A.IDCuenta,C.Cuenta,C.Descr DescrCuenta,'' Tag ,A.IDGrupo  IDCuentaMayor,G.Tipo FROM dbo.cntCuentaGrupoEstadosFinancieros A LEft JOIN dbo.cntCuenta C ON A.IDCuenta=C.IDCuenta  left JOIN dbo.cntGrupoEstadosFinancieros G ON A.IDGrupo=G.IDGrupo  UNION ALL  SELECT IDGrupo IDCuenta,'' Cuenta,Descr ,'Root' Tag,0 IDGrupo,Tipo  FROM dbo.cntGrupoEstadosFinancieros ) J WHERE J.Tipo = @Tipo ORDER BY Cuenta";
-            String sSQL = "SELECT A.IDGrupo,a.IDCuenta,B.Cuenta,B.Descr  FROM dbo.cntCuentaGrupoEstadosFinancieros A INNER JOIN dbo.cntCuenta B ON A.IDCuenta = B.IDCuenta INNER JOIN dbo.cntGrupoEstadosFinancieros C ON B.IDGrupo = C.IDGrupo WHERE C.Tipo=@Tipo";
+            String sSQL = "SELECT A.IDGrupo,a.IDCuenta,B.Cuenta,B.Descr  FROM dbo.cntCuentaGrupoEstadosFinancieros A INNER JOIN dbo.cntCuenta B ON A.IDCuenta = B.IDCuenta INNER JOIN dbo.cntGrupoEstadosFinancieros C ON A.IDGrupo = C.IDGrupo WHERE C.Tipo=@Tipo";
             SqlCommand oCmd = new SqlCommand(sSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
             oCmd.CommandType = CommandType.Text;

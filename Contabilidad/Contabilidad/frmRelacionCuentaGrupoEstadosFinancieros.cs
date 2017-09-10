@@ -85,45 +85,79 @@ namespace CG
             DataTable dt = Cuenta_GrupoEstadosFinancierosDAC.GetCuentasDisponiblesGrupo(GetTipoGrupo());
             if (dt != null)
             {
-                //Limpiar el Tree
-                //this.treeCuenta.Nodes.Clear();
-                //Nodo Root
-                //this.treeCuenta.DataSource = null;
                 treeCuenta.BeginUpdate();
-                //treeCuenta.OptionsBehavior.EnableFiltering = false;
-                //treeCuenta.LockReloadNodes();
-                //this.treeCuenta.DataSource = null;
                 this.treeCuenta.DataSource = dt;
-                //this.treeCuenta.RefreshDataSource();
-                //this.treeCuenta.PopulateColumns();
-
-                //treeCuenta.UnlockReloadNodes();
-               
                 treeCuenta.EndUpdate();
-                
-                //treeCuenta.Refresh();
                 this.treeCuenta.ExpandAll();
-                //treeCuenta.OptionsBehavior.EnableFiltering = true;
-
             }
         }
+
+        //private void CargarCuentasGruposEstadosFinancieros()
+        //{
+        //    DataTable dtCuentaGrupo = Cuenta_GrupoEstadosFinancierosDAC.GetCuentasGrupoEstadosFinancieros(GetTipoGrupo());
+        //    DataTable dtGrupos = GrupoEstadosFinancierosDAC.GetData(-1, "*", "*", "*", "*", -1, 1, GetTipoGrupo()).Tables[0];
+        //    this.treeGrupoCuenta.Nodes.Clear();
+        //    if (dtCuentaGrupo != null) {
+                
+        //        foreach (DataRow Grupo in dtGrupos.Rows)
+        //        {
+        //            TreeListNode node = this.treeGrupoCuenta.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(),"",Grupo["IDGrupo"].ToString());
+                    
+        //            node.Tag = "Root";
+        //            DataView dv = new DataView();
+        //            dv =  dtCuentaGrupo.DefaultView;
+        //            dv.RowFilter = string.Format("IDGrupo='{0}'", Grupo["IDGrupo"]);
+        //            foreach (DataRow fila in dv.ToTable().Rows) {
+        //                node.Nodes.Add(fila["Cuenta"].ToString(), fila["Descr"].ToString(),fila["IDCuenta"].ToString(),fila["IDGrupo"].ToString());
+        //            }
+        //        }
+
+        //        this.treeGrupoCuenta.ExpandAll();
+        //    }
+
+        //}
 
         private void CargarCuentasGruposEstadosFinancieros()
         {
             DataTable dtCuentaGrupo = Cuenta_GrupoEstadosFinancierosDAC.GetCuentasGrupoEstadosFinancieros(GetTipoGrupo());
             DataTable dtGrupos = GrupoEstadosFinancierosDAC.GetData(-1, "*", "*", "*", "*", -1, 1, GetTipoGrupo()).Tables[0];
             this.treeGrupoCuenta.Nodes.Clear();
-            if (dtCuentaGrupo != null) {
-                
+            if (dtGrupos != null)
+            {
+                TreeListNode nodoAnterior = null;
+
                 foreach (DataRow Grupo in dtGrupos.Rows)
                 {
-                    TreeListNode node = this.treeGrupoCuenta.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(),"",Grupo["IDGrupo"].ToString());
-                    node.Tag = "Root";
-                    DataView dv = new DataView();
-                    dv =  dtCuentaGrupo.DefaultView;
-                    dv.RowFilter = string.Format("IDGrupo='{0}'", Grupo["IDGrupo"]);
-                    foreach (DataRow fila in dv.ToTable().Rows) {
-                        node.Nodes.Add(fila["Cuenta"].ToString(), fila["Descr"].ToString(),fila["IDCuenta"].ToString(),fila["IDGrupo"].ToString());
+                    TreeListNode node = null;
+                    if (Grupo["IDGrupoAcumulador"].ToString() == "0")
+                    {
+                        //Rama principal
+                        node = this.treeGrupoCuenta.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
+                    }
+                    else { 
+                        //Validar si el elemento anterior es papa
+                        if (nodoAnterior.GetValue("IDGrupo").ToString() == Grupo["IDGrupoAcumulador"].ToString())
+                        { 
+                            //Agregar el elemento en el nodo padre
+                            node = nodoAnterior.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
+                        }
+                    }
+                    if (!Convert.ToBoolean(Grupo["Acumulador"]))
+                    {
+                        node.Tag = "Root";
+                        //Cargar las cuentas que tiene asociado el grupo
+                        DataView dv = new DataView();
+                        dv = dtCuentaGrupo.DefaultView;
+                        dv.RowFilter = string.Format("IDGrupo='{0}'", Grupo["IDGrupo"]);
+                        foreach (DataRow fila in dv.ToTable().Rows)
+                        {
+                            node.Nodes.Add(fila["Cuenta"].ToString(), fila["Descr"].ToString(), fila["IDCuenta"].ToString(), fila["IDGrupo"].ToString());
+                        }
+                    }
+                    if (Convert.ToBoolean(Grupo["Acumulador"]) == true)
+                    {
+                        node.Tag="Padre";
+                        nodoAnterior = node;
                     }
                 }
 
@@ -131,7 +165,6 @@ namespace CG
             }
 
         }
-
 
 
         TreeListNode HasAsParent(TreeListNode node1, TreeListNode node2)
@@ -188,7 +221,7 @@ namespace CG
                 }
                 else {
                     
-                    Valor2 = (e.SourceNode.Tag != null) ? e.SourceNode.Tag.ToString() : "";
+                    Valor2 = (e.SourceNode.Tag != null) ? (e.SourceNode.Tag.ToString()=="Padre") ? "Root": e.SourceNode.Tag.ToString() : "";
                     Valor = (e.DestinationNode.GetValue("Tag") != null) ? e.DestinationNode.GetValue("Tag").ToString() : "";
                     sCuenta = (e.SourceNode.GetValue("IDCuenta") != null && e.SourceNode.GetValue("IDCuenta").ToString() != "") ? Convert.ToInt32(e.SourceNode.GetValue("IDCuenta").ToString()) : 0;
                     IDGrupo = (e.SourceNode.ParentNode.GetValue("IDGrupo") != null && e.SourceNode.ParentNode.GetValue("IDGrupo").ToString()!="") ? Convert.ToInt32(e.SourceNode.ParentNode.GetValue("IDGrupo").ToString()) : 0;
@@ -233,6 +266,7 @@ namespace CG
             CargarCuentasGruposEstadosFinancieros();
         }
 
+        
 
      
     }

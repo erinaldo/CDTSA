@@ -171,6 +171,7 @@
             this.treeGrupoCuenta.RootValue = 1;
             this.treeGrupoCuenta.Size = new System.Drawing.Size(389, 345);
             this.treeGrupoCuenta.TabIndex = 4;
+
             // 
             // ColumnCuentaG
             // 

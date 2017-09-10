@@ -53,7 +53,7 @@ namespace CG.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Nivel2", SqlDbType.NChar).SourceColumn = "Nivel2";
                 oAdaptador.InsertCommand.Parameters.Add("@Nivel3", SqlDbType.NChar).SourceColumn = "Nivel3";
                 oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.InsertCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Bit).SourceColumn = "IDGrupoAcumulador";
+                oAdaptador.InsertCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Int).SourceColumn = "IDGrupoAcumulador";
                 oAdaptador.InsertCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.InsertCommand.Parameters.Add("@Tipo", SqlDbType.NVarChar).SourceColumn = "Tipo";
@@ -67,7 +67,7 @@ namespace CG.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Nivel2", SqlDbType.NChar).SourceColumn = "Nivel2";
                 oAdaptador.UpdateCommand.Parameters.Add("@Nivel3", SqlDbType.NChar).SourceColumn = "Nivel3";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Bit).SourceColumn = "IDGrupoAcumulador";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Int).SourceColumn = "IDGrupoAcumulador";
                 oAdaptador.UpdateCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Tipo", SqlDbType.NVarChar).SourceColumn = "Tipo";
@@ -81,7 +81,7 @@ namespace CG.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@Nivel2", SqlDbType.NChar).SourceColumn = "Nivel2";
                 oAdaptador.DeleteCommand.Parameters.Add("@Nivel3", SqlDbType.NChar).SourceColumn = "Nivel3";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Bit).SourceColumn = "IDGrupoAcumulador";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Int).SourceColumn = "IDGrupoAcumulador";
                 oAdaptador.DeleteCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Tipo", SqlDbType.NVarChar).SourceColumn = "Tipo";
