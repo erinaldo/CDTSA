@@ -315,6 +315,13 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmGrupoEstadosFinancieros.Show();
                     break;
+
+                case "frmRelacionCuentaGrupoEstadosFinancieros":
+                    frmRelacionCuentaGrupoEstadosFinancieros ofrmRelacionGrupoEstadosF = new frmRelacionCuentaGrupoEstadosFinancieros();
+                    ofrmRelacionGrupoEstadosF.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmRelacionGrupoEstadosF.Show();
+                    break;
                 case "frmCreaEjercicio":
                     CG.frmCreaEjercicio ofrmCrearEjercicio = new CG.frmCreaEjercicio();
                     ofrmCrearEjercicio.MdiParent = this;
@@ -448,6 +455,10 @@ namespace MainMenu
                     nodeAbrirPeriodoCerrado.Tag = "frmListadoPeriodos";
                     TreeListNode nodeGruposEstadosFinancieros = tl.AppendNode(new object[] { "Grupos Estados Financieros" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeGruposEstadosFinancieros.Tag = "frmGrupoEstadosFinancieros";
+
+                    TreeListNode nodeCuentaGruposEstadosFinancieros = tl.AppendNode(new object[] { "Asociar Cuenta Grupos Estados Financieros" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeCuentaGruposEstadosFinancieros.Tag = "frmRelacionCuentaGrupoEstadosFinancieros";
+
                     TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeCrearEjercicio.Tag = "frmCreaEjercicio";
                     break;

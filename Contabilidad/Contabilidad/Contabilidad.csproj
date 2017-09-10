@@ -87,6 +87,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -120,6 +121,7 @@
     </Compile>
     <Compile Include="DAC\AsientoDetalleDAC.cs" />
     <Compile Include="DAC\ConsultasDAC.cs" />
+    <Compile Include="DAC\Cuenta_GrupoEstadosFinancierosDAC.cs" />
     <Compile Include="DAC\EjercicioDAC.cs" />
     <Compile Include="DAC\GrupoEstadosFinancierosDAC.cs" />
     <Compile Include="frmGrupoEstadosFinancieros.cs">
@@ -127,6 +129,12 @@
     </Compile>
     <Compile Include="frmGrupoEstadosFinancieros.Designer.cs">
       <DependentUpon>frmGrupoEstadosFinancieros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRelacionCuentaGrupoEstadosFinancieros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelacionCuentaGrupoEstadosFinancieros.Designer.cs">
+      <DependentUpon>frmRelacionCuentaGrupoEstadosFinancieros.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoCambioDetalle.cs">
       <SubType>Form</SubType>
@@ -285,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGrupoEstadosFinancieros.resx">
       <DependentUpon>frmGrupoEstadosFinancieros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRelacionCuentaGrupoEstadosFinancieros.resx">
+      <DependentUpon>frmRelacionCuentaGrupoEstadosFinancieros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoCambioDetalle.resx">
       <DependentUpon>frmTipoCambioDetalle.cs</DependentUpon>

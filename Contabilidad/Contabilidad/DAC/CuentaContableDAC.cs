@@ -273,6 +273,7 @@ namespace CG
 
         }
 
+
         public static bool ExisteCuentaPrimerNivel(int Nivel1)
         {
             bool result = false;
