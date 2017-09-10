@@ -236,17 +236,21 @@ namespace MainMenu
                 navGroupContabilidad.Visible = true;
                 //activar las opciones de la contabilidad
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCuentaContable, DT))
-                    SetNodeDisable("optCuenta", treeListContabilidad);
+                    SetNodeDisable("frmListadoCuentaContable", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCentroCosto, DT))
-                    SetNodeDisable("optCentroCosto", treeListContabilidad);
+                    SetNodeDisable("frmListadoCentroCosto", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AsientodeDiario, DT))
-                    SetNodeDisable("optTransaccionesDiario", treeListContabilidad);
+                    SetNodeDisable("frmListadoAsientoDiario", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.ParemtrosModuloContable, DT))
-                    SetNodeDisable("optParametrosModuloContable", treeListContabilidad);
+                    SetNodeDisable("frmParametrosContables", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.PeriodosContables, DT))
-                    SetNodeDisable("optListaPeriodosContables", treeListContabilidad);
+                    SetNodeDisable("frmListadoPeriodos", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CrearEjerciciosContables, DT))
-                    SetNodeDisable("optCrearEjercicios", treeListContabilidad);
+                    SetNodeDisable("frmCreaEjercicio", treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.GrupoEstadosFinancieros, DT))
+                    SetNodeDisable("frmGrupoEstadosFinancieros", treeListContabilidad);
+                if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CuentaGrupoEstadosFinancieros, DT))
+                    SetNodeDisable("frmRelacionCuentaGrupoEstadosFinancieros", treeListContabilidad);
             }
             else
                 navGroupContabilidad.Visible = false;
@@ -256,11 +260,11 @@ namespace MainMenu
             {
                 this.navGroupAdministracion.Visible = true;
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.RegistrarTipoCambio, DT))
-                    SetNodeDisable("optTipoCambio", treeListAdministracion);
+                    SetNodeDisable("frmListadoTipoCambio", treeListAdministracion);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.ParametrosGenerales, DT))
-                    SetNodeDisable("optParametrosGenerales", treeListAdministracion);
+                    SetNodeDisable("frmParametrosGenerales", treeListAdministracion);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.ModificacionReportes, DT))
-                    SetNodeDisable("optReportDesigner", treeListAdministracion);
+                    SetNodeDisable("frmDesigner", treeListAdministracion);
             }
             else
                 this.navGroupAdministracion.Visible = false;

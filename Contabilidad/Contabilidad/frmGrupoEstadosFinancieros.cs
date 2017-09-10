@@ -46,12 +46,12 @@ namespace CG
 
         private void AplicarPrivilegios()
         {
-            //if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarCentroCosto, _dtSecurity))
-            //    this.btnAgregar.Enabled = false;
-            //if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCentroCosto, _dtSecurity))
-            //    this.btnEditar.Enabled = false;
-            //if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCentroCosto, _dtSecurity))
-            //    this.btnEliminar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarGrupoEstadosFinancieros, _dtSecurity))
+                this.btnAgregar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarGrupoEstadosFinancieros, _dtSecurity))
+                this.btnEditar.Enabled = false;
+            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarGrupoEstadosFinancieros, _dtSecurity))
+                this.btnEliminar.Enabled = false;
         }
 
 

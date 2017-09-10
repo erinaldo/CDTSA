@@ -35,24 +35,24 @@ namespace CG
 
         
 
-        private void CargarPrivilegios()
-        {
-            DataSet DS = new DataSet();
-            DS = UsuarioDAC.GetAccionModuloFromRole(0, _sUsuario);
-            _dtSecurity = DS.Tables[0];
+        //private void CargarPrivilegios()
+        //{
+        //    DataSet DS = new DataSet();
+        //    DS = UsuarioDAC.GetAccionModuloFromRole(0, _sUsuario);
+        //    _dtSecurity = DS.Tables[0];
 
-            AplicarPrivilegios();
-        }
+        //    AplicarPrivilegios();
+        //}
 
-        private void AplicarPrivilegios()
-        {
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AgregarCentroCosto, _dtSecurity))
-                this.btnAgregar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCentroCosto, _dtSecurity))
-                this.btnEditar.Enabled = false;
-            if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCentroCosto, _dtSecurity))
-                this.btnEliminar.Enabled = false;
-        }
+        //private void AplicarPrivilegios()
+        //{
+        //    if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.RegistrarTipoCambio, _dtSecurity))
+        //        this.btnAgregar.Enabled = false;
+        //    if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarCentroCosto, _dtSecurity))
+        //        this.btnEditar.Enabled = false;
+        //    if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarCentroCosto, _dtSecurity))
+        //        this.btnEliminar.Enabled = false;
+        //}
 
 
         private void EnlazarEventos()
@@ -107,7 +107,7 @@ namespace CG
 
                 PopulateGrid();
 
-                CargarPrivilegios();
+                //CargarPrivilegios();
 
             }
             catch (Exception ex)

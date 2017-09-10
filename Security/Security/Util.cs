@@ -44,7 +44,12 @@ namespace Security
             PeriodosContables = 117,
             CerrarPeridoContable = 118,
             EstablecerPeridoTrabajo = 119,
-            CrearEjerciciosContables = 120
+            CrearEjerciciosContables = 120,
+            GrupoEstadosFinancieros =121,
+            AgregarGrupoEstadosFinancieros =122,
+            EditarGrupoEstadosFinancieros=123,
+            EliminarGrupoEstadosFinancieros =124,
+            CuentaGrupoEstadosFinancieros =125
         }
 
         
