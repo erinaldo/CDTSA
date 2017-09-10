@@ -19,7 +19,7 @@ namespace MainMenu
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private String CodTipoCambio;
-        
+
 
         public frmMain()
         {
@@ -40,8 +40,9 @@ namespace MainMenu
             this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
         }
 
-        private void CargarImagenFondo() { 
-            this.BackgroundImage = (Security.Esquema.Compania=="CEDETSA")? Resources.CEDETSA: Resources.DASA;
+        private void CargarImagenFondo()
+        {
+            this.BackgroundImage = (Security.Esquema.Compania == "CEDETSA") ? Resources.CEDETSA : Resources.DASA;
         }
 
         void frmMain_Load(object sender, EventArgs e)
@@ -53,12 +54,14 @@ namespace MainMenu
             CargarConfiguracionRegional();
         }
 
-        private void CargarConfiguracionRegional() {
+        private void CargarConfiguracionRegional()
+        {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         }
 
-        private void ObtenerTipoCambio(String TipoCambio) {
-            DataSet DS =  CDTSA.DAC.ParametrosGeneralesDAC.GetTipoCambio(TipoCambio, DateTime.Now);
+        private void ObtenerTipoCambio(String TipoCambio)
+        {
+            DataSet DS = CDTSA.DAC.ParametrosGeneralesDAC.GetTipoCambio(TipoCambio, DateTime.Now);
             if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
             {
                 this.lblFecha.Caption = "Fecha: " + Convert.ToDateTime(DS.Tables[0].Rows[0]["Fecha"]).ToShortDateString();
@@ -66,9 +69,10 @@ namespace MainMenu
 
                 enlazarEventos();
             }
-            else {
-                this.lblFecha.Caption = "Fecha: --" ;
-                this.lblTipoCambio.Caption = "TC: --" ;
+            else
+            {
+                this.lblFecha.Caption = "Fecha: --";
+                this.lblTipoCambio.Caption = "TC: --";
                 //validar si tiene privilegios para modificar el tipo de cambio.
                 DataSet DSS = new DataSet();
                 DataTable DT = new DataTable();
@@ -81,7 +85,7 @@ namespace MainMenu
                     {
                         if (frm.GetType() == typeof(CG.frmTipoCambioDetalle))
                         {
-                           // MessageBox.Show("El formulario 2 esta abierto");
+                            // MessageBox.Show("El formulario 2 esta abierto");
                             break;
                         }
                     }
@@ -90,19 +94,21 @@ namespace MainMenu
                     ofrmTipoCambio.MdiParent = this;
                     ofrmTipoCambio.StartPosition = FormStartPosition.CenterScreen;
                     ofrmTipoCambio.Show();
-                }else 
-                    MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor contacte el administrador del sistema. \n\r " );
+                }
+                else
+                    MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor contacte el administrador del sistema. \n\r ");
                 this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
             }
         }
 
         void ofrmTipoCambio_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
             CargarParametrosSistema();
         }
 
-        private void CargarParametrosSistema() {
+        private void CargarParametrosSistema()
+        {
 
             try
             {
@@ -116,7 +122,8 @@ namespace MainMenu
                         sMensaje = sMensaje + " • El nombre de la compania no se ha establecido \n\r";
                         this.lblCompania.Caption = "Compañia: ";
                     }
-                    if (DS.Tables[0].Rows[0]["CantDigitosDecimales"].ToString() == "") {
+                    if (DS.Tables[0].Rows[0]["CantDigitosDecimales"].ToString() == "")
+                    {
                         sMensaje = sMensaje + " • La cantidad de Digitos de decimales que se visualizan en sistema \n\r";
                     }
                     if (DS.Tables[0].Rows[0]["SimboloMonedaFuncional"].ToString() == "")
@@ -128,7 +135,7 @@ namespace MainMenu
 
                     if (sMensaje != "")
                     {
-                        
+
                         this.lblFecha.Caption = "Fecha: --";
                         this.lblTipoCambio.Caption = "TC: --";
                         this.lblCompania.Caption = "Compañia: ";
@@ -145,26 +152,28 @@ namespace MainMenu
                         CodTipoCambio = sTipoCambio;
                         ObtenerTipoCambio(sTipoCambio);
                         this.lblCompania.Caption = "Compañia: " + DS.Tables[0].Rows[0]["Nombre"].ToString();
-                        
+
                     }
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Los parametros generales de la aplicacion estan incompletos, por favor contacte al administrador del sistema");
                     //Quitar  todas las acciones a los menus.
                     this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
                 }
                 this.lblUsuario.Caption = "Usuario: " + ((UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
 
-    
+
 
         void treeListAdministracion_DoubleClick(object sender, EventArgs e)
         {
-             DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
             node = ((TreeList)sender).FocusedNode;
             if (Application.OpenForms[node.Tag.ToString()] != null)
             {
@@ -174,16 +183,16 @@ namespace MainMenu
             switch (node.Tag.ToString())
             {
                 case "frmParametrosGenerales":
-                    
+
                     CDTSA.frmParametrosGenerales ofrmParametrosGenerales = new CDTSA.frmParametrosGenerales();
                     ofrmParametrosGenerales.MdiParent = this;
                     ShowPagesRibbonMan(false);
-                    ofrmParametrosGenerales.FormClosed+=ofrmParametrosGenerales_FormClosed;
+                    ofrmParametrosGenerales.FormClosed += ofrmParametrosGenerales_FormClosed;
                     ofrmParametrosGenerales.Show();
                     break;
 
                 case "frmListadoTipoCambio":
-                    
+
                     CG.frmListadoTipoCambio ofrmlstTipoCambio = new frmListadoTipoCambio();
                     ofrmlstTipoCambio.MdiParent = this;
                     ShowPagesRibbonMan(false);
@@ -199,14 +208,15 @@ namespace MainMenu
             }
         }
 
-        
-        private void SetNodeDisable(String Tag, DevExpress.XtraTreeList.TreeList tree){
+
+        private void SetNodeDisable(String Tag, DevExpress.XtraTreeList.TreeList tree)
+        {
             try
             {
                 foreach (TreeListNode node in tree.Nodes)
                     if (node.Tag != null && node.Tag.ToString() == Tag)
                         node.Visible = false;
-        //                node.TreeList.ForeColor = Color.Gray;
+                //                node.TreeList.ForeColor = Color.Gray;
             }
             catch (Exception ex)
             {
@@ -226,7 +236,7 @@ namespace MainMenu
                 navGroupContabilidad.Visible = true;
                 //activar las opciones de la contabilidad
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCuentaContable, DT))
-                    SetNodeDisable("optCuenta",treeListContabilidad);
+                    SetNodeDisable("optCuenta", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CatalogoCentroCosto, DT))
                     SetNodeDisable("optCentroCosto", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.AsientodeDiario, DT))
@@ -236,22 +246,23 @@ namespace MainMenu
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.PeriodosContables, DT))
                     SetNodeDisable("optListaPeriodosContables", treeListContabilidad);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.CrearEjerciciosContables, DT))
-                    SetNodeDisable("optCrearEjercicios", treeListContabilidad);  
+                    SetNodeDisable("optCrearEjercicios", treeListContabilidad);
             }
             else
                 navGroupContabilidad.Visible = false;
 
-           //Validar el Resto de modulos
+            //Validar el Resto de modulos
             if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.AdministracionSistema, DT))
             {
                 this.navGroupAdministracion.Visible = true;
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.RegistrarTipoCambio, DT))
-                    SetNodeDisable("optTipoCambio",treeListAdministracion);
+                    SetNodeDisable("optTipoCambio", treeListAdministracion);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.ParametrosGenerales, DT))
                     SetNodeDisable("optParametrosGenerales", treeListAdministracion);
                 if (!UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.ModificacionReportes, DT))
                     SetNodeDisable("optReportDesigner", treeListAdministracion);
-            } else
+            }
+            else
                 this.navGroupAdministracion.Visible = false;
 
             //Desactivar Factura
@@ -262,6 +273,8 @@ namespace MainMenu
         {
             DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
             node = ((TreeList)sender).FocusedNode;
+            if (node.Tag == null)
+                return;
             if (Application.OpenForms[node.Tag.ToString()] != null)
             {
                 Application.OpenForms[node.Tag.ToString()].Activate();
@@ -333,6 +346,7 @@ namespace MainMenu
                     break;
             }
 
+
         }
 
         void ofrmParametrosGenerales_FormClosed(object sender, FormClosedEventArgs e)
@@ -352,7 +366,7 @@ namespace MainMenu
                 case "treeListInventario":
                     TreeListNode nodeArticulo = tl.AppendNode(new object[] { "Artículo" }, -1, 11, 11, 11);
                     nodeArticulo.Tag = "optArticulo";
-                    
+
                     TreeListNode nodeLotes = tl.AppendNode(new object[] { "Lotes" }, -1, 11, 11, 11);
                     nodeLotes.Tag = "optLote";
                     TreeListNode nodeTransacciones = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
@@ -380,7 +394,7 @@ namespace MainMenu
                     nodeParametros.Tag = "frmParametrosGenerales";
                     TreeListNode nodeReportDesigner = tl.AppendNode(new object[] { "Diseñador de Reportes" }, -1, 11, 11, 11);
                     nodeReportDesigner.Tag = "frmDesigner";
-                    
+
                     break;
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);
@@ -477,7 +491,7 @@ namespace MainMenu
         {
 
             DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
-            node = ((TreeList) sender).FocusedNode;
+            node = ((TreeList)sender).FocusedNode;
             switch (node.Tag.ToString())
             {
                 case "optCuenta":
@@ -530,6 +544,6 @@ namespace MainMenu
             Application.Exit();
         }
 
-     
+
     }
 }
