@@ -31,5 +31,26 @@ namespace CG.DAC
             return DS;
         }
 
+
+            public static DataSet GetMovimientosByCentroCuenta(int IdCuenta,int IDCentro,DateTime FechaInicial, DateTime FechaFinal)
+        {
+            String strSQL = "dbo.cntGetMovimientosCentroCuenta";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IdCuenta", IdCuenta));
+            oCmd.Parameters.Add(new SqlParameter("@IdCentro", IDCentro));
+            oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
+            oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+            
+            return DS;
+        }
+
+        
     }
 }

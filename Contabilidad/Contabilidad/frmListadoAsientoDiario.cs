@@ -118,6 +118,12 @@ namespace CG
             this.btnEliminar.ItemClick += BtnEliminar_ItemClick;
             this.btnFiltro.ItemClick += BtnFiltro_ItemClick;
             this.btnExportar.ItemClick += BtnExportar_ItemClick;
+            this.btnRefrescar.ItemClick += btnRefrescar_ItemClick;
+        }
+
+        void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PopulateGrid();
         }
 
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

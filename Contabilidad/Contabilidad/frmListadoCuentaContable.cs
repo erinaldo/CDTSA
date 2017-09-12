@@ -399,7 +399,7 @@ namespace CG
                     currentRow["IDCuentaMayor"] = (this.slkupCuentaMayor.EditValue == null) ? 0 : this.slkupCuentaMayor.EditValue;
                     currentRow["UsaCentroCosto"] = (this.chkUsaCentroCosto.EditValue == null) ? false : this.chkUsaCentroCosto.EditValue;
                     currentRow["Complementaria"] = (this.chkComplementaria.EditValue == null) ? false : this.chkComplementaria.EditValue;
-                    currentRow["IDSeccion"] = 0;
+                    
 
 
 
@@ -471,7 +471,7 @@ namespace CG
                     currentRow["IDCuentaMayor"] = (this.slkupCuentaMayor.EditValue == null) ? 0 : this.slkupCuentaMayor.EditValue;
                     currentRow["UsaCentroCosto"] = (this.chkUsaCentroCosto.EditValue == null) ? false : this.chkUsaCentroCosto.EditValue;
                     currentRow["Complementaria"] = (this.chkComplementaria.EditValue == null) ? false : this.chkComplementaria.EditValue;
-                    currentRow["IDSeccion"] = 0;
+                    
 
 
                     _dtCuenta.Rows.Add(currentRow);

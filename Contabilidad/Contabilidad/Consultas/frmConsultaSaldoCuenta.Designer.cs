@@ -38,7 +38,6 @@
             this.Debitos = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SaldoFinal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.chkSaldosAntesCierre = new DevExpress.XtraEditors.CheckEdit();
             this.dtHasta = new DevExpress.XtraEditors.DateEdit();
             this.dtDesde = new DevExpress.XtraEditors.DateEdit();
             this.slkupCentroCosto = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -52,28 +51,28 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMonedaDolar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMonedaLocal = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSaldosAntesCierre.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties.CalendarTimeProperties)).BeginInit();
@@ -89,20 +88,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.grid);
-            this.layoutControl1.Controls.Add(this.chkSaldosAntesCierre);
             this.layoutControl1.Controls.Add(this.dtHasta);
             this.layoutControl1.Controls.Add(this.dtDesde);
             this.layoutControl1.Controls.Add(this.slkupCentroCosto);
@@ -113,7 +111,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(997, 208, 387, 405);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(576, 208, 387, 405);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(864, 277);
             this.layoutControl1.TabIndex = 0;
@@ -128,6 +126,7 @@
             this.grid.TabIndex = 8;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.grid.DoubleClick += new System.EventHandler(this.grid_DoubleClick);
             // 
             // gridView1
             // 
@@ -140,12 +139,14 @@
             this.SaldoFinal});
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // Cuenta
             // 
             this.Cuenta.Caption = "Cuenta";
             this.Cuenta.FieldName = "Cuenta";
             this.Cuenta.Name = "Cuenta";
+            this.Cuenta.OptionsColumn.AllowFocus = false;
             this.Cuenta.Visible = true;
             this.Cuenta.VisibleIndex = 0;
             // 
@@ -154,6 +155,7 @@
             this.Descripcion.Caption = "Descripcion";
             this.Descripcion.FieldName = "DescrCuenta";
             this.Descripcion.Name = "Descripcion";
+            this.Descripcion.OptionsColumn.AllowFocus = false;
             this.Descripcion.Visible = true;
             this.Descripcion.VisibleIndex = 1;
             // 
@@ -162,6 +164,7 @@
             this.SaldoInicial.Caption = "Saldo Inicial";
             this.SaldoInicial.FieldName = "SaldoAnterior";
             this.SaldoInicial.Name = "SaldoInicial";
+            this.SaldoInicial.OptionsColumn.AllowFocus = false;
             this.SaldoInicial.Visible = true;
             this.SaldoInicial.VisibleIndex = 2;
             // 
@@ -170,6 +173,7 @@
             this.Debitos.Caption = "Débitos";
             this.Debitos.FieldName = "Debito";
             this.Debitos.Name = "Debitos";
+            this.Debitos.OptionsColumn.AllowFocus = false;
             this.Debitos.Visible = true;
             this.Debitos.VisibleIndex = 3;
             // 
@@ -178,6 +182,7 @@
             this.Creditos.Caption = "Créditos";
             this.Creditos.FieldName = "Credito";
             this.Creditos.Name = "Creditos";
+            this.Creditos.OptionsColumn.AllowFocus = false;
             this.Creditos.Visible = true;
             this.Creditos.VisibleIndex = 4;
             // 
@@ -186,17 +191,9 @@
             this.SaldoFinal.Caption = "Saldo Final";
             this.SaldoFinal.FieldName = "Saldo";
             this.SaldoFinal.Name = "SaldoFinal";
+            this.SaldoFinal.OptionsColumn.AllowFocus = false;
             this.SaldoFinal.Visible = true;
             this.SaldoFinal.VisibleIndex = 5;
-            // 
-            // chkSaldosAntesCierre
-            // 
-            this.chkSaldosAntesCierre.Location = new System.Drawing.Point(528, 36);
-            this.chkSaldosAntesCierre.Name = "chkSaldosAntesCierre";
-            this.chkSaldosAntesCierre.Properties.Caption = "Saldos Antes de Cierre";
-            this.chkSaldosAntesCierre.Size = new System.Drawing.Size(324, 19);
-            this.chkSaldosAntesCierre.StyleController = this.layoutControl1;
-            this.chkSaldosAntesCierre.TabIndex = 7;
             // 
             // dtHasta
             // 
@@ -207,7 +204,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtHasta.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtHasta.Size = new System.Drawing.Size(188, 20);
+            this.dtHasta.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.dtHasta.Size = new System.Drawing.Size(196, 20);
             this.dtHasta.StyleController = this.layoutControl1;
             this.dtHasta.TabIndex = 6;
             // 
@@ -220,6 +218,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDesde.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtDesde.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
             this.dtDesde.Size = new System.Drawing.Size(180, 20);
             this.dtDesde.StyleController = this.layoutControl1;
             this.dtDesde.TabIndex = 5;
@@ -244,6 +243,7 @@
             // 
             // txtSaldoInicial
             // 
+            this.txtSaldoInicial.Enabled = false;
             this.txtSaldoInicial.Location = new System.Drawing.Point(121, 76);
             this.txtSaldoInicial.Name = "txtSaldoInicial";
             this.txtSaldoInicial.Size = new System.Drawing.Size(123, 20);
@@ -252,6 +252,7 @@
             // 
             // txtTotalDebitos
             // 
+            this.txtTotalDebitos.Enabled = false;
             this.txtTotalDebitos.Location = new System.Drawing.Point(248, 76);
             this.txtTotalDebitos.Name = "txtTotalDebitos";
             this.txtTotalDebitos.Size = new System.Drawing.Size(144, 20);
@@ -260,6 +261,7 @@
             // 
             // txtTotalCredito
             // 
+            this.txtTotalCredito.Enabled = false;
             this.txtTotalCredito.Location = new System.Drawing.Point(396, 76);
             this.txtTotalCredito.Name = "txtTotalCredito";
             this.txtTotalCredito.Size = new System.Drawing.Size(136, 20);
@@ -268,6 +270,7 @@
             // 
             // txtSaldoFinal
             // 
+            this.txtSaldoFinal.Enabled = false;
             this.txtSaldoFinal.Location = new System.Drawing.Point(536, 76);
             this.txtSaldoFinal.Name = "txtSaldoFinal";
             this.txtSaldoFinal.Size = new System.Drawing.Size(151, 20);
@@ -283,13 +286,13 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.layoutControlItem5,
-            this.layoutControlItem4,
             this.emptySpaceItem1,
             this.simpleLabelItem1,
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlItem9,
-            this.layoutControlItem10});
+            this.layoutControlItem10,
+            this.emptySpaceItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(864, 277);
@@ -318,7 +321,7 @@
             this.layoutControlItem3.Control = this.dtHasta;
             this.layoutControlItem3.Location = new System.Drawing.Point(254, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(262, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(270, 24);
             this.layoutControlItem3.Text = "Hasta:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(67, 13);
             // 
@@ -330,15 +333,6 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(844, 150);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.chkSaldosAntesCierre;
-            this.layoutControlItem4.Location = new System.Drawing.Point(516, 24);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(328, 24);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
@@ -420,6 +414,14 @@
             this.layoutControlItem10.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem10.TextSize = new System.Drawing.Size(67, 13);
             // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(524, 24);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(320, 24);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // ribbonControl
             // 
             this.ribbonControl.ExpandCollapseItem.Id = 0;
@@ -428,12 +430,12 @@
             this.btnCancelar,
             this.lblStatus,
             this.btnExportar,
-            this.btnRefrescar,
-            this.barButtonItem1,
-            this.barButtonItem2,
-            this.barButtonItem3});
+            this.btnMonedaDolar,
+            this.btnMonedaLocal,
+            this.barButtonItem3,
+            this.barButtonItem1});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 7;
+            this.ribbonControl.MaxItemId = 10;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -447,6 +449,7 @@
             this.btnCancelar.Id = 4;
             this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
             this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelar_ItemClick);
             // 
             // lblStatus
             // 
@@ -461,31 +464,25 @@
             this.btnExportar.Id = 2;
             this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
             this.btnExportar.Name = "btnExportar";
+            this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
             // 
-            // btnRefrescar
+            // btnMonedaDolar
             // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 3;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefrescar_ItemClick);
+            this.btnMonedaDolar.Caption = "Moneda Dolar";
+            this.btnMonedaDolar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.Glyph")));
+            this.btnMonedaDolar.Id = 4;
+            this.btnMonedaDolar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.LargeGlyph")));
+            this.btnMonedaDolar.Name = "btnMonedaDolar";
+            this.btnMonedaDolar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaDolar_ItemClick);
             // 
-            // barButtonItem1
+            // btnMonedaLocal
             // 
-            this.barButtonItem1.Caption = "Moneda Dolar";
-            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
-            this.barButtonItem1.Id = 4;
-            this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "Moneda Local";
-            this.barButtonItem2.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.Glyph")));
-            this.barButtonItem2.Id = 5;
-            this.barButtonItem2.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.LargeGlyph")));
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.btnMonedaLocal.Caption = "Moneda Local";
+            this.btnMonedaLocal.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.Glyph")));
+            this.btnMonedaLocal.Id = 5;
+            this.btnMonedaLocal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.LargeGlyph")));
+            this.btnMonedaLocal.Name = "btnMonedaLocal";
+            this.btnMonedaLocal.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaLocal_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -494,6 +491,11 @@
             this.barButtonItem3.Id = 6;
             this.barButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.LargeGlyph")));
             this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Id = 9;
+            this.barButtonItem1.Name = "barButtonItem1";
             // 
             // ribbonPage1
             // 
@@ -507,11 +509,20 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem3);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem2);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaDolar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaLocal);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
+            // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 3;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            this.btnRefrescar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefrescar_ItemClick);
             // 
             // frmConsultaSaldoCuenta
             // 
@@ -528,7 +539,6 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSaldosAntesCierre.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties.CalendarTimeProperties)).EndInit();
@@ -544,13 +554,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -563,7 +573,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl grid;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.CheckEdit chkSaldosAntesCierre;
         private DevExpress.XtraEditors.DateEdit dtHasta;
         private DevExpress.XtraEditors.DateEdit dtDesde;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCentroCosto;
@@ -571,7 +580,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
@@ -580,7 +588,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem btnExportar;
-        private DevExpress.XtraBars.BarButtonItem btnRefrescar;
         private DevExpress.XtraGrid.Columns.GridColumn Cuenta;
         private DevExpress.XtraGrid.Columns.GridColumn Descripcion;
         private DevExpress.XtraGrid.Columns.GridColumn SaldoInicial;
@@ -596,8 +603,11 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btnMonedaDolar;
+        private DevExpress.XtraBars.BarButtonItem btnMonedaLocal;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnRefrescar;
     }
 }

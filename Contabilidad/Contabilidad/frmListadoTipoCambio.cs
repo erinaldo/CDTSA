@@ -273,7 +273,7 @@ namespace CG
                     PopulateGrid();
                     SetCurrentRow();
                     HabilitarControles(false);
-                    AplicarPrivilegios();
+                   // AplicarPrivilegios();
                 }
                 else
                 {
@@ -299,7 +299,7 @@ namespace CG
                     PopulateGrid();
                     SetCurrentRow();
                     HabilitarControles(false);
-                    AplicarPrivilegios();
+                    //AplicarPrivilegios();
                     ColumnView view = this.gridView;
                     view.MoveLast();
                 }
@@ -317,7 +317,7 @@ namespace CG
         {
             isEdition = false;
             HabilitarControles(false);
-            AplicarPrivilegios();
+            //AplicarPrivilegios();
             SetCurrentRow();
             lblStatus.Caption = "";
         }

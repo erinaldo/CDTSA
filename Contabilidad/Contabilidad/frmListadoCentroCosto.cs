@@ -54,7 +54,13 @@ namespace CG
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             this.btnExportar.ItemClick += BtnExportar_ItemClick;
+            this.btnRefrescar.ItemClick += btnRefrescar_ItemClick;
             this.gridView.FocusedRowChanged += gridView1_FocusedRowChanged;
+        }
+
+        void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PopulateGrid();
         }
 
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

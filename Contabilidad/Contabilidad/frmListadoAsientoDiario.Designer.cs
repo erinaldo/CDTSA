@@ -52,6 +52,7 @@
             this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -72,9 +73,10 @@
             this.btnEliminar,
             this.lblStatus,
             this.btnFiltro,
-            this.btnExportar});
+            this.btnExportar,
+            this.btnRefrescar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 4;
+            this.ribbonControl.MaxItemId = 5;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -150,6 +152,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -289,6 +292,14 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 4;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            // 
             // frmListadoAsientoDiario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,5 +349,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn CuadreTemporal;
         private DevExpress.XtraGrid.Columns.GridColumn Usuario;
         private DevExpress.XtraBars.BarButtonItem btnExportar;
+        private DevExpress.XtraBars.BarButtonItem btnRefrescar;
     }
 }

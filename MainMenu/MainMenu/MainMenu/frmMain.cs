@@ -314,6 +314,13 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmConsultaSaldoCuenta.Show();
                     break;
+                case "frmConsultaSaldoCentro":
+                    frmConsultaSaldoCentro ofrmConsultaSaldoCentro = new frmConsultaSaldoCentro();
+                    ofrmConsultaSaldoCentro.MdiParent = this;
+                    ofrmConsultaSaldoCentro.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmConsultaSaldoCentro.Show();
+                    break;
                 case "frmParametrosContables":
                     frmParametrosContables ofrmParametrosContabilidad = new frmParametrosContables();
                     ofrmParametrosContabilidad.MdiParent = this;
@@ -426,7 +433,7 @@ namespace MainMenu
                     TreeListNode nodeConsultasDeCuentasContables = tl.AppendNode(new object[] { "De Cuentas Contables" }, nodeConsultasContabilidad.Id, 11, 11, 11);
                     nodeConsultasDeCuentasContables.Tag = "frmConsultaSaldoCuenta";
                     TreeListNode nodeConsultasDeCentrosDeCostos = tl.AppendNode(new object[] { "De Centros de Costos" }, nodeConsultasContabilidad.Id, 11, 11, 11);
-                    nodeConsultasDeCentrosDeCostos.Tag = "optConsultasDeCentrosDeCostos";
+                    nodeConsultasDeCentrosDeCostos.Tag = "frmConsultaSaldoCentro";
                     TreeListNode nodeConsultasPorPeriodoContable = tl.AppendNode(new object[] { "Por Periodo Contable" }, nodeConsultasContabilidad.Id, 11, 11, 11);
                     nodeConsultasPorPeriodoContable.Tag = "optConsultasPorPeriodoContable";
                     TreeListNode nodeConsultasLibroMayor = tl.AppendNode(new object[] { "Libro Mayor" }, nodeConsultasContabilidad.Id, 11, 11, 11);

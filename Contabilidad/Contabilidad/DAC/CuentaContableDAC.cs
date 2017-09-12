@@ -16,7 +16,7 @@ namespace CG
         private static SqlDataAdapter InicializarAdaptador()
         {
             String getSQL = "SELECT A.IDCuenta,A.IDGrupo,G.Descr DescrGrupo,A.IDTipo,T.Descr DescrTipo,A.IDSubTipo,ST.Descr DescrSubTipo,A.Tipo,A.SubTipo,A.Nivel1,A.Nivel2,A.Nivel3,A.Nivel4,A.Nivel5,A.Cuenta,A.Descr,A.Complementaria," +
-                             "A.EsMayor,A.AceptaDatos,A.Activa,A.IDCuentaAnterior,A.IDCuentaMayor,B.Descr DescrCuentaMayor, A.UsaCentroCosto,A.IDSeccion " +
+                             "A.EsMayor,A.AceptaDatos,A.Activa,A.IDCuentaAnterior,A.IDCuentaMayor,B.Descr DescrCuentaMayor, A.UsaCentroCosto " +
                             "FROM dbo.cntCuenta A" +
                             " LEFT JOIN dbo.cntCuenta B ON A.IDCuentaMayor = B.IDCuenta " +
                             "INNER JOIN dbo.cntTipoCuenta T ON A.IDTipo=T.IDTipo " +
@@ -85,7 +85,7 @@ namespace CG
                 oAdaptador.InsertCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.Int).SourceColumn = "IDCuentaAnterior";
                 oAdaptador.InsertCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "IDCuentaMayor";
                 oAdaptador.InsertCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
-                oAdaptador.InsertCommand.Parameters.Add("@IDSeccion", SqlDbType.Int).Value = null;
+                
 
 
                 //Paremetros Update 
@@ -108,7 +108,7 @@ namespace CG
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.Int).SourceColumn = "IDCuentaAnterior";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "IDCuentaMayor";
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDSeccion", SqlDbType.Int).Value = null;
+                
 
 
 
@@ -133,7 +133,7 @@ namespace CG
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.Int).SourceColumn = "IDCuentaAnterior";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "IDCuentaMayor";
                 oAdaptador.DeleteCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDSeccion", SqlDbType.Int).Value = null;
+                
                 
                 return oAdaptador;
             }

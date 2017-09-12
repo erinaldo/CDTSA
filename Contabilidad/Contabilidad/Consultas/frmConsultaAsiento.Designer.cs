@@ -1,6 +1,6 @@
 ﻿namespace CG
 {
-    partial class frmConsultaSaldoCuentaContable
+    partial class frmConsultaAsiento
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaSaldoCuentaContable));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaAsiento));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtDescrCuentaContable = new DevExpress.XtraEditors.TextEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -38,7 +38,6 @@
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonedaDolar = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonedaLocal = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.btnSalir = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -50,12 +49,16 @@
             this.txtSaldoInicial = new DevExpress.XtraEditors.TextEdit();
             this.grid = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SaldoIncial = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Debitos = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SaldoFinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Fecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Asiento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ModuloFuente = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TipoAsiento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Concepto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Debito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Credito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CreadoBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.UserMayorizado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FechaHora = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtAl = new DevExpress.XtraEditors.TextEdit();
             this.txtDel = new DevExpress.XtraEditors.TextEdit();
             this.txtCuentaContable = new DevExpress.XtraEditors.TextEdit();
@@ -77,6 +80,8 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).BeginInit();
@@ -155,7 +160,6 @@
             this.btnExportar,
             this.btnMonedaDolar,
             this.btnMonedaLocal,
-            this.btnRefrescar,
             this.btnSalir});
             this.barManager1.MaxItemId = 6;
             // 
@@ -170,7 +174,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnExportar),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMonedaDolar),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnMonedaLocal),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefrescar),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSalir)});
             this.bar1.Text = "Herramientas";
             // 
@@ -187,6 +190,7 @@
             this.btnExportar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.Glyph")));
             this.btnExportar.Id = 1;
             this.btnExportar.Name = "btnExportar";
+            this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
             // 
             // btnMonedaDolar
             // 
@@ -195,6 +199,7 @@
             this.btnMonedaDolar.Id = 2;
             this.btnMonedaDolar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.LargeGlyph")));
             this.btnMonedaDolar.Name = "btnMonedaDolar";
+            this.btnMonedaDolar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaDolar_ItemClick);
             // 
             // btnMonedaLocal
             // 
@@ -203,14 +208,7 @@
             this.btnMonedaLocal.Id = 3;
             this.btnMonedaLocal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.LargeGlyph")));
             this.btnMonedaLocal.Name = "btnMonedaLocal";
-            // 
-            // btnRefrescar
-            // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 4;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
+            this.btnMonedaLocal.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaLocal_ItemClick);
             // 
             // btnSalir
             // 
@@ -218,6 +216,7 @@
             this.btnSalir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnSalir.Glyph")));
             this.btnSalir.Id = 5;
             this.btnSalir.Name = "btnSalir";
+            this.btnSalir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSalir_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -292,56 +291,114 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Fecha,
             this.Cuenta,
-            this.Descripcion,
-            this.SaldoIncial,
-            this.Debitos,
-            this.Creditos,
-            this.SaldoFinal});
+            this.DescrCuenta,
+            this.Asiento,
+            this.ModuloFuente,
+            this.TipoAsiento,
+            this.Concepto,
+            this.Debito,
+            this.Credito,
+            this.CreadoBy,
+            this.UserMayorizado,
+            this.FechaHora});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
-            // Cuenta
+            // Fecha
             // 
-            this.Cuenta.Caption = "Cuenta";
-            this.Cuenta.Name = "Cuenta";
-            this.Cuenta.Visible = true;
-            this.Cuenta.VisibleIndex = 0;
+            this.Fecha.Caption = "Fecha";
+            this.Fecha.FieldName = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.OptionsColumn.AllowFocus = false;
+            this.Fecha.Visible = true;
+            this.Fecha.VisibleIndex = 0;
             // 
-            // Descripcion
+            // Asiento
             // 
-            this.Descripcion.Caption = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.Visible = true;
-            this.Descripcion.VisibleIndex = 1;
+            this.Asiento.Caption = "Asiento";
+            this.Asiento.FieldName = "Asiento";
+            this.Asiento.Name = "Asiento";
+            this.Asiento.OptionsColumn.AllowFocus = false;
+            this.Asiento.Visible = true;
+            this.Asiento.VisibleIndex = 1;
             // 
-            // SaldoIncial
+            // ModuloFuente
             // 
-            this.SaldoIncial.Caption = "Saldo Inicial";
-            this.SaldoIncial.Name = "SaldoIncial";
-            this.SaldoIncial.Visible = true;
-            this.SaldoIncial.VisibleIndex = 2;
+            this.ModuloFuente.Caption = "gridColumn1";
+            this.ModuloFuente.FieldName = "ModuloFuente";
+            this.ModuloFuente.Name = "ModuloFuente";
+            this.ModuloFuente.OptionsColumn.AllowFocus = false;
+            this.ModuloFuente.Visible = true;
+            this.ModuloFuente.VisibleIndex = 6;
             // 
-            // Debitos
+            // TipoAsiento
             // 
-            this.Debitos.Caption = "Débitos";
-            this.Debitos.Name = "Debitos";
-            this.Debitos.Visible = true;
-            this.Debitos.VisibleIndex = 3;
+            this.TipoAsiento.Caption = "Tipo Asiento";
+            this.TipoAsiento.FieldName = "Tipo";
+            this.TipoAsiento.Name = "TipoAsiento";
+            this.TipoAsiento.OptionsColumn.AllowFocus = false;
+            this.TipoAsiento.Visible = true;
+            this.TipoAsiento.VisibleIndex = 3;
             // 
-            // Creditos
+            // Concepto
             // 
-            this.Creditos.Caption = "Créditos";
-            this.Creditos.Name = "Creditos";
-            this.Creditos.Visible = true;
-            this.Creditos.VisibleIndex = 4;
+            this.Concepto.Caption = "Concepto";
+            this.Concepto.FieldName = "Concepto";
+            this.Concepto.Name = "Concepto";
+            this.Concepto.OptionsColumn.AllowFocus = false;
+            this.Concepto.Visible = true;
+            this.Concepto.VisibleIndex = 2;
             // 
-            // SaldoFinal
+            // Debito
             // 
-            this.SaldoFinal.Caption = "Saldo Final";
-            this.SaldoFinal.Name = "SaldoFinal";
-            this.SaldoFinal.Visible = true;
-            this.SaldoFinal.VisibleIndex = 5;
+            this.Debito.Caption = "Débito";
+            this.Debito.FieldName = "Debito";
+            this.Debito.Name = "Debito";
+            this.Debito.OptionsColumn.AllowFocus = false;
+            this.Debito.Visible = true;
+            this.Debito.VisibleIndex = 4;
+            // 
+            // Credito
+            // 
+            this.Credito.Caption = "Crédito";
+            this.Credito.FieldName = "Credito";
+            this.Credito.Name = "Credito";
+            this.Credito.OptionsColumn.AllowFocus = false;
+            this.Credito.Visible = true;
+            this.Credito.VisibleIndex = 5;
+            // 
+            // CreadoBy
+            // 
+            this.CreadoBy.Caption = "Creado Por";
+            this.CreadoBy.CustomizationCaption = "CreatedBy";
+            this.CreadoBy.FieldName = "Createdby";
+            this.CreadoBy.Name = "CreadoBy";
+            this.CreadoBy.OptionsColumn.AllowFocus = false;
+            this.CreadoBy.Visible = true;
+            this.CreadoBy.VisibleIndex = 7;
+            // 
+            // UserMayorizado
+            // 
+            this.UserMayorizado.Caption = "Usuario Mayorizado";
+            this.UserMayorizado.CustomizationCaption = "MayorizadoBy";
+            this.UserMayorizado.FieldName = "Mayorizadoby";
+            this.UserMayorizado.Name = "UserMayorizado";
+            this.UserMayorizado.OptionsColumn.AllowFocus = false;
+            this.UserMayorizado.Visible = true;
+            this.UserMayorizado.VisibleIndex = 8;
+            // 
+            // FechaHora
+            // 
+            this.FechaHora.Caption = "Fecha Hora";
+            this.FechaHora.FieldName = "FechaHora";
+            this.FechaHora.Name = "FechaHora";
+            this.FechaHora.OptionsColumn.AllowFocus = false;
+            this.FechaHora.Visible = true;
+            this.FechaHora.VisibleIndex = 9;
             // 
             // txtAl
             // 
@@ -581,7 +638,23 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // frmConsultaSaldoCuentaContable
+            // Cuenta
+            // 
+            this.Cuenta.Caption = "Cuenta";
+            this.Cuenta.FieldName = "Cuenta";
+            this.Cuenta.Name = "Cuenta";
+            this.Cuenta.Visible = true;
+            this.Cuenta.VisibleIndex = 10;
+            // 
+            // DescrCuenta
+            // 
+            this.DescrCuenta.Caption = "Descr Cuenta";
+            this.DescrCuenta.FieldName = "DescrCuenta";
+            this.DescrCuenta.Name = "DescrCuenta";
+            this.DescrCuenta.Visible = true;
+            this.DescrCuenta.VisibleIndex = 11;
+            // 
+            // frmConsultaAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -592,8 +665,9 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmConsultaSaldoCuentaContable";
+            this.Name = "frmConsultaAsiento";
             this.Text = "Consulta Saldo Cuenta";
+            this.Load += new System.EventHandler(this.frmConsultaSaldoCuentaContable_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).EndInit();
@@ -657,12 +731,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
-        private DevExpress.XtraGrid.Columns.GridColumn Cuenta;
-        private DevExpress.XtraGrid.Columns.GridColumn Descripcion;
-        private DevExpress.XtraGrid.Columns.GridColumn SaldoIncial;
-        private DevExpress.XtraGrid.Columns.GridColumn Debitos;
-        private DevExpress.XtraGrid.Columns.GridColumn Creditos;
-        private DevExpress.XtraGrid.Columns.GridColumn SaldoFinal;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
@@ -670,7 +738,7 @@
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnMonedaDolar;
         private DevExpress.XtraBars.BarButtonItem btnMonedaLocal;
-        private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        
         private DevExpress.XtraBars.BarButtonItem btnSalir;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
@@ -679,5 +747,17 @@
         private DevExpress.XtraEditors.TextEdit txtDescrCuentaContable;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraGrid.Columns.GridColumn Fecha;
+        private DevExpress.XtraGrid.Columns.GridColumn Asiento;
+        private DevExpress.XtraGrid.Columns.GridColumn Concepto;
+        private DevExpress.XtraGrid.Columns.GridColumn TipoAsiento;
+        private DevExpress.XtraGrid.Columns.GridColumn Debito;
+        private DevExpress.XtraGrid.Columns.GridColumn Credito;
+        private DevExpress.XtraGrid.Columns.GridColumn ModuloFuente;
+        private DevExpress.XtraGrid.Columns.GridColumn CreadoBy;
+        private DevExpress.XtraGrid.Columns.GridColumn UserMayorizado;
+        private DevExpress.XtraGrid.Columns.GridColumn FechaHora;
+        private DevExpress.XtraGrid.Columns.GridColumn Cuenta;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrCuenta;
     }
 }
