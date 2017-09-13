@@ -50,6 +50,8 @@
             this.grid = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Fecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Asiento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ModuloFuente = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TipoAsiento = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,8 +82,6 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DescrCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).BeginInit();
@@ -142,6 +142,7 @@
             this.txtDescrCuentaContable.Location = new System.Drawing.Point(237, 36);
             this.txtDescrCuentaContable.MenuManager = this.barManager1;
             this.txtDescrCuentaContable.Name = "txtDescrCuentaContable";
+            this.txtDescrCuentaContable.Properties.ReadOnly = true;
             this.txtDescrCuentaContable.Size = new System.Drawing.Size(410, 20);
             this.txtDescrCuentaContable.StyleController = this.layoutControl1;
             this.txtDescrCuentaContable.TabIndex = 14;
@@ -250,6 +251,7 @@
             // 
             this.txtSaldoFinal.Location = new System.Drawing.Point(536, 115);
             this.txtSaldoFinal.Name = "txtSaldoFinal";
+            this.txtSaldoFinal.Properties.ReadOnly = true;
             this.txtSaldoFinal.Size = new System.Drawing.Size(151, 20);
             this.txtSaldoFinal.StyleController = this.layoutControl1;
             this.txtSaldoFinal.TabIndex = 13;
@@ -258,6 +260,7 @@
             // 
             this.txtTotalCredito.Location = new System.Drawing.Point(396, 115);
             this.txtTotalCredito.Name = "txtTotalCredito";
+            this.txtTotalCredito.Properties.ReadOnly = true;
             this.txtTotalCredito.Size = new System.Drawing.Size(136, 20);
             this.txtTotalCredito.StyleController = this.layoutControl1;
             this.txtTotalCredito.TabIndex = 12;
@@ -266,6 +269,7 @@
             // 
             this.txtTotalDebito.Location = new System.Drawing.Point(248, 115);
             this.txtTotalDebito.Name = "txtTotalDebito";
+            this.txtTotalDebito.Properties.ReadOnly = true;
             this.txtTotalDebito.Size = new System.Drawing.Size(144, 20);
             this.txtTotalDebito.StyleController = this.layoutControl1;
             this.txtTotalDebito.TabIndex = 11;
@@ -274,6 +278,7 @@
             // 
             this.txtSaldoInicial.Location = new System.Drawing.Point(121, 115);
             this.txtSaldoInicial.Name = "txtSaldoInicial";
+            this.txtSaldoInicial.Properties.ReadOnly = true;
             this.txtSaldoInicial.Size = new System.Drawing.Size(123, 20);
             this.txtSaldoInicial.StyleController = this.layoutControl1;
             this.txtSaldoInicial.TabIndex = 10;
@@ -307,6 +312,10 @@
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Fecha, DevExpress.Data.ColumnSortOrder.Ascending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Cuenta, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // Fecha
             // 
@@ -316,6 +325,25 @@
             this.Fecha.OptionsColumn.AllowFocus = false;
             this.Fecha.Visible = true;
             this.Fecha.VisibleIndex = 0;
+            this.Fecha.Width = 91;
+            // 
+            // Cuenta
+            // 
+            this.Cuenta.Caption = "Cuenta";
+            this.Cuenta.FieldName = "Cuenta";
+            this.Cuenta.Name = "Cuenta";
+            this.Cuenta.Visible = true;
+            this.Cuenta.VisibleIndex = 10;
+            this.Cuenta.Width = 78;
+            // 
+            // DescrCuenta
+            // 
+            this.DescrCuenta.Caption = "Descr Cuenta";
+            this.DescrCuenta.FieldName = "DescrCuenta";
+            this.DescrCuenta.Name = "DescrCuenta";
+            this.DescrCuenta.Visible = true;
+            this.DescrCuenta.VisibleIndex = 11;
+            this.DescrCuenta.Width = 20;
             // 
             // Asiento
             // 
@@ -325,15 +353,17 @@
             this.Asiento.OptionsColumn.AllowFocus = false;
             this.Asiento.Visible = true;
             this.Asiento.VisibleIndex = 1;
+            this.Asiento.Width = 142;
             // 
             // ModuloFuente
             // 
-            this.ModuloFuente.Caption = "gridColumn1";
+            this.ModuloFuente.Caption = "Modulo Fuente";
             this.ModuloFuente.FieldName = "ModuloFuente";
             this.ModuloFuente.Name = "ModuloFuente";
             this.ModuloFuente.OptionsColumn.AllowFocus = false;
             this.ModuloFuente.Visible = true;
             this.ModuloFuente.VisibleIndex = 6;
+            this.ModuloFuente.Width = 79;
             // 
             // TipoAsiento
             // 
@@ -352,6 +382,7 @@
             this.Concepto.OptionsColumn.AllowFocus = false;
             this.Concepto.Visible = true;
             this.Concepto.VisibleIndex = 2;
+            this.Concepto.Width = 170;
             // 
             // Debito
             // 
@@ -361,6 +392,7 @@
             this.Debito.OptionsColumn.AllowFocus = false;
             this.Debito.Visible = true;
             this.Debito.VisibleIndex = 4;
+            this.Debito.Width = 112;
             // 
             // Credito
             // 
@@ -370,6 +402,7 @@
             this.Credito.OptionsColumn.AllowFocus = false;
             this.Credito.Visible = true;
             this.Credito.VisibleIndex = 5;
+            this.Credito.Width = 138;
             // 
             // CreadoBy
             // 
@@ -380,6 +413,7 @@
             this.CreadoBy.OptionsColumn.AllowFocus = false;
             this.CreadoBy.Visible = true;
             this.CreadoBy.VisibleIndex = 7;
+            this.CreadoBy.Width = 89;
             // 
             // UserMayorizado
             // 
@@ -390,6 +424,7 @@
             this.UserMayorizado.OptionsColumn.AllowFocus = false;
             this.UserMayorizado.Visible = true;
             this.UserMayorizado.VisibleIndex = 8;
+            this.UserMayorizado.Width = 107;
             // 
             // FechaHora
             // 
@@ -399,11 +434,13 @@
             this.FechaHora.OptionsColumn.AllowFocus = false;
             this.FechaHora.Visible = true;
             this.FechaHora.VisibleIndex = 9;
+            this.FechaHora.Width = 77;
             // 
             // txtAl
             // 
             this.txtAl.Location = new System.Drawing.Point(417, 60);
             this.txtAl.Name = "txtAl";
+            this.txtAl.Properties.ReadOnly = true;
             this.txtAl.Size = new System.Drawing.Size(230, 20);
             this.txtAl.StyleController = this.layoutControl1;
             this.txtAl.TabIndex = 8;
@@ -412,6 +449,7 @@
             // 
             this.txtDel.Location = new System.Drawing.Point(100, 60);
             this.txtDel.Name = "txtDel";
+            this.txtDel.Properties.ReadOnly = true;
             this.txtDel.Size = new System.Drawing.Size(225, 20);
             this.txtDel.StyleController = this.layoutControl1;
             this.txtDel.TabIndex = 7;
@@ -420,6 +458,7 @@
             // 
             this.txtCuentaContable.Location = new System.Drawing.Point(100, 36);
             this.txtCuentaContable.Name = "txtCuentaContable";
+            this.txtCuentaContable.Properties.ReadOnly = true;
             this.txtCuentaContable.Size = new System.Drawing.Size(133, 20);
             this.txtCuentaContable.StyleController = this.layoutControl1;
             this.txtCuentaContable.TabIndex = 6;
@@ -428,6 +467,7 @@
             // 
             this.txtDescrCentroCosto.Location = new System.Drawing.Point(237, 12);
             this.txtDescrCentroCosto.Name = "txtDescrCentroCosto";
+            this.txtDescrCentroCosto.Properties.ReadOnly = true;
             this.txtDescrCentroCosto.Size = new System.Drawing.Size(410, 20);
             this.txtDescrCentroCosto.StyleController = this.layoutControl1;
             this.txtDescrCentroCosto.TabIndex = 5;
@@ -436,6 +476,7 @@
             // 
             this.txtCentroCosto.Location = new System.Drawing.Point(100, 12);
             this.txtCentroCosto.Name = "txtCentroCosto";
+            this.txtCentroCosto.Properties.ReadOnly = true;
             this.txtCentroCosto.Size = new System.Drawing.Size(133, 20);
             this.txtCentroCosto.StyleController = this.layoutControl1;
             this.txtCentroCosto.TabIndex = 4;
@@ -637,22 +678,6 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(414, 24);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
-            // 
-            // Cuenta
-            // 
-            this.Cuenta.Caption = "Cuenta";
-            this.Cuenta.FieldName = "Cuenta";
-            this.Cuenta.Name = "Cuenta";
-            this.Cuenta.Visible = true;
-            this.Cuenta.VisibleIndex = 10;
-            // 
-            // DescrCuenta
-            // 
-            this.DescrCuenta.Caption = "Descr Cuenta";
-            this.DescrCuenta.FieldName = "DescrCuenta";
-            this.DescrCuenta.Name = "DescrCuenta";
-            this.DescrCuenta.Visible = true;
-            this.DescrCuenta.VisibleIndex = 11;
             // 
             // frmConsultaAsiento
             // 

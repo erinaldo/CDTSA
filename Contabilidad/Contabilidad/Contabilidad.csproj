@@ -113,12 +113,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consultas\frmConsultaSaldoCentroCosto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Consultas\frmConsultaSaldoCentroCosto.Designer.cs">
-      <DependentUpon>frmConsultaSaldoCentroCosto.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAC\AsientoDetalleDAC.cs" />
     <Compile Include="DAC\ConsultasDAC.cs" />
     <Compile Include="DAC\Cuenta_GrupoEstadosFinancierosDAC.cs" />
@@ -288,9 +282,6 @@
     <Compile Include="Reporte\Asiento\rptAsiento.Designer.cs">
       <DependentUpon>rptAsiento.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Consultas\frmConsultaSaldoCentroCosto.resx">
-      <DependentUpon>frmConsultaSaldoCentroCosto.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmGrupoEstadosFinancieros.resx">
       <DependentUpon>frmGrupoEstadosFinancieros.cs</DependentUpon>
     </EmbeddedResource>

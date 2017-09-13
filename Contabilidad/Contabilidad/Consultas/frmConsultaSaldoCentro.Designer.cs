@@ -67,6 +67,8 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -204,30 +206,30 @@
             // 
             // txtTotalDebitos
             // 
-            this.txtTotalDebitos.Enabled = false;
             this.txtTotalDebitos.Location = new System.Drawing.Point(194, 76);
             this.txtTotalDebitos.MenuManager = this.ribbonControl;
             this.txtTotalDebitos.Name = "txtTotalDebitos";
+            this.txtTotalDebitos.Properties.ReadOnly = true;
             this.txtTotalDebitos.Size = new System.Drawing.Size(85, 20);
             this.txtTotalDebitos.StyleController = this.layoutControl1;
             this.txtTotalDebitos.TabIndex = 12;
             // 
             // txtTotalCredito
             // 
-            this.txtTotalCredito.Enabled = false;
             this.txtTotalCredito.Location = new System.Drawing.Point(283, 76);
             this.txtTotalCredito.MenuManager = this.ribbonControl;
             this.txtTotalCredito.Name = "txtTotalCredito";
+            this.txtTotalCredito.Properties.ReadOnly = true;
             this.txtTotalCredito.Size = new System.Drawing.Size(85, 20);
             this.txtTotalCredito.StyleController = this.layoutControl1;
             this.txtTotalCredito.TabIndex = 11;
             // 
             // txtSaldoFinal
             // 
-            this.txtSaldoFinal.Enabled = false;
             this.txtSaldoFinal.Location = new System.Drawing.Point(372, 76);
             this.txtSaldoFinal.MenuManager = this.ribbonControl;
             this.txtSaldoFinal.Name = "txtSaldoFinal";
+            this.txtSaldoFinal.Properties.ReadOnly = true;
             this.txtSaldoFinal.Size = new System.Drawing.Size(108, 20);
             this.txtSaldoFinal.StyleController = this.layoutControl1;
             this.txtSaldoFinal.TabIndex = 10;
@@ -235,10 +237,10 @@
             // txtSaldoInicial
             // 
             this.txtSaldoInicial.EditValue = "";
-            this.txtSaldoInicial.Enabled = false;
             this.txtSaldoInicial.Location = new System.Drawing.Point(103, 76);
             this.txtSaldoInicial.MenuManager = this.ribbonControl;
             this.txtSaldoInicial.Name = "txtSaldoInicial";
+            this.txtSaldoInicial.Properties.ReadOnly = true;
             this.txtSaldoInicial.Size = new System.Drawing.Size(87, 20);
             this.txtSaldoInicial.StyleController = this.layoutControl1;
             this.txtSaldoInicial.TabIndex = 9;
@@ -258,6 +260,8 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Cuenta,
+            this.DescrCuenta,
             this.CentroCosto,
             this.Descr,
             this.SaldoInicial,
@@ -267,6 +271,9 @@
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.CentroCosto, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // CentroCosto
             // 
@@ -276,8 +283,10 @@
             this.CentroCosto.OptionsColumn.AllowEdit = false;
             this.CentroCosto.OptionsColumn.AllowFocus = false;
             this.CentroCosto.OptionsColumn.ReadOnly = true;
+            this.CentroCosto.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
             this.CentroCosto.Visible = true;
-            this.CentroCosto.VisibleIndex = 0;
+            this.CentroCosto.VisibleIndex = 2;
+            this.CentroCosto.Width = 123;
             // 
             // Descr
             // 
@@ -286,7 +295,8 @@
             this.Descr.Name = "Descr";
             this.Descr.OptionsColumn.AllowFocus = false;
             this.Descr.Visible = true;
-            this.Descr.VisibleIndex = 1;
+            this.Descr.VisibleIndex = 3;
+            this.Descr.Width = 248;
             // 
             // SaldoInicial
             // 
@@ -294,7 +304,8 @@
             this.SaldoInicial.Name = "SaldoInicial";
             this.SaldoInicial.OptionsColumn.AllowFocus = false;
             this.SaldoInicial.Visible = true;
-            this.SaldoInicial.VisibleIndex = 2;
+            this.SaldoInicial.VisibleIndex = 4;
+            this.SaldoInicial.Width = 101;
             // 
             // Debitos
             // 
@@ -302,7 +313,8 @@
             this.Debitos.Name = "Debitos";
             this.Debitos.OptionsColumn.AllowFocus = false;
             this.Debitos.Visible = true;
-            this.Debitos.VisibleIndex = 3;
+            this.Debitos.VisibleIndex = 5;
+            this.Debitos.Width = 85;
             // 
             // Credito
             // 
@@ -310,7 +322,8 @@
             this.Credito.Name = "Credito";
             this.Credito.OptionsColumn.AllowFocus = false;
             this.Credito.Visible = true;
-            this.Credito.VisibleIndex = 4;
+            this.Credito.VisibleIndex = 6;
+            this.Credito.Width = 78;
             // 
             // SaldoFinal
             // 
@@ -318,7 +331,8 @@
             this.SaldoFinal.Name = "SaldoFinal";
             this.SaldoFinal.OptionsColumn.AllowFocus = false;
             this.SaldoFinal.Visible = true;
-            this.SaldoFinal.VisibleIndex = 5;
+            this.SaldoFinal.VisibleIndex = 7;
+            this.SaldoFinal.Width = 111;
             // 
             // dtpFechaFinal
             // 
@@ -495,6 +509,28 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(249, 40);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // Cuenta
+            // 
+            this.Cuenta.Caption = "Cuenta";
+            this.Cuenta.FieldName = "Cuenta";
+            this.Cuenta.Name = "Cuenta";
+            this.Cuenta.OptionsColumn.AllowFocus = false;
+            this.Cuenta.OptionsColumn.ReadOnly = true;
+            this.Cuenta.Visible = true;
+            this.Cuenta.VisibleIndex = 0;
+            this.Cuenta.Width = 144;
+            // 
+            // DescrCuenta
+            // 
+            this.DescrCuenta.Caption = "DescrCuenta";
+            this.DescrCuenta.FieldName = "DescrCuenta";
+            this.DescrCuenta.Name = "DescrCuenta";
+            this.DescrCuenta.OptionsColumn.AllowFocus = false;
+            this.DescrCuenta.OptionsColumn.ReadOnly = true;
+            this.DescrCuenta.Visible = true;
+            this.DescrCuenta.VisibleIndex = 1;
+            this.DescrCuenta.Width = 262;
+            // 
             // frmConsultaSaldoCentro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -578,5 +614,7 @@
         private DevExpress.XtraBars.BarButtonItem btnMonedaLoca;
         private DevExpress.XtraGrid.Columns.GridColumn SaldoInicial;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn Cuenta;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrCuenta;
     }
 }

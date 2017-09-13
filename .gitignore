@@ -241,3 +241,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+SQL DB/._.DS_Store
+SQL DB/.DS_Store

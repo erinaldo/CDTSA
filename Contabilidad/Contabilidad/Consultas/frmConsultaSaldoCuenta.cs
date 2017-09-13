@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using CG.DAC;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace CG
 {
@@ -69,10 +71,10 @@ namespace CG
         }
 
         private void CargarDatosSegunMoneda(DataTable dt) {
-            this.gridView1.Columns[3].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
-            this.gridView1.Columns[4].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
-            this.gridView1.Columns[2].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
-            this.gridView1.Columns[5].FieldName = (sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar";
+            this.gridView1.Columns[5].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
+            this.gridView1.Columns[6].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
+            this.gridView1.Columns[4].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
+            this.gridView1.Columns[7].FieldName = (sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar";
             this.gridView1.RefreshData();
 
             if (dt.Rows.Count > 0)
@@ -121,16 +123,27 @@ namespace CG
             this.Close();
         }
 
-        private void grid_DoubleClick(object sender, EventArgs e)
+
+
+
+        private  void DoRowDoubleClick(GridView view, Point pt)
         {
-            if (this.gridView1.SelectedRowsCount > 0)
+            GridHitInfo info = view.CalcHitInfo(pt);
+            if (info.InRow || info.InRowCell)
             {
-                DataRow dr = this.gridView1.GetDataRow(this.gridView1.GetSelectedRows()[0]);
+                DataRow dr = view.GetDataRow(view.GetSelectedRows()[0]);
                 frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtDesde.EditValue), Convert.ToDateTime(this.dtHasta.EditValue));
                 frmConsultaAsiento.ShowDialog();
+                
             }
         }
 
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            GridView view = (GridView)sender;
+            Point pt = view.GridControl.PointToClient(Control.MousePosition);
+            DoRowDoubleClick(view, pt);
+        }
      
     }
 }

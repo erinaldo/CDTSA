@@ -69,6 +69,8 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
+            this.DescrCentro = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CentroCosto = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
@@ -126,11 +128,12 @@
             this.grid.TabIndex = 8;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.grid.DoubleClick += new System.EventHandler(this.grid_DoubleClick);
             // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.CentroCosto,
+            this.DescrCentro,
             this.Cuenta,
             this.Descripcion,
             this.SaldoInicial,
@@ -140,6 +143,9 @@
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Cuenta, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // Cuenta
             // 
@@ -147,8 +153,9 @@
             this.Cuenta.FieldName = "Cuenta";
             this.Cuenta.Name = "Cuenta";
             this.Cuenta.OptionsColumn.AllowFocus = false;
+            this.Cuenta.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
             this.Cuenta.Visible = true;
-            this.Cuenta.VisibleIndex = 0;
+            this.Cuenta.VisibleIndex = 2;
             // 
             // Descripcion
             // 
@@ -157,7 +164,7 @@
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.OptionsColumn.AllowFocus = false;
             this.Descripcion.Visible = true;
-            this.Descripcion.VisibleIndex = 1;
+            this.Descripcion.VisibleIndex = 3;
             // 
             // SaldoInicial
             // 
@@ -166,7 +173,7 @@
             this.SaldoInicial.Name = "SaldoInicial";
             this.SaldoInicial.OptionsColumn.AllowFocus = false;
             this.SaldoInicial.Visible = true;
-            this.SaldoInicial.VisibleIndex = 2;
+            this.SaldoInicial.VisibleIndex = 4;
             // 
             // Debitos
             // 
@@ -175,7 +182,7 @@
             this.Debitos.Name = "Debitos";
             this.Debitos.OptionsColumn.AllowFocus = false;
             this.Debitos.Visible = true;
-            this.Debitos.VisibleIndex = 3;
+            this.Debitos.VisibleIndex = 5;
             // 
             // Creditos
             // 
@@ -184,7 +191,7 @@
             this.Creditos.Name = "Creditos";
             this.Creditos.OptionsColumn.AllowFocus = false;
             this.Creditos.Visible = true;
-            this.Creditos.VisibleIndex = 4;
+            this.Creditos.VisibleIndex = 6;
             // 
             // SaldoFinal
             // 
@@ -193,7 +200,7 @@
             this.SaldoFinal.Name = "SaldoFinal";
             this.SaldoFinal.OptionsColumn.AllowFocus = false;
             this.SaldoFinal.Visible = true;
-            this.SaldoFinal.VisibleIndex = 5;
+            this.SaldoFinal.VisibleIndex = 7;
             // 
             // dtHasta
             // 
@@ -243,36 +250,36 @@
             // 
             // txtSaldoInicial
             // 
-            this.txtSaldoInicial.Enabled = false;
             this.txtSaldoInicial.Location = new System.Drawing.Point(121, 76);
             this.txtSaldoInicial.Name = "txtSaldoInicial";
+            this.txtSaldoInicial.Properties.ReadOnly = true;
             this.txtSaldoInicial.Size = new System.Drawing.Size(123, 20);
             this.txtSaldoInicial.StyleController = this.layoutControl1;
             this.txtSaldoInicial.TabIndex = 10;
             // 
             // txtTotalDebitos
             // 
-            this.txtTotalDebitos.Enabled = false;
             this.txtTotalDebitos.Location = new System.Drawing.Point(248, 76);
             this.txtTotalDebitos.Name = "txtTotalDebitos";
+            this.txtTotalDebitos.Properties.ReadOnly = true;
             this.txtTotalDebitos.Size = new System.Drawing.Size(144, 20);
             this.txtTotalDebitos.StyleController = this.layoutControl1;
             this.txtTotalDebitos.TabIndex = 11;
             // 
             // txtTotalCredito
             // 
-            this.txtTotalCredito.Enabled = false;
             this.txtTotalCredito.Location = new System.Drawing.Point(396, 76);
             this.txtTotalCredito.Name = "txtTotalCredito";
+            this.txtTotalCredito.Properties.ReadOnly = true;
             this.txtTotalCredito.Size = new System.Drawing.Size(136, 20);
             this.txtTotalCredito.StyleController = this.layoutControl1;
             this.txtTotalCredito.TabIndex = 12;
             // 
             // txtSaldoFinal
             // 
-            this.txtSaldoFinal.Enabled = false;
             this.txtSaldoFinal.Location = new System.Drawing.Point(536, 76);
             this.txtSaldoFinal.Name = "txtSaldoFinal";
+            this.txtSaldoFinal.Properties.ReadOnly = true;
             this.txtSaldoFinal.Size = new System.Drawing.Size(151, 20);
             this.txtSaldoFinal.StyleController = this.layoutControl1;
             this.txtSaldoFinal.TabIndex = 13;
@@ -524,6 +531,26 @@
             this.btnRefrescar.Name = "btnRefrescar";
             this.btnRefrescar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefrescar_ItemClick);
             // 
+            // DescrCentro
+            // 
+            this.DescrCentro.Caption = "DescrCentro";
+            this.DescrCentro.FieldName = "DescrCentroCosto";
+            this.DescrCentro.Name = "DescrCentro";
+            this.DescrCentro.OptionsColumn.AllowFocus = false;
+            this.DescrCentro.OptionsColumn.ReadOnly = true;
+            this.DescrCentro.Visible = true;
+            this.DescrCentro.VisibleIndex = 1;
+            // 
+            // CentroCosto
+            // 
+            this.CentroCosto.Caption = "Centro";
+            this.CentroCosto.FieldName = "Centro";
+            this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.OptionsColumn.AllowFocus = false;
+            this.CentroCosto.OptionsColumn.ReadOnly = true;
+            this.CentroCosto.Visible = true;
+            this.CentroCosto.VisibleIndex = 0;
+            // 
             // frmConsultaSaldoCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -609,5 +636,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        private DevExpress.XtraGrid.Columns.GridColumn CentroCosto;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrCentro;
     }
 }
