@@ -132,7 +132,7 @@ namespace CG
             if (info.InRow || info.InRowCell)
             {
                 DataRow dr = view.GetDataRow(view.GetSelectedRows()[0]);
-                frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtDesde.EditValue), Convert.ToDateTime(this.dtHasta.EditValue));
+                frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtDesde.EditValue), Convert.ToDateTime(this.dtHasta.EditValue), Convert.ToDecimal(this.txtTasaCambio.Text));
                 frmConsultaAsiento.ShowDialog();
                 
             }
@@ -143,6 +143,17 @@ namespace CG
             GridView view = (GridView)sender;
             Point pt = view.GridControl.PointToClient(Control.MousePosition);
             DoRowDoubleClick(view, pt);
+        }
+
+        private void dtHasta_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.dtHasta.EditValue != null)
+            {
+                DateTime Fecha = Convert.ToDateTime(this.dtHasta.EditValue);
+                Fecha = new DateTime(Fecha.Year, Fecha.Month + 1, 1).AddDays(-1);
+                double TipoCambio = TipoCambioDetalleDAC.GetLastTipoCambioFecha(Fecha);
+                this.txtTasaCambio.Text = TipoCambio.ToString();
+            }
         }
      
     }

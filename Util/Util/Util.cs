@@ -62,7 +62,7 @@ namespace Util
             NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
             nfi.CurrencySymbol = ForeingSimbolCurrency;
             // Use the ToString method to format the value as currency ("c").
-            cevent.Value = ((decimal)cevent.Value).ToString("C" + DecimalLenght, nfi);
+            cevent.Value = ((decimal)cevent.Value).ToString("c" + DecimalLenght, nfi);
 
         }
 
@@ -73,7 +73,7 @@ namespace Util
             {
                 case FormatType.MonedaExtrangera:
 
-                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency;
+                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency.Trim() +  " ";
                     texto.Mask.Culture = ci;
                     texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     texto.Mask.EditMask = "c" + DecimalLenght;
@@ -81,7 +81,7 @@ namespace Util
                     break;
                 case FormatType.MonedaLocal:
 
-                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency;
+                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency.Trim() +  " ";
                     texto.Mask.Culture = ci;
                     texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     texto.Mask.EditMask = "c" + DecimalLenght;//string.Format("#,###,###,##0.00", Config.LocalSimbolCurrency);
@@ -139,7 +139,7 @@ namespace Util
             {
                 case FormatType.MonedaExtrangera:
 
-                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency;
+                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency.Trim() + " ";
                     texto.Properties.Mask.Culture = ci;
                     texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     texto.Properties.Mask.EditMask = "c" + DecimalLenght;
@@ -147,7 +147,7 @@ namespace Util
                     break;
                 case FormatType.MonedaLocal:
 
-                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency;
+                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency.Trim() + " ";
                     texto.Properties.Mask.Culture = ci;
                     texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     texto.Properties.Mask.EditMask = "c" + DecimalLenght;//string.Format("#,###,###,##0.00", Config.LocalSimbolCurrency);

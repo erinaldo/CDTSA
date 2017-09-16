@@ -29,9 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaSaldoCuenta));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtTasaCambio = new DevExpress.XtraEditors.TextEdit();
+            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
+            this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMonedaDolar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMonedaLocal = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.grid = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.CentroCosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrCentro = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SaldoInicial = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,21 +74,11 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
-            this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
-            this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnMonedaDolar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnMonedaLocal = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
-            this.DescrCentro = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.CentroCosto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTasaCambio.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).BeginInit();
@@ -97,11 +103,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtTasaCambio);
             this.layoutControl1.Controls.Add(this.grid);
             this.layoutControl1.Controls.Add(this.dtHasta);
             this.layoutControl1.Controls.Add(this.dtDesde);
@@ -118,6 +125,123 @@
             this.layoutControl1.Size = new System.Drawing.Size(864, 277);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtTasaCambio
+            // 
+            this.txtTasaCambio.Location = new System.Drawing.Point(766, 36);
+            this.txtTasaCambio.MenuManager = this.ribbonControl;
+            this.txtTasaCambio.Name = "txtTasaCambio";
+            this.txtTasaCambio.Properties.DisplayFormat.FormatString = "#,###,###,###.00$";
+            this.txtTasaCambio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTasaCambio.Properties.Mask.BeepOnError = true;
+            this.txtTasaCambio.Properties.Mask.EditMask = "#,###,###,###.00$";
+            this.txtTasaCambio.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTasaCambio.Properties.ReadOnly = true;
+            this.txtTasaCambio.Size = new System.Drawing.Size(86, 20);
+            this.txtTasaCambio.StyleController = this.layoutControl1;
+            this.txtTasaCambio.TabIndex = 14;
+            // 
+            // ribbonControl
+            // 
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl.ExpandCollapseItem,
+            this.btnCancelar,
+            this.lblStatus,
+            this.btnExportar,
+            this.btnMonedaDolar,
+            this.btnMonedaLocal,
+            this.barButtonItem3,
+            this.barButtonItem1});
+            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.MaxItemId = 10;
+            this.ribbonControl.Name = "ribbonControl";
+            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
+            this.ribbonControl.Size = new System.Drawing.Size(864, 143);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Caption = "Cancelar";
+            this.btnCancelar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Glyph")));
+            this.btnCancelar.Id = 4;
+            this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelar_ItemClick);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Id = 1;
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Caption = "Exportar";
+            this.btnExportar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.Glyph")));
+            this.btnExportar.Id = 2;
+            this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
+            // 
+            // btnMonedaDolar
+            // 
+            this.btnMonedaDolar.Caption = "Moneda Dolar";
+            this.btnMonedaDolar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.Glyph")));
+            this.btnMonedaDolar.Id = 4;
+            this.btnMonedaDolar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.LargeGlyph")));
+            this.btnMonedaDolar.Name = "btnMonedaDolar";
+            this.btnMonedaDolar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaDolar_ItemClick);
+            // 
+            // btnMonedaLocal
+            // 
+            this.btnMonedaLocal.Caption = "Moneda Local";
+            this.btnMonedaLocal.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.Glyph")));
+            this.btnMonedaLocal.Id = 5;
+            this.btnMonedaLocal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.LargeGlyph")));
+            this.btnMonedaLocal.Name = "btnMonedaLocal";
+            this.btnMonedaLocal.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaLocal_ItemClick);
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "Impriir";
+            this.barButtonItem3.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.Glyph")));
+            this.barButtonItem3.Id = 6;
+            this.barButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.LargeGlyph")));
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Id = 9;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Operaciones Consulta de Saldo Cuenta";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem3);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaDolar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaLocal);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Acciones";
+            // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 3;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            this.btnRefrescar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefrescar_ItemClick);
             // 
             // grid
             // 
@@ -140,12 +264,41 @@
             this.Debitos,
             this.Creditos,
             this.SaldoFinal});
+            gridFormatRule1.Column = this.SaldoFinal;
+            gridFormatRule1.ColumnApplyTo = this.SaldoFinal;
+            gridFormatRule1.Name = "SaldoFinalNegativo";
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less;
+            formatConditionRuleValue1.Value1 = 0D;
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Cuenta, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
+            // 
+            // CentroCosto
+            // 
+            this.CentroCosto.Caption = "Centro";
+            this.CentroCosto.FieldName = "Centro";
+            this.CentroCosto.Name = "CentroCosto";
+            this.CentroCosto.OptionsColumn.AllowFocus = false;
+            this.CentroCosto.OptionsColumn.ReadOnly = true;
+            this.CentroCosto.Visible = true;
+            this.CentroCosto.VisibleIndex = 0;
+            // 
+            // DescrCentro
+            // 
+            this.DescrCentro.Caption = "DescrCentro";
+            this.DescrCentro.FieldName = "DescrCentroCosto";
+            this.DescrCentro.Name = "DescrCentro";
+            this.DescrCentro.OptionsColumn.AllowFocus = false;
+            this.DescrCentro.OptionsColumn.ReadOnly = true;
+            this.DescrCentro.Visible = true;
+            this.DescrCentro.VisibleIndex = 1;
             // 
             // Cuenta
             // 
@@ -215,6 +368,7 @@
             this.dtHasta.Size = new System.Drawing.Size(196, 20);
             this.dtHasta.StyleController = this.layoutControl1;
             this.dtHasta.TabIndex = 6;
+            this.dtHasta.EditValueChanged += new System.EventHandler(this.dtHasta_EditValueChanged);
             // 
             // dtDesde
             // 
@@ -299,7 +453,8 @@
             this.layoutControlItem8,
             this.layoutControlItem9,
             this.layoutControlItem10,
-            this.emptySpaceItem2});
+            this.emptySpaceItem2,
+            this.layoutControlItem4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(864, 277);
@@ -426,130 +581,17 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(524, 24);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(320, 24);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(160, 24);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // ribbonControl
+            // layoutControlItem4
             // 
-            this.ribbonControl.ExpandCollapseItem.Id = 0;
-            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl.ExpandCollapseItem,
-            this.btnCancelar,
-            this.lblStatus,
-            this.btnExportar,
-            this.btnMonedaDolar,
-            this.btnMonedaLocal,
-            this.barButtonItem3,
-            this.barButtonItem1});
-            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 10;
-            this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1});
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl.Size = new System.Drawing.Size(864, 143);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Caption = "Cancelar";
-            this.btnCancelar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Glyph")));
-            this.btnCancelar.Id = 4;
-            this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelar_ItemClick);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Id = 1;
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.Caption = "Exportar";
-            this.btnExportar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.Glyph")));
-            this.btnExportar.Id = 2;
-            this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
-            // 
-            // btnMonedaDolar
-            // 
-            this.btnMonedaDolar.Caption = "Moneda Dolar";
-            this.btnMonedaDolar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.Glyph")));
-            this.btnMonedaDolar.Id = 4;
-            this.btnMonedaDolar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaDolar.LargeGlyph")));
-            this.btnMonedaDolar.Name = "btnMonedaDolar";
-            this.btnMonedaDolar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaDolar_ItemClick);
-            // 
-            // btnMonedaLocal
-            // 
-            this.btnMonedaLocal.Caption = "Moneda Local";
-            this.btnMonedaLocal.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.Glyph")));
-            this.btnMonedaLocal.Id = 5;
-            this.btnMonedaLocal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMonedaLocal.LargeGlyph")));
-            this.btnMonedaLocal.Name = "btnMonedaLocal";
-            this.btnMonedaLocal.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaLocal_ItemClick);
-            // 
-            // barButtonItem3
-            // 
-            this.barButtonItem3.Caption = "Impriir";
-            this.barButtonItem3.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.Glyph")));
-            this.barButtonItem3.Id = 6;
-            this.barButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.LargeGlyph")));
-            this.barButtonItem3.Name = "barButtonItem3";
-            // 
-            // barButtonItem1
-            // 
-            this.barButtonItem1.Id = 9;
-            this.barButtonItem1.Name = "barButtonItem1";
-            // 
-            // ribbonPage1
-            // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Operaciones Consulta de Saldo Cuenta";
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem3);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaDolar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaLocal);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Acciones";
-            // 
-            // btnRefrescar
-            // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 3;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
-            this.btnRefrescar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefrescar_ItemClick);
-            // 
-            // DescrCentro
-            // 
-            this.DescrCentro.Caption = "DescrCentro";
-            this.DescrCentro.FieldName = "DescrCentroCosto";
-            this.DescrCentro.Name = "DescrCentro";
-            this.DescrCentro.OptionsColumn.AllowFocus = false;
-            this.DescrCentro.OptionsColumn.ReadOnly = true;
-            this.DescrCentro.Visible = true;
-            this.DescrCentro.VisibleIndex = 1;
-            // 
-            // CentroCosto
-            // 
-            this.CentroCosto.Caption = "Centro";
-            this.CentroCosto.FieldName = "Centro";
-            this.CentroCosto.Name = "CentroCosto";
-            this.CentroCosto.OptionsColumn.AllowFocus = false;
-            this.CentroCosto.OptionsColumn.ReadOnly = true;
-            this.CentroCosto.Visible = true;
-            this.CentroCosto.VisibleIndex = 0;
+            this.layoutControlItem4.Control = this.txtTasaCambio;
+            this.layoutControlItem4.Location = new System.Drawing.Point(684, 24);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(160, 24);
+            this.layoutControlItem4.Text = "T/C:";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(67, 13);
             // 
             // frmConsultaSaldoCuenta
             // 
@@ -564,6 +606,8 @@
             this.Text = "Consulta de Saldos de Cuentas";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtTasaCambio.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).EndInit();
@@ -588,7 +632,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -638,5 +682,7 @@
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
         private DevExpress.XtraGrid.Columns.GridColumn CentroCosto;
         private DevExpress.XtraGrid.Columns.GridColumn DescrCentro;
+        private DevExpress.XtraEditors.TextEdit txtTasaCambio;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

@@ -29,16 +29,21 @@ namespace CG
 
         private void FrmConsultaSaldoCentro_Load(object sender, EventArgs e)
         {
-            DateTime fechatemp = DateTime.Today;
-            this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
-            this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
+            try
+            {
+                DateTime fechatemp = DateTime.Today;
+                this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
+                this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
 
 
-            _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
-           
-            Util.Util.ConfigLookupEdit(this.slkupCuenta, _dtCuenta, "Descr", "IDCuenta");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuenta, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
 
+                Util.Util.ConfigLookupEdit(this.slkupCuenta, _dtCuenta, "Descr", "IDCuenta");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuenta, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -68,14 +73,15 @@ namespace CG
             //}
             this.grid.DataSource = dtDetallado;
             CargarDatosSegunMoneda(dtConsolidado);
+            this.gridView1.Columns[0].SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
         }
 
         private void CargarDatosSegunMoneda(DataTable dt)
         {
-            this.gridView1.Columns[3].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
-            this.gridView1.Columns[4].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
-            this.gridView1.Columns[2].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
-            this.gridView1.Columns[5].FieldName = (sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar";
+            this.gridView1.Columns[5].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
+            this.gridView1.Columns[6].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
+            this.gridView1.Columns[4].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
+            this.gridView1.Columns[7].FieldName = (sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar";
             this.gridView1.RefreshData();
 
             if (dt.Rows.Count > 0)
@@ -126,7 +132,7 @@ namespace CG
         {
             if (this.gridView1.SelectedRowsCount > 0) {
                 DataRow dr = this.gridView1.GetDataRow(this.gridView1.GetSelectedRows()[0]);
-                frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtpFechaInicial.EditValue), Convert.ToDateTime(this.dtpFechaFinal.EditValue));
+                frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtpFechaInicial.EditValue), Convert.ToDateTime(this.dtpFechaFinal.EditValue),Convert.ToDecimal(this.txtTipoCambio.Text));
                 frmConsultaAsiento.ShowDialog();
             }
         }
@@ -137,7 +143,7 @@ namespace CG
             if (info.InRow || info.InRowCell)
             {
                 DataRow dr = view.GetDataRow(view.GetSelectedRows()[0]);
-                frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtpFechaInicial.EditValue), Convert.ToDateTime(this.dtpFechaFinal.EditValue));
+                frmConsultaAsiento frmConsultaAsiento = new frmConsultaAsiento(dr, Convert.ToDateTime(this.dtpFechaInicial.EditValue), Convert.ToDateTime(this.dtpFechaFinal.EditValue),Convert.ToDecimal(this.txtTipoCambio.Text));
                 frmConsultaAsiento.ShowDialog();
                 
             }
@@ -148,6 +154,19 @@ namespace CG
             GridView view = (GridView)sender;
             Point pt = view.GridControl.PointToClient(Control.MousePosition);
             DoRowDoubleClick(view, pt);
+        }
+
+
+
+        private void dtpFechaFinal_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.dtpFechaInicial.EditValue != null)
+            {
+                DateTime Fecha = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
+                Fecha = new DateTime(Fecha.Year, Fecha.Month + 1, 1).AddDays(-1);
+                double TipoCambio = TipoCambioDetalleDAC.GetLastTipoCambioFecha(Fecha);
+                this.txtTipoCambio.Text = TipoCambio.ToString();
+            }
         }
     
     }
