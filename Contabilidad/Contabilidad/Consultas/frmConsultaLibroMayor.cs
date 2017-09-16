@@ -88,39 +88,54 @@ namespace CG
 
         private void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            String  sCuenta = (this.chkComboCuenta.EditValue == null) ? "" : this.chkComboCuenta.EditValue.ToString();
-            bool bEsDeMayor = Convert.ToBoolean(this.chkCuentasMayor.EditValue);
-
-            DataSet DS = new DataSet();
-           // this.chkComboCuenta.EditValue;
-            String[] lstCuenta = sCuenta.Split('|');
-            DataTable dt = new DataTable();
-            dt.Columns.Add("IDCuenta", typeof(int));
-            if (sCuenta != "")
+            try
             {
-                foreach (string ele in lstCuenta)
+                String sCuenta = (this.chkComboCuenta.EditValue == null) ? "" : this.chkComboCuenta.EditValue.ToString();
+                bool bEsDeMayor = Convert.ToBoolean(this.chkCuentasMayor.EditValue);
+
+                DataSet DS = new DataSet();
+                // this.chkComboCuenta.EditValue;
+                String[] lstCuenta = sCuenta.Split('|');
+                DataTable dt = new DataTable();
+                dt.Columns.Add("IDCuenta", typeof(int));
+                if (sCuenta != "")
                 {
-                    dt.Rows.Add(Convert.ToUInt32(ele));
+                    foreach (string ele in lstCuenta)
+                    {
+                        dt.Rows.Add(Convert.ToUInt32(ele));
+                    }
                 }
+
+                DS = ConsultasDAC.ConsultaLibroMayor((bEsDeMayor) ? 1 : 0, Convert.ToDateTime(this.dtpFechaInicial.EditValue), Convert.ToDateTime(this.dtpFechaFinal.EditValue), dt);
+                dtDetallado = DS.Tables[0];
+
+                Util.Util.SetFormatTextEditGrid(this.txtGridSaldoInicial, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+                Util.Util.SetFormatTextEditGrid(this.txtGridCreditos, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+                Util.Util.SetFormatTextEditGrid(this.txtGridDebito, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+                Util.Util.SetFormatTextEditGrid(this.txtGridSaldoFinal, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+
+
+                this.gridView.Columns[5].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
+                this.gridView.Columns[6].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
+                this.gridView.Columns[4].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
+                this.gridView.Columns[7].FieldName = (sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar";
+
+
+                this.grid.DataSource = dtDetallado;
+                this.gridView.Columns[0].SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
             }
-
-            DS = ConsultasDAC.ConsultaLibroMayor((bEsDeMayor) ? 1: 0 ,Convert.ToDateTime(this.dtpFechaInicial.EditValue), Convert.ToDateTime(this.dtpFechaFinal.EditValue),dt);
-            dtDetallado = DS.Tables[0];
-
-
-
-            this.gridView.Columns[5].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
-            this.gridView.Columns[6].FieldName =(sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
-            this.gridView.Columns[4].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
-            this.gridView.Columns[7].FieldName = (sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar";
-
-           
-            this.grid.DataSource = dtDetallado;
-            this.gridView.Columns[0].SortOrder = DevExpress.Data.ColumnSortOrder.Ascending;
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CargarDatosSegunMoneda(DataTable dt)
         {
+            Util.Util.SetFormatTextEditGrid(this.txtGridSaldoInicial, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEditGrid(this.txtGridCreditos, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEditGrid(this.txtGridDebito, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEditGrid(this.txtGridSaldoFinal, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+
             this.gridView.Columns[5].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
             this.gridView.Columns[6].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
             this.gridView.Columns[4].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";

@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaSaldoCuenta));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            this.SaldoFinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridSaldoFinal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtTasaCambio = new DevExpress.XtraEditors.TextEdit();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -51,9 +53,11 @@
             this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SaldoInicial = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridSaldoInicial = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Debitos = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.SaldoFinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.dtHasta = new DevExpress.XtraEditors.DateEdit();
             this.dtDesde = new DevExpress.XtraEditors.DateEdit();
             this.slkupCentroCosto = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -75,16 +79,16 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtGridSaldoInicial = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.txtGridSaldoFinal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTasaCambio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties.CalendarTimeProperties)).BeginInit();
@@ -108,11 +112,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SaldoFinal
+            // 
+            this.SaldoFinal.Caption = "Saldo Final";
+            this.SaldoFinal.ColumnEdit = this.txtGridSaldoFinal;
+            this.SaldoFinal.FieldName = "Saldo";
+            this.SaldoFinal.Name = "SaldoFinal";
+            this.SaldoFinal.OptionsColumn.AllowFocus = false;
+            this.SaldoFinal.Visible = true;
+            this.SaldoFinal.VisibleIndex = 7;
+            // 
+            // txtGridSaldoFinal
+            // 
+            this.txtGridSaldoFinal.AutoHeight = false;
+            this.txtGridSaldoFinal.Name = "txtGridSaldoFinal";
             // 
             // layoutControl1
             // 
@@ -213,7 +228,7 @@
             // 
             // barButtonItem3
             // 
-            this.barButtonItem3.Caption = "Impriir";
+            this.barButtonItem3.Caption = "Imprimir";
             this.barButtonItem3.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.Glyph")));
             this.barButtonItem3.Id = 6;
             this.barButtonItem3.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.LargeGlyph")));
@@ -342,6 +357,11 @@
             this.SaldoInicial.Visible = true;
             this.SaldoInicial.VisibleIndex = 4;
             // 
+            // txtGridSaldoInicial
+            // 
+            this.txtGridSaldoInicial.AutoHeight = false;
+            this.txtGridSaldoInicial.Name = "txtGridSaldoInicial";
+            // 
             // Debitos
             // 
             this.Debitos.Caption = "Débitos";
@@ -351,6 +371,11 @@
             this.Debitos.OptionsColumn.AllowFocus = false;
             this.Debitos.Visible = true;
             this.Debitos.VisibleIndex = 5;
+            // 
+            // txtGridDebito
+            // 
+            this.txtGridDebito.AutoHeight = false;
+            this.txtGridDebito.Name = "txtGridDebito";
             // 
             // Creditos
             // 
@@ -362,15 +387,10 @@
             this.Creditos.Visible = true;
             this.Creditos.VisibleIndex = 6;
             // 
-            // SaldoFinal
+            // txtGridCredito
             // 
-            this.SaldoFinal.Caption = "Saldo Final";
-            this.SaldoFinal.ColumnEdit = this.txtGridSaldoFinal;
-            this.SaldoFinal.FieldName = "Saldo";
-            this.SaldoFinal.Name = "SaldoFinal";
-            this.SaldoFinal.OptionsColumn.AllowFocus = false;
-            this.SaldoFinal.Visible = true;
-            this.SaldoFinal.VisibleIndex = 7;
+            this.txtGridCredito.AutoHeight = false;
+            this.txtGridCredito.Name = "txtGridCredito";
             // 
             // dtHasta
             // 
@@ -610,26 +630,6 @@
             this.layoutControlItem4.Text = "T/C:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(67, 13);
             // 
-            // txtGridSaldoInicial
-            // 
-            this.txtGridSaldoInicial.AutoHeight = false;
-            this.txtGridSaldoInicial.Name = "txtGridSaldoInicial";
-            // 
-            // txtGridDebito
-            // 
-            this.txtGridDebito.AutoHeight = false;
-            this.txtGridDebito.Name = "txtGridDebito";
-            // 
-            // txtGridCredito
-            // 
-            this.txtGridCredito.AutoHeight = false;
-            this.txtGridCredito.Name = "txtGridCredito";
-            // 
-            // txtGridSaldoFinal
-            // 
-            this.txtGridSaldoFinal.AutoHeight = false;
-            this.txtGridSaldoFinal.Name = "txtGridSaldoFinal";
-            // 
             // frmConsultaSaldoCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -641,12 +641,16 @@
             this.Name = "frmConsultaSaldoCuenta";
             this.Ribbon = this.ribbonControl;
             this.Text = "Consulta de Saldos de Cuentas";
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtTasaCambio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties.CalendarTimeProperties)).EndInit();
@@ -670,10 +674,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

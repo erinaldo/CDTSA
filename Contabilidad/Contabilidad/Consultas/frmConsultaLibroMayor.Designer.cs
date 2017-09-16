@@ -37,7 +37,6 @@
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonedaDolar = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonedaLocal = new DevExpress.XtraBars.BarButtonItem();
-            this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -49,9 +48,14 @@
             this.Cuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DescrCuenta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SaldoInicial = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridSaldoInicial = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Debito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Credito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridCreditos = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.SaldoFinal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridSaldoFinal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.dtpFechaFinal = new DevExpress.XtraEditors.DateEdit();
             this.dtpFechaInicial = new DevExpress.XtraEditors.DateEdit();
             this.chkComboCuenta = new DevExpress.XtraEditors.CheckedComboBoxEdit();
@@ -69,6 +73,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCreditos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).BeginInit();
@@ -119,7 +128,6 @@
             this.btnExportar,
             this.btnMonedaDolar,
             this.btnMonedaLocal,
-            this.btnImprimir,
             this.barButtonItem1,
             this.btnRefrescar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
@@ -172,15 +180,6 @@
             this.btnMonedaLocal.Name = "btnMonedaLocal";
             this.btnMonedaLocal.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonedaLocal_ItemClick);
             // 
-            // btnImprimir
-            // 
-            this.btnImprimir.Caption = "Imprimir";
-            this.btnImprimir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Glyph")));
-            this.btnImprimir.Id = 6;
-            this.btnImprimir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.LargeGlyph")));
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImprimir_ItemClick);
-            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Id = 9;
@@ -204,7 +203,6 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnImprimir);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnMonedaDolar);
@@ -218,6 +216,12 @@
             this.grid.Location = new System.Drawing.Point(12, 104);
             this.grid.MainView = this.gridView;
             this.grid.Name = "grid";
+            this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.txtGridSaldoInicial,
+            this.txtGridDebito,
+            this.repositoryItemCheckEdit1,
+            this.txtGridCreditos,
+            this.txtGridSaldoFinal});
             this.grid.Size = new System.Drawing.Size(667, 161);
             this.grid.TabIndex = 7;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -236,7 +240,9 @@
             this.SaldoFinal});
             this.gridView.GridControl = this.grid;
             this.gridView.Name = "gridView";
-            this.gridView.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.Hidden;
+            this.gridView.OptionsBehavior.ReadOnly = true;
+            this.gridView.OptionsView.ShowAutoFilterRow = true;
+            this.gridView.OptionsView.ShowGroupPanel = false;
             // 
             // Periodo
             // 
@@ -273,32 +279,61 @@
             // SaldoInicial
             // 
             this.SaldoInicial.Caption = "SaldoIncial";
+            this.SaldoInicial.ColumnEdit = this.txtGridSaldoInicial;
             this.SaldoInicial.FieldName = "SaldoInicial";
             this.SaldoInicial.Name = "SaldoInicial";
             this.SaldoInicial.Visible = true;
             this.SaldoInicial.VisibleIndex = 4;
             // 
+            // txtGridSaldoInicial
+            // 
+            this.txtGridSaldoInicial.AutoHeight = false;
+            this.txtGridSaldoInicial.Name = "txtGridSaldoInicial";
+            // 
             // Debito
             // 
             this.Debito.Caption = "Débitos";
+            this.Debito.ColumnEdit = this.txtGridDebito;
             this.Debito.Name = "Debito";
             this.Debito.Visible = true;
             this.Debito.VisibleIndex = 5;
             // 
+            // txtGridDebito
+            // 
+            this.txtGridDebito.AutoHeight = false;
+            this.txtGridDebito.Name = "txtGridDebito";
+            // 
             // Credito
             // 
             this.Credito.Caption = "Créditos";
+            this.Credito.ColumnEdit = this.txtGridCreditos;
             this.Credito.Name = "Credito";
             this.Credito.Visible = true;
             this.Credito.VisibleIndex = 6;
             // 
+            // txtGridCreditos
+            // 
+            this.txtGridCreditos.AutoHeight = false;
+            this.txtGridCreditos.Name = "txtGridCreditos";
+            // 
             // SaldoFinal
             // 
             this.SaldoFinal.Caption = "SaldoFinal";
+            this.SaldoFinal.ColumnEdit = this.txtGridSaldoFinal;
             this.SaldoFinal.FieldName = "SaldoFinal";
             this.SaldoFinal.Name = "SaldoFinal";
             this.SaldoFinal.Visible = true;
             this.SaldoFinal.VisibleIndex = 7;
+            // 
+            // txtGridSaldoFinal
+            // 
+            this.txtGridSaldoFinal.AutoHeight = false;
+            this.txtGridSaldoFinal.Name = "txtGridSaldoFinal";
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // dtpFechaFinal
             // 
@@ -309,6 +344,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaFinal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaFinal.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
             this.dtpFechaFinal.Size = new System.Drawing.Size(248, 20);
             this.dtpFechaFinal.StyleController = this.layoutControl1;
             this.dtpFechaFinal.TabIndex = 6;
@@ -322,6 +358,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaInicial.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaInicial.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
             this.dtpFechaInicial.Size = new System.Drawing.Size(215, 20);
             this.dtpFechaInicial.StyleController = this.layoutControl1;
             this.dtpFechaInicial.TabIndex = 5;
@@ -363,8 +400,11 @@
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 72);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 20);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 20);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(671, 20);
+            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup2
@@ -431,6 +471,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCreditos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).EndInit();
@@ -478,12 +523,16 @@
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnMonedaDolar;
         private DevExpress.XtraBars.BarButtonItem btnMonedaLocal;
-        private DevExpress.XtraBars.BarButtonItem btnImprimir;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
         private DevExpress.XtraEditors.CheckEdit chkCuentasMayor;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoInicial;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridDebito;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridCreditos;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoFinal;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
     }
 }
