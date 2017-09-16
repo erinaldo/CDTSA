@@ -71,6 +71,7 @@
     <Reference Include="DevExpress.Pdf.v15.2.Drawing, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2.UI, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -113,6 +114,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\frmConsultaLibroMayor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaLibroMayor.Designer.cs">
+      <DependentUpon>frmConsultaLibroMayor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Consultas\frmConsultaPeriodoContable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +295,15 @@
     <Compile Include="Reporte\Asiento\rptAsiento.Designer.cs">
       <DependentUpon>rptAsiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\Consultas\rptConsultasSaldoCentroCuenta.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\Consultas\rptConsultasSaldoCentroCuenta.Designer.cs">
+      <DependentUpon>rptConsultasSaldoCentroCuenta.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Consultas\frmConsultaLibroMayor.resx">
+      <DependentUpon>frmConsultaLibroMayor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Consultas\frmConsultaPeriodoContable.resx">
       <DependentUpon>frmConsultaPeriodoContable.cs</DependentUpon>
     </EmbeddedResource>
@@ -377,6 +393,9 @@
     <EmbeddedResource Include="Reporte\Asiento\rptAsiento.resx">
       <DependentUpon>rptAsiento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Consultas\rptConsultasSaldoCentroCuenta.resx">
+      <DependentUpon>rptConsultasSaldoCentroCuenta.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -423,6 +442,7 @@
       <Name>Util</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

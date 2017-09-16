@@ -321,6 +321,13 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmConsultaSaldoCentro.Show();
                     break;
+                case "frmConsultaLibroMayor":
+                    frmConsultaLibroMayor ofrmLibroMayor = new frmConsultaLibroMayor();
+                    ofrmLibroMayor.MdiParent = this;
+                    ofrmLibroMayor.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmLibroMayor.Show();
+                    break;
                 case "frmParametrosContables":
                     frmParametrosContables ofrmParametrosContabilidad = new frmParametrosContables();
                     ofrmParametrosContabilidad.MdiParent = this;
@@ -437,7 +444,7 @@ namespace MainMenu
                     TreeListNode nodeConsultasPorPeriodoContable = tl.AppendNode(new object[] { "Por Periodo Contable" }, nodeConsultasContabilidad.Id, 11, 11, 11);
                     nodeConsultasPorPeriodoContable.Tag = "optConsultasPorPeriodoContable";
                     TreeListNode nodeConsultasLibroMayor = tl.AppendNode(new object[] { "Libro Mayor" }, nodeConsultasContabilidad.Id, 11, 11, 11);
-                    nodeConsultasLibroMayor.Tag = "optConsultasLibroMayor";
+                    nodeConsultasLibroMayor.Tag = "frmConsultaLibroMayor";
                     //Carpeta
                     TreeListNode nodeConsultasDelMayor = tl.AppendNode(new object[] { "Del Mayor" }, nodeConsultasContabilidad.Id, 9, 10, 9);
                     //Items

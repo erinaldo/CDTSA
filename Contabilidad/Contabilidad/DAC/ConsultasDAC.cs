@@ -51,6 +51,28 @@ namespace CG.DAC
             return DS;
         }
 
+
+        public static DataSet ConsultaLibroMayor(int CuentasDeMayor,DateTime FechaInicial, DateTime FechaFinal,DataTable DTCuentas)
+        {
+            String strSQL = "dbo.cntConsultaLibroMayor";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@CuentasDeMayor", CuentasDeMayor));
+            oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
+            oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
+            oCmd.Parameters.Add(new SqlParameter("@CuentaContable", DTCuentas));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+            
+            return DS;
+        }
+
+        
+
         
     }
 }
