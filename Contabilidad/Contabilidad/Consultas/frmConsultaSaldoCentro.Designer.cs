@@ -74,6 +74,13 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.txtGridSaldoInicial = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
+            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtGridSaldoFinal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -104,6 +111,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -273,6 +287,13 @@
             this.grid.MainView = this.gridView1;
             this.grid.MenuManager = this.ribbonControl;
             this.grid.Name = "grid";
+            this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.txtGridSaldoInicial,
+            this.txtGridDebito,
+            this.txtGridCredito,
+            this.repositoryItemCheckedComboBoxEdit1,
+            this.repositoryItemGridLookUpEdit1,
+            this.txtGridSaldoFinal});
             this.grid.Size = new System.Drawing.Size(717, 134);
             this.grid.TabIndex = 8;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -354,6 +375,7 @@
             // SaldoInicial
             // 
             this.SaldoInicial.Caption = "Saldo Inicial";
+            this.SaldoInicial.ColumnEdit = this.txtGridSaldoInicial;
             this.SaldoInicial.Name = "SaldoInicial";
             this.SaldoInicial.OptionsColumn.AllowFocus = false;
             this.SaldoInicial.Visible = true;
@@ -363,6 +385,7 @@
             // Debitos
             // 
             this.Debitos.Caption = "Débitos";
+            this.Debitos.ColumnEdit = this.txtGridDebito;
             this.Debitos.Name = "Debitos";
             this.Debitos.OptionsColumn.AllowFocus = false;
             this.Debitos.Visible = true;
@@ -372,6 +395,7 @@
             // Credito
             // 
             this.Credito.Caption = "Créditos";
+            this.Credito.ColumnEdit = this.txtGridCredito;
             this.Credito.Name = "Credito";
             this.Credito.OptionsColumn.AllowFocus = false;
             this.Credito.Visible = true;
@@ -381,6 +405,7 @@
             // SaldoFinal
             // 
             this.SaldoFinal.Caption = "Saldo Final";
+            this.SaldoFinal.ColumnEdit = this.txtGridSaldoFinal;
             this.SaldoFinal.Name = "SaldoFinal";
             this.SaldoFinal.OptionsColumn.AllowFocus = false;
             this.SaldoFinal.Visible = true;
@@ -586,6 +611,48 @@
             this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // txtGridSaldoInicial
+            // 
+            this.txtGridSaldoInicial.AutoHeight = false;
+            this.txtGridSaldoInicial.Name = "txtGridSaldoInicial";
+            // 
+            // txtGridDebito
+            // 
+            this.txtGridDebito.AutoHeight = false;
+            this.txtGridDebito.Name = "txtGridDebito";
+            // 
+            // txtGridCredito
+            // 
+            this.txtGridCredito.AutoHeight = false;
+            this.txtGridCredito.Name = "txtGridCredito";
+            // 
+            // repositoryItemCheckedComboBoxEdit1
+            // 
+            this.repositoryItemCheckedComboBoxEdit1.AutoHeight = false;
+            this.repositoryItemCheckedComboBoxEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCheckedComboBoxEdit1.Name = "repositoryItemCheckedComboBoxEdit1";
+            // 
+            // repositoryItemGridLookUpEdit1
+            // 
+            this.repositoryItemGridLookUpEdit1.AutoHeight = false;
+            this.repositoryItemGridLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemGridLookUpEdit1.Name = "repositoryItemGridLookUpEdit1";
+            this.repositoryItemGridLookUpEdit1.View = this.repositoryItemGridLookUpEdit1View;
+            // 
+            // repositoryItemGridLookUpEdit1View
+            // 
+            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
+            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // txtGridSaldoFinal
+            // 
+            this.txtGridSaldoFinal.AutoHeight = false;
+            this.txtGridSaldoFinal.Name = "txtGridSaldoFinal";
+            // 
             // frmConsultaSaldoCentro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,6 +694,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckedComboBoxEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -677,5 +751,12 @@
         private DevExpress.XtraEditors.TextEdit txtTipoCambio;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoInicial;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridDebito;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridCredito;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoFinal;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit repositoryItemGridLookUpEdit1;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
     }
 }

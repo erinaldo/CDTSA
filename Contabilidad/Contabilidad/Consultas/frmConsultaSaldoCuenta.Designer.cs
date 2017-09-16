@@ -75,6 +75,10 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtGridSaldoInicial = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.txtGridSaldoFinal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTasaCambio.Properties)).BeginInit();
@@ -104,6 +108,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -248,6 +256,11 @@
             this.grid.Location = new System.Drawing.Point(12, 119);
             this.grid.MainView = this.gridView1;
             this.grid.Name = "grid";
+            this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.txtGridSaldoInicial,
+            this.txtGridDebito,
+            this.txtGridCredito,
+            this.txtGridSaldoFinal});
             this.grid.Size = new System.Drawing.Size(840, 146);
             this.grid.TabIndex = 8;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -322,6 +335,7 @@
             // SaldoInicial
             // 
             this.SaldoInicial.Caption = "Saldo Inicial";
+            this.SaldoInicial.ColumnEdit = this.txtGridSaldoInicial;
             this.SaldoInicial.FieldName = "SaldoAnterior";
             this.SaldoInicial.Name = "SaldoInicial";
             this.SaldoInicial.OptionsColumn.AllowFocus = false;
@@ -331,6 +345,7 @@
             // Debitos
             // 
             this.Debitos.Caption = "Débitos";
+            this.Debitos.ColumnEdit = this.txtGridDebito;
             this.Debitos.FieldName = "Debito";
             this.Debitos.Name = "Debitos";
             this.Debitos.OptionsColumn.AllowFocus = false;
@@ -340,6 +355,7 @@
             // Creditos
             // 
             this.Creditos.Caption = "Créditos";
+            this.Creditos.ColumnEdit = this.txtGridCredito;
             this.Creditos.FieldName = "Credito";
             this.Creditos.Name = "Creditos";
             this.Creditos.OptionsColumn.AllowFocus = false;
@@ -349,6 +365,7 @@
             // SaldoFinal
             // 
             this.SaldoFinal.Caption = "Saldo Final";
+            this.SaldoFinal.ColumnEdit = this.txtGridSaldoFinal;
             this.SaldoFinal.FieldName = "Saldo";
             this.SaldoFinal.Name = "SaldoFinal";
             this.SaldoFinal.OptionsColumn.AllowFocus = false;
@@ -593,6 +610,26 @@
             this.layoutControlItem4.Text = "T/C:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(67, 13);
             // 
+            // txtGridSaldoInicial
+            // 
+            this.txtGridSaldoInicial.AutoHeight = false;
+            this.txtGridSaldoInicial.Name = "txtGridSaldoInicial";
+            // 
+            // txtGridDebito
+            // 
+            this.txtGridDebito.AutoHeight = false;
+            this.txtGridDebito.Name = "txtGridDebito";
+            // 
+            // txtGridCredito
+            // 
+            this.txtGridCredito.AutoHeight = false;
+            this.txtGridCredito.Name = "txtGridCredito";
+            // 
+            // txtGridSaldoFinal
+            // 
+            this.txtGridSaldoFinal.AutoHeight = false;
+            this.txtGridSaldoFinal.Name = "txtGridSaldoFinal";
+            // 
             // frmConsultaSaldoCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -633,6 +670,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -684,5 +725,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn DescrCentro;
         private DevExpress.XtraEditors.TextEdit txtTasaCambio;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoInicial;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridDebito;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridCredito;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoFinal;
     }
 }

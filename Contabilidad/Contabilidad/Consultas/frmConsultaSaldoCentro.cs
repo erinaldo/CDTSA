@@ -78,6 +78,16 @@ namespace CG
 
         private void CargarDatosSegunMoneda(DataTable dt)
         {
+            Util.Util.SetFormatTextEdit(this.txtSaldoInicial, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEdit(this.txtTotalCredito, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEdit(this.txtTotalDebitos, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEdit(this.txtSaldoFinal, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+
+            Util.Util.SetFormatTextEditGrid(this.txtGridSaldoInicial, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEditGrid(this.txtGridCredito, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEditGrid(this.txtGridDebito, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+            Util.Util.SetFormatTextEditGrid(this.txtGridSaldoFinal, (sTipoMoneda == "L") ? Util.Util.FormatType.MonedaLocal : Util.Util.FormatType.MonedaExtrangera, "");
+
             this.gridView1.Columns[5].FieldName = (sTipoMoneda == "L") ? "DebitoLocal" : "DebitoDolar";
             this.gridView1.Columns[6].FieldName = (sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar";
             this.gridView1.Columns[4].FieldName = (sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar";
@@ -86,6 +96,8 @@ namespace CG
 
             if (dt.Rows.Count > 0)
             {
+
+
                 this.txtSaldoInicial.Text = dt.Rows[0][(sTipoMoneda == "L") ? "SaldoAnteriorLocal" : "SaldoAnteriorDolar"].ToString();
                 this.txtSaldoFinal.Text = dt.Rows[0][(sTipoMoneda == "L") ? "SaldoLocal" : "SaldoDolar"].ToString();
                 this.txtTotalCredito.Text = dt.Rows[0][(sTipoMoneda == "L") ? "CreditoLocal" : "CreditoDolar"].ToString();
