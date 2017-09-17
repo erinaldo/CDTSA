@@ -150,7 +150,6 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
-
             // 
             // btnCancelar
             // 
@@ -238,7 +237,6 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbTipoGrupo.Properties.DropDownRows = 3;
             this.cmbTipoGrupo.Properties.Items.AddRange(new object[] {
-            "Balanza de Comprobación",
             "Estado de Resultado",
             "Balance General"});
             this.cmbTipoGrupo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;

@@ -64,12 +64,9 @@ namespace CG
                 switch (this.cmbGrupoEstadoFinanciero.SelectedIndex)
                 {
                     case 0:
-                        sTipo = "BC";
-                        break;
-                    case 1:
                         sTipo = "ER";
                         break;
-                    case 2:
+                    case 1:
                         sTipo = "BG";
                         break;
                 }
@@ -138,20 +135,19 @@ namespace CG
                         //Validar si el elemento anterior es papa
                         if (nodoAnterior.GetValue("IDGrupo").ToString() == Grupo["IDGrupoAcumulador"].ToString())
                         { 
-                            //Agregar el elemento en el nodo padre
                             node = nodoAnterior.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
                         } else {
                         //Buscar el nodo
                             TreeListNode fnode = treeGrupoCuenta.FindNodeByFieldValue("IDGrupo", Grupo["IDGrupoAcumulador"].ToString());
                             if (fnode!=null){
-                                //node = fnode;
-                                node = fnode.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
+                               node = fnode.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
                             }
                         }
                     }
                     if (!Convert.ToBoolean(Grupo["Acumulador"]))
                     {
                         node.Tag = "Root";
+                        node["Tag"] = "Root";
                         //Cargar las cuentas que tiene asociado el grupo
                         DataView dv = new DataView();
                         dv = dtCuentaGrupo.DefaultView;
@@ -164,6 +160,7 @@ namespace CG
                     if (Convert.ToBoolean(Grupo["Acumulador"]) == true)
                     {
                         node.Tag="Padre";
+                        node["Tag"] = "Root";
                         nodoAnterior = node;
                     }
                 }

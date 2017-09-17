@@ -165,12 +165,9 @@ namespace CG
             if (this.cmbTipoGrupo.SelectedIndex > -1) {
                 switch (this.cmbTipoGrupo.SelectedIndex) { 
                     case 0:
-                        sTipo = "BC";
-                        break;
-                    case 1:
                         sTipo = "ER";
                         break;
-                    case 2:
+                    case 1:
                         sTipo = "BG";
                         break;
                 }

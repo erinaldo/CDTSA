@@ -196,9 +196,6 @@ namespace CG.DAC
             String sTipoCuenta ="";
 
             switch (sTipo) { 
-                case "BC":
-                    sTipoCuenta = "*";
-                    break;
                 case "ER":
                     sTipoCuenta="R";
                     break;

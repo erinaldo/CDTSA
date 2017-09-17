@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule2 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelacionCuentaGrupoEstadosFinancieros));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.cmbGrupoEstadoFinanciero = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -47,6 +51,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.TagG = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbGrupoEstadoFinanciero.Properties)).BeginInit();
@@ -79,7 +84,6 @@
             this.cmbGrupoEstadoFinanciero.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbGrupoEstadoFinanciero.Properties.Items.AddRange(new object[] {
-            "Balanza de Comprobación",
             "Estado de Resultado",
             "Balance General"});
             this.cmbGrupoEstadoFinanciero.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -97,6 +101,18 @@
             this.ColumnIdGrupo2,
             this.Tag});
             this.treeCuenta.Cursor = System.Windows.Forms.Cursors.Default;
+            treeListFormatRule1.ApplyToRow = true;
+            treeListFormatRule1.Column = this.Tag;
+            treeListFormatRule1.ColumnApplyTo = this.ColumnDescr;
+            treeListFormatRule1.Name = "Bold Parent";
+            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.SystemColors.Highlight;
+            formatConditionRuleValue1.Appearance.Options.UseFont = true;
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue1.Value1 = "Root";
+            treeListFormatRule1.Rule = formatConditionRuleValue1;
+            this.treeCuenta.FormatRules.Add(treeListFormatRule1);
             this.treeCuenta.KeyFieldName = "IDCuenta";
             this.treeCuenta.Location = new System.Drawing.Point(456, 28);
             this.treeCuenta.Name = "treeCuenta";
@@ -157,8 +173,21 @@
             this.ColumnCuentaG,
             this.ColumnDescrG,
             this.IDCuenta,
-            this.ColumnIDGrupo});
+            this.ColumnIDGrupo,
+            this.TagG});
             this.treeGrupoCuenta.Cursor = System.Windows.Forms.Cursors.Default;
+            treeListFormatRule2.ApplyToRow = true;
+            treeListFormatRule2.Column = this.TagG;
+            treeListFormatRule2.ColumnApplyTo = this.TagG;
+            treeListFormatRule2.Name = "Bold Node";
+            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            formatConditionRuleValue2.Appearance.Options.UseFont = true;
+            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue2.Value1 = "Root";
+            treeListFormatRule2.Rule = formatConditionRuleValue2;
+            this.treeGrupoCuenta.FormatRules.Add(treeListFormatRule2);
             this.treeGrupoCuenta.KeyFieldName = "";
             this.treeGrupoCuenta.Location = new System.Drawing.Point(12, 52);
             this.treeGrupoCuenta.Name = "treeGrupoCuenta";
@@ -171,7 +200,6 @@
             this.treeGrupoCuenta.RootValue = 1;
             this.treeGrupoCuenta.Size = new System.Drawing.Size(389, 345);
             this.treeGrupoCuenta.TabIndex = 4;
-
             // 
             // ColumnCuentaG
             // 
@@ -255,6 +283,12 @@
             this.layoutControlItem3.Text = "Grupo Estados Financieros:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(172, 13);
             // 
+            // TagG
+            // 
+            this.TagG.Caption = "Tag";
+            this.TagG.FieldName = "Tag";
+            this.TagG.Name = "TagG";
+            // 
             // frmRelacionCuentaGrupoEstadosFinancieros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +336,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn ColumnIdGrupo2;
         private DevExpress.XtraEditors.ComboBoxEdit cmbGrupoEstadoFinanciero;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn TagG;
 
     }
 }
