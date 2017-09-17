@@ -140,6 +140,13 @@ namespace CG
                         { 
                             //Agregar el elemento en el nodo padre
                             node = nodoAnterior.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
+                        } else {
+                        //Buscar el nodo
+                            TreeListNode fnode = treeGrupoCuenta.FindNodeByFieldValue("IDGrupo", Grupo["IDGrupoAcumulador"].ToString());
+                            if (fnode!=null){
+                                //node = fnode;
+                                node = fnode.Nodes.Add(Grupo["Grupo"].ToString(), Grupo["Descr"].ToString(), "", Grupo["IDGrupo"].ToString());
+                            }
                         }
                     }
                     if (!Convert.ToBoolean(Grupo["Acumulador"]))

@@ -174,6 +174,44 @@ namespace CG.DAC
 
         }
 
+
+        public static bool   GrupoTieneHijos(int IDGrupo, String Tipo)
+        {
+            bool TieneHijos = false;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.[cntTieneHijosGrupoEstadosFinancieros]", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@IDGrupo", SqlDbType.Int).Value = IDGrupo;
+                oCmd.Parameters.Add("@Tipo", SqlDbType.NVarChar).Value = Tipo;
+                
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                TieneHijos = Convert.ToBoolean( oCmd.ExecuteScalar());
+
+                //if (oCmd.Parameters["@Result"].Value != DBNull.Value)
+                //    TieneHijos = (bool)oCmd.Parameters["@Result"].Value;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return TieneHijos;
+
+        }
     
     }
 }

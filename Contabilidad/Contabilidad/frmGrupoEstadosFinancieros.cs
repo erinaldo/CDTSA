@@ -312,7 +312,27 @@ namespace CG
            
             isEdition = true;
             HabilitarControles(true);
+
             this.slkupGrupoAcumulador.ReadOnly = true;
+            this.chkAcumulador.Enabled = false;
+
+            //Validar si tiene hijos
+            if ( this.txtNivel3.Text=="" || this.txtNivel3.Text=="0")
+            {
+                bool TieneHijo = DAC.GrupoEstadosFinancierosDAC.GrupoTieneHijos(Convert.ToInt32(currentRow["IDGrupo"]), GetTipoGrupo());
+                if (TieneHijo)
+                {
+                    this.chkAcumulador.Enabled = false;
+                    //this.slkupGrupoAcumulador.ReadOnly = true;
+                }
+                else
+                {
+                    this.chkAcumulador.Enabled = true;
+                    //this.slkupGrupoAcumulador.ReadOnly = false;
+                }
+            }
+
+            
 
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
             this.txtDescripcion.Focus();
