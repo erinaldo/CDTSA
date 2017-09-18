@@ -17,7 +17,7 @@ namespace CG.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT A.IDGrupo,A.Nivel1,A.Nivel2,A.Nivel3,A.Grupo,A.Descr,A.Activo,A.Acumulador,A.IDGrupoAcumulador ,B.Descr DescrGrupoAcumulador,A.Tipo  FROM dbo.cntGrupoEstadosFinancieros A LEFT  JOIN dbo.cntGrupoEstadosFinancieros B ON		A.IDGrupoAcumulador = B.IDGrupo WHERE (A.IDGrupo=@IDGrupo OR @IDGrupo=-1) AND (A.Nivel1=@Nivel1 OR @Nivel1='*') AND (A.Nivel2=@Nivel2 OR @Nivel2='*') AND (A.Nivel3=@Nivel3 OR @Nivel3='*') AND (A.Descr = @Descr OR @Descr='*') AND (A.Tipo = @Tipo or @Tipo='*') and (A.Acumulador = @Acumulador or @Acumulador=-1) and (A.Activo=@Activo or @Activo=-1)  order by Cast(A.Nivel1 as int), Cast(A.Nivel2 as int), cast(A.Nivel3 as int)";
+            String getSQL = "SELECT A.IDGrupo,A.Nivel1,A.Nivel2,A.Nivel3,A.Grupo,A.Descr,A.Activo,A.Acumulador,A.IDGrupoAcumulador ,B.Descr DescrGrupoAcumulador,A.Tipo, A.IDGrupoCuenta  FROM dbo.cntGrupoEstadosFinancieros A LEFT  JOIN dbo.cntGrupoEstadosFinancieros B ON		A.IDGrupoAcumulador = B.IDGrupo WHERE (A.IDGrupo=@IDGrupo OR @IDGrupo=-1) AND (A.Nivel1=@Nivel1 OR @Nivel1='*') AND (A.Nivel2=@Nivel2 OR @Nivel2='*') AND (A.Nivel3=@Nivel3 OR @Nivel3='*') AND (A.Descr = @Descr OR @Descr='*') AND (A.Tipo = @Tipo or @Tipo='*') and (A.Acumulador = @Acumulador or @Acumulador=-1) and (A.Activo=@Activo or @Activo=-1)  order by Cast(A.Nivel1 as int), Cast(A.Nivel2 as int), cast(A.Nivel3 as int)";
             String InsertSQL = "[dbo].[cntUpdateGrupoEstadoFinanciero]";
             String UpdateSQL = "[dbo].[cntUpdateGrupoEstadoFinanciero]";
             String DeleteSQL = "[dbo].[cntUpdateGrupoEstadoFinanciero]";
@@ -55,6 +55,7 @@ namespace CG.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.InsertCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Int).SourceColumn = "IDGrupoAcumulador";
                 oAdaptador.InsertCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
+                oAdaptador.InsertCommand.Parameters.Add("@IDGrupoCuenta", SqlDbType.Int).SourceColumn = "IDGrupoCuenta";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.InsertCommand.Parameters.Add("@Tipo", SqlDbType.NVarChar).SourceColumn = "Tipo";
                 
@@ -69,6 +70,7 @@ namespace CG.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDGrupoAcumulador", SqlDbType.Int).SourceColumn = "IDGrupoAcumulador";
                 oAdaptador.UpdateCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDGrupoCuenta", SqlDbType.Int).SourceColumn = "IDGrupoCuenta";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Tipo", SqlDbType.NVarChar).SourceColumn = "Tipo";
 

@@ -35,6 +35,22 @@ namespace CG
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        private void CargarTipoDeGrupo() {
+            //Estado de resultado
+            String stipo = "";
+            if (this.cmbTipoGrupo.SelectedIndex == 0) { 
+                stipo = "R";
+            }
+            else if (this.cmbTipoGrupo.SelectedIndex == 1) //Balance General
+                stipo = "B";
+
+            DataTable dt = GrupoDAC.GetGrupoByTipo(stipo).Tables[0];
+
+
+            Util.Util.ConfigLookupEdit(this.slkpTipoDeGrupo, dt, "Descr", "IDGrupo");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkpTipoDeGrupo, "[{'ColumnCaption':'IDGrupo','ColumnField':'IDGrupo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+        }
+
         private void CargarPrivilegios()
         {
             DataSet DS = new DataSet();
@@ -107,7 +123,8 @@ namespace CG
                         this.chkAcumulador.Enabled = false;
                     else
                         this.chkAcumulador.Enabled = true;
-
+                    this.slkpTipoDeGrupo.EditValue = dt.Rows[0]["IDGrupoCuenta"];
+                    this.slkpTipoDeGrupo.Enabled = false;
                     this.txtDescripcion.Text = "";
                     this.txtDescripcion.Focus();
 
@@ -150,7 +167,7 @@ namespace CG
 
                 this.cmbTipoGrupo.SelectedIndex = 0;
                 //PopulateGrid();
-
+                CargarTipoDeGrupo();
                 CargarPrivilegios();
 
             }
@@ -189,6 +206,7 @@ namespace CG
 
         private void PopulateGrid()
         {
+            CargarTipoDeGrupo();
             String sTipo = GetTipoGrupo();
             _dsGrupo = GrupoEstadosFinancierosDAC.GetData(-1, "*", "*", "*", "*",-1, -1,sTipo);
 
@@ -209,7 +227,7 @@ namespace CG
             this.txtDescripcion.Text = "";
             this.chkActivo.EditValue = true;
             this.chkAcumulador.EditValue = false;
-            
+            this.slkpTipoDeGrupo.EditValue = null;
             this.slkupGrupoAcumulador.EditValue = null;
 
             if (this._lstGrupoAcumuladores.Rows.Count < 1)
@@ -231,6 +249,7 @@ namespace CG
             this.chkActivo.ReadOnly = !Activo;
             this.chkAcumulador.ReadOnly = !Activo;
             
+            
             this.slkupGrupoAcumulador.ReadOnly = !Activo;
 
             this.dtg.Enabled = !Activo;
@@ -240,6 +259,7 @@ namespace CG
             this.btnGuardar.Enabled = Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
+            this.slkpTipoDeGrupo.Enabled = false;
 
         }
 
@@ -264,6 +284,7 @@ namespace CG
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
             this.chkAcumulador.EditValue = Convert.ToBoolean(Row["Acumulador"]);
             this.slkupGrupoAcumulador.EditValue = Row["IDGrupoAcumulador"].ToString();
+            this.slkpTipoDeGrupo.EditValue = Row["IDGrupoCuenta"].ToString();
             
 
         }
@@ -293,6 +314,9 @@ namespace CG
             this.txtNivel3.Text = "0";
             this.txtNivel2.Text = "0";
             this.txtNivel1.Text = iProximoConsecutivo.ToString();
+
+            this.slkpTipoDeGrupo.Enabled = true;
+            
             this.chkAcumulador.Enabled = true;
             this.txtDescripcion.Focus();
         }
@@ -312,6 +336,7 @@ namespace CG
 
             this.slkupGrupoAcumulador.ReadOnly = true;
             this.chkAcumulador.Enabled = false;
+            this.slkpTipoDeGrupo.Enabled = false;
 
             //Validar si tiene hijos
             if ( this.txtNivel3.Text=="" || this.txtNivel3.Text=="0")
@@ -319,11 +344,13 @@ namespace CG
                 bool TieneHijo = DAC.GrupoEstadosFinancierosDAC.GrupoTieneHijos(Convert.ToInt32(currentRow["IDGrupo"]), GetTipoGrupo());
                 if (TieneHijo)
                 {
+                    this.slkpTipoDeGrupo.Enabled = false;
                     this.chkAcumulador.Enabled = false;
                     //this.slkupGrupoAcumulador.ReadOnly = true;
                 }
                 else
                 {
+                    this.slkpTipoDeGrupo.Enabled = true;
                     this.chkAcumulador.Enabled = true;
                     //this.slkupGrupoAcumulador.ReadOnly = false;
                 }
@@ -344,6 +371,10 @@ namespace CG
                 sMensaje = sMensaje + "     • Nivel 1. \n\r";
             if (this.txtDescripcion.Text == "")
                 sMensaje = sMensaje + "     • Descripción del Grupo. \n\r";
+            if (this.txtNivel1.Text != "0" && this.txtNivel2.Text == "0" && this.txtNivel3.Text == "0") { 
+                if (this.slkpTipoDeGrupo.EditValue==null)
+                    sMensaje = sMensaje + "     • Seleccione el grupo al que pertenece el elemento. \n\r";
+            }
             //if (Convert.ToBoolean(this.chkAcumulador.EditValue) == true)
             //    if (this.slkupCentroAcumulador.EditValue == null)
             //        sMensaje = sMensaje + "     • Centro Acumulador. \n\r";
@@ -377,7 +408,7 @@ namespace CG
                 currentRow["Acumulador"] = this.chkAcumulador.EditValue;
                 currentRow["Tipo"] = GetTipoGrupo();
                 currentRow["IDGrupoAcumulador"] = (this.slkupGrupoAcumulador.EditValue!=null)?this.slkupGrupoAcumulador.EditValue:0;
-                
+                currentRow["IDGrupoCuenta"] = this.slkpTipoDeGrupo.EditValue;
 
                 currentRow.EndEdit();
 
@@ -439,7 +470,8 @@ namespace CG
                 currentRow["Tipo"] = GetTipoGrupo();
                 currentRow["Acumulador"] = this.chkAcumulador.EditValue;
                 currentRow["IDGrupoAcumulador"] = (this.slkupGrupoAcumulador.EditValue == null) ? 0 : this.slkupGrupoAcumulador.EditValue;
-                
+                currentRow["IDGrupoCuenta"] = this.slkpTipoDeGrupo.EditValue;
+
                 _dtGrupo.Rows.Add(currentRow);
                 try
                 {

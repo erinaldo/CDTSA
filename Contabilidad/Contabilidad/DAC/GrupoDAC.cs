@@ -74,5 +74,23 @@ namespace CG
 
 
         }
+
+        public static DataSet GetGrupoByTipo(String sTipo)
+        {
+            String strSQL = "SELECT A.IDGrupo,A.Descr  FROM dbo.cntGrupoCuenta A INNER JOIN dbo.cntTipoCuenta T ON A.IDTipo = T.IDTipo WHERE Tipo=@Tipo";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@Tipo", sTipo));
+            
+            oCmd.CommandType = CommandType.Text;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+
+            return DS;
+        }
+
     }
 }
