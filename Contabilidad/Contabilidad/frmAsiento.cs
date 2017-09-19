@@ -35,6 +35,9 @@ namespace CG
         private DataTable _dtCuentas;
         private DataTable _dtCentros;
 
+        private DataTable _dtCuentasConstante;
+        private DataTable _dtCentrosConstante;
+
         private DataTable _dtSecurity;
 
         private DataSet _dsEjercicioPeriodo;
@@ -493,7 +496,7 @@ namespace CG
                 this.gridView1.ValidateRow += GridView1_ValidateRow;
                 this.gridView1.InvalidRowException += GridView1_InvalidRowException;
                 this.gridView1.RowUpdated += GridView1_RowUpdated;
-
+                this.gridView1.ShownEditor += gridView1_ShownEditor;
 
                 this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
                 this.gridView1.CustomColumnDisplayText += GridView1_CustomColumnDisplayText;
@@ -503,22 +506,27 @@ namespace CG
                 //        //Configurar searchLookUp
                 //_dtCentros = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0];
                 _dtCentros = CentroCostoDAC.GetCentroByCuenta(-1).Tables[0];
+                //_dtCentrosConstante = _dtCentros.Clone();
                 this.slkupCentroCostoGrid.DataSource = _dtCentros;
                 this.slkupCentroCostoGrid.DisplayMember = "Centro";
                 this.slkupCentroCostoGrid.ValueMember = "IDCentro";
                 this.slkupCentroCostoGrid.NullText = " --- ---";
                 this.slkupCentroCostoGrid.EditValueChanged += slkupCuentaContableGrid_EditValueChanged;
                 this.slkupCentroCostoGrid.Popup += slkupGrid_Popup;
+                
                 // this.slkupCentroCostoGrid.EditValueChanged += SlkupCentroCostoGrid_EditValueChanged;
 
                 //_dtCuentas = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, 1, 1, -1, -1).Tables[0];
                 _dtCuentas = CuentaContableDAC.GetCuentaByCentroCosto(0).Tables[0];
+               // _dtCuentasConstante = _dtCuentas.Clone();
                 this.slkupCuentaContableGrid.DataSource = _dtCuentas;
                 this.slkupCuentaContableGrid.DisplayMember = "Cuenta";
                 this.slkupCuentaContableGrid.ValueMember = "IDCuenta";
                 this.slkupCuentaContableGrid.NullText = " --- ---";
                 this.slkupCuentaContableGrid.EditValueChanged += slkupCuentaContableGrid_EditValueChanged;
                 this.slkupCuentaContableGrid.Popup += slkupGrid_Popup;
+                
+
 
                 CargarColumnas();
                 Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetData().Tables["Data"], "Descr", "Tipo");
@@ -549,6 +557,36 @@ namespace CG
                 MessageBox.Show(ex.Message);
             }
         }
+
+        void gridView1_ShownEditor(object sender, EventArgs e)
+        {
+            ColumnView view = (ColumnView)sender;
+            if (view.FocusedColumn.FieldName == "IDCuenta")
+            {
+                //LookUpEdit editor = (LookUpEdit)view.ActiveEditor;
+                SearchLookUpEdit editor = (SearchLookUpEdit)view.ActiveEditor;
+                string idCentro = Convert.ToString(view.GetFocusedRowCellValue("IDCentro"));
+                if (idCentro == "")
+                    idCentro = "0";
+
+                editor.Properties.DataSource = CuentaContableDAC.GetCuentaByCentroCosto(Convert.ToInt32(idCentro)).Tables[0];
+            }
+            if (view.FocusedColumn.FieldName == "IDCentro")
+            {
+                //LookUpEdit editor = (LookUpEdit)view.ActiveEditor;
+                SearchLookUpEdit editor = (SearchLookUpEdit)view.ActiveEditor;
+                string IdCuenta = Convert.ToString(view.GetFocusedRowCellValue("IDCuenta"));
+                if (IdCuenta == "")
+                    IdCuenta = "-1";
+
+                editor.Properties.DataSource = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(IdCuenta)).Tables[0];
+            }
+        }
+
+     
+
+
+
 
         void slkupGrid_Popup(object sender, EventArgs e)
         {
@@ -851,9 +889,9 @@ namespace CG
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCentro"], dt.ToTable().Rows[0]["Descr"].ToString());
                 else
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCentro"], "");
-                cellValue = (cellValue == "-1") ? "0" : cellValue;
-                _dtCuentas = CuentaContableDAC.GetCuentaByCentroCosto(Convert.ToInt32(cellValue)).Tables[0];
-                this.slkupCuentaContableGrid.DataSource = _dtCuentas;
+                //cellValue = (cellValue == "-1") ? "0" : cellValue;
+                //_dtCuentas = CuentaContableDAC.GetCuentaByCentroCosto(Convert.ToInt32(cellValue)).Tables[0];
+                //this.slkupCuentaContableGrid.DataSource = _dtCuentas;
             }
             if (e.Column.FieldName == "IDCuenta")
             {
@@ -866,11 +904,11 @@ namespace CG
                 else
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], "");
                 
-                _dtCentros = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(cellValue)).Tables[0];
-                this.slkupCentroCostoGrid.DataSource = _dtCentros;
-                if (_dtCentros.Rows.Count == 1) {
-                    view.SetRowCellValue(e.RowHandle, view.Columns["IDCentro"], _dtCentros.Rows[0]["IDCentro"].ToString());
-                }
+                //_dtCentros = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(cellValue)).Tables[0];
+                //this.slkupCentroCostoGrid.DataSource = _dtCentros;
+                //if (_dtCentros.Rows.Count == 1) {
+                //    view.SetRowCellValue(e.RowHandle, view.Columns["IDCentro"], _dtCentros.Rows[0]["IDCentro"].ToString());
+                //}
             }
             
         }

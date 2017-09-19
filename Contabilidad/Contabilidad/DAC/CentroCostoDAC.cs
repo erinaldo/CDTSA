@@ -123,7 +123,7 @@ namespace CG
 
         public static DataSet GetCentroByCuenta(int IDCuenta)
         {
-            String strSQL = "dbo.cntGetCentroCostoByCuentaContable";
+                String strSQL = "dbo.cntGetCentroCostoByCuentaContable";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
 
