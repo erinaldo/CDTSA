@@ -362,6 +362,12 @@ namespace MainMenu
 
                 case "optConsultasDeCentrosDeCostos":
                     break;
+                case "frmBalanceGeneral":
+                    frmBalanceGeneral ofrmBalance = new frmBalanceGeneral();
+                    ofrmBalance.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmBalance.Show();
+                    break;
             }
 
 
@@ -470,7 +476,7 @@ namespace MainMenu
                     TreeListNode nodeReportesBalanceDeComprobacionPorCentroCosto = tl.AppendNode(new object[] { "Por Centro de Costo" }, nodeReportesBalanceDeComprobacion.Id, 11, 11, 11);
                     nodeReportesBalanceDeComprobacionPorCentroCosto.Tag = "optReportesBalanceDeComprobacionPorCentroCosto";
                     TreeListNode nodeReportesBalanceGeneral = tl.AppendNode(new object[] { "Balance General" }, nodeReportesContabilidad.Id, 11, 11, 11);
-                    nodeReportesBalanceGeneral.Tag = "optReportesBalanceGeneral";
+                    nodeReportesBalanceGeneral.Tag = "frmBalanceGeneral";
                     TreeListNode nodeReportesEstadodeResultado = tl.AppendNode(new object[] { "Estado de Resultado" }, nodeReportesContabilidad.Id, 11, 11, 11);
                     nodeReportesEstadodeResultado.Tag = "optReportesEstadodeResultado";
                     TreeListNode nodeReportesReporteDeAsiento = tl.AppendNode(new object[] { "Reporte de Asiento" }, nodeReportesContabilidad.Id, 11, 11, 11);

@@ -32,6 +32,7 @@
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
+            DevExpress.DataAccess.Sql.QueryParameter queryParameter3 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.CustomSqlQuery customSqlQuery1 = new DevExpress.DataAccess.Sql.CustomSqlQuery();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptBalanceGeneral));
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
@@ -39,6 +40,7 @@
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.PasivoCapital = new DevExpress.XtraReports.UI.FormattingRule();
+            this.BoldAcumulador = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.Activos = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -63,6 +65,8 @@
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrPageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.PFechaInicial = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
@@ -77,14 +81,15 @@
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.TOTALACTIVOS = new DevExpress.XtraReports.UI.CalculatedField();
             this.TOTALPASIVOSCAPITAL = new DevExpress.XtraReports.UI.CalculatedField();
-            this.BoldAcumulador = new DevExpress.XtraReports.UI.FormattingRule();
-            this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
+            this.Moneda = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TipoMoneda = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -125,6 +130,15 @@
             // 
             this.PasivoCapital.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.PasivoCapital.Name = "PasivoCapital";
+            // 
+            // BoldAcumulador
+            // 
+            this.BoldAcumulador.Condition = "[Acumulador]=1";
+            // 
+            // 
+            // 
+            this.BoldAcumulador.Formatting.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BoldAcumulador.Name = "BoldAcumulador";
             // 
             // xrLabel5
             // 
@@ -240,8 +254,12 @@
             queryParameter2.Name = "@FechaFinal";
             queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
             queryParameter2.Value = new DevExpress.DataAccess.Expression("[Parameters.PFechaFinal]", typeof(System.DateTime));
+            queryParameter3.Name = "@Moneda";
+            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter3.Value = new DevExpress.DataAccess.Expression("[Parameters.Moneda]", typeof(string));
             storedProcQuery1.Parameters.Add(queryParameter1);
             storedProcQuery1.Parameters.Add(queryParameter2);
+            storedProcQuery1.Parameters.Add(queryParameter3);
             storedProcQuery1.StoredProcName = "cntrptBalanceGeneral";
             customSqlQuery1.Name = "DatosGenerales";
             customSqlQuery1.Sql = "Select Nombre,Telefono,Logo  from globalCompania\r\n";
@@ -339,6 +357,8 @@
             // reportHeaderBand1
             // 
             this.reportHeaderBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel16,
+            this.xrLabel15,
             this.xrLabel10,
             this.xrLabel8,
             this.xrLabel9,
@@ -346,8 +366,30 @@
             this.xrPictureBox1,
             this.xrLabel6,
             this.xrLabel1});
-            this.reportHeaderBand1.HeightF = 111.3334F;
+            this.reportHeaderBand1.HeightF = 135.2917F;
             this.reportHeaderBand1.Name = "reportHeaderBand1";
+            // 
+            // xrLabel16
+            // 
+            this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "TipoMoneda")});
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(345.0417F, 102.875F);
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel16.StylePriority.UseTextAlignment = false;
+            this.xrLabel16.Text = "xrLabel16";
+            this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel15
+            // 
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(245.0418F, 102.875F);
+            this.xrLabel15.Name = "xrLabel15";
+            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel15.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel15.StylePriority.UseTextAlignment = false;
+            this.xrLabel15.Text = "Tipo de Moneda:";
+            this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // xrLabel10
             // 
@@ -366,6 +408,7 @@
             this.PFechaInicial.Name = "PFechaInicial";
             this.PFechaInicial.Type = typeof(System.DateTime);
             this.PFechaInicial.ValueInfo = "2017-07-06";
+            this.PFechaInicial.Visible = false;
             // 
             // xrLabel8
             // 
@@ -384,6 +427,7 @@
             this.PFechaFinal.Name = "PFechaFinal";
             this.PFechaFinal.Type = typeof(System.DateTime);
             this.PFechaFinal.ValueInfo = "09/18/2017 12:34:50";
+            this.PFechaFinal.Visible = false;
             // 
             // xrLabel9
             // 
@@ -492,6 +536,30 @@
             this.GroupFooter1.HeightF = 28.125F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
+            // xrLine2
+            // 
+            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(456.25F, 0F);
+            this.xrLine2.Name = "xrLine2";
+            this.xrLine2.SizeF = new System.Drawing.SizeF(123.1666F, 2.083333F);
+            // 
+            // xrLabel12
+            // 
+            this.xrLabel12.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(206.875F, 2.166653F);
+            this.xrLabel12.Name = "xrLabel12";
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel12.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel12.StylePriority.UseFont = false;
+            this.xrLabel12.StylePriority.UseTextAlignment = false;
+            this.xrLabel12.Text = "TOTALES";
+            this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLine1
+            // 
+            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(319.5417F, 0F);
+            this.xrLine1.Name = "xrLine1";
+            this.xrLine1.SizeF = new System.Drawing.SizeF(123.1666F, 2.166667F);
+            // 
             // xrLabel14
             // 
             this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -533,38 +601,16 @@
     "nd [Nivel1]==1].sum([Saldo])";
             this.TOTALPASIVOSCAPITAL.Name = "TOTALPASIVOSCAPITAL";
             // 
-            // BoldAcumulador
+            // Moneda
             // 
-            this.BoldAcumulador.Condition = "[Acumulador]=1";
+            this.Moneda.Name = "Moneda";
+            this.Moneda.ValueInfo = "L";
+            this.Moneda.Visible = false;
             // 
+            // TipoMoneda
             // 
-            // 
-            this.BoldAcumulador.Formatting.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BoldAcumulador.Name = "BoldAcumulador";
-            // 
-            // xrLine1
-            // 
-            this.xrLine1.LocationFloat = new DevExpress.Utils.PointFloat(319.5417F, 0F);
-            this.xrLine1.Name = "xrLine1";
-            this.xrLine1.SizeF = new System.Drawing.SizeF(123.1666F, 2.166667F);
-            // 
-            // xrLabel12
-            // 
-            this.xrLabel12.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(206.875F, 2.166653F);
-            this.xrLabel12.Name = "xrLabel12";
-            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel12.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel12.StylePriority.UseFont = false;
-            this.xrLabel12.StylePriority.UseTextAlignment = false;
-            this.xrLabel12.Text = "TOTALES";
-            this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLine2
-            // 
-            this.xrLine2.LocationFloat = new DevExpress.Utils.PointFloat(456.25F, 0F);
-            this.xrLine2.Name = "xrLine2";
-            this.xrLine2.SizeF = new System.Drawing.SizeF(123.1666F, 2.083333F);
+            this.TipoMoneda.Expression = "Iif([Parameters.Moneda]=\'D\',\'Dólares\',\'Córdobas\')";
+            this.TipoMoneda.Name = "TipoMoneda";
             // 
             // rptBalanceGeneral
             // 
@@ -578,7 +624,8 @@
             this.GroupFooter1});
             this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
             this.TOTALACTIVOS,
-            this.TOTALPASIVOSCAPITAL});
+            this.TOTALPASIVOSCAPITAL,
+            this.TipoMoneda});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1});
             this.DataMember = "cntrptBalanceGeneral";
@@ -592,7 +639,8 @@
             this.BoldAcumulador});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PFechaInicial,
-            this.PFechaFinal});
+            this.PFechaFinal,
+            this.Moneda});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.FieldCaption,
@@ -608,7 +656,6 @@
         private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.UI.PageHeaderBand pageHeaderBand1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
@@ -654,5 +701,10 @@
         private DevExpress.XtraReports.UI.XRLine xrLine2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
         private DevExpress.XtraReports.UI.XRLine xrLine1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel16;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel15;
+        private DevExpress.XtraReports.Parameters.Parameter Moneda;
+        private DevExpress.XtraReports.UI.CalculatedField TipoMoneda;
+        public DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
     }
 }
