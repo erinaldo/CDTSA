@@ -1,4 +1,4 @@
-USE CedetsaS4U
+
 --Estructura de Privilegios
 create TABLE [dbo].[secUSUARIO](
 	[USUARIO] [nvarchar](20) NOT NULL,
@@ -155,6 +155,7 @@ inner join dbo.secUsuarioRole U on RA.IDRole = U.IDRole and R.IDRole = U.IDRole
 INNER JOIN dbo.secAccion A ON RA.IDACCION=A.IDAccion AND RA.IDMODULO=A.IDModulo
 where U.IDModulo = @IDModulo and  U.Usuario = @Usuario
 
+GO
 
 --INGRESO DE DATOS
 
@@ -163,7 +164,7 @@ insert [dbo].[secUSUARIO](
 	[DESCR] ,
 	[ACTIVO] ,
 	[PASSWORD] )
-values ('azepeda', 'Alfonso Zepeda', 1, '123')
+values ('admin', 'Administrador', 1, '123')
 
 GO
 
@@ -177,21 +178,79 @@ GO
 insert [dbo].[secMODULO](
 	[IDModulo],
 	[Descr] )
-VALUES (0, 'Módulo Contable')
+VALUES (0, 'General')
 GO
 
---SELECT IDMODULO, USUARIO, IDROLE, IDACCION  FROM dbo. vsecPrivilegios  WHERE USUARIO = 'azepeda' AND IDMODULO = 1
+insert [dbo].[secMODULO](
+	[IDModulo],
+	[Descr] )
+VALUES (100, 'Módulo Contable')
 
-insert dbo.secAccion (IDModulo, IDAccion, Descr )
-values (0, 1, 'Acceso al Sistema')
 GO
 
+INSERT   [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 0,1,'Acceso al Sistema')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 0,2,'Modificacion de Reportes')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 0,3,'Administracion del Sistema')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 0,4,'Parametros Generales')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 0,100,'Modulo Contable')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,101,'Catalogo Cuenta Contable') 
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,102,'Agregar Cuenta Contable')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,103,'Editar Cuenta Contable') 
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,104,'Eliminar Cuenta Contable')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,105,'Catalogo Centro Costo')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,106,'Agregar Centro Costo') 
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,107,'Editar Centro Costo')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,108,'Eliminar Centro Costo')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,109,'Asiento de Diario')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,110,'Agregar Asiento de Diario')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,111,'Editar Asiento de Diaro')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,112,'Eliminar Asiento de Diario')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,113,'Mayorizar Asiento de Diario')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,114,'Registrar Tipo de Cambio')    
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,115,'AnularAsientoMayorizado')   
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,116,'Parametros Modulo Contable') 
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,117,'Periodos Contables')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,118,'Cerrar Periodo Contable')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,119,'Establecer Periodo de Trabajo')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,120,'CrearEjericiosContables') 
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,121,'GrupoEstadosFinancieros')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,122,'Agregar GrupoEstadosFinancieros')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,123,'Editar GrupoEstadosFinancieros')    
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,124,'Eliminar GrupoEstadosFinancieros')  
+insert [dbo].[secACCION](   [IDMODULO] ,   [IDACCION] ,   [DESCR]   )  values ( 100,125,'Relacion CuentaGrupoEstadosFinancieros')  
 
-insert [dbo].[secROLEACCION](
-	[IDMODULO] ,
-	[IDROLE] ,
-	[IDACCION] )
-values (0, 1, 1)
+GO
+
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 0,1,1)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 0,1,2)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 0,1,3)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 0,1,4)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 0,1,100)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,101)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,102)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,103)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,104)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,105)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,107)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,108)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,109)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,110)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,111)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,112)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,113)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,114)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,115)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,116)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,117)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,118)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,119)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,120)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,121)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,122)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,123)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,124)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,125)  
+
 
 GO
 
@@ -199,7 +258,14 @@ insert [dbo].[secUSUARIOROLE](
 	[IDROLE] ,
 	[USUARIO] ,
 	[IDMODULO])
-values (1, 'azepeda', 0)
+values (1, 'admin', 0)
 GO
+
+
+insert [dbo].[secUSUARIOROLE](
+	[IDROLE] ,
+	[USUARIO] ,
+	[IDMODULO])
+values (1, 'admin', 100)
 
 

@@ -80,8 +80,8 @@ namespace CG
             DateTime FechaFinal = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
 
             _dsTipoCambioDetalle = TipoCambioDetalleDAC.GetDetalleTipoCambioByID("*", FechaInicial, FechaFinal);
-
-            _dtTipoCambioDetalle = _dsTipoCambioDetalle.Tables[0];
+            if (_dsTipoCambioDetalle.Tables.Count>0)
+                _dtTipoCambioDetalle = _dsTipoCambioDetalle.Tables[0];
             this.grid.DataSource = null;
             this.grid.DataSource = _dtTipoCambioDetalle;
 

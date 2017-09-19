@@ -402,6 +402,22 @@ namespace CG
         }
 
 
+        public static DataSet GetCuentaByCentroCosto(int IDCentro)
+        {
+            String strSQL = "dbo.cntGetCuentaConbleByCentroCosto";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDCentro", IDCentro));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = CreateDataSet();
+
+            oAdap.Fill(DS.Tables["Data"]);
+            return DS;
+        }
+
 
         public static Task<DataSet> GetDataAsync(String CodSucursal, String NumSolicitud)
         {

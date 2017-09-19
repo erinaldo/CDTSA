@@ -106,7 +106,7 @@ namespace CG
             try
             {
 
-                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.CommandType = CommandType.Text;
                 
                 SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
 

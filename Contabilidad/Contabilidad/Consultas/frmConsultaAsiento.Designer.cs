@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaAsiento));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.txtDescrCuentaContable = new DevExpress.XtraEditors.TextEdit();
+            this.txtTC = new DevExpress.XtraEditors.TextEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
@@ -43,6 +43,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.txtDescrCuentaContable = new DevExpress.XtraEditors.TextEdit();
             this.txtSaldoFinal = new DevExpress.XtraEditors.TextEdit();
             this.txtTotalCredito = new DevExpress.XtraEditors.TextEdit();
             this.txtTotalDebito = new DevExpress.XtraEditors.TextEdit();
@@ -57,7 +58,9 @@
             this.TipoAsiento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Concepto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Debito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Credito = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.CreadoBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UserMayorizado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaHora = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -81,21 +84,21 @@
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtTC = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSaldoFinal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalCredito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalDebito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSaldoInicial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCuentaContable.Properties)).BeginInit();
@@ -116,11 +119,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -146,15 +146,14 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // txtDescrCuentaContable
+            // txtTC
             // 
-            this.txtDescrCuentaContable.Location = new System.Drawing.Point(237, 36);
-            this.txtDescrCuentaContable.MenuManager = this.barManager1;
-            this.txtDescrCuentaContable.Name = "txtDescrCuentaContable";
-            this.txtDescrCuentaContable.Properties.ReadOnly = true;
-            this.txtDescrCuentaContable.Size = new System.Drawing.Size(410, 20);
-            this.txtDescrCuentaContable.StyleController = this.layoutControl1;
-            this.txtDescrCuentaContable.TabIndex = 14;
+            this.txtTC.Location = new System.Drawing.Point(716, 28);
+            this.txtTC.MenuManager = this.barManager1;
+            this.txtTC.Name = "txtTC";
+            this.txtTC.Size = new System.Drawing.Size(93, 20);
+            this.txtTC.StyleController = this.layoutControl1;
+            this.txtTC.TabIndex = 15;
             // 
             // barManager1
             // 
@@ -255,6 +254,16 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(821, 47);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 459);
+            // 
+            // txtDescrCuentaContable
+            // 
+            this.txtDescrCuentaContable.Location = new System.Drawing.Point(237, 36);
+            this.txtDescrCuentaContable.MenuManager = this.barManager1;
+            this.txtDescrCuentaContable.Name = "txtDescrCuentaContable";
+            this.txtDescrCuentaContable.Properties.ReadOnly = true;
+            this.txtDescrCuentaContable.Size = new System.Drawing.Size(410, 20);
+            this.txtDescrCuentaContable.StyleController = this.layoutControl1;
+            this.txtDescrCuentaContable.TabIndex = 14;
             // 
             // txtSaldoFinal
             // 
@@ -410,6 +419,11 @@
             this.Debito.VisibleIndex = 4;
             this.Debito.Width = 112;
             // 
+            // txtGridDebito
+            // 
+            this.txtGridDebito.AutoHeight = false;
+            this.txtGridDebito.Name = "txtGridDebito";
+            // 
             // Credito
             // 
             this.Credito.Caption = "Crédito";
@@ -420,6 +434,11 @@
             this.Credito.Visible = true;
             this.Credito.VisibleIndex = 5;
             this.Credito.Width = 138;
+            // 
+            // txtGridCredito
+            // 
+            this.txtGridCredito.AutoHeight = false;
+            this.txtGridCredito.Name = "txtGridCredito";
             // 
             // CreadoBy
             // 
@@ -689,15 +708,6 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // txtTC
-            // 
-            this.txtTC.Location = new System.Drawing.Point(716, 28);
-            this.txtTC.MenuManager = this.barManager1;
-            this.txtTC.Name = "txtTC";
-            this.txtTC.Size = new System.Drawing.Size(93, 20);
-            this.txtTC.StyleController = this.layoutControl1;
-            this.txtTC.TabIndex = 15;
-            // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.txtTC;
@@ -719,16 +729,6 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(65, 72);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtGridDebito
-            // 
-            this.txtGridDebito.AutoHeight = false;
-            this.txtGridDebito.Name = "txtGridDebito";
-            // 
-            // txtGridCredito
-            // 
-            this.txtGridCredito.AutoHeight = false;
-            this.txtGridCredito.Name = "txtGridCredito";
-            // 
             // frmConsultaAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -745,14 +745,17 @@
             this.Load += new System.EventHandler(this.frmConsultaSaldoCuentaContable_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescrCuentaContable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSaldoFinal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalCredito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalDebito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSaldoInicial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCuentaContable.Properties)).EndInit();
@@ -773,11 +776,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

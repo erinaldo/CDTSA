@@ -41,6 +41,8 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.slkpTipoDeGrupo = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.cmbTipoGrupo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.slkupGrupoAcumulador = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -71,14 +73,14 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.slkpTipoDeGrupo = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkpTipoDeGrupo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTipoGrupo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupGrupoAcumulador.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -104,11 +106,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkpTipoDeGrupo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -234,6 +234,25 @@
             this.layoutControl1.Size = new System.Drawing.Size(804, 443);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // slkpTipoDeGrupo
+            // 
+            this.slkpTipoDeGrupo.Location = new System.Drawing.Point(461, 350);
+            this.slkpTipoDeGrupo.MenuManager = this.ribbonControl;
+            this.slkpTipoDeGrupo.Name = "slkpTipoDeGrupo";
+            this.slkpTipoDeGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkpTipoDeGrupo.Properties.View = this.gridView1;
+            this.slkpTipoDeGrupo.Size = new System.Drawing.Size(319, 20);
+            this.slkpTipoDeGrupo.StyleController = this.layoutControl1;
+            this.slkpTipoDeGrupo.TabIndex = 10;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // cmbTipoGrupo
             // 
@@ -555,6 +574,15 @@
             this.layoutControlItem7.Text = "Grupo Padre:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(105, 13);
             // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.slkpTipoDeGrupo;
+            this.layoutControlItem9.Location = new System.Drawing.Point(329, 23);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(431, 24);
+            this.layoutControlItem9.Text = "Tipo de Grupo Cuenta";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(105, 13);
+            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.cmbTipoGrupo;
@@ -571,34 +599,6 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(457, 24);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // slkpTipoDeGrupo
-            // 
-            this.slkpTipoDeGrupo.Location = new System.Drawing.Point(461, 350);
-            this.slkpTipoDeGrupo.MenuManager = this.ribbonControl;
-            this.slkpTipoDeGrupo.Name = "slkpTipoDeGrupo";
-            this.slkpTipoDeGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkpTipoDeGrupo.Properties.View = this.gridView1;
-            this.slkpTipoDeGrupo.Size = new System.Drawing.Size(319, 20);
-            this.slkpTipoDeGrupo.StyleController = this.layoutControl1;
-            this.slkpTipoDeGrupo.TabIndex = 10;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.slkpTipoDeGrupo;
-            this.layoutControlItem9.Location = new System.Drawing.Point(329, 23);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(431, 24);
-            this.layoutControlItem9.Text = "Tipo de Grupo Cuenta";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(105, 13);
-            // 
-            // gridView1
-            // 
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // frmGrupoEstadosFinancieros
             // 
@@ -617,6 +617,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.slkpTipoDeGrupo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTipoGrupo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupGrupoAcumulador.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
@@ -642,11 +644,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkpTipoDeGrupo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
