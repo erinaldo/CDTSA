@@ -35,9 +35,6 @@ namespace CG
         private DataTable _dtCuentas;
         private DataTable _dtCentros;
 
-        private DataTable _dtCuentasConstante;
-        private DataTable _dtCentrosConstante;
-
         private DataTable _dtSecurity;
 
         private DataSet _dsEjercicioPeriodo;
@@ -293,10 +290,6 @@ namespace CG
             this.btnGuardar.Enabled = (Mayorizado == true) ? false :  Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
-
-         
-          
-
     }
 
     private void EnlazarEventos()
@@ -436,7 +429,7 @@ namespace CG
             if (_Asiento != null && _Asiento != "")
             {
                 DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/Asiento/Plantillas/rptAsiento.repx", true);
-                //Reporte.Asiento.rptAsiento report = new Reporte.Asiento.rptAsiento();
+   
 
                 // Obtain a parameter, and set its value.
                 report.Parameters["Asiento"].Value = _Asiento;
@@ -860,12 +853,7 @@ namespace CG
                 view.SetRowCellValue(e.RowHandle, view.Columns["Asiento"], _currentRow["Asiento"]);
                 view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], count);
 
-                _dtCuentas = CuentaContableDAC.GetCuentaByCentroCosto(0).Tables[0];
-                this.slkupCuentaContableGrid.DataSource = _dtCuentas;
-
-                _dtCentros = CentroCostoDAC.GetCentroByCuenta(-1).Tables[0];
-                this.slkupCentroCostoGrid.DataSource = _dtCentros;
-
+      
 
             }
             catch (Exception ex)
@@ -904,11 +892,12 @@ namespace CG
                 else
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], "");
                 
-                //_dtCentros = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(cellValue)).Tables[0];
+                DataTable _dtTemp = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(cellValue)).Tables[0];
                 //this.slkupCentroCostoGrid.DataSource = _dtCentros;
-                //if (_dtCentros.Rows.Count == 1) {
-                //    view.SetRowCellValue(e.RowHandle, view.Columns["IDCentro"], _dtCentros.Rows[0]["IDCentro"].ToString());
-                //}
+                if (_dtTemp.Rows.Count == 1)
+                {
+                    view.SetRowCellValue(e.RowHandle, view.Columns["IDCentro"], _dtTemp.Rows[0]["IDCentro"].ToString());
+                }
             }
             
         }
