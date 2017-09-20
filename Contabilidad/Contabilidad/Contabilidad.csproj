@@ -307,6 +307,12 @@
     <Compile Include="Reporte\ReportesFinancieros\rptBalanceGeneral.Designer.cs">
       <DependentUpon>rptBalanceGeneral.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\ReportesFinancieros\rptEstadoResultado.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\ReportesFinancieros\rptEstadoResultado.Designer.cs">
+      <DependentUpon>rptEstadoResultado.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Consultas\frmConsultaLibroMayor.resx">
       <DependentUpon>frmConsultaLibroMayor.cs</DependentUpon>
     </EmbeddedResource>
@@ -404,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\ReportesFinancieros\rptBalanceGeneral.resx">
       <DependentUpon>rptBalanceGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\ReportesFinancieros\rptEstadoResultado.resx">
+      <DependentUpon>rptEstadoResultado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
