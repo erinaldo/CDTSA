@@ -156,7 +156,7 @@ namespace CG
 
                 this.dtpFechaInicial.EditValue = DateTime.Now.AddMonths(-1);
                 this.dtpFechaFinal.EditValue = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1));
-                this.txtIDTipoCambio.Text = this.IDTipoCambio + " " + this.Descr;
+                this.txtIDTipoCambio.Text = string.Format("{0} {1}", this.IDTipoCambio, this.Descr);
                 Util.Util.SetDefaultBehaviorControls(this.gridView, false, this.grid, _tituloVentana, this);
 
                 EnlazarEventos();

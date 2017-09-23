@@ -130,7 +130,10 @@ namespace CG
 
             if (DS.Tables.Count > 0) {
                 if (DS.Tables[0].Rows.Count > 0)
-                    Fecha = Convert.ToDateTime(DS.Tables[0].Rows[0]["NextFecha"]);
+                    if (DS.Tables[0].Rows[0]["NextFecha"].ToString() != "")
+                        Fecha = Convert.ToDateTime(DS.Tables[0].Rows[0]["NextFecha"]);
+                    else
+                        Fecha = DateTime.Now;
             }
 
             return Fecha;

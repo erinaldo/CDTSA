@@ -123,8 +123,12 @@ namespace CG
                         this.chkAcumulador.Enabled = false;
                     else
                         this.chkAcumulador.Enabled = true;
+                
                     this.slkpTipoDeGrupo.EditValue = dt.Rows[0]["IDGrupoCuenta"];
-                    this.slkpTipoDeGrupo.Enabled = false;
+                    if (this.cmbTipoGrupo.SelectedIndex==0)
+                        this.slkpTipoDeGrupo.Enabled = true;
+                    else
+                        this.slkpTipoDeGrupo.Enabled = false;
                     this.txtDescripcion.Text = "";
                     this.txtDescripcion.Focus();
 

@@ -113,7 +113,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptBalanceGeneral.Saldo", "{0:n2}")});
             this.xrLabel11.FormattingRules.Add(this.PasivoCapital);
             this.xrLabel11.FormattingRules.Add(this.BoldAcumulador);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(319.5417F, 0F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(456.2499F, 0F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.SizeF = new System.Drawing.SizeF(123.1667F, 22.99999F);
@@ -146,7 +146,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptBalanceGeneral.Saldo", "{0:n2}")});
             this.xrLabel5.FormattingRules.Add(this.Activos);
             this.xrLabel5.FormattingRules.Add(this.BoldAcumulador);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(456.25F, 0F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(319.5417F, 0F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(123.1666F, 22.99999F);

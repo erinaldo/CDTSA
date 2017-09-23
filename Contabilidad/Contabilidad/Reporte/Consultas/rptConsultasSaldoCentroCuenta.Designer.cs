@@ -36,6 +36,22 @@
             DevExpress.DataAccess.Sql.QueryParameter queryParameter4 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptConsultasSaldoCentroCuenta));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NIVEL5 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NIVEL4 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NIVEL3 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NIVEL2 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NIVEL1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
@@ -48,24 +64,8 @@
             this.FieldCaption = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.NIVEL1 = new DevExpress.XtraReports.UI.FormattingRule();
-            this.NIVEL2 = new DevExpress.XtraReports.UI.FormattingRule();
-            this.NIVEL3 = new DevExpress.XtraReports.UI.FormattingRule();
-            this.NIVEL4 = new DevExpress.XtraReports.UI.FormattingRule();
-            this.NIVEL5 = new DevExpress.XtraReports.UI.FormattingRule();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -82,11 +82,186 @@
             this.xrLabel1,
             this.xrLabel3,
             this.xrLabel7});
-            this.Detail.HeightF = 37.50002F;
+            this.Detail.HeightF = 30.20833F;
+            this.Detail.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StyleName = "DataField";
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.DebitoDolar")});
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(576.8749F, 0F);
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(77.70837F, 23F);
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
+            this.xrLabel5.Text = "xrLabel5";
+            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLabel6
+            // 
+            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.CreditoDolar")});
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(654.5833F, 0F);
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(77.70837F, 23F);
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            this.xrLabel6.Text = "xrLabel6";
+            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLabel11
+            // 
+            this.xrLabel11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.SaldoAnteriorDolar")});
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(499.1666F, 0F);
+            this.xrLabel11.Name = "xrLabel11";
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(77.70831F, 23F);
+            this.xrLabel11.StylePriority.UseTextAlignment = false;
+            this.xrLabel11.Text = "xrLabel11";
+            this.xrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.SaldoDolar")});
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(732.2916F, 0F);
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(79.16663F, 23F);
+            this.xrLabel4.StylePriority.UseTextAlignment = false;
+            this.xrLabel4.Text = "xrLabel4";
+            this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLabel10
+            // 
+            this.xrLabel10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
+            this.xrLabel10.FormattingRules.Add(this.NIVEL5);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(138.7916F, 0F);
+            this.xrLabel10.Name = "xrLabel10";
+            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel10.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
+            this.xrLabel10.Text = "xrLabel1";
+            this.xrLabel10.Visible = false;
+            // 
+            // NIVEL5
+            // 
+            this.NIVEL5.Condition = "[NIVEL5]=1";
+            // 
+            // 
+            // 
+            this.NIVEL5.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
+            this.NIVEL5.Name = "NIVEL5";
+            // 
+            // xrLabel9
+            // 
+            this.xrLabel9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
+            this.xrLabel9.FormattingRules.Add(this.NIVEL4);
+            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(112.5F, 0F);
+            this.xrLabel9.Name = "xrLabel9";
+            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel9.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
+            this.xrLabel9.Text = "xrLabel1";
+            this.xrLabel9.Visible = false;
+            // 
+            // NIVEL4
+            // 
+            this.NIVEL4.Condition = "[NIVEL4]=1";
+            // 
+            // 
+            // 
+            this.NIVEL4.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
+            this.NIVEL4.Name = "NIVEL4";
+            // 
+            // xrLabel8
+            // 
+            this.xrLabel8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
+            this.xrLabel8.FormattingRules.Add(this.NIVEL3);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(72.9166F, 0F);
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
+            this.xrLabel8.Text = "xrLabel1";
+            this.xrLabel8.Visible = false;
+            // 
+            // NIVEL3
+            // 
+            this.NIVEL3.Condition = "[NIVEL3]=1";
+            // 
+            // 
+            // 
+            this.NIVEL3.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
+            this.NIVEL3.Name = "NIVEL3";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Centro")});
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(432.2916F, 0F);
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(66.87506F, 13.00001F);
+            this.xrLabel2.Text = "xrLabel2";
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
+            this.xrLabel1.FormattingRules.Add(this.NIVEL2);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(14.8333F, 0F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
+            this.xrLabel1.Text = "xrLabel1";
+            this.xrLabel1.Visible = false;
+            // 
+            // NIVEL2
+            // 
+            this.NIVEL2.Condition = "[NIVEL2]=1";
+            // 
+            // 
+            // 
+            this.NIVEL2.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
+            this.NIVEL2.Name = "NIVEL2";
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.CanShrink = true;
+            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
+            this.xrLabel3.FormattingRules.Add(this.NIVEL1);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(138.7916F, 23F);
+            this.xrLabel3.Text = "xrLabel3";
+            this.xrLabel3.Visible = false;
+            // 
+            // NIVEL1
+            // 
+            this.NIVEL1.Condition = "[NIVEL1]=1";
+            // 
+            // 
+            // 
+            this.NIVEL1.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
+            this.NIVEL1.Name = "NIVEL1";
+            // 
+            // xrLabel7
+            // 
+            this.xrLabel7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.DescrCuenta")});
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(262.7499F, 0F);
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(169.5417F, 23F);
+            this.xrLabel7.Text = "xrLabel7";
             // 
             // TopMargin
             // 
@@ -97,6 +272,8 @@
             // 
             // BottomMargin
             // 
+            this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel12});
             this.BottomMargin.HeightF = 100F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -212,194 +389,20 @@
             this.DataField.Name = "DataField";
             this.DataField.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             // 
-            // xrLabel1
-            // 
-            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
-            this.xrLabel1.FormattingRules.Add(this.NIVEL2);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(14.8333F, 0F);
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
-            this.xrLabel1.Text = "xrLabel1";
-            this.xrLabel1.Visible = false;
-            // 
-            // xrLabel3
-            // 
-            this.xrLabel3.CanShrink = true;
-            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
-            this.xrLabel3.FormattingRules.Add(this.NIVEL1);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(138.7916F, 23F);
-            this.xrLabel3.Text = "xrLabel3";
-            this.xrLabel3.Visible = false;
-            // 
-            // NIVEL1
-            // 
-            this.NIVEL1.Condition = "[NIVEL1]=1";
-            // 
-            // 
-            // 
-            this.NIVEL1.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
-            this.NIVEL1.Name = "NIVEL1";
-            // 
-            // NIVEL2
-            // 
-            this.NIVEL2.Condition = "[NIVEL2]=1";
-            // 
-            // 
-            // 
-            this.NIVEL2.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
-            this.NIVEL2.Name = "NIVEL2";
-            // 
-            // NIVEL3
-            // 
-            this.NIVEL3.Condition = "[NIVEL3]=1";
-            // 
-            // 
-            // 
-            this.NIVEL3.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
-            this.NIVEL3.Name = "NIVEL3";
-            // 
-            // NIVEL4
-            // 
-            this.NIVEL4.Condition = "[NIVEL4]=1";
-            // 
-            // 
-            // 
-            this.NIVEL4.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
-            this.NIVEL4.Name = "NIVEL4";
-            // 
-            // NIVEL5
-            // 
-            this.NIVEL5.Condition = "[NIVEL5]=1";
-            // 
-            // 
-            // 
-            this.NIVEL5.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
-            this.NIVEL5.Name = "NIVEL5";
-            // 
             // GroupHeader1
             // 
             this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("Cuenta", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader1.HeightF = 32.29167F;
-            this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
-            // GroupHeader2
+            // xrLabel12
             // 
-            this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
-            new DevExpress.XtraReports.UI.GroupField("Centro", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
-            this.GroupHeader2.HeightF = 23.95835F;
-            this.GroupHeader2.Name = "GroupHeader2";
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Centro")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(432.2916F, 0F);
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(66.87506F, 13.00001F);
-            this.xrLabel2.Text = "xrLabel2";
-            // 
-            // xrLabel8
-            // 
-            this.xrLabel8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
-            this.xrLabel8.FormattingRules.Add(this.NIVEL3);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(72.9166F, 0F);
-            this.xrLabel8.Name = "xrLabel8";
-            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
-            this.xrLabel8.Text = "xrLabel1";
-            this.xrLabel8.Visible = false;
-            // 
-            // xrLabel9
-            // 
-            this.xrLabel9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
-            this.xrLabel9.FormattingRules.Add(this.NIVEL4);
-            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(112.5F, 0F);
-            this.xrLabel9.Name = "xrLabel9";
-            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel9.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
-            this.xrLabel9.Text = "xrLabel1";
-            this.xrLabel9.Visible = false;
-            // 
-            // xrLabel10
-            // 
-            this.xrLabel10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.Cuenta")});
-            this.xrLabel10.FormattingRules.Add(this.NIVEL5);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(138.7916F, 0F);
-            this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(123.9583F, 23F);
-            this.xrLabel10.Text = "xrLabel1";
-            this.xrLabel10.Visible = false;
-            // 
-            // xrLabel4
-            // 
-            this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.SaldoDolar")});
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(732.2916F, 0F);
-            this.xrLabel4.Name = "xrLabel4";
-            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(79.16663F, 23F);
-            this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "xrLabel4";
-            this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel11
-            // 
-            this.xrLabel11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.SaldoAnteriorDolar")});
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(499.1666F, 0F);
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(77.70831F, 23F);
-            this.xrLabel11.StylePriority.UseTextAlignment = false;
-            this.xrLabel11.Text = "xrLabel11";
-            this.xrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel6
-            // 
-            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.CreditoDolar")});
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(654.5833F, 0F);
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(77.70837F, 23F);
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.Text = "xrLabel6";
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel5
-            // 
-            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.DebitoDolar")});
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(576.8749F, 0F);
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(77.70837F, 23F);
-            this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = "xrLabel5";
-            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel7
-            // 
-            this.xrLabel7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntrptConsultaSaldosByCentroCuenta.DescrCuenta")});
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(262.7499F, 0F);
-            this.xrLabel7.Name = "xrLabel7";
-            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.SizeF = new System.Drawing.SizeF(169.5417F, 23F);
-            this.xrLabel7.Text = "xrLabel7";
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(248.9583F, 0F);
+            this.xrLabel12.Name = "xrLabel12";
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel12.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel12.Text = "xrLabel12";
             // 
             // rptConsultasSaldoCentroCuenta
             // 
@@ -409,8 +412,7 @@
             this.BottomMargin,
             this.pageFooterBand1,
             this.reportHeaderBand1,
-            this.GroupHeader1,
-            this.GroupHeader2});
+            this.GroupHeader1});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1});
             this.DataMember = "cntrptConsultaSaldosByCentroCuenta";
@@ -464,6 +466,6 @@
         private DevExpress.XtraReports.UI.FormattingRule NIVEL1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
-        private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel12;
     }
 }
