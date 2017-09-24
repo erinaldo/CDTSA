@@ -256,7 +256,9 @@ namespace CG
         {
             frmAsiento ofrmAsiento = new frmAsiento();
             ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
-            ofrmAsiento.ShowDialog();
+            
+            if (!ofrmAsiento.IsDisposed)
+                ofrmAsiento.ShowDialog();
 
         }
 

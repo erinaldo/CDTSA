@@ -131,6 +131,8 @@ namespace CG
 
         }
 
+       
+
 
         public static DataSet GetPeriodoContableByFecha(DateTime Fecha)
         {

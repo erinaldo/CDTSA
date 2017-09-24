@@ -59,10 +59,29 @@ namespace CG
             //Obtener el Siguiente consecutivo de la solicitud"
             _dsAsiento = AsientoDAC.GetDataEmpty();
             _dtAsiento = _dsAsiento.Tables[0];
-            
-            _ModuloFuente = "CG";
-            InicializarNuevoElemento();
-            this.StartPosition = FormStartPosition.CenterScreen;
+            if (ValidarEjerciosPeriodoTrabajo())
+            {
+                _ModuloFuente = "CG";
+                InicializarNuevoElemento();
+                this.StartPosition = FormStartPosition.CenterScreen;
+            }
+            else
+                this.Dispose(true);
+        }
+
+        private bool ValidarEjerciosPeriodoTrabajo() {
+            bool result = false;
+            DataSet ds = new DataSet();
+            ds = EjercicioDAC.ValidaEjercicioPeriodoTrabajo(DateTime.Now);
+            String sMensaje = ds.Tables[0].Rows[0]["msg"].ToString();
+            if (sMensaje != "OK")
+            {
+                MessageBox.Show(sMensaje);
+            }
+            else
+                result = true;
+
+            return result;
         }
 
         public frmAsiento(String Asiento)
@@ -375,6 +394,8 @@ namespace CG
                     this.gridView1.Columns.FirstOrDefault(a => a.Name == "Documento").VisibleIndex = 8;
                     this.gridView1.Columns.FirstOrDefault(a => a.Name == "Referencia").VisibleIndex = 9;
 
+                    CargarColumnas();
+
                 }
                 else
                 {
@@ -396,7 +417,7 @@ namespace CG
                     this.gridView1.Columns.FirstOrDefault(a => a.Name == "Creditos").VisibleIndex = 7;
                     //this.gridView1.Columns.FirstOrDefault(a => a.Name == "Documento").VisibleIndex = 8;
                     this.gridView1.Columns.FirstOrDefault(a => a.Name == "Referencia").VisibleIndex = 9;
-
+                    CargarColumnas();
 
                 }
                 this.btnShowLessColumns.Refresh();

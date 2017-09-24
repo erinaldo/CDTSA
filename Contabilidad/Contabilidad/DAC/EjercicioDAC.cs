@@ -58,6 +58,45 @@ namespace CG
         }
 
 
+        /// <summary>
+        /// Este metodo se utiliza para validar si el Ejercicio fiscal Existe y si existe al menos uno de
+        /// sus Periodos esta activo como periodo de trabajo
+        /// Devuelve un data set con la columna mng, si todo bien devuelve "OK"
+        /// </summary>
+        /// <param name="Fecha">Fecha que se requiere validar</param>
+        /// <returns></returns>
+        public static DataSet ValidaEjercicioPeriodoTrabajo(DateTime Fecha)
+        {
+
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntValidarEjerciosPeriodoTrabajo", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@Fecha", SqlDbType.Date, 50).Value = Fecha;
+                SqlDataAdapter oAdapatadorTmp = new SqlDataAdapter(oCmd);
+                oAdapatadorTmp.Fill(DS, "Data");
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return DS;
+
+        }
+
 
         public static bool CreaEjercicio(DateTime FechaInicio, bool InicioOperaciones , int MesInicioOperaciones)
         {
