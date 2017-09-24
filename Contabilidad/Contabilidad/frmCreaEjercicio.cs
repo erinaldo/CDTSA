@@ -59,7 +59,7 @@ namespace CG
                 {
                     if (Convert.ToBoolean(this.ckEsInicioOperaciones.EditValue) == true)
                     {
-                        MesInicioOperaciones = Convert.ToDateTime(this.dtMesInicio.EditValue).Year;
+                        MesInicioOperaciones = Convert.ToDateTime(this.dtMesInicio.EditValue).Month;
                         InicioOperaciones = true;
                     }
                     FechaInicio = Convert.ToDateTime(this.dtFechaInicio.EditValue);
@@ -97,5 +97,6 @@ namespace CG
                 this.dtMesInicio.EditValue = null;
             }
         }
+
     }
 }
