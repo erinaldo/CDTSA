@@ -15,6 +15,8 @@ namespace CG
     {
         private DataTable _dtCentroCosto;
         private DataTable _dtCuentaContable;
+        private String sCuentasSelected = "";
+        private String sCentrosSelected = "";
 
         public frmBalanceComprobacion()
         {
@@ -34,15 +36,7 @@ namespace CG
                 _dtCentroCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0]; //No estamos tomando los acumuladores
                 _dtCuentaContable = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
 
-                Util.Util.ConfigLookupEdit(this.slkupCentroCosto, _dtCentroCosto, "Descr", "IDCentro");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroCosto, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
-                Util.Util.ConfigLookupEdit(this.slkupCuentasDesde, _dtCuentaContable, "Descr", "IDCuenta");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentasDesde, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
-                Util.Util.ConfigLookupEdit(this.slkupCuentasHasta, _dtCuentaContable, "Descr", "IDCuenta");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentasHasta, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
+                
                 this.chkSoloCuentadeMayor.Checked = true;
                 DateTime fechatemp = DateTime.Today;
                 this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
@@ -59,32 +53,41 @@ namespace CG
 
         }
 
-        private void chkSoloCuentadeMayor_CheckedChanged(object sender, EventArgs e)
+        
+
+        private void btnSelectCentrosCostos_Click(object sender, EventArgs e)
         {
-            if (this.chkSoloCuentadeMayor.Checked == true)
-            {
-                this.chkDetalleMovimiento.Enabled = false;
-                this.chkDetalleMovimiento.Checked = false;
-            }
-            else
-            {
-                this.chkDetalleMovimiento.Enabled = true;
-                this.chkDetalleMovimiento.Checked = true;
-            }
+            frmPopPupCentroCosto ofrmCentro = new frmPopPupCentroCosto();
+            ofrmCentro.FormClosed += ofrmCentro_FormClosed;
+            ofrmCentro.sCostosSelected = this.sCentrosSelected;
+            ofrmCentro.Show();
         }
 
-        private void chkDetalleMovimiento_CheckedChanged(object sender, EventArgs e)
+        void ofrmCentro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (this.chkDetalleMovimiento.Checked == true)
-            {
-                this.chkSoloCuentadeMayor.Enabled = false;
-                this.chkSoloCuentadeMayor.Checked = false;
-            }
-            else
-            {
-                this.chkSoloCuentadeMayor.Enabled = true;
-                this.chkSoloCuentadeMayor.Checked = true;
-            }
+            frmPopPupCentroCosto Centro = (frmPopPupCentroCosto)sender;
+            sCentrosSelected = Centro.sCostosSelected;
+            MessageBox.Show(sCentrosSelected);
+        }
+
+        private void btnSelecctCuentasContables_Click(object sender, EventArgs e)
+        {
+            frmPopPupCuentaContable ofrmPopupCuenta = new frmPopPupCuentaContable();
+            ofrmPopupCuenta.FormClosed += ofrmCuenta_FormClosed;
+            ofrmPopupCuenta.sCuentasSelected = this.sCuentasSelected;
+            ofrmPopupCuenta.Show();
+        }
+
+        void ofrmCuenta_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmPopPupCuentaContable Cuenta = (frmPopPupCuentaContable)sender;
+            sCuentasSelected = Cuenta.sCuentasSelected;
+            MessageBox.Show(sCuentasSelected);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
