@@ -108,6 +108,25 @@ namespace CG
             //guarar los parametros de centros y Cuentas
             if (ReportesDAC.SetCuentaCentroReporte(sCuentasSelected, sCentrosSelected, 1, sUsuario)) { 
                 //Mostrar el reporte
+                    DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/ReportesFinancieros/Plantilla/rptBalanceComrpobacion.repx", true);
+
+
+                    // Obtain a parameter, and set its value.
+                    report.Parameters["ConsolidadoByCuenta"].Value = ConsolidadPorcuenta;
+                    report.Parameters["FechaInicial"].Value = Convert.ToDateTime(dtpFechaInicial.EditValue);
+                    report.Parameters["FechaFinal"].Value = Convert.ToDateTime(dtpFechaFinal.EditValue);
+                    report.Parameters["IDReporte"].Value = 1;
+                    report.Parameters["IncluyeAsientoDeDiario"].Value = IncluirAsientosDeDiario;
+                    report.Parameters["Moneda"].Value = Moneda;
+                    report.Parameters["SoloCuentaMayor"].Value = SoloCuentasMayor;
+                    report.Parameters["TipoCuentaMovimiento"].Value = CuentasSinMovimientos;
+                    report.Parameters["Usuario"].Value = sUsuario;
+                    // Show the report's print preview.
+                    DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+                    tool.ShowPreview();
+
+
             }
 
         }   

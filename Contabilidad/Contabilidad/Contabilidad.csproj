@@ -456,6 +456,9 @@
     <None Include="Reporte\Asiento\Plantillas\rptAsiento.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Reporte\ReportesFinancieros\Plantilla\rptBalanceComprobacion.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Reporte\ReportesFinancieros\Plantilla\rptBalanceGeneral.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
