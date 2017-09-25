@@ -132,6 +132,7 @@
     <Compile Include="DAC\Cuenta_GrupoEstadosFinancierosDAC.cs" />
     <Compile Include="DAC\EjercicioDAC.cs" />
     <Compile Include="DAC\GrupoEstadosFinancierosDAC.cs" />
+    <Compile Include="DAC\ReportesDAC.cs" />
     <Compile Include="frmGrupoEstadosFinancieros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +315,12 @@
     <Compile Include="Reporte\Consultas\rptConsultasSaldoCentroCuenta.Designer.cs">
       <DependentUpon>rptConsultasSaldoCentroCuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reporte\ReportesFinancieros\rptBalanceComprobacion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\ReportesFinancieros\rptBalanceComprobacion.Designer.cs">
+      <DependentUpon>rptBalanceComprobacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reporte\ReportesFinancieros\rptBalanceGeneral.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -426,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\Consultas\rptConsultasSaldoCentroCuenta.resx">
       <DependentUpon>rptConsultasSaldoCentroCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\ReportesFinancieros\rptBalanceComprobacion.resx">
+      <DependentUpon>rptBalanceComprobacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporte\ReportesFinancieros\rptBalanceGeneral.resx">
       <DependentUpon>rptBalanceGeneral.cs</DependentUpon>

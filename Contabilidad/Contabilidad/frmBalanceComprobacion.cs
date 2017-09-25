@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using CG.DAC;
+using Security;
 
 namespace CG
 {
@@ -44,7 +46,7 @@ namespace CG
 
                 this.rgCuentasSinMovimientos.SelectedIndex = 1;
 
-                this.rbLocal.Checked = true;
+                
             }
             catch (Exception ex)
             {
@@ -85,9 +87,31 @@ namespace CG
             MessageBox.Show(sCuentasSelected);
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
+            //Obtener todas las variables
+            int ConsolidadPorcuenta = 0;
+            int IncluirAsientosDeDiario = 0;
+            int SoloCuentasMayor =0;
+            int CuentasSinMovimientos = 0;
+            int Moneda = 0;
 
-        }
+            if (this.chkConsilidarByCuenta.Checked == true)
+                ConsolidadPorcuenta = 1;
+            if (this.chkIncluirAsientosdeDiario.Checked == true)
+                IncluirAsientosDeDiario = 1;
+            if (this.chkSoloCuentadeMayor.Checked == true)
+                SoloCuentasMayor = 1;
+            CuentasSinMovimientos = this.rgCuentasSinMovimientos.SelectedIndex;
+            Moneda = this.rgMonedas.SelectedIndex;
+            String sUsuario =(UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
+            //guarar los parametros de centros y Cuentas
+            if (ReportesDAC.SetCuentaCentroReporte(sCuentasSelected, sCentrosSelected, 1, sUsuario)) { 
+                //Mostrar el reporte
+            }
+
+        }   
+
+     
     }
 }
