@@ -33,15 +33,15 @@
     </Item10>
   </FormattingRuleSheet>
   <Parameters>
-    <Item1 Ref="23" ValueInfo="1" Name="IDReporte" Type="#Ref-22" />
-    <Item2 Ref="25" ValueInfo="azepeda" Name="Usuario" />
-    <Item3 Ref="27" ValueInfo="2017-07-06" Name="FechaInicial" Type="#Ref-26" />
-    <Item4 Ref="28" ValueInfo="2017-09-29" Name="FechaFinal" Type="#Ref-26" />
-    <Item5 Ref="29" ValueInfo="0" Name="IncluyeAsientoDeDiario" Type="#Ref-22" />
-    <Item6 Ref="30" ValueInfo="-1" Name="SoloCuentaMayor" Type="#Ref-22" />
-    <Item7 Ref="31" ValueInfo="1" Name="TipoCuentaSinMovimiento" Type="#Ref-22" />
-    <Item8 Ref="32" ValueInfo="0" Name="ConsolidadoByCuenta" Type="#Ref-22" />
-    <Item9 Ref="33" ValueInfo="1" Name="Moneda" Type="#Ref-22" />
+    <Item1 Ref="23" Visible="false" ValueInfo="1" Name="IDReporte" Type="#Ref-22" />
+    <Item2 Ref="25" Visible="false" ValueInfo="azepeda" Name="Usuario" />
+    <Item3 Ref="27" Visible="false" ValueInfo="2017-07-06" Name="FechaInicial" Type="#Ref-26" />
+    <Item4 Ref="28" Visible="false" ValueInfo="2017-09-29" Name="FechaFinal" Type="#Ref-26" />
+    <Item5 Ref="29" Visible="false" ValueInfo="0" Name="IncluyeAsientoDeDiario" Type="#Ref-22" />
+    <Item6 Ref="30" Visible="false" ValueInfo="-1" Name="SoloCuentaMayor" Type="#Ref-22" />
+    <Item7 Ref="31" Visible="false" ValueInfo="1" Name="TipoCuentaSinMovimiento" Type="#Ref-22" />
+    <Item8 Ref="32" Visible="false" ValueInfo="0" Name="ConsolidadoByCuenta" Type="#Ref-22" />
+    <Item9 Ref="33" Visible="false" ValueInfo="1" Name="Moneda" Type="#Ref-22" />
   </Parameters>
   <Bands>
     <Item1 Ref="34" ControlType="DetailBand" Name="Detail" HeightF="23" TextAlignment="TopLeft" StyleName="DataField" Padding="0,0,0,0,100">

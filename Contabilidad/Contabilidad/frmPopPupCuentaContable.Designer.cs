@@ -250,6 +250,7 @@
             this.ClientSize = new System.Drawing.Size(467, 347);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmPopPupCuentaContable";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "popupCuentaContable";
             this.Load += new System.EventHandler(this.popupCuentaContable_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

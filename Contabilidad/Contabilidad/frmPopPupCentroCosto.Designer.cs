@@ -255,6 +255,7 @@
             this.ClientSize = new System.Drawing.Size(539, 314);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmPopPupCentroCosto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPopPupCentroCosto";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

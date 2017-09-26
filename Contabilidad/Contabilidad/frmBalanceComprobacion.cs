@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using CG.DAC;
 using Security;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 namespace CG
 {
@@ -19,6 +21,7 @@ namespace CG
         private DataTable _dtCuentaContable;
         private String sCuentasSelected = "";
         private String sCentrosSelected = "";
+        private String sUsuario = "";
 
         public frmBalanceComprobacion()
         {
@@ -33,26 +36,50 @@ namespace CG
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 this.MaximizeBox = false;
                 this.StartPosition = FormStartPosition.CenterScreen;
-
-                //Obtener los datos
-                _dtCentroCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0]; //No estamos tomando los acumuladores
-                _dtCuentaContable = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
-
+                sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
                 
                 this.chkSoloCuentadeMayor.Checked = true;
                 DateTime fechatemp = DateTime.Today;
                 this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
                 this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
 
-                this.rgCuentasSinMovimientos.SelectedIndex = 1;
-
                 
+
+                //Obtener los datos Filtrados
+                sCuentasSelected = GetCuentasFiltradas();
+                sCentrosSelected = GetCentroCostosFiltrados();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private String GetCentroCostosFiltrados() {
+            String sCostos = "";
+            DataSet DS = new DataSet();
+            DS = ReportesDAC.GetCentroCostoGlobalReporte(1, sUsuario);
+            foreach (DataRow ele in DS.Tables[0].Rows) {
+                sCostos = string.Format("{0}{1},", sCostos, ele["IDCentro"]);
+            }
+            if (sCostos!="")
+                sCostos = sCostos.Substring(0, sCostos.Length - 1);
+            return sCostos;
+        }
+
+        private String GetCuentasFiltradas()
+        {
+            String sCuentas = "";
+            DataSet DS = new DataSet();
+            DS = ReportesDAC.GetCuentaGlobalReporte(1, sUsuario);
+            foreach (DataRow ele in DS.Tables[0].Rows)
+            {
+                sCuentas = string.Format("{0}{1},", sCuentas, ele["IDCuenta"]);
+            }
+            if (sCuentas != "")
+                sCuentas = sCuentas.Substring(0, sCuentas.Length - 1);
+            return sCuentas;
         }
 
         
@@ -69,7 +96,7 @@ namespace CG
         {
             frmPopPupCentroCosto Centro = (frmPopPupCentroCosto)sender;
             sCentrosSelected = Centro.sCostosSelected;
-            MessageBox.Show(sCentrosSelected);
+           // MessageBox.Show(sCentrosSelected);
         }
 
         private void btnSelecctCuentasContables_Click(object sender, EventArgs e)
@@ -84,7 +111,7 @@ namespace CG
         {
             frmPopPupCuentaContable Cuenta = (frmPopPupCuentaContable)sender;
             sCuentasSelected = Cuenta.sCuentasSelected;
-            MessageBox.Show(sCuentasSelected);
+            //MessageBox.Show(sCuentasSelected);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -94,7 +121,7 @@ namespace CG
             int IncluirAsientosDeDiario = 0;
             int SoloCuentasMayor =0;
             int CuentasSinMovimientos = 0;
-            int Moneda = 0;
+            int Moneda = 1;
 
             if (this.chkConsilidarByCuenta.Checked == true)
                 ConsolidadPorcuenta = 1;
@@ -102,13 +129,26 @@ namespace CG
                 IncluirAsientosDeDiario = 1;
             if (this.chkSoloCuentadeMayor.Checked == true)
                 SoloCuentasMayor = 1;
-            CuentasSinMovimientos = this.rgCuentasSinMovimientos.SelectedIndex;
-            Moneda = this.rgMonedas.SelectedIndex;
-            String sUsuario =(UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
+            else
+                SoloCuentasMayor = -1;
+            CuentasSinMovimientos = Convert.ToInt32(this.rgCuentasSinMovimientos.EditValue);
+            Moneda = Convert.ToInt32(this.rgMonedas.EditValue);
+            
             //guarar los parametros de centros y Cuentas
             if (ReportesDAC.SetCuentaCentroReporte(sCuentasSelected, sCentrosSelected, 1, sUsuario)) { 
                 //Mostrar el reporte
-                    DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/ReportesFinancieros/Plantilla/rptBalanceComrpobacion.repx", true);
+                    DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/ReportesFinancieros/Plantilla/rptBalanceComprobacion.repx", true);
+
+                    SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+
+
+                    SqlDataSource ds = report.DataSource as SqlDataSource;
+
+                    ds.ConnectionName = "sqlDataSource1";
+                    String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                    System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                    ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.Windows);
 
 
                     // Obtain a parameter, and set its value.
@@ -119,7 +159,7 @@ namespace CG
                     report.Parameters["IncluyeAsientoDeDiario"].Value = IncluirAsientosDeDiario;
                     report.Parameters["Moneda"].Value = Moneda;
                     report.Parameters["SoloCuentaMayor"].Value = SoloCuentasMayor;
-                    report.Parameters["TipoCuentaMovimiento"].Value = CuentasSinMovimientos;
+                    report.Parameters["TipoCuentaSinMovimiento"].Value = CuentasSinMovimientos;
                     report.Parameters["Usuario"].Value = sUsuario;
                     // Show the report's print preview.
                     DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
