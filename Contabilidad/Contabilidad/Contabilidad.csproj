@@ -186,12 +186,6 @@
     <Compile Include="frmBalanceComprobacion.Designer.cs">
       <DependentUpon>frmBalanceComprobacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBalanceComprobacionConCentrosCostos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmBalanceComprobacionConCentrosCostos.Designer.cs">
-      <DependentUpon>frmBalanceComprobacionConCentrosCostos.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmBalanceGeneral.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,9 +353,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBalanceComprobacion.resx">
       <DependentUpon>frmBalanceComprobacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmBalanceComprobacionConCentrosCostos.resx">
-      <DependentUpon>frmBalanceComprobacionConCentrosCostos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBalanceGeneral.resx">
       <DependentUpon>frmBalanceGeneral.cs</DependentUpon>
