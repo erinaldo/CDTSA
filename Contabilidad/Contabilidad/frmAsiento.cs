@@ -49,7 +49,7 @@ namespace CG
         String _ModuloFuente = "";
         String _tituloVentana = "Asiento";
         double _TipoCambio = 0;
-        
+
 
         public frmAsiento()
         {
@@ -69,7 +69,8 @@ namespace CG
                 this.Dispose(true);
         }
 
-        private bool ValidarEjerciosPeriodoTrabajo() {
+        private bool ValidarEjerciosPeriodoTrabajo()
+        {
             bool result = false;
             DataSet ds = new DataSet();
             ds = EjercicioDAC.ValidaEjercicioPeriodoTrabajo(DateTime.Now);
@@ -96,7 +97,7 @@ namespace CG
             DataSet DS = new DataSet();
             DataTable DT = new DataTable();
             DS = UsuarioDAC.GetAccionModuloFromRole(0, sUsuario);
-            _dtSecurity= DS.Tables[0];
+            _dtSecurity = DS.Tables[0];
 
         }
 
@@ -109,7 +110,8 @@ namespace CG
                     this.btnEditar.Enabled = false;
                 else
                     this.btnEditar.Enabled = true;
-            }else
+            }
+            else
                 this.btnEditar.Enabled = false;
 
             if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarAsientodeDiario, _dtSecurity))
@@ -123,7 +125,7 @@ namespace CG
                 this.btnEliminar.Enabled = false;
 
 
-           
+
             if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.MayorizarAsientodeDiario, _dtSecurity))
             {
                 if (_dsAsiento.Tables[0].Rows.Count > 0 && Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
@@ -185,7 +187,7 @@ namespace CG
             //Cargar el tipo de cambio por defecto
             String sTipoCambio = ParametrosContabilidadDAC.GetTipoCambioModulo();
             DS = TipoCambioDetalleDAC.GetData(sTipoCambio, DateTime.Now);
-            
+
             _currentRow = _dtAsiento.NewRow();
             _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
             _currentRow["Periodo"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
@@ -200,7 +202,7 @@ namespace CG
             _currentRow["CuadreTemporal"] = false;
             _currentRow["MayorizadoBy"] = "";
             _currentRow["MayorizadoDate"] = DBNull.Value;
-            
+
 
         }
 
@@ -215,15 +217,16 @@ namespace CG
 
         private void CargarSimbolosMoneda()
         {
-          
-            if (Util.Util.LocalSimbolCurrency ==null ){
+
+            if (Util.Util.LocalSimbolCurrency == null)
+            {
                 CargarParametrosMonedas();
             }
 
             Util.Util.SetFormatTextEdit(this.txtCreditoLocal, Util.Util.FormatType.MonedaLocal);
             Util.Util.SetFormatTextEdit(this.txtDebitoLocal, Util.Util.FormatType.MonedaLocal);
             Util.Util.SetFormatTextEdit(this.txtDiferencia, Util.Util.FormatType.MonedaLocal);
-            
+
 
             Util.Util.SetFormatTextEdit(this.txtDebitoDolar, Util.Util.FormatType.MonedaExtrangera);
             Util.Util.SetFormatTextEdit(this.txtCreditoDolar, Util.Util.FormatType.MonedaExtrangera);
@@ -238,7 +241,7 @@ namespace CG
         private String EstadoAsiento()
         {
             String sEstado = "";
-            if (Convert.ToBoolean(_currentRow["Mayorizado"])) 
+            if (Convert.ToBoolean(_currentRow["Mayorizado"]))
                 sEstado = "Mayorizado";
             else if (Convert.ToBoolean(_currentRow["Anulado"]))
                 sEstado = "Anulado";
@@ -249,7 +252,7 @@ namespace CG
             return sEstado;
         }
 
-        
+
 
 
         public void UpdateControlsFromDataRow(DataRow row)
@@ -292,26 +295,26 @@ namespace CG
         }
 
 
-        private void HabilitarControles(bool Activo,bool Mayorizado)
+        private void HabilitarControles(bool Activo, bool Mayorizado)
         {
-            this.dtpFecha.Enabled = (Mayorizado==true) ? false :  (Activo);
+            this.dtpFecha.Enabled = (Mayorizado == true) ? false : (Activo);
             this.txtTipoCambio.ReadOnly = true;
-            this.txtConcepto.ReadOnly = (Mayorizado==true) ?  true:!(Activo);
+            this.txtConcepto.ReadOnly = (Mayorizado == true) ? true : !(Activo);
             this.txtFecha.ReadOnly = !Activo;
-            this.slkupTipo.ReadOnly =(Mayorizado==true) ? true:!(Activo);
+            this.slkupTipo.ReadOnly = (Mayorizado == true) ? true : !(Activo);
             this.gridView1.OptionsBehavior.ReadOnly = !Activo;
             this.gridView1.OptionsBehavior.AllowAddRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.ReadOnly= (Mayorizado==true) ? true:!(Activo);
+            this.gridView1.OptionsBehavior.ReadOnly = (Mayorizado == true) ? true : !(Activo);
             this.btnCuadreTemporal.Enabled = (Mayorizado == true) ? false : !(Activo);
             this.grid.UseEmbeddedNavigator = Activo;
             this.btnEditar.Enabled = !Activo;
-            this.btnGuardar.Enabled = (Mayorizado == true) ? false :  Activo;
+            this.btnGuardar.Enabled = (Mayorizado == true) ? false : Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
-    }
+        }
 
-    private void EnlazarEventos()
+        private void EnlazarEventos()
         {
             //    this.btnAgregar.ItemClick += btnAgregar_ItemClick;
             this.btnEditar.ItemClick += btnEditar_ItemClick;
@@ -327,43 +330,48 @@ namespace CG
 
         private void BtnCuadreTemporal_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+            if (_dsAsiento.Tables[0].Rows.Count > 0)
             {
-                bool bExito = false;
-                bExito = AsientoDAC.CuadreTemporal(_Asiento);
+                if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+                {
+                    bool bExito = false;
+                    bExito = AsientoDAC.CuadreTemporal(_Asiento);
 
-                if (bExito)
-                {
-                    MessageBox.Show("Se ha cuadrado temporalmente el asiento contable.");
-                    //Mostrar el asiento anulado. (como poner la referencia de anulacion en el primero asiento)
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Ha ocurrido un error tratando de cuadrar el asiento..");
+                    if (bExito)
+                    {
+                        MessageBox.Show("Se ha cuadrado temporalmente el asiento contable.");
+                        //Mostrar el asiento anulado. (como poner la referencia de anulacion en el primero asiento)
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ha ocurrido un error tratando de cuadrar el asiento..");
+                    }
                 }
             }
         }
 
         private void BtnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
-            {
-                int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];//(int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
-                String Periodo = _dsAsiento.Tables[0].Rows[0]["Periodo"].ToString();//_dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
-                String sAsientoAmulacion = "";
-                bool bExito = false;
-                sAsientoAmulacion = AsientoDAC.Revertir(IdEjercicio, Periodo, _Asiento, sUsuario);
+            if (_dsAsiento.Tables[0].Rows.Count>0){
+                if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
+                {
+                    int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];//(int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                    String Periodo = _dsAsiento.Tables[0].Rows[0]["Periodo"].ToString();//_dsEjercicioPeriodo.Tables[0].Rows[0]["Periodo"].ToString();
+                    String sAsientoAmulacion = "";
+                    bool bExito = false;
+                    sAsientoAmulacion = AsientoDAC.Revertir(IdEjercicio, Periodo, _Asiento, sUsuario);
 
-                if (sAsientoAmulacion!="")
-                {
-                    MessageBox.Show("El asiento contable, se ha revertido con exito");
-                    //Mostrar el asiento anulado. (como poner la referencia de anulacion en el primero asiento)
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Ha ocurrido un error tratando de revertir el asiento..");
+                    if (sAsientoAmulacion != "")
+                    {
+                        MessageBox.Show("El asiento contable, se ha revertido con exito");
+                        //Mostrar el asiento anulado. (como poner la referencia de anulacion en el primero asiento)
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ha ocurrido un error tratando de revertir el asiento..");
+                    }
                 }
             }
         }
@@ -422,7 +430,8 @@ namespace CG
                 }
                 this.btnShowLessColumns.Refresh();
                 _ShowLessColumns = !_ShowLessColumns;
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -450,26 +459,26 @@ namespace CG
             if (_Asiento != null && _Asiento != "")
             {
                 DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/Asiento/Plantillas/rptAsiento.repx", true);
-   
+
 
                 // Obtain a parameter, and set its value.
                 report.Parameters["Asiento"].Value = _Asiento;
-                
+
                 // Show the report's print preview.
                 DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
 
                 tool.ShowPreview();
 
-                
+
             }
         }
 
         private void ActivateEditGrid(bool Activate)
         {
-            this.gridView1.OptionsBehavior.AllowAddRows =(Activate)? DevExpress.Utils.DefaultBoolean.True:DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowAddRows = (Activate) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activate) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsView.NewItemRowPosition = (Activate) ? NewItemRowPosition.Bottom: NewItemRowPosition.None;
-            
+            this.gridView1.OptionsView.NewItemRowPosition = (Activate) ? NewItemRowPosition.Bottom : NewItemRowPosition.None;
+
 
 
         }
@@ -491,7 +500,7 @@ namespace CG
 
         }
 
- 
+
 
         private void frmAsiento_Load(object sender, EventArgs e)
         {
@@ -499,7 +508,7 @@ namespace CG
             {
                 CargarDatosPeriodoActivo();
 
-                HabilitarControles(false,false);
+                HabilitarControles(false, false);
                 CargarSimbolosMoneda();
                 CargarPrivilegios();
                 EnlazarEventos();
@@ -527,19 +536,19 @@ namespace CG
                 this.slkupCentroCostoGrid.NullText = " --- ---";
                 this.slkupCentroCostoGrid.EditValueChanged += slkupCuentaContableGrid_EditValueChanged;
                 this.slkupCentroCostoGrid.Popup += slkupGrid_Popup;
-                
+
                 // this.slkupCentroCostoGrid.EditValueChanged += SlkupCentroCostoGrid_EditValueChanged;
 
                 //_dtCuentas = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, 1, 1, -1, -1).Tables[0];
                 _dtCuentas = CuentaContableDAC.GetCuentaByCentroCosto(0).Tables[0];
-               // _dtCuentasConstante = _dtCuentas.Clone();
+                // _dtCuentasConstante = _dtCuentas.Clone();
                 this.slkupCuentaContableGrid.DataSource = _dtCuentas;
                 this.slkupCuentaContableGrid.DisplayMember = "Cuenta";
                 this.slkupCuentaContableGrid.ValueMember = "IDCuenta";
                 this.slkupCuentaContableGrid.NullText = " --- ---";
                 this.slkupCuentaContableGrid.EditValueChanged += slkupCuentaContableGrid_EditValueChanged;
                 this.slkupCuentaContableGrid.Popup += slkupGrid_Popup;
-                
+
 
 
                 CargarColumnas();
@@ -549,8 +558,8 @@ namespace CG
                 UpdateControlsFromDataRow(_currentRow);
                 if (Accion == "New")
                 {
-                    HabilitarControles(true,false);
-                    
+                    HabilitarControles(true, false);
+
                     ClearControls();
                     this.TabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                     this.ValidateChildren();
@@ -558,12 +567,12 @@ namespace CG
                 else
                 {
                     Accion = "Edit";
-                    bool bMayorizado = Convert.ToBoolean( _dsAsiento.Tables[0].Rows[0]["Mayorizado"]);
+                    bool bMayorizado = Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]);
                     HabilitarControles(true, bMayorizado);
                     ActivateEditGrid(false);
                 }
-                AplicarPrivilegios(); 
-                
+                AplicarPrivilegios();
+
 
             }
             catch (Exception ex)
@@ -597,7 +606,7 @@ namespace CG
             }
         }
 
-     
+
 
 
 
@@ -608,7 +617,7 @@ namespace CG
             DevExpress.XtraLayout.LayoutControl layoutControl = popupControl.PopupWindow.Controls[2].Controls[0] as LayoutControl;
             SimpleButton clearButton = ((DevExpress.XtraLayout.LayoutControlItem)layoutControl.Items.FindByName("lciClear")).Control as SimpleButton;
             SimpleButton findButton = ((DevExpress.XtraLayout.LayoutControlItem)layoutControl.Items.FindByName("lciButtonFind")).Control as SimpleButton;
-            
+
             clearButton.Text = "Limpiar";
             findButton.Text = "Buscar";
         }
@@ -713,9 +722,9 @@ namespace CG
 
             if (e.Row == null) return;
             //Get the value of the first column
-            int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null)? (int)view.GetRowCellValue(e.RowHandle, CentroCol): -1;
+            int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
             //Get the value of the second column
-            int iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) !=null)? (int)view.GetRowCellValue(e.RowHandle, CuentaCol): -1;
+            int iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
             //Validity criterion
 
             DataView Dv = new DataView();
@@ -732,14 +741,14 @@ namespace CG
 
         }
 
-          
+
 
 
         private void GridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             try
             {
-                
+
                 ColumnView view = sender as ColumnView;
                 //if (e.Column.FieldName == "IDCentro")
                 //{
@@ -874,7 +883,7 @@ namespace CG
                 view.SetRowCellValue(e.RowHandle, view.Columns["Asiento"], _currentRow["Asiento"]);
                 view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], count);
 
-      
+
 
             }
             catch (Exception ex)
@@ -890,11 +899,11 @@ namespace CG
             if (view == null) return;
             if (e.Column.FieldName == "IDCentro")
             {
-                string cellValue = (e.Value.ToString()=="") ? "-1":e.Value.ToString();
+                string cellValue = (e.Value.ToString() == "") ? "-1" : e.Value.ToString();
                 DataView dt = new DataView();
                 dt.Table = _dtCentros;
                 dt.RowFilter = "IDCentro=" + cellValue;
-                if (dt.ToTable().Rows.Count>0)
+                if (dt.ToTable().Rows.Count > 0)
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCentro"], dt.ToTable().Rows[0]["Descr"].ToString());
                 else
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCentro"], "");
@@ -904,15 +913,15 @@ namespace CG
             }
             if (e.Column.FieldName == "IDCuenta")
             {
-                string cellValue = (e.Value.ToString()=="") ? "-1": e.Value.ToString();
+                string cellValue = (e.Value.ToString() == "") ? "-1" : e.Value.ToString();
                 DataView dt = new DataView();
                 dt.Table = _dtCuentas;
                 dt.RowFilter = "IDCuenta=" + cellValue;
-                if (dt.ToTable().Rows.Count>0)
+                if (dt.ToTable().Rows.Count > 0)
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], dt.ToTable().Rows[0]["Descr"].ToString());
                 else
                     view.SetRowCellValue(e.RowHandle, view.Columns["DescrCuenta"], "");
-                
+
                 DataTable _dtTemp = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(cellValue)).Tables[0];
                 //this.slkupCentroCostoGrid.DataSource = _dtCentros;
                 if (_dtTemp.Rows.Count == 1)
@@ -920,7 +929,7 @@ namespace CG
                     view.SetRowCellValue(e.RowHandle, view.Columns["IDCentro"], _dtTemp.Rows[0]["IDCentro"].ToString());
                 }
             }
-            
+
         }
 
 
@@ -928,18 +937,18 @@ namespace CG
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
             if (_currentRow == null)
             {
                 return;
             }
-            if (Convert.ToBoolean(_currentRow["Mayorizado"])==false && Convert.ToBoolean(_currentRow["Anulado"])==false)
+            if (Convert.ToBoolean(_currentRow["Mayorizado"]) == false && Convert.ToBoolean(_currentRow["Anulado"]) == false)
             {
                 Accion = "Edit";
-                HabilitarControles(true,false);
+                HabilitarControles(true, false);
                 AplicarPrivilegios();
             }
-           
+
         }
 
 
@@ -971,7 +980,7 @@ namespace CG
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
             GuardarAsiento();
         }
 
@@ -995,7 +1004,7 @@ namespace CG
                 catch (Exception ex)
                 {
                     MessageBox.Show("Han ocurrido los siguientes errores: \r\n" + ex.Message);
-                    return;  
+                    return;
                 }
 
 
@@ -1005,13 +1014,13 @@ namespace CG
                 _dsAsiento.Tables[0].Rows.Add(_currentRow);
                 _currentRow["IDEjercicio"] = this.txtEjercicio.Text.Trim();
                 _currentRow["Periodo"] = this.txtPeriodo.Text.Trim();
-                _currentRow["Asiento"] = this.txtAsiento.Text.Trim() != "" ? this.txtAsiento.Text.Trim():  "---";
+                _currentRow["Asiento"] = this.txtAsiento.Text.Trim() != "" ? this.txtAsiento.Text.Trim() : "---";
                 _currentRow["Tipo"] = this.slkupTipo.EditValue;
                 _currentRow["Fecha"] = this.dtpFecha.EditValue;
                 _currentRow["FechaHora"] = DateTime.Now;
                 _currentRow["Createdby"] = sUsuario;
                 _currentRow["CreateDate"] = DateTime.Now;
-               // _currentRow["ModuloFuente"] = this.txtModuloFuente.Text.Trim();
+                // _currentRow["ModuloFuente"] = this.txtModuloFuente.Text.Trim();
                 //no incluir:
                 //mayorizado
                 //mayorizadoDate
@@ -1072,10 +1081,10 @@ namespace CG
 
         private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
             if (Accion == "Edit")
             {
-                HabilitarControles(false,true);
+                HabilitarControles(false, true);
                 AplicarPrivilegios();
                 CargarAsiento(_currentRow["Asiento"].ToString());
                 UpdateControlsFromDataRow(_currentRow);
@@ -1083,7 +1092,7 @@ namespace CG
             }
             else
                 this.Close();
-            
+
         }
 
         private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1113,41 +1122,45 @@ namespace CG
         private void btnMayorizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // Vlidar si el documento esta guardado si no lo esta realizar el save
-            GuardarAsiento();
-
-            //Validar situaciones comunes al momento de mayorizar
-            if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+            if (_dsAsiento.Tables[0].Rows.Count > 0)
             {
+                GuardarAsiento();
+
                 //Validar situaciones comunes al momento de mayorizar
-
-                int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];// (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
-                String Periodo = _dsAsiento.Tables[0].Rows[0]["Periodo"].ToString();
-                bool bExito = false;
-                bExito=AsientoDAC.Mayorizar(IdEjercicio, Periodo, _Asiento, sUsuario);
-
-                if (bExito)
+                if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
                 {
-                    MessageBox.Show("El asiento contable, se ha mayorizado con exito");
-                    this.Close();
-                } else
-                {
-                    MessageBox.Show("Ha ocurrido un error tratando de mayorizar el asiento..");
+                    //Validar situaciones comunes al momento de mayorizar
+
+                    int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];// (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                    String Periodo = _dsAsiento.Tables[0].Rows[0]["Periodo"].ToString();
+                    bool bExito = false;
+                    bExito = AsientoDAC.Mayorizar(IdEjercicio, Periodo, _Asiento, sUsuario);
+
+                    if (bExito)
+                    {
+                        MessageBox.Show("El asiento contable, se ha mayorizado con exito");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ha ocurrido un error tratando de mayorizar el asiento..");
+                    }
                 }
             }
         }
 
-    
+
 
         private void dtpFecha_Validated(object sender, EventArgs e)
         {
-           
+
         }
 
         private void dtpFecha_Validating(object sender, CancelEventArgs e)
         {
-             //Tomar el periodo
-            
-            DateTime Fecha =  Convert.ToDateTime(((DateEdit)sender).EditValue);
+            //Tomar el periodo
+
+            DateTime Fecha = Convert.ToDateTime(((DateEdit)sender).EditValue);
             try
             {
                 if (Fecha == null || PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
@@ -1174,5 +1187,7 @@ namespace CG
                 this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght);
             }
         }
+
+     
     }
 }

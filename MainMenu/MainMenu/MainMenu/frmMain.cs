@@ -43,6 +43,7 @@ namespace MainMenu
         private void CargarImagenFondo()
         {
             this.BackgroundImage = (Security.Esquema.Compania == "CEDETSA") ? Resources.CEDETSA : Resources.DASA;
+            this.BackgroundImageLayout = ImageLayout.Center;
         }
 
         void frmMain_Load(object sender, EventArgs e)

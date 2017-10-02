@@ -37,6 +37,7 @@
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnFiltro = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -52,7 +53,6 @@
             this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -137,6 +137,14 @@
             this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
             this.btnExportar.Name = "btnExportar";
             // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 4;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -198,6 +206,7 @@
             this.Asiento.FieldName = "Asiento";
             this.Asiento.MinWidth = 90;
             this.Asiento.Name = "Asiento";
+            this.Asiento.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.Asiento.Visible = true;
             this.Asiento.VisibleIndex = 0;
             this.Asiento.Width = 90;
@@ -227,6 +236,7 @@
             this.Concepto.Caption = "Concepto";
             this.Concepto.FieldName = "Concepto";
             this.Concepto.Name = "Concepto";
+            this.Concepto.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Like;
             this.Concepto.Visible = true;
             this.Concepto.VisibleIndex = 3;
             this.Concepto.Width = 433;
@@ -291,14 +301,6 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(660, 345);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // btnRefrescar
-            // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 4;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
             // 
             // frmListadoAsientoDiario
             // 
