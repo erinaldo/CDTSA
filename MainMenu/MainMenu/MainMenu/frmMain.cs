@@ -80,7 +80,7 @@ namespace MainMenu
                 DT = DSS.Tables[0];
                 if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.RegistrarTipoCambio, DT))
                 {
-                    MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor ingrese el detalle del tipo de cambios \n\r ");
+                    MessageBox.Show("El tipo de cambio para el día no esta registrado, por favor ingrese el detalle del tipo de cambios \n\r ");
                     foreach (Form frm in Application.OpenForms)
                     {
                         if (frm.GetType() == typeof(CG.frmTipoCambioDetalle))
@@ -96,7 +96,7 @@ namespace MainMenu
                     ofrmTipoCambio.Show();
                 }
                 else
-                    MessageBox.Show("El tipo de cambio para el dia no esta registrado, por favor contacte el administrador del sistema. \n\r ");
+                    MessageBox.Show("El tipo de cambio para el día no esta registrado, por favor contacte el administrador del sistema. \n\r ");
                 this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
             }
         }
@@ -119,17 +119,17 @@ namespace MainMenu
                     //Validar los datos de configuracion
                     if (DS.Tables[0].Rows[0]["Nombre"].ToString() == "")
                     {
-                        sMensaje = sMensaje + " • El nombre de la compania no se ha establecido \n\r";
+                        sMensaje = sMensaje + " • El nombre de la compañía no se ha establecido \n\r";
                         this.lblCompania.Caption = "Compañia: ";
                     }
                     if (DS.Tables[0].Rows[0]["CantDigitosDecimales"].ToString() == "")
                     {
-                        sMensaje = sMensaje + " • La cantidad de Digitos de decimales que se visualizan en sistema \n\r";
+                        sMensaje = sMensaje + " • La cantidad de Dígitos de decimales que se visualizan en sistema \n\r";
                     }
                     if (DS.Tables[0].Rows[0]["SimboloMonedaFuncional"].ToString() == "")
-                        sMensaje = sMensaje + " • El simbolo de la moneda funcional no se ha establecido \n\r";
+                        sMensaje = sMensaje + " • El símbolo de la moneda funcional no se ha establecido \n\r";
                     if (DS.Tables[0].Rows[0]["SimboloMonedaExtrangera"].ToString() == "")
-                        sMensaje = sMensaje + " • El simbolo de la moneda extrangera no se ha establecido \n\r";
+                        sMensaje = sMensaje + " • El símbolo de la moneda extrangera no se ha establecido \n\r";
                     if (DS.Tables[0].Rows[0]["TipoCambio"].ToString() == "")
                         sMensaje = sMensaje + " • El tipo de Cambio con el trabajara el sistema no se ha establecido \n\r";
 
@@ -139,7 +139,7 @@ namespace MainMenu
                         this.lblFecha.Caption = "Fecha: --";
                         this.lblTipoCambio.Caption = "TC: --";
                         this.lblCompania.Caption = "Compañia: ";
-                        MessageBox.Show("Por favor notifique a su administrador del sistema la validaciion de los siguientes campos: \n\r " + sMensaje);
+                        MessageBox.Show("Por favor notifique a su administrador del sistema la validación de los siguientes campos: \n\r " + sMensaje);
                         this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
                     }
                     else
@@ -157,7 +157,7 @@ namespace MainMenu
                 }
                 else
                 {
-                    MessageBox.Show("Los parametros generales de la aplicacion estan incompletos, por favor contacte al administrador del sistema");
+                    MessageBox.Show("Los parámetros generales de la aplicacion estan incompletos, por favor contacte al administrador del sistema");
                     //Quitar  todas las acciones a los menus.
                     this.treeListContabilidad.DoubleClick -= treeListContabilidad_DoubleClick;
                 }

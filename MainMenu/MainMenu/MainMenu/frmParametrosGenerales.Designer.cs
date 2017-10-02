@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmParametrosGenerales));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtCantDigitosDecimales = new DevExpress.XtraEditors.TextEdit();
             this.slkupTipoCambio = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnSalir = new DevExpress.XtraEditors.SimpleButton();
@@ -57,10 +58,10 @@
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtCantDigitosDecimales = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantDigitosDecimales.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupTipoCambio.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo.Properties)).BeginInit();
@@ -86,7 +87,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCantDigitosDecimales.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,6 +111,14 @@
             this.layoutControl1.Size = new System.Drawing.Size(635, 258);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtCantDigitosDecimales
+            // 
+            this.txtCantDigitosDecimales.Location = new System.Drawing.Point(127, 156);
+            this.txtCantDigitosDecimales.Name = "txtCantDigitosDecimales";
+            this.txtCantDigitosDecimales.Size = new System.Drawing.Size(261, 20);
+            this.txtCantDigitosDecimales.StyleController = this.layoutControl1;
+            this.txtCantDigitosDecimales.TabIndex = 13;
             // 
             // slkupTipoCambio
             // 
@@ -147,6 +155,7 @@
             this.btnGuardar.StyleController = this.layoutControl1;
             this.btnGuardar.TabIndex = 10;
             this.btnGuardar.Text = "Guardar";
+
             // 
             // picLogo
             // 
@@ -375,14 +384,6 @@
             this.layoutControlItem7.Text = "Tipo Cambio:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(112, 13);
             // 
-            // txtCantDigitosDecimales
-            // 
-            this.txtCantDigitosDecimales.Location = new System.Drawing.Point(127, 156);
-            this.txtCantDigitosDecimales.Name = "txtCantDigitosDecimales";
-            this.txtCantDigitosDecimales.Size = new System.Drawing.Size(261, 20);
-            this.txtCantDigitosDecimales.StyleController = this.layoutControl1;
-            this.txtCantDigitosDecimales.TabIndex = 13;
-            // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.txtCantDigitosDecimales;
@@ -404,6 +405,7 @@
             this.Text = "frmParametrosGenerales";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantDigitosDecimales.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupTipoCambio.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo.Properties)).EndInit();
@@ -429,7 +431,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCantDigitosDecimales.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
 

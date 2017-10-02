@@ -69,31 +69,39 @@ namespace CDTSA
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            //Validar que ingresen los datos
-            if (!ValidarDatos())
-                return;
-
-            if (ValidarUsuario())
+            try
             {
-                //Validar privilegios del usuario
-                DataSet DSUsuario = new DataSet();
-                DataTable DT = new DataTable();
-                DSUsuario = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
-                DT = DSUsuario.Tables[0];
-                if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.AccesoAlSistema, DT))
+                //Validar que ingresen los datos
+                if (!ValidarDatos())
+                    return;
+
+                if (ValidarUsuario())
                 {
-                    this.Hide();
-                    MainMenu.frmMain ofrmMain = new MainMenu.frmMain();
-                    ofrmMain.Show();
+                    //Validar privilegios del usuario
+                    DataSet DSUsuario = new DataSet();
+                    DataTable DT = new DataTable();
+                    DSUsuario = UsuarioDAC.GetAccionModuloFromRole(0, UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString());
+                    DT = DSUsuario.Tables[0];
+                    if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosGeneralesType.AccesoAlSistema, DT))
+                    {
+                        this.Hide();
+                        MainMenu.frmMain ofrmMain = new MainMenu.frmMain();
+                        ofrmMain.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usted no tiene privilegios para acceder al módulo");
+                        this.txtUsuario.Focus();
+                    };
                 }
-                else {
-                    MessageBox.Show("Usted no tiene privilegios para acceder al módulo");
+                else
+                {
+                    MessageBox.Show("Las credenciales utilizadas no son validas, por favor verifique");
                     this.txtUsuario.Focus();
-                };
+                }
             }
-            else {
-                MessageBox.Show("Las credenciales utilizadas no son validas, por favor verifique");
-                this.txtUsuario.Focus();
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores: \n\r" + ex.Message);
             }
         }
 

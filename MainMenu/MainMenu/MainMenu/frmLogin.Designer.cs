@@ -103,7 +103,7 @@
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(51, 13);
             this.labelControl4.TabIndex = 23;
-            this.labelControl4.Text = "Compañia:";
+            this.labelControl4.Text = "Compañía:";
             // 
             // cmbCompania
             // 

@@ -107,6 +107,7 @@ namespace CDTSA
                     _dsParametros.AcceptChanges();
                     // PopulateGrid();
                     //HabilitarControles(false);
+                    MessageBox.Show("Los datos se han guardado correctamente");
                 }
                 else
                 {
@@ -126,6 +127,7 @@ namespace CDTSA
                     _dsParametros.AcceptChanges();
                     
                     Application.DoEvents();
+                    MessageBox.Show("Los datos se han guardado correctamente");
                     
                 }
                 catch (System.Data.SqlClient.SqlException ex)
@@ -210,6 +212,7 @@ namespace CDTSA
             
         }
 
+     
      
     }
 }
