@@ -190,7 +190,7 @@ namespace CG
 
         public static bool CuadreTemporal(String Asiento)
         {
-            String strSQL = "dbo.cntRevertirAsiento";
+            String strSQL = "dbo.cntCuadreTemporal";
             bool Result = false;
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             try

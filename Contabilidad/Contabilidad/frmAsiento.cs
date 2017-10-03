@@ -308,7 +308,7 @@ namespace CG
             this.gridView1.OptionsBehavior.AllowAddRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = (Activo) ? DevExpress.Utils.DefaultBoolean.True : DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.ReadOnly = (Mayorizado == true) ? true : !(Activo);
-            this.btnCuadreTemporal.Enabled = (Mayorizado == true) ? false : !(Activo);
+            this.btnCuadreTemporal.Enabled = (Mayorizado == true) ? false : (Activo);
             this.grid.UseEmbeddedNavigator = Activo;
             this.btnEditar.Enabled = !Activo;
             this.btnGuardar.Enabled = (Mayorizado == true) ? false : Activo;
