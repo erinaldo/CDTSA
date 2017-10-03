@@ -249,6 +249,8 @@
             this.Periodo.Caption = "Periodo";
             this.Periodo.FieldName = "FechaFinal";
             this.Periodo.Name = "Periodo";
+            this.Periodo.OptionsColumn.AllowEdit = false;
+            this.Periodo.OptionsColumn.ReadOnly = true;
             this.Periodo.Visible = true;
             this.Periodo.VisibleIndex = 0;
             // 
@@ -257,6 +259,8 @@
             this.DescrPeriodo.Caption = "DescrPeriodo";
             this.DescrPeriodo.FieldName = "Descr";
             this.DescrPeriodo.Name = "DescrPeriodo";
+            this.DescrPeriodo.OptionsColumn.AllowEdit = false;
+            this.DescrPeriodo.OptionsColumn.ReadOnly = true;
             this.DescrPeriodo.Visible = true;
             this.DescrPeriodo.VisibleIndex = 1;
             // 
@@ -265,6 +269,8 @@
             this.Cuenta.Caption = "Cuenta";
             this.Cuenta.FieldName = "Cuenta";
             this.Cuenta.Name = "Cuenta";
+            this.Cuenta.OptionsColumn.AllowEdit = false;
+            this.Cuenta.OptionsColumn.ReadOnly = true;
             this.Cuenta.Visible = true;
             this.Cuenta.VisibleIndex = 2;
             // 
@@ -273,6 +279,8 @@
             this.DescrCuenta.Caption = "Descr Cuenta";
             this.DescrCuenta.FieldName = "DescrCuenta";
             this.DescrCuenta.Name = "DescrCuenta";
+            this.DescrCuenta.OptionsColumn.AllowEdit = false;
+            this.DescrCuenta.OptionsColumn.ReadOnly = true;
             this.DescrCuenta.Visible = true;
             this.DescrCuenta.VisibleIndex = 3;
             // 
@@ -282,6 +290,8 @@
             this.SaldoInicial.ColumnEdit = this.txtGridSaldoInicial;
             this.SaldoInicial.FieldName = "SaldoInicial";
             this.SaldoInicial.Name = "SaldoInicial";
+            this.SaldoInicial.OptionsColumn.AllowEdit = false;
+            this.SaldoInicial.OptionsColumn.ReadOnly = true;
             this.SaldoInicial.Visible = true;
             this.SaldoInicial.VisibleIndex = 4;
             // 
@@ -295,6 +305,8 @@
             this.Debito.Caption = "Débitos";
             this.Debito.ColumnEdit = this.txtGridDebito;
             this.Debito.Name = "Debito";
+            this.Debito.OptionsColumn.AllowEdit = false;
+            this.Debito.OptionsColumn.ReadOnly = true;
             this.Debito.Visible = true;
             this.Debito.VisibleIndex = 5;
             // 
@@ -308,6 +320,8 @@
             this.Credito.Caption = "Créditos";
             this.Credito.ColumnEdit = this.txtGridCreditos;
             this.Credito.Name = "Credito";
+            this.Credito.OptionsColumn.AllowEdit = false;
+            this.Credito.OptionsColumn.ReadOnly = true;
             this.Credito.Visible = true;
             this.Credito.VisibleIndex = 6;
             // 
@@ -322,6 +336,8 @@
             this.SaldoFinal.ColumnEdit = this.txtGridSaldoFinal;
             this.SaldoFinal.FieldName = "SaldoFinal";
             this.SaldoFinal.Name = "SaldoFinal";
+            this.SaldoFinal.OptionsColumn.AllowEdit = false;
+            this.SaldoFinal.OptionsColumn.ReadOnly = true;
             this.SaldoFinal.Visible = true;
             this.SaldoFinal.VisibleIndex = 7;
             // 

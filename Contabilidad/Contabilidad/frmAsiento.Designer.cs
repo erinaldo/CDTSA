@@ -288,6 +288,7 @@
             this.btnCuadreTemporal.Id = 4;
             this.btnCuadreTemporal.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCuadreTemporal.LargeGlyph")));
             this.btnCuadreTemporal.Name = "btnCuadreTemporal";
+            this.btnCuadreTemporal.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnImprimir
             // 
@@ -817,6 +818,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFecha.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFecha.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
             this.dtpFecha.Size = new System.Drawing.Size(318, 20);
             this.dtpFecha.StyleController = this.layoutControl1;
             this.dtpFecha.TabIndex = 8;

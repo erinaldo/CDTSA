@@ -1136,6 +1136,19 @@ namespace CG
             // Vlidar si el documento esta guardado si no lo esta realizar el save
             if (_dsAsiento.Tables[0].Rows.Count > 0)
             {
+                //Validar el Periodo contable
+                DateTime Fecha = Convert.ToDateTime(this.dtpFecha.EditValue);
+                try
+                {
+                    //if (Fecha == null || PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
+                    PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Han ocurrido los siguientes errores: \r\n" + ex.Message);
+                    return;
+                }
+
                 GuardarAsiento();
 
                 //Validar situaciones comunes al momento de mayorizar
