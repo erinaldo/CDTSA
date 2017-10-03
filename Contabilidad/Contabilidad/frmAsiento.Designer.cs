@@ -537,6 +537,7 @@
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.grid.FocusedViewChanged += new DevExpress.XtraGrid.ViewFocusEventHandler(this.grid_FocusedViewChanged);
+            this.grid.Leave += new System.EventHandler(this.grid_Leave);
             // 
             // gridView1
             // 

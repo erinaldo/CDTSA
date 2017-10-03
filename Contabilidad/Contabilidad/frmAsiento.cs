@@ -19,6 +19,8 @@ using Security;
 using DevExpress.XtraGrid.Views.Base;
 using System.Globalization;
 using DevExpress.XtraLayout;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 namespace CG
 {
@@ -156,7 +158,7 @@ namespace CG
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsAsiento.Tables[0].Rows[0];
             _Asiento = _currentRow["Asiento"].ToString();
-            _TipoCambio = Convert.ToDouble(_currentRow["TipoCambio"]);
+            _TipoCambio =(_currentRow["TipoCambio"].ToString() != "")? Convert.ToDouble(_currentRow["TipoCambio"]):0.0;
 
         }
 
@@ -261,7 +263,7 @@ namespace CG
             this.txtAsiento.EditValue = _currentRow["Asiento"].ToString();
             this.txtEjercicio.EditValue = _currentRow["IDEjercicio"].ToString();
             this.txtPeriodo.EditValue = _currentRow["Periodo"].ToString();
-            this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght);
+            this.txtTipoCambio.Text = (_currentRow["TipoCambio"].ToString()!="") ? Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght): "0.00";
             this.txtModuloFuente.EditValue = _currentRow["ModuloFuente"].ToString();
             this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]);
             //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
@@ -456,10 +458,19 @@ namespace CG
 
         private void BtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            this.gridView1.PostEditor();
             if (_Asiento != null && _Asiento != "")
             {
                 DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/Asiento/Plantillas/rptAsiento.repx", true);
 
+
+                SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+                SqlDataSource ds = report.DataSource as SqlDataSource;
+                ds.ConnectionName = "sqlDataSource1";
+                String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.Windows);
 
                 // Obtain a parameter, and set its value.
                 report.Parameters["Asiento"].Value = _Asiento;
@@ -989,6 +1000,7 @@ namespace CG
         {
             try
             {
+                this.gridView1.PostEditor();
 
                 //this.gridView1.PostEditor();
                 //Validar Datos 
@@ -1186,6 +1198,11 @@ namespace CG
                 this.txtPeriodo.Text = _currentRow["Periodo"].ToString();
                 this.txtTipoCambio.Text = Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght);
             }
+        }
+
+        private void grid_Leave(object sender, EventArgs e)
+        {
+            this.gridView1.PostEditor();
         }
 
      
