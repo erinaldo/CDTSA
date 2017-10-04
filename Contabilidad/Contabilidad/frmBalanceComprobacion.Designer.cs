@@ -168,7 +168,7 @@
             this.rgCuentasSinMovimientos.Properties.Columns = 1;
             this.rgCuentasSinMovimientos.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
             this.rgCuentasSinMovimientos.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Mostrar Cuentas sin Movimientos"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Incluir todas"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Incluir Cuentas con Saldos"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(3)), "Excluir")});
             this.rgCuentasSinMovimientos.Size = new System.Drawing.Size(266, 54);
