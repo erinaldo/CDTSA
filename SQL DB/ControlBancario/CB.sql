@@ -171,4 +171,12 @@ go
 alter table dbo.cbMovimientos add constraint fkcbMovimientos foreign key (IDCuentaBanco) references dbo.cbCuentaBancaria (IDCuentaBanco)
 go
 alter table dbo.cbMovimientos add constraint fkcbTipo foreign key (IDTipo, IDSubTipo) references dbo.cbSubTipoDocumento (IDTipo, IDSubTipo)
+GO
+
+
+alter table dbo.cbMovimientos 
+ADD CONSTRAINT uReferenciaUnica UNIQUE NONCLUSTERED
+(
+ IDCuentaBanco, Fecha, IDTipo, Numero, Referencia
+)
 go
