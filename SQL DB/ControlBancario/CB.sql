@@ -179,4 +179,33 @@ ADD CONSTRAINT uReferenciaUnica UNIQUE NONCLUSTERED
 (
  IDCuentaBanco, Fecha, IDTipo, Numero, Referencia
 )
+GO
+
+
+--Valida si el deposito es unico segun la referncia antes de ingresarlo a la base de datos.
+CREATE FUNCTION [dbo].[cbReferenciaValida] (@IDCuentaBanco int, @IDTipo int, @IDSubTipo int, @Fecha date, @Numero int, @Referencia nvarchar(100))
+RETURNS bit
+AS
+BEGIN
+declare @Resultado bit, @TipoDeposito int
+Set @TipoDeposito = (SELECT Distinct IDTipo FROM dbo.cbSubTipoDocumento where SubTipo = 'DEP')
+
+IF @IDTipo = @TipoDeposito
+Begin
+
+IF exists (SELECT Distinct IDTipo 
+FROM dbo.cbMovimientos 
+WHERE IDCuentaBanco = @IDCuentaBanco and IDTipo = @IDTipo and Fecha = @Fecha 
+and Numero = @Numero and Referencia = @Referencia )
+set @Resultado = 0
+ELSE
+set @Resultado = 1
+end
+ELSE
+Begin
+set @Resultado = 1
+End
+
+RETURN @Resultado
+END
 go
