@@ -40,6 +40,7 @@ namespace CG
 
                 Util.Util.ConfigLookupEdit(this.slkupCuenta, _dtCuenta, "Descr", "IDCuenta");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuenta, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                this.slkupCuenta.Properties.ShowClearButton = true;
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
