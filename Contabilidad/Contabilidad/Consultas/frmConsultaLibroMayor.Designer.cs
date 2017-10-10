@@ -110,6 +110,8 @@
             // 
             // chkCuentasMayor
             // 
+            this.chkCuentasMayor.EditValue = true;
+            this.chkCuentasMayor.Enabled = false;
             this.chkCuentasMayor.Location = new System.Drawing.Point(528, 24);
             this.chkCuentasMayor.MenuManager = this.ribbonControl;
             this.chkCuentasMayor.Name = "chkCuentasMayor";
@@ -117,6 +119,7 @@
             this.chkCuentasMayor.Size = new System.Drawing.Size(139, 19);
             this.chkCuentasMayor.StyleController = this.layoutControl1;
             this.chkCuentasMayor.TabIndex = 8;
+            this.chkCuentasMayor.CheckedChanged += new System.EventHandler(this.chkCuentasMayor_CheckedChanged);
             // 
             // ribbonControl
             // 

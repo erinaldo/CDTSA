@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAsiento));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -50,10 +51,10 @@
             this.txtDiferencia = new DevExpress.XtraEditors.TextEdit();
             this.txtCreditoLocal = new DevExpress.XtraEditors.TextEdit();
             this.txtDebitoLocal = new DevExpress.XtraEditors.TextEdit();
-            this.txtAnuladoPor = new DevExpress.XtraEditors.TextEdit();
+            this.txtFechaAnulacion = new DevExpress.XtraEditors.TextEdit();
             this.txtFechaMayorizado = new DevExpress.XtraEditors.TextEdit();
             this.txtFechaCreacion = new DevExpress.XtraEditors.TextEdit();
-            this.txtAnuladorPor = new DevExpress.XtraEditors.TextEdit();
+            this.txtAnuladoPor = new DevExpress.XtraEditors.TextEdit();
             this.txtMayorizadoPor = new DevExpress.XtraEditors.TextEdit();
             this.txtCreadoPor = new DevExpress.XtraEditors.TextEdit();
             this.txtTipoCambio = new DevExpress.XtraEditors.TextEdit();
@@ -126,7 +127,7 @@
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.imgCollection = new DevExpress.Utils.ImageCollection();
+            this.imgCollection = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -136,10 +137,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDiferencia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreditoLocal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDebitoLocal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFechaAnulacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladorPor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMayorizadoPor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreadoPor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoCambio.Properties)).BeginInit();
@@ -344,10 +345,10 @@
             this.layoutControl1.Controls.Add(this.txtDiferencia);
             this.layoutControl1.Controls.Add(this.txtCreditoLocal);
             this.layoutControl1.Controls.Add(this.txtDebitoLocal);
-            this.layoutControl1.Controls.Add(this.txtAnuladoPor);
+            this.layoutControl1.Controls.Add(this.txtFechaAnulacion);
             this.layoutControl1.Controls.Add(this.txtFechaMayorizado);
             this.layoutControl1.Controls.Add(this.txtFechaCreacion);
-            this.layoutControl1.Controls.Add(this.txtAnuladorPor);
+            this.layoutControl1.Controls.Add(this.txtAnuladoPor);
             this.layoutControl1.Controls.Add(this.txtMayorizadoPor);
             this.layoutControl1.Controls.Add(this.txtCreadoPor);
             this.layoutControl1.Controls.Add(this.txtTipoCambio);
@@ -439,15 +440,15 @@
             this.txtDebitoLocal.StyleController = this.layoutControl1;
             this.txtDebitoLocal.TabIndex = 23;
             // 
-            // txtAnuladoPor
+            // txtFechaAnulacion
             // 
-            this.txtAnuladoPor.Location = new System.Drawing.Point(415, 132);
-            this.txtAnuladoPor.MenuManager = this.ribbonControl;
-            this.txtAnuladoPor.Name = "txtAnuladoPor";
-            this.txtAnuladoPor.Properties.ReadOnly = true;
-            this.txtAnuladoPor.Size = new System.Drawing.Size(403, 20);
-            this.txtAnuladoPor.StyleController = this.layoutControl1;
-            this.txtAnuladoPor.TabIndex = 22;
+            this.txtFechaAnulacion.Location = new System.Drawing.Point(415, 132);
+            this.txtFechaAnulacion.MenuManager = this.ribbonControl;
+            this.txtFechaAnulacion.Name = "txtFechaAnulacion";
+            this.txtFechaAnulacion.Properties.ReadOnly = true;
+            this.txtFechaAnulacion.Size = new System.Drawing.Size(403, 20);
+            this.txtFechaAnulacion.StyleController = this.layoutControl1;
+            this.txtFechaAnulacion.TabIndex = 22;
             // 
             // txtFechaMayorizado
             // 
@@ -469,15 +470,15 @@
             this.txtFechaCreacion.StyleController = this.layoutControl1;
             this.txtFechaCreacion.TabIndex = 20;
             // 
-            // txtAnuladorPor
+            // txtAnuladoPor
             // 
-            this.txtAnuladorPor.Location = new System.Drawing.Point(106, 132);
-            this.txtAnuladorPor.MenuManager = this.ribbonControl;
-            this.txtAnuladorPor.Name = "txtAnuladorPor";
-            this.txtAnuladorPor.Properties.ReadOnly = true;
-            this.txtAnuladorPor.Size = new System.Drawing.Size(274, 20);
-            this.txtAnuladorPor.StyleController = this.layoutControl1;
-            this.txtAnuladorPor.TabIndex = 19;
+            this.txtAnuladoPor.Location = new System.Drawing.Point(106, 132);
+            this.txtAnuladoPor.MenuManager = this.ribbonControl;
+            this.txtAnuladoPor.Name = "txtAnuladoPor";
+            this.txtAnuladoPor.Properties.ReadOnly = true;
+            this.txtAnuladoPor.Size = new System.Drawing.Size(274, 20);
+            this.txtAnuladoPor.StyleController = this.layoutControl1;
+            this.txtAnuladoPor.TabIndex = 19;
             // 
             // txtMayorizadoPor
             // 
@@ -904,8 +905,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.TabGeneral;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
+            this.tabbedControlGroup1.SelectedTabPage = this.TabAuditoria;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(832, 217);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.TabGeneral,
@@ -1071,7 +1072,7 @@
             // 
             // layoutControlItem14
             // 
-            this.layoutControlItem14.Control = this.txtAnuladorPor;
+            this.layoutControlItem14.Control = this.txtAnuladoPor;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 86);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(360, 24);
@@ -1106,7 +1107,7 @@
             // 
             // layoutControlItem17
             // 
-            this.layoutControlItem17.Control = this.txtAnuladoPor;
+            this.layoutControlItem17.Control = this.txtFechaAnulacion;
             this.layoutControlItem17.Location = new System.Drawing.Point(391, 86);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(407, 24);
@@ -1308,10 +1309,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDiferencia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreditoLocal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDebitoLocal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFechaAnulacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaMayorizado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFechaCreacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladorPor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAnuladoPor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMayorizadoPor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCreadoPor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTipoCambio.Properties)).EndInit();
@@ -1418,10 +1419,10 @@
         private DevExpress.XtraLayout.LayoutControlGroup TabAuditoria;
         private DevExpress.XtraEditors.TextEdit txtCreadoPor;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private DevExpress.XtraEditors.TextEdit txtAnuladoPor;
+        private DevExpress.XtraEditors.TextEdit txtFechaAnulacion;
         private DevExpress.XtraEditors.TextEdit txtFechaMayorizado;
         private DevExpress.XtraEditors.TextEdit txtFechaCreacion;
-        private DevExpress.XtraEditors.TextEdit txtAnuladorPor;
+        private DevExpress.XtraEditors.TextEdit txtAnuladoPor;
         private DevExpress.XtraEditors.TextEdit txtMayorizadoPor;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;

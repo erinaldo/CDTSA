@@ -148,5 +148,10 @@ namespace CG
         {
             this.Close();
         }
+
+        private void chkCuentasMayor_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

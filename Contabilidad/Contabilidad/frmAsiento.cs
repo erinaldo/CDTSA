@@ -275,7 +275,8 @@ namespace CG
             this.txtFechaCreacion.Text = _currentRow["CreateDate"].ToString();
             this.txtMayorizadoPor.Text = _currentRow["Mayorizadoby"].ToString();
             this.txtFechaMayorizado.Text = _currentRow["MayorizadoDate"].ToString();
-
+            this.txtFechaAnulacion.Text = _currentRow["AnuladoDate"].ToString();
+            this.txtAnuladoPor.Text = _currentRow["Anuladoby"].ToString();
             this.txtEstado.Text = EstadoAsiento();
             //Obtener los datos segun cabecera
             PopulateGrid();
