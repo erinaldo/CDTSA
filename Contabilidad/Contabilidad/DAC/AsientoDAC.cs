@@ -93,7 +93,7 @@ namespace CG
 
 
 
-        public static DataSet GetDataByCriterio(DateTime FechaInicial,DateTime FechaFinal,String Tipo,int Mayorizado,int Anulado,String ModuloFuente, int CuadreTemporal)
+        public static DataSet GetDataByCriterio(DateTime FechaInicial,DateTime FechaFinal,String Tipo,int Mayorizado,int Anulado,String ModuloFuente, int CuadreTemporal,String Usuario)
         {
             String strSQL = "dbo.cntGetAsientoByCriterio";
 
@@ -106,6 +106,7 @@ namespace CG
             oCmd.Parameters.Add(new SqlParameter("@ModuloFuente", ModuloFuente));
             oCmd.Parameters.Add(new SqlParameter("@Anulado", Anulado));
             oCmd.Parameters.Add(new SqlParameter("@CuadreTemporal", CuadreTemporal));
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
             oCmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);

@@ -62,13 +62,17 @@ namespace CG
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("El tipo de cambio para la fecha no esta disponible");
             }
             return dt;
         }
 
         private void btnSubir_Click(object sender, EventArgs e)
         {
+            if (this.dtpFecha.EditValue==null || this.dtpFecha.EditValue.ToString()==""){
+                MessageBox.Show("Por favor seleccione la fecha");
+                return;
+            }
             String Json = JsonConvert.SerializeObject(GetTazaCambio(Convert.ToDateTime(this.dtpFecha.EditValue)));
 
             if (Json == "")

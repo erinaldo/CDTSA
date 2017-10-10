@@ -267,7 +267,7 @@ namespace CG
 
         private void PopulateGrid()
         {
-            _dsAsiento = AsientoDAC.GetDataByCriterio(_FechaInicial, _FechaFinal, _TipoAsiento, _Mayorizado, _Anulado, _ModuloFuente, _CuadreTemporal);
+            _dsAsiento = AsientoDAC.GetDataByCriterio(_FechaInicial, _FechaFinal, _TipoAsiento, _Mayorizado, _Anulado, _ModuloFuente, _CuadreTemporal, _sUsuario);
             _dtAsiento = _dsAsiento.Tables[0];
             this.grid.DataSource = null;
             this.grid.DataSource = _dtAsiento;

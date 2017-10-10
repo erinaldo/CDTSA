@@ -1,5 +1,17 @@
-
 --Estructura de Privilegios
+
+CREATE TABLE dbo.TipoAsientoUsuario ( Usuario nvarchar(20) not null, Tipo nvarchar(2) not null )
+go
+alter table dbo.TipoAsientoUsuario add constraint pkTipoAsientoUsuario primary key (Usuario, Tipo)
+go
+
+alter table dbo.TipoAsientoUsuario add constraint fkTipoAsientoUsuarioU foreign key (Usuario) references dbo.secUsuario (Usuario)
+go
+
+alter table dbo.TipoAsientoUsuario add constraint fkTipoAsientoUsuarioTipo foreign key (Tipo) references dbo.cntTipoAsiento (Tipo)
+go
+
+
 create TABLE [dbo].[secUSUARIO](
 	[USUARIO] [nvarchar](20) NOT NULL,
 	[DESCR] [nvarchar](200) NULL,

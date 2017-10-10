@@ -373,5 +373,11 @@ namespace CG
                 
             }
         }
+
+        private void btnSubirTipoCambio_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmSubirTipoCambio ofrmSubir = new frmSubirTipoCambio();
+            ofrmSubir.ShowDialog();
+        }
     }
 }

@@ -58,6 +58,7 @@
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnSubirTipoCambio = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
@@ -290,9 +291,10 @@
             this.btnCancelar,
             this.btnEliminar,
             this.lblStatus,
-            this.btnExportar});
+            this.btnExportar,
+            this.btnSubirTipoCambio});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 3;
+            this.ribbonControl.MaxItemId = 4;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -368,8 +370,18 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnSubirTipoCambio);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
+            // 
+            // btnSubirTipoCambio
+            // 
+            this.btnSubirTipoCambio.Caption = "Subir TC";
+            this.btnSubirTipoCambio.Glyph = ((System.Drawing.Image)(resources.GetObject("btnSubirTipoCambio.Glyph")));
+            this.btnSubirTipoCambio.Id = 3;
+            this.btnSubirTipoCambio.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnSubirTipoCambio.LargeGlyph")));
+            this.btnSubirTipoCambio.Name = "btnSubirTipoCambio";
+            this.btnSubirTipoCambio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubirTipoCambio_ItemClick);
             // 
             // frmTipoCambioDetalle
             // 
@@ -441,5 +453,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraEditors.SimpleButton btnRefrescar;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraBars.BarButtonItem btnSubirTipoCambio;
     }
 }

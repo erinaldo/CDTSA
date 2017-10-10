@@ -52,5 +52,22 @@ namespace CG
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }
+
+
+        public static DataSet GetTipoAsientoByUsuario(String Usuario)
+        {
+            String strSQL = "SELECT  Tipo , Descr ,  Consecutivo , UltimoAsiento ,  Activo , ReadOnlySys  FROM dbo.cntTipoAsiento WHERE Tipo IN (SELECT Tipo  FROM TipoAsientoUsuario WHERE Usuario =@Usuario)";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+            oCmd.CommandType = CommandType.Text;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = CreateDataSet();
+
+            oAdap.Fill(DS.Tables["Data"]);
+            return DS;
+        }
     }
 }

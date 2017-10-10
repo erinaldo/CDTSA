@@ -568,7 +568,7 @@ namespace CG
 
 
                 CargarColumnas();
-                Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetData().Tables["Data"], "Descr", "Tipo");
+                Util.Util.ConfigLookupEdit(this.slkupTipo, TipoAsientoDAC.GetTipoAsientoByUsuario(sUsuario).Tables["Data"], "Descr", "Tipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
                 grid.ProcessGridKey += Grid_ProcessGridKey;
                 UpdateControlsFromDataRow(_currentRow);

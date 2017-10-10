@@ -55,13 +55,13 @@ namespace CDTSA
         private bool ValidarDatos() { 
             String sMensaje = "";
             if (this.cmbCompania.SelectedIndex == -1)
-                sMensaje = sMensaje + "  •   Seleccione la compañia./n/r";
+                sMensaje = sMensaje + "  •   Seleccione la compañia.\n\r";
             if (this.txtUsuario.Text == "")
-                sMensaje = sMensaje + " •  Ingrese el usuario./n/r";
+                sMensaje = sMensaje + " •  Ingrese el usuario.\n\r";
             if (this.txtPass.Text == "")
-                sMensaje = sMensaje + " •   Ingrese la Contraseña./n/r";
+                sMensaje = sMensaje + " •   Ingrese la Contraseña.\n\r";
             if (sMensaje != ""){
-                MessageBox.Show("Por favor verifique los siguiente datos: /n/r" + sMensaje);
+                MessageBox.Show("Por favor verifique los siguiente datos: \n\r" + sMensaje);
                 return false;
             }else
                 return true;
