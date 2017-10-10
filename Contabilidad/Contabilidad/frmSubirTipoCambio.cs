@@ -24,7 +24,7 @@ namespace CG
 
         private void frmSubirTipoCambio_Load(object sender, EventArgs e)
         {
-
+            this.dtpFecha.EditValue = DateTime.Now; 
         }
 
         public DataTable GetTazaCambio(DateTime Fecha)

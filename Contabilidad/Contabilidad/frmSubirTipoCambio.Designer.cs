@@ -75,7 +75,7 @@
             this.Controls.Add(this.dtpFecha);
             this.Name = "frmSubirTipoCambio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmSubirTipoCambio";
+            this.Text = "Subir Tipos de Cambio";
             this.Load += new System.EventHandler(this.frmSubirTipoCambio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).EndInit();
