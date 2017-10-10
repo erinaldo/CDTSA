@@ -199,6 +199,12 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmlstTipoCambio.Show();
                     break;
+                case "frmSubirTipoCambio":
+                    frmSubirTipoCambio ofrmSubirTipoCambio = new frmSubirTipoCambio();
+                    ofrmSubirTipoCambio.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmSubirTipoCambio.Show();
+                    break;
 
                 case "frmDesigner":
 
@@ -206,6 +212,8 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmReportDesigner.Show();
                     break;
+
+                  
             }
         }
 
@@ -433,6 +441,8 @@ namespace MainMenu
                     TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
                     TreeListNode nodeTiposCambio = tl.AppendNode(new object[] { "Tipos de Cambio" }, nodeTipos.Id, 11, 11, 11);
                     nodeTiposCambio.Tag = "frmListadoTipoCambio";
+                    TreeListNode nodeSubirTiposCambio = tl.AppendNode(new object[] { "Subir Tipos de Cambio" }, nodeTipos.Id, 11, 11, 11);
+                    nodeSubirTiposCambio.Tag = "frmSubirTipoCambio";
                     TreeListNode nodeParametros = tl.AppendNode(new object[] { "Parametros Generales" }, -1, 11, 11, 11);
                     nodeParametros.Tag = "frmParametrosGenerales";
                     TreeListNode nodeReportDesigner = tl.AppendNode(new object[] { "Diseñador de Reportes" }, -1, 11, 11, 11);

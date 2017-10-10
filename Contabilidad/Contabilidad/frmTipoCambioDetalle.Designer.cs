@@ -380,6 +380,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmTipoCambioDetalle";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTipoCambioDetalle";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

@@ -90,6 +90,37 @@ namespace CG
             return DS;
         }
 
+        public static bool SubirTipoCambio(string pJasonTC)
+        {
+            
+            bool Resultado = false;
+            
+
+            String strSQL = "globalUpLoadTipoCambio";
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+              
+                oCmd.Parameters.Add(new SqlParameter("@TipoCambio", pJasonTC));
+                oCmd.CommandType = CommandType.StoredProcedure;
+
+                if (oCmd.Connection.State == ConnectionState.Closed)
+                    oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+                Resultado = true;
+
+            }
+            catch (SqlException ex) { throw; }
+            catch (Exception ex) { throw; }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+
+            return Resultado;
+        }
+
         public static bool ExisteTipoCambioInDetalle(String TipoCambio)
         {
             bool Resultado = false;

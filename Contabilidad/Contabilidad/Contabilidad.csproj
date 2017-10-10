@@ -103,6 +103,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -156,6 +157,12 @@
     </Compile>
     <Compile Include="frmRelacionCuentaGrupoEstadosFinancieros.Designer.cs">
       <DependentUpon>frmRelacionCuentaGrupoEstadosFinancieros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubirTipoCambio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSubirTipoCambio.Designer.cs">
+      <DependentUpon>frmSubirTipoCambio.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoCambioDetalle.cs">
       <SubType>Form</SubType>
@@ -333,6 +340,11 @@
     <Compile Include="Reporte\ReportesFinancieros\rptEstadoResultado.Designer.cs">
       <DependentUpon>rptEstadoResultado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service References\TC\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Consultas\frmConsultaLibroMayor.resx">
       <DependentUpon>frmConsultaLibroMayor.cs</DependentUpon>
     </EmbeddedResource>
@@ -350,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRelacionCuentaGrupoEstadosFinancieros.resx">
       <DependentUpon>frmRelacionCuentaGrupoEstadosFinancieros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubirTipoCambio.resx">
+      <DependentUpon>frmSubirTipoCambio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoCambioDetalle.resx">
       <DependentUpon>frmTipoCambioDetalle.cs</DependentUpon>
@@ -444,6 +459,7 @@
       <DependentUpon>rptEstadoResultado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Xml.XmlElement.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -466,6 +482,7 @@
     <None Include="Reporte\ReportesFinancieros\Plantilla\rptEstadoResultado.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Service References\TC\ServicioTC.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -498,6 +515,24 @@
       <Project>{0b0488ef-45c5-4594-aecc-b6aec89fbbd5}</Project>
       <Name>Util</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\TC\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TC\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TC\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TC\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
