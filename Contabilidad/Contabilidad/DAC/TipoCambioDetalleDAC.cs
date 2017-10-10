@@ -143,11 +143,13 @@ namespace CG
         public static Double GetLastTipoCambioFecha(DateTime Fecha)
         {
             double TC = 0;
-            String strSQL = "DECLARE @FechaMax AS DATE " +
-                            "SET @FechaMax = (SELECT MAX(Fecha)  FROM dbo.cntSaldo) " +
-                            "IF (@Fecha>@FechaMax) " +
-	                        "    SET @Fecha = @FechaMax " +
-                            "SELECT Monto  FROM dbo.globalTipoCambioDetalle WHERE Fecha=DATEADD(D,-1,DATEADD(mm, DATEDIFF(m,0,@Fecha)+1,0)) AND IDTipoCambio='TVEN'";
+            String strSQL = " select [dbo].[globalLastGetTipoCambioPeriodo](@Fecha) Monto"; 
+                
+                //"DECLARE @FechaMax AS DATE " +
+                //            "SET @FechaMax = (SELECT MAX(Fecha)  FROM dbo.cntSaldo) " +
+                //            "IF (@Fecha>@FechaMax) " +
+                //            "    SET @Fecha = @FechaMax " +
+                //            "SELECT Monto  FROM dbo.globalTipoCambioDetalle WHERE Fecha=DATEADD(D,-1,DATEADD(mm, DATEDIFF(m,0,@Fecha)+1,0)) AND IDTipoCambio='TVEN'";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
 
