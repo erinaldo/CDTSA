@@ -109,6 +109,8 @@ namespace CG
                 oCmd.CommandType = CommandType.StoredProcedure;
                 oCmd.Parameters.Add("@IDEjercicio", SqlDbType.Int).Value = IDEjercicio;
                 oCmd.Parameters.Add("@Periodo", SqlDbType.NVarChar).Value = Periodo;
+                oCmd.Parameters.Add("@Error", SqlDbType.Bit).Value = Periodo;
+                oCmd.Parameters["@Error"].Direction = ParameterDirection.Output;
 
 
                 if (oConn.State == ConnectionState.Closed)
@@ -131,7 +133,36 @@ namespace CG
 
         }
 
-       
+        public static DataTable GetPeriodoContableACerrar()
+        {
+
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cntGetPeriodoContableACerrar", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter oAdapatadorTmp = new SqlDataAdapter(oCmd);
+                oAdapatadorTmp.Fill(DS, "Data");
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return DS.Tables[0];
+
+        }
 
 
         public static DataSet GetPeriodoContableByFecha(DateTime Fecha)

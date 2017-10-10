@@ -133,6 +133,12 @@
     <Compile Include="DAC\EjercicioDAC.cs" />
     <Compile Include="DAC\GrupoEstadosFinancierosDAC.cs" />
     <Compile Include="DAC\ReportesDAC.cs" />
+    <Compile Include="frmCerrarPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCerrarPeriodo.Designer.cs">
+      <DependentUpon>frmCerrarPeriodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGrupoEstadosFinancieros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas\frmConsultaPeriodoContable.resx">
       <DependentUpon>frmConsultaPeriodoContable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCerrarPeriodo.resx">
+      <DependentUpon>frmCerrarPeriodo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGrupoEstadosFinancieros.resx">
       <DependentUpon>frmGrupoEstadosFinancieros.cs</DependentUpon>

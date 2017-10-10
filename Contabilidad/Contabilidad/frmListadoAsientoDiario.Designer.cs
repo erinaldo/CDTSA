@@ -185,6 +185,7 @@
             this.grid.TabIndex = 4;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
+
             // 
             // gridView
             // 

@@ -381,6 +381,12 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmEstado.Show();
                     break;
+                case "frmCerrarPeriodo":
+                    frmCerrarPeriodo ofrmCierre = new frmCerrarPeriodo();
+                    ofrmCierre.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmCierre.Show();
+                    break;
             }
 
 
@@ -500,6 +506,7 @@ namespace MainMenu
                     nodeReportesReporteDeMayor.Tag = "optReportesReporteDeMayor";
                     TreeListNode nodeReportesReporteDeDiferencias = tl.AppendNode(new object[] { "Reporte de Diferencias" }, nodeReportesContabilidad.Id, 11, 11, 11);
                     nodeReportesReporteDeDiferencias.Tag = "optReportesDeDiferencias";
+
                     //Carpeta
                     TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
                     TreeListNode nodeParametrosModulo = tl.AppendNode(new object[] { "Parámetros del Módulo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
@@ -514,6 +521,9 @@ namespace MainMenu
 
                     TreeListNode nodeCrearEjercicio = tl.AppendNode(new object[] { "Crear Ejercicios" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
                     nodeCrearEjercicio.Tag = "frmCreaEjercicio";
+
+                    TreeListNode nodeCierreMes = tl.AppendNode(new object[] { "Cerrar Periodo" }, nodeAdministracionContabilidad.Id, 11, 11, 11);
+                    nodeCierreMes.Tag = "frmCerrarPeriodo";
                     break;
             }
 
