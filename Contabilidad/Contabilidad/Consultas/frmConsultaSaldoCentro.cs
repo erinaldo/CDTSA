@@ -41,6 +41,8 @@ namespace CG
                 Util.Util.ConfigLookupEdit(this.slkupCuenta, _dtCuenta, "Descr", "IDCuenta");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuenta, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
                 this.slkupCuenta.Properties.ShowClearButton = true;
+                this.slkupCuenta.Properties.PopupFormSize = new Size(400, 300);
+                this.slkupCuenta.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);

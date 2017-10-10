@@ -16,7 +16,7 @@ namespace CG
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, " +
+            String getSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, Anuladoby,AnuladoDate, " +
                              "Concepto, Mayorizado, Anulado, TipoCambio, ModuloFuente, CuadreTemporal  FROM dbo.cntAsiento WHERE (Asiento = @Asiento or @Asiento='*')" ;
             
             try
@@ -217,7 +217,7 @@ namespace CG
 
         public static DataSet GetDataEmpty()
         {
-            String strSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, " +
+            String strSQL = "SELECT IDEjercicio, Periodo, Asiento, Tipo, Fecha, FechaHora, Createdby, CreateDate, Mayorizadoby, MayorizadoDate, Anuladoby,AnuladoDate,  " +
                             "Concepto, Mayorizado, Anulado, TipoCambio, ModuloFuente, CuadreTemporal " +
                             "  FROM dbo.cntAsiento where 1=3";
 

@@ -198,7 +198,7 @@ namespace CG
             _currentRow["FechaHora"] = DateTime.Now;
             _currentRow["Fecha"] = DateTime.Now;
             _currentRow["Tipo"] = "CG";
-            _currentRow["Concepto"] = null;
+            _currentRow["Concepto"] = "";
             _currentRow["Mayorizado"] = false;
             _currentRow["Anulado"] = false;
             _currentRow["CuadreTemporal"] = false;
@@ -278,6 +278,10 @@ namespace CG
             this.txtFechaAnulacion.Text = _currentRow["AnuladoDate"].ToString();
             this.txtAnuladoPor.Text = _currentRow["Anuladoby"].ToString();
             this.txtEstado.Text = EstadoAsiento();
+            if (Convert.ToBoolean(_currentRow["Anulado"]) == true)
+                this.lblAnuladod.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+            else
+                this.lblAnuladod.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             //Obtener los datos segun cabecera
             PopulateGrid();
         }

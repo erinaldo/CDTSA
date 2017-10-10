@@ -157,8 +157,8 @@ namespace CG
             //Obtener las variables de filtro
             _FechaInicial = ofrmFiltro.FechaInicial;
             _FechaFinal = ofrmFiltro.FechaFinal;
-            _Mayorizado = Convert.ToInt32(ofrmFiltro.Mayorizado);
-            _Anulado = Convert.ToInt32(ofrmFiltro.Anulado);
+            _Mayorizado =( Convert.ToInt32(ofrmFiltro.Mayorizado)==0) ? -1:Convert.ToInt32(ofrmFiltro.Mayorizado);
+            _Anulado = (Convert.ToInt32(ofrmFiltro.Anulado)==0 )? -1:Convert.ToInt32(ofrmFiltro.Anulado);
             _CuadreTemporal = Convert.ToInt32(ofrmFiltro.CuadreTemporal);
             _TipoAsiento = ofrmFiltro.TipoAsiento;
             _ModuloFuente = ofrmFiltro.ModuloFuente;

@@ -111,7 +111,6 @@
             // chkCuentasMayor
             // 
             this.chkCuentasMayor.EditValue = true;
-            this.chkCuentasMayor.Enabled = false;
             this.chkCuentasMayor.Location = new System.Drawing.Point(528, 24);
             this.chkCuentasMayor.MenuManager = this.ribbonControl;
             this.chkCuentasMayor.Name = "chkCuentasMayor";
@@ -483,6 +482,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmConsultaLibroMayor";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta del Libro Mayor";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
