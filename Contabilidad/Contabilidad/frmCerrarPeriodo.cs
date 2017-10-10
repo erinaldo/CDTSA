@@ -35,6 +35,7 @@ namespace CG
                 {
                     PeriodoContableDAC.CierraPeriodoContable(Convert.ToInt32(this.txtEjercicio.Text.Trim()), this.txtPeriodo.Text.Trim());
                     MessageBox.Show("El periodo ha sido cerrado satisfactoriamente");
+                    this.Close();
                 }
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);

@@ -466,24 +466,24 @@ namespace MainMenu
                     nodeConsultasDeCuentasContables.Tag = "frmConsultaSaldoCuenta";
                     TreeListNode nodeConsultasDeCentrosDeCostos = tl.AppendNode(new object[] { "De Centros de Costos" }, nodeConsultasContabilidad.Id, 11, 11, 11);
                     nodeConsultasDeCentrosDeCostos.Tag = "frmConsultaSaldoCentro";
-                    TreeListNode nodeConsultasPorPeriodoContable = tl.AppendNode(new object[] { "Por Periodo Contable" }, nodeConsultasContabilidad.Id, 11, 11, 11);
-                    nodeConsultasPorPeriodoContable.Tag = "optConsultasPorPeriodoContable";
+                    //TreeListNode nodeConsultasPorPeriodoContable = tl.AppendNode(new object[] { "Por Periodo Contable" }, nodeConsultasContabilidad.Id, 11, 11, 11);
+                    //nodeConsultasPorPeriodoContable.Tag = "optConsultasPorPeriodoContable";
                     TreeListNode nodeConsultasLibroMayor = tl.AppendNode(new object[] { "Libro Mayor" }, nodeConsultasContabilidad.Id, 11, 11, 11);
                     nodeConsultasLibroMayor.Tag = "frmConsultaLibroMayor";
                     //Carpeta
-                    TreeListNode nodeConsultasDelMayor = tl.AppendNode(new object[] { "Del Mayor" }, nodeConsultasContabilidad.Id, 9, 10, 9);
-                    //Items
-                    TreeListNode nodeConsultasDelMayorAsientos = tl.AppendNode(new object[] { "Asientos" }, nodeConsultasDelMayor.Id, 11, 11, 11);
-                    nodeConsultasDelMayorAsientos.Tag = "optConsultasDelMayorAsientos";
-                    TreeListNode nodeConsultasDelMayorTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultasDelMayor.Id, 11, 11, 11);
-                    nodeConsultasDelMayorTransacciones.Tag = "optConsultasDelMayorTransacciones";
-                    //Carpeta
-                    TreeListNode nodeConsultasDelDiario = tl.AppendNode(new object[] { "Del Diario" }, nodeConsultasContabilidad.Id, 9, 10, 9);
-                    //Items
-                    TreeListNode nodeConsultasDelDiarioAsientos = tl.AppendNode(new object[] { "Asientos" }, nodeConsultasDelDiario.Id, 11, 11, 11);
-                    nodeConsultasDelDiarioAsientos.Tag = "optConsultasDelDiarioAsientos";
-                    TreeListNode nodeConsultasDelDiarioTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultasDelDiario.Id, 11, 11, 11);
-                    nodeConsultasDelDiarioTransacciones.Tag = "optConsultasDelDiarioTransacciones";
+                    //TreeListNode nodeConsultasDelMayor = tl.AppendNode(new object[] { "Del Mayor" }, nodeConsultasContabilidad.Id, 9, 10, 9);
+                    ////Items
+                    //TreeListNode nodeConsultasDelMayorAsientos = tl.AppendNode(new object[] { "Asientos" }, nodeConsultasDelMayor.Id, 11, 11, 11);
+                    //nodeConsultasDelMayorAsientos.Tag = "optConsultasDelMayorAsientos";
+                    //TreeListNode nodeConsultasDelMayorTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultasDelMayor.Id, 11, 11, 11);
+                    //nodeConsultasDelMayorTransacciones.Tag = "optConsultasDelMayorTransacciones";
+                    ////Carpeta
+                    //TreeListNode nodeConsultasDelDiario = tl.AppendNode(new object[] { "Del Diario" }, nodeConsultasContabilidad.Id, 9, 10, 9);
+                    ////Items
+                    //TreeListNode nodeConsultasDelDiarioAsientos = tl.AppendNode(new object[] { "Asientos" }, nodeConsultasDelDiario.Id, 11, 11, 11);
+                    //nodeConsultasDelDiarioAsientos.Tag = "optConsultasDelDiarioAsientos";
+                    //TreeListNode nodeConsultasDelDiarioTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultasDelDiario.Id, 11, 11, 11);
+                    //nodeConsultasDelDiarioTransacciones.Tag = "optConsultasDelDiarioTransacciones";
 
                     //Carpeta
                     TreeListNode nodeReportesContabilidad = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
@@ -500,12 +500,12 @@ namespace MainMenu
                     nodeReportesBalanceComprobacion.Tag = "frmBalanceComprobacion";
                     TreeListNode nodeReportesEstadodeResultado = tl.AppendNode(new object[] { "Estado de Resultado" }, nodeReportesContabilidad.Id, 11, 11, 11);
                     nodeReportesEstadodeResultado.Tag = "frmEstadoResultado";
-                    TreeListNode nodeReportesReporteDeAsiento = tl.AppendNode(new object[] { "Reporte de Asiento" }, nodeReportesContabilidad.Id, 11, 11, 11);
-                    nodeReportesReporteDeAsiento.Tag = "optReportesReporteDeAsiento";
-                    TreeListNode nodeReportesReporteDeMayor = tl.AppendNode(new object[] { "Reporte de Mayor" }, nodeReportesContabilidad.Id, 11, 11, 11);
-                    nodeReportesReporteDeMayor.Tag = "optReportesReporteDeMayor";
-                    TreeListNode nodeReportesReporteDeDiferencias = tl.AppendNode(new object[] { "Reporte de Diferencias" }, nodeReportesContabilidad.Id, 11, 11, 11);
-                    nodeReportesReporteDeDiferencias.Tag = "optReportesDeDiferencias";
+                    //TreeListNode nodeReportesReporteDeAsiento = tl.AppendNode(new object[] { "Reporte de Asiento" }, nodeReportesContabilidad.Id, 11, 11, 11);
+                    //nodeReportesReporteDeAsiento.Tag = "optReportesReporteDeAsiento";
+                    //TreeListNode nodeReportesReporteDeMayor = tl.AppendNode(new object[] { "Reporte de Mayor" }, nodeReportesContabilidad.Id, 11, 11, 11);
+                    //nodeReportesReporteDeMayor.Tag = "optReportesReporteDeMayor";
+                    //TreeListNode nodeReportesReporteDeDiferencias = tl.AppendNode(new object[] { "Reporte de Diferencias" }, nodeReportesContabilidad.Id, 11, 11, 11);
+                    //nodeReportesReporteDeDiferencias.Tag = "optReportesDeDiferencias";
 
                     //Carpeta
                     TreeListNode nodeAdministracionContabilidad = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);

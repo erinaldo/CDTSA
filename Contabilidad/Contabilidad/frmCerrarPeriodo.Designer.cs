@@ -135,7 +135,9 @@
             this.Controls.Add(this.txtEjercicio);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl1);
+            this.MaximizeBox = false;
             this.Name = "frmCerrarPeriodo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCerrarPeriodo";
             this.Load += new System.EventHandler(this.frmCerrarPeriodo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).EndInit();
