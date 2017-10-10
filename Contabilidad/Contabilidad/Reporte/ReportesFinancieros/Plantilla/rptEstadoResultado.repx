@@ -23,7 +23,7 @@
     <Item6 Ref="18" Name="GastoAdministrativos" Expression="[cntrpEstadoResultado][[DescrTipo] == 'GASTOS'  And [Acumulador]=0 And [Grupo]=='ER02-01-00'].Sum([Saldo])" />
     <Item7 Ref="19" Name="GastosVenta" Expression="[cntrpEstadoResultado][[DescrTipo] == 'GASTOS'  And [Acumulador]=0 And [Grupo]=='ER02-02-00'].Sum([Saldo])" />
     <Item8 Ref="20" Name="UtilidadOperativa" FieldType="Decimal" Expression="[UtilidadBruta]-[GastoAdministrativos]-[GastosVenta]" />
-    <Item9 Ref="21" Name="ImpuestoSobreRenta" Expression="[cntrpEstadoResultado][[DescrTipo] == 'GASTOS'  And [Acumulador]=0 And [Grupo]=='ER03-00-00'].Sum([Saldo])" />
+    <Item9 Ref="21" Name="ImpuestoSobreRenta" Expression="iif([cntrpEstadoResultado][[DescrTipo] == 'GASTOS'  And [Acumulador]=0 And [Grupo]=='ER03-00-00'].Sum([Saldo])=null,0,[cntrpEstadoResultado][[DescrTipo] == 'GASTOS'  And [Acumulador]=0 And [Grupo]=='ER03-00-00'].Sum([Saldo]))" />
   </CalculatedFields>
   <Bands>
     <Item1 Ref="22" ControlType="DetailBand" Name="Detail" HeightF="0" TextAlignment="TopLeft" Padding="0,0,0,0,100" Visible="false" />

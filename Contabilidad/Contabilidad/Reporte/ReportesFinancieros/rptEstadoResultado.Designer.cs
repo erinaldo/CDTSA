@@ -581,8 +581,7 @@
             // 
             // ImpuestoSobreRenta
             // 
-            this.ImpuestoSobreRenta.Expression = "[cntrpEstadoResultado][[DescrTipo] == \'GASTOS\'  And [Acumulador]=0 And [Grupo]==\'" +
-    "ER03-00-00\'].Sum([Saldo])";
+            this.ImpuestoSobreRenta.Expression = resources.GetString("ImpuestoSobreRenta.Expression");
             this.ImpuestoSobreRenta.Name = "ImpuestoSobreRenta";
             // 
             // BaseReporte
