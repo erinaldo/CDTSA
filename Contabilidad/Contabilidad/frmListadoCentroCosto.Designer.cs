@@ -37,6 +37,7 @@
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -73,7 +74,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -181,6 +181,14 @@
             this.btnExportar.Id = 2;
             this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
             this.btnExportar.Name = "btnExportar";
+            // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 3;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
             // 
             // ribbonPage1
             // 
@@ -563,14 +571,6 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(309, 24);
             this.layoutControlItem7.Text = "Centro Acumulador:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(96, 13);
-            // 
-            // btnRefrescar
-            // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 3;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
             // 
             // frmListadoCentroCosto
             // 

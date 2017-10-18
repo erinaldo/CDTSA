@@ -52,6 +52,7 @@ namespace CG
                 oAdaptador.InsertCommand.Parameters.Add("@IDCentroAnterior", SqlDbType.Int).SourceColumn = "IDCentroAnterior";
                 oAdaptador.InsertCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
                 oAdaptador.InsertCommand.Parameters.Add("@IDCentroAcumulador", SqlDbType.Int).SourceColumn = "IDCentroAcumulador";
+                oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
                 //Paremetros Update 
@@ -65,7 +66,7 @@ namespace CG
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCentroAnterior", SqlDbType.Int).SourceColumn = "IDCentroAnterior";
                 oAdaptador.UpdateCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCentroAcumulador", SqlDbType.Int).SourceColumn = "IDCentroAcumulador";
-
+                oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
 
@@ -80,7 +81,7 @@ namespace CG
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCentroAnterior", SqlDbType.Int).SourceColumn = "IDCentroAnterior";
                 oAdaptador.DeleteCommand.Parameters.Add("@Acumulador", SqlDbType.Bit).SourceColumn = "Acumulador";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCentroAcumulador", SqlDbType.Int).SourceColumn = "IDCentroAcumulador";
-
+                oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
                 return oAdaptador;
             }catch (Exception)
