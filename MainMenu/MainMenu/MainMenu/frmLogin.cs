@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using Security;
 using System.Threading;
 using DevExpress.XtraSplashScreen;
+using System.Deployment.Application;
+using System.Reflection;
 
 namespace CDTSA
 {
@@ -38,7 +40,16 @@ namespace CDTSA
 		            SplashScreenManager.CloseForm();
 	            }
             }
+
+           this.lblVersion.Text = "V. " + GetCurrentPublishVersion();
         
+        }
+
+        public string GetCurrentPublishVersion()
+        {
+            return ApplicationDeployment.IsNetworkDeployed
+                   ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+                   : Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private bool ValidarUsuario() {

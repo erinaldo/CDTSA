@@ -38,6 +38,7 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cmbCompania = new DevExpress.XtraEditors.ComboBoxEdit();
             this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
+            this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsuario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbCompania.Properties)).BeginInit();
@@ -134,11 +135,20 @@
             this.pictureEdit2.Size = new System.Drawing.Size(426, 180);
             this.pictureEdit2.TabIndex = 21;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Location = new System.Drawing.Point(309, 269);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(6, 13);
+            this.lblVersion.TabIndex = 24;
+            this.lblVersion.Text = "V";
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 295);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.cmbCompania);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl2);
@@ -176,5 +186,6 @@
         private DevExpress.XtraEditors.PictureEdit pictureEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ComboBoxEdit cmbCompania;
+        private DevExpress.XtraEditors.LabelControl lblVersion;
     }
 }
