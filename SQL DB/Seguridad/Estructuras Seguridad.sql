@@ -231,6 +231,7 @@ insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values
 insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,103)  
 insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,104)  
 insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,105)  
+insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,106)  
 insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,107)  
 insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,108)  
 insert [dbo].[secROLEACCION](   [IDMODULO] ,   [IDROLE] ,   [IDACCION] )  values ( 100,1,109)  
