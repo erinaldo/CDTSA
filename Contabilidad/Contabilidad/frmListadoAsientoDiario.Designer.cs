@@ -53,6 +53,7 @@
             this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnMayorizar = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -74,9 +75,10 @@
             this.lblStatus,
             this.btnFiltro,
             this.btnExportar,
-            this.btnRefrescar});
+            this.btnRefrescar,
+            this.btnMayorizar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 5;
+            this.ribbonControl.MaxItemId = 6;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -161,6 +163,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnMayorizar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -185,7 +188,6 @@
             this.grid.TabIndex = 4;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
-
             // 
             // gridView
             // 
@@ -200,6 +202,8 @@
             this.Usuario});
             this.gridView.GridControl = this.grid;
             this.gridView.Name = "gridView";
+            this.gridView.OptionsSelection.MultiSelect = true;
+            this.gridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             // 
             // Asiento
             // 
@@ -209,7 +213,7 @@
             this.Asiento.Name = "Asiento";
             this.Asiento.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.Asiento.Visible = true;
-            this.Asiento.VisibleIndex = 0;
+            this.Asiento.VisibleIndex = 1;
             this.Asiento.Width = 90;
             // 
             // Tipo
@@ -218,7 +222,7 @@
             this.Tipo.FieldName = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.Visible = true;
-            this.Tipo.VisibleIndex = 1;
+            this.Tipo.VisibleIndex = 2;
             this.Tipo.Width = 54;
             // 
             // Fecha
@@ -229,7 +233,7 @@
             this.Fecha.MinWidth = 80;
             this.Fecha.Name = "Fecha";
             this.Fecha.Visible = true;
-            this.Fecha.VisibleIndex = 2;
+            this.Fecha.VisibleIndex = 3;
             this.Fecha.Width = 80;
             // 
             // Concepto
@@ -239,7 +243,7 @@
             this.Concepto.Name = "Concepto";
             this.Concepto.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Like;
             this.Concepto.Visible = true;
-            this.Concepto.VisibleIndex = 3;
+            this.Concepto.VisibleIndex = 4;
             this.Concepto.Width = 433;
             // 
             // Mayorizado
@@ -250,7 +254,7 @@
             this.Mayorizado.MinWidth = 70;
             this.Mayorizado.Name = "Mayorizado";
             this.Mayorizado.Visible = true;
-            this.Mayorizado.VisibleIndex = 4;
+            this.Mayorizado.VisibleIndex = 5;
             this.Mayorizado.Width = 72;
             // 
             // Anulado
@@ -260,7 +264,7 @@
             this.Anulado.MinWidth = 50;
             this.Anulado.Name = "Anulado";
             this.Anulado.Visible = true;
-            this.Anulado.VisibleIndex = 5;
+            this.Anulado.VisibleIndex = 6;
             this.Anulado.Width = 57;
             // 
             // CuadreTemporal
@@ -270,7 +274,7 @@
             this.CuadreTemporal.MinWidth = 50;
             this.CuadreTemporal.Name = "CuadreTemporal";
             this.CuadreTemporal.Visible = true;
-            this.CuadreTemporal.VisibleIndex = 6;
+            this.CuadreTemporal.VisibleIndex = 7;
             this.CuadreTemporal.Width = 53;
             // 
             // Usuario
@@ -280,7 +284,7 @@
             this.Usuario.MinWidth = 80;
             this.Usuario.Name = "Usuario";
             this.Usuario.Visible = true;
-            this.Usuario.VisibleIndex = 7;
+            this.Usuario.VisibleIndex = 8;
             this.Usuario.Width = 95;
             // 
             // layoutControlGroup1
@@ -302,6 +306,15 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(660, 345);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // btnMayorizar
+            // 
+            this.btnMayorizar.Caption = "Mayorizar";
+            this.btnMayorizar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.Glyph")));
+            this.btnMayorizar.Id = 5;
+            this.btnMayorizar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.LargeGlyph")));
+            this.btnMayorizar.Name = "btnMayorizar";
+            this.btnMayorizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMayorizar_ItemClick);
             // 
             // frmListadoAsientoDiario
             // 
@@ -353,5 +366,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Usuario;
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        private DevExpress.XtraBars.BarButtonItem btnMayorizar;
     }
 }

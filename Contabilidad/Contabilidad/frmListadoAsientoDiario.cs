@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Security;
+using System.Collections;
 
 namespace CG
 {
@@ -29,7 +30,7 @@ namespace CG
 
         DataRow _currentRow = null;
         const String _tituloVentana = "Listado de Asientos";
-
+        String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
 
         public frmListadoAsientoDiario()
         {
@@ -273,6 +274,71 @@ namespace CG
             this.grid.DataSource = _dtAsiento;
 
 
+        }
+
+        private void btnMayorizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Validar que al menos un elemento se encuentre seleccionado
+            ArrayList rows = new ArrayList();
+            for (int i = 0; i < this.gridView.SelectedRowsCount; i++)
+            {
+                if (gridView.GetSelectedRows()[i] >= 0)
+                    rows.Add(gridView.GetDataRow(gridView.GetSelectedRows()[i]));
+            }
+
+            if (rows.Count==0){
+                MessageBox.Show("Por favor chequee los elementos que desea mayorizar");
+                return ;
+            }
+
+            try
+            {
+                
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    DataRow row = rows[i] as DataRow;
+                    // Change the field value.
+                   
+                    
+                    DateTime Fecha = Convert.ToDateTime(row["Fecha"]);
+                    try
+                    {
+                        //if (Fecha == null || PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha))
+                        PeriodoContableDAC.ValidaFechaInPeriodoContable(Fecha);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Han ocurrido los siguientes errores: \r\n" + ex.Message);
+                        return;
+                    }
+
+                    if (Convert.ToBoolean(row["Mayorizado"]) == false)
+                    {
+                        //Validar situaciones comunes al momento de mayorizar
+                        String  NumAsiento =  row["Asiento"].ToString();
+                        int IdEjercicio = (int)row["IDEjercicio"];// (int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
+                        String Periodo = row["Periodo"].ToString();
+                        bool bExito = false;
+                        bExito = AsientoDAC.Mayorizar(IdEjercicio, Periodo, NumAsiento, sUsuario);
+
+                        if (!bExito)
+                        {
+                            MessageBox.Show("Ha ocurrido un error tratando de mayorizar el asiento..");
+                            return;
+                        }
+                    }
+                   
+                }
+                MessageBox.Show("El asiento contable, se ha mayorizado con exito");
+
+                 PopulateGrid();
+            }
+            finally
+            {
+                
+            }
+
+           
         }
 
 

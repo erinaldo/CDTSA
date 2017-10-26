@@ -331,18 +331,42 @@ namespace CG
             this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
             this.btnColumnas.ItemClick += BtnColumnas_ItemClick;
             this.btnAnular.ItemClick += BtnAnular_ItemClick;
-            this.btnCuadreTemporal.ItemClick += BtnCuadreTemporal_ItemClick;
+            //this.btnCuadreTemporal.ItemClick += BtnCuadreTemporal_ItemClick;
             this.btnShowLessColumns.ItemClick += BtnShowLessColumns_ItemClick;
         }
 
         private void BtnCuadreTemporal_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (_dsAsiento.Tables[0].Rows.Count > 0)
+            if (this.gridView1.RowCount > 0)
             {
-                if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == false)
+                if (Convert.ToBoolean(_currentRow["Mayorizado"]) == false)
                 {
                     bool bExito = false;
-                    bExito = AsientoDAC.CuadreTemporal(_Asiento);
+                    DataView dvDebito = new DataView();
+                    dvDebito.Table = _dsDetalle.Tables[0];
+                    dvDebito.RowFilter = "Debito is not null";
+                    DataTable dtDebito = dvDebito.ToTable();
+
+                    DataView dvCredito = new DataView();
+                    dvCredito.Table = _dsDetalle.Tables[0];
+                    dvCredito.RowFilter = "Credito is not null";
+                    DataTable dtCredito = dvCredito.ToTable();
+
+
+                    Double Debito = (dtDebito.Rows.Count == 0) ? 0 : Convert.ToDouble(dtDebito.Compute("SUM(Debito)", ""));
+                    Double Creditos = (dtCredito.Rows.Count == 0) ? 0 : Convert.ToDouble(dtCredito.Compute("SUM(Credito)", ""));
+                    //bExito = AsientoDAC.CuadreTemporal(_Asiento);
+
+                    Double Diferencia = Debito - Creditos;
+                    if (Diferencia != 0 ) {
+                        if (Debito < Creditos)
+                            _dsDetalle.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Debito"] = Convert.ToDouble(_dsAsiento.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Debito"]) + Diferencia;
+                        else
+                            _dsDetalle.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Creditos"] = Convert.ToDouble(_dsAsiento.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Creditos"]) + Diferencia;
+                    }
+                    _currentRow["CuadreTemporal"] = 1;
+
+                    GuardarAsiento();
 
                     if (bExito)
                     {
