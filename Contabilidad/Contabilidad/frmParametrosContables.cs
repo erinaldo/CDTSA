@@ -47,6 +47,7 @@ namespace CG
             _CurrentRow["CantCharNivel3"]= this.txtCantNivel3.EditValue;
             _CurrentRow["CantCharNivel4"]= this.txtCantNivel4.EditValue;
             _CurrentRow["CantCharNivel5"]= this.txtCantNivel5.EditValue;
+            _CurrentRow["CantCharNivel6"] = this.txtCantNivel6.EditValue;
             _CurrentRow["IDCtaUtilidadAcumulada"]= this.slkupCuentaUtilidadAcumulada.EditValue;
             _CurrentRow["IDCtaUtilidadPeriodo"]= this.slkupCuentaUtilidadPeriodo.EditValue;
             _CurrentRow["MesInicioPeriodoFiscal"]= this.dtpMesInicioPeriodoFiscal.EditValue;
@@ -130,6 +131,7 @@ namespace CG
                 this.txtCantNivel3.EditValue = _CurrentRow["CantCharNivel3"].ToString();
                 this.txtCantNivel4.EditValue = _CurrentRow["CantCharNivel4"].ToString();
                 this.txtCantNivel5.EditValue = _CurrentRow["CantCharNivel5"].ToString();
+                this.txtCantNivel6.EditValue = _CurrentRow["CantCharNivel6"].ToString();
                 this.slkupCuentaUtilidadAcumulada.EditValue = _CurrentRow["IDCtaUtilidadAcumulada"];
                 this.slkupCuentaUtilidadPeriodo.EditValue = _CurrentRow["IDCtaUtilidadPeriodo"];
                 this.dtpMesInicioPeriodoFiscal.EditValue = Convert.ToInt32(_CurrentRow["MesInicioPeriodoFiscal"]);
