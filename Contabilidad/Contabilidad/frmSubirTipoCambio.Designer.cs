@@ -59,11 +59,13 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(41, 12);
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
+            this.labelControl1.Location = new System.Drawing.Point(12, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(176, 26);
+            this.labelControl1.Size = new System.Drawing.Size(241, 26);
             this.labelControl1.TabIndex = 2;
-            this.labelControl1.Text = "Permite Subir los tipo de Cambios \r\npara el mes de la fecha Seleccionada";
+            this.labelControl1.Text = "Permite Subir los tipos de Cambios, del Banco Central para el mes de la fecha Sel" +
+    "eccionada";
             // 
             // frmSubirTipoCambio
             // 
@@ -80,7 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

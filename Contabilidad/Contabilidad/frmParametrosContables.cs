@@ -152,7 +152,7 @@ namespace CG
 
             CargarParametros();
             //configurar los searchlokup
-            _lstCuentasContable = CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*",-1,-1,1,1,-1,-1).Tables["Data"];
+            _lstCuentasContable = CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*","*",-1,-1,1,1,-1,-1).Tables["Data"];
             Util.Util.ConfigLookupEdit(this.slkupCuentaUtilidadAcumulada, _lstCuentasContable, "Descr", "IDCuenta");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaUtilidadAcumulada, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 

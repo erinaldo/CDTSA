@@ -35,7 +35,7 @@ namespace CG
                 this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
 
 
-                _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
+                _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*","*" ,"*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
 
                 this.chkComboCuenta.Properties.DataSource = _dtCuenta;
                 this.chkComboCuenta.Properties.DisplayMember = "Descr";

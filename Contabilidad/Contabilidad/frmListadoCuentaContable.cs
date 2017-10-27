@@ -154,6 +154,7 @@ namespace CG
                 this.txtNivel3.ReadOnly = true;
                 this.txtNivel4.ReadOnly = true;
                 this.txtNivel5.ReadOnly = true;
+                this.txtNivel6.ReadOnly = true;
 
                 CargarPrivilegios();
 
@@ -169,7 +170,7 @@ namespace CG
 
         private void PopulateGrid()
         {
-            _dsCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, -1, -1, -1);
+            _dsCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*","*", -1, -1, -1, -1, -1, -1);
 
             _dtCuenta = _dsCuenta.Tables[0];
             this.dtg.DataSource = null;
@@ -192,6 +193,7 @@ namespace CG
             this.txtNivel3.Text = "";
             this.txtNivel4.Text = "";
             this.txtNivel5.Text = "";
+            this.txtNivel6.Text = "";
             this.chkComplementaria.EditValue = null;
             this.chkEsMayor.EditValue = null;
             this.chkActiva.EditValue = true;
@@ -223,6 +225,7 @@ namespace CG
             this.btnGuardar.Enabled = Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
+            this.btnRefrescar.Enabled = !Activo;
 
             //Habilitar los check por que se excluyen
             this.chkEsMayor.Enabled = true;
@@ -265,6 +268,7 @@ namespace CG
                 this.txtNivel3.Text = Row["Nivel3"].ToString();
                 this.txtNivel4.Text = Row["Nivel4"].ToString();
                 this.txtNivel5.Text = Row["Nivel5"].ToString();
+                this.txtNivel6.Text = Row["Nivel6"].ToString();
                 this.chkComplementaria.EditValue = Convert.ToBoolean(Row["Complementaria"]);
                 this.chkEsMayor.EditValue = Convert.ToBoolean(Row["EsMayor"]);
                 this.chkActiva.EditValue = Convert.ToBoolean(Row["Activa"]);
@@ -295,6 +299,7 @@ namespace CG
             ClearControls();
             HabilitarControles(true);
             currentRow = null;
+            this.slkupCuentaMayor.ReadOnly = true;
             this.slkupGrupo.Focus();
         }
 
@@ -314,7 +319,7 @@ namespace CG
             this.slkupGrupo.ReadOnly = true;
             this.slkupCuentaMayor.ReadOnly = true;
 
-            if (CuentaContableDAC.GetCountCuentaByNivel(currentRow["Nivel1"].ToString(), currentRow["Nivel2"].ToString(), currentRow["Nivel3"].ToString(), currentRow["Nivel4"].ToString(), currentRow["Nivel5"].ToString()) > 1)
+            if (CuentaContableDAC.GetCountCuentaByNivel(currentRow["Nivel1"].ToString(), currentRow["Nivel2"].ToString(), currentRow["Nivel3"].ToString(), currentRow["Nivel4"].ToString(), currentRow["Nivel5"].ToString(),currentRow["Nivel6"].ToString()) > 1)
             {
                 this.chkAceptaDatos.ReadOnly = true;
                 this.chkEsMayor.ReadOnly = true;
@@ -391,6 +396,7 @@ namespace CG
                     currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
                     currentRow["Nivel4"] = (this.txtNivel4.Text == "") ? "0" : this.txtNivel4.Text;
                     currentRow["Nivel5"] = (this.txtNivel5.Text == "") ? "0" : this.txtNivel5.Text;
+                    currentRow["Nivel6"] = (this.txtNivel6.Text == "") ? "0" : this.txtNivel6.Text;
                     currentRow["Descr"] = this.txtDescripcion.Text;
                     currentRow["EsMayor"] = (this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue;
                     currentRow["AceptaDatos"] = (this.chkAceptaDatos.EditValue == null) ? false : this.chkAceptaDatos.EditValue;
@@ -421,7 +427,7 @@ namespace CG
 
                                 foreach (DataRow dr in errosRow)
                                 {
-                                    msg = msg + dr["Centro"].ToString();
+                                    msg = msg + dr["Cuenta"].ToString();
                                 }
                             }
                         }
@@ -463,6 +469,7 @@ namespace CG
                     currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
                     currentRow["Nivel4"] = (this.txtNivel4.Text == "") ? "0" : this.txtNivel4.Text;
                     currentRow["Nivel5"] = (this.txtNivel5.Text == "") ? "0" : this.txtNivel5.Text;
+                    currentRow["Nivel6"] = (this.txtNivel6.Text == "") ? "0" : this.txtNivel6.Text;
                     currentRow["Descr"] = this.txtDescripcion.Text;
                     currentRow["EsMayor"] = (this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue;
                     currentRow["AceptaDatos"] = (this.chkAceptaDatos.EditValue == null) ? false : this.chkAceptaDatos.EditValue;
@@ -524,7 +531,7 @@ namespace CG
                     if (Convert.ToBoolean(currentRow["EsMayor"]))
                     {
                         //Validar si tiene hijos
-                        if (CuentaContableDAC.GetCountCuentaByNivel(currentRow["Nivel1"].ToString(), currentRow["Nivel2"].ToString(), currentRow["Nivel3"].ToString(), currentRow["Nivel4"].ToString(), currentRow["Nivel5"].ToString()) > 1)
+                        if (CuentaContableDAC.GetCountCuentaByNivel(currentRow["Nivel1"].ToString(), currentRow["Nivel2"].ToString(), currentRow["Nivel3"].ToString(), currentRow["Nivel4"].ToString(), currentRow["Nivel5"].ToString(), currentRow["Nivel6"].ToString()) > 1)
                         {
                             MessageBox.Show("La cuenta que desea eliminar es una cuenta de Mayor y tiene Sub Cuentas, por favor elimine las SubCuentas antes de proseguir");
                             return;
@@ -635,6 +642,8 @@ namespace CG
 
                     Util.Util.ConfigLookupEdit(this.slkupCuentaMayor, dvCuentaMayor.ToTable(), "Descr", "IDCuenta");
                     Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaMayor, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+                    this.slkupCuentaMayor.ReadOnly = false;
                 }
 
 
@@ -667,12 +676,28 @@ namespace CG
                     //{
 
 
-                    if (dt.Rows[0]["Nivel4"].ToString() != "0")
+                 
+
+                    if (dt.Rows[0]["Nivel5"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), -1);
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), Convert.ToInt32(dt.Rows[0]["Nivel5"]), -1);
 
                         // iProximoConsecutivo++;
 
+                        this.txtNivel6.Text = iProximoConsecutivo.ToString();
+                        this.txtNivel5.Text = dt.Rows[0]["Nivel5"].ToString();
+                        this.txtNivel4.Text = dt.Rows[0]["Nivel4"].ToString();
+                        this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
+                        this.txtNivel2.Text = dt.Rows[0]["Nivel2"].ToString();
+
+                        this.chkAceptaDatos.EditValue = true;
+                        this.chkAceptaDatos.ReadOnly = true;
+                    }else  if (dt.Rows[0]["Nivel4"].ToString() != "0")
+                    {
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), Convert.ToInt32(dt.Rows[0]["Nivel4"]), -1,0);
+
+                        // iProximoConsecutivo++;
+                        this.txtNivel6.Text = "0";
                         this.txtNivel5.Text = iProximoConsecutivo.ToString();
                         this.txtNivel4.Text = dt.Rows[0]["Nivel4"].ToString();
                         this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
@@ -680,9 +705,9 @@ namespace CG
                     }
                     else if (dt.Rows[0]["Nivel3"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), -1, 0);
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), Convert.ToInt32(dt.Rows[0]["Nivel3"]), -1,0, 0);
                         // iProximoConsecutivo++;
-
+                        this.txtNivel6.Text = "0";
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = iProximoConsecutivo.ToString();
                         this.txtNivel3.Text = dt.Rows[0]["Nivel3"].ToString();
@@ -690,10 +715,10 @@ namespace CG
                     }
                     else if (dt.Rows[0]["Nivel2"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1, 0, 0);
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), Convert.ToInt32(dt.Rows[0]["Nivel2"]), -1, 0,0, 0);
 
                         // iProximoConsecutivo++;
-
+                        this.txtNivel6.Text = "0";
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = "0";
                         this.txtNivel3.Text = iProximoConsecutivo.ToString();
@@ -701,16 +726,28 @@ namespace CG
                     }
                     else if (dt.Rows[0]["Nivel1"].ToString() != "0")
                     {
-                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0, 0, 0);
+                        int iProximoConsecutivo = CuentaContableDAC.GetNextConsecutivoFinal(Convert.ToInt32(dt.Rows[0]["Nivel1"]), -1, 0,0, 0, 0);
                         // iProximoConsecutivo++;
-
+                        this.txtNivel6.Text = "0";
                         this.txtNivel5.Text = "0";
                         this.txtNivel4.Text = "0";
                         this.txtNivel3.Text = "0";
                         this.txtNivel2.Text = iProximoConsecutivo.ToString();
                         this.txtNivel1.Text = dt.Rows[0]["Nivel1"].ToString();
                     }
-
+                    this.chkAceptaDatos.EditValue = null;
+                    this.chkAceptaDatos.ReadOnly = false;
+                    if (this.txtNivel6.Text != "0")
+                    {
+                        this.chkAceptaDatos.EditValue = true;
+                        this.chkAceptaDatos.Enabled = false;
+                    }
+                    else
+                    {
+                        this.chkEsMayor.EditValue = true;
+                        this.chkEsMayor.Enabled = true;
+                        //this.chkAceptaDatos.Enabled = true;
+                    }
 
                     this.txtDescripcion.Text = "";
                 }

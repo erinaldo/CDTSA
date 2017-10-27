@@ -141,7 +141,7 @@ namespace CG
 
         private void popupCuentaContable_Load(object sender, EventArgs e)
         {
-            _dtCuentas = CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*",-1,-1,-1,1,-1,-1).Tables[0];
+            _dtCuentas = CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*","*",-1,-1,-1,1,-1,-1).Tables[0];
             // _dtCuentasConstante = _dtCuentas.Clone();
 
             this.gridCuentas.DataSource = _dtCuentas;

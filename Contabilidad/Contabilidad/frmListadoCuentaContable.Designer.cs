@@ -38,6 +38,7 @@
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnAsociarCentroCosto = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -99,7 +100,8 @@
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
+            this.txtNivel6 = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -148,6 +150,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -235,6 +239,14 @@
             this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
             this.btnExportar.Name = "btnExportar";
             // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 4;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -271,6 +283,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtNivel6);
             this.layoutControl1.Controls.Add(this.chkActiva);
             this.layoutControl1.Controls.Add(this.slkupCuentaMayor);
             this.layoutControl1.Controls.Add(this.slkupCuentaAnterior);
@@ -300,7 +313,7 @@
             // 
             // chkActiva
             // 
-            this.chkActiva.Location = new System.Drawing.Point(268, 353);
+            this.chkActiva.Location = new System.Drawing.Point(268, 329);
             this.chkActiva.MenuManager = this.ribbonControl;
             this.chkActiva.Name = "chkActiva";
             this.chkActiva.Properties.Caption = "Activa";
@@ -310,7 +323,7 @@
             // 
             // slkupCuentaMayor
             // 
-            this.slkupCuentaMayor.Location = new System.Drawing.Point(114, 399);
+            this.slkupCuentaMayor.Location = new System.Drawing.Point(114, 375);
             this.slkupCuentaMayor.MenuManager = this.ribbonControl;
             this.slkupCuentaMayor.Name = "slkupCuentaMayor";
             this.slkupCuentaMayor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -330,7 +343,7 @@
             // 
             // slkupCuentaAnterior
             // 
-            this.slkupCuentaAnterior.Location = new System.Drawing.Point(114, 423);
+            this.slkupCuentaAnterior.Location = new System.Drawing.Point(114, 399);
             this.slkupCuentaAnterior.MenuManager = this.ribbonControl;
             this.slkupCuentaAnterior.Name = "slkupCuentaAnterior";
             this.slkupCuentaAnterior.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -349,7 +362,7 @@
             // 
             // chkEsMayor
             // 
-            this.chkEsMayor.Location = new System.Drawing.Point(177, 353);
+            this.chkEsMayor.Location = new System.Drawing.Point(177, 329);
             this.chkEsMayor.MenuManager = this.ribbonControl;
             this.chkEsMayor.Name = "chkEsMayor";
             this.chkEsMayor.Properties.Caption = "Es de Mayor";
@@ -360,7 +373,7 @@
             // 
             // chkAceptaDatos
             // 
-            this.chkAceptaDatos.Location = new System.Drawing.Point(177, 376);
+            this.chkAceptaDatos.Location = new System.Drawing.Point(177, 352);
             this.chkAceptaDatos.MenuManager = this.ribbonControl;
             this.chkAceptaDatos.Name = "chkAceptaDatos";
             this.chkAceptaDatos.Properties.Caption = "Acepta Datos";
@@ -371,7 +384,7 @@
             // 
             // chkUsaCentroCosto
             // 
-            this.chkUsaCentroCosto.Location = new System.Drawing.Point(24, 376);
+            this.chkUsaCentroCosto.Location = new System.Drawing.Point(24, 352);
             this.chkUsaCentroCosto.MenuManager = this.ribbonControl;
             this.chkUsaCentroCosto.Name = "chkUsaCentroCosto";
             this.chkUsaCentroCosto.Properties.Caption = "Usa Centro de Costo";
@@ -381,7 +394,7 @@
             // 
             // chkComplementaria
             // 
-            this.chkComplementaria.Location = new System.Drawing.Point(24, 353);
+            this.chkComplementaria.Location = new System.Drawing.Point(24, 329);
             this.chkComplementaria.MenuManager = this.ribbonControl;
             this.chkComplementaria.Name = "chkComplementaria";
             this.chkComplementaria.Properties.Caption = "Complementaria";
@@ -391,7 +404,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(454, 305);
+            this.txtDescripcion.Location = new System.Drawing.Point(454, 281);
             this.txtDescripcion.MenuManager = this.ribbonControl;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(257, 20);
@@ -400,7 +413,7 @@
             // 
             // txtCuenta
             // 
-            this.txtCuenta.Location = new System.Drawing.Point(454, 281);
+            this.txtCuenta.Location = new System.Drawing.Point(454, 257);
             this.txtCuenta.MenuManager = this.ribbonControl;
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.Properties.ReadOnly = true;
@@ -410,7 +423,7 @@
             // 
             // txtNivel5
             // 
-            this.txtNivel5.Location = new System.Drawing.Point(454, 425);
+            this.txtNivel5.Location = new System.Drawing.Point(454, 401);
             this.txtNivel5.MenuManager = this.ribbonControl;
             this.txtNivel5.Name = "txtNivel5";
             this.txtNivel5.Size = new System.Drawing.Size(257, 20);
@@ -419,7 +432,7 @@
             // 
             // txtNivel4
             // 
-            this.txtNivel4.Location = new System.Drawing.Point(454, 401);
+            this.txtNivel4.Location = new System.Drawing.Point(454, 377);
             this.txtNivel4.MenuManager = this.ribbonControl;
             this.txtNivel4.Name = "txtNivel4";
             this.txtNivel4.Size = new System.Drawing.Size(257, 20);
@@ -428,7 +441,7 @@
             // 
             // txtNivel3
             // 
-            this.txtNivel3.Location = new System.Drawing.Point(454, 377);
+            this.txtNivel3.Location = new System.Drawing.Point(454, 353);
             this.txtNivel3.MenuManager = this.ribbonControl;
             this.txtNivel3.Name = "txtNivel3";
             this.txtNivel3.Size = new System.Drawing.Size(257, 20);
@@ -437,7 +450,7 @@
             // 
             // txtNivel2
             // 
-            this.txtNivel2.Location = new System.Drawing.Point(454, 353);
+            this.txtNivel2.Location = new System.Drawing.Point(454, 329);
             this.txtNivel2.MenuManager = this.ribbonControl;
             this.txtNivel2.Name = "txtNivel2";
             this.txtNivel2.Size = new System.Drawing.Size(257, 20);
@@ -446,7 +459,7 @@
             // 
             // txtNivel1
             // 
-            this.txtNivel1.Location = new System.Drawing.Point(454, 329);
+            this.txtNivel1.Location = new System.Drawing.Point(454, 305);
             this.txtNivel1.MenuManager = this.ribbonControl;
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Properties.ReadOnly = true;
@@ -456,7 +469,7 @@
             // 
             // slkupSubTipo
             // 
-            this.slkupSubTipo.Location = new System.Drawing.Point(114, 329);
+            this.slkupSubTipo.Location = new System.Drawing.Point(114, 305);
             this.slkupSubTipo.MenuManager = this.ribbonControl;
             this.slkupSubTipo.Name = "slkupSubTipo";
             this.slkupSubTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -475,7 +488,7 @@
             // 
             // slkupTipo
             // 
-            this.slkupTipo.Location = new System.Drawing.Point(114, 305);
+            this.slkupTipo.Location = new System.Drawing.Point(114, 281);
             this.slkupTipo.MenuManager = this.ribbonControl;
             this.slkupTipo.Name = "slkupTipo";
             this.slkupTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -494,7 +507,7 @@
             // 
             // slkupGrupo
             // 
-            this.slkupGrupo.Location = new System.Drawing.Point(114, 281);
+            this.slkupGrupo.Location = new System.Drawing.Point(114, 257);
             this.slkupGrupo.MenuManager = this.ribbonControl;
             this.slkupGrupo.Name = "slkupGrupo";
             this.slkupGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -518,7 +531,7 @@
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(711, 235);
+            this.dtg.Size = new System.Drawing.Size(711, 211);
             this.dtg.TabIndex = 4;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -680,7 +693,7 @@
             this.layoutControlItem1.Control = this.dtg;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(715, 239);
+            this.layoutControlItem1.Size = new System.Drawing.Size(715, 215);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -704,10 +717,11 @@
             this.layoutControlItem14,
             this.layoutControlItem16,
             this.layoutControlItem17,
-            this.layoutControlItem2});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 239);
+            this.layoutControlItem2,
+            this.layoutControlItem19});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 215);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(715, 210);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(715, 234);
             this.layoutControlGroup2.Text = "Detalle de Cuentas Contables";
             // 
             // layoutControlItem11
@@ -751,7 +765,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(307, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(33, 168);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(33, 192);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
@@ -850,7 +864,7 @@
             this.layoutControlItem16.Control = this.slkupCuentaAnterior;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 142);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(307, 26);
+            this.layoutControlItem16.Size = new System.Drawing.Size(307, 50);
             this.layoutControlItem16.Text = "Cuenta Anterior:";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(87, 13);
             // 
@@ -872,13 +886,23 @@
             this.layoutControlItem2.Text = "Grupo:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(87, 13);
             // 
-            // btnRefrescar
+            // txtNivel6
             // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 4;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
+            this.txtNivel6.Location = new System.Drawing.Point(454, 425);
+            this.txtNivel6.MenuManager = this.ribbonControl;
+            this.txtNivel6.Name = "txtNivel6";
+            this.txtNivel6.Size = new System.Drawing.Size(257, 20);
+            this.txtNivel6.StyleController = this.layoutControl1;
+            this.txtNivel6.TabIndex = 100000;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.txtNivel6;
+            this.layoutControlItem19.Location = new System.Drawing.Point(340, 168);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Size = new System.Drawing.Size(351, 24);
+            this.layoutControlItem19.Text = "Nivel 6:";
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(87, 13);
             // 
             // frmListadoCuentaContable
             // 
@@ -943,6 +967,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1021,5 +1047,7 @@
         private DevExpress.XtraBars.BarButtonItem btnAsociarCentroCosto;
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        private DevExpress.XtraEditors.TextEdit txtNivel6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
     }
 }

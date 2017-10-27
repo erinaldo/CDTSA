@@ -33,7 +33,7 @@ namespace CG
 
                 //Obtener los datos
                 _dtCentro = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0]; //No estamos tomando los acumuladores
-                _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
+                _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*","*", "*", "*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
                 _dtTipoAsiento = TipoAsientoDAC.GetData().Tables[0];
 
                 Util.Util.ConfigLookupEdit(this.slkupCentroDesde, _dtCentro, "Descr", "IDCentro");
