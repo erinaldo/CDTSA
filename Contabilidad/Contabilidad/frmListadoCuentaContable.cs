@@ -226,6 +226,7 @@ namespace CG
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
             this.btnRefrescar.Enabled = !Activo;
+            this.btnExportar.Enabled = !Activo;
 
             //Habilitar los check por que se excluyen
             this.chkEsMayor.Enabled = true;

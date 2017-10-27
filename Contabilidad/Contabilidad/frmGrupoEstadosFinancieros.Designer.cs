@@ -76,6 +76,7 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -109,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -229,7 +231,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(936, 116, 250, 350);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(920, 176, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(804, 443);
             this.layoutControl1.TabIndex = 1;
@@ -256,7 +258,7 @@
             // 
             // cmbTipoGrupo
             // 
-            this.cmbTipoGrupo.Location = new System.Drawing.Point(120, 12);
+            this.cmbTipoGrupo.Location = new System.Drawing.Point(120, 34);
             this.cmbTipoGrupo.MenuManager = this.ribbonControl;
             this.cmbTipoGrupo.Name = "cmbTipoGrupo";
             this.cmbTipoGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -367,11 +369,11 @@
             // 
             // dtg
             // 
-            this.dtg.Location = new System.Drawing.Point(12, 36);
+            this.dtg.Location = new System.Drawing.Point(12, 58);
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(780, 235);
+            this.dtg.Size = new System.Drawing.Size(780, 213);
             this.dtg.TabIndex = 5;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -450,7 +452,8 @@
             this.emptySpaceItem1,
             this.layoutControlGroup2,
             this.layoutControlItem8,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.emptySpaceItem4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(804, 443);
@@ -459,9 +462,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.dtg;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 46);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(784, 239);
+            this.layoutControlItem2.Size = new System.Drawing.Size(784, 217);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -586,7 +589,7 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.cmbTipoGrupo;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 22);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(327, 24);
             this.layoutControlItem8.Text = "Tipo de Grupo:";
@@ -595,10 +598,31 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(327, 0);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(327, 22);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(457, 24);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem4.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem4.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem4.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem4.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.emptySpaceItem4.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 22);
+            this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 22);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(784, 22);
+            this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem4.Text = "Grupos de Estados Financieros";
+            this.emptySpaceItem4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem4.TextVisible = true;
             // 
             // frmGrupoEstadosFinancieros
             // 
@@ -647,6 +671,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -701,5 +726,6 @@
         private DevExpress.XtraEditors.SearchLookUpEdit slkpTipoDeGrupo;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
     }
 }

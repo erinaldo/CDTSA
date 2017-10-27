@@ -102,6 +102,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.txtNivel6 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -152,6 +153,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -527,11 +529,11 @@
             // 
             // dtg
             // 
-            this.dtg.Location = new System.Drawing.Point(12, 12);
+            this.dtg.Location = new System.Drawing.Point(12, 35);
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(711, 211);
+            this.dtg.Size = new System.Drawing.Size(711, 188);
             this.dtg.TabIndex = 4;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -682,7 +684,8 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.layoutControlGroup2});
+            this.layoutControlGroup2,
+            this.emptySpaceItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(735, 469);
@@ -691,9 +694,9 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.dtg;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 23);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(715, 215);
+            this.layoutControlItem1.Size = new System.Drawing.Size(715, 192);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -904,6 +907,25 @@
             this.layoutControlItem19.Text = "Nivel 6:";
             this.layoutControlItem19.TextSize = new System.Drawing.Size(87, 13);
             // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem2.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem2.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem2.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem2.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem2.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 23);
+            this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 23);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(715, 23);
+            this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem2.Text = "Listado de Cuenta Contable";
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(87, 0);
+            this.emptySpaceItem2.TextVisible = true;
+            // 
             // frmListadoCuentaContable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -969,6 +991,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1049,5 +1072,6 @@
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
         private DevExpress.XtraEditors.TextEdit txtNivel6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
     }
 }

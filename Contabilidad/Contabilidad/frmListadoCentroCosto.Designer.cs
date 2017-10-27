@@ -74,6 +74,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -103,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -346,11 +348,11 @@
             // 
             // dtg
             // 
-            this.dtg.Location = new System.Drawing.Point(12, 12);
+            this.dtg.Location = new System.Drawing.Point(12, 32);
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(780, 259);
+            this.dtg.Size = new System.Drawing.Size(780, 239);
             this.dtg.TabIndex = 5;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -439,7 +441,8 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2,
             this.emptySpaceItem1,
-            this.layoutControlGroup2});
+            this.layoutControlGroup2,
+            this.emptySpaceItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(804, 443);
@@ -448,9 +451,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.dtg;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 20);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(784, 263);
+            this.layoutControlItem2.Size = new System.Drawing.Size(784, 243);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -572,6 +575,25 @@
             this.layoutControlItem7.Text = "Centro Acumulador:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(96, 13);
             // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem3.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem3.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem3.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 20);
+            this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 20);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(784, 20);
+            this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem3.Text = "Listado Centro de Costos";
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(96, 0);
+            this.emptySpaceItem3.TextVisible = true;
+            // 
             // frmListadoCentroCosto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,6 +638,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -668,5 +691,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn CentroAcumulador;
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

@@ -162,6 +162,8 @@ namespace CG
             this.btnGuardar.Enabled = Activo;
             this.btnCancelar.Enabled = Activo;
             this.btnEliminar.Enabled = !Activo;
+            this.btnExportar.Enabled = !Activo;
+            this.btnRefrescar.Enabled = !Activo;
 
         }
 
@@ -421,9 +423,7 @@ namespace CG
                 //this.slkupCentroAcumulador.Enabled = false;
                 if (this.slkupCentroAcumulador.EditValue == null || this.slkupCentroAcumulador.EditValue.ToString() == "")
                 {
-                    DataView dv = new DataView();
-                    dv.Table = _dtCentro;
-                    dv.RowFilter = string.Format("IDCentro='{0}' ", 0);
+                    DataView dv = new DataView() { Table = _dtCentro, RowFilter = string.Format("IDCentro='{0}' ", 0) };
                     DataTable dt = dv.ToTable();
 
                     bool EsAcumulador = Convert.ToBoolean((this.chkAcumulador.EditValue == null) ? false : this.chkAcumulador.EditValue);
@@ -502,9 +502,7 @@ namespace CG
                     return;
                 if (this.slkupCentroAcumulador.EditValue != null && this.slkupCentroAcumulador.EditValue.ToString() != "")
                 {
-                    DataView dv = new DataView();
-                    dv.Table = _dtCentro;
-                    dv.RowFilter = string.Format("IDCentro='{0}' ", this.slkupCentroAcumulador.EditValue);
+                    DataView  dv = new DataView() { Table = _dtCentro, RowFilter = string.Format("IDCentro='{0}' ", this.slkupCentroAcumulador.EditValue) };
                     DataTable dt = dv.ToTable();
 
                     bool EsAcumulador = Convert.ToBoolean((this.chkAcumulador.EditValue == null) ? false : this.chkAcumulador.EditValue);

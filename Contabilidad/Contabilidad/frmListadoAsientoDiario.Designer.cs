@@ -38,6 +38,7 @@
             this.btnFiltro = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMayorizar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -53,7 +54,7 @@
             this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnMayorizar = new DevExpress.XtraBars.BarButtonItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -61,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -147,6 +149,15 @@
             this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
             this.btnRefrescar.Name = "btnRefrescar";
             // 
+            // btnMayorizar
+            // 
+            this.btnMayorizar.Caption = "Mayorizar";
+            this.btnMayorizar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.Glyph")));
+            this.btnMayorizar.Id = 5;
+            this.btnMayorizar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.LargeGlyph")));
+            this.btnMayorizar.Name = "btnMayorizar";
+            this.btnMayorizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMayorizar_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -173,6 +184,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(693, 312, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(680, 365);
             this.layoutControl1.TabIndex = 1;
@@ -180,11 +192,11 @@
             // 
             // grid
             // 
-            this.grid.Location = new System.Drawing.Point(12, 12);
+            this.grid.Location = new System.Drawing.Point(12, 34);
             this.grid.MainView = this.gridView;
             this.grid.MenuManager = this.ribbonControl;
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(656, 341);
+            this.grid.Size = new System.Drawing.Size(656, 319);
             this.grid.TabIndex = 4;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -292,29 +304,41 @@
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.emptySpaceItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(680, 365);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.grid;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 22);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(660, 345);
+            this.layoutControlItem1.Size = new System.Drawing.Size(660, 323);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // btnMayorizar
+            // emptySpaceItem1
             // 
-            this.btnMayorizar.Caption = "Mayorizar";
-            this.btnMayorizar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.Glyph")));
-            this.btnMayorizar.Id = 5;
-            this.btnMayorizar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnMayorizar.LargeGlyph")));
-            this.btnMayorizar.Name = "btnMayorizar";
-            this.btnMayorizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMayorizar_ItemClick);
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.emptySpaceItem1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 22);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 22);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(660, 22);
+            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem1.Text = "Listado de Asiento de Diario";
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem1.TextVisible = true;
             // 
             // frmListadoAsientoDiario
             // 
@@ -335,6 +359,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,5 +392,6 @@
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
         private DevExpress.XtraBars.BarButtonItem btnMayorizar;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }
