@@ -13,6 +13,7 @@ using DevExpress.XtraTreeList;
 using CG;
 using Security;
 using CDTSA.Properties;
+using ControlBancario;
 
 namespace MainMenu
 {
@@ -27,6 +28,7 @@ namespace MainMenu
             //CreateNodes(treeListInventario);
             CreateNodes(treeListContabilidad);
             CreateNodes(treeListAdministracion);
+            CreateNodes(treeListControlBancario);
             this.Load += frmMain_Load;
             ShowPagesRibbonMan(false);
         }
@@ -38,7 +40,13 @@ namespace MainMenu
 
             this.treeListAdministracion.DoubleClick -= treeListAdministracion_DoubleClick;
             this.treeListAdministracion.DoubleClick += treeListAdministracion_DoubleClick;
+
+            this.treeListControlBancario.DoubleClick -= treeListControlBancario_DoubleClick;
+            this.treeListControlBancario.DoubleClick += treeListControlBancario_DoubleClick;
+            
         }
+
+        
 
         private void CargarImagenFondo()
         {
@@ -167,6 +175,27 @@ namespace MainMenu
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        void treeListControlBancario_DoubleClick(object sender, EventArgs e)
+        {
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList)sender).FocusedNode;
+            if (Application.OpenForms[node.Tag.ToString()] != null)
+            {
+                Application.OpenForms[node.Tag.ToString()].Activate();
+                return;
+            }
+            switch (node.Tag.ToString())
+            {
+                case "frmListadoBanco":
+
+                    ControlBancario.frmListadoBanco ofrmListadoBanco = new ControlBancario.frmListadoBanco();
+                    ofrmListadoBanco.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoBanco.Show();
+                    break;
             }
         }
 
@@ -447,6 +476,13 @@ namespace MainMenu
                     nodeParametros.Tag = "frmParametrosGenerales";
                     TreeListNode nodeReportDesigner = tl.AppendNode(new object[] { "Diseñador de Reportes" }, -1, 11, 11, 11);
                     nodeReportDesigner.Tag = "frmDesigner";
+
+                    break;
+                case "treeListControlBancario":
+                    TreeListNode nodeCatalogoBanco = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
+                    TreeListNode nodeTipoCuenta = tl.AppendNode(new object[] { "Tipo Cuenta" }, nodeCatalogoBanco.Id, 11, 11, 11);
+                    nodeTipoCuenta.Tag = "frmListadoBanco";
+                    
 
                     break;
                 case "treeListContabilidad":

@@ -73,7 +73,7 @@ namespace ControlBancario
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string tempPath = System.IO.Path.GetTempPath();
-            String FileName = System.IO.Path.Combine(tempPath, "lstCentrosCostos.xlsx");
+            String FileName = System.IO.Path.Combine(tempPath, "lstListadoBancos.xlsx");
             DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
             {
                 SheetName = "Listado de Bancos"
@@ -336,12 +336,7 @@ namespace ControlBancario
             if (currentRow != null)
             {
                 string msg = currentRow["Descr"] + " eliminado..";
-                if (Convert.ToBoolean(currentRow["ReadOnlySys"]) == true)
-                {
-                    lblStatus.Caption = "No se puede eliminar un elemento de Sistema";
-                    return;
-                }
-
+                
                 if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["Descr"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
                     currentRow.Delete();

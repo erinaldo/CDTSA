@@ -15,7 +15,7 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  IDBanco ,Codigo ,Descr ,Activo  FROM dbo.cbBanco where IDBanco=@IDBanco";
+            String getSQL = "SELECT  IDBanco ,Codigo ,Descr ,Activo  FROM dbo.cbBanco where (IDBanco=@IDBanco or @IDBanco=-1)";
             String InsertSQL = "[dbo].[cbUpdateBanco]";
             String UpdateSQL = "[dbo].[cbUpdateBanco]";
             String DeleteSQL = "[dbo].[cbUpdateBanco]";
@@ -47,7 +47,7 @@ namespace ControlBancario.DAC
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDBanco", SqlDbType.Int).SourceColumn = "IDBanco";
                 oAdaptador.UpdateCommand.Parameters.Add("@Codigo", SqlDbType.NChar).SourceColumn = "Codigo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
@@ -57,7 +57,7 @@ namespace ControlBancario.DAC
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDBanco", SqlDbType.Int).SourceColumn = "IDBanco";
                 oAdaptador.DeleteCommand.Parameters.Add("@Codigo", SqlDbType.NChar).SourceColumn = "Codigo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";

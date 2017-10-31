@@ -28,3 +28,5 @@ C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\C
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Reporte\ReportesFinancieros\Plantilla\rptBalanceComprobacion.repx
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Reporte\ReportesFinancieros\Plantilla\rptEstadoResultado.repx
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\ControlBancario.exe
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\ControlBancario.pdb
