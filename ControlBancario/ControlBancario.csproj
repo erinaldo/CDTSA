@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\CuentaBancariaDAC.cs" />
+    <Compile Include="DAC\TipoCuentaDAC.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
