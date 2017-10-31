@@ -208,4 +208,105 @@ End
 
 RETURN @Resultado
 END
-go
+
+GO
+
+CREATE Procedure [dbo].[cbUpdateBanco] @Operacion nvarchar(1), @IDBanco int, @Codigo nvarchar(10), @Descr nvarchar(250),@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.cbBanco ( Codigo, Descr, Activo )
+	VALUES (@Codigo,@Descr,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDBanco  from  dbo.cbCuentaBancaria    Where IDBanco  = @IDBanco)	
+	begin 
+		RAISERROR ( 'El Banco esta asociado a una cuenta bancaria, no puede eliminarla', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.cbBanco WHERE IDBanco = @IDBanco 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbBanco SET  Descr = @Descr,Activo=@Activo WHERE IDBanco=@IDBanco
+
+end
+
+GO
+
+CREATE Procedure [dbo].[cbUpdateCuentaBancaria] @Operacion nvarchar(1), @IDCuentaBanco int, @Codigo nvarchar(10), @Descr nvarchar(250),
+			@IDBanco INT,@IDMoneda INT ,@SaldoInicial DECIMAL(28,4), @FechaCreacion DATE,@IDTipo INT, @Limite DECIMAL(28,4),@IDCuenta int ,@Activa BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.cbCuentaBancaria  ( IDCuentaBanco ,Codigo ,Descr ,IDBanco ,IDMoneda ,SaldoInicial ,FechaCreacion ,IDTipo ,SaldoLibro ,SaldoBanco ,
+	          UltDeposito ,UltCheque ,UltTransferencia ,Limite ,Sobregiro ,IDCuenta ,Activa)
+	VALUES (@IDCuentaBanco,@Codigo,@Descr,@IDBanco,@IDMoneda,@SaldoInicial,@FechaCreacion,@IDTipo,0,0,0,0,0,@Limite,0,@IDCuenta,@Activa)
+END 
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDCuentaBanco  from  dbo.cbMovimientos    Where IDCuentaBanco  = @IDCuentaBanco)	
+	begin 
+		RAISERROR ( 'La Cuenta bancanria tiene movimientos, no puede ser eliminada. ', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.cbCuentaBancaria WHERE IDCuentaBanco = @IDCuentaBanco 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbCuentaBancaria SET Codigo=@Codigo,  Descr = @Descr, IDBanco=@IDBanco,IDMoneda=@IDMoneda,
+											IDTipo=@IDTipo,Limite=@Limite,IDCuenta=@IDCuenta,Activa=@Activa
+	WHERE IDCuentaBanco=@IDCuentaBanco
+
+end
+
+GO
+
+
+CREATE Procedure [dbo].[cbUpdateSubTipoDocumento] @Operacion nvarchar(1), @IDTipo int, @IDSubTipo INT ,@SubTipo NVARCHAR(3),@Descripcion NVARCHAR(200),@Activo bit,@Consecutivo INT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.cbSubTipoDocumento( IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo)
+	VALUES  ( @IDTipo,@IDSubTipo,@SubTipo,@Descripcion,0,@Activo,@Consecutivo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if  (( Select ReadOnlySys  from  dbo.cbSubTipoDocumento    Where IDSubTipo  = @IDSubTipo)	=1)
+	begin 
+		RAISERROR ( 'No puede eliminar el SubTipo, es un documento del sistema', 16, 1) ;
+		return				
+	END
+	
+	if Exists ( Select IDSubTipo  from  dbo.cbMovimientos    Where IDSubTipo  = @IDSubTipo)	
+	begin 
+		RAISERROR ( 'El SubTipo tiene movimientos, no puede eliminarla', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.cbSubTipoDocumento WHERE IDSubtipo = IDSubtipo AND IDTipo =@IDTipo
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbSubTipoDocumento SET  Descr = @Descripcion,Activo=@Activo WHERE IDTipo=@IDTipo AND IDSubtipo=@IDSubTipo
+
+end
+
