@@ -41,31 +41,35 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
+            this.txtDescr = new DevExpress.XtraEditors.TextEdit();
             this.gridTipoDocumento = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtDescr = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.txtTipo = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTipoDocumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTipo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -172,6 +176,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtTipo);
             this.layoutControl1.Controls.Add(this.chkActivo);
             this.layoutControl1.Controls.Add(this.txtDescr);
             this.layoutControl1.Controls.Add(this.gridTipoDocumento);
@@ -182,6 +187,41 @@
             this.layoutControl1.Size = new System.Drawing.Size(603, 438);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // chkActivo
+            // 
+            this.chkActivo.Location = new System.Drawing.Point(24, 395);
+            this.chkActivo.MenuManager = this.ribbonControl;
+            this.chkActivo.Name = "chkActivo";
+            this.chkActivo.Properties.Caption = "Activo";
+            this.chkActivo.Size = new System.Drawing.Size(555, 19);
+            this.chkActivo.StyleController = this.layoutControl1;
+            this.chkActivo.TabIndex = 6;
+            // 
+            // txtDescr
+            // 
+            this.txtDescr.Location = new System.Drawing.Point(85, 371);
+            this.txtDescr.MenuManager = this.ribbonControl;
+            this.txtDescr.Name = "txtDescr";
+            this.txtDescr.Size = new System.Drawing.Size(494, 20);
+            this.txtDescr.StyleController = this.layoutControl1;
+            this.txtDescr.TabIndex = 5;
+            // 
+            // gridTipoDocumento
+            // 
+            this.gridTipoDocumento.Location = new System.Drawing.Point(12, 45);
+            this.gridTipoDocumento.MainView = this.gridView1;
+            this.gridTipoDocumento.MenuManager = this.ribbonControl;
+            this.gridTipoDocumento.Name = "gridTipoDocumento";
+            this.gridTipoDocumento.Size = new System.Drawing.Size(579, 248);
+            this.gridTipoDocumento.TabIndex = 4;
+            this.gridTipoDocumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridTipoDocumento;
+            this.gridView1.Name = "gridView1";
             // 
             // layoutControlGroup1
             // 
@@ -197,63 +237,39 @@
             this.layoutControlGroup1.Size = new System.Drawing.Size(603, 438);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // gridTipoDocumento
-            // 
-            this.gridTipoDocumento.Location = new System.Drawing.Point(12, 45);
-            this.gridTipoDocumento.MainView = this.gridView1;
-            this.gridTipoDocumento.MenuManager = this.ribbonControl;
-            this.gridTipoDocumento.Name = "gridTipoDocumento";
-            this.gridTipoDocumento.Size = new System.Drawing.Size(579, 272);
-            this.gridTipoDocumento.TabIndex = 4;
-            this.gridTipoDocumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridTipoDocumento;
-            this.gridView1.Name = "gridView1";
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gridTipoDocumento;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 33);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(583, 276);
+            this.layoutControlItem1.Size = new System.Drawing.Size(583, 252);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // txtDescr
+            // layoutControlGroup2
             // 
-            this.txtDescr.Location = new System.Drawing.Point(86, 371);
-            this.txtDescr.MenuManager = this.ribbonControl;
-            this.txtDescr.Name = "txtDescr";
-            this.txtDescr.Size = new System.Drawing.Size(493, 20);
-            this.txtDescr.StyleController = this.layoutControl1;
-            this.txtDescr.TabIndex = 5;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.layoutControlItem3,
+            this.layoutControlItem4});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 305);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(583, 113);
+            this.layoutControlGroup2.Text = "Datos Tipo Documento";
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtDescr;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(559, 24);
             this.layoutControlItem2.Text = "Descripción:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 13);
             // 
-            // chkActivo
-            // 
-            this.chkActivo.Location = new System.Drawing.Point(24, 395);
-            this.chkActivo.MenuManager = this.ribbonControl;
-            this.chkActivo.Name = "chkActivo";
-            this.chkActivo.Properties.Caption = "Activo";
-            this.chkActivo.Size = new System.Drawing.Size(555, 19);
-            this.chkActivo.StyleController = this.layoutControl1;
-            this.chkActivo.TabIndex = 6;
-            // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.chkActivo;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(559, 23);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -273,7 +289,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 309);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 285);
             this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 20);
             this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 20);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
@@ -281,15 +297,25 @@
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlGroup2
+            // txtTipo
             // 
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem2,
-            this.layoutControlItem3});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 329);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(583, 89);
-            this.layoutControlGroup2.Text = "Datos Tipo Documento";
+            this.txtTipo.Location = new System.Drawing.Point(85, 347);
+            this.txtTipo.MenuManager = this.ribbonControl;
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Properties.Mask.EditMask = "...";
+            this.txtTipo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtTipo.Size = new System.Drawing.Size(494, 20);
+            this.txtTipo.StyleController = this.layoutControl1;
+            this.txtTipo.TabIndex = 7;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.txtTipo;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(559, 24);
+            this.layoutControlItem4.Text = "Tipo:";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(58, 13);
             // 
             // frmTipoDocumento
             // 
@@ -301,20 +327,23 @@
             this.Name = "frmTipoDocumento";
             this.Ribbon = this.ribbonControl;
             this.Text = "frmTipoDocumento";
+            this.Load += new System.EventHandler(this.frmListadoBanco_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTipoDocumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTipo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +374,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.TextEdit txtTipo;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

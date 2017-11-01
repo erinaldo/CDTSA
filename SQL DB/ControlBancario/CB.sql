@@ -241,13 +241,14 @@ end
 
 GO
 
-CREATE Procedure [dbo].[cbUpdateCuentaBancaria] @Operacion nvarchar(1), @IDCuentaBanco int, @Codigo nvarchar(10), @Descr nvarchar(250),
+CREATE   Procedure [dbo].[cbUpdateCuentaBancaria] @Operacion nvarchar(1), @IDCuentaBanco int, @Codigo nvarchar(10), @Descr nvarchar(250),
 			@IDBanco INT,@IDMoneda INT ,@SaldoInicial DECIMAL(28,4), @FechaCreacion DATE,@IDTipo INT, @Limite DECIMAL(28,4),@IDCuenta int ,@Activa BIT
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
-begin
+BEGIN
+	SET @IDTipo =  (SELECT MAX(IDCuentaBanco) +1  FROM dbo.cbCuentaBancaria)
 	INSERT INTO dbo.cbCuentaBancaria  ( IDCuentaBanco ,Codigo ,Descr ,IDBanco ,IDMoneda ,SaldoInicial ,FechaCreacion ,IDTipo ,SaldoLibro ,SaldoBanco ,
 	          UltDeposito ,UltCheque ,UltTransferencia ,Limite ,Sobregiro ,IDCuenta ,Activa)
 	VALUES (@IDCuentaBanco,@Codigo,@Descr,@IDBanco,@IDMoneda,@SaldoInicial,@FechaCreacion,@IDTipo,0,0,0,0,0,@Limite,0,@IDCuenta,@Activa)
@@ -276,12 +277,13 @@ end
 GO
 
 
-CREATE Procedure [dbo].[cbUpdateSubTipoDocumento] @Operacion nvarchar(1), @IDTipo int, @IDSubTipo INT ,@SubTipo NVARCHAR(3),@Descripcion NVARCHAR(200),@Activo bit,@Consecutivo INT
+CREATE  Procedure [dbo].[cbUpdateSubTipoDocumento] @Operacion nvarchar(1), @IDTipo int, @IDSubTipo INT ,@SubTipo NVARCHAR(3),@Descripcion NVARCHAR(200),@Activo bit,@Consecutivo INT
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
-begin
+BEGIN
+	SET @IDTipo =  (SELECT MAX(IDTipo) +1 FROM dbo.cbSubTipoDocumento)
 	INSERT INTO dbo.cbSubTipoDocumento( IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo)
 	VALUES  ( @IDTipo,@IDSubTipo,@SubTipo,@Descripcion,0,@Activo,@Consecutivo)
 end
@@ -309,4 +311,97 @@ BEGIN
 	UPDATE dbo.cbSubTipoDocumento SET  Descr = @Descripcion,Activo=@Activo WHERE IDTipo=@IDTipo AND IDSubtipo=@IDSubTipo
 
 end
+
+GO
+
+
+CREATE  Procedure [dbo].[cbUpdateTipoDocumento] @Operacion nvarchar(1), @IDTipo int, @Tipo NVARCHAR(3),@Descripcion NVARCHAR(200),@Activo bit
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+BEGIN
+	SET @IDTipo =  (SELECT MAX(IDTipo) +1 FROM dbo.cbTipoDocumento)
+	INSERT INTO dbo.cbTipoDocumento( IDTipo, Tipo, Descr, Activo )
+	VALUES  ( @IDTipo,@Tipo,@Descripcion,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if  EXISTS( Select IDTipo  from  dbo.cbSubTipoDocumento    Where IDTipo  = @IDTipo)
+	begin 
+		RAISERROR ( 'No puede eliminar el Tipo de Documento, se encuentra asociado a un SubTipo', 16, 1) ;
+		return				
+	END
+	
+	DELETE  FROM dbo.cbTipoDocumento WHERE  IDTipo =@IDTipo
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbTipoDocumento SET  Descr = @Descripcion,Activo=@Activo WHERE IDTipo=@IDTipo 
+
+end
+
+GO
+
+
+CREATE Procedure [dbo].[cbUpdateTipoCuenta] @Operacion nvarchar(1), @IDTipo int,@Descripcion NVARCHAR(200),@Activo bit
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+BEGIN
+	SET @IDTipo =  (SELECT MAX(IDTipo)+1 FROM dbo.cbTipoCuenta)
+	
+	INSERT INTO dbo.cbTipoCuenta ( IDTipo, Descr, Activo )
+	VALUES  ( @IDTipo,@Descripcion,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if  EXISTS( Select IDTipo  from  dbo.cbCuentaBancaria    Where IDTipo  = @IDTipo)
+	begin 
+		RAISERROR ( 'No puede eliminar el Tipo Cuenta, se encuentra asociado a una Cuenta Bancaria', 16, 1) ;
+		return				
+	END
+	
+	DELETE  FROM dbo.cbTipoCuenta WHERE  IDTipo =@IDTipo
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbTipoCuenta SET  Descr = @Descripcion,Activo=@Activo WHERE IDTipo=@IDTipo 
+
+end
+
+GO
+
+CREATE  Procedure [dbo].[cbUpdateCuentaFormatoCheque] @Operacion nvarchar(1), @IDFormato int,@IDCuentaBanco INT , @FormatoCheque NVARCHAR(200),@UltNoCheque INT,@Activo bit
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+BEGIN
+	SET @IDFormato =  (SELECT MAX(IDFormato) +1 FROM dbo.cbCuentaFormatoCheque)
+	INSERT INTO dbo.cbCuentaFormatoCheque( IDFormato ,IDCuentaBanco ,FormatoCheque ,UltNoCheque ,Activo)
+	VALUES  ( @IDFormato,@IDCuentaBanco,@FormatoCheque,@UltNoCheque,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	
+	DELETE  FROM dbo.cbCuentaFormatoCheque WHERE  IDFormato =@IDFormato
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbCuentaFormatoCheque SET  FormatoCheque = @FormatoCheque,Activo=@Activo WHERE IDFormato=@IDFormato 
+
+end
+
+GO
 

@@ -15,7 +15,7 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  IDTipo ,Descr ,Activo  FROM dbo.cbTipoCuenta  WHERE IDTipo=@IDTipo";
+            String getSQL = "SELECT  IDTipo ,Descr ,Activo  FROM dbo.cbTipoCuenta  WHERE (IDTipo=@IDTipo or @IDTipo=-1)";
             String InsertSQL = "[dbo].[cbUpdateTipoCuenta]";
             String UpdateSQL = "[dbo].[cbUpdateTipoCuenta]";
             String DeleteSQL = "[dbo].[cbUpdateTipoCuenta]";
@@ -31,7 +31,7 @@ namespace ControlBancario.DAC
                 };
 
                 //Paremetros Select 
-                oAdaptador.SelectCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDCuentaBanco";
+                oAdaptador.SelectCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 
 
 
@@ -40,24 +40,24 @@ namespace ControlBancario.DAC
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
-                oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.InsertCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
-                oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.UpdateCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
-                oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.DeleteCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
                 return oAdaptador;

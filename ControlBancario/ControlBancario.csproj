@@ -57,12 +57,18 @@
     <Compile Include="DAC\CuentaBancariaDAC.cs" />
     <Compile Include="DAC\TipoCuentaDAC.cs" />
     <Compile Include="DAC\SubTipoDocumentoDAC.cs" />
-    <Compile Include="DAC\TipoDocumento.cs" />
+    <Compile Include="DAC\TipoDocumentoDAC.cs" />
     <Compile Include="frmListadoBanco.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmListadoBanco.Designer.cs">
       <DependentUpon>frmListadoBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoSubTipoDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoSubTipoDocumento.Designer.cs">
+      <DependentUpon>frmListadoSubTipoDocumento.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoCuenta.cs">
       <SubType>Form</SubType>
@@ -80,6 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmListadoBanco.resx">
       <DependentUpon>frmListadoBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoSubTipoDocumento.resx">
+      <DependentUpon>frmListadoSubTipoDocumento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoCuenta.resx">
       <DependentUpon>frmTipoCuenta.cs</DependentUpon>

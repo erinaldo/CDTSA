@@ -196,6 +196,24 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoBanco.Show();
                     break;
+                case "frmTipoCuenta":
+                    ControlBancario.frmTipoCuenta ofrmListadoTipoCuenta = new frmTipoCuenta();
+                    ofrmListadoTipoCuenta.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoTipoCuenta.Show();
+                    break;
+                case "frmTipoDocumento":
+                    ControlBancario.frmTipoDocumento ofrmTipoDocu = new frmTipoDocumento();
+                    ofrmTipoDocu.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmTipoDocu.Show();
+                    break;
+                case "frmListadoSubTipoDocumento":
+                    ControlBancario.frmListadoSubTipoDocumento ofrmListadoSubTipoDocumento = new frmListadoSubTipoDocumento();
+                    ofrmListadoSubTipoDocumento.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoSubTipoDocumento.Show();
+                    break;
             }
         }
 
@@ -481,7 +499,14 @@ namespace MainMenu
                 case "treeListControlBancario":
                     TreeListNode nodeCatalogoBanco = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
                     TreeListNode nodeTipoCuenta = tl.AppendNode(new object[] { "Tipo Cuenta" }, nodeCatalogoBanco.Id, 11, 11, 11);
-                    nodeTipoCuenta.Tag = "frmListadoBanco";
+                    nodeTipoCuenta.Tag = "frmTipoCuenta";
+                    TreeListNode nodeTipoDocumento = tl.AppendNode(new object[] { "Tipo Documento" }, nodeCatalogoBanco.Id, 11, 11, 11);
+                    nodeTipoDocumento.Tag = "frmTipoDocumento";
+                    TreeListNode nodeListadoBanco= tl.AppendNode(new object[] { "Bancos" }, nodeCatalogoBanco.Id, 11, 11, 11);
+                    nodeListadoBanco.Tag = "frmListadoBanco";
+                    TreeListNode nodeListadoSubTipoDocumento = tl.AppendNode(new object[] { "Sub Tipo Documento" }, nodeCatalogoBanco.Id, 11, 11, 11);
+                    nodeListadoSubTipoDocumento.Tag = "frmListadoSubTipoDocumento";
+
                     
 
                     break;

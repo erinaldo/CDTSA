@@ -17,7 +17,6 @@ namespace ControlBancario
     {
      
         private DataTable _dtCuenta;
-        private DataTable _lstBanco;
         private DataSet _dsCuenta;
         private DataTable _dtSecurity;
 
@@ -114,7 +113,7 @@ namespace ControlBancario
 
         private void PopulateGrid()
         {
-            _dsCuenta =  BancoDAC.GetData(-1);
+            _dsCuenta =  TipoCuentaDAC.GetData(-1);
 
             _dtCuenta = _dsCuenta.Tables[0];
             this.dtgTipoCuenta.DataSource = null;
@@ -267,7 +266,7 @@ namespace ControlBancario
 
                 if (okFlag)
                 {
-                    BancoDAC.oAdaptador.Update(_dsChanged, "Data");
+                    TipoCuentaDAC.oAdaptador.Update(_dsChanged, "Data");
                     lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                     Application.DoEvents();
                     isEdition = false;
@@ -294,7 +293,7 @@ namespace ControlBancario
                 _dtCuenta.Rows.Add(currentRow);
                 try
                 {
-                    BancoDAC.oAdaptador.Update(_dsCuenta, "Data");
+                    TipoCuentaDAC.oAdaptador.Update(_dsCuenta, "Data");
                     _dsCuenta.AcceptChanges();
                     isEdition = false;
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
@@ -338,7 +337,7 @@ namespace ControlBancario
                     try
                     {
 
-                        BancoDAC.oAdaptador.Update(_dsCuenta, "Data");
+                        TipoCuentaDAC.oAdaptador.Update(_dsCuenta, "Data");
                         _dsCuenta.AcceptChanges();
 
                         PopulateGrid();

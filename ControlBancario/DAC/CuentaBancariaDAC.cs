@@ -21,7 +21,7 @@ namespace ControlBancario.DAC
                             "INNER JOIN dbo.cbBanco B ON a.IDBanco=B.IDBanco " +
                             "INNER JOIN dbo.cbTipoCuenta C ON A.IDTipo=C.IDTipo " +
                             "INNER JOIN dbo.globalMoneda M ON A.IDMoneda=M.IDMoneda " +
-                            "WHERE IDCuenta=@IDCuenta AND IDBanco=@IDBanco";
+                            "WHERE (IDCuenta=@IDCuenta or @IDCuenta=-1) AND (IDBanco=@IDBanco or @IDBanco=-1)";
             String InsertSQL = "[dbo].[cbUpdateCuentaBancaria]";
             String UpdateSQL = "[dbo].[cbUpdateCuentaBancaria]";
             String DeleteSQL = "[dbo].[cbUpdateCuentaBancaria]";
@@ -60,7 +60,7 @@ namespace ControlBancario.DAC
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaBanco", SqlDbType.Int).SourceColumn = "IDCuentaBanco";
                 oAdaptador.UpdateCommand.Parameters.Add("@Codigo", SqlDbType.NChar).SourceColumn = "Codigo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
@@ -77,7 +77,7 @@ namespace ControlBancario.DAC
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaBanco", SqlDbType.Int).SourceColumn = "IDCuentaBanco";
                 oAdaptador.DeleteCommand.Parameters.Add("@Codigo", SqlDbType.NChar).SourceColumn = "Codigo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";

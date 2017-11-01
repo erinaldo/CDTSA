@@ -13,26 +13,26 @@ using DevExpress.XtraGrid.Views.Base;
 
 namespace ControlBancario
 {
-    public partial class frmTipoDocumento : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmListadoSubTipoDocumento : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        
 
-        private DataTable _dtTipoDocumento;
-        private DataSet _dsTipoDocumento;
+        private DataTable _dtSubTipoDocumento;
+        private DataTable _lstTipoDocumento;
+        private DataSet _dsSubTipoDocumento;
         private DataTable _dtSecurity;
 
         DataRow currentRow;
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
-        const String _tituloVentana = "Listado de Tipos de Documentos";
+        const String _tituloVentana = "Listado de Tipos de SubTipo Documentos";
         private bool isEdition = false;
 
-        public frmTipoDocumento()
+        
+           public frmListadoSubTipoDocumento()
         {
             InitializeComponent();
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
+               this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-        
         
         private void CargarPrivilegios()
         {
@@ -73,10 +73,10 @@ namespace ControlBancario
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string tempPath = System.IO.Path.GetTempPath();
-            String FileName = System.IO.Path.Combine(tempPath, "lstListadoTipoDocumento.xlsx");
+            String FileName = System.IO.Path.Combine(tempPath, "lstListadoSubTipoDocumento.xlsx");
             DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
             {
-                SheetName = "Listado de Tipos de Documento"
+                SheetName = "Listado de Sub Tipo de Documento"
             };
 
 
@@ -94,7 +94,7 @@ namespace ControlBancario
             {
                 HabilitarControles(false);
 
-                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.gridTipoDocumento, _tituloVentana, this);
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.gridControl, _tituloVentana, this);
 
                 EnlazarEventos();
 
@@ -110,16 +110,25 @@ namespace ControlBancario
         }
 
 
+        private void PopulateData()
+        {
+            _lstTipoDocumento = ControlBancario.DAC.TipoDocumentoDAC.GetData(-1).Tables["Data"];
+            Util.Util.ConfigLookupEdit(this.slkupSubTipoDocumento, _lstTipoDocumento, "Descr", "IDTipo");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipoDocumento, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+
+
+        }
  
 
         private void PopulateGrid()
         {
-            _dsTipoDocumento =  TipoDocumentoDAC.GetData(-1);
+            _dsSubTipoDocumento =  BancoDAC.GetData(-1);
 
-            _dtTipoDocumento = _dsTipoDocumento.Tables[0];
-            this.gridTipoDocumento.DataSource = null;
-            this.gridTipoDocumento.DataSource = _dtTipoDocumento;
+            _dtSubTipoDocumento = _dsSubTipoDocumento.Tables[0];
+            this.gridControl.DataSource = null;
+            this.gridControl.DataSource = _dtSubTipoDocumento;
 
+            PopulateData();
            
 
         }
@@ -128,8 +137,11 @@ namespace ControlBancario
         private void ClearControls()
         {
             this.txtDescr.EditValue = "";
-            this.txtTipo.EditValue = "";
             this.chkActivo.EditValue = true;
+            this.slkupSubTipoDocumento.EditValue =null;
+            this.txtSubTipo.EditValue="";
+            this.chkReadOnly.EditValue= null;
+            this.txtConsecutivo.EditValue = "";
             
         }
 
@@ -138,12 +150,15 @@ namespace ControlBancario
             //this.txtNivel1.ReadOnly = Activo;
             //this.txtNivel2.ReadOnly = Activo;
             //this.txtNivel3.ReadOnly = Activo;
-            this.txtTipo.ReadOnly = !Activo;
+            this.slkupSubTipoDocumento.ReadOnly = !Activo;
+            this.txtSubTipo.ReadOnly = !Activo;
+            this.chkReadOnly.ReadOnly = true;
+            this.txtConsecutivo.ReadOnly = !Activo;
             this.txtDescr.ReadOnly = !Activo;
             this.chkActivo.ReadOnly = !Activo;
             
 
-            this.gridTipoDocumento.Enabled = !Activo;
+            this.gridControl.Enabled = !Activo;
 
             this.btnAgregar.Enabled = !Activo;
             this.btnEditar.Enabled = !Activo;
@@ -167,9 +182,13 @@ namespace ControlBancario
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
-            this.txtDescr.EditValue = Row["Descr"].ToString();
+            this.slkupSubTipoDocumento.EditValue = Row["IDSubTipo"].ToString();
+            this.txtSubTipo.EditValue = Row["IDTipo"].ToString();
+            this.txtDescr.Text = Row["Descr"].ToString();
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
-            this.txtTipo.EditValue = Row["Tipo"].ToString();
+            this.chkReadOnly.EditValue = Convert.ToBoolean(Row["ReadOnlySys"]);
+            this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
+            this.txtConsecutivo.EditValue = Row["Consecutivo"].ToString();
     
         }
 
@@ -210,10 +229,12 @@ namespace ControlBancario
             bool result = true;
             String sMensaje = "";
             //Este solo vale para el primer elemento
-            if (this.txtTipo.Text.Trim() == "")
-                sMensaje = sMensaje + "     • Tipo. \n\r";
-            if (this.txtDescr.Text == "")
+            if (this.slkupSubTipoDocumento.EditValue == null || this.slkupSubTipoDocumento.EditValue == "")
+                sMensaje = sMensaje + "     • SubTipoDocumento. \n\r";
+            if (this.txtDescr.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Descripción. \n\r";
+            if (this.txtConsecutivo.EditValue.ToString() == "")
+                sMensaje = sMensaje + "     • Consecutivo. \n\r";
             //if (Convert.ToBoolean(this.chkAcumulador.EditValue) == true)
             //    if (this.slkupCentroAcumulador.EditValue == null)
             //        sMensaje = sMensaje + "     • Centro Acumulador. \n\r";
@@ -239,12 +260,14 @@ namespace ControlBancario
                 currentRow.BeginEdit();
 
                 currentRow["Descr"] = this.txtDescr.EditValue;
-                currentRow["Tipo"] = this.txtTipo.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
+                currentRow["IDTipo"] = this.slkupSubTipoDocumento.EditValue;
+                currentRow["Activo"] = this.chkActivo.EditValue;
+                currentRow["Consecutivo"] = this.txtConsecutivo.EditValue;
                 
                 currentRow.EndEdit();
 
-                DataSet _dsChanged = _dsTipoDocumento.GetChanges(DataRowState.Modified);
+                DataSet _dsChanged = _dsSubTipoDocumento.GetChanges(DataRowState.Modified);
 
                 bool okFlag = true;
                 if (_dsChanged.HasErrors)
@@ -272,11 +295,11 @@ namespace ControlBancario
 
                 if (okFlag)
                 {
-                    TipoDocumentoDAC.oAdaptador.Update(_dsChanged, "Data");
+                    SubTipoDocumentoDAC.oAdaptador.Update(_dsChanged, "Data");
                     lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                     Application.DoEvents();
                     isEdition = false;
-                    _dsTipoDocumento.AcceptChanges();
+                    _dsSubTipoDocumento.AcceptChanges();
                     PopulateGrid();
                     SetCurrentRow();
                     HabilitarControles(false);
@@ -284,26 +307,26 @@ namespace ControlBancario
                 }
                 else
                 {
-                    _dsTipoDocumento.RejectChanges();
+                    _dsSubTipoDocumento.RejectChanges();
 
                 }
             }
             else
             {
                 //nuevo registro
-                currentRow = _dtTipoDocumento.NewRow();
+                currentRow = _dtSubTipoDocumento.NewRow();
 
-                currentRow["Descr"] = this.txtDescr.Text;
-                currentRow["Tipo"] = this.txtTipo.EditValue;
-
+                currentRow["Descr"] = this.txtDescr.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
+                currentRow["IDTipo"] = this.slkupSubTipoDocumento.EditValue;
+                currentRow["Activo"] = this.chkActivo.EditValue;
+                currentRow["Consecutivo"] = this.txtConsecutivo.EditValue;
                 
-                _dtTipoDocumento.Rows.Add(currentRow);
+                _dtSubTipoDocumento.Rows.Add(currentRow);
                 try
                 {
-                    
-                    TipoDocumentoDAC.oAdaptador.Update(_dsTipoDocumento, "Data");
-                    _dsTipoDocumento.AcceptChanges();
+                    SubTipoDocumentoDAC.oAdaptador.Update(_dsSubTipoDocumento, "Data");
+                    _dsSubTipoDocumento.AcceptChanges();
                     isEdition = false;
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
                     Application.DoEvents();
@@ -316,7 +339,7 @@ namespace ControlBancario
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
-                    _dsTipoDocumento.RejectChanges();
+                    _dsSubTipoDocumento.RejectChanges();
                     currentRow = null;
                     MessageBox.Show(ex.Message);
                 }
@@ -346,8 +369,8 @@ namespace ControlBancario
                     try
                     {
 
-                        TipoDocumentoDAC.oAdaptador.Update(_dsTipoDocumento, "Data");
-                        _dsTipoDocumento.AcceptChanges();
+                        SubTipoDocumentoDAC.oAdaptador.Update(_dsSubTipoDocumento, "Data");
+                        _dsSubTipoDocumento.AcceptChanges();
 
                         PopulateGrid();
                         lblStatus.Caption = msg;
@@ -355,7 +378,7 @@ namespace ControlBancario
                     }
                     catch (System.Data.SqlClient.SqlException ex)
                     {
-                        _dsTipoDocumento.RejectChanges();
+                        _dsSubTipoDocumento.RejectChanges();
                         lblStatus.Caption = "";
                         MessageBox.Show(ex.Message);
                     }
@@ -363,6 +386,5 @@ namespace ControlBancario
             }
         }
 
-    
     }
 }

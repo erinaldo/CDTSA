@@ -41,31 +41,31 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
+            this.txtDescr = new DevExpress.XtraEditors.TextEdit();
             this.dtgTipoCuenta = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtDescr = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTipoCuenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -183,6 +183,41 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // chkActivo
+            // 
+            this.chkActivo.Location = new System.Drawing.Point(24, 314);
+            this.chkActivo.MenuManager = this.ribbonControl;
+            this.chkActivo.Name = "chkActivo";
+            this.chkActivo.Properties.Caption = "Activo";
+            this.chkActivo.Size = new System.Drawing.Size(551, 19);
+            this.chkActivo.StyleController = this.layoutControl1;
+            this.chkActivo.TabIndex = 6;
+            // 
+            // txtDescr
+            // 
+            this.txtDescr.Location = new System.Drawing.Point(85, 290);
+            this.txtDescr.MenuManager = this.ribbonControl;
+            this.txtDescr.Name = "txtDescr";
+            this.txtDescr.Size = new System.Drawing.Size(490, 20);
+            this.txtDescr.StyleController = this.layoutControl1;
+            this.txtDescr.TabIndex = 5;
+            // 
+            // dtgTipoCuenta
+            // 
+            this.dtgTipoCuenta.Location = new System.Drawing.Point(12, 35);
+            this.dtgTipoCuenta.MainView = this.gridView1;
+            this.dtgTipoCuenta.MenuManager = this.ribbonControl;
+            this.dtgTipoCuenta.Name = "dtgTipoCuenta";
+            this.dtgTipoCuenta.Size = new System.Drawing.Size(575, 221);
+            this.dtgTipoCuenta.TabIndex = 4;
+            this.dtgTipoCuenta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.dtgTipoCuenta;
+            this.gridView1.Name = "gridView1";
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -197,83 +232,30 @@
             this.layoutControlGroup1.Size = new System.Drawing.Size(599, 367);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // dtgTipoCuenta
-            // 
-            this.dtgTipoCuenta.Location = new System.Drawing.Point(12, 42);
-            this.dtgTipoCuenta.MainView = this.gridView1;
-            this.dtgTipoCuenta.MenuManager = this.ribbonControl;
-            this.dtgTipoCuenta.Name = "dtgTipoCuenta";
-            this.dtgTipoCuenta.Size = new System.Drawing.Size(575, 214);
-            this.dtgTipoCuenta.TabIndex = 4;
-            this.dtgTipoCuenta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.dtgTipoCuenta;
-            this.gridView1.Name = "gridView1";
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.dtgTipoCuenta;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 30);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 23);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(579, 218);
+            this.layoutControlItem1.Size = new System.Drawing.Size(579, 225);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 337);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(579, 10);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(535, 23);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(579, 23);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 254);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(535, 10);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // txtDescr
-            // 
-            this.txtDescr.Location = new System.Drawing.Point(86, 290);
-            this.txtDescr.MenuManager = this.ribbonControl;
-            this.txtDescr.Name = "txtDescr";
-            this.txtDescr.Size = new System.Drawing.Size(489, 20);
-            this.txtDescr.StyleController = this.layoutControl1;
-            this.txtDescr.TabIndex = 5;
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.txtDescr;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(555, 24);
-            this.layoutControlItem2.Text = "Descripción:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 13);
-            // 
-            // chkActivo
-            // 
-            this.chkActivo.Location = new System.Drawing.Point(24, 314);
-            this.chkActivo.MenuManager = this.ribbonControl;
-            this.chkActivo.Name = "chkActivo";
-            this.chkActivo.Properties.Caption = "Activo";
-            this.chkActivo.Size = new System.Drawing.Size(551, 19);
-            this.chkActivo.StyleController = this.layoutControl1;
-            this.chkActivo.TabIndex = 6;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.chkActivo;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(555, 23);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlGroup2
             // 
@@ -285,6 +267,24 @@
             this.layoutControlGroup2.Size = new System.Drawing.Size(579, 89);
             this.layoutControlGroup2.Text = "Datos  de  Tipo Cuenta";
             // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.txtDescr;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(555, 24);
+            this.layoutControlItem2.Text = "Descripción:";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(58, 13);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.chkActivo;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(555, 23);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
             // frmTipoCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,20 +295,21 @@
             this.Name = "frmTipoCuenta";
             this.Ribbon = this.ribbonControl;
             this.Text = "frmTipoCuenta";
+            this.Load += new System.EventHandler(this.frmListadoBanco_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTipoCuenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

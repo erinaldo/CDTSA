@@ -15,7 +15,7 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo  FROM dbo.cbSubTipoDocumento where IDTipo=@IDTipo and IDSubTipo=@IDSubTipo";
+            String getSQL = "SELECT  IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo  FROM dbo.cbSubTipoDocumento where (IDTipo=@IDTipo or @IDTipo=-1) and (IDSubTipo=@IDSubTipo or @IDSubtipo=-1)"  ;
             String InsertSQL = "[dbo].[cbUpdateSubTipoDocumento]";
             String UpdateSQL = "[dbo].[cbUpdateSubTipoDocumento]";
             String DeleteSQL = "[dbo].[cbUpdateSubTipoDocumento]";
@@ -49,7 +49,7 @@ namespace ControlBancario.DAC
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
@@ -60,7 +60,7 @@ namespace ControlBancario.DAC
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
