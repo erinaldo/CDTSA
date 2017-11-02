@@ -31,8 +31,8 @@ namespace ControlBancario.DAC
                 };
 
                 //Paremetros Select 
-                oAdaptador.SelectCommand.Parameters.Add("@IDBanco", SqlDbType.Int).SourceColumn = "IDBanco";
-
+                oAdaptador.SelectCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
+                oAdaptador.SelectCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubtipo";
 
 
 
@@ -40,19 +40,21 @@ namespace ControlBancario.DAC
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
-                oAdaptador.InsertCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
-                oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.InsertCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubtipo";
+                oAdaptador.InsertCommand.Parameters.Add("@SubTipo", SqlDbType.NChar).SourceColumn = "SubTipo";
+                oAdaptador.InsertCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.InsertCommand.Parameters.Add("@Consecutivo", SqlDbType.Int).SourceColumn = "Consecutivo";
-                
+                 
 
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
-                oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDSubtipo", SqlDbType.Int).SourceColumn = "IDSubtipo";
+                oAdaptador.UpdateCommand.Parameters.Add("@SubTipo", SqlDbType.NChar).SourceColumn = "SubTipo";
+                oAdaptador.UpdateCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Consecutivo", SqlDbType.Int).SourceColumn = "Consecutivo";
 
@@ -62,8 +64,9 @@ namespace ControlBancario.DAC
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
-                oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDSubtipo", SqlDbType.Int).SourceColumn = "IDSubtipo";
+                oAdaptador.DeleteCommand.Parameters.Add("@SubTipo", SqlDbType.NChar).SourceColumn = "SubTipo";
+                oAdaptador.DeleteCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Consecutivo", SqlDbType.Int).SourceColumn = "Consecutivo";
 

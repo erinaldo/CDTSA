@@ -122,7 +122,7 @@ namespace ControlBancario
 
         private void PopulateGrid()
         {
-            _dsSubTipoDocumento =  BancoDAC.GetData(-1);
+            _dsSubTipoDocumento =  SubTipoDocumentoDAC.GetData(-1,-1);
 
             _dtSubTipoDocumento = _dsSubTipoDocumento.Tables[0];
             this.gridControl.DataSource = null;
@@ -229,7 +229,7 @@ namespace ControlBancario
             bool result = true;
             String sMensaje = "";
             //Este solo vale para el primer elemento
-            if (this.slkupSubTipoDocumento.EditValue == null || this.slkupSubTipoDocumento.EditValue == "")
+            if (this.slkupSubTipoDocumento.EditValue == null || this.slkupSubTipoDocumento.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • SubTipoDocumento. \n\r";
             if (this.txtDescr.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Descripción. \n\r";
@@ -262,6 +262,7 @@ namespace ControlBancario
                 currentRow["Descr"] = this.txtDescr.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["IDTipo"] = this.slkupSubTipoDocumento.EditValue;
+                currentRow["SubTipo"] = this.txtSubTipo.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["Consecutivo"] = this.txtConsecutivo.EditValue;
                 
@@ -319,6 +320,9 @@ namespace ControlBancario
                 currentRow["Descr"] = this.txtDescr.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["IDTipo"] = this.slkupSubTipoDocumento.EditValue;
+                currentRow["SubTipo"] = this.txtSubTipo.EditValue;
+                
+               
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 currentRow["Consecutivo"] = this.txtConsecutivo.EditValue;
                 

@@ -277,6 +277,8 @@
             this.txtSubTipo.Location = new System.Drawing.Point(112, 297);
             this.txtSubTipo.MenuManager = this.ribbonControl;
             this.txtSubTipo.Name = "txtSubTipo";
+            this.txtSubTipo.Properties.Mask.EditMask = "...";
+            this.txtSubTipo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtSubTipo.Size = new System.Drawing.Size(552, 20);
             this.txtSubTipo.StyleController = this.layoutControl1;
             this.txtSubTipo.TabIndex = 6;
@@ -351,6 +353,8 @@
             this.txtConsecutivo.Location = new System.Drawing.Point(112, 368);
             this.txtConsecutivo.MenuManager = this.ribbonControl;
             this.txtConsecutivo.Name = "txtConsecutivo";
+            this.txtConsecutivo.Properties.Mask.EditMask = "n0";
+            this.txtConsecutivo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtConsecutivo.Size = new System.Drawing.Size(552, 20);
             this.txtConsecutivo.StyleController = this.layoutControl1;
             this.txtConsecutivo.TabIndex = 10;

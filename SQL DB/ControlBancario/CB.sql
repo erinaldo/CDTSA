@@ -283,7 +283,7 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	SET @IDTipo =  (SELECT MAX(IDTipo) +1 FROM dbo.cbSubTipoDocumento)
+	SET @IDSubTipo =  (SELECT MAX(IDSubTipo) +1 FROM dbo.cbSubTipoDocumento)
 	INSERT INTO dbo.cbSubTipoDocumento( IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo)
 	VALUES  ( @IDTipo,@IDSubTipo,@SubTipo,@Descripcion,0,@Activo,@Consecutivo)
 end
