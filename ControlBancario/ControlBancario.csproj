@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v15.2.Drawing, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -58,11 +61,23 @@
     <Compile Include="DAC\TipoCuentaDAC.cs" />
     <Compile Include="DAC\SubTipoDocumentoDAC.cs" />
     <Compile Include="DAC\TipoDocumentoDAC.cs" />
+    <Compile Include="frmDocumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocumento.Designer.cs">
+      <DependentUpon>frmDocumento.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListadoBanco.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmListadoBanco.Designer.cs">
       <DependentUpon>frmListadoBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoDocumentosBancarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoDocumentosBancarios.Designer.cs">
+      <DependentUpon>frmListadoDocumentosBancarios.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoSubTipoDocumento.cs">
       <SubType>Form</SubType>
@@ -84,8 +99,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmDocumento.resx">
+      <DependentUpon>frmDocumento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListadoBanco.resx">
       <DependentUpon>frmListadoBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoDocumentosBancarios.resx">
+      <DependentUpon>frmListadoDocumentosBancarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoSubTipoDocumento.resx">
       <DependentUpon>frmListadoSubTipoDocumento.cs</DependentUpon>
