@@ -405,3 +405,32 @@ end
 
 GO
 
+
+CREATE Procedure [dbo].[cbUpdateMovimientos] @Operacion nvarchar(1), @IDCuentaBanco int,@Fecha DATE,@IDTipo INT,@IDSubTipo INT,@Numero INT,
+		@Pagaderoa nvarchar(250),@Monto DECIMAL(28,4),@Usuario NVARCHAR(20),@Referencia nvarchar(100),@ConceptoContable NVARCHAR(200),@Activo bit
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+BEGIN
+	INSERT INTO dbo.cbMovimientos( IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo ,Numero ,Pagadero_a ,Monto   ,Usuario   ,Referencia ,ConceptoContable)
+	VALUES  ( @IDCuentaBanco,@Fecha,@IDTipo,@IDSubTipo,@Numero,@Pagaderoa,@Monto,@Usuario,@Referencia,@ConceptoContable)
+end
+
+--if upper(@Operacion) = 'D'
+--begin
+
+	
+--end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbMovimientos SET  Referencia = @Referencia,ConceptoContable=@ConceptoContable,Pagadero_a=@Pagaderoa,Monto=@Monto WHERE IDCuentaBanco=@IDCuentaBanco AND Fecha=@Fecha AND  IDTipo=@IDTipo AND IDSubTipo=@IDSubTipo AND Numero=@Numero
+
+end
+
+
+GO
+
+
+
