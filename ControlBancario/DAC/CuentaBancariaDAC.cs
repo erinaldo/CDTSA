@@ -21,7 +21,7 @@ namespace ControlBancario.DAC
                             "INNER JOIN dbo.cbBanco B ON a.IDBanco=B.IDBanco " +
                             "INNER JOIN dbo.cbTipoCuenta C ON A.IDTipo=C.IDTipo " +
                             "INNER JOIN dbo.globalMoneda M ON A.IDMoneda=M.IDMoneda " +
-                            "WHERE (IDCuenta=@IDCuenta or @IDCuenta=-1) AND (IDBanco=@IDBanco or @IDBanco=-1)";
+                            "WHERE (A.IDCuenta=@IDCuenta or @IDCuenta=-1) AND (A.IDBanco=@IDBanco or @IDBanco=-1)";
             String InsertSQL = "[dbo].[cbUpdateCuentaBancaria]";
             String UpdateSQL = "[dbo].[cbUpdateCuentaBancaria]";
             String DeleteSQL = "[dbo].[cbUpdateCuentaBancaria]";
@@ -37,7 +37,7 @@ namespace ControlBancario.DAC
                 };
 
                 //Paremetros Select 
-                oAdaptador.SelectCommand.Parameters.Add("@IDCuentaBanco", SqlDbType.Int).SourceColumn = "IDCuentaBanco";
+                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
                 oAdaptador.SelectCommand.Parameters.Add("@IDBanco", SqlDbType.Int).SourceColumn = "IDBanco";
                 
 

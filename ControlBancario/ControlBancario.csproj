@@ -58,20 +58,28 @@
   <ItemGroup>
     <Compile Include="DAC\BancoDAC.cs" />
     <Compile Include="DAC\CuentaBancariaDAC.cs" />
+    <Compile Include="DAC\MonedaDAC.cs" />
+    <Compile Include="DAC\MovimientosDAC.cs" />
     <Compile Include="DAC\TipoCuentaDAC.cs" />
     <Compile Include="DAC\SubTipoDocumentoDAC.cs" />
     <Compile Include="DAC\TipoDocumentoDAC.cs" />
-    <Compile Include="frmDocumento.cs">
+    <Compile Include="frmCheque.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDocumento.Designer.cs">
-      <DependentUpon>frmDocumento.cs</DependentUpon>
+    <Compile Include="frmCheque.Designer.cs">
+      <DependentUpon>frmCheque.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoBanco.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmListadoBanco.Designer.cs">
       <DependentUpon>frmListadoBanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoCuentaBancaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoCuentaBancaria.Designer.cs">
+      <DependentUpon>frmListadoCuentaBancaria.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoDocumentosBancarios.cs">
       <SubType>Form</SubType>
@@ -99,11 +107,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmDocumento.resx">
-      <DependentUpon>frmDocumento.cs</DependentUpon>
+    <EmbeddedResource Include="frmCheque.resx">
+      <DependentUpon>frmCheque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoBanco.resx">
       <DependentUpon>frmListadoBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoCuentaBancaria.resx">
+      <DependentUpon>frmListadoCuentaBancaria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoDocumentosBancarios.resx">
       <DependentUpon>frmListadoDocumentosBancarios.cs</DependentUpon>
@@ -141,6 +152,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contabilidad\Contabilidad\Contabilidad.csproj">
+      <Project>{9aab66d4-cb76-4809-9a52-d50282a6968d}</Project>
+      <Name>Contabilidad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security\Security.csproj">
       <Project>{fdbe1059-0197-4f16-a0cf-d9ecb8ef8aa6}</Project>
       <Name>Security</Name>

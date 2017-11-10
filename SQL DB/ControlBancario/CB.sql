@@ -248,7 +248,7 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	SET @IDTipo =  (SELECT MAX(IDCuentaBanco) +1  FROM dbo.cbCuentaBancaria)
+	SET @IDCuentaBanco =  (SELECT ISNULL(MAX(IDCuentaBanco),0) +1  FROM dbo.cbCuentaBancaria)
 	INSERT INTO dbo.cbCuentaBancaria  ( IDCuentaBanco ,Codigo ,Descr ,IDBanco ,IDMoneda ,SaldoInicial ,FechaCreacion ,IDTipo ,SaldoLibro ,SaldoBanco ,
 	          UltDeposito ,UltCheque ,UltTransferencia ,Limite ,Sobregiro ,IDCuenta ,Activa)
 	VALUES (@IDCuentaBanco,@Codigo,@Descr,@IDBanco,@IDMoneda,@SaldoInicial,@FechaCreacion,@IDTipo,0,0,0,0,0,@Limite,0,@IDCuenta,@Activa)
@@ -283,7 +283,7 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	SET @IDSubTipo =  (SELECT MAX(IDSubTipo) +1 FROM dbo.cbSubTipoDocumento)
+	SET @IDSubTipo =  (SELECT ISNULL(MAX(IDSubTipo),1) +1 FROM dbo.cbSubTipoDocumento)
 	INSERT INTO dbo.cbSubTipoDocumento( IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo)
 	VALUES  ( @IDTipo,@IDSubTipo,@SubTipo,@Descripcion,0,@Activo,@Consecutivo)
 end
@@ -321,7 +321,7 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	SET @IDTipo =  (SELECT MAX(IDTipo) +1 FROM dbo.cbTipoDocumento)
+	SET @IDTipo =  (SELECT ISNULL(MAX(IDTipo),0) +1 FROM dbo.cbTipoDocumento)
 	INSERT INTO dbo.cbTipoDocumento( IDTipo, Tipo, Descr, Activo )
 	VALUES  ( @IDTipo,@Tipo,@Descripcion,@Activo)
 end
@@ -353,7 +353,7 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	SET @IDTipo =  (SELECT MAX(IDTipo)+1 FROM dbo.cbTipoCuenta)
+	SET @IDTipo =  (SELECT ISNULL(MAX(IDTipo),0)+1 FROM dbo.cbTipoCuenta)
 	
 	INSERT INTO dbo.cbTipoCuenta ( IDTipo, Descr, Activo )
 	VALUES  ( @IDTipo,@Descripcion,@Activo)
@@ -385,7 +385,7 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	SET @IDFormato =  (SELECT MAX(IDFormato) +1 FROM dbo.cbCuentaFormatoCheque)
+	SET @IDFormato =  (SELECT ISNULL(MAX(IDFormato),0) +1 FROM dbo.cbCuentaFormatoCheque)
 	INSERT INTO dbo.cbCuentaFormatoCheque( IDFormato ,IDCuentaBanco ,FormatoCheque ,UltNoCheque ,Activo)
 	VALUES  ( @IDFormato,@IDCuentaBanco,@FormatoCheque,@UltNoCheque,@Activo)
 end
@@ -434,3 +434,11 @@ GO
 
 
 
+CREATE PROCEDURE dbo.cbNextConsecutivoSubTipoDocumento  @IDSUBTIPO AS INT,@IDTIPO AS INT,@NextConsecutivo AS INT OUTPUT
+AS 
+--SET @IDSUBTIPO=1
+--SET @IDTIPO=1
+
+SELECT @NextConsecutivo= ISNULL(Consecutivo,1) + 1   FROM dbo.cbSubTipoDocumento WHERE IDTipo=@IDTipo AND IDSubtipo=@IDSubTipo
+
+SELECT @NextConsecutivo

@@ -81,6 +81,8 @@ namespace ControlBancario.DAC
 
 
 
+
+
         public static void SetTransactionToAdaptador(bool Activo)
         {
             oAdaptador.UpdateCommand.Transaction = (Activo) ? ConnectionManager.Tran : null;
@@ -103,6 +105,47 @@ namespace ControlBancario.DAC
 
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
+        }
+
+
+        public static int GetNextConsecutivo(int IDTipo, int IDSubTipo)
+        {
+            int ID = 0;
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cbNextConsecutivoSubTipoDocumento", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@IDTipo", SqlDbType.Int).Value = IDTipo;
+                oCmd.Parameters.Add("@IDSubTipo", SqlDbType.Int).Value = IDSubTipo;
+                oCmd.Parameters.Add("@NextConsecutivo", SqlDbType.Int);
+                oCmd.Parameters["@NextConsecutivo"].Direction = ParameterDirection.Output;
+
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@NextConsecutivo"].Value != DBNull.Value)
+                    ID = (int)oCmd.Parameters["@NextConsecutivo"].Value;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return ID;
+
         }
 
     }

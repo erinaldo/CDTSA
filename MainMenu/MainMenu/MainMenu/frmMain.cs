@@ -208,11 +208,23 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmTipoDocu.Show();
                     break;
+                case "frmListadoCuentaBancaria":
+                    ControlBancario.frmListadoCuentaBancaria ofrmListadoCuentaBancaria = new frmListadoCuentaBancaria();
+                    ofrmListadoCuentaBancaria.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoCuentaBancaria.Show();
+                    break;
                 case "frmListadoSubTipoDocumento":
                     ControlBancario.frmListadoSubTipoDocumento ofrmListadoSubTipoDocumento = new frmListadoSubTipoDocumento();
                     ofrmListadoSubTipoDocumento.MdiParent = this;
                     ShowPagesRibbonMan(false);
                     ofrmListadoSubTipoDocumento.Show();
+                    break;
+                case "frmCheque":
+                    ControlBancario.frmCheque ofrmCheque = new frmCheque();
+                    ofrmCheque.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmCheque.Show();
                     break;
             }
         }
@@ -506,6 +518,11 @@ namespace MainMenu
                     nodeListadoBanco.Tag = "frmListadoBanco";
                     TreeListNode nodeListadoSubTipoDocumento = tl.AppendNode(new object[] { "Sub Tipo Documento" }, nodeCatalogoBanco.Id, 11, 11, 11);
                     nodeListadoSubTipoDocumento.Tag = "frmListadoSubTipoDocumento";
+                    TreeListNode nodeListadoCuentaBancaria = tl.AppendNode(new object[] { "Cuentas Bancarias" }, nodeCatalogoBanco.Id, 11, 11, 11);
+                    nodeListadoCuentaBancaria.Tag = "frmListadoCuentaBancaria";
+                    TreeListNode nodeDocumentos = tl.AppendNode(new object[] { "Documentos" }, -1, 9, 10, 9);
+                    TreeListNode nodeCheques = tl.AppendNode(new object[] { "Cheques" }, nodeDocumentos.Id, 11, 11, 11);
+                    nodeCheques.Tag = "frmCheque";
 
                     
 
