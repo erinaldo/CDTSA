@@ -53,11 +53,11 @@ namespace ControlBancario.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.InsertCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
                 oAdaptador.InsertCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
-                oAdaptador.InsertCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagaderoa";
+                oAdaptador.InsertCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagadero_a";
                 oAdaptador.InsertCommand.Parameters.Add("@Monto", SqlDbType.Decimal).SourceColumn = "Monto";
                 oAdaptador.InsertCommand.Parameters.Add("@Usuario", SqlDbType.NChar).SourceColumn = "Usuario";
                 oAdaptador.InsertCommand.Parameters.Add("@Referencia", SqlDbType.NChar).SourceColumn = "Referencia";
-                oAdaptador.InsertCommand.Parameters.Add("@ConceptoContable", SqlDbType.NChar).SourceColumn = "ConcetoContable";
+                oAdaptador.InsertCommand.Parameters.Add("@ConceptoContable", SqlDbType.NChar).SourceColumn = "ConceptoContable";
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
@@ -67,11 +67,11 @@ namespace ControlBancario.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
-                oAdaptador.UpdateCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagaderoa";
+                oAdaptador.UpdateCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagadero_a";
                 oAdaptador.UpdateCommand.Parameters.Add("@Monto", SqlDbType.Decimal).SourceColumn = "Monto";
                 oAdaptador.UpdateCommand.Parameters.Add("@Usuario", SqlDbType.NChar).SourceColumn = "Usuario";
                 oAdaptador.UpdateCommand.Parameters.Add("@Referencia", SqlDbType.NChar).SourceColumn = "Referencia";
-                oAdaptador.UpdateCommand.Parameters.Add("@ConceptoContable", SqlDbType.NChar).SourceColumn = "ConcetoContable";
+                oAdaptador.UpdateCommand.Parameters.Add("@ConceptoContable", SqlDbType.NChar).SourceColumn = "ConceptoContable";
 
 
 
@@ -83,11 +83,11 @@ namespace ControlBancario.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
-                oAdaptador.DeleteCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagaderoa";
+                oAdaptador.DeleteCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagadero_a";
                 oAdaptador.DeleteCommand.Parameters.Add("@Monto", SqlDbType.Decimal).SourceColumn = "Monto";
                 oAdaptador.DeleteCommand.Parameters.Add("@Usuario", SqlDbType.NChar).SourceColumn = "Usuario";
                 oAdaptador.DeleteCommand.Parameters.Add("@Referencia", SqlDbType.NChar).SourceColumn = "Referencia";
-                oAdaptador.DeleteCommand.Parameters.Add("@ConceptoContable", SqlDbType.NChar).SourceColumn = "ConcetoContable";
+                oAdaptador.DeleteCommand.Parameters.Add("@ConceptoContable", SqlDbType.NChar).SourceColumn = "ConceptoContable";
 
                 return oAdaptador;
             }

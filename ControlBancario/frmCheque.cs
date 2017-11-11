@@ -99,17 +99,17 @@ namespace ControlBancario
 
         private void InicializarNuevoElemento()
         {
-            DataSet DS = new DataSet();
+ 
             //Cargar el tipo de cambio por defecto
 
             _currentRow = _dtCheque.NewRow();
             _currentRow["IDCuentaBanco"] = Convert.ToInt32(this.slkupCuentaBancaria.EditValue);
             _currentRow["Fecha"] = DateTime.Now;
-            _currentRow["IDTipo"] = DBNull.Value;
-            _currentRow["IDSubTipo"] = DBNull.Value;
+            _currentRow["IDTipo"] = 1;//DBNull.Value;
+            _currentRow["IDSubTipo"] = 1;//DBNull.Value;
             _currentRow["Numero"] = 0;
             _currentRow["Pagadero_a"] = "";
-            _currentRow["Monto"] = "0.00";
+            _currentRow["Monto"] = "0";
 
             _currentRow["Usuario"] = sUsuario;
             _currentRow["Referencia"] = "";
@@ -280,6 +280,9 @@ namespace ControlBancario
 
                 
                 UpdateControlsFromDataRow(_currentRow);
+
+                this.txtNumero.EditValue = SubTipoDocumentoDAC.GetNextConsecutivo(Convert.ToInt32(this.slkupTipo.EditValue), Convert.ToInt32(this.slkupSubTipo.EditValue));
+
                 if (Accion == "New")
                 {
                     HabilitarControles(true, false);
@@ -368,15 +371,80 @@ namespace ControlBancario
             //Validar Datos 
             if (!ValidaDatos()) return;
 
-
-            if (_currentRow != null)
+            if (Accion != "New")
             {
-                Application.DoEvents();
-                _currentRow.BeginEdit();
-                //Obtener los datos
-                //if (_dsCheque.Tables[0].Rows.Count > 0)
-                //    _dsCheque.Tables[0].Rows.Clear();
-                //_dsCheque.Tables[0].Rows.Add(_currentRow);
+                if (_currentRow != null)
+                {
+                    Application.DoEvents();
+                    _currentRow.BeginEdit();
+                    //Obtener los datos
+                    //if (_dsCheque.Tables[0].Rows.Count > 0)
+                    //    _dsCheque.Tables[0].Rows.Clear();
+                    //_dsCheque.Tables[0].Rows.Add(_currentRow);
+                    _currentRow["IDCuentaBanco"] = this.slkupCuentaBancaria.EditValue.ToString();
+                    _currentRow["Fecha"] = this.dtpFecha.EditValue;
+                    _currentRow["IDTipo"] = this.slkupTipo.EditValue;
+                    _currentRow["IDSubTipo"] = this.slkupSubTipo.EditValue;
+                    _currentRow["Numero"] = this.txtNumero.EditValue;
+                    _currentRow["Pagadero_a"] = this.txtPagaderoA.EditValue;
+                    _currentRow["Monto"] = this.txtMonto.EditValue;
+                    _currentRow["ConceptoContable"] = this.txtConcepto.EditValue;
+                    _currentRow["Referencia"] = this.txtReferencia.EditValue;
+                    _currentRow["Usuario"] = this.txtUsuario.EditValue;
+
+
+                    _currentRow.EndEdit();
+
+                    DataSet _dsChanged = _dsCheque.GetChanges(DataRowState.Modified);
+
+                    bool okFlag = true;
+                    if (_dsChanged.HasErrors)
+                    {
+                        okFlag = false;
+                        string msg = "Error en la fila con el tipo Id";
+
+                        foreach (DataTable tb in _dsChanged.Tables)
+                        {
+                            if (tb.HasErrors)
+                            {
+                                DataRow[] errosRow = tb.GetErrors();
+
+                                foreach (DataRow dr in errosRow)
+                                {
+                                    msg = msg + dr["Descr"].ToString();
+                                }
+                            }
+                        }
+
+                        lblStatus.Caption = msg;
+                    }
+
+                    //Si no hay errores
+
+                    if (okFlag)
+                    {
+                        MovimientosDAC.oAdaptador.Update(_dsChanged, "Data");
+                        lblStatus.Caption = "Actualizado " + _currentRow["Descr"].ToString();
+                        Application.DoEvents();
+                        // isEdition = false;
+                        _dsCheque.AcceptChanges();
+
+
+                        HabilitarControles(false, true);
+                        AplicarPrivilegios();
+                    }
+                    else
+                    {
+                        _dsCheque.RejectChanges();
+
+                    }
+                }
+            }
+            else
+            {
+                //nuevo registro
+               // _currentRow = _dtCheque.NewRow();
+
                 _currentRow["IDCuentaBanco"] = this.slkupCuentaBancaria.EditValue.ToString();
                 _currentRow["Fecha"] = this.dtpFecha.EditValue;
                 _currentRow["IDTipo"] = this.slkupTipo.EditValue;
@@ -386,69 +454,6 @@ namespace ControlBancario
                 _currentRow["Monto"] = this.txtMonto.EditValue;
                 _currentRow["ConceptoContable"] = this.txtConcepto.EditValue;
                 _currentRow["Referencia"] = this.txtReferencia.EditValue;
-                _currentRow["Usuario"] = this.txtUsuario.EditValue;
-
-
-                _currentRow.EndEdit();
-
-                DataSet _dsChanged = _dsCheque.GetChanges(DataRowState.Modified);
-
-                bool okFlag = true;
-                if (_dsChanged.HasErrors)
-                {
-                    okFlag = false;
-                    string msg = "Error en la fila con el tipo Id";
-
-                    foreach (DataTable tb in _dsChanged.Tables)
-                    {
-                        if (tb.HasErrors)
-                        {
-                            DataRow[] errosRow = tb.GetErrors();
-
-                            foreach (DataRow dr in errosRow)
-                            {
-                                msg = msg + dr["Descr"].ToString();
-                            }
-                        }
-                    }
-
-                    lblStatus.Caption = msg;
-                }
-
-                //Si no hay errores
-
-                if (okFlag)
-                {
-                    MovimientosDAC.oAdaptador.Update(_dsChanged, "Data");
-                    lblStatus.Caption = "Actualizado " + _currentRow["Descr"].ToString();
-                    Application.DoEvents();
-                    // isEdition = false;
-                    _dsCheque.AcceptChanges();
-
-
-                    HabilitarControles(false, true);
-                    AplicarPrivilegios();
-                }
-                else
-                {
-                    _dsCheque.RejectChanges();
-
-                }
-            }
-            else
-            {
-                //nuevo registro
-                _currentRow = _dtCheque.NewRow();
-
-                _currentRow["IDCuentaBanco"] = this.slkupCuentaBancaria.EditValue.ToString();
-                _currentRow["Fecha"] = this.dtpFecha.EditValue;
-                _currentRow["IDTipo"] = this.slkupTipo.EditValue;
-                _currentRow["IDSubTipo"] = this.slkupSubTipo.EditValue;
-                _currentRow["Numero"] = this.txtNumero.EditValue;
-                _currentRow["Pagadero_a"] = this.txtPagaderoA.EditValue;
-                _currentRow["Monto"] = this.txtMonto.EditValue;
-                _currentRow["ConceptoContable"] = this.txtConcepto.EditValue;
-                _currentRow["Refererencia"] = this.txtReferencia.EditValue;
                 _currentRow["Usuario"] = this.txtUsuario.EditValue;
                 _dtCheque.Rows.Add(_currentRow);
                 try
