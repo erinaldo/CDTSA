@@ -102,7 +102,7 @@ namespace ControlBancario.DAC
         public static DataSet GetData(int IDRuc)
         {
             DataSet DS = CreateDataSet();
-            oAdaptador.SelectCommand.Parameters["@IDRuc"].Value = IDBanco;
+            oAdaptador.SelectCommand.Parameters["@IDRuc"].Value = IDRuc;
 
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
