@@ -15,7 +15,7 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo  FROM dbo.cbSubTipoDocumento where (IDTipo=@IDTipo or @IDTipo=-1) and (IDSubTipo=@IDSubTipo or @IDSubtipo=-1)"  ;
+            String getSQL = "SELECT  IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo   FROM dbo.cbSubTipoDocumento where (IDTipo=@IDTipo or @IDTipo=-1) and (IDSubTipo=@IDSubTipo or @IDSubtipo=-1)"  ;
             String InsertSQL = "[dbo].[cbUpdateSubTipoDocumento]";
             String UpdateSQL = "[dbo].[cbUpdateSubTipoDocumento]";
             String DeleteSQL = "[dbo].[cbUpdateSubTipoDocumento]";
@@ -44,9 +44,7 @@ namespace ControlBancario.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@SubTipo", SqlDbType.NChar).SourceColumn = "SubTipo";
                 oAdaptador.InsertCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
-                oAdaptador.InsertCommand.Parameters.Add("@Consecutivo", SqlDbType.Int).SourceColumn = "Consecutivo";
-                 
-
+                
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
@@ -56,9 +54,7 @@ namespace ControlBancario.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@SubTipo", SqlDbType.NChar).SourceColumn = "SubTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
-                oAdaptador.UpdateCommand.Parameters.Add("@Consecutivo", SqlDbType.Int).SourceColumn = "Consecutivo";
-
-
+                
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
@@ -68,8 +64,7 @@ namespace ControlBancario.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@SubTipo", SqlDbType.NChar).SourceColumn = "SubTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descripcion", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
-                oAdaptador.DeleteCommand.Parameters.Add("@Consecutivo", SqlDbType.Int).SourceColumn = "Consecutivo";
-
+                
 
                 return oAdaptador;
             }

@@ -15,13 +15,14 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  M.IDCuentaBanco ,M.Fecha ,M.IDTipo ,M.IDSubTipo ,M.Numero ,M.Pagadero_a ,M.Monto ,M.Asiento ,M.Anulado ,M.AsientoAnulacion ,M.Usuario ,M.UsuarioAnulacion ,M.FechaAnulacion ,M.Referencia ,M.ConceptoContable  " +
+            String getSQL = "SELECT  M.IDCuentaBanco ,M.Fecha ,M.IDTipo ,M.IDSubTipo ,RIDRuc,R.Nombre,R.Alias,M.Numero ,M.Pagadero_a ,M.Monto ,M.Asiento ,M.Anulado ,M.AsientoAnulacion ,M.Usuario ,M.UsuarioAnulacion ,M.FechaAnulacion ,M.Referencia ,M.ConceptoContable  " +
                             "FROM dbo.cbMovimientos M " +
                             "INNER JOIN dbo.cbCuentaBancaria CB ON M.IDCuentaBanco = CB.IDCuentaBanco " +
                             "INNER JOIN dbo.cbTipoCuenta T ON CB.IDTipo = T.IDTipo " +
+                            "INNER JOIN dbo.cbRuc R ON CB.IDRuc = R.IDRuc " +
                             "INNER JOIN dbo.cbSubTipoDocumento ST ON M.IDTipo=ST.IDTipo AND M.IDSubTipo=ST.IDSubtipo " +
                             "WHERE (CB.IDCuentaBanco=@IDCuentaBanco OR @IDCuentaBanco=-1)  AND (CB.IDTipo=@IDTipo OR @IDTipo=-1) " +
-                            "AND (IDSubTipo=@IDSubTipo OR @IDSubTipo=-1) AND (Numero = @Numero OR @Numero='*')";
+                            "AND (IDSubTipo=@IDSubTipo OR @IDSubTipo=-1) AND (Numero = @Numero OR @Numero='*') AND (IDRuc=@IDRuc OR @IDRuc=-1)";
             String InsertSQL = "[dbo].[cbUpdateMovimientos]";
             String UpdateSQL = "[dbo].[cbUpdateMovimientos]";
             String DeleteSQL = "[dbo].[cbUpdateMovimientos]";
@@ -40,6 +41,7 @@ namespace ControlBancario.DAC
                 oAdaptador.SelectCommand.Parameters.Add("@IDCuentaBanco", SqlDbType.Int).SourceColumn = "IDCuentaBanco";
                 oAdaptador.SelectCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.SelectCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
+                oAdaptador.SelectCommand.Parameters.Add("@IDRuc", SqlDbType.Int).SourceColumn = "IDRuc";
                 oAdaptador.SelectCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
 
                 
@@ -52,6 +54,7 @@ namespace ControlBancario.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Fecha", SqlDbType.Date).SourceColumn = "Fecha";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.InsertCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
+                oAdaptador.InsertCommand.Parameters.Add("@IDRuc", SqlDbType.Int).SourceColumn = "IDRuc";
                 oAdaptador.InsertCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
                 oAdaptador.InsertCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagadero_a";
                 oAdaptador.InsertCommand.Parameters.Add("@Monto", SqlDbType.Decimal).SourceColumn = "Monto";
@@ -66,6 +69,7 @@ namespace ControlBancario.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Fecha", SqlDbType.Date).SourceColumn = "Fecha";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDRuc", SqlDbType.Int).SourceColumn = "IDRuc";
                 oAdaptador.UpdateCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
                 oAdaptador.UpdateCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagadero_a";
                 oAdaptador.UpdateCommand.Parameters.Add("@Monto", SqlDbType.Decimal).SourceColumn = "Monto";
@@ -82,6 +86,7 @@ namespace ControlBancario.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@Fecha", SqlDbType.Date).SourceColumn = "Fecha";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDSubTipo", SqlDbType.Int).SourceColumn = "IDSubTipo";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDRuc", SqlDbType.Int).SourceColumn = "IDRuc";
                 oAdaptador.DeleteCommand.Parameters.Add("@Numero", SqlDbType.NChar).SourceColumn = "Numero";
                 oAdaptador.DeleteCommand.Parameters.Add("@Pagaderoa", SqlDbType.NChar).SourceColumn = "Pagadero_a";
                 oAdaptador.DeleteCommand.Parameters.Add("@Monto", SqlDbType.Decimal).SourceColumn = "Monto";
@@ -116,7 +121,7 @@ namespace ControlBancario.DAC
 
         public static DataSet GetDataEmpty()
         {
-            String strSQL = "SELECT  IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo ,Numero ,Pagadero_a ,Monto ,Asiento ,Anulado ,AsientoAnulacion ,Usuario ,UsuarioAnulacion ,FechaAnulacion ,Referencia ,ConceptoContable  FROM dbo.cbMovimientos WHERE 1=2";
+            String strSQL = "SELECT  IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo ,IDRuc,Numero ,Pagadero_a ,Monto ,Asiento ,Anulado ,AsientoAnulacion ,Usuario ,UsuarioAnulacion ,FechaAnulacion ,Referencia ,ConceptoContable  FROM dbo.cbMovimientos WHERE 1=2";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
@@ -126,12 +131,13 @@ namespace ControlBancario.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDCuentaBanco,int IDTipo,int IDSubTipo,String Numero)
+        public static DataSet GetData(int IDCuentaBanco,int IDTipo,int IDSubTipo,int IDRuc,String Numero)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDCuentaBanco"].Value = IDCuentaBanco;
             oAdaptador.SelectCommand.Parameters["@IDTipo"].Value = IDTipo;
             oAdaptador.SelectCommand.Parameters["@IDSubTipo"].Value = IDSubTipo;
+            oAdaptador.SelectCommand.Parameters["@IDRuc"].Value = IDRuc;
             oAdaptador.SelectCommand.Parameters["@Numero"].Value = Numero;
 
 

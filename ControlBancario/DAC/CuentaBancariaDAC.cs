@@ -15,8 +15,8 @@ namespace ControlBancario.DAC
         
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  A.IDCuentaBanco ,A.Codigo ,A.Descr ,A.IDBanco ,B.Descr DescrBanco,A.IDMoneda ,M.Descr DescrMoneda,A.SaldoInicial ,A.FechaCreacion ,A.IDTipo,C.Descr DescrTipo ,A.SaldoLibro ,A.SaldoBanco ,A.UltDeposito ,A.UltCheque , "  +
-                            "A.UltTransferencia ,A.Limite ,A.Sobregiro ,A.IDCuenta ,A.Activa " +
+            String getSQL = "SELECT  A.IDCuentaBanco ,A.Codigo ,A.Descr ,A.IDBanco ,B.Descr DescrBanco,A.IDMoneda ,M.Descr DescrMoneda,A.SaldoInicial ,A.FechaCreacion ,A.IDTipo,C.Descr DescrTipo ,A.SaldoLibro ,A.SaldoBanco ,A.ConsecDeposito ,A.ConsecCheque , "  +
+                            "A.ConsecTransferencia ,A.Limite ,A.Sobregiro ,A.IDCuenta ,A.Activa " +
                             "FROM dbo.cbCuentaBancaria A " +
                             "INNER JOIN dbo.cbBanco B ON a.IDBanco=B.IDBanco " +
                             "INNER JOIN dbo.cbTipoCuenta C ON A.IDTipo=C.IDTipo " +
