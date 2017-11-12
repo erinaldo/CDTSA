@@ -63,6 +63,7 @@
     <Compile Include="DAC\TipoCuentaDAC.cs" />
     <Compile Include="DAC\SubTipoDocumentoDAC.cs" />
     <Compile Include="DAC\TipoDocumentoDAC.cs" />
+    <Compile Include="DAC\TipoRucDAC.cs" />
     <Compile Include="frmCheque.cs">
       <SubType>Form</SubType>
     </Compile>
