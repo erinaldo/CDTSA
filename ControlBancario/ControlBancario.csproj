@@ -95,6 +95,12 @@
     <Compile Include="frmListadoSubTipoDocumento.Designer.cs">
       <DependentUpon>frmListadoSubTipoDocumento.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNIT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNIT.Designer.cs">
+      <DependentUpon>frmNIT.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTipoCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoSubTipoDocumento.resx">
       <DependentUpon>frmListadoSubTipoDocumento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNIT.resx">
+      <DependentUpon>frmNIT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoCuenta.resx">
       <DependentUpon>frmTipoCuenta.cs</DependentUpon>

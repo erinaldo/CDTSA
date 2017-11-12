@@ -1,6 +1,6 @@
 ﻿namespace ControlBancario
 {
-    partial class frmNIT
+    partial class frmRUC
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNIT));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRUC));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -42,7 +42,7 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridRuc = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.cmbTipoRuc = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -58,11 +58,12 @@
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRuc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTipoRuc.Properties)).BeginInit();
@@ -78,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -99,7 +101,7 @@
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl.Size = new System.Drawing.Size(658, 143);
+            this.ribbonControl.Size = new System.Drawing.Size(714, 143);
             // 
             // btnAgregar
             // 
@@ -190,12 +192,12 @@
             this.layoutControl1.Controls.Add(this.txtNombre);
             this.layoutControl1.Controls.Add(this.txtRuc);
             this.layoutControl1.Controls.Add(this.cmbTipoRuc);
-            this.layoutControl1.Controls.Add(this.gridControl1);
+            this.layoutControl1.Controls.Add(this.gridRuc);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(658, 330);
+            this.layoutControl1.Size = new System.Drawing.Size(714, 374);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -205,134 +207,129 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem3,
-            this.lblNombre,
-            this.layoutControlItem5,
-            this.txtCuentaContable,
-            this.layoutControlItem7});
+            this.layoutControlGroup2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(658, 330);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(714, 374);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // gridControl1
+            // gridRuc
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 12);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.MenuManager = this.ribbonControl;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(634, 163);
-            this.gridControl1.TabIndex = 4;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridRuc.Location = new System.Drawing.Point(12, 12);
+            this.gridRuc.MainView = this.gridView1;
+            this.gridRuc.MenuManager = this.ribbonControl;
+            this.gridRuc.Name = "gridRuc";
+            this.gridRuc.Size = new System.Drawing.Size(690, 188);
+            this.gridRuc.TabIndex = 4;
+            this.gridRuc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GridControl = this.gridRuc;
             this.gridView1.Name = "gridView1";
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gridControl1;
+            this.layoutControlItem1.Control = this.gridRuc;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(638, 167);
+            this.layoutControlItem1.Size = new System.Drawing.Size(694, 192);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // cmbTipoRuc
             // 
-            this.cmbTipoRuc.Location = new System.Drawing.Point(101, 179);
+            this.cmbTipoRuc.Location = new System.Drawing.Point(113, 234);
             this.cmbTipoRuc.MenuManager = this.ribbonControl;
             this.cmbTipoRuc.Name = "cmbTipoRuc";
             this.cmbTipoRuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbTipoRuc.Size = new System.Drawing.Size(545, 20);
+            this.cmbTipoRuc.Size = new System.Drawing.Size(390, 20);
             this.cmbTipoRuc.StyleController = this.layoutControl1;
             this.cmbTipoRuc.TabIndex = 5;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.cmbTipoRuc;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 167);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(638, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(483, 24);
             this.layoutControlItem2.Text = "Tipo Ruc:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(85, 13);
             // 
             // txtRuc
             // 
-            this.txtRuc.Location = new System.Drawing.Point(101, 203);
+            this.txtRuc.Location = new System.Drawing.Point(113, 258);
             this.txtRuc.MenuManager = this.ribbonControl;
             this.txtRuc.Name = "txtRuc";
-            this.txtRuc.Size = new System.Drawing.Size(545, 20);
+            this.txtRuc.Size = new System.Drawing.Size(577, 20);
             this.txtRuc.StyleController = this.layoutControl1;
             this.txtRuc.TabIndex = 6;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.txtRuc;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 191);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(638, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(670, 24);
             this.layoutControlItem3.Text = "RUC:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(85, 13);
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(101, 227);
+            this.txtNombre.Location = new System.Drawing.Point(113, 282);
             this.txtNombre.MenuManager = this.ribbonControl;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(545, 20);
+            this.txtNombre.Size = new System.Drawing.Size(577, 20);
             this.txtNombre.StyleController = this.layoutControl1;
             this.txtNombre.TabIndex = 7;
             // 
             // lblNombre
             // 
             this.lblNombre.Control = this.txtNombre;
-            this.lblNombre.Location = new System.Drawing.Point(0, 215);
+            this.lblNombre.Location = new System.Drawing.Point(0, 48);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(638, 24);
+            this.lblNombre.Size = new System.Drawing.Size(670, 24);
             this.lblNombre.Text = "Nombre:";
             this.lblNombre.TextSize = new System.Drawing.Size(85, 13);
             // 
             // txtAlias
             // 
-            this.txtAlias.Location = new System.Drawing.Point(101, 251);
+            this.txtAlias.Location = new System.Drawing.Point(113, 306);
             this.txtAlias.MenuManager = this.ribbonControl;
             this.txtAlias.Name = "txtAlias";
-            this.txtAlias.Size = new System.Drawing.Size(545, 20);
+            this.txtAlias.Size = new System.Drawing.Size(577, 20);
             this.txtAlias.StyleController = this.layoutControl1;
             this.txtAlias.TabIndex = 8;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.txtAlias;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 239);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(638, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(670, 24);
             this.layoutControlItem5.Text = "Alias:";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(85, 13);
             // 
             // slkupCuentaContable
             // 
-            this.slkupCuentaContable.Location = new System.Drawing.Point(101, 275);
+            this.slkupCuentaContable.Location = new System.Drawing.Point(113, 330);
             this.slkupCuentaContable.MenuManager = this.ribbonControl;
             this.slkupCuentaContable.Name = "slkupCuentaContable";
             this.slkupCuentaContable.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupCuentaContable.Properties.View = this.searchLookUpEdit1View;
-            this.slkupCuentaContable.Size = new System.Drawing.Size(545, 20);
+            this.slkupCuentaContable.Size = new System.Drawing.Size(577, 20);
             this.slkupCuentaContable.StyleController = this.layoutControl1;
             this.slkupCuentaContable.TabIndex = 9;
             // 
             // txtCuentaContable
             // 
             this.txtCuentaContable.Control = this.slkupCuentaContable;
-            this.txtCuentaContable.Location = new System.Drawing.Point(0, 263);
+            this.txtCuentaContable.Location = new System.Drawing.Point(0, 96);
             this.txtCuentaContable.Name = "txtCuentaContable";
-            this.txtCuentaContable.Size = new System.Drawing.Size(638, 24);
+            this.txtCuentaContable.Size = new System.Drawing.Size(670, 24);
             this.txtCuentaContable.Text = "Cuenta Contable:";
             this.txtCuentaContable.TextSize = new System.Drawing.Size(85, 13);
             // 
@@ -345,38 +342,52 @@
             // 
             // chkActivo
             // 
-            this.chkActivo.Location = new System.Drawing.Point(12, 299);
+            this.chkActivo.Location = new System.Drawing.Point(507, 234);
             this.chkActivo.MenuManager = this.ribbonControl;
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Properties.Caption = "Activo";
-            this.chkActivo.Size = new System.Drawing.Size(634, 19);
+            this.chkActivo.Size = new System.Drawing.Size(183, 19);
             this.chkActivo.StyleController = this.layoutControl1;
             this.chkActivo.TabIndex = 10;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.chkActivo;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 287);
+            this.layoutControlItem7.Location = new System.Drawing.Point(483, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(638, 23);
+            this.layoutControlItem7.Size = new System.Drawing.Size(187, 24);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
-            // frmNIT
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem2,
+            this.layoutControlItem3,
+            this.lblNombre,
+            this.layoutControlItem5,
+            this.txtCuentaContable,
+            this.layoutControlItem7});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 192);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(694, 162);
+            this.layoutControlGroup2.Text = "Datos de RUC";
+            // 
+            // frmRUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 473);
+            this.ClientSize = new System.Drawing.Size(714, 517);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonControl);
-            this.Name = "frmNIT";
+            this.Name = "frmRUC";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmNIT";
+            this.Text = "RUC";
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRuc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbTipoRuc.Properties)).EndInit();
@@ -392,6 +403,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,7 +430,7 @@
         private DevExpress.XtraEditors.TextEdit txtNombre;
         private DevExpress.XtraEditors.TextEdit txtRuc;
         private DevExpress.XtraEditors.ComboBoxEdit cmbTipoRuc;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl gridRuc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
@@ -428,5 +440,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem txtCuentaContable;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
     }
 }

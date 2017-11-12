@@ -318,7 +318,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoBanco";
             this.Ribbon = this.ribbonControl;
-            this.Text = "Form1";
+            this.Text = "Listado de Banco";
             this.Load += new System.EventHandler(this.frmListadoBanco_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
