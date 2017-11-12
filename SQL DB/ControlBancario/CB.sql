@@ -1,3 +1,33 @@
+Create Table dbo.cbTipoRUC ( IDTipoRuc int identity(1,1) not null , Descr nvarchar(255), Activo bit default 1 )
+Go
+alter table dbo.cbTipoRUC add constraint pkTipoRuc primary key (IDTipoRuc)
+go
+
+insert dbo.cbTipoRUC ( Descr )
+values ('RUC')
+GO
+
+insert dbo.cbTipoRUC ( Descr )
+values ('CEDULA DE IDENTIDAD')
+GO
+
+
+Create Table dbo.cbRUC (IDRuc int not null, IDTipoRuc int not null , RUC nvarchar(20) not null, Nombre nvarchar(200), Alias nvarchar(200), 
+IDCuenta int )
+go
+
+alter table dbo.cbRUC add constraint pkRUC primary key (IDRuc) 
+go
+
+alter table dbo.cbRUC add constraint ukRUC unique (RUC)
+GO
+
+alter table dbo.cbRUC add constraint FkRUC foreign key (IDCuenta) references dbo.cntCuenta ( IDCuenta )
+GO
+
+alter table dbo.cbRUC add constraint FkTIPORUC foreign key (IDTipoRuc) references dbo.cbTipoRUC ( IDTipoRuc )
+GO
+
 Create Table dbo.cbBanco ( IDBanco int identity(1,1) not null, Codigo nvarchar(10) not null, 
 Descr nvarchar(250) ,Activo bit default 1 )
 go
@@ -37,9 +67,8 @@ go
 alter table dbo.cbTipoDocumento add constraint pkcbTipoDoc unique (Tipo)
 go
 
-
 Create Table dbo.cbSubTipoDocumento ( IDTipo int not null, IDSubtipo int not null, 
-SubTipo nvarchar(3) not null, Descr nvarchar(200), ReadOnlySys bit default 0, Activo bit default 1, Consecutivo int default 0 )
+SubTipo nvarchar(3) not null, Descr nvarchar(200), ReadOnlySys bit default 0, Activo bit default 1 )
 
 go
 alter table dbo.cbSubTipoDocumento add constraint pkSubtipoDoc primary key (IDTipo, IDSubTipo)
@@ -125,12 +154,14 @@ GO
 INSERT dbo.globalMoneda (IDMoneda, Moneda , Descr, Simbolo )
 VALUES (2, 'DOLAR', 'DOLAR', '$' )
 GO
+
 Create Table dbo.cbCuentaBancaria ( IDCuentaBanco int not null, Codigo nvarchar(25), Descr nvarchar(250),
 IDBanco int not null, IDMoneda int not null, SaldoInicial decimal(28,4 ) default 0, FechaCreacion date,
 IDTipo int not null, 
-SaldoLibro decimal(28,4 ) default 0, SaldoBanco decimal(28,4 ) default 0, UltDeposito int default 0, UltCheque int default 0,
-UltTransferencia int default 0, Limite decimal(28,4 ) default 0, 
+SaldoLibro decimal(28,4 ) default 0, SaldoBanco decimal(28,4 ) default 0, ConsecDeposito int default 0, ConsecCheque int default 0,
+ConsecTransferencia int default 0, Limite decimal(28,4 ) default 0, 
 Sobregiro bit default 0, IDCuenta int not null, Activa bit default 1 )
+
 go
 
 alter table dbo.cbCuentaBancaria add constraint pkcbCuentaBancaria primary key (IDCuentaBanco)
@@ -160,6 +191,7 @@ go
 
 --drop table dbo.cbMovimientos
 Create Table dbo.cbMovimientos (IDCuentaBanco int not null, Fecha date not null, IDTipo int not null, IDSubTipo int not null, 
+IDRuc int not null, 
 Numero int not null, Pagadero_a nvarchar(250), Monto decimal(28,4) default 0, Asiento nvarchar(20), Anulado bit default 0, AsientoAnulacion nvarchar(20),
 Usuario nvarchar(20), UsuarioAnulacion nvarchar(20), FechaAnulacion date,
 Referencia nvarchar(100) Default ' ' not null, ConceptoContable nvarchar(255) )
@@ -172,6 +204,8 @@ alter table dbo.cbMovimientos add constraint fkcbMovimientos foreign key (IDCuen
 go
 alter table dbo.cbMovimientos add constraint fkcbTipo foreign key (IDTipo, IDSubTipo) references dbo.cbSubTipoDocumento (IDTipo, IDSubTipo)
 GO
+alter table dbo.cbMovimientos add constraint fkcbRUC foreign key (IDRUC) references dbo.cbRUC (IDRUC)
+go
 
 
 alter table dbo.cbMovimientos 
@@ -250,7 +284,7 @@ if upper(@Operacion) = 'I'
 BEGIN
 	SET @IDCuentaBanco =  (SELECT ISNULL(MAX(IDCuentaBanco),0) +1  FROM dbo.cbCuentaBancaria)
 	INSERT INTO dbo.cbCuentaBancaria  ( IDCuentaBanco ,Codigo ,Descr ,IDBanco ,IDMoneda ,SaldoInicial ,FechaCreacion ,IDTipo ,SaldoLibro ,SaldoBanco ,
-	          UltDeposito ,UltCheque ,UltTransferencia ,Limite ,Sobregiro ,IDCuenta ,Activa)
+	          ConsecDeposito ,ConsecCheque ,ConsecTransferencia ,Limite ,Sobregiro ,IDCuenta ,Activa)
 	VALUES (@IDCuentaBanco,@Codigo,@Descr,@IDBanco,@IDMoneda,@SaldoInicial,@FechaCreacion,@IDTipo,0,0,0,0,0,@Limite,0,@IDCuenta,@Activa)
 END 
 
@@ -277,15 +311,15 @@ end
 GO
 
 
-CREATE  Procedure [dbo].[cbUpdateSubTipoDocumento] @Operacion nvarchar(1), @IDTipo int, @IDSubTipo INT ,@SubTipo NVARCHAR(3),@Descripcion NVARCHAR(200),@Activo bit,@Consecutivo INT
+CREATE  Procedure [dbo].[cbUpdateSubTipoDocumento] @Operacion nvarchar(1), @IDTipo int, @IDSubTipo INT ,@SubTipo NVARCHAR(3),@Descripcion NVARCHAR(200),@Activo bit
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
 BEGIN
 	SET @IDSubTipo =  (SELECT ISNULL(MAX(IDSubTipo),1) +1 FROM dbo.cbSubTipoDocumento)
-	INSERT INTO dbo.cbSubTipoDocumento( IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo ,Consecutivo)
-	VALUES  ( @IDTipo,@IDSubTipo,@SubTipo,@Descripcion,0,@Activo,@Consecutivo)
+	INSERT INTO dbo.cbSubTipoDocumento( IDTipo ,IDSubtipo ,SubTipo ,Descr ,ReadOnlySys ,Activo )
+	VALUES  ( @IDTipo,@IDSubTipo,@SubTipo,@Descripcion,0,@Activo)
 end
 
 if upper(@Operacion) = 'D'
@@ -405,18 +439,20 @@ end
 
 GO
 
-
-CREATE  Procedure [dbo].[cbUpdateMovimientos] @Operacion nvarchar(1), @IDCuentaBanco int,@Fecha DATE,@IDTipo INT,@IDSubTipo INT,@Numero INT,
+--DROP Procedure [dbo].[cbUpdateMovimientos]
+CREATE  Procedure [dbo].[cbUpdateMovimientos] @Operacion nvarchar(1), @IDCuentaBanco int,@Fecha DATE,@IDTipo INT,@IDSubTipo INT,@IDRuc int,@Numero INT,
 		@Pagaderoa nvarchar(250),@Monto DECIMAL(28,4),@Usuario NVARCHAR(20),@Referencia nvarchar(100),@ConceptoContable NVARCHAR(200),@Activo bit
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
 BEGIN
-	INSERT INTO dbo.cbMovimientos( IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo ,Numero ,Pagadero_a ,Monto   ,Usuario   ,Referencia ,ConceptoContable)
-	VALUES  ( @IDCuentaBanco,@Fecha,@IDTipo,@IDSubTipo,@Numero,@Pagaderoa,@Monto,@Usuario,@Referencia,@ConceptoContable)
+	INSERT INTO dbo.cbMovimientos( IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo,IDRuc ,Numero ,Pagadero_a ,Monto   ,Usuario   ,Referencia ,ConceptoContable)
+	VALUES  ( @IDCuentaBanco,@Fecha,@IDTipo,@IDSubTipo,@IDRuc,@Numero,@Pagaderoa,@Monto,@Usuario,@Referencia,@ConceptoContable)
 	
-	UPDATE dbo.cbSubTipoDocumento SET Consecutivo = @Numero WHERE IDSubtipo=@IDSubTipo AND IDTipo=@IDTipo
+	--CK
+	IF (@IDTipo=1)
+		UPDATE dbo.cbCuentaBancaria SET ConsecCheque = @Numero WHERE IDCuentaBanco=@IDCuentaBanco
 end
 
 --if upper(@Operacion) = 'D'
@@ -427,7 +463,7 @@ end
 
 if upper(@Operacion) = 'U' 
 BEGIN
-	UPDATE dbo.cbMovimientos SET  Referencia = @Referencia,ConceptoContable=@ConceptoContable,Pagadero_a=@Pagaderoa,Monto=@Monto WHERE IDCuentaBanco=@IDCuentaBanco AND Fecha=@Fecha AND  IDTipo=@IDTipo AND IDSubTipo=@IDSubTipo AND Numero=@Numero
+	UPDATE dbo.cbMovimientos SET  Referencia = @Referencia,IDRuc=@IDRuc,ConceptoContable=@ConceptoContable,Pagadero_a=@Pagaderoa,Monto=@Monto WHERE IDCuentaBanco=@IDCuentaBanco AND Fecha=@Fecha AND  IDTipo=@IDTipo AND IDSubTipo=@IDSubTipo AND Numero=@Numero
 
 end
 
@@ -435,12 +471,12 @@ end
 GO
 
 
-
-CREATE PROCEDURE dbo.cbNextConsecutivoSubTipoDocumento  @IDSUBTIPO AS INT,@IDTIPO AS INT,@NextConsecutivo AS INT OUTPUT
+--drop PROCEDURE dbo.cbNextConsecutivoCheque
+CREATE PROCEDURE dbo.cbNextConsecutivoCheque  @IDCuentaBanco AS INT,@NextConsecutivo AS INT OUTPUT
 AS 
 --SET @IDSUBTIPO=1
 --SET @IDTIPO=1
 
-SELECT @NextConsecutivo= ISNULL(Consecutivo,1) + 1   FROM dbo.cbSubTipoDocumento WHERE IDTipo=@IDTipo AND IDSubtipo=@IDSubTipo
+SELECT @NextConsecutivo= ISNULL(ConsecCheque,1) + 1   FROM dbo.cbCuentaBancaria WHERE IDCuentaBanco=@IDCuentaBanco 
 
 SELECT @NextConsecutivo
