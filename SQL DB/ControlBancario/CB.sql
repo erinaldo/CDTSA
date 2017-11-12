@@ -13,7 +13,7 @@ GO
 
 
 Create Table dbo.cbRUC (IDRuc int not null, IDTipoRuc int not null , RUC nvarchar(20) not null, Nombre nvarchar(200), Alias nvarchar(200), 
-IDCuenta int )
+IDCuenta INT, Activo BIT )
 go
 
 alter table dbo.cbRUC add constraint pkRUC primary key (IDRuc) 
@@ -480,3 +480,37 @@ AS
 SELECT @NextConsecutivo= ISNULL(ConsecCheque,1) + 1   FROM dbo.cbCuentaBancaria WHERE IDCuentaBanco=@IDCuentaBanco 
 
 SELECT @NextConsecutivo
+
+
+GO
+
+
+
+CREATE Procedure [dbo].[cbUpdateRUC] @Operacion nvarchar(1), @IDRuc int, @IDTipoRuc INT ,@Ruc nvarchar(20), @Nombre nvarchar(200),@Alias nvarchar(200),@IDCuenta INT,@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.cbRUC( IDRuc ,IDTipoRuc ,RUC ,Nombre ,Alias ,IDCuenta ,Activo)
+	VALUES (@IDRuc,@IDTipoRuc,@Ruc,@Nombre,@Alias,@IDCuenta,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDRuc  from  dbo.cbMovimientos    Where IDRuc  = @IDRuc)	
+	begin 
+		RAISERROR ( 'El ruc posee movimientos en el detalle de movimientos, no puede eliminarla', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.cbRUC WHERE IDRuc = @IDRuc 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.cbRUC SET  Nombre = @Nombre,Alias =@Alias,Nombre=@Nombre,Activo=@Activo WHERE IDRuc=@IDRuc
+
+end
+
