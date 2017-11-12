@@ -60,6 +60,7 @@
     <Compile Include="DAC\CuentaBancariaDAC.cs" />
     <Compile Include="DAC\MonedaDAC.cs" />
     <Compile Include="DAC\MovimientosDAC.cs" />
+    <Compile Include="DAC\RucDAC.cs" />
     <Compile Include="DAC\TipoCuentaDAC.cs" />
     <Compile Include="DAC\SubTipoDocumentoDAC.cs" />
     <Compile Include="DAC\TipoDocumentoDAC.cs" />
