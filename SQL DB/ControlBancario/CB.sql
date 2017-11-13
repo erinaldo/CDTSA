@@ -486,12 +486,20 @@ GO
 
 
 
-CREATE Procedure [dbo].[cbUpdateRUC] @Operacion nvarchar(1), @IDRuc int, @IDTipoRuc INT ,@Ruc nvarchar(20), @Nombre nvarchar(200),@Alias nvarchar(200),@IDCuenta INT,@Activo BIT
+CREATE   Procedure [dbo].[cbUpdateRUC] @Operacion nvarchar(1), @IDRuc int, @IDTipoRuc INT ,@Ruc nvarchar(20), @Nombre nvarchar(200),@Alias nvarchar(200),@IDCuenta INT,@Activo BIT
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
-begin
+BEGIN
+	IF (EXISTS(SELECT *  FROM dbo.cbRUC WHERE RUC=@Ruc OR Nombre=@Nombre))
+	BEGIN	
+		RAISERROR ( 'El numero RUC y el nombre del Nit deben de ser únicos.', 16, 1) ;
+		return				
+	END
+	
+	SET @IDRuc = (SELECT ISNULL(MAX(IDRuc),0)+1  FROM dbo.cbRUC)
+	
 	INSERT INTO dbo.cbRUC( IDRuc ,IDTipoRuc ,RUC ,Nombre ,Alias ,IDCuenta ,Activo)
 	VALUES (@IDRuc,@IDTipoRuc,@Ruc,@Nombre,@Alias,@IDCuenta,@Activo)
 end
@@ -510,7 +518,7 @@ end
 
 if upper(@Operacion) = 'U' 
 BEGIN
-	UPDATE dbo.cbRUC SET  Nombre = @Nombre,Alias =@Alias,Nombre=@Nombre,Activo=@Activo WHERE IDRuc=@IDRuc
+	UPDATE dbo.cbRUC SET  Nombre = @Nombre,Alias =@Alias,Activo=@Activo,IDCuenta=@IDCuenta,IDTipoRuc=@IDTipoRuc WHERE IDRuc=@IDRuc
 
 end
 

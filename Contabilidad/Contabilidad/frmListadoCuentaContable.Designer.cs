@@ -44,6 +44,7 @@
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtNivel6 = new DevExpress.XtraEditors.TextEdit();
             this.chkActiva = new DevExpress.XtraEditors.CheckEdit();
             this.slkupCuentaMayor = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit5View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -100,12 +101,12 @@
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtNivel6 = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActiva.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaMayor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5View)).BeginInit();
@@ -151,7 +152,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
@@ -312,6 +312,15 @@
             this.layoutControl1.Size = new System.Drawing.Size(735, 469);
             this.layoutControl1.TabIndex = 3;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtNivel6
+            // 
+            this.txtNivel6.Location = new System.Drawing.Point(454, 425);
+            this.txtNivel6.MenuManager = this.ribbonControl;
+            this.txtNivel6.Name = "txtNivel6";
+            this.txtNivel6.Size = new System.Drawing.Size(257, 20);
+            this.txtNivel6.StyleController = this.layoutControl1;
+            this.txtNivel6.TabIndex = 100000;
             // 
             // chkActiva
             // 
@@ -889,15 +898,6 @@
             this.layoutControlItem2.Text = "Grupo:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(87, 13);
             // 
-            // txtNivel6
-            // 
-            this.txtNivel6.Location = new System.Drawing.Point(454, 425);
-            this.txtNivel6.MenuManager = this.ribbonControl;
-            this.txtNivel6.Name = "txtNivel6";
-            this.txtNivel6.Size = new System.Drawing.Size(257, 20);
-            this.txtNivel6.StyleController = this.layoutControl1;
-            this.txtNivel6.TabIndex = 100000;
-            // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.txtNivel6;
@@ -944,6 +944,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActiva.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaMayor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5View)).EndInit();
@@ -989,7 +990,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNivel6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);

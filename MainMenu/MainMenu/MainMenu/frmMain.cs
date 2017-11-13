@@ -226,6 +226,12 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmCheque.Show();
                     break;
+                case "frmNIT":
+                    ControlBancario.frmRUC ofrmRUC = new ControlBancario.frmRUC();
+                    ofrmRUC.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmRUC.Show();
+                    break;
             }
         }
 
@@ -523,6 +529,8 @@ namespace MainMenu
                     TreeListNode nodeDocumentos = tl.AppendNode(new object[] { "Documentos" }, -1, 9, 10, 9);
                     TreeListNode nodeCheques = tl.AppendNode(new object[] { "Cheques" }, nodeDocumentos.Id, 11, 11, 11);
                     nodeCheques.Tag = "frmCheque";
+                    TreeListNode nodeNit = tl.AppendNode(new object[] { "Nit" }, nodeDocumentos.Id, 11, 11, 11);
+                    nodeNit.Tag = "frmNIT";
 
                     
 

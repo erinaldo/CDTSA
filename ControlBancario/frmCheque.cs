@@ -51,11 +51,11 @@ namespace ControlBancario
         }
 
 
-        public frmCheque(int pIDCuentaBanco, int pIDTipo, int pIDSubTipo, String pNumero)
+        public frmCheque(int pIDCuentaBanco, int pIDTipo, int pIDSubTipo,int IdRuc, String pNumero)
         {
             InitializeComponent();
 
-            CargarCheque(pIDCuentaBanco, pIDTipo, pIDSubTipo, pNumero);
+            CargarCheque(pIDCuentaBanco, pIDTipo, pIDSubTipo,IdRuc, pNumero);
 
 
         }
@@ -84,10 +84,10 @@ namespace ControlBancario
         }
 
 
-        private void CargarCheque(int IDCuentaBanco, int IDTipo, int IDSubTipo, String Numero)
+        private void CargarCheque(int IDCuentaBanco, int IDTipo, int IDSubTipo, int iDRuc,String Numero)
         {
 
-            _dsCheque = MovimientosDAC.GetData(IDCuentaBanco, IDTipo, IDSubTipo, Numero);
+            _dsCheque = MovimientosDAC.GetData(IDCuentaBanco, IDTipo, IDSubTipo,iDRuc, Numero);
             _dtCheque = _dsCheque.Tables[0];
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsCheque.Tables[0].Rows[0];

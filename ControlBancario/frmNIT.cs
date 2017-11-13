@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using System.Data.SqlClient;
 using Security;
 using ControlBancario.DAC;
@@ -23,6 +22,8 @@ namespace ControlBancario
         private DataTable _dtNIT;
         private DataTable _lstNIT;
         private DataSet _dsNIT;
+        private DataTable _dtCuentaContable;
+        private DataTable _dtTipoNit;
         private DataTable _dtSecurity;
 
         DataRow currentRow;
@@ -93,13 +94,21 @@ namespace ControlBancario
             process.Start();
         }
 
-        private void frmListadoBanco_Load(object sender, EventArgs e)
+        private void frmNIT_Load(object sender, EventArgs e)
         {
             try
             {
                 HabilitarControles(false);
+                _dtCuentaContable = CG.CuentaContableDAC.GetData(-1, -1, -1,"*","*","*","*","*","*","*",-1,-1,-1,-1,-1,-1).Tables["Data"];
+                _dtTipoNit = DAC.TipoRucDAC.GetTipoRuc(-1).Tables[0];
 
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.gridRuc, _tituloVentana, this);
+
+                Util.Util.ConfigLookupEdit(this.slkupCuentaContable,_dtCuentaContable, "Descr", "IDCuenta");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaContable, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+                Util.Util.ConfigLookupEdit(this.slkupTipoRuc, _dtTipoNit, "Descr", "IDTipoRuc");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoRuc, "[{'ColumnCaption':'Tipo','ColumnField':'IDTipoRuc','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 EnlazarEventos();
 
@@ -137,7 +146,7 @@ namespace ControlBancario
             this.txtAlias.EditValue = "";
             this.slkupCuentaContable.EditValue = "";
             this.chkActivo.EditValue = true;
-            this.cmbTipoRuc.EditValue = DBNull.Value;
+            this.slkupTipoRuc.EditValue = DBNull.Value;
         }
 
         private void HabilitarControles(bool Activo)
@@ -145,7 +154,7 @@ namespace ControlBancario
             this.txtRuc.ReadOnly = !Activo;
             this.txtAlias.ReadOnly = !Activo;
             this.txtNombre.ReadOnly = !Activo;
-            this.cmbTipoRuc.ReadOnly = !Activo;
+            this.slkupTipoRuc.ReadOnly = !Activo;
             this.slkupCuentaContable.ReadOnly = !Activo;
             this.chkActivo.ReadOnly = !Activo;
             
@@ -177,8 +186,8 @@ namespace ControlBancario
             this.txtRuc.EditValue = Row["RUC"].ToString();
             this.txtNombre.EditValue = Row["Nombre"].ToString();
             this.txtAlias.EditValue = Row["Alias"].ToString();
-            this.slkupCuentaContable.EditValue = Convert.ToInt32(Row["IDCuentaContable"]);
-            this.cmbTipoRuc.EditValue = Convert.ToInt32(Row["IDTipoRuc"]);
+            this.slkupCuentaContable.EditValue = Convert.ToInt32(Row["IDCuenta"]);
+            this.slkupTipoRuc.EditValue = Convert.ToInt32(Row["IDTipoRuc"]);
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
             
 
@@ -227,7 +236,7 @@ namespace ControlBancario
                 sMensaje = sMensaje + "     • Nombre. \n\r";
             if (this.txtAlias.Text == "")
                 sMensaje = sMensaje + "     • Alias. \n\r";
-            if (this.cmbTipoRuc.EditValue.ToString() == "")
+            if (this.slkupTipoRuc.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Tipo Ruc. \n\r";
             if (this.slkupCuentaContable.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Cuenta Contable. \n\r";
@@ -256,7 +265,7 @@ namespace ControlBancario
                 currentRow["Nombre"] = this.txtNombre.EditValue; 
                 currentRow["Alias"] = this.txtAlias.EditValue;
                 currentRow["IDCuenta"] =  this.slkupCuentaContable.EditValue;
-                currentRow["IDTipoRuc"] = this.cmbTipoRuc.EditValue;
+                currentRow["IDTipoRuc"] = this.slkupTipoRuc.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
                 
                 currentRow.EndEdit();
@@ -314,7 +323,7 @@ namespace ControlBancario
                 currentRow["Nombre"] = this.txtNombre.EditValue;
                 currentRow["Alias"] = this.txtAlias.EditValue;
                 currentRow["IDCuenta"] = this.slkupCuentaContable.EditValue;
-                currentRow["IDTipoRuc"] = this.cmbTipoRuc.EditValue;
+                currentRow["IDTipoRuc"] = this.slkupTipoRuc.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
 
                 _dtNIT.Rows.Add(currentRow);
