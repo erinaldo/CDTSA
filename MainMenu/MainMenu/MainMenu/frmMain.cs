@@ -220,11 +220,15 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoSubTipoDocumento.Show();
                     break;
-                case "frmCheque":
-                    ControlBancario.frmCheque ofrmCheque = new frmCheque();
+                case "frmListadoDocumentosBancarios":
+                    ControlBancario.frmListadoDocumentosBancarios ofrmCheque = new frmListadoDocumentosBancarios();
                     ofrmCheque.MdiParent = this;
                     ShowPagesRibbonMan(false);
                     ofrmCheque.Show();
+                    //ControlBancario.frmCheque ofrmCheque = new frmCheque();
+                    //ofrmCheque.MdiParent = this;
+                    //ShowPagesRibbonMan(false);
+                    //ofrmCheque.Show();
                     break;
                 case "frmNIT":
                     ControlBancario.frmRUC ofrmRUC = new ControlBancario.frmRUC();
@@ -527,8 +531,8 @@ namespace MainMenu
                     TreeListNode nodeListadoCuentaBancaria = tl.AppendNode(new object[] { "Cuentas Bancarias" }, nodeCatalogoBanco.Id, 11, 11, 11);
                     nodeListadoCuentaBancaria.Tag = "frmListadoCuentaBancaria";
                     TreeListNode nodeDocumentos = tl.AppendNode(new object[] { "Documentos" }, -1, 9, 10, 9);
-                    TreeListNode nodeCheques = tl.AppendNode(new object[] { "Cheques" }, nodeDocumentos.Id, 11, 11, 11);
-                    nodeCheques.Tag = "frmCheque";
+                    TreeListNode nodeCheques = tl.AppendNode(new object[] { "Listado Cheques" }, nodeDocumentos.Id, 11, 11, 11);
+                    nodeCheques.Tag = "frmListadoDocumentosBancarios";
                     TreeListNode nodeNit = tl.AppendNode(new object[] { "Nit" }, nodeDocumentos.Id, 11, 11, 11);
                     nodeNit.Tag = "frmNIT";
 

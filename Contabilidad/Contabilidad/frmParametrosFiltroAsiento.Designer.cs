@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmParametrosFiltroAsiento));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.chkSeleccAllFuente = new DevExpress.XtraEditors.CheckEdit();
+            this.chkSeleccAllTipoAsiento = new DevExpress.XtraEditors.CheckEdit();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
             this.btnFiltrar = new DevExpress.XtraEditors.SimpleButton();
             this.chkCuadreTemporal = new DevExpress.XtraEditors.CheckEdit();
@@ -52,20 +54,20 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.chkSeleccAllTipoAsiento = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkSeleccAllFuente = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllFuente.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllTipoAsiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkCuadreTemporal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstchkTipoAsiento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAnulado.Properties)).BeginInit();
@@ -88,18 +90,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllTipoAsiento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllFuente.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -123,6 +123,26 @@
             this.layoutControl1.Size = new System.Drawing.Size(505, 462);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // chkSeleccAllFuente
+            // 
+            this.chkSeleccAllFuente.Location = new System.Drawing.Point(24, 355);
+            this.chkSeleccAllFuente.Name = "chkSeleccAllFuente";
+            this.chkSeleccAllFuente.Properties.Caption = "Seleccionar todos";
+            this.chkSeleccAllFuente.Size = new System.Drawing.Size(194, 19);
+            this.chkSeleccAllFuente.StyleController = this.layoutControl1;
+            this.chkSeleccAllFuente.TabIndex = 16;
+            this.chkSeleccAllFuente.CheckedChanged += new System.EventHandler(this.chkSeleccAllFuente_CheckedChanged);
+            // 
+            // chkSeleccAllTipoAsiento
+            // 
+            this.chkSeleccAllTipoAsiento.Location = new System.Drawing.Point(276, 355);
+            this.chkSeleccAllTipoAsiento.Name = "chkSeleccAllTipoAsiento";
+            this.chkSeleccAllTipoAsiento.Properties.Caption = "Seleccionar todos";
+            this.chkSeleccAllTipoAsiento.Size = new System.Drawing.Size(205, 19);
+            this.chkSeleccAllTipoAsiento.StyleController = this.layoutControl1;
+            this.chkSeleccAllTipoAsiento.TabIndex = 15;
+            this.chkSeleccAllTipoAsiento.CheckedChanged += new System.EventHandler(this.chkSeleccAllTipoAsiento_CheckedChanged);
             // 
             // btnCancelar
             // 
@@ -358,6 +378,15 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.chkSeleccAllTipoAsiento;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 179);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(209, 23);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
+            // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -378,6 +407,15 @@
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.chkSeleccAllFuente;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 179);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(198, 23);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
@@ -433,45 +471,8 @@
             this.emptySpaceItem7.Size = new System.Drawing.Size(35, 42);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // chkSeleccAllTipoAsiento
-            // 
-            this.chkSeleccAllTipoAsiento.Location = new System.Drawing.Point(276, 355);
-            this.chkSeleccAllTipoAsiento.Name = "chkSeleccAllTipoAsiento";
-            this.chkSeleccAllTipoAsiento.Properties.Caption = "Seleccionar todos";
-            this.chkSeleccAllTipoAsiento.Size = new System.Drawing.Size(205, 19);
-            this.chkSeleccAllTipoAsiento.StyleController = this.layoutControl1;
-            this.chkSeleccAllTipoAsiento.TabIndex = 15;
-            this.chkSeleccAllTipoAsiento.CheckedChanged += new System.EventHandler(this.chkSeleccAllTipoAsiento_CheckedChanged);
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.chkSeleccAllTipoAsiento;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 179);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(209, 23);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
-            // 
-            // chkSeleccAllFuente
-            // 
-            this.chkSeleccAllFuente.Location = new System.Drawing.Point(24, 355);
-            this.chkSeleccAllFuente.Name = "chkSeleccAllFuente";
-            this.chkSeleccAllFuente.Properties.Caption = "Seleccionar todos";
-            this.chkSeleccAllFuente.Size = new System.Drawing.Size(194, 19);
-            this.chkSeleccAllFuente.StyleController = this.layoutControl1;
-            this.chkSeleccAllFuente.TabIndex = 16;
-            this.chkSeleccAllFuente.CheckedChanged += new System.EventHandler(this.chkSeleccAllFuente_CheckedChanged);
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.chkSeleccAllFuente;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 179);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(198, 23);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
             // frmParametrosFiltroAsiento
+            
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -481,8 +482,11 @@
             this.Name = "frmParametrosFiltroAsiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Filtro de Asiento de Diario";
+           
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllFuente.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllTipoAsiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkCuadreTemporal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstchkTipoAsiento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAnulado.Properties)).EndInit();
@@ -505,18 +509,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllTipoAsiento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllFuente.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             this.ResumeLayout(false);
 
         }

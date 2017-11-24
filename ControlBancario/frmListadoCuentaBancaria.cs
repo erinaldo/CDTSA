@@ -212,9 +212,9 @@ namespace ControlBancario
             this.txtLimite.EditValue = Convert.ToDecimal(Row["Limite"]);
             this.txtSaldoBancos.EditValue = Convert.ToDecimal(Row["SaldoBanco"]);
             this.txtSaldoLibros.EditValue = Convert.ToDecimal(Row["SaldoLibro"]);
-            this.txtUltDeposito.EditValue = Convert.ToDecimal(Row["UltDeposito"]);
-            this.txtUltimoCheque.EditValue = Convert.ToDecimal(Row["UltCheque"]);
-            this.txtUltTransferencia.EditValue = Convert.ToDecimal(Row["UltTransferencia"]);
+            this.txtUltDeposito.EditValue = Convert.ToDecimal(Row["ConsecDeposito"]);
+            this.txtUltimoCheque.EditValue = Convert.ToDecimal(Row["ConsecCheque"]);
+            this.txtUltTransferencia.EditValue = Convert.ToDecimal(Row["ConsecTransferencia"]);
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activa"]);
             this.dtFechaCreacion.EditValue = Convert.ToDateTime(Row["FechaCreacion"]);
 
@@ -263,15 +263,15 @@ namespace ControlBancario
                 sMensaje = sMensaje + "     • Código. \n\r";
             if (this.txtDescr.Text == "")
                 sMensaje = sMensaje + "     • Descripción. \n\r";
-            if (this.slkupBanco.EditValue.ToString() == "")
+            if (this.slkupBanco.EditValue.ToString().Trim() == "")
                 sMensaje = sMensaje + "     • Banco \n\r";
-            if (this.slkupCuentaContable.EditValue.ToString() == "")
+            if (this.slkupCuentaContable.EditValue.ToString().Trim() == "")
                 sMensaje = sMensaje + "     • Cuenta Contable \n\r";
-            if (this.slkupMoneda.EditValue.ToString() == "")
+            if (this.slkupMoneda.EditValue.ToString().Trim() == "")
                 sMensaje = sMensaje + "     • Moneda \n\r";
-            if (this.slkupTipo.EditValue.ToString() == "")
+            if (this.slkupTipo.EditValue.ToString().Trim() == "")
                 sMensaje = sMensaje + "     • Tipo Cuenta \n\r";
-            if (this.txtLimite.EditValue.ToString() == "")
+            if (this.txtLimite.EditValue.ToString().Trim() == "")
                 sMensaje = sMensaje + "     • Límite de la Cuenta \n\r";
                 //if (Convert.ToBoolean(this.chkAcumulador.EditValue) == true)
             //    if (this.slkupCentroAcumulador.EditValue == null)
@@ -431,6 +431,15 @@ namespace ControlBancario
                         MessageBox.Show(ex.Message);
                     }
                 }
+            }
+        }
+
+        private void btnFormato_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (currentRow != null)
+            {
+                frmListadoFormatoCheque ofrmListadoFormato = new frmListadoFormatoCheque(Convert.ToInt32(currentRow["IDCuentaBanco"]));
+                ofrmListadoFormato.ShowDialog();
             }
         }
 

@@ -93,7 +93,7 @@ namespace ControlBancario
             _currentRow = _dsCheque.Tables[0].Rows[0];
 
             _Asiento = _currentRow["Asiento"].ToString();
-            _TipoCambio = (_currentRow["TipoCambio"].ToString() != "") ? Convert.ToDouble(_currentRow["TipoCambio"]) : 0.0;
+            
 
         }
 
@@ -110,7 +110,7 @@ namespace ControlBancario
             _currentRow["Numero"] = 0;
             _currentRow["Pagadero_a"] = "";
             _currentRow["Monto"] = "0";
-
+            _currentRow["IDRuc"] = DBNull.Value;
             _currentRow["Usuario"] = sUsuario;
             _currentRow["Referencia"] = "";
             _currentRow["ConceptoContable"] = "";
@@ -153,7 +153,7 @@ namespace ControlBancario
             this.txtAsientoAnulacion.Text = _currentRow["AsientoAnulacion"].ToString();
             this.txtConcepto.EditValue = _currentRow["ConceptoContable"].ToString();
             this.txtReferencia.Text = _currentRow["Referencia"].ToString();
-
+            this.slkupRuc.EditValue =_currentRow["IDRuc"].ToString();
             this.txtUsuario.EditValue = _currentRow["Usuario"].ToString();
             this.txtUsuarioAnulacion.EditValue = _currentRow["UsuarioAnulacion"].ToString();
             this.txtFechaAnulacion.EditValue = _currentRow["FechaAnulacion"].ToString();
@@ -173,6 +173,7 @@ namespace ControlBancario
             this.txtReferencia.ReadOnly = !Activo;
             this.slkupTipo.ReadOnly = !Activo;
             this.slkupSubTipo.ReadOnly = !Activo;
+            this.slkupRuc.ReadOnly = !Activo;
             this.txtPagaderoA.ReadOnly = !(Activo);
             this.txtMonto.ReadOnly = !(Activo);
             this.txtReferencia.ReadOnly = !(Activo);
@@ -270,24 +271,26 @@ namespace ControlBancario
                 EnlazarEventos();
 
 
+                Util.Util.ConfigLookupEdit(this.slkupRuc, RucDAC.GetData(-1).Tables["Data"], "Descr", "IDRuc");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupRuc, "[{'ColumnCaption':'Ruc','ColumnField':'RUC','width':30},{'ColumnCaption':'Nombre','ColumnField':'Nombre','width':30},{'ColumnCaption':'Alias','ColumnField':'Alias','width':70}]");
 
 
                 Util.Util.ConfigLookupEdit(this.slkupTipo, TipoDocumentoDAC.GetData(-1).Tables["Data"], "Descr", "IDTipo");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipo, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-                Util.Util.ConfigLookupEdit(this.slkupCuentaBancaria, CuentaBancariaDAC.GetData(-1, -1).Tables["Data"], "Descr", "IDCuenta");
+                Util.Util.ConfigLookupEdit(this.slkupCuentaBancaria, CuentaBancariaDAC.GetData(-1, -1).Tables["Data"], "Descr", "IDCuentaBanco");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaBancaria, "[{'ColumnCaption':'Codigo','ColumnField':'Codigo','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 
                 UpdateControlsFromDataRow(_currentRow);
 
-                this.txtNumero.EditValue = SubTipoDocumentoDAC.GetNextConsecutivo(Convert.ToInt32(this.slkupTipo.EditValue), Convert.ToInt32(this.slkupSubTipo.EditValue));
+                this.txtNumero.EditValue = CuentaBancariaDAC.NextConsecutivoCheque(Convert.ToInt32(this.slkupCuentaBancaria.EditValue));
 
                 if (Accion == "New")
                 {
                     HabilitarControles(true, false);
                     ClearControls();
-                    this.tabAuditoria.Visible = false;
+                    this.tabDocumento.Visible = false;
                     this.ValidateChildren();
                     this.slkupSubTipo.Enabled = false;
                 }
@@ -384,6 +387,7 @@ namespace ControlBancario
                     _currentRow["IDCuentaBanco"] = this.slkupCuentaBancaria.EditValue.ToString();
                     _currentRow["Fecha"] = this.dtpFecha.EditValue;
                     _currentRow["IDTipo"] = this.slkupTipo.EditValue;
+                    _currentRow["IDRuc"] = this.slkupRuc.EditValue;
                     _currentRow["IDSubTipo"] = this.slkupSubTipo.EditValue;
                     _currentRow["Numero"] = this.txtNumero.EditValue;
                     _currentRow["Pagadero_a"] = this.txtPagaderoA.EditValue;
@@ -447,6 +451,7 @@ namespace ControlBancario
 
                 _currentRow["IDCuentaBanco"] = this.slkupCuentaBancaria.EditValue.ToString();
                 _currentRow["Fecha"] = this.dtpFecha.EditValue;
+                _currentRow["IDRuc"] = this.slkupRuc.EditValue;
                 _currentRow["IDTipo"] = this.slkupTipo.EditValue;
                 _currentRow["IDSubTipo"] = this.slkupSubTipo.EditValue;
                 _currentRow["Numero"] = this.txtNumero.EditValue;
@@ -573,11 +578,37 @@ namespace ControlBancario
 
         private void slkupSubTipo_EditValueChanged(object sender, EventArgs e)
         {
-            if (this.slkupSubTipo.EditValue != null && this.slkupSubTipo.EditValue.ToString() != "")
+            //if (this.slkupSubTipo.EditValue != null && this.slkupSubTipo.EditValue.ToString() != "")
+            //{
+            //    //Obtener el consecutivo
+            //    this.txtNumero.EditValue = CuentaBancariaDAC.NextConsecutivoCheque(Convert.ToInt32(this.slkupCuentaBancaria.EditValue));
+            //}
+        }
+
+        private void slkupCuentaBancaria_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.slkupCuentaBancaria.EditValue.ToString() != "" || this.slkupCuentaBancaria.EditValue != null)
             {
-                //Obtener el consecutivo
-                this.txtNumero.EditValue = SubTipoDocumentoDAC.GetNextConsecutivo(Convert.ToInt32(this.slkupTipo.EditValue), Convert.ToInt32(this.slkupSubTipo.EditValue));
+                this.tabDocumento.TabPages[0].PageEnabled = true;
+                this.tabDocumento.TabPages[1].PageEnabled = true;
+                this.txtNumero.EditValue = CuentaBancariaDAC.NextConsecutivoCheque(Convert.ToInt32(this.slkupCuentaBancaria.EditValue));
             }
+            else {
+                this.tabDocumento.TabPages[0].PageEnabled = false;
+                this.tabDocumento.TabPages[1].PageEnabled = false;
+            }
+
+
+        }
+
+        private void btnImprimir_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnAprobar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
 
 

@@ -141,19 +141,17 @@ namespace ControlBancario
             this.slkupSubTipoDocumento.EditValue =null;
             this.txtSubTipo.EditValue="";
             this.chkReadOnly.EditValue= null;
-            this.txtConsecutivo.EditValue = "";
+            
             
         }
 
         private void HabilitarControles(bool Activo)
         {
-            //this.txtNivel1.ReadOnly = Activo;
-            //this.txtNivel2.ReadOnly = Activo;
-            //this.txtNivel3.ReadOnly = Activo;
+      
             this.slkupSubTipoDocumento.ReadOnly = !Activo;
             this.txtSubTipo.ReadOnly = !Activo;
             this.chkReadOnly.ReadOnly = true;
-            this.txtConsecutivo.ReadOnly = !Activo;
+            
             this.txtDescr.ReadOnly = !Activo;
             this.chkActivo.ReadOnly = !Activo;
             
@@ -188,7 +186,7 @@ namespace ControlBancario
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
             this.chkReadOnly.EditValue = Convert.ToBoolean(Row["ReadOnlySys"]);
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
-            this.txtConsecutivo.EditValue = Row["Consecutivo"].ToString();
+           
     
         }
 
@@ -233,8 +231,7 @@ namespace ControlBancario
                 sMensaje = sMensaje + "     • SubTipoDocumento. \n\r";
             if (this.txtDescr.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Descripción. \n\r";
-            if (this.txtConsecutivo.EditValue.ToString() == "")
-                sMensaje = sMensaje + "     • Consecutivo. \n\r";
+            
             //if (Convert.ToBoolean(this.chkAcumulador.EditValue) == true)
             //    if (this.slkupCentroAcumulador.EditValue == null)
             //        sMensaje = sMensaje + "     • Centro Acumulador. \n\r";
@@ -264,7 +261,7 @@ namespace ControlBancario
                 currentRow["IDTipo"] = this.slkupSubTipoDocumento.EditValue;
                 currentRow["SubTipo"] = this.txtSubTipo.EditValue;
                 currentRow["Activo"] = this.chkActivo.EditValue;
-                currentRow["Consecutivo"] = this.txtConsecutivo.EditValue;
+               
                 
                 currentRow.EndEdit();
 
@@ -324,7 +321,7 @@ namespace ControlBancario
                 
                
                 currentRow["Activo"] = this.chkActivo.EditValue;
-                currentRow["Consecutivo"] = this.txtConsecutivo.EditValue;
+               
                 
                 _dtSubTipoDocumento.Rows.Add(currentRow);
                 try

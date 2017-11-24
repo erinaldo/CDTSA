@@ -124,7 +124,44 @@ namespace ControlBancario.DAC
             return DS;
         }
 
+        public static int NextConsecutivoCheque(int IDCuentaBanco)
+        {
+            int ID = 0;
+            DataSet DS = new DataSet();
 
+            SqlCommand oCmd = new SqlCommand("dbo.cbNextConsecutivoCheque", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add("@IDCuentaBanco", SqlDbType.Int).Value = IDCuentaBanco;
+                oCmd.Parameters.Add("@NextConsecutivo", SqlDbType.Int);
+                oCmd.Parameters["@NextConsecutivo"].Direction = ParameterDirection.Output;
+
+
+                if (oConn.State == ConnectionState.Closed)
+                    oConn.Open();
+                oCmd.ExecuteNonQuery();
+
+                if (oCmd.Parameters["@NextConsecutivo"].Value != DBNull.Value)
+                    ID = (int)oCmd.Parameters["@NextConsecutivo"].Value;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return ID;
+
+        }
 
        
     }

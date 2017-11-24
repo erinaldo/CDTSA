@@ -36,11 +36,23 @@
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnFiltro = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.gridDocumentos = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Fecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CuentaBanco = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Tipo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SubTipo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nombre = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Alias = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cPagaderoa = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Monto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CReferencia = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CConceptoContable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
@@ -62,9 +74,10 @@
             this.btnAnular,
             this.lblStatus,
             this.btnExportar,
-            this.btnRefrescar});
+            this.btnRefrescar,
+            this.btnFiltro});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 4;
+            this.ribbonControl.MaxItemId = 5;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -117,6 +130,15 @@
             this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
             this.btnRefrescar.Name = "btnRefrescar";
             // 
+            // btnFiltro
+            // 
+            this.btnFiltro.Caption = "Filtro";
+            this.btnFiltro.Glyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.Glyph")));
+            this.btnFiltro.Id = 4;
+            this.btnFiltro.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.LargeGlyph")));
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BtnFiltro_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -126,6 +148,7 @@
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAgregar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAnular);
@@ -158,8 +181,108 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Fecha,
+            this.CuentaBanco,
+            this.Tipo,
+            this.SubTipo,
+            this.Nombre,
+            this.Alias,
+            this.cPagaderoa,
+            this.Monto,
+            this.Usuario,
+            this.CReferencia,
+            this.CConceptoContable});
             this.gridView1.GridControl = this.gridDocumentos;
             this.gridView1.Name = "gridView1";
+            // 
+            // Fecha
+            // 
+            this.Fecha.Caption = "Fecha";
+            this.Fecha.FieldName = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = true;
+            this.Fecha.VisibleIndex = 0;
+            // 
+            // CuentaBanco
+            // 
+            this.CuentaBanco.Caption = "Cuenta Banco";
+            this.CuentaBanco.FieldName = "DescrCuentaBancaria";
+            this.CuentaBanco.Name = "CuentaBanco";
+            this.CuentaBanco.Visible = true;
+            this.CuentaBanco.VisibleIndex = 1;
+            // 
+            // Tipo
+            // 
+            this.Tipo.Caption = "Tipo";
+            this.Tipo.FieldName = "DescrTipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.Visible = true;
+            this.Tipo.VisibleIndex = 2;
+            // 
+            // SubTipo
+            // 
+            this.SubTipo.Caption = "Sub Tipo";
+            this.SubTipo.FieldName = "DescrSubTipo";
+            this.SubTipo.Name = "SubTipo";
+            this.SubTipo.Visible = true;
+            this.SubTipo.VisibleIndex = 3;
+            // 
+            // Nombre
+            // 
+            this.Nombre.Caption = "Nombre";
+            this.Nombre.FieldName = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Visible = true;
+            this.Nombre.VisibleIndex = 4;
+            // 
+            // Alias
+            // 
+            this.Alias.Caption = "Alias";
+            this.Alias.FieldName = "Alias";
+            this.Alias.Name = "Alias";
+            this.Alias.Visible = true;
+            this.Alias.VisibleIndex = 5;
+            // 
+            // cPagaderoa
+            // 
+            this.cPagaderoa.Caption = "Pagadero A";
+            this.cPagaderoa.FieldName = "Pagadero_a";
+            this.cPagaderoa.Name = "cPagaderoa";
+            this.cPagaderoa.Visible = true;
+            this.cPagaderoa.VisibleIndex = 6;
+            // 
+            // Monto
+            // 
+            this.Monto.Caption = "Monto";
+            this.Monto.FieldName = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.Visible = true;
+            this.Monto.VisibleIndex = 7;
+            // 
+            // Usuario
+            // 
+            this.Usuario.Caption = "Usuario";
+            this.Usuario.FieldName = "Usuario";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.Visible = true;
+            this.Usuario.VisibleIndex = 8;
+            // 
+            // CReferencia
+            // 
+            this.CReferencia.Caption = "Referencia";
+            this.CReferencia.FieldName = "Referencia";
+            this.CReferencia.Name = "CReferencia";
+            this.CReferencia.Visible = true;
+            this.CReferencia.VisibleIndex = 9;
+            // 
+            // CConceptoContable
+            // 
+            this.CConceptoContable.Caption = "Concepto Contable";
+            this.CConceptoContable.FieldName = "ConceptoContable";
+            this.CConceptoContable.Name = "CConceptoContable";
+            this.CConceptoContable.Visible = true;
+            this.CConceptoContable.VisibleIndex = 10;
             // 
             // layoutControlGroup1
             // 
@@ -220,5 +343,17 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraBars.BarButtonItem btnFiltro;
+        private DevExpress.XtraGrid.Columns.GridColumn Fecha;
+        private DevExpress.XtraGrid.Columns.GridColumn CuentaBanco;
+        private DevExpress.XtraGrid.Columns.GridColumn Tipo;
+        private DevExpress.XtraGrid.Columns.GridColumn SubTipo;
+        private DevExpress.XtraGrid.Columns.GridColumn Nombre;
+        private DevExpress.XtraGrid.Columns.GridColumn Alias;
+        private DevExpress.XtraGrid.Columns.GridColumn cPagaderoa;
+        private DevExpress.XtraGrid.Columns.GridColumn Monto;
+        private DevExpress.XtraGrid.Columns.GridColumn Usuario;
+        private DevExpress.XtraGrid.Columns.GridColumn CReferencia;
+        private DevExpress.XtraGrid.Columns.GridColumn CConceptoContable;
     }
 }

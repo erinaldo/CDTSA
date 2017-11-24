@@ -45,9 +45,11 @@
             this.txtAsiento = new DevExpress.XtraEditors.TextEdit();
             this.slkupCuentaBancaria = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tabAuditoria = new DevExpress.XtraTab.XtraTabControl();
+            this.tabDocumento = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.slkupRuc = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtReferencia = new DevExpress.XtraEditors.TextEdit();
             this.txtMonto = new DevExpress.XtraEditors.TextEdit();
             this.txtPagaderoA = new DevExpress.XtraEditors.TextEdit();
@@ -69,6 +71,7 @@
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.txtUsuario = new DevExpress.XtraEditors.TextEdit();
@@ -87,17 +90,21 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAprobar = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaBancaria.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabAuditoria)).BeginInit();
-            this.tabAuditoria.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabDocumento)).BeginInit();
+            this.tabDocumento.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupRuc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferencia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMonto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPagaderoA.Properties)).BeginInit();
@@ -120,6 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
@@ -153,9 +161,11 @@
             this.btnEliminar,
             this.lblStatus,
             this.btnExportar,
-            this.btnRefrescar});
+            this.btnRefrescar,
+            this.btnImprimir,
+            this.btnAprobar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 4;
+            this.ribbonControl.MaxItemId = 6;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -229,7 +239,7 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Operaciones Tipo Cuenta";
+            this.ribbonPage1.Text = "Operaciones Documento";
             // 
             // ribbonPageGroup1
             // 
@@ -240,6 +250,8 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnImprimir);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnAprobar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -248,7 +260,7 @@
             this.layoutControl1.Controls.Add(this.txtAsientoAnulacion);
             this.layoutControl1.Controls.Add(this.txtAsiento);
             this.layoutControl1.Controls.Add(this.slkupCuentaBancaria);
-            this.layoutControl1.Controls.Add(this.tabAuditoria);
+            this.layoutControl1.Controls.Add(this.tabDocumento);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
@@ -286,6 +298,7 @@
             this.slkupCuentaBancaria.Size = new System.Drawing.Size(578, 20);
             this.slkupCuentaBancaria.StyleController = this.layoutControl1;
             this.slkupCuentaBancaria.TabIndex = 0;
+            this.slkupCuentaBancaria.EditValueChanged += new System.EventHandler(this.slkupCuentaBancaria_EditValueChanged);
             // 
             // searchLookUpEdit1View
             // 
@@ -294,14 +307,14 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
-            // tabAuditoria
+            // tabDocumento
             // 
-            this.tabAuditoria.Location = new System.Drawing.Point(12, 109);
-            this.tabAuditoria.Name = "tabAuditoria";
-            this.tabAuditoria.SelectedTabPage = this.xtraTabPage1;
-            this.tabAuditoria.Size = new System.Drawing.Size(670, 315);
-            this.tabAuditoria.TabIndex = 4;
-            this.tabAuditoria.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.tabDocumento.Location = new System.Drawing.Point(12, 109);
+            this.tabDocumento.Name = "tabDocumento";
+            this.tabDocumento.SelectedTabPage = this.xtraTabPage1;
+            this.tabDocumento.Size = new System.Drawing.Size(670, 315);
+            this.tabDocumento.TabIndex = 4;
+            this.tabDocumento.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage3});
             // 
@@ -315,6 +328,7 @@
             // 
             // layoutControl2
             // 
+            this.layoutControl2.Controls.Add(this.slkupRuc);
             this.layoutControl2.Controls.Add(this.txtReferencia);
             this.layoutControl2.Controls.Add(this.txtMonto);
             this.layoutControl2.Controls.Add(this.txtPagaderoA);
@@ -331,9 +345,28 @@
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
+            // slkupRuc
+            // 
+            this.slkupRuc.Location = new System.Drawing.Point(74, 84);
+            this.slkupRuc.MenuManager = this.ribbonControl;
+            this.slkupRuc.Name = "slkupRuc";
+            this.slkupRuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupRuc.Properties.View = this.gridView1;
+            this.slkupRuc.Size = new System.Drawing.Size(578, 20);
+            this.slkupRuc.StyleController = this.layoutControl2;
+            this.slkupRuc.TabIndex = 8;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
             // txtReferencia
             // 
-            this.txtReferencia.Location = new System.Drawing.Point(457, 108);
+            this.txtReferencia.Location = new System.Drawing.Point(457, 132);
             this.txtReferencia.MenuManager = this.ribbonControl;
             this.txtReferencia.Name = "txtReferencia";
             this.txtReferencia.Size = new System.Drawing.Size(195, 20);
@@ -342,7 +375,7 @@
             // 
             // txtMonto
             // 
-            this.txtMonto.Location = new System.Drawing.Point(74, 108);
+            this.txtMonto.Location = new System.Drawing.Point(74, 132);
             this.txtMonto.MenuManager = this.ribbonControl;
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(211, 20);
@@ -351,7 +384,7 @@
             // 
             // txtPagaderoA
             // 
-            this.txtPagaderoA.Location = new System.Drawing.Point(74, 84);
+            this.txtPagaderoA.Location = new System.Drawing.Point(74, 108);
             this.txtPagaderoA.MenuManager = this.ribbonControl;
             this.txtPagaderoA.Name = "txtPagaderoA";
             this.txtPagaderoA.Size = new System.Drawing.Size(578, 20);
@@ -427,10 +460,10 @@
             // 
             // txtConcepto
             // 
-            this.txtConcepto.Location = new System.Drawing.Point(74, 132);
+            this.txtConcepto.Location = new System.Drawing.Point(74, 156);
             this.txtConcepto.MenuManager = this.ribbonControl;
             this.txtConcepto.Name = "txtConcepto";
-            this.txtConcepto.Size = new System.Drawing.Size(578, 140);
+            this.txtConcepto.Size = new System.Drawing.Size(578, 116);
             this.txtConcepto.StyleController = this.layoutControl2;
             this.txtConcepto.TabIndex = 6;
             // 
@@ -448,7 +481,8 @@
             this.layoutControlItem6,
             this.layoutControlItem14,
             this.emptySpaceItem5,
-            this.emptySpaceItem6});
+            this.emptySpaceItem6,
+            this.layoutControlItem16});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(664, 284);
@@ -484,7 +518,7 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtPagaderoA;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(644, 24);
             this.layoutControlItem7.Text = "Pagadero a:";
@@ -493,7 +527,7 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtMonto;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(277, 24);
             this.layoutControlItem8.Text = "Monto:";
@@ -502,9 +536,9 @@
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.txtConcepto;
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 120);
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(644, 144);
+            this.layoutControlItem15.Size = new System.Drawing.Size(644, 120);
             this.layoutControlItem15.Text = "Concepto:";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(59, 13);
             // 
@@ -520,7 +554,7 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.txtReferencia;
-            this.layoutControlItem14.Location = new System.Drawing.Point(383, 96);
+            this.layoutControlItem14.Location = new System.Drawing.Point(383, 120);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(261, 24);
             this.layoutControlItem14.Text = "Referencia:";
@@ -537,10 +571,19 @@
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(277, 96);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(277, 120);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
             this.emptySpaceItem6.Size = new System.Drawing.Size(106, 24);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.slkupRuc;
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(644, 24);
+            this.layoutControlItem16.Text = "Ruc:";
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(59, 13);
             // 
             // xtraTabPage3
             // 
@@ -653,7 +696,7 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.tabAuditoria;
+            this.layoutControlItem1.Control = this.tabDocumento;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 97);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(674, 319);
@@ -722,6 +765,25 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(674, 24);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.Caption = "Imprimir";
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Glyph")));
+            this.btnImprimir.Id = 4;
+            this.btnImprimir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImprimir.LargeGlyph")));
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImprimir_ItemClick_1);
+            // 
+            // btnAprobar
+            // 
+            this.btnAprobar.Caption = "Aprobar";
+            this.btnAprobar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAprobar.Glyph")));
+            this.btnAprobar.Id = 5;
+            this.btnAprobar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAprobar.LargeGlyph")));
+            this.btnAprobar.Name = "btnAprobar";
+            this.btnAprobar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAprobar_ItemClick);
+            // 
             // frmCheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -731,7 +793,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmCheque";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmDocumento";
+            this.Text = "Documento Bancario";
             this.Load += new System.EventHandler(this.frmDocumento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -739,11 +801,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaBancaria.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabAuditoria)).EndInit();
-            this.tabAuditoria.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabDocumento)).EndInit();
+            this.tabDocumento.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.slkupRuc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferencia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMonto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPagaderoA.Properties)).EndInit();
@@ -766,6 +830,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.xtraTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
@@ -808,7 +873,7 @@
         private DevExpress.XtraEditors.TextEdit txtAsiento;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaBancaria;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraTab.XtraTabControl tabAuditoria;
+        private DevExpress.XtraTab.XtraTabControl tabDocumento;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraEditors.TextEdit txtReferencia;
@@ -850,5 +915,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupRuc;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private DevExpress.XtraBars.BarButtonItem btnImprimir;
+        private DevExpress.XtraBars.BarButtonItem btnAprobar;
     }
 }

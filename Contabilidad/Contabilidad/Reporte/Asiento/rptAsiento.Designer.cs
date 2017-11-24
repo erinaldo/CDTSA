@@ -47,8 +47,8 @@
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.SubBand1 = new DevExpress.XtraReports.UI.SubBand();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.OcultarReferencia = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource();
@@ -62,6 +62,11 @@
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrCheckBox1 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
@@ -89,11 +94,7 @@
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrShape1 = new DevExpress.XtraReports.UI.XRShape();
-            this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCheckBox1 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -225,6 +226,15 @@
             this.xrLabel12.SizeF = new System.Drawing.SizeF(684.6251F, 23F);
             this.xrLabel12.Text = "xrLabel12";
             // 
+            // OcultarReferencia
+            // 
+            this.OcultarReferencia.Condition = "[Referencia]==null";
+            // 
+            // 
+            // 
+            this.OcultarReferencia.Formatting.Visible = DevExpress.Utils.DefaultBoolean.False;
+            this.OcultarReferencia.Name = "OcultarReferencia";
+            // 
             // xrLabel27
             // 
             this.xrLabel27.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
@@ -234,15 +244,6 @@
             this.xrLabel27.SizeF = new System.Drawing.SizeF(84.37503F, 23F);
             this.xrLabel27.StylePriority.UseFont = false;
             this.xrLabel27.Text = "Referencia";
-            // 
-            // OcultarReferencia
-            // 
-            this.OcultarReferencia.Condition = "[Referencia]==null";
-            // 
-            // 
-            // 
-            this.OcultarReferencia.Formatting.Visible = DevExpress.Utils.DefaultBoolean.False;
-            this.OcultarReferencia.Name = "OcultarReferencia";
             // 
             // TopMargin
             // 
@@ -393,9 +394,65 @@
             this.xrLabel38,
             this.xrLabel37,
             this.xrLabel33,
-            this.xrPictureBox1});
+            this.xrPictureBox1,
+            this.xrPageInfo1});
             this.ReportHeader.HeightF = 89.45834F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // xrLabel40
+            // 
+            this.xrLabel40.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(540.0419F, 66.45829F);
+            this.xrLabel40.Name = "xrLabel40";
+            this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel40.SizeF = new System.Drawing.SizeF(127.9168F, 23F);
+            this.xrLabel40.StylePriority.UseFont = false;
+            this.xrLabel40.StylePriority.UseTextAlignment = false;
+            this.xrLabel40.Text = "Fecha Mayorización:";
+            this.xrLabel40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrLabel39
+            // 
+            this.xrLabel39.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(560.4581F, 43.45834F);
+            this.xrLabel39.Name = "xrLabel39";
+            this.xrLabel39.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel39.SizeF = new System.Drawing.SizeF(107.5002F, 22.99999F);
+            this.xrLabel39.StylePriority.UseFont = false;
+            this.xrLabel39.StylePriority.UseTextAlignment = false;
+            this.xrLabel39.Text = "Mayorizado por:";
+            this.xrLabel39.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // xrCheckBox1
+            // 
+            this.xrCheckBox1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("CheckState", null, "cntRptGetAsiento.Mayorizado")});
+            this.xrCheckBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrCheckBox1.LocationFloat = new DevExpress.Utils.PointFloat(458.3748F, 43.4583F);
+            this.xrCheckBox1.Name = "xrCheckBox1";
+            this.xrCheckBox1.SizeF = new System.Drawing.SizeF(89.58334F, 23F);
+            this.xrCheckBox1.StylePriority.UseFont = false;
+            this.xrCheckBox1.Text = "Mayorizado";
+            // 
+            // xrLabel38
+            // 
+            this.xrLabel38.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntRptGetAsiento.MayorizadoDate", "{0:dd/MM/yyyy}")});
+            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(667.9583F, 66.45832F);
+            this.xrLabel38.Name = "xrLabel38";
+            this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel38.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel38.Text = "xrLabel38";
+            // 
+            // xrLabel37
+            // 
+            this.xrLabel37.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntRptGetAsiento.Mayorizadoby")});
+            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(667.9587F, 43.45834F);
+            this.xrLabel37.Name = "xrLabel37";
+            this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel37.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel37.Text = "xrLabel37";
             // 
             // xrLabel33
             // 
@@ -710,60 +767,12 @@
             this.xrShape1.Shape = shapeRectangle1;
             this.xrShape1.SizeF = new System.Drawing.SizeF(769.0001F, 23F);
             // 
-            // xrLabel37
+            // xrPageInfo1
             // 
-            this.xrLabel37.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntRptGetAsiento.Mayorizadoby")});
-            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(667.9587F, 43.45834F);
-            this.xrLabel37.Name = "xrLabel37";
-            this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel37.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel37.Text = "xrLabel37";
-            // 
-            // xrLabel38
-            // 
-            this.xrLabel38.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "cntRptGetAsiento.MayorizadoDate", "{0:dd/MM/yyyy}")});
-            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(667.9583F, 66.45832F);
-            this.xrLabel38.Name = "xrLabel38";
-            this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel38.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel38.Text = "xrLabel38";
-            // 
-            // xrCheckBox1
-            // 
-            this.xrCheckBox1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("CheckState", null, "cntRptGetAsiento.Mayorizado")});
-            this.xrCheckBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrCheckBox1.LocationFloat = new DevExpress.Utils.PointFloat(458.3748F, 43.4583F);
-            this.xrCheckBox1.Name = "xrCheckBox1";
-            this.xrCheckBox1.SizeF = new System.Drawing.SizeF(89.58334F, 23F);
-            this.xrCheckBox1.StylePriority.UseFont = false;
-            this.xrCheckBox1.Text = "Mayorizado";
-            // 
-            // xrLabel39
-            // 
-            this.xrLabel39.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(560.4581F, 43.45834F);
-            this.xrLabel39.Name = "xrLabel39";
-            this.xrLabel39.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel39.SizeF = new System.Drawing.SizeF(107.5002F, 22.99999F);
-            this.xrLabel39.StylePriority.UseFont = false;
-            this.xrLabel39.StylePriority.UseTextAlignment = false;
-            this.xrLabel39.Text = "Mayorizado por:";
-            this.xrLabel39.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
-            // 
-            // xrLabel40
-            // 
-            this.xrLabel40.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(540.0419F, 66.45829F);
-            this.xrLabel40.Name = "xrLabel40";
-            this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel40.SizeF = new System.Drawing.SizeF(127.9168F, 23F);
-            this.xrLabel40.StylePriority.UseFont = false;
-            this.xrLabel40.StylePriority.UseTextAlignment = false;
-            this.xrLabel40.Text = "Fecha Mayorización:";
-            this.xrLabel40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(737.1248F, 10.00001F);
+            this.xrPageInfo1.Name = "xrPageInfo1";
+            this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrPageInfo1.SizeF = new System.Drawing.SizeF(21.87524F, 23F);
             // 
             // rptAsiento
             // 
@@ -849,5 +858,6 @@
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel38;
         private DevExpress.XtraReports.UI.XRLabel xrLabel37;
+        private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
     }
 }

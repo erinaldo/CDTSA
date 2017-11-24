@@ -18,6 +18,16 @@ namespace ControlBancario
         DateTime _FechaInicial;
         DateTime _FechaFinal;
 
+        String NombreRuc="";
+        String AliasRuc="";
+        int IdTipo=-1;
+        int IdSubTipo=-1;
+        int IdRuc=-1;
+        String PagaderoA="";
+        int Anulado=-1;
+        String Referencia="";
+        String ConceptoContable="";
+
         public frmListadoDocumentosBancarios()
         {
             InitializeComponent();
@@ -69,15 +79,28 @@ namespace ControlBancario
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void MostrarElementoSeleccionado() {
+            frmCheque ofrmCheque = new frmCheque(Convert.ToInt32(_currentRow["IDCuentaBanco"]),
+                                                         Convert.ToInt32(_currentRow["IDTipo"]),
+                                                         Convert.ToInt32(_currentRow["IDSubTipo"]),
+                                                         Convert.ToInt32(_currentRow["IDRuc"]),
+                                                         _currentRow["Numero"].ToString()
+                                                         );
+            ofrmCheque.FormClosed += ofrmCheque_FormClosed;
+            ofrmCheque.ShowDialog();
+        }
         private void GridView_DoubleClick(object sender, EventArgs e)
         {
             if (_currentRow != null && this.gridView1.SelectedRowsCount == 1)
             {
-                //frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
-                //ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
-                //ofrmAsiento.ShowDialog();
-
+                MostrarElementoSeleccionado();
             }
+        }
+
+        void ofrmCheque_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            PopulateGrid();
         }
 
 
@@ -89,7 +112,7 @@ namespace ControlBancario
             if (index > -1)
             {
                 _currentRow = gridView1.GetDataRow(index);
-                //UpdateControlsFromCurrentRow(_currentRow);
+                
             }
             else _currentRow = null;
         }
@@ -126,28 +149,33 @@ namespace ControlBancario
             process.Start();
         }
 
-        //private void BtnFiltro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        //{
-        //    frmParametrosFiltroAsiento ofrmFiltro = new frmParametrosFiltroAsiento(_FechaInicial, _FechaFinal, _ModuloFuente, _TipoAsiento, (_Mayorizado == 1) ? true : false, (_Anulado == 1) ? true : false, (_CuadreTemporal == 1) ? true : false);
-        //    ofrmFiltro.FormClosed += OfrmFiltro_FormClosed;
-        //    ofrmFiltro.ShowDialog();
-        //}
+        private void BtnFiltro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmParametrosFiltroDocumentoBancario ofrmFiltro = new frmParametrosFiltroDocumentoBancario(_FechaInicial, _FechaFinal,Anulado,IdTipo,IdSubTipo,IdRuc,NombreRuc,AliasRuc,PagaderoA,Referencia,ConceptoContable);
+            ofrmFiltro.FormClosed += OfrmFiltro_FormClosed;
+            ofrmFiltro.ShowDialog();
+        }
 
-        //private void OfrmFiltro_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //    frmParametrosFiltroAsiento ofrmFiltro = (frmParametrosFiltroAsiento)sender;
-        //    //Obtener las variables de filtro
-        //    _FechaInicial = ofrmFiltro.FechaInicial;
-        //    _FechaFinal = ofrmFiltro.FechaFinal;
-        //    _Mayorizado = (Convert.ToInt32(ofrmFiltro.Mayorizado) == 0) ? -1 : Convert.ToInt32(ofrmFiltro.Mayorizado);
-        //    _Anulado = (Convert.ToInt32(ofrmFiltro.Anulado) == 0) ? -1 : Convert.ToInt32(ofrmFiltro.Anulado);
-        //    _CuadreTemporal = Convert.ToInt32(ofrmFiltro.CuadreTemporal);
-        //    _TipoAsiento = ofrmFiltro.TipoAsiento;
-        //    _ModuloFuente = ofrmFiltro.ModuloFuente;
-        //    ofrmFiltro.FormClosed -= OfrmFiltro_FormClosed;
+        private void OfrmFiltro_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmParametrosFiltroDocumentoBancario ofrmFiltro = (frmParametrosFiltroDocumentoBancario)sender;
+            //Obtener las variables de filtro
+            _FechaInicial = ofrmFiltro.FechaInicial;
+            _FechaFinal = ofrmFiltro.FechaFinal;
+            Anulado = ofrmFiltro.Anulado;
+            IdTipo = ofrmFiltro.IdTipo;
+            IdSubTipo = ofrmFiltro.IdSubTipo;
+            IdRuc = ofrmFiltro.IdRuc;
+            NombreRuc = ofrmFiltro.NombreRuc;
+            AliasRuc = ofrmFiltro.AliasRuc;
+            PagaderoA = ofrmFiltro.PagaderaA;
+            Referencia = ofrmFiltro.Referencia;
+            ConceptoContable = ofrmFiltro.ConceptoContable;
+            
+            ofrmFiltro.FormClosed -= OfrmFiltro_FormClosed;
 
-        //    PopulateGrid();
-        //}
+            PopulateGrid();
+        }
 
         private void BtnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -222,25 +250,19 @@ namespace ControlBancario
         {
             if (_currentRow != null)
             {
-                //frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
-                //ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
-                //ofrmAsiento.ShowDialog();
-
+                MostrarElementoSeleccionado();
             }
         }
 
-        private void OfrmAsiento_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            PopulateGrid();
-        }
+ 
 
         private void BtnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //frmAsiento ofrmAsiento = new frmAsiento();
-            //ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
+            frmCheque ofrmCheque  = new frmCheque();
+            ofrmCheque.FormClosed+=ofrmCheque_FormClosed;
 
-            //if (!ofrmAsiento.IsDisposed)
-            //    ofrmAsiento.ShowDialog();
+            if (!ofrmCheque.IsDisposed)
+                ofrmCheque.ShowDialog();
 
         }
 
@@ -249,10 +271,11 @@ namespace ControlBancario
 
         private void PopulateGrid()
         {
-            //_dsDocumentos = DAC..GetDataByCriterio(_FechaInicial, _FechaFinal, _TipoAsiento, _Mayorizado, _Anulado, _ModuloFuente, _CuadreTemporal, _sUsuario);
-            //_dtDocumentos = _dsDocumentos.Tables[0];
-            //this.gridDocumentos.DataSource = null;
-            //this.gridDocumentos.DataSource = _dtDocumentos;
+            _dsDocumentos = DAC.MovimientosDAC.GetDatosByCriterio(_FechaInicial, _FechaFinal, IdRuc, NombreRuc, AliasRuc, IdTipo, IdSubTipo, PagaderoA, Anulado, Referencia, ConceptoContable);
+
+            _dtDocumentos = _dsDocumentos.Tables[0];
+            this.gridDocumentos.DataSource = null;
+            this.gridDocumentos.DataSource = _dtDocumentos;
 
 
         }
@@ -322,5 +345,8 @@ namespace ControlBancario
 
 
         }
+
+        
+     
     }
 }

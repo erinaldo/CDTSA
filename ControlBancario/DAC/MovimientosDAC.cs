@@ -15,14 +15,14 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  M.IDCuentaBanco ,M.Fecha ,M.IDTipo ,M.IDSubTipo ,RIDRuc,R.Nombre,R.Alias,M.Numero ,M.Pagadero_a ,M.Monto ,M.Asiento ,M.Anulado ,M.AsientoAnulacion ,M.Usuario ,M.UsuarioAnulacion ,M.FechaAnulacion ,M.Referencia ,M.ConceptoContable  " +
+            String getSQL = "SELECT  M.IDCuentaBanco ,M.Fecha ,M.IDTipo ,M.IDSubTipo ,R.IDRuc,R.Nombre,R.Alias,M.Numero ,M.Pagadero_a ,M.Monto ,M.Asiento ,M.Anulado ,M.AsientoAnulacion ,M.Usuario ,M.UsuarioAnulacion ,M.FechaAnulacion ,M.Referencia ,M.ConceptoContable  " +
                             "FROM dbo.cbMovimientos M " +
                             "INNER JOIN dbo.cbCuentaBancaria CB ON M.IDCuentaBanco = CB.IDCuentaBanco " +
                             "INNER JOIN dbo.cbTipoCuenta T ON CB.IDTipo = T.IDTipo " +
-                            "INNER JOIN dbo.cbRuc R ON CB.IDRuc = R.IDRuc " +
+                            "INNER JOIN dbo.cbRuc R ON M.IDRuc = R.IDRuc " +
                             "INNER JOIN dbo.cbSubTipoDocumento ST ON M.IDTipo=ST.IDTipo AND M.IDSubTipo=ST.IDSubtipo " +
-                            "WHERE (CB.IDCuentaBanco=@IDCuentaBanco OR @IDCuentaBanco=-1)  AND (CB.IDTipo=@IDTipo OR @IDTipo=-1) " +
-                            "AND (IDSubTipo=@IDSubTipo OR @IDSubTipo=-1) AND (Numero = @Numero OR @Numero='*') AND (IDRuc=@IDRuc OR @IDRuc=-1)";
+                            "WHERE (M.IDCuentaBanco=@IDCuentaBanco OR @IDCuentaBanco=-1)  AND (M.IDTipo=@IDTipo OR @IDTipo=-1) " +
+                            "AND (M.IDSubTipo=@IDSubTipo OR @IDSubTipo=-1) AND (Numero = @Numero OR @Numero='*') AND (M.IDRuc=@IDRuc OR @IDRuc=-1)";
             String InsertSQL = "[dbo].[cbUpdateMovimientos]";
             String UpdateSQL = "[dbo].[cbUpdateMovimientos]";
             String DeleteSQL = "[dbo].[cbUpdateMovimientos]";
@@ -131,6 +131,8 @@ namespace ControlBancario.DAC
             return DS;
         }
 
+        
+
         public static DataSet GetData(int IDCuentaBanco,int IDTipo,int IDSubTipo,int IDRuc,String Numero)
         {
             DataSet DS = CreateDataSet();
@@ -146,5 +148,48 @@ namespace ControlBancario.DAC
             return DS;
         }
 
+
+        public static DataSet GetDatosByCriterio(DateTime FechaInicial,DateTime FechaFinal,int IDRuc,String NombreRuc,String AliasRUC,int IdTipo,int IdSubTipo,String PagaderoA,int Anulado,String Referencia,String ConceptoContable)
+        {
+
+            DataSet DS = new DataSet();
+
+            SqlCommand oCmd = new SqlCommand("dbo.cbGetMovimientosByCriterios", ConnectionManager.GetConnection());
+            SqlConnection oConn = oCmd.Connection;
+            try
+            {
+
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter oAdapatadorTmp = new SqlDataAdapter(oCmd);
+                oCmd.Parameters.Add("@FechaInicial", SqlDbType.DateTime, 50).Value = FechaInicial;
+                oCmd.Parameters.Add("@FechaFinal", SqlDbType.DateTime, 50).Value = FechaFinal;
+                oCmd.Parameters.Add("@IDRuc", SqlDbType.Int, 50).Value = IDRuc;
+                oCmd.Parameters.Add("@NombreRUC", SqlDbType.VarChar,200).Value = NombreRuc;
+                oCmd.Parameters.Add("@AliasRUC", SqlDbType.VarChar,200).Value = AliasRUC;
+                oCmd.Parameters.Add("@IDTipo", SqlDbType.Int, 50).Value = IdTipo;
+                oCmd.Parameters.Add("@IDSubTipo", SqlDbType.Int, 50).Value = IdSubTipo;
+                oCmd.Parameters.Add("@PagaderoA", SqlDbType.VarChar,200).Value = PagaderoA;
+                oCmd.Parameters.Add("@Anulado", SqlDbType.Int, 50).Value = Anulado;
+                oCmd.Parameters.Add("@Referencia", SqlDbType.VarChar,200).Value = Referencia;
+                oCmd.Parameters.Add("@ConceptoContable", SqlDbType.VarChar, 50).Value = ConceptoContable;
+                
+                oAdapatadorTmp.Fill(DS, "Data");
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oConn.State == ConnectionState.Open)
+                    oConn.Close();
+
+            }
+            return DS;
+
+        }
     }
 }

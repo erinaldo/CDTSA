@@ -38,6 +38,7 @@
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
             this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnFormato = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -46,6 +47,12 @@
             this.txtLimite = new DevExpress.XtraEditors.TextEdit();
             this.gridCuenta = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.IDCuentaBanco = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Codigo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Descrip = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrBanco = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrMoneda = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Limite = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
             this.chkSobreGirada = new DevExpress.XtraEditors.CheckEdit();
             this.txtUltTransferencia = new DevExpress.XtraEditors.TextEdit();
@@ -84,12 +91,6 @@
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.IDCuentaBanco = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Codigo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Descrip = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DescrBanco = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DescrMoneda = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Limite = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -151,9 +152,10 @@
             this.btnEliminar,
             this.lblStatus,
             this.btnExportar,
-            this.btnRefrescar});
+            this.btnRefrescar,
+            this.btnFormato});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 4;
+            this.ribbonControl.MaxItemId = 5;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -222,6 +224,15 @@
             this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
             this.btnRefrescar.Name = "btnRefrescar";
             // 
+            // btnFormato
+            // 
+            this.btnFormato.Caption = "Formato Impresión";
+            this.btnFormato.Glyph = ((System.Drawing.Image)(resources.GetObject("btnFormato.Glyph")));
+            this.btnFormato.Id = 4;
+            this.btnFormato.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnFormato.LargeGlyph")));
+            this.btnFormato.Name = "btnFormato";
+            this.btnFormato.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnFormato_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -238,6 +249,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnFormato);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -318,6 +330,54 @@
             this.Limite});
             this.gridView1.GridControl = this.gridCuenta;
             this.gridView1.Name = "gridView1";
+            // 
+            // IDCuentaBanco
+            // 
+            this.IDCuentaBanco.Caption = "IDCuenta";
+            this.IDCuentaBanco.FieldName = "IDCuentaBanco";
+            this.IDCuentaBanco.Name = "IDCuentaBanco";
+            this.IDCuentaBanco.Visible = true;
+            this.IDCuentaBanco.VisibleIndex = 0;
+            // 
+            // Codigo
+            // 
+            this.Codigo.Caption = "Código";
+            this.Codigo.FieldName = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.Visible = true;
+            this.Codigo.VisibleIndex = 1;
+            // 
+            // Descrip
+            // 
+            this.Descrip.Caption = "Descripción";
+            this.Descrip.FieldName = "Descr";
+            this.Descrip.Name = "Descrip";
+            this.Descrip.Visible = true;
+            this.Descrip.VisibleIndex = 2;
+            // 
+            // DescrBanco
+            // 
+            this.DescrBanco.Caption = "Banco";
+            this.DescrBanco.FieldName = "DescrBanco";
+            this.DescrBanco.Name = "DescrBanco";
+            this.DescrBanco.Visible = true;
+            this.DescrBanco.VisibleIndex = 3;
+            // 
+            // DescrMoneda
+            // 
+            this.DescrMoneda.Caption = "Moneda";
+            this.DescrMoneda.FieldName = "DescrMoneda";
+            this.DescrMoneda.Name = "DescrMoneda";
+            this.DescrMoneda.Visible = true;
+            this.DescrMoneda.VisibleIndex = 4;
+            // 
+            // Limite
+            // 
+            this.Limite.Caption = "Límite";
+            this.Limite.FieldName = "Limite";
+            this.Limite.Name = "Limite";
+            this.Limite.Visible = true;
+            this.Limite.VisibleIndex = 5;
             // 
             // chkActivo
             // 
@@ -694,54 +754,6 @@
             this.layoutControlItem7.Text = "Saldo en Libros:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(86, 13);
             // 
-            // IDCuentaBanco
-            // 
-            this.IDCuentaBanco.Caption = "IDCuenta";
-            this.IDCuentaBanco.FieldName = "IDCuentaBanco";
-            this.IDCuentaBanco.Name = "IDCuentaBanco";
-            this.IDCuentaBanco.Visible = true;
-            this.IDCuentaBanco.VisibleIndex = 0;
-            // 
-            // Codigo
-            // 
-            this.Codigo.Caption = "Código";
-            this.Codigo.FieldName = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.Visible = true;
-            this.Codigo.VisibleIndex = 1;
-            // 
-            // Descrip
-            // 
-            this.Descrip.Caption = "Descripción";
-            this.Descrip.FieldName = "Descr";
-            this.Descrip.Name = "Descrip";
-            this.Descrip.Visible = true;
-            this.Descrip.VisibleIndex = 2;
-            // 
-            // DescrBanco
-            // 
-            this.DescrBanco.Caption = "Banco";
-            this.DescrBanco.FieldName = "DescrBanco";
-            this.DescrBanco.Name = "DescrBanco";
-            this.DescrBanco.Visible = true;
-            this.DescrBanco.VisibleIndex = 4;
-            // 
-            // DescrMoneda
-            // 
-            this.DescrMoneda.Caption = "Moneda";
-            this.DescrMoneda.FieldName = "DescrMoneda";
-            this.DescrMoneda.Name = "DescrMoneda";
-            this.DescrMoneda.Visible = true;
-            this.DescrMoneda.VisibleIndex = 5;
-            // 
-            // Limite
-            // 
-            this.Limite.Caption = "Límite";
-            this.Limite.FieldName = "Limite";
-            this.Limite.Name = "Limite";
-            this.Limite.Visible = true;
-            this.Limite.VisibleIndex = 6;
-            // 
             // frmListadoCuentaBancaria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -868,5 +880,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn DescrBanco;
         private DevExpress.XtraGrid.Columns.GridColumn DescrMoneda;
         private DevExpress.XtraGrid.Columns.GridColumn Limite;
+        private DevExpress.XtraBars.BarButtonItem btnFormato;
     }
 }
