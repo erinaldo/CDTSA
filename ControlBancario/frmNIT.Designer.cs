@@ -41,47 +41,41 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
+            this.txtAlias = new DevExpress.XtraEditors.TextEdit();
+            this.txtNombre = new DevExpress.XtraEditors.TextEdit();
+            this.txtRuc = new DevExpress.XtraEditors.TextEdit();
             this.gridRuc = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtRuc = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtNombre = new DevExpress.XtraEditors.TextEdit();
-            this.lblNombre = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtAlias = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.slkupCuentaContable = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.txtCuentaContable = new DevExpress.XtraLayout.LayoutControlItem();
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.slkupTipoRuc = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lblNombre = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRuc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRuc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblNombre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContable.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCuentaContable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupTipoRuc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -189,7 +183,6 @@
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.chkActivo);
-            this.layoutControl1.Controls.Add(this.slkupCuentaContable);
             this.layoutControl1.Controls.Add(this.txtAlias);
             this.layoutControl1.Controls.Add(this.txtNombre);
             this.layoutControl1.Controls.Add(this.txtRuc);
@@ -203,6 +196,80 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // chkActivo
+            // 
+            this.chkActivo.Location = new System.Drawing.Point(507, 258);
+            this.chkActivo.MenuManager = this.ribbonControl;
+            this.chkActivo.Name = "chkActivo";
+            this.chkActivo.Properties.Caption = "Activo";
+            this.chkActivo.Size = new System.Drawing.Size(183, 19);
+            this.chkActivo.StyleController = this.layoutControl1;
+            this.chkActivo.TabIndex = 10;
+            // 
+            // txtAlias
+            // 
+            this.txtAlias.Location = new System.Drawing.Point(72, 330);
+            this.txtAlias.MenuManager = this.ribbonControl;
+            this.txtAlias.Name = "txtAlias";
+            this.txtAlias.Size = new System.Drawing.Size(618, 20);
+            this.txtAlias.StyleController = this.layoutControl1;
+            this.txtAlias.TabIndex = 8;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(72, 306);
+            this.txtNombre.MenuManager = this.ribbonControl;
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(618, 20);
+            this.txtNombre.StyleController = this.layoutControl1;
+            this.txtNombre.TabIndex = 7;
+            // 
+            // txtRuc
+            // 
+            this.txtRuc.Location = new System.Drawing.Point(72, 282);
+            this.txtRuc.MenuManager = this.ribbonControl;
+            this.txtRuc.Name = "txtRuc";
+            this.txtRuc.Size = new System.Drawing.Size(618, 20);
+            this.txtRuc.StyleController = this.layoutControl1;
+            this.txtRuc.TabIndex = 6;
+            // 
+            // gridRuc
+            // 
+            this.gridRuc.Location = new System.Drawing.Point(12, 12);
+            this.gridRuc.MainView = this.gridView1;
+            this.gridRuc.MenuManager = this.ribbonControl;
+            this.gridRuc.Name = "gridRuc";
+            this.gridRuc.Size = new System.Drawing.Size(690, 212);
+            this.gridRuc.TabIndex = 4;
+            this.gridRuc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridRuc;
+            this.gridView1.Name = "gridView1";
+            // 
+            // slkupTipoRuc
+            // 
+            this.slkupTipoRuc.Location = new System.Drawing.Point(72, 258);
+            this.slkupTipoRuc.MenuManager = this.ribbonControl;
+            this.slkupTipoRuc.Name = "slkupTipoRuc";
+            this.slkupTipoRuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupTipoRuc.Properties.NullText = "";
+            this.slkupTipoRuc.Properties.PopupSizeable = false;
+            this.slkupTipoRuc.Properties.View = this.gridView2;
+            this.slkupTipoRuc.Size = new System.Drawing.Size(431, 20);
+            this.slkupTipoRuc.StyleController = this.layoutControl1;
+            this.slkupTipoRuc.TabIndex = 5;
+            // 
+            // gridView2
+            // 
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -215,131 +282,14 @@
             this.layoutControlGroup1.Size = new System.Drawing.Size(714, 374);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // gridRuc
-            // 
-            this.gridRuc.Location = new System.Drawing.Point(12, 12);
-            this.gridRuc.MainView = this.gridView1;
-            this.gridRuc.MenuManager = this.ribbonControl;
-            this.gridRuc.Name = "gridRuc";
-            this.gridRuc.Size = new System.Drawing.Size(690, 188);
-            this.gridRuc.TabIndex = 4;
-            this.gridRuc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridRuc;
-            this.gridView1.Name = "gridView1";
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gridRuc;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(694, 192);
+            this.layoutControlItem1.Size = new System.Drawing.Size(694, 216);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // txtRuc
-            // 
-            this.txtRuc.Location = new System.Drawing.Point(113, 258);
-            this.txtRuc.MenuManager = this.ribbonControl;
-            this.txtRuc.Name = "txtRuc";
-            this.txtRuc.Size = new System.Drawing.Size(577, 20);
-            this.txtRuc.StyleController = this.layoutControl1;
-            this.txtRuc.TabIndex = 6;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.txtRuc;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(670, 24);
-            this.layoutControlItem3.Text = "RUC:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(85, 13);
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(113, 282);
-            this.txtNombre.MenuManager = this.ribbonControl;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(577, 20);
-            this.txtNombre.StyleController = this.layoutControl1;
-            this.txtNombre.TabIndex = 7;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.Control = this.txtNombre;
-            this.lblNombre.Location = new System.Drawing.Point(0, 48);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(670, 24);
-            this.lblNombre.Text = "Nombre:";
-            this.lblNombre.TextSize = new System.Drawing.Size(85, 13);
-            // 
-            // txtAlias
-            // 
-            this.txtAlias.Location = new System.Drawing.Point(113, 306);
-            this.txtAlias.MenuManager = this.ribbonControl;
-            this.txtAlias.Name = "txtAlias";
-            this.txtAlias.Size = new System.Drawing.Size(577, 20);
-            this.txtAlias.StyleController = this.layoutControl1;
-            this.txtAlias.TabIndex = 8;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.txtAlias;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(670, 24);
-            this.layoutControlItem5.Text = "Alias:";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(85, 13);
-            // 
-            // slkupCuentaContable
-            // 
-            this.slkupCuentaContable.Location = new System.Drawing.Point(113, 330);
-            this.slkupCuentaContable.MenuManager = this.ribbonControl;
-            this.slkupCuentaContable.Name = "slkupCuentaContable";
-            this.slkupCuentaContable.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupCuentaContable.Properties.View = this.searchLookUpEdit1View;
-            this.slkupCuentaContable.Size = new System.Drawing.Size(577, 20);
-            this.slkupCuentaContable.StyleController = this.layoutControl1;
-            this.slkupCuentaContable.TabIndex = 9;
-            // 
-            // txtCuentaContable
-            // 
-            this.txtCuentaContable.Control = this.slkupCuentaContable;
-            this.txtCuentaContable.Location = new System.Drawing.Point(0, 96);
-            this.txtCuentaContable.Name = "txtCuentaContable";
-            this.txtCuentaContable.Size = new System.Drawing.Size(670, 24);
-            this.txtCuentaContable.Text = "Cuenta Contable:";
-            this.txtCuentaContable.TextSize = new System.Drawing.Size(85, 13);
-            // 
-            // searchLookUpEdit1View
-            // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // chkActivo
-            // 
-            this.chkActivo.Location = new System.Drawing.Point(507, 234);
-            this.chkActivo.MenuManager = this.ribbonControl;
-            this.chkActivo.Name = "chkActivo";
-            this.chkActivo.Properties.Caption = "Activo";
-            this.chkActivo.Size = new System.Drawing.Size(183, 19);
-            this.chkActivo.StyleController = this.layoutControl1;
-            this.chkActivo.TabIndex = 10;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.chkActivo;
-            this.layoutControlItem7.Location = new System.Drawing.Point(483, 0);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(187, 24);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlGroup2
             // 
@@ -348,11 +298,10 @@
             this.layoutControlItem3,
             this.lblNombre,
             this.layoutControlItem5,
-            this.txtCuentaContable,
             this.layoutControlItem7});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 192);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 216);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(694, 162);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(694, 138);
             this.layoutControlGroup2.Text = "Datos de RUC";
             // 
             // layoutControlItem2
@@ -362,29 +311,43 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(483, 24);
             this.layoutControlItem2.Text = "Tipo Ruc:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(85, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(45, 13);
             // 
-            // slkupTipoRuc
+            // layoutControlItem3
             // 
-            this.slkupTipoRuc.Location = new System.Drawing.Point(113, 234);
-            this.slkupTipoRuc.MenuManager = this.ribbonControl;
-            this.slkupTipoRuc.Name = "slkupTipoRuc";
-            this.slkupTipoRuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupTipoRuc.Properties.NullText = "";
-            this.slkupTipoRuc.Properties.PopupSizeable = false;
-            this.slkupTipoRuc.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.slkupTipoRuc.Properties.View = this.gridView2;
-            this.slkupTipoRuc.Size = new System.Drawing.Size(390, 20);
-            this.slkupTipoRuc.StyleController = this.layoutControl1;
-            this.slkupTipoRuc.TabIndex = 5;
+            this.layoutControlItem3.Control = this.txtRuc;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(670, 24);
+            this.layoutControlItem3.Text = "RUC:";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(45, 13);
             // 
-            // gridView2
+            // lblNombre
             // 
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.lblNombre.Control = this.txtNombre;
+            this.lblNombre.Location = new System.Drawing.Point(0, 48);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(670, 24);
+            this.lblNombre.Text = "Nombre:";
+            this.lblNombre.TextSize = new System.Drawing.Size(45, 13);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.txtAlias;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(670, 24);
+            this.layoutControlItem5.Text = "Alias:";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(45, 13);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.chkActivo;
+            this.layoutControlItem7.Location = new System.Drawing.Point(483, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(187, 24);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
             // 
             // frmRUC
             // 
@@ -400,25 +363,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridRuc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRuc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblNombre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaContable.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCuentaContable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupTipoRuc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,8 +399,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraEditors.CheckEdit chkActivo;
-        private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaContable;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraEditors.TextEdit txtAlias;
         private DevExpress.XtraEditors.TextEdit txtNombre;
         private DevExpress.XtraEditors.TextEdit txtRuc;
@@ -451,7 +409,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem lblNombre;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem txtCuentaContable;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupTipoRuc;

@@ -338,6 +338,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "frmListadoFormatoCheque";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListadoFormatoCheque";
             this.Load += new System.EventHandler(this.frmListadoFormatoCheque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();

@@ -12,8 +12,7 @@ values ('CEDULA DE IDENTIDAD')
 GO
 
 
-Create Table dbo.cbRUC (IDRuc int not null, IDTipoRuc int not null , RUC nvarchar(20) not null, Nombre nvarchar(200), Alias nvarchar(200), 
-IDCuenta INT, Activo BIT )
+Create Table dbo.cbRUC (IDRuc int not null, IDTipoRuc int not null , RUC nvarchar(20) not null, Nombre nvarchar(200), Alias nvarchar(200),  Activo BIT )
 go
 
 alter table dbo.cbRUC add constraint pkRUC primary key (IDRuc) 

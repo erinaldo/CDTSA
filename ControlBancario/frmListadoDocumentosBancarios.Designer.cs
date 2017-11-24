@@ -313,6 +313,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoDocumentosBancarios";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListadoDocumentosBancarios";
             this.Load += new System.EventHandler(this.frmListadoDocumentosBancarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();

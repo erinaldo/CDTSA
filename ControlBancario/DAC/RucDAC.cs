@@ -15,9 +15,8 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  IDRuc ,r.IDTipoRuc,T.Descr ,RUC ,Nombre ,Alias ,C.IDCuenta,C.Cuenta,C.Descr,R.Activo  FROM dbo.cbRUC r " +
+            String getSQL = "SELECT  IDRuc ,r.IDTipoRuc,T.Descr ,RUC ,Nombre ,Alias, R.Activo  FROM dbo.cbRUC r " +
                             "INNER JOIN dbo.cbTipoRUC T ON r.IDTipoRuc=T.IDTipoRuc  " +
-                            "INNER JOIN dbo.cntCuenta C ON r.IDCuenta=C.IDCuenta " +
                             "WHERE (IDRuc =@IDRuc OR @IDRuc=-1)";
             String InsertSQL = "[dbo].[cbUpdateRuc]";
             String UpdateSQL = "[dbo].[cbUpdateRUC]";
@@ -47,7 +46,6 @@ namespace ControlBancario.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@RUC", SqlDbType.NChar).SourceColumn = "RUC";
                 oAdaptador.InsertCommand.Parameters.Add("@Nombre", SqlDbType.NVarChar).SourceColumn = "Nombre";
                 oAdaptador.InsertCommand.Parameters.Add("@Alias", SqlDbType.NVarChar).SourceColumn = "Alias";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
@@ -59,7 +57,6 @@ namespace ControlBancario.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@RUC", SqlDbType.NChar).SourceColumn = "RUC";
                 oAdaptador.UpdateCommand.Parameters.Add("@Nombre", SqlDbType.NVarChar).SourceColumn = "Nombre";
                 oAdaptador.UpdateCommand.Parameters.Add("@Alias", SqlDbType.NVarChar).SourceColumn = "Alias";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
@@ -72,7 +69,6 @@ namespace ControlBancario.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@RUC", SqlDbType.NChar).SourceColumn = "RUC";
                 oAdaptador.DeleteCommand.Parameters.Add("@Nombre", SqlDbType.NVarChar).SourceColumn = "Nombre";
                 oAdaptador.DeleteCommand.Parameters.Add("@Alias", SqlDbType.NVarChar).SourceColumn = "Alias";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
                 return oAdaptador;
