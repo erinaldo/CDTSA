@@ -450,8 +450,8 @@ BEGIN
 	VALUES  ( @IDCuentaBanco,@Fecha,@IDTipo,@IDSubTipo,@IDRuc,@Numero,@Pagaderoa,@Monto,@Usuario,@Referencia,@ConceptoContable)
 	
 	--CK
-	IF (@IDTipo=1)
-		UPDATE dbo.cbCuentaBancaria SET ConsecCheque = @Numero WHERE IDCuentaBanco=@IDCuentaBanco
+	--IF (@IDTipo=1)
+	--	UPDATE dbo.cbCuentaBancaria SET ConsecCheque = @Numero WHERE IDCuentaBanco=@IDCuentaBanco
 end
 
 --if upper(@Operacion) = 'D'
@@ -569,3 +569,106 @@ INNER JOIN dbo.cbCuentaBancaria B ON M.IDCuentaBanco=B.IDBanco
 WHERE M.IDCuentaBanco=@IDCuentaBanco AND M.IDTipo=@IDTipo AND M.IDSubTipo=@IDSubTipo AND M.Numero=@Numero
 
 GO
+
+
+
+CREATE PROCEDURE dbo.cbGenerarAsientoContableCheque  @Numero AS INT, @IDCuentaBanco AS INT,@IDTipo AS INT, @IDSubTipo AS INT, @IDRuc AS INT, @Usuario AS NVARCHAR(50)
+AS 
+/*
+DECLARE @Numero AS INT
+DECLARE @IDCuentaBanco AS INT
+DECLARE @IDTipo AS INT
+DECLARE @IDSubTipo AS INT
+DECLARE @IDRuc AS INT
+DECLARE @Usuario AS NVARCHAR(50)
+
+
+SET @IDCuentaBanco =1
+SET @Numero =1
+SET @IDTipo =1
+SET @IDSubTipo=1
+SET @IDRuc =2
+SET @Usuario ='admin'
+
+*/
+
+DECLARE @IDCuentaProveedor AS INT
+DECLARE @IDCuentaContableBanco AS INT
+DECLARE @IDEjercicio AS INT
+DECLARE @Periodo AS NVARCHAR(10)
+DECLARE @IDAsiento AS NVARCHAR(20)
+DECLARE @Fecha AS DATE
+DECLARE @TipoCambio AS DECIMAL(28,4)
+DECLARE @Asiento AS NVARCHAR(20)
+DECLARE @Monto AS DECIMAL(28,4)
+
+
+SET @TipoCambio = (SELECT dbo.globalGetTipoCambio(@Fecha))
+SELECT @Fecha = Fecha , @Monto = CASE WHEN C.IDMoneda=2  THEN Monto * @TipoCambio ELSE @Monto END  FROM dbo.cbMovimientos M
+INNER JOIN dbo.cbCuentaBancaria C ON M.IDCuentaBanco = C.IDCuentaBanco
+ WHERE M.IDCuentaBanco=@IDCuentaBanco AND M.IDTipo=@IDTipo AND IDSubTipo =@IDSubTipo AND Numero=@Numero
+
+SELECT @IDCuentaContableBanco=IDCuenta  FROM dbo.cbCuentaBancaria WHERE IDCuentaBanco=@IDCuentaBanco
+SELECT @IDCuentaProveedor = IDCuenta FROM dbo.cbRUC WHERE IDRuc=@IDRuc
+
+declare @LongAsiento INT , @Consecutivo int 
+
+select @LongAsiento = LongAsiento from dbo.cntParametros 
+
+SELECT  @IDEjercicio=IDEjercicio, @Periodo=Periodo 
+ FROM dbo.cntPeriodoContable WHERE FechaFinal = CAST( DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,@Fecha)+1,0)) AS DATE)
+
+
+
+
+
+SELECT @Asiento = (tipo + RIGHT( replicate('0', @LongAsiento ) + cast (Consecutivo + 1 as nvarchar(20)), @LongAsiento ) ),
+ 				@Consecutivo = Consecutivo + 1     
+				FROM dbo.cntTipoAsiento (UPDLOCK)                             
+				WHERE TIPO = 'BA'
+				if exists (Select Asiento From dbo.cntAsiento (NOLOCK)  where Asiento = @Asiento )
+				begin
+					RAISERROR ( 'Ya Existe ese asiento contable, no se puede crear', 16, 1) ;		
+				end	
+				Update dbo.cntTipoAsiento set UltimoAsiento = @Asiento , Consecutivo = @Consecutivo 		 			
+				where Tipo = 'BA' 
+
+--Grabar la cabecera del asiento
+INSERT INTO dbo.cntAsiento( IDEjercicio ,Periodo ,Asiento ,Tipo ,Fecha ,FechaHora ,Createdby ,CreateDate ,Mayorizadoby ,MayorizadoDate
+											 , Anuladoby ,AnuladoDate ,Concepto ,Mayorizado ,Anulado ,TipoCambio ,ModuloFuente ,CuadreTemporal)
+VALUES  ( @IDEjercicio , -- IDEjercicio - int
+          @Periodo , -- Periodo - nvarchar(10)
+          @Asiento , -- Asiento - nvarchar(20)
+          N'BA' , -- Tipo - nvarchar(2)
+          @Fecha , -- Fecha - date
+          GETDATE() , -- FechaHora - datetime
+           @Usuario, -- Createdby - nvarchar(20)
+          GETDATE() , -- CreateDate - datetime
+          N'' , -- Mayorizadoby - nvarchar(20)
+          NULL , -- MayorizadoDate - datetime
+          N'' , -- Anuladoby - nvarchar(20)
+          Null , -- AnuladoDate - datetime
+          N'Generado de modulo Bancario CK: ' + CAST(@Numero AS NVARCHAR(20)) , -- Concepto - nvarchar(255)
+          NULL , -- Mayorizado - bit
+          NULL , -- Anulado - bit
+          @TipoCambio , -- TipoCambio - decimal
+          N'CB' , -- ModuloFuente - nvarchar(2)
+          0  -- CuadreTemporal - bit
+        )
+       
+-- Guardar el detalle del asiento contable
+INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+VALUES  ( @Asiento , -- Asiento - nvarchar(20)
+          1 , -- Linea - int
+          0, -- IDCentro - int
+          @IDCuentaContableBanco , -- IDCuenta - int
+          N'' , -- Referencia - nvarchar(255)
+          NULL , -- Debito - decimal
+          NULL , -- Credito - decimal
+          N'' , -- Documento - nvarchar(255)
+          '2017-11-24 02:09:37'  -- daterecord - datetime
+        )
+ 
+--Actualizar consecutivo del Cheque
+UPDATE dbo.cbCuentaBancaria SET ConsecCheque = @Numero WHERE IDCuentaBanco=@IDCuentaBanco
+
