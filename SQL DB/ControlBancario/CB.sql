@@ -572,7 +572,7 @@ GO
 
 
 
-CREATE PROCEDURE dbo.cbGenerarAsientoContableCheque  @Numero AS INT, @IDCuentaBanco AS INT,@IDTipo AS INT, @IDSubTipo AS INT, @IDRuc AS INT, @Usuario AS NVARCHAR(50)
+CREATE  PROCEDURE dbo.cbGenerarAsientoContableCheque  @Numero AS INT, @IDCuentaBanco AS INT,@IDTipo AS INT, @IDSubTipo AS INT, @IDRuc AS INT, @Usuario AS NVARCHAR(50)
 AS 
 /*
 DECLARE @Numero AS INT
@@ -672,3 +672,79 @@ VALUES  ( @Asiento , -- Asiento - nvarchar(20)
 --Actualizar consecutivo del Cheque
 UPDATE dbo.cbCuentaBancaria SET ConsecCheque = @Numero WHERE IDCuentaBanco=@IDCuentaBanco
 
+UPDATE dbo.cbMovimientos SET Asiento=@Asiento WHERE IDCuentaBanco=@IDCuentaBanco AND IDSubTipo=@IDSubTipo AND IDTipo=@IDTipo AND Numero=@Numero
+
+GO
+
+CREATE PROCEDURE dbo.cbAnularAsientoContableCheque  @Numero AS INT, @IDCuentaBanco AS INT,@IDTipo AS INT, @IDSubTipo AS INT, @Usuario AS NVARCHAR(50)
+AS 
+/*
+DECLARE @Numero AS INT
+DECLARE @IDCuentaBanco AS INT
+DECLARE @IDTipo AS INT
+DECLARE @IDSubTipo AS INT
+DECLARE @IDRuc AS INT
+DECLARE @Usuario AS NVARCHAR(50)
+
+
+SET @IDCuentaBanco =1
+SET @Numero =1
+SET @IDTipo =1
+SET @IDSubTipo=1
+SET @IDRuc =2
+SET @Usuario ='admin'
+
+*/
+
+DECLARE @IDCuentaProveedor AS INT
+DECLARE @IDCuentaContableBanco AS INT
+DECLARE @IDEjercicio AS INT
+DECLARE @Periodo AS NVARCHAR(10)
+DECLARE @IDAsiento AS NVARCHAR(20)
+DECLARE @Fecha AS DATE
+DECLARE @TipoCambio AS DECIMAL(28,4)
+DECLARE @Asiento AS NVARCHAR(20)
+DECLARE @AsientoAnt AS NVARCHAR(20)
+DECLARE @Monto AS DECIMAL(28,4)
+
+
+SELECT @AsientoAnt = asiento FROM dbo.cbMovimientos WHERE IDCuentaBanco=@IDCuentaBanco AND IDSubTipo=@IDSubTipo AND IDTipo=@IDTipo AND Numero=@Numero
+
+SET @TipoCambio = (SELECT dbo.globalGetTipoCambio(@Fecha))
+
+declare @LongAsiento INT , @Consecutivo int 
+
+select @LongAsiento = LongAsiento from dbo.cntParametros 
+
+SELECT  @IDEjercicio=IDEjercicio, @Periodo=Periodo 
+ FROM dbo.cntPeriodoContable WHERE FechaFinal = CAST( DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,@Fecha)+1,0)) AS DATE)
+
+
+SELECT @Asiento = (tipo + RIGHT( replicate('0', @LongAsiento ) + cast (Consecutivo + 1 as nvarchar(20)), @LongAsiento ) ),
+ 				@Consecutivo = Consecutivo + 1     
+				FROM dbo.cntTipoAsiento (UPDLOCK)                             
+				WHERE TIPO = 'BA'
+				if exists (Select Asiento From dbo.cntAsiento (NOLOCK)  where Asiento = @Asiento )
+				begin
+					RAISERROR ( 'Ya Existe ese asiento contable, no se puede crear', 16, 1) ;		
+				end	
+				Update dbo.cntTipoAsiento set UltimoAsiento = @Asiento , Consecutivo = @Consecutivo 		 			
+				where Tipo = 'BA' 
+
+--Grabar la cabecera del asiento
+INSERT INTO dbo.cntAsiento( IDEjercicio ,Periodo ,Asiento ,Tipo ,Fecha ,FechaHora ,Createdby ,CreateDate ,Mayorizadoby ,MayorizadoDate
+											 , Anuladoby ,AnuladoDate ,Concepto ,Mayorizado ,Anulado ,TipoCambio ,ModuloFuente ,CuadreTemporal)
+
+SELECT  @IDEjercicio ,@Periodo ,@Asiento ,Tipo ,GETDATE() ,GETDATE() ,@Usuario ,GETDATE() ,NULL ,NULL MayorizadoDate ,NULL Anuladoby ,
+        NULL AnuladoDate , 'Reversion del asiento contable ' + @Asiento Concepto , NULL Mayorizado ,0 Anulado ,@TipoCambio TipoCambio 
+        ,ModuloFuente ,0 CuadreTemporal FROM dbo.cntAsiento WHERE Asiento=@AsientoAnt
+
+
+-- Guardar el detalle del asiento contable
+INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+SELECT  @Asiento ,Linea ,IDCentro ,IDCuenta ,'ANULACION -- '  + Referencia Referencia ,Credito Debito ,Debito Credito ,@AsientoAnt Documento ,GETDATE()  
+FROM dbo.cntAsientoDetalle WHERE Asiento=@AsientoAnt
+
+ 
+UPDATE dbo.cbMovimientos SET Anulado=1, AsientoAnulacion=@Asiento,FechaAnulacion = GETDATE(), UsuarioAnulacion = @Usuario WHERE 
+IDCuentaBanco=@IDCuentaBanco AND IDSubTipo=@IDSubTipo AND IDTipo=@IDTipo AND Numero=@Numero
