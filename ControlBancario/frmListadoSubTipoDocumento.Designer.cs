@@ -301,13 +301,21 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 28);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 28);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(668, 28);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem1.Text = "Listado de Sub Tipo de Documento Bancarios";
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(84, 0);
+            this.emptySpaceItem1.TextVisible = true;
             // 
             // emptySpaceItem2
             // 
@@ -387,7 +395,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoSubTipoDocumento";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmListadoSubTipoDocumento";
+            this.Text = "Listado de Sub Tipo de Documentos Bancarios";
             this.Load += new System.EventHandler(this.frmListadoBanco_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

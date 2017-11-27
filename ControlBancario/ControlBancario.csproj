@@ -55,6 +55,7 @@
     <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.2.Extensions, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -130,6 +131,12 @@
     <Compile Include="frmParametrosFiltroDocumentoBancario.Designer.cs">
       <DependentUpon>frmParametrosFiltroDocumentoBancario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSeleccionFormatoCheque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeleccionFormatoCheque.Designer.cs">
+      <DependentUpon>frmSeleccionFormatoCheque.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTipoCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmParametrosFiltroDocumentoBancario.resx">
       <DependentUpon>frmParametrosFiltroDocumentoBancario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeleccionFormatoCheque.resx">
+      <DependentUpon>frmSeleccionFormatoCheque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoCuenta.resx">
       <DependentUpon>frmTipoCuenta.cs</DependentUpon>

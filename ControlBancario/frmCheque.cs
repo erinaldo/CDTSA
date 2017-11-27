@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Security;
 using ControlBancario.DAC;
+using System.IO;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 namespace ControlBancario
 {
@@ -20,12 +23,10 @@ namespace ControlBancario
         private DataTable _dtSecurity;
         private DataSet _dsCheque;
         private DataTable _dtCheque;
+        
 
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         String _Asiento = "";
-        String _ModuloFuente = "";
-        String _tituloVentana = "Cheque";
-        double _TipoCambio = 0;
 
         public frmCheque()
         {
@@ -147,16 +148,21 @@ namespace ControlBancario
             this.slkupTipo.EditValue = _currentRow["IDTipo"].ToString();
             this.slkupSubTipo.EditValue = _currentRow["IDSubTipo"].ToString();
             this.txtNumero.EditValue = _currentRow["Numero"].ToString();
-            this.txtPagaderoA.Text = _currentRow["Pagadero_a"].ToString();
             this.txtMonto.EditValue = _currentRow["Monto"].ToString();
             this.txtAsiento.EditValue = _currentRow["Asiento"].ToString();
             this.txtAsientoAnulacion.Text = _currentRow["AsientoAnulacion"].ToString();
             this.txtConcepto.EditValue = _currentRow["ConceptoContable"].ToString();
             this.txtReferencia.Text = _currentRow["Referencia"].ToString();
             this.slkupRuc.EditValue =_currentRow["IDRuc"].ToString();
+            this.txtPagaderoA.Text = _currentRow["Pagadero_a"].ToString();
             this.txtUsuario.EditValue = _currentRow["Usuario"].ToString();
             this.txtUsuarioAnulacion.EditValue = _currentRow["UsuarioAnulacion"].ToString();
             this.txtFechaAnulacion.EditValue = _currentRow["FechaAnulacion"].ToString();
+            this.txtUsuarioAprobacion.EditValue = _currentRow["UsuarioAprobacion"].ToString();
+            this.txtFechaAprobacion.EditValue = _currentRow["FechaAprobacion"].ToString();
+            this.txtUsuarioImpresion.EditValue = _currentRow["UsuarioImpresion"].ToString();
+            this.txtFechaImpresion.EditValue = _currentRow["FechaImpresion"].ToString();
+            this.txtImpreso.Text = (Convert.ToBoolean((_currentRow["Impreso"].ToString() == "") ? 0 : _currentRow["Impreso"]) == true) ? "Impreso" : "";
         }
 
 
@@ -227,33 +233,7 @@ namespace ControlBancario
 
 
 
-        private void BtnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //this.gridView1.PostEditor();
-            //if (_Asiento != null && _Asiento != "")
-            //{
-            //    DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reporte/Asiento/Plantillas/rptAsiento.repx", true);
-
-
-            //    SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
-
-            //    SqlDataSource ds = report.DataSource as SqlDataSource;
-            //    ds.ConnectionName = "sqlDataSource1";
-            //    String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
-            //    System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
-            //    ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.Windows);
-
-            //    // Obtain a parameter, and set its value.
-            //    report.Parameters["Asiento"].Value = _Asiento;
-
-            //    // Show the report's print preview.
-            //    DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
-
-            //    tool.ShowPreview();
-
-
-            //}
-        }
+     
 
 
 
@@ -271,7 +251,7 @@ namespace ControlBancario
                 EnlazarEventos();
 
 
-                Util.Util.ConfigLookupEdit(this.slkupRuc, RucDAC.GetData(-1).Tables["Data"], "Descr", "IDRuc");
+                Util.Util.ConfigLookupEdit(this.slkupRuc, RucDAC.GetData(-1).Tables["Data"], "Nombre", "IDRuc");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupRuc, "[{'ColumnCaption':'Ruc','ColumnField':'RUC','width':30},{'ColumnCaption':'Nombre','ColumnField':'Nombre','width':30},{'ColumnCaption':'Alias','ColumnField':'Alias','width':70}]");
 
 
@@ -292,13 +272,28 @@ namespace ControlBancario
                     ClearControls();
                     this.tabDocumento.Visible = false;
                     this.ValidateChildren();
-                    this.slkupSubTipo.Enabled = false;
+                    this.slkupTipo.Enabled = false;
+                    this.btnAprobar.Enabled = false;
+                    this.btnImprimir.Enabled = false;
+
                 }
                 else
                 {
                     Accion = "Edit";
-
+                    
+                    if (_currentRow["Asiento"].ToString() != ""){
+                        this.btnImprimir.Enabled = true;
+                        this.btnAprobar.Enabled = false;
+                        this.btnAnular.Enabled = true;
+                    }
+                    else {
+                        this.btnImprimir.Enabled = false;
+                        this.btnAprobar.Enabled = true;
+                        this.btnAnular.Enabled = false;
+                    }
                     HabilitarControles(true, false);
+                    this.slkupCuentaBancaria.ReadOnly = true;
+                    this.txtNumero.ReadOnly = true;
 
                 }
                 AplicarPrivilegios();
@@ -316,7 +311,7 @@ namespace ControlBancario
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            if (_currentRow == null)
+            if (_currentRow == null || _currentRow["Asiento"].ToString()!="")
             {
                 return;
             }
@@ -468,7 +463,9 @@ namespace ControlBancario
 
                     lblStatus.Caption = "Se ha ingresado un nuevo registro";
                     Application.DoEvents();
-                    HabilitarControles(false, true);
+                    HabilitarControles(false,true);
+                    this.btnAprobar.Enabled = true;
+                    this.btnImprimir.Enabled = false;
                     AplicarPrivilegios();
 
                 }
@@ -603,12 +600,170 @@ namespace ControlBancario
 
         private void btnImprimir_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            String path ="";
+            if (_currentRow["Asiento"].ToString()!="")
+            {
+                //Obtener el listado de formatos
+                DataSet dsFormatos =  CuentaFormatoChequeDAC.GetData(Convert.ToInt32(_currentRow["IDCuentaBanco"]),-1);
+                if (dsFormatos.Tables.Count > 0) {
+                    if (dsFormatos.Tables[0].Rows.Count > 0) {
+                        DataTable tmpTable = new DataTable();
+                        DataView dv = new DataView(dsFormatos.Tables[0]);
+                        dv.RowFilter = "Activo=1";
+                        tmpTable = dv.ToTable();
+                        if (tmpTable.Rows.Count == 1)
+                        {
+                            //cargar el formato por defecto 
+                            path = Path.Combine(Directory.GetCurrentDirectory(), "FormatosCheques", string.Format("Formato-{0}.repx", tmpTable.Rows[0]["IDFormato"].ToString())).ToString();
+                            DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile(path, true);
 
+
+                            SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+                            SqlDataSource ds = report.DataSource as SqlDataSource;
+                            ds.ConnectionName = "sqlDataSource1";
+                            String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                            ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+                            // Obtain a parameter, and set its value.
+                            report.Parameters["Numero"].Value = Convert.ToInt32(_currentRow["Numero"]);
+                            report.Parameters["IDCuentaBanco"].Value = Convert.ToInt32(_currentRow["IDCuentaBanco"]); 
+                            report.Parameters["IDTipo"].Value = Convert.ToInt32(_currentRow["IDTipo"]); 
+                            report.Parameters["IDSubTipo"].Value = Convert.ToInt32(_currentRow["IDSubTipo"]); 
+
+                            // Show the report's print preview.
+                            DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report); 
+                            tool.ShowPreview();
+                            SetChequeImpreso();
+                        }
+                        else { 
+                            //Seleccionar de la lista de formatos
+                            frmSeleccionFormatoCheque ofrmListarFormatos = new frmSeleccionFormatoCheque(tmpTable);
+                            ofrmListarFormatos.FormClosed +=ofrmListarFormatos_FormClosed;
+                             ofrmListarFormatos.ShowDialog();
+                        }
+                    }
+                }
+
+
+                
+
+            }
+        }
+
+        private void SetChequeImpreso() { 
+            DAC.MovimientosDAC.SetChequeImpreso(Convert.ToInt32(_currentRow["Numero"]),
+                                            Convert.ToInt32(_currentRow["IDCuentaBanco"]),
+                                            Convert.ToInt32(_currentRow["IDTipo"]),
+                                            Convert.ToInt32(_currentRow["IDSubTipo"]),
+                                            sUsuario);
+            CargarReloadData();
+        }
+
+        void ofrmListarFormatos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmSeleccionFormatoCheque ofrm = (frmSeleccionFormatoCheque)sender;
+            String path  = Path.Combine(Directory.GetCurrentDirectory(), "FormatosCheques", string.Format("Formato-{0}.repx", ofrm.IDFormato)).ToString();
+            DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile(path, true);
+
+
+            SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+            SqlDataSource ds = report.DataSource as SqlDataSource;
+            ds.ConnectionName = "sqlDataSource1";
+            String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+            ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+            // Obtain a parameter, and set its value.
+            report.Parameters["Numero"].Value = Convert.ToInt32(_currentRow["Numero"]);
+            report.Parameters["IDCuentaBanco"].Value = Convert.ToInt32(_currentRow["IDCuentaBanco"]); ;
+            report.Parameters["IDTipo"].Value = Convert.ToInt32(_currentRow["IDTipo"]); ;
+            report.Parameters["IDSubTipo"].Value = Convert.ToInt32(_currentRow["IDSubTipo"]); ;
+
+            // Show the report's print preview.
+            DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+            tool.ShowPreview();
+            SetChequeImpreso();
         }
 
         private void btnAprobar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (_currentRow["Asiento"].ToString() == "" || _currentRow["Asiento"] == null) {
+                try
+                {
+                    //Security.ConnectionManager.BeginTran();
+                    String Asiento = MovimientosDAC.GenerarAsientoContable(Convert.ToInt32(_currentRow["Numero"]), Convert.ToInt32(_currentRow["IDCuentaBanco"]), Convert.ToInt32(_currentRow["IDTipo"]), Convert.ToInt32(_currentRow["IDSubTipo"]), sUsuario);
+                    if (Asiento == "") {
+                        MessageBox.Show("Ha ocurrido un error tratando de generar el asiento contable del cheque");
+                        return;
+                    }
+                    CG.frmAsiento ofrmAsiento = new CG.frmAsiento(Asiento,"PndtGuardar",true);
+                    ofrmAsiento.FormClosed += ofrmAsiento_FormClosed;
+                    ofrmAsiento.ShowDialog();
+                    //Security.ConnectionManager.CommitTran();
+                }
+                catch (Exception ex) {
+                    MessageBox.Show("Han ocurrido los siguientes errores, tratando de generar el asiento contable \n\r\n\r\n\r\n\r\n\r\n\r\n\r" + ex.Message);
+                   // Security.ConnectionManager.RollBackTran();
+                }
+            }
+        }
 
+        private void CargarReloadData() {
+            CargarCheque(Convert.ToInt32(_currentRow["IDCuentaBanco"]),
+                           Convert.ToInt32(_currentRow["IDTipo"]),
+                           Convert.ToInt32(_currentRow["IDSubTipo"]),
+                           Convert.ToInt32(_currentRow["IDRuc"]),
+                           _currentRow["Numero"].ToString());
+            UpdateControlsFromDataRow(_currentRow);
+            if (_currentRow["Asiento"].ToString() != "")
+            {
+                this.btnImprimir.Enabled = true;
+                this.btnAprobar.Enabled = false;
+                this.btnAnular.Enabled = true;
+            }
+            else
+            {
+                this.btnImprimir.Enabled = false;
+                this.btnAprobar.Enabled = true;
+                this.btnAnular.Enabled = false;
+            }
+        }
+
+        void ofrmAsiento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CargarReloadData();
+        }
+
+        private void btnAnular_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Preguntar por restricciones de anulacion
+
+            if (_currentRow["Asiento"].ToString() != "") {
+                MovimientosDAC.RevierteAsientoContable(Convert.ToInt32(_currentRow["Numero"]), Convert.ToInt32(_currentRow["IDCuentaBanco"]), Convert.ToInt32(_currentRow["IDTipo"]), Convert.ToInt32(_currentRow["IDSubTipo"]), sUsuario);
+                MessageBox.Show("El cheque y su transaccion contable se ha anulado");
+            }
+        }
+
+        private void slkupRuc_EditValueChanged(object sender, EventArgs e)
+        {
+            if (Accion == "New")
+            {
+                //this.txtPagaderoA.EditValue = this.slkupRuc;
+                DevExpress.XtraGrid.Views.Grid.GridView view = slkupRuc.Properties.View;
+                int rowHandle = view.FocusedRowHandle;
+                // or other field name
+                String value = (view.GetRowCellValue(rowHandle, "Nombre") == null) ? "" : view.GetRowCellValue(rowHandle, "Nombre").ToString();
+                if (value != "")
+                {
+                    this.txtPagaderoA.EditValue = value;
+                    this.txtPagaderoA.Focus();
+                }
+
+            }
         }
 
 

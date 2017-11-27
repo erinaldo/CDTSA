@@ -44,7 +44,8 @@ namespace CG
         private DataRow _currentRow;
         private String Accion = "NEW";
         private bool _ShowLessColumns = false;
-
+        private bool _DonCloseCuadre = false;
+        private String _Estado = "";
 
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         String _Asiento = "";
@@ -160,6 +161,22 @@ namespace CG
             _Asiento = _currentRow["Asiento"].ToString();
             _TipoCambio =(_currentRow["TipoCambio"].ToString() != "")? Convert.ToDouble(_currentRow["TipoCambio"]):0.0;
 
+        }
+
+        public  frmAsiento(String Asiento, String Estado, bool DontCloseCuadre)
+        {
+            InitializeComponent();
+            InicializarControles();
+
+            this._DonCloseCuadre = DontCloseCuadre;
+            this._Estado = Estado;
+            _dsAsiento = AsientoDAC.GetDataByAsiento(Asiento);
+            _dtAsiento = _dsAsiento.Tables[0];
+            //_ModuloFuente = ModuloFuente;
+            _currentRow = _dsAsiento.Tables[0].Rows[0];
+            _Asiento = _currentRow["Asiento"].ToString();
+            _TipoCambio = (_currentRow["TipoCambio"].ToString() != "") ? Convert.ToDouble(_currentRow["TipoCambio"]) : 0.0;
+            
         }
 
         public frmAsiento(DataSet ds, DataRow dr)
@@ -610,6 +627,12 @@ namespace CG
                     bool bMayorizado = Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]);
                     HabilitarControles(true, bMayorizado);
                     ActivateEditGrid(false);
+                }
+
+                if (_Estado == "PndtGuardar")
+                {
+                    btnEditar_ItemClick(this, null);
+                    this.btnCancelar.Enabled = false;
                 }
                 AplicarPrivilegios();
 
@@ -1110,6 +1133,8 @@ namespace CG
                 CargarAsiento(_Asiento);
                 UpdateControlsFromDataRow(_currentRow);
                 AplicarPrivilegios();
+
+                _Estado = "stateOk";
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
@@ -1245,6 +1270,17 @@ namespace CG
         private void grid_Leave(object sender, EventArgs e)
         {
             this.gridView1.PostEditor();
+        }
+
+        private void frmAsiento_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_DonCloseCuadre == true) {
+                if (Convert.ToDecimal(this.txtDiferencia.EditValue) != 0 && _Estado!="stateOk")
+                {
+                    MessageBox.Show("Cuadre el asiento de diario y por favor guardelo");
+                    e.Cancel = true;
+                }
+            }
         }
 
      

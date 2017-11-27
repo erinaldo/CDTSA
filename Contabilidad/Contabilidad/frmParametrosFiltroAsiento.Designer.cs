@@ -209,7 +209,8 @@
             this.lstChkModuloFuente.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("FA", "Factura"),
             new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CI", "Control Inventario"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CG", "Contabilidad")});
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CG", "Contabilidad"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("CB", "Control Bancario")});
             this.lstChkModuloFuente.Location = new System.Drawing.Point(24, 176);
             this.lstChkModuloFuente.Name = "lstChkModuloFuente";
             this.lstChkModuloFuente.Size = new System.Drawing.Size(194, 175);
@@ -472,7 +473,6 @@
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmParametrosFiltroAsiento
-            
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -482,7 +482,6 @@
             this.Name = "frmParametrosFiltroAsiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Filtro de Asiento de Diario";
-           
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkSeleccAllFuente.Properties)).EndInit();

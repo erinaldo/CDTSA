@@ -204,11 +204,11 @@
             // 
             // dtgTipoCuenta
             // 
-            this.dtgTipoCuenta.Location = new System.Drawing.Point(12, 35);
+            this.dtgTipoCuenta.Location = new System.Drawing.Point(12, 45);
             this.dtgTipoCuenta.MainView = this.gridView1;
             this.dtgTipoCuenta.MenuManager = this.ribbonControl;
             this.dtgTipoCuenta.Name = "dtgTipoCuenta";
-            this.dtgTipoCuenta.Size = new System.Drawing.Size(575, 221);
+            this.dtgTipoCuenta.Size = new System.Drawing.Size(575, 211);
             this.dtgTipoCuenta.TabIndex = 4;
             this.dtgTipoCuenta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -235,9 +235,9 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.dtgTipoCuenta;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 23);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 33);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(579, 225);
+            this.layoutControlItem1.Size = new System.Drawing.Size(579, 215);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -252,10 +252,21 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem1.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 33);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 33);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(579, 23);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(579, 33);
+            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem1.Text = "Listado de Tipo Cuenta";
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(58, 0);
+            this.emptySpaceItem1.TextVisible = true;
             // 
             // layoutControlGroup2
             // 
@@ -294,7 +305,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmTipoCuenta";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmTipoCuenta";
+            this.Text = "Listado de Tipo Cuenta";
             this.Load += new System.EventHandler(this.frmListadoBanco_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

@@ -15,7 +15,7 @@ namespace ControlBancario.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  M.IDCuentaBanco ,M.Fecha ,M.IDTipo ,M.IDSubTipo ,R.IDRuc,R.Nombre,R.Alias,M.Numero ,M.Pagadero_a ,M.Monto ,M.Asiento ,M.Anulado ,M.AsientoAnulacion ,M.Usuario ,M.UsuarioAnulacion ,M.FechaAnulacion ,M.Referencia ,M.ConceptoContable  " +
+            String getSQL = "SELECT  M.IDCuentaBanco ,M.Fecha ,M.IDTipo ,M.IDSubTipo ,R.IDRuc,R.Nombre,R.Alias,M.Numero ,M.Pagadero_a ,M.Monto ,M.Asiento ,M.Anulado ,M.AsientoAnulacion ,M.Usuario ,M.UsuarioAnulacion ,M.FechaAnulacion, M.UsuarioAprobacion,M.FechaAprobacion,M.UsuarioImpresion,M.FechaImpresion,M.Impreso ,M.Referencia ,M.ConceptoContable  " +
                             "FROM dbo.cbMovimientos M " +
                             "INNER JOIN dbo.cbCuentaBancaria CB ON M.IDCuentaBanco = CB.IDCuentaBanco " +
                             "INNER JOIN dbo.cbTipoCuenta T ON CB.IDTipo = T.IDTipo " +
@@ -121,7 +121,7 @@ namespace ControlBancario.DAC
 
         public static DataSet GetDataEmpty()
         {
-            String strSQL = "SELECT  IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo ,IDRuc,Numero ,Pagadero_a ,Monto ,Asiento ,Anulado ,AsientoAnulacion ,Usuario ,UsuarioAnulacion ,FechaAnulacion ,Referencia ,ConceptoContable  FROM dbo.cbMovimientos WHERE 1=2";
+            String strSQL = "SELECT  IDCuentaBanco ,Fecha ,IDTipo ,IDSubTipo ,IDRuc,Numero ,Pagadero_a ,Monto ,Asiento ,Anulado ,AsientoAnulacion ,Usuario ,UsuarioAnulacion, UsuarioAprobacion,FechaAprobacion,UsuarioImpresion,FechaImpresion,Impreso ,FechaAnulacion ,Referencia ,ConceptoContable  FROM dbo.cbMovimientos WHERE 1=2";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
@@ -191,5 +191,117 @@ namespace ControlBancario.DAC
             return DS;
 
         }
+
+        public static String GenerarAsientoContable(int Numero, int IDCuentaBanco,int IDTipo,int IDSubTipo, String Usuario)
+        {
+            String strSQL = "dbo.cbGenerarAsientoContableCheque";
+            //bool Result = false;
+            DataSet DS = new DataSet();
+            String Asiento = "";
+            SqlConnection oConn = ConnectionManager.GetConnection();
+            SqlCommand oCmd = new SqlCommand(strSQL, oConn);
+            //if (ConnectionManager.Tran !=null)
+            //    oCmd.Transaction = ConnectionManager.Tran;
+            try
+            {
+
+                SqlDataAdapter oAdaptadorTmp = new SqlDataAdapter(oCmd );
+                oCmd.Parameters.Add(new SqlParameter("@Numero", Numero));
+                oCmd.Parameters.Add(new SqlParameter("@IDCuentaBanco", IDCuentaBanco));
+                oCmd.Parameters.Add(new SqlParameter("@IDTipo", IDTipo));
+                oCmd.Parameters.Add(new SqlParameter("@IDSubTipo", IDSubTipo));
+                oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+                
+                oCmd.CommandType = CommandType.StoredProcedure;
+
+                oAdaptadorTmp.Fill(DS, "Data");
+                Asiento = DS.Tables[0].Rows[0]["Asiento"].ToString();
+                //md.Connection.Open();
+                //oCmd.ExecuteNonQuery();
+
+               // Result = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return Asiento;
+        }
+
+
+        public static bool SetChequeImpreso(int Numero, int IDCuentaBanco, int IDTipo, int IDSubTipo, String Usuario)
+        {
+            String strSQL = "dbo.cbMarcarChequeImpreso";
+            bool Result = false;
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+
+
+                oCmd.Parameters.Add(new SqlParameter("@Numero", Numero));
+                oCmd.Parameters.Add(new SqlParameter("@IDCuentaBanco", IDCuentaBanco));
+                oCmd.Parameters.Add(new SqlParameter("@IDTipo", IDTipo));
+                oCmd.Parameters.Add(new SqlParameter("@IDSubTipo", IDSubTipo));
+                oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+
+                Result = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return Result;
+        }
+
+
+        public static bool RevierteAsientoContable(int Numero, int IDCuentaBanco, int IDTipo, int IDSubTipo, String Usuario)
+        {
+            String strSQL = "dbo.cbAnularAsientoContableCheque";
+            bool Result = false;
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+
+
+                oCmd.Parameters.Add(new SqlParameter("@Numero", Numero));
+                oCmd.Parameters.Add(new SqlParameter("@IDCuentaBanco", IDCuentaBanco));
+                oCmd.Parameters.Add(new SqlParameter("@IDTipo", IDTipo));
+                oCmd.Parameters.Add(new SqlParameter("@IDSubTipo", IDSubTipo));
+                oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+
+                oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+
+                Result = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+            }
+            return Result;
+        }
+
     }
 }

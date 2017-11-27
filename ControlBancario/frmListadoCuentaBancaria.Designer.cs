@@ -91,6 +91,7 @@
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -138,6 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -310,11 +312,11 @@
             // 
             // gridCuenta
             // 
-            this.gridCuenta.Location = new System.Drawing.Point(12, 12);
+            this.gridCuenta.Location = new System.Drawing.Point(12, 44);
             this.gridCuenta.MainView = this.gridView1;
             this.gridCuenta.MenuManager = this.ribbonControl;
             this.gridCuenta.Name = "gridCuenta";
-            this.gridCuenta.Size = new System.Drawing.Size(788, 258);
+            this.gridCuenta.Size = new System.Drawing.Size(788, 226);
             this.gridCuenta.TabIndex = 18;
             this.gridCuenta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -542,7 +544,8 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem15,
-            this.layoutControlGroup4});
+            this.layoutControlGroup4,
+            this.emptySpaceItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(812, 538);
@@ -551,9 +554,9 @@
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.gridCuenta;
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(792, 262);
+            this.layoutControlItem15.Size = new System.Drawing.Size(792, 230);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
@@ -754,6 +757,25 @@
             this.layoutControlItem7.Text = "Saldo en Libros:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(86, 13);
             // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem2.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem2.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem2.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem2.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem2.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 32);
+            this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 32);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(792, 32);
+            this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem2.Text = "Listado de Cuentas Bancarias";
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(86, 0);
+            this.emptySpaceItem2.TextVisible = true;
+            // 
             // frmListadoCuentaBancaria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -763,7 +785,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmListadoCuentaBancaria";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmListadoCuentaBancaria";
+            this.Text = "Listado de Cuentas Bancarias";
             this.Load += new System.EventHandler(this.frmListadoCuentaBancaria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -812,6 +834,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -881,5 +904,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn DescrMoneda;
         private DevExpress.XtraGrid.Columns.GridColumn Limite;
         private DevExpress.XtraBars.BarButtonItem btnFormato;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
     }
 }
