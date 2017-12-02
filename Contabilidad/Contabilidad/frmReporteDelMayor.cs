@@ -60,7 +60,10 @@ namespace CG
 
                 DateTime fechatemp = DateTime.Today;
                 this.dtpFechaDesde.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
-                this.dtpFechaHasta.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
+                if (fechatemp.Month + 1 < 13)
+                { this.dtpFechaHasta.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1); }
+                else
+                { this.dtpFechaHasta.EditValue = new DateTime(fechatemp.Year + 1, 1, 1).AddDays(-1); }
 
                 this.rgCuentasSinMovimientos.SelectedIndex = 1;
 

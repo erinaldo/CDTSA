@@ -40,10 +40,13 @@ namespace CG
                 
                 this.chkSoloCuentadeMayor.Checked = true;
                 DateTime fechatemp = DateTime.Today;
-                this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
-                this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
 
-                
+                this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
+
+                if (fechatemp.Month + 1 < 13)
+                { this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1); }
+                else
+                { this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year + 1, 1, 1).AddDays(-1); }
 
                 //Obtener los datos Filtrados
                 sCuentasSelected = GetCuentasFiltradas();
@@ -148,7 +151,7 @@ namespace CG
                     ds.ConnectionName = "sqlDataSource1";
                     String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
                     System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
-                    ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.Windows);
+                    ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
 
 
                     // Obtain a parameter, and set its value.
@@ -169,6 +172,11 @@ namespace CG
 
             }
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }   
 
      

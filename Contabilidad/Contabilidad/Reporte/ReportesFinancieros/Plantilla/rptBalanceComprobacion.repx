@@ -35,19 +35,19 @@
   <Parameters>
     <Item1 Ref="23" Visible="false" ValueInfo="1" Name="IDReporte" Type="#Ref-22" />
     <Item2 Ref="25" Visible="false" ValueInfo="azepeda" Name="Usuario" />
-    <Item3 Ref="27" Visible="false" ValueInfo="2017-07-06" Name="FechaInicial" Type="#Ref-26" />
-    <Item4 Ref="28" Visible="false" ValueInfo="2017-09-29" Name="FechaFinal" Type="#Ref-26" />
+    <Item3 Ref="27" Visible="false" ValueInfo="2017-06-30" Name="FechaInicial" Type="#Ref-26" />
+    <Item4 Ref="28" Visible="false" ValueInfo="2017-06-30" Name="FechaFinal" Type="#Ref-26" />
     <Item5 Ref="29" Visible="false" ValueInfo="0" Name="IncluyeAsientoDeDiario" Type="#Ref-22" />
-    <Item6 Ref="30" Visible="false" ValueInfo="-1" Name="SoloCuentaMayor" Type="#Ref-22" />
+    <Item6 Ref="30" Visible="false" ValueInfo="1" Name="SoloCuentaMayor" Type="#Ref-22" />
     <Item7 Ref="31" Visible="false" ValueInfo="1" Name="TipoCuentaSinMovimiento" Type="#Ref-22" />
-    <Item8 Ref="32" Visible="false" ValueInfo="0" Name="ConsolidadoByCuenta" Type="#Ref-22" />
-    <Item9 Ref="33" Visible="false" ValueInfo="3" Name="Moneda" Type="#Ref-22" />
+    <Item8 Ref="32" Visible="false" ValueInfo="1" Name="ConsolidadoByCuenta" Type="#Ref-22" />
+    <Item9 Ref="33" Visible="false" ValueInfo="1" Name="Moneda" Type="#Ref-22" />
   </Parameters>
   <CalculatedFields>
-    <Item1 Ref="34" Name="CreditoLocalDetalle" Expression="iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoLocal]))" />
-    <Item2 Ref="35" Name="CreditoDolarDetalle" Expression="Iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoDolarl])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoDolarl]))" />
-    <Item3 Ref="36" Name="DebitoDolarDetalle" Expression="iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoDolar])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoDolar]))" />
-    <Item4 Ref="37" Name="DebitoLocalDetalle" Expression="iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoLocal]))" />
+    <Item1 Ref="34" Name="CreditoLocalDetalle" Expression="Iif([Parameters.SoloCuentaMayor]=0, &#xD;&#xA;iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoLocal])) ,&#xD;&#xA;iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoLocal])) )" />
+    <Item2 Ref="35" Name="CreditoDolarDetalle" Expression="Iif([Parameters.SoloCuentaMayor]=0, &#xD;&#xA;Iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoDolarl])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoDolarl])),&#xD;&#xA;Iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoDolarl])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoDolarl])))" />
+    <Item3 Ref="36" Name="DebitoDolarDetalle" Expression="iif([Parameters.SoloCuentaMayor]=0,&#xD;&#xA;iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoDolar])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoDolar])),&#xD;&#xA;iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoDolar])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoDolar])))" />
+    <Item4 Ref="37" Name="DebitoLocalDetalle" Expression="iif([Parameters.SoloCuentaMayor]=0,&#xD;&#xA;iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoLocal])),&#xD;&#xA;iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoLocal])))" />
   </CalculatedFields>
   <Bands>
     <Item1 Ref="38" ControlType="DetailBand" Name="Detail" HeightF="23" TextAlignment="TopLeft" StyleName="DataField" Padding="0,0,0,0,100">
@@ -55,7 +55,7 @@
         <Item1 Ref="39" Value="#Ref-12" />
       </FormattingRuleLinks>
       <Controls>
-        <Item1 Ref="40" ControlType="XRLabel" Name="xrLabel16" Text="xrLabel16" TextAlignment="TopRight" SizeF="81.25,23" LocationFloat="743.75, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item1 Ref="40" ControlType="XRLabel" Name="xrLabel16" Text="xrLabel16" TextAlignment="TopRight" SizeF="86.25,23" LocationFloat="743.75, 0" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="41" Value="#Ref-20" />
             <Item2 Ref="42" Value="#Ref-18" />
@@ -65,7 +65,7 @@
           </DataBindings>
           <StylePriority Ref="44" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="45" ControlType="XRLabel" Name="xrLabel15" Text="xrLabel15" TextAlignment="TopRight" SizeF="81.24994,23" LocationFloat="650.2501, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item2 Ref="45" ControlType="XRLabel" Name="xrLabel15" Text="xrLabel15" TextAlignment="TopRight" SizeF="93.49988,23" LocationFloat="650.2501, 0" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="46" Value="#Ref-18" />
             <Item2 Ref="47" Value="#Ref-20" />
@@ -75,7 +75,7 @@
           </DataBindings>
           <StylePriority Ref="49" UseTextAlignment="false" />
         </Item2>
-        <Item3 Ref="50" ControlType="XRLabel" Name="xrLabel14" Text="xrLabel14" TextAlignment="TopRight" SizeF="81.24994,23" LocationFloat="552.3333, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item3 Ref="50" ControlType="XRLabel" Name="xrLabel14" Text="xrLabel14" TextAlignment="TopRight" SizeF="97.91681,23" LocationFloat="552.3333, 0" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="51" Value="#Ref-16" />
             <Item2 Ref="52" Value="#Ref-20" />
@@ -85,7 +85,7 @@
           </DataBindings>
           <StylePriority Ref="54" UseTextAlignment="false" />
         </Item3>
-        <Item4 Ref="55" ControlType="XRLabel" Name="xrLabel13" Text="xrLabel13" TextAlignment="TopRight" SizeF="81.24991,23" LocationFloat="460.4167, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item4 Ref="55" ControlType="XRLabel" Name="xrLabel13" Text="xrLabel13" TextAlignment="TopRight" SizeF="91.91641,23" LocationFloat="460.416656, 0" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="56" Value="#Ref-16" />
             <Item2 Ref="57" Value="#Ref-20" />
@@ -125,14 +125,14 @@
           </FormattingRuleLinks>
           <StylePriority Ref="74" UseTextAlignment="false" />
         </Item2>
-        <Item3 Ref="75" ControlType="XRLabel" Name="xrLabel22" Text="Crédito Local" TextAlignment="TopRight" SizeF="81.24997,23" LocationFloat="552.3333, 21.99999" Padding="2,2,0,0,100" Visible="false">
+        <Item3 Ref="75" ControlType="XRLabel" Name="xrLabel22" Text="Crédito Local" TextAlignment="TopRight" SizeF="97.91681,23.0000019" LocationFloat="552.3333, 21.9999943" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="76" Value="#Ref-20" />
             <Item2 Ref="77" Value="#Ref-16" />
           </FormattingRuleLinks>
           <StylePriority Ref="78" UseTextAlignment="false" />
         </Item3>
-        <Item4 Ref="79" ControlType="XRLabel" Name="xrLabel21" Text="Débito Local" TextAlignment="TopRight" SizeF="81.24997,23" LocationFloat="460.4167, 21.99999" Padding="2,2,0,0,100" Visible="false">
+        <Item4 Ref="79" ControlType="XRLabel" Name="xrLabel21" Text="Débito Local" TextAlignment="TopRight" SizeF="91.91635,23.0000019" LocationFloat="460.416656, 21.9999943" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="80" Value="#Ref-20" />
             <Item2 Ref="81" Value="#Ref-16" />
@@ -146,7 +146,7 @@
         <Item1 Ref="84" FieldName="Cuenta" />
       </GroupFields>
       <Controls>
-        <Item1 Ref="85" ControlType="XRLabel" Name="xrLabel10" TextAlignment="TopRight" SizeF="81.25,23" LocationFloat="743.75, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item1 Ref="85" ControlType="XRLabel" Name="xrLabel10" TextAlignment="TopRight" SizeF="86.25,23" LocationFloat="743.75, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <Summary Ref="86" FormatString="{0:n2}" Running="Group" />
           <FormattingRuleLinks>
             <Item1 Ref="87" Value="#Ref-14" />
@@ -156,9 +156,9 @@
           <DataBindings>
             <Item1 Ref="90" PropertyName="Text" DataMember="cntGetBalanceComprabacion.CreditoDolar" />
           </DataBindings>
-          <StylePriority Ref="91" UseTextAlignment="false" />
+          <StylePriority Ref="91" UseFont="false" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="92" ControlType="XRLabel" Name="xrLabel9" TextAlignment="TopRight" SizeF="81.24994,23" LocationFloat="650.2501, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item2 Ref="92" ControlType="XRLabel" Name="xrLabel9" TextAlignment="TopRight" SizeF="93.49988,23" LocationFloat="650.2501, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <Summary Ref="93" FormatString="{0:n2}" Running="Group" />
           <FormattingRuleLinks>
             <Item1 Ref="94" Value="#Ref-14" />
@@ -168,9 +168,9 @@
           <DataBindings>
             <Item1 Ref="97" PropertyName="Text" DataMember="cntGetBalanceComprabacion.DebitoDolar" />
           </DataBindings>
-          <StylePriority Ref="98" UseTextAlignment="false" />
+          <StylePriority Ref="98" UseFont="false" UseTextAlignment="false" />
         </Item2>
-        <Item3 Ref="99" ControlType="XRLabel" Name="xrLabel8" TextAlignment="TopRight" SizeF="81.24997,23" LocationFloat="552.3333, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item3 Ref="99" ControlType="XRLabel" Name="xrLabel8" TextAlignment="TopRight" SizeF="97.91681,23" LocationFloat="552.3333, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <Summary Ref="100" FormatString="{0:n2}" Running="Group" />
           <FormattingRuleLinks>
             <Item1 Ref="101" Value="#Ref-14" />
@@ -180,9 +180,9 @@
           <DataBindings>
             <Item1 Ref="104" PropertyName="Text" DataMember="cntGetBalanceComprabacion.CreditoLocal" />
           </DataBindings>
-          <StylePriority Ref="105" UseTextAlignment="false" />
+          <StylePriority Ref="105" UseFont="false" UseTextAlignment="false" />
         </Item3>
-        <Item4 Ref="106" ControlType="XRLabel" Name="xrLabel7" TextAlignment="TopRight" SizeF="81.24997,23" LocationFloat="460.4167, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item4 Ref="106" ControlType="XRLabel" Name="xrLabel7" TextAlignment="TopRight" SizeF="91.9165344,23" LocationFloat="460.416656, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <Summary Ref="107" FormatString="{0:n2}" Running="Group" />
           <FormattingRuleLinks>
             <Item1 Ref="108" Value="#Ref-14" />
@@ -192,7 +192,7 @@
           <DataBindings>
             <Item1 Ref="111" PropertyName="Text" DataMember="cntGetBalanceComprabacion.DebitoLocal" />
           </DataBindings>
-          <StylePriority Ref="112" UseTextAlignment="false" />
+          <StylePriority Ref="112" UseFont="false" UseTextAlignment="false" />
         </Item4>
         <Item5 Ref="113" ControlType="XRLabel" Name="xrLabel6" Text="xrLabel6" SizeF="194.7916,23" LocationFloat="265.625, 0" Padding="2,2,0,0,100">
           <FormattingRuleLinks>
@@ -302,7 +302,7 @@
     <Item10 Ref="161" ControlType="GroupFooterBand" Name="GroupFooter2" Level="1" HeightF="0" />
     <Item11 Ref="162" ControlType="GroupFooterBand" Name="GroupFooter3" Level="2" HeightF="28.09734">
       <Controls>
-        <Item1 Ref="163" ControlType="XRLabel" Name="xrLabel17" Text="xrLabel17" TextAlignment="TopLeft" SizeF="81.25003,23" LocationFloat="460.4166, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item1 Ref="163" ControlType="XRLabel" Name="xrLabel17" Text="xrLabel17" TextAlignment="TopRight" SizeF="91.91672,23" LocationFloat="460.4166, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="164" Value="#Ref-16" />
             <Item2 Ref="165" Value="#Ref-20" />
@@ -310,9 +310,9 @@
           <DataBindings>
             <Item1 Ref="166" FormatString="{0:n2}" PropertyName="Text" DataMember="DebitoLocalDetalle" />
           </DataBindings>
-          <StylePriority Ref="167" UseTextAlignment="false" />
+          <StylePriority Ref="167" UseFont="false" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="168" ControlType="XRLabel" Name="xrLabel34" Text="xrLabel34" TextAlignment="TopLeft" SizeF="81.25003,23" LocationFloat="743.75, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item2 Ref="168" ControlType="XRLabel" Name="xrLabel34" Text="xrLabel34" TextAlignment="TopRight" SizeF="86.25,23" LocationFloat="743.75, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="169" Value="#Ref-20" />
             <Item2 Ref="170" Value="#Ref-18" />
@@ -320,9 +320,9 @@
           <DataBindings>
             <Item1 Ref="171" FormatString="{0:n2}" PropertyName="Text" DataMember="CreditoDolarDetalle" />
           </DataBindings>
-          <StylePriority Ref="172" UseTextAlignment="false" />
+          <StylePriority Ref="172" UseFont="false" UseTextAlignment="false" />
         </Item2>
-        <Item3 Ref="173" ControlType="XRLabel" Name="xrLabel31" Text="xrLabel31" TextAlignment="TopLeft" SizeF="81.25003,23" LocationFloat="552.3333, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item3 Ref="173" ControlType="XRLabel" Name="xrLabel31" Text="xrLabel31" TextAlignment="TopRight" SizeF="97.91687,23" LocationFloat="552.3333, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="174" Value="#Ref-16" />
             <Item2 Ref="175" Value="#Ref-20" />
@@ -330,14 +330,14 @@
           <DataBindings>
             <Item1 Ref="176" FormatString="{0:n2}" PropertyName="Text" DataMember="CreditoLocalDetalle" />
           </DataBindings>
-          <StylePriority Ref="177" UseTextAlignment="false" />
+          <StylePriority Ref="177" UseFont="false" UseTextAlignment="false" />
         </Item3>
         <Item4 Ref="178" ControlType="XRLine" Name="xrLine2" SizeF="478.5133,2.212389" LocationFloat="346.4867, 22.78763" />
         <Item5 Ref="179" ControlType="XRLine" Name="xrLine1" SizeF="478.5133,2.212389" LocationFloat="346.4867, 0" />
         <Item6 Ref="180" ControlType="XRLabel" Name="xrLabel25" Text="TOTALES" SizeF="100,20.78761" LocationFloat="360.4166, 4.212405" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="181" UseFont="false" />
         </Item6>
-        <Item7 Ref="182" ControlType="XRLabel" Name="xrLabel35" Text="xrLabel35" TextAlignment="TopLeft" SizeF="81.25003,23" LocationFloat="650.2501, 0" Padding="2,2,0,0,100" Visible="false">
+        <Item7 Ref="182" ControlType="XRLabel" Name="xrLabel35" Text="xrLabel35" TextAlignment="TopRight" SizeF="93.49988,23" LocationFloat="650.2501, 0" Font="Times New Roman, 9pt" Padding="2,2,0,0,100" Visible="false">
           <FormattingRuleLinks>
             <Item1 Ref="183" Value="#Ref-18" />
             <Item2 Ref="184" Value="#Ref-20" />
@@ -345,7 +345,7 @@
           <DataBindings>
             <Item1 Ref="185" FormatString="{0:n2}" PropertyName="Text" DataMember="DebitoDolarDetalle" />
           </DataBindings>
-          <StylePriority Ref="186" UseTextAlignment="false" />
+          <StylePriority Ref="186" UseFont="false" UseTextAlignment="false" />
         </Item7>
       </Controls>
     </Item11>

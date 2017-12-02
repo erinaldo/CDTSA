@@ -210,6 +210,7 @@
             this.btnCancelar.StyleController = this.layoutControl1;
             this.btnCancelar.TabIndex = 23;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
