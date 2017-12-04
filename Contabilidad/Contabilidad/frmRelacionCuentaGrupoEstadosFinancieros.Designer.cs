@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule1 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule2 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRelacionCuentaGrupoEstadosFinancieros));
+            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule3 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule treeListFormatRule4 = new DevExpress.XtraTreeList.StyleFormatConditions.TreeListFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            this.Tag = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.ColumnDescr = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.TagG = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnLimpiar = new DevExpress.XtraEditors.SimpleButton();
             this.cmbGrupoEstadoFinanciero = new DevExpress.XtraEditors.ComboBoxEdit();
             this.treeCuenta = new DevExpress.XtraTreeList.TreeList();
             this.ColumnCuenta = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.ColumnDescr = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.columnIDCuenta = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnIdGrupo2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.Tag = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeGrupoCuenta = new DevExpress.XtraTreeList.TreeList();
             this.ColumnCuentaG = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.ColumnDescrG = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -51,7 +53,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.TagG = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbGrupoEstadoFinanciero.Properties)).BeginInit();
@@ -62,10 +65,37 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // Tag
+            // 
+            this.Tag.Caption = "Tag";
+            this.Tag.FieldName = "Tag";
+            this.Tag.Name = "Tag";
+            this.Tag.Width = 85;
+            // 
+            // ColumnDescr
+            // 
+            this.ColumnDescr.Caption = "Descripción";
+            this.ColumnDescr.FieldName = "Descripcion";
+            this.ColumnDescr.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
+            this.ColumnDescr.Name = "ColumnDescr";
+            this.ColumnDescr.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
+            this.ColumnDescr.Visible = true;
+            this.ColumnDescr.VisibleIndex = 1;
+            this.ColumnDescr.Width = 198;
+            // 
+            // TagG
+            // 
+            this.TagG.Caption = "Tag";
+            this.TagG.FieldName = "Tag";
+            this.TagG.Name = "TagG";
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnLimpiar);
             this.layoutControl1.Controls.Add(this.cmbGrupoEstadoFinanciero);
             this.layoutControl1.Controls.Add(this.treeCuenta);
             this.layoutControl1.Controls.Add(this.treeGrupoCuenta);
@@ -77,9 +107,20 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
+            this.btnLimpiar.Location = new System.Drawing.Point(12, 12);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(116, 38);
+            this.btnLimpiar.StyleController = this.layoutControl1;
+            this.btnLimpiar.TabIndex = 7;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // cmbGrupoEstadoFinanciero
             // 
-            this.cmbGrupoEstadoFinanciero.Location = new System.Drawing.Point(187, 12);
+            this.cmbGrupoEstadoFinanciero.Location = new System.Drawing.Point(187, 54);
             this.cmbGrupoEstadoFinanciero.Name = "cmbGrupoEstadoFinanciero";
             this.cmbGrupoEstadoFinanciero.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -101,20 +142,20 @@
             this.ColumnIdGrupo2,
             this.Tag});
             this.treeCuenta.Cursor = System.Windows.Forms.Cursors.Default;
-            treeListFormatRule1.ApplyToRow = true;
-            treeListFormatRule1.Column = this.Tag;
-            treeListFormatRule1.ColumnApplyTo = this.ColumnDescr;
-            treeListFormatRule1.Name = "Bold Parent";
-            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.SystemColors.Highlight;
-            formatConditionRuleValue1.Appearance.Options.UseFont = true;
-            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue1.Value1 = "Root";
-            treeListFormatRule1.Rule = formatConditionRuleValue1;
-            this.treeCuenta.FormatRules.Add(treeListFormatRule1);
+            treeListFormatRule3.ApplyToRow = true;
+            treeListFormatRule3.Column = this.Tag;
+            treeListFormatRule3.ColumnApplyTo = this.ColumnDescr;
+            treeListFormatRule3.Name = "Bold Parent";
+            formatConditionRuleValue3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.SystemColors.Highlight;
+            formatConditionRuleValue3.Appearance.Options.UseFont = true;
+            formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue3.Value1 = "Root";
+            treeListFormatRule3.Rule = formatConditionRuleValue3;
+            this.treeCuenta.FormatRules.Add(treeListFormatRule3);
             this.treeCuenta.KeyFieldName = "IDCuenta";
-            this.treeCuenta.Location = new System.Drawing.Point(456, 28);
+            this.treeCuenta.Location = new System.Drawing.Point(456, 70);
             this.treeCuenta.Name = "treeCuenta";
             this.treeCuenta.OptionsBehavior.Editable = false;
             this.treeCuenta.OptionsDragAndDrop.AcceptOuterNodes = true;
@@ -123,7 +164,7 @@
             this.treeCuenta.OptionsSelection.MultiSelect = true;
             this.treeCuenta.ParentFieldName = "IDCuentaMayor";
             this.treeCuenta.PreviewFieldName = "IDCuenta";
-            this.treeCuenta.Size = new System.Drawing.Size(389, 369);
+            this.treeCuenta.Size = new System.Drawing.Size(389, 327);
             this.treeCuenta.TabIndex = 5;
             // 
             // ColumnCuenta
@@ -137,17 +178,6 @@
             this.ColumnCuenta.VisibleIndex = 0;
             this.ColumnCuenta.Width = 173;
             // 
-            // ColumnDescr
-            // 
-            this.ColumnDescr.Caption = "Descripción";
-            this.ColumnDescr.FieldName = "Descripcion";
-            this.ColumnDescr.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText;
-            this.ColumnDescr.Name = "ColumnDescr";
-            this.ColumnDescr.OptionsFilter.AutoFilterCondition = DevExpress.XtraTreeList.Columns.AutoFilterCondition.Contains;
-            this.ColumnDescr.Visible = true;
-            this.ColumnDescr.VisibleIndex = 1;
-            this.ColumnDescr.Width = 198;
-            // 
             // columnIDCuenta
             // 
             this.columnIDCuenta.Caption = "IDCuenta";
@@ -160,13 +190,6 @@
             this.ColumnIdGrupo2.FieldName = "IDGrupo";
             this.ColumnIdGrupo2.Name = "ColumnIdGrupo2";
             // 
-            // Tag
-            // 
-            this.Tag.Caption = "Tag";
-            this.Tag.FieldName = "Tag";
-            this.Tag.Name = "Tag";
-            this.Tag.Width = 85;
-            // 
             // treeGrupoCuenta
             // 
             this.treeGrupoCuenta.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
@@ -176,20 +199,20 @@
             this.ColumnIDGrupo,
             this.TagG});
             this.treeGrupoCuenta.Cursor = System.Windows.Forms.Cursors.Default;
-            treeListFormatRule2.ApplyToRow = true;
-            treeListFormatRule2.Column = this.TagG;
-            treeListFormatRule2.ColumnApplyTo = this.TagG;
-            treeListFormatRule2.Name = "Bold Node";
-            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            formatConditionRuleValue2.Appearance.Options.UseFont = true;
-            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
-            formatConditionRuleValue2.Value1 = "Root";
-            treeListFormatRule2.Rule = formatConditionRuleValue2;
-            this.treeGrupoCuenta.FormatRules.Add(treeListFormatRule2);
+            treeListFormatRule4.ApplyToRow = true;
+            treeListFormatRule4.Column = this.TagG;
+            treeListFormatRule4.ColumnApplyTo = this.TagG;
+            treeListFormatRule4.Name = "Bold Node";
+            formatConditionRuleValue4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            formatConditionRuleValue4.Appearance.Options.UseFont = true;
+            formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Equal;
+            formatConditionRuleValue4.Value1 = "Root";
+            treeListFormatRule4.Rule = formatConditionRuleValue4;
+            this.treeGrupoCuenta.FormatRules.Add(treeListFormatRule4);
             this.treeGrupoCuenta.KeyFieldName = "";
-            this.treeGrupoCuenta.Location = new System.Drawing.Point(12, 52);
+            this.treeGrupoCuenta.Location = new System.Drawing.Point(12, 94);
             this.treeGrupoCuenta.Name = "treeGrupoCuenta";
             this.treeGrupoCuenta.OptionsBehavior.Editable = false;
             this.treeGrupoCuenta.OptionsDragAndDrop.AcceptOuterNodes = true;
@@ -198,7 +221,7 @@
             this.treeGrupoCuenta.OptionsSelection.MultiSelect = true;
             this.treeGrupoCuenta.ParentFieldName = "";
             this.treeGrupoCuenta.RootValue = 1;
-            this.treeGrupoCuenta.Size = new System.Drawing.Size(389, 345);
+            this.treeGrupoCuenta.Size = new System.Drawing.Size(389, 303);
             this.treeGrupoCuenta.TabIndex = 4;
             // 
             // ColumnCuentaG
@@ -240,7 +263,9 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.emptySpaceItem1,
-            this.layoutControlItem3});
+            this.layoutControlItem3,
+            this.layoutControlItem4,
+            this.emptySpaceItem2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(857, 409);
@@ -249,9 +274,9 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.treeGrupoCuenta;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 66);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(393, 365);
+            this.layoutControlItem1.Size = new System.Drawing.Size(393, 323);
             this.layoutControlItem1.Text = "Cuenta - Grupo Estados Financieros";
             this.layoutControlItem1.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem1.TextSize = new System.Drawing.Size(172, 13);
@@ -259,9 +284,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.treeCuenta;
-            this.layoutControlItem2.Location = new System.Drawing.Point(444, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(444, 42);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(393, 389);
+            this.layoutControlItem2.Size = new System.Drawing.Size(393, 347);
             this.layoutControlItem2.Text = "Cuentas Contables";
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(172, 13);
@@ -269,25 +294,39 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(393, 0);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(393, 42);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(51, 389);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(51, 347);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.cmbGrupoEstadoFinanciero;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 42);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(393, 24);
             this.layoutControlItem3.Text = "Grupo Estados Financieros:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(172, 13);
             // 
-            // TagG
+            // layoutControlItem4
             // 
-            this.TagG.Caption = "Tag";
-            this.TagG.FieldName = "Tag";
-            this.TagG.Name = "TagG";
+            this.layoutControlItem4.Control = this.btnLimpiar;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.MaxSize = new System.Drawing.Size(120, 42);
+            this.layoutControlItem4.MinSize = new System.Drawing.Size(120, 42);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(120, 42);
+            this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(120, 0);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(717, 42);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmRelacionCuentaGrupoEstadosFinancieros
             // 
@@ -312,6 +351,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,6 +378,9 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmbGrupoEstadoFinanciero;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraTreeList.Columns.TreeListColumn TagG;
+        private DevExpress.XtraEditors.SimpleButton btnLimpiar;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
 
     }
 }

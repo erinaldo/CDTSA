@@ -270,6 +270,13 @@ namespace CG
             CargarCuentasGruposEstadosFinancieros();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            DAC.Cuenta_GrupoEstadosFinancierosDAC.DeleteALL();
+            CargarCuentasContables();
+            CargarCuentasGruposEstadosFinancieros();
+        }
+
         
 
      

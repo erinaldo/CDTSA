@@ -157,6 +157,41 @@ namespace CG.DAC
 
 
 
+        public static bool DeleteALL()
+        {
+            bool bResult = false;
+            
+            String strSQL = "DELETE from dbo.cntCuentaGrupoEstadosFinancieros ";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            try
+            {
+             
+                oCmd.CommandType = CommandType.Text;
+                //oCmd.Parameters.Add("@IDGrupo", SqlDbType.Int).Value = IDGrupo;
+                if (oCmd.Connection.State == ConnectionState.Closed)
+                    oCmd.Connection.Open();
+                oCmd.ExecuteNonQuery();
+                bResult = true;
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+
+
+            }
+            finally
+            {
+                if (oCmd.Connection.State == ConnectionState.Open)
+                    oCmd.Connection.Close();
+
+            }
+
+            return bResult;
+        }
+
 
 
         public static DataTable GetCuentasGrupoEstadosFinancieros(String sTipo)

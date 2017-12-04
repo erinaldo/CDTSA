@@ -21,8 +21,6 @@ go
 alter table dbo.cbRUC add constraint ukRUC unique (RUC)
 GO
 
-alter table dbo.cbRUC add constraint FkRUC foreign key (IDCuenta) references dbo.cntCuenta ( IDCuenta )
-GO
 
 alter table dbo.cbRUC add constraint FkTIPORUC foreign key (IDTipoRuc) references dbo.cbTipoRUC ( IDTipoRuc )
 GO
@@ -483,12 +481,7 @@ SELECT @NextConsecutivo= ISNULL(ConsecCheque,0) + 1 FROM dbo.cbCuentaBancaria WH
 
 GO
 
-
-SELECT ISNULL(ConsecCheque,0) + 1 FROM dbo.cbCuentaBancaria WHERE IDCuentaBanco=@IDCuentaBanco 
-
-
-
-CREATE   Procedure [dbo].[cbUpdateRUC] @Operacion nvarchar(1), @IDRuc int, @IDTipoRuc INT ,@Ruc nvarchar(20), @Nombre nvarchar(200),@Alias nvarchar(200),@IDCuenta INT,@Activo BIT
+CREATE   Procedure [dbo].[cbUpdateRUC] @Operacion nvarchar(1), @IDRuc int, @IDTipoRuc INT ,@Ruc nvarchar(20), @Nombre nvarchar(200),@Alias nvarchar(200),@Activo BIT
 as
 set nocount on 
 
@@ -502,8 +495,8 @@ BEGIN
 	
 	SET @IDRuc = (SELECT ISNULL(MAX(IDRuc),0)+1  FROM dbo.cbRUC)
 	
-	INSERT INTO dbo.cbRUC( IDRuc ,IDTipoRuc ,RUC ,Nombre ,Alias ,IDCuenta ,Activo)
-	VALUES (@IDRuc,@IDTipoRuc,@Ruc,@Nombre,@Alias,@IDCuenta,@Activo)
+	INSERT INTO dbo.cbRUC( IDRuc ,IDTipoRuc ,RUC ,Nombre ,Alias  ,Activo)
+	VALUES (@IDRuc,@IDTipoRuc,@Ruc,@Nombre,@Alias,@Activo)
 end
 
 if upper(@Operacion) = 'D'
@@ -520,7 +513,7 @@ end
 
 if upper(@Operacion) = 'U' 
 BEGIN
-	UPDATE dbo.cbRUC SET  Nombre = @Nombre,Alias =@Alias,Activo=@Activo,IDCuenta=@IDCuenta,IDTipoRuc=@IDTipoRuc WHERE IDRuc=@IDRuc
+	UPDATE dbo.cbRUC SET  Nombre = @Nombre,Alias =@Alias,Activo=@Activo,IDTipoRuc=@IDTipoRuc WHERE IDRuc=@IDRuc
 
 end
 
@@ -617,7 +610,7 @@ INNER JOIN dbo.cbCuentaBancaria C ON M.IDCuentaBanco = C.IDCuentaBanco
  WHERE M.IDCuentaBanco=@IDCuentaBanco AND M.IDTipo=@IDTipo AND IDSubTipo =@IDSubTipo AND Numero=@Numero
 
 SELECT @IDCuentaContableBanco=IDCuenta  FROM dbo.cbCuentaBancaria WHERE IDCuentaBanco=@IDCuentaBanco
-SELECT @IDCuentaProveedor = IDCuenta FROM dbo.cbRUC WHERE IDRuc=@IDRuc
+
 
 declare @LongAsiento INT , @Consecutivo int 
 

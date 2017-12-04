@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.DataAccess.Sql.StoredProcQuery storedProcQuery1 = new DevExpress.DataAccess.Sql.StoredProcQuery();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
@@ -51,7 +50,7 @@
             this.Nivel1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource();
             this.pageHeaderBand1 = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -407,7 +406,7 @@
             // 
             this.PFechaInicial.Name = "PFechaInicial";
             this.PFechaInicial.Type = typeof(System.DateTime);
-            this.PFechaInicial.ValueInfo = "2017-07-06";
+            this.PFechaInicial.ValueInfo = "2017-06-01";
             this.PFechaInicial.Visible = false;
             // 
             // xrLabel8
@@ -426,7 +425,7 @@
             // 
             this.PFechaFinal.Name = "PFechaFinal";
             this.PFechaFinal.Type = typeof(System.DateTime);
-            this.PFechaFinal.ValueInfo = "09/18/2017 12:34:50";
+            this.PFechaFinal.ValueInfo = "2017-06-30";
             this.PFechaFinal.Visible = false;
             // 
             // xrLabel9

@@ -121,26 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9ImNudEdldEJhbGFuY2VDb21wcmFiYWNpb24iPjxGaWVsZCBOYW1lPSJJREN1ZW50YSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkN1ZW50YSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEZXNjckN1ZW50YSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJFc01heW9yIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJOSVZFTDEiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJOSVZFTDIiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJOSVZFTDMiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJOSVZFTDQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJOSVZFTDUiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJUaXBvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IklEQ2VudHJvIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iQ2VudHJvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRlc2NyQ2VudHJvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlNhbGRvQW50ZXJpb3JMb2NhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU2FsZG9BbnRlcmlvckRvbGFyIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJEZWJpdG9Mb2NhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iRGViaXRvRG9sYXIiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkNyZWRpdG9Mb2NhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iQ3JlZGl0b0RvbGFyIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTYWxkb0xvY2FsIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTYWxkb0RvbGFyIiBUeXBlPSJEZWNpbWFsIiAvPjwvVmlldz48VmlldyBOYW1lPSJEYXRvc0dlbmVyYWxlcyI+PEZpZWxkIE5hbWU9Ik5vbWJyZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUZWxlZm9ubyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJMb2dvIiBUeXBlPSJCeXRlQXJyYXkiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
-  </data>
-  <data name="CreditoLocalDetalle.Expression" xml:space="preserve">
-    <value>Iif([Parameters.SoloCuentaMayor]=0, 
-iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoLocal])) ,
-iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoLocal])) )</value>
-  </data>
-  <data name="CreditoDolarDetalle.Expression" xml:space="preserve">
-    <value>Iif([Parameters.SoloCuentaMayor]=0, 
-Iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoDolarl])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([CreditoDolarl])),
-Iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoDolarl])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([CreditoDolarl])))</value>
-  </data>
-  <data name="DebitoDolarDetalle.Expression" xml:space="preserve">
-    <value>iif([Parameters.SoloCuentaMayor]=0,
-iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoDolar])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoDolar])),
-iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoDolar])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoDolar])))</value>
-  </data>
-  <data name="DebitoLocalDetalle.Expression" xml:space="preserve">
-    <value>iif([Parameters.SoloCuentaMayor]=0,
-iif([cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=0].Sum([DebitoLocal])),
-iif([cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoLocal])=null,0,[cntGetBalanceComprabacion][[EsMayor]=1].Sum([DebitoLocal])))</value>
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9ImNudEdldEJhbGFuY2VDb21wcmFiYWNpb24iPjxGaWVsZCBOYW1lPSJJREN1ZW50YSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkN1ZW50YSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEZXNjckN1ZW50YSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJFc01heW9yIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTklWRUwxIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTklWRUwyIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTklWRUwzIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTklWRUw0IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTklWRUw1IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTklWRUw2IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iVGlwbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJRENlbnRybyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkNlbnRybyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEZXNjckNlbnRybyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTYWxkb0FudGVyaW9yTG9jYWwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlNhbGRvQW50ZXJpb3JEb2xhciIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iRGViaXRvTG9jYWwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkRlYml0b0RvbGFyIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJDcmVkaXRvTG9jYWwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkNyZWRpdG9Eb2xhciIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU2FsZG9Mb2NhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU2FsZG9Eb2xhciIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iRGF0b3NHZW5lcmFsZXMiPjxGaWVsZCBOYW1lPSJOb21icmUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVsZWZvbm8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTG9nbyIgVHlwZT0iQnl0ZUFycmF5IiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
   </data>
 </root>

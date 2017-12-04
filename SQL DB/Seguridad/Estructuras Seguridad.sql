@@ -282,3 +282,10 @@ go
 
 alter table dbo.TipoAsientoUsuario add constraint fkTipoAsientoUsuarioTipo foreign key (Tipo) references dbo.cntTipoAsiento (Tipo)
 go
+
+
+INSERT INTO dbo.TipoAsientoUsuario(Usuario,Tipo)
+SELECT 'admin',Tipo  FROM dbo.cntTipoAsiento
+
+GO
+
