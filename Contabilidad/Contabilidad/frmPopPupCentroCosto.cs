@@ -92,15 +92,22 @@ namespace CG
         }
         private void RestoreSelection(GridView view)
         {
-            BeginInvoke(new Action(() =>
+            int i = 0;
+            try
             {
-                int i = 0;
-                while (i < selectedRows.Count)
+                BeginInvoke(new Action(() =>
                 {
-                    view.SelectRow(view.GetRowHandle(selectedRows[i]));
-                    i += 1;
+                   // int i = 0;
+                    while (i < selectedRows.Count)
+                    {
+                        view.SelectRow(view.GetRowHandle(selectedRows[i]));
+                        i += 1;
+                    }
+                }));
+            }catch (Exception ex)
+                {
+                    MessageBox.Show(string.Format("Debug: {0}{1}  {2} {3}{4} {5}", i, ex.Data, ex.InnerException, ex.Message, ex.Source, ex));
                 }
-            }));
         }
 
         
@@ -137,7 +144,7 @@ namespace CG
                 int rowHandle = gridView1.LocateByValue("IDCentro", Lista[i]);
                 if(rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
                 gridView1.SelectRow(rowHandle);
-
+                 
             }
         }
 
