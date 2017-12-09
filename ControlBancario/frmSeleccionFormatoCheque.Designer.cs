@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSeleccionFormatoCheque));
             this.slkupReportes = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Reporte = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnImprimir = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancelar = new DevExpress.XtraEditors.SimpleButton();
-            this.Reporte = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.slkupReportes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +48,8 @@
             this.slkupReportes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupReportes.Properties.NullText = "----";
+            this.slkupReportes.Properties.PopupFormMinSize = new System.Drawing.Size(0, 200);
+            this.slkupReportes.Properties.PopupFormSize = new System.Drawing.Size(0, 200);
             this.slkupReportes.Properties.View = this.searchLookUpEdit1View;
             this.slkupReportes.Size = new System.Drawing.Size(259, 20);
             this.slkupReportes.TabIndex = 0;
@@ -61,6 +63,25 @@
             this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpEdit1View.OptionsView.WaitAnimationOptions = DevExpress.XtraEditors.WaitAnimationOptions.Panel;
+            // 
+            // ID
+            // 
+            this.ID.Caption = "IDFormato";
+            this.ID.FieldName = "IDFormato";
+            this.ID.Name = "ID";
+            this.ID.Visible = true;
+            this.ID.VisibleIndex = 0;
+            this.ID.Width = 130;
+            // 
+            // Reporte
+            // 
+            this.Reporte.Caption = "Reporte";
+            this.Reporte.FieldName = "FormatoCheque";
+            this.Reporte.Name = "Reporte";
+            this.Reporte.Visible = true;
+            this.Reporte.VisibleIndex = 1;
+            this.Reporte.Width = 566;
             // 
             // labelControl1
             // 
@@ -89,24 +110,6 @@
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // Reporte
-            // 
-            this.Reporte.Caption = "Reporte";
-            this.Reporte.FieldName = "FormatoCheque";
-            this.Reporte.Name = "Reporte";
-            this.Reporte.Visible = true;
-            this.Reporte.VisibleIndex = 1;
-            this.Reporte.Width = 566;
-            // 
-            // ID
-            // 
-            this.ID.Caption = "IDFormato";
-            this.ID.FieldName = "IDFormato";
-            this.ID.Name = "ID";
-            this.ID.Visible = true;
-            this.ID.VisibleIndex = 0;
-            this.ID.Width = 130;
             // 
             // frmSeleccionFormatoCheque
             // 
