@@ -65,8 +65,6 @@
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rgMonedas.Properties)).BeginInit();
@@ -101,13 +99,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.textEdit1);
             this.layoutControl1.Controls.Add(this.rgMonedas);
             this.layoutControl1.Controls.Add(this.btnSelecctCuentasContables);
             this.layoutControl1.Controls.Add(this.btnSelectCentrosCostos);
@@ -132,7 +127,7 @@
             // rgMonedas
             // 
             this.rgMonedas.EditValue = ((short)(1));
-            this.rgMonedas.Location = new System.Drawing.Point(502, 204);
+            this.rgMonedas.Location = new System.Drawing.Point(502, 198);
             this.rgMonedas.Name = "rgMonedas";
             this.rgMonedas.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
             this.rgMonedas.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -168,7 +163,7 @@
             // rgCuentasSinMovimientos
             // 
             this.rgCuentasSinMovimientos.EditValue = ((short)(1));
-            this.rgCuentasSinMovimientos.Location = new System.Drawing.Point(208, 204);
+            this.rgCuentasSinMovimientos.Location = new System.Drawing.Point(208, 198);
             this.rgCuentasSinMovimientos.Name = "rgCuentasSinMovimientos";
             this.rgCuentasSinMovimientos.Properties.Columns = 1;
             this.rgCuentasSinMovimientos.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
@@ -183,26 +178,26 @@
             // dtpFechaFinal
             // 
             this.dtpFechaFinal.EditValue = null;
-            this.dtpFechaFinal.Location = new System.Drawing.Point(120, 228);
+            this.dtpFechaFinal.Location = new System.Drawing.Point(61, 222);
             this.dtpFechaFinal.Name = "dtpFechaFinal";
             this.dtpFechaFinal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaFinal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaFinal.Size = new System.Drawing.Size(60, 20);
+            this.dtpFechaFinal.Size = new System.Drawing.Size(119, 20);
             this.dtpFechaFinal.StyleController = this.layoutControl1;
             this.dtpFechaFinal.TabIndex = 25;
             // 
             // dtpFechaInicial
             // 
             this.dtpFechaInicial.EditValue = null;
-            this.dtpFechaInicial.Location = new System.Drawing.Point(120, 204);
+            this.dtpFechaInicial.Location = new System.Drawing.Point(61, 198);
             this.dtpFechaInicial.Name = "dtpFechaInicial";
             this.dtpFechaInicial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaInicial.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaInicial.Size = new System.Drawing.Size(60, 20);
+            this.dtpFechaInicial.Size = new System.Drawing.Size(119, 20);
             this.dtpFechaInicial.StyleController = this.layoutControl1;
             this.dtpFechaInicial.TabIndex = 24;
             // 
@@ -288,8 +283,7 @@
             this.layoutControlItem2,
             this.layoutControlItem3,
             this.emptySpaceItem4,
-            this.layoutControlGroup4,
-            this.layoutControlItem7});
+            this.layoutControlGroup4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(645, 332);
@@ -339,11 +333,11 @@
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(276, 138);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 138);
             this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 18);
             this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 18);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(349, 24);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(625, 18);
             this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -403,16 +397,16 @@
             // emptySpaceItem8
             // 
             this.emptySpaceItem8.AllowHotTrack = false;
-            this.emptySpaceItem8.Location = new System.Drawing.Point(0, 263);
+            this.emptySpaceItem8.Location = new System.Drawing.Point(0, 257);
             this.emptySpaceItem8.Name = "emptySpaceItem8";
-            this.emptySpaceItem8.Size = new System.Drawing.Size(625, 14);
+            this.emptySpaceItem8.Size = new System.Drawing.Size(625, 20);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem14});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(184, 162);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(184, 156);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(294, 101);
             this.layoutControlGroup3.Text = "Cuentas sin Movimiento";
@@ -434,7 +428,7 @@
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem18,
             this.layoutControlItem19});
-            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 162);
+            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 156);
             this.layoutControlGroup5.Name = "layoutControlGroup5";
             this.layoutControlGroup5.Size = new System.Drawing.Size(184, 101);
             this.layoutControlGroup5.Text = "Fechas:";
@@ -446,7 +440,7 @@
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(160, 24);
             this.layoutControlItem18.Text = "Desde:";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(93, 13);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(34, 13);
             // 
             // layoutControlItem19
             // 
@@ -455,7 +449,7 @@
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Size = new System.Drawing.Size(160, 35);
             this.layoutControlItem19.Text = "Hasta:";
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(93, 13);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(34, 13);
             // 
             // layoutControlItem6
             // 
@@ -505,7 +499,7 @@
             // 
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem4});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(478, 162);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(478, 156);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(147, 101);
             this.layoutControlGroup4.Text = "Moneda";
@@ -518,24 +512,6 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(123, 59);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(108, 150);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Mask.EditMask = "(0?[1-9]|1[012])/([012]?[1-9]|[123]0|31)/([123][0-9])?[0-9][0-9]";
-            this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEdit1.Size = new System.Drawing.Size(176, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 31;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.textEdit1;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 138);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(276, 24);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(93, 13);
             // 
             // frmBalanceComprobacion
             // 
@@ -583,8 +559,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -627,7 +601,5 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }

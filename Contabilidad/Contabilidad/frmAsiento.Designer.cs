@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAsiento));
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -83,7 +84,6 @@
             this.txtAsiento = new DevExpress.XtraEditors.TextEdit();
             this.txtEjercicio = new DevExpress.XtraEditors.TextEdit();
             this.txtConcepto = new System.Windows.Forms.RichTextBox();
-            this.dtpFecha = new DevExpress.XtraEditors.DateEdit();
             this.txtEstado = new DevExpress.XtraEditors.TextEdit();
             this.slkupTipo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -128,7 +128,8 @@
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.imgCollection = new DevExpress.Utils.ImageCollection();
+            this.imgCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.dtpFecha = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -156,8 +157,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupTipo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
@@ -203,6 +202,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -360,11 +360,11 @@
             this.layoutControl1.Controls.Add(this.txtAsiento);
             this.layoutControl1.Controls.Add(this.txtEjercicio);
             this.layoutControl1.Controls.Add(this.txtConcepto);
-            this.layoutControl1.Controls.Add(this.dtpFecha);
             this.layoutControl1.Controls.Add(this.txtEstado);
             this.layoutControl1.Controls.Add(this.slkupTipo);
             this.layoutControl1.Controls.Add(this.txtModuloFuente);
             this.layoutControl1.Controls.Add(this.txtPeriodo);
+            this.layoutControl1.Controls.Add(this.dtpFecha);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
@@ -823,24 +823,6 @@
             this.txtConcepto.Size = new System.Drawing.Size(722, 47);
             this.txtConcepto.TabIndex = 9;
             this.txtConcepto.Text = "";
-            // 
-            // dtpFecha
-            // 
-            this.dtpFecha.EditValue = null;
-            this.dtpFecha.Location = new System.Drawing.Point(510, 118);
-            this.dtpFecha.MenuManager = this.ribbonControl;
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFecha.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFecha.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.dtpFecha.Size = new System.Drawing.Size(318, 20);
-            this.dtpFecha.StyleController = this.layoutControl1;
-            this.dtpFecha.TabIndex = 8;
-            this.dtpFecha.EditValueChanged += new System.EventHandler(this.dtpFecha_EditValueChanged);
-            this.dtpFecha.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFecha_Validating);
-            this.dtpFecha.Validated += new System.EventHandler(this.dtpFecha_Validated);
             // 
             // txtEstado
             // 
@@ -1313,6 +1295,25 @@
             this.imgCollection.InsertGalleryImage("hidedetail_32x32.png", "images/spreadsheet/hidedetail_32x32.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/spreadsheet/hidedetail_32x32.png"), 1);
             this.imgCollection.Images.SetKeyName(1, "hidedetail_32x32.png");
             // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Location = new System.Drawing.Point(510, 118);
+            this.dtpFecha.MenuManager = this.ribbonControl;
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Properties.DisplayFormat.FormatString = "d";
+            this.dtpFecha.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpFecha.Properties.EditFormat.FormatString = "d";
+            this.dtpFecha.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dtpFecha.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
+            this.dtpFecha.Properties.Mask.EditMask = "d";
+            this.dtpFecha.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtpFecha.Size = new System.Drawing.Size(318, 20);
+            this.dtpFecha.StyleController = this.layoutControl1;
+            this.dtpFecha.TabIndex = 8;
+            this.dtpFecha.EditValueChanged += new System.EventHandler(this.dtpFecha_EditValueChanged);
+            this.dtpFecha.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFecha_Validating);
+            this.dtpFecha.Validated += new System.EventHandler(this.dtpFecha_Validated);
+            // 
             // frmAsiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1354,8 +1355,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCreditoGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAsiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEjercicio.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEstado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupTipo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
@@ -1401,6 +1400,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1420,7 +1420,6 @@
         private DevExpress.XtraEditors.TextEdit txtAsiento;
         private DevExpress.XtraEditors.TextEdit txtEjercicio;
         private System.Windows.Forms.RichTextBox txtConcepto;
-        private DevExpress.XtraEditors.DateEdit dtpFecha;
         private DevExpress.XtraEditors.TextEdit txtEstado;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupTipo;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
@@ -1509,5 +1508,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtCreditoGrid;
         private DevExpress.XtraEditors.LabelControl lblAnulado;
         private DevExpress.XtraLayout.LayoutControlItem lblAnuladod;
+        private DevExpress.XtraEditors.TextEdit dtpFecha;
     }
 }

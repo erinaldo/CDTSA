@@ -564,7 +564,7 @@ namespace CG
             try
             {
                 CargarDatosPeriodoActivo();
-
+                Util.Util.SetFormatDateTextEdit(this.dtpFecha);
                 HabilitarControles(false, false);
                 CargarSimbolosMoneda();
                 CargarPrivilegios();
