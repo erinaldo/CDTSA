@@ -265,111 +265,118 @@ namespace CG
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //ValidarDatos
-            if (!ValidarDatos())
-                return;
-
-            if (currentRow != null)
+            try
             {
-                lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
+                //ValidarDatos
+                if (!ValidarDatos())
+                    return;
 
-                Application.DoEvents();
-                currentRow.BeginEdit();
-
-                currentRow["Nivel1"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
-                currentRow["Nivel2"] = (this.txtNivel2.Text == "") ? "0" : this.txtNivel2.Text;
-                currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
-                currentRow["Centro"] = this.txtCentro.Text;
-                currentRow["Descr"] = this.txtDescripcion.Text;
-                currentRow["Activo"] = this.chkActivo.EditValue;
-                currentRow["Acumulador"] = this.chkAcumulador.EditValue;
-                
-                currentRow["IDCentroAcumulador"] = this.slkupCentroAcumulador.EditValue;
-                currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
-
-                currentRow.EndEdit();
-
-                DataSet _dsChanged = _dsCentro.GetChanges(DataRowState.Modified);
-
-                bool okFlag = true;
-                if (_dsChanged.HasErrors)
+                if (currentRow != null)
                 {
-                    okFlag = false;
-                    string msg = "Error en la fila con el tipo Id";
+                    lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
 
-                    foreach (DataTable tb in _dsChanged.Tables)
+                    Application.DoEvents();
+                    currentRow.BeginEdit();
+
+                    currentRow["Nivel1"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
+                    currentRow["Nivel2"] = (this.txtNivel2.Text == "") ? "0" : this.txtNivel2.Text;
+                    currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
+                    currentRow["Centro"] = this.txtCentro.Text;
+                    currentRow["Descr"] = this.txtDescripcion.Text;
+                    currentRow["Activo"] = this.chkActivo.EditValue;
+                    currentRow["Acumulador"] = this.chkAcumulador.EditValue;
+
+                    currentRow["IDCentroAcumulador"] = this.slkupCentroAcumulador.EditValue;
+                    currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
+
+                    currentRow.EndEdit();
+
+                    DataSet _dsChanged = _dsCentro.GetChanges(DataRowState.Modified);
+
+                    bool okFlag = true;
+                    if (_dsChanged.HasErrors)
                     {
-                        if (tb.HasErrors)
-                        {
-                            DataRow[] errosRow = tb.GetErrors();
+                        okFlag = false;
+                        string msg = "Error en la fila con el tipo Id";
 
-                            foreach (DataRow dr in errosRow)
+                        foreach (DataTable tb in _dsChanged.Tables)
+                        {
+                            if (tb.HasErrors)
                             {
-                                msg = msg + dr["Centro"].ToString();
+                                DataRow[] errosRow = tb.GetErrors();
+
+                                foreach (DataRow dr in errosRow)
+                                {
+                                    msg = msg + dr["Centro"].ToString();
+                                }
                             }
                         }
+
+                        lblStatus.Caption = msg;
                     }
 
-                    lblStatus.Caption = msg;
-                }
+                    //Si no hay errores
 
-                //Si no hay errores
+                    if (okFlag)
+                    {
+                        CentroCostoDAC.oAdaptador.Update(_dsChanged, "Data");
+                        lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
+                        Application.DoEvents();
+                        isEdition = false;
+                        _dsCentro.AcceptChanges();
+                        PopulateGrid();
+                        SetCurrentRow();
+                        HabilitarControles(false);
+                        AplicarPrivilegios();
+                    }
+                    else
+                    {
+                        _dsCentro.RejectChanges();
 
-                if (okFlag)
-                {
-                    CentroCostoDAC.oAdaptador.Update(_dsChanged, "Data");
-                    lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
-                    Application.DoEvents();
-                    isEdition = false;
-                    _dsCentro.AcceptChanges();
-                    PopulateGrid();
-                    SetCurrentRow();
-                    HabilitarControles(false);
-                    AplicarPrivilegios();
+                    }
                 }
                 else
                 {
-                    _dsCentro.RejectChanges();
+                    //nuevo registro
+                    currentRow = _dtCentro.NewRow();
 
+                    currentRow["Nivel1"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
+                    currentRow["Nivel2"] = (this.txtNivel2.Text == "") ? "0" : this.txtNivel2.Text;
+                    currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
+                    currentRow["Centro"] = this.txtCentro.Text;
+                    currentRow["Descr"] = this.txtDescripcion.Text;
+                    currentRow["Activo"] = this.chkActivo.EditValue;
+                    currentRow["Acumulador"] = this.chkAcumulador.EditValue;
+                    currentRow["IDCentroAcumulador"] = (this.slkupCentroAcumulador.EditValue == null) ? 0 : this.slkupCentroAcumulador.EditValue;
+                    currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
+                    _dtCentro.Rows.Add(currentRow);
+                    try
+                    {
+                        CentroCostoDAC.oAdaptador.Update(_dsCentro, "Data");
+                        _dsCentro.AcceptChanges();
+                        isEdition = false;
+                        lblStatus.Caption = "Se ha ingresado un nuevo registro";
+                        Application.DoEvents();
+                        PopulateGrid();
+                        SetCurrentRow();
+                        HabilitarControles(false);
+                        AplicarPrivilegios();
+                        ColumnView view = this.gridView;
+                        view.MoveLast();
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        _dsCentro.RejectChanges();
+                        currentRow = null;
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
-            else
-            {
-                //nuevo registro
-                currentRow = _dtCentro.NewRow();
-
-                currentRow["Nivel1"] = (this.txtNivel1.Text == "") ? "0" : this.txtNivel1.Text;
-                currentRow["Nivel2"] = (this.txtNivel2.Text == "") ? "0" : this.txtNivel2.Text;
-                currentRow["Nivel3"] = (this.txtNivel3.Text == "") ? "0" : this.txtNivel3.Text;
-                currentRow["Centro"] = this.txtCentro.Text;
-                currentRow["Descr"] = this.txtDescripcion.Text;
-                currentRow["Activo"] = this.chkActivo.EditValue;
-                currentRow["Acumulador"] = this.chkAcumulador.EditValue;
-                currentRow["IDCentroAcumulador"] = (this.slkupCentroAcumulador.EditValue == null) ? 0 : this.slkupCentroAcumulador.EditValue;
-                currentRow["ReadOnlySys"] = this.chkReadSystemOnly.EditValue;
-                _dtCentro.Rows.Add(currentRow);
-                try
-                {
-                    CentroCostoDAC.oAdaptador.Update(_dsCentro, "Data");
-                    _dsCentro.AcceptChanges();
-                    isEdition = false;
-                    lblStatus.Caption = "Se ha ingresado un nuevo registro";
-                    Application.DoEvents();
-                    PopulateGrid();
-                    SetCurrentRow();
-                    HabilitarControles(false);
-                    AplicarPrivilegios();
-                    ColumnView view = this.gridView;
-                    view.MoveLast();
-                }
-                catch (System.Data.SqlClient.SqlException ex)
-                {
-                    _dsCentro.RejectChanges();
-                    currentRow = null;
-                    MessageBox.Show(ex.Message);
-                }
+            catch (Exception ex) {
+                _dsCentro.RejectChanges();
+                currentRow = null;
+                MessageBox.Show(ex.Message);
             }
-
         }
 
         private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

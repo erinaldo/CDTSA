@@ -15,6 +15,10 @@ namespace Security
         public static SqlTransaction Tran;
         private static SqlConnection oConn;
 
+        public static void ResetCon() {
+            oConn = null;
+        }
+
         public static  SqlConnection GetConnection()
         {
             if (oConn == null)

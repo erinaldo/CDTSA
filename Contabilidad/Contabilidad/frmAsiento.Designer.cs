@@ -129,7 +129,7 @@
             this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.imgCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.dtpFecha = new DevExpress.XtraEditors.TextEdit();
+            this.dtpFecha = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -202,6 +202,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1297,16 +1298,18 @@
             // 
             // dtpFecha
             // 
+            this.dtpFecha.EditValue = null;
             this.dtpFecha.Location = new System.Drawing.Point(510, 118);
             this.dtpFecha.MenuManager = this.ribbonControl;
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Properties.DisplayFormat.FormatString = "d";
-            this.dtpFecha.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtpFecha.Properties.EditFormat.FormatString = "d";
-            this.dtpFecha.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dtpFecha.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.dtpFecha.Properties.Mask.EditMask = "d";
-            this.dtpFecha.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.dtpFecha.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFecha.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFecha.Properties.DisplayFormat.FormatString = "";
+            this.dtpFecha.Properties.EditFormat.FormatString = "";
+            this.dtpFecha.Properties.Mask.EditMask = "";
+            this.dtpFecha.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.dtpFecha.Size = new System.Drawing.Size(318, 20);
             this.dtpFecha.StyleController = this.layoutControl1;
             this.dtpFecha.TabIndex = 8;
@@ -1400,6 +1403,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1508,6 +1512,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtCreditoGrid;
         private DevExpress.XtraEditors.LabelControl lblAnulado;
         private DevExpress.XtraLayout.LayoutControlItem lblAnuladod;
-        private DevExpress.XtraEditors.TextEdit dtpFecha;
+        private DevExpress.XtraEditors.DateEdit dtpFecha;
     }
 }

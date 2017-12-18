@@ -564,7 +564,6 @@ namespace CG
             try
             {
                 CargarDatosPeriodoActivo();
-                Util.Util.SetFormatDateTextEdit(this.dtpFecha);
                 HabilitarControles(false, false);
                 CargarSimbolosMoneda();
                 CargarPrivilegios();
@@ -1255,7 +1254,7 @@ namespace CG
         private void dtpFecha_EditValueChanged(object sender, EventArgs e)
         {
             //Tomar el periodo y 
-            if (this.dtpFecha.EditValue != null)
+            if (this.dtpFecha.EditValue != null  )
             {
                 _dsEjercicioPeriodo = PeriodoContableDAC.GetPeriodoContableByFecha(Convert.ToDateTime(this.dtpFecha.EditValue));
                 _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();

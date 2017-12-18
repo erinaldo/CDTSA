@@ -152,7 +152,9 @@ namespace CDTSA
         {
             if (this.cmbCompania.SelectedIndex > -1)
             {
+                Security.ConnectionManager.ResetCon();
                 Security.Esquema.Compania = this.cmbCompania.SelectedItem.ToString();
+                
             }
         }
     }

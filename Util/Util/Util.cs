@@ -68,7 +68,7 @@ namespace Util
 
         public static void SetFormatDateTextEdit(TextEdit Caja) {
             Caja.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            Caja.Properties.Mask.EditMask = "(0?[1-9]|1[012])/([012]?[1-9]|[123]0|31)/([123][0-9])?[0-9][0-9]";
+            Caja.Properties.Mask.EditMask = "([012]?[1-9]|[123]0|31)/(0?[1-9]|1[012])/([123][0-9])?[0-9][0-9]";
         }
 
         public static void SetFormatTextEditGrid(RepositoryItemTextEdit texto, FormatType typeFormat, String Mask = "")
