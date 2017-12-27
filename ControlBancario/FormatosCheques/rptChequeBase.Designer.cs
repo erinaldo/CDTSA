@@ -48,14 +48,23 @@
             this.DataField = new DevExpress.XtraReports.UI.XRControlStyle();
             this.topMarginBand1 = new DevExpress.XtraReports.UI.TopMarginBand();
             this.bottomMarginBand1 = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Dia = new DevExpress.XtraReports.UI.CalculatedField();
+            this.MES = new DevExpress.XtraReports.UI.CalculatedField();
+            this.Anio = new DevExpress.XtraReports.UI.CalculatedField();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel1});
+            this.xrLabel8,
+            this.xrLabel7,
+            this.xrLabel6});
             this.Detail.HeightF = 445F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -163,7 +172,9 @@
             // topMarginBand1
             // 
             this.topMarginBand1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel2});
+            this.xrLabel5,
+            this.xrLabel4,
+            this.xrLabel3});
             this.topMarginBand1.HeightF = 100F;
             this.topMarginBand1.Name = "topMarginBand1";
             // 
@@ -172,25 +183,85 @@
             this.bottomMarginBand1.HeightF = 100F;
             this.bottomMarginBand1.Name = "bottomMarginBand1";
             // 
-            // xrLabel1
+            // Dia
             // 
-            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.Asiento")});
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(10.00001F, 39.54166F);
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel1.Text = "xrLabel1";
+            this.Dia.DataMember = "rptGetCheque";
+            this.Dia.DisplayName = "DIA";
+            this.Dia.Expression = "GetDay([Fecha])";
+            this.Dia.Name = "Dia";
             // 
-            // xrLabel2
+            // MES
             // 
-            this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.Descr")});
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(31.25F, 43.70834F);
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel2.Text = "xrLabel2";
+            this.MES.DataMember = "rptGetCheque";
+            this.MES.DisplayName = "MES";
+            this.MES.Expression = "GetMonth([Fecha])";
+            this.MES.Name = "MES";
+            // 
+            // Anio
+            // 
+            this.Anio.DisplayName = "ANIO";
+            this.Anio.Expression = "GetYear([rptGetCheque.Fecha])";
+            this.Anio.Name = "Anio";
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.Dia")});
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(417.7083F, 43.70834F);
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(44.79169F, 23F);
+            this.xrLabel3.Text = "xrLabel3";
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.MES")});
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(462.5F, 43.70834F);
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(41.66666F, 23F);
+            this.xrLabel4.Text = "xrLabel4";
+            // 
+            // xrLabel6
+            // 
+            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.Pagadero_a")});
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(10.00001F, 10.00001F);
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel6.Text = "xrLabel6";
+            // 
+            // xrLabel7
+            // 
+            this.xrLabel7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.MontoEnLetras")});
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(112.5001F, 45.79166F);
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(472.9166F, 23F);
+            this.xrLabel7.Text = "xrLabel7";
+            // 
+            // xrLabel8
+            // 
+            this.xrLabel8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "rptGetCheque.Monto")});
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(485.4167F, 10.00001F);
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel8.Text = "xrLabel8";
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Anio")});
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(504.1667F, 43.70834F);
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(44.7916F, 23F);
+            this.xrLabel5.Text = "xrLabel5";
             // 
             // rptChequeBase
             // 
@@ -198,6 +269,10 @@
             this.Detail,
             this.topMarginBand1,
             this.bottomMarginBand1});
+            this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
+            this.Dia,
+            this.MES,
+            this.Anio});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.sqlDataSource1});
             this.DataMember = "rptGetCheque";
@@ -231,7 +306,14 @@
         private DevExpress.XtraReports.UI.XRControlStyle DataField;
         private DevExpress.XtraReports.UI.TopMarginBand topMarginBand1;
         private DevExpress.XtraReports.UI.BottomMarginBand bottomMarginBand1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel7;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.UI.CalculatedField Dia;
+        private DevExpress.XtraReports.UI.CalculatedField MES;
+        private DevExpress.XtraReports.UI.CalculatedField Anio;
     }
 }
