@@ -110,6 +110,8 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -181,6 +183,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -402,6 +405,7 @@
             // 
             // layoutControl2
             // 
+            this.layoutControl2.Controls.Add(this.labelControl1);
             this.layoutControl2.Controls.Add(this.slkupRuc);
             this.layoutControl2.Controls.Add(this.txtReferencia);
             this.layoutControl2.Controls.Add(this.txtMonto);
@@ -539,7 +543,7 @@
             this.txtConcepto.Location = new System.Drawing.Point(74, 156);
             this.txtConcepto.MenuManager = this.ribbonControl;
             this.txtConcepto.Name = "txtConcepto";
-            this.txtConcepto.Size = new System.Drawing.Size(578, 150);
+            this.txtConcepto.Size = new System.Drawing.Size(578, 133);
             this.txtConcepto.StyleController = this.layoutControl2;
             this.txtConcepto.TabIndex = 7;
             // 
@@ -558,7 +562,8 @@
             this.layoutControlItem14,
             this.emptySpaceItem5,
             this.emptySpaceItem6,
-            this.layoutControlItem16});
+            this.layoutControlItem16,
+            this.layoutControlItem24});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(664, 318);
@@ -614,7 +619,7 @@
             this.layoutControlItem15.Control = this.txtConcepto;
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(644, 154);
+            this.layoutControlItem15.Size = new System.Drawing.Size(644, 137);
             this.layoutControlItem15.Text = "Concepto:";
             this.layoutControlItem15.TextSize = new System.Drawing.Size(59, 13);
             // 
@@ -666,7 +671,7 @@
             this.xtraTabPage3.Controls.Add(this.layoutControl3);
             this.xtraTabPage3.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabPage3.Image")));
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(664, 308);
+            this.xtraTabPage3.Size = new System.Drawing.Size(664, 318);
             this.xtraTabPage3.Text = "Auditoria";
             // 
             // layoutControl3
@@ -683,7 +688,7 @@
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup3;
-            this.layoutControl3.Size = new System.Drawing.Size(664, 308);
+            this.layoutControl3.Size = new System.Drawing.Size(664, 318);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -779,7 +784,7 @@
             this.emptySpaceItem7});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(664, 308);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(664, 318);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlGroup6
@@ -899,7 +904,7 @@
             this.emptySpaceItem7.AllowHotTrack = false;
             this.emptySpaceItem7.Location = new System.Drawing.Point(0, 180);
             this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(644, 108);
+            this.emptySpaceItem7.Size = new System.Drawing.Size(644, 118);
             this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup1
@@ -999,6 +1004,25 @@
             this.layoutControlItem21.Size = new System.Drawing.Size(644, 1);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(50, 20);
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 293);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl2;
+            this.labelControl1.TabIndex = 8;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.labelControl1;
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 281);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(644, 17);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
             // frmCheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1082,6 +1106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1170,5 +1195,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraEditors.LabelControl txtImpreso;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
     }
 }

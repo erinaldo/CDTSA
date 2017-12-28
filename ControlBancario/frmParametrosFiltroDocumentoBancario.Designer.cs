@@ -68,6 +68,8 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPagaderoA.Properties)).BeginInit();
@@ -108,10 +110,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.btnCancelar);
             this.layoutControl1.Controls.Add(this.btnAceptar);
             this.layoutControl1.Controls.Add(this.txtPagaderoA);
@@ -137,22 +141,22 @@
             // btnCancelar
             // 
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(373, 385);
+            this.btnCancelar.Location = new System.Drawing.Point(373, 368);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 38);
             this.btnCancelar.StyleController = this.layoutControl1;
-            this.btnCancelar.TabIndex = 16;
+            this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
             this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
-            this.btnAceptar.Location = new System.Drawing.Point(165, 385);
+            this.btnAceptar.Location = new System.Drawing.Point(165, 368);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(142, 38);
             this.btnAceptar.StyleController = this.layoutControl1;
-            this.btnAceptar.TabIndex = 15;
+            this.btnAceptar.TabIndex = 11;
             this.btnAceptar.Text = "Filtrar";
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -162,7 +166,7 @@
             this.txtPagaderoA.Name = "txtPagaderoA";
             this.txtPagaderoA.Size = new System.Drawing.Size(547, 20);
             this.txtPagaderoA.StyleController = this.layoutControl1;
-            this.txtPagaderoA.TabIndex = 14;
+            this.txtPagaderoA.TabIndex = 8;
             // 
             // txtConceptoContable
             // 
@@ -170,7 +174,7 @@
             this.txtConceptoContable.Name = "txtConceptoContable";
             this.txtConceptoContable.Size = new System.Drawing.Size(547, 20);
             this.txtConceptoContable.StyleController = this.layoutControl1;
-            this.txtConceptoContable.TabIndex = 13;
+            this.txtConceptoContable.TabIndex = 10;
             // 
             // txtReferencia
             // 
@@ -178,7 +182,7 @@
             this.txtReferencia.Name = "txtReferencia";
             this.txtReferencia.Size = new System.Drawing.Size(547, 20);
             this.txtReferencia.StyleController = this.layoutControl1;
-            this.txtReferencia.TabIndex = 12;
+            this.txtReferencia.TabIndex = 9;
             // 
             // chkAnulado
             // 
@@ -187,7 +191,7 @@
             this.chkAnulado.Properties.Caption = "Anulado";
             this.chkAnulado.Size = new System.Drawing.Size(344, 19);
             this.chkAnulado.StyleController = this.layoutControl1;
-            this.chkAnulado.TabIndex = 11;
+            this.chkAnulado.TabIndex = 2;
             // 
             // slkSubTipoDocumento
             // 
@@ -198,7 +202,7 @@
             this.slkSubTipoDocumento.Properties.View = this.searchLookUpEdit3View;
             this.slkSubTipoDocumento.Size = new System.Drawing.Size(242, 20);
             this.slkSubTipoDocumento.StyleController = this.layoutControl1;
-            this.slkSubTipoDocumento.TabIndex = 10;
+            this.slkSubTipoDocumento.TabIndex = 4;
             // 
             // searchLookUpEdit3View
             // 
@@ -216,7 +220,7 @@
             this.slkupTipoDocumento.Properties.View = this.searchLookUpEdit2View;
             this.slkupTipoDocumento.Size = new System.Drawing.Size(242, 20);
             this.slkupTipoDocumento.StyleController = this.layoutControl1;
-            this.slkupTipoDocumento.TabIndex = 9;
+            this.slkupTipoDocumento.TabIndex = 3;
             // 
             // searchLookUpEdit2View
             // 
@@ -231,7 +235,7 @@
             this.txtAliasRuc.Name = "txtAliasRuc";
             this.txtAliasRuc.Size = new System.Drawing.Size(547, 20);
             this.txtAliasRuc.StyleController = this.layoutControl1;
-            this.txtAliasRuc.TabIndex = 8;
+            this.txtAliasRuc.TabIndex = 7;
             // 
             // txtNombreRuc
             // 
@@ -239,7 +243,7 @@
             this.txtNombreRuc.Name = "txtNombreRuc";
             this.txtNombreRuc.Size = new System.Drawing.Size(547, 20);
             this.txtNombreRuc.StyleController = this.layoutControl1;
-            this.txtNombreRuc.TabIndex = 7;
+            this.txtNombreRuc.TabIndex = 6;
             // 
             // slkupRuc
             // 
@@ -250,7 +254,7 @@
             this.slkupRuc.Properties.View = this.searchLookUpEdit1View;
             this.slkupRuc.Size = new System.Drawing.Size(547, 20);
             this.slkupRuc.StyleController = this.layoutControl1;
-            this.slkupRuc.TabIndex = 6;
+            this.slkupRuc.TabIndex = 5;
             // 
             // searchLookUpEdit1View
             // 
@@ -270,7 +274,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaInicial.Size = new System.Drawing.Size(175, 20);
             this.dtpFechaInicial.StyleController = this.layoutControl1;
-            this.dtpFechaInicial.TabIndex = 5;
+            this.dtpFechaInicial.TabIndex = 0;
             // 
             // dtpFechaFinal
             // 
@@ -283,7 +287,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaFinal.Size = new System.Drawing.Size(175, 20);
             this.dtpFechaFinal.StyleController = this.layoutControl1;
-            this.dtpFechaFinal.TabIndex = 4;
+            this.dtpFechaFinal.TabIndex = 1;
             // 
             // layoutControlGroup1
             // 
@@ -299,7 +303,8 @@
             this.emptySpaceItem1,
             this.emptySpaceItem2,
             this.emptySpaceItem3,
-            this.emptySpaceItem4});
+            this.emptySpaceItem4,
+            this.layoutControlItem14});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(697, 435);
@@ -450,7 +455,7 @@
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnAceptar;
-            this.layoutControlItem12.Location = new System.Drawing.Point(153, 373);
+            this.layoutControlItem12.Location = new System.Drawing.Point(153, 356);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Size = new System.Drawing.Size(146, 42);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
@@ -459,7 +464,7 @@
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.btnCancelar;
-            this.layoutControlItem13.Location = new System.Drawing.Point(361, 373);
+            this.layoutControlItem13.Location = new System.Drawing.Point(361, 356);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(142, 42);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
@@ -468,7 +473,7 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 373);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 356);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(153, 42);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -476,7 +481,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(503, 373);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(503, 356);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(174, 42);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -486,16 +491,35 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 341);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(677, 32);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(677, 15);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(299, 373);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(299, 356);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(62, 42);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 410);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 13;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.labelControl1;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 398);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(677, 17);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem14.TextVisible = false;
             // 
             // frmParametrosFiltroDocumentoBancario
             // 
@@ -504,6 +528,7 @@
             this.ClientSize = new System.Drawing.Size(697, 435);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmParametrosFiltroDocumentoBancario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Filtro de Documentos Bancarios";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -545,6 +570,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -590,5 +616,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
     }
 }

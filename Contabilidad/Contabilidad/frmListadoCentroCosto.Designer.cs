@@ -75,6 +75,8 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -105,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -221,6 +224,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.txtCentro);
             this.layoutControl1.Controls.Add(this.chkActivo);
             this.layoutControl1.Controls.Add(this.chkReadSystemOnly);
@@ -242,7 +246,7 @@
             // 
             // txtCentro
             // 
-            this.txtCentro.Location = new System.Drawing.Point(452, 350);
+            this.txtCentro.Location = new System.Drawing.Point(452, 333);
             this.txtCentro.MenuManager = this.ribbonControl;
             this.txtCentro.Name = "txtCentro";
             this.txtCentro.Properties.ReadOnly = true;
@@ -252,7 +256,7 @@
             // 
             // chkActivo
             // 
-            this.chkActivo.Location = new System.Drawing.Point(676, 327);
+            this.chkActivo.Location = new System.Drawing.Point(676, 310);
             this.chkActivo.MenuManager = this.ribbonControl;
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Properties.Caption = "Activo";
@@ -262,7 +266,7 @@
             // 
             // chkReadSystemOnly
             // 
-            this.chkReadSystemOnly.Location = new System.Drawing.Point(353, 327);
+            this.chkReadSystemOnly.Location = new System.Drawing.Point(353, 310);
             this.chkReadSystemOnly.MenuManager = this.ribbonControl;
             this.chkReadSystemOnly.Name = "chkReadSystemOnly";
             this.chkReadSystemOnly.Properties.Caption = "Is Read Only (System)";
@@ -272,7 +276,7 @@
             // 
             // chkAcumulador
             // 
-            this.chkAcumulador.Location = new System.Drawing.Point(522, 327);
+            this.chkAcumulador.Location = new System.Drawing.Point(522, 310);
             this.chkAcumulador.MenuManager = this.ribbonControl;
             this.chkAcumulador.Name = "chkAcumulador";
             this.chkAcumulador.Properties.Caption = "Acumulador";
@@ -283,7 +287,7 @@
             // 
             // slkupCentroAcumulador
             // 
-            this.slkupCentroAcumulador.Location = new System.Drawing.Point(123, 327);
+            this.slkupCentroAcumulador.Location = new System.Drawing.Point(123, 310);
             this.slkupCentroAcumulador.MenuManager = this.ribbonControl;
             this.slkupCentroAcumulador.Name = "slkupCentroAcumulador";
             this.slkupCentroAcumulador.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -303,7 +307,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(452, 374);
+            this.txtDescripcion.Location = new System.Drawing.Point(452, 357);
             this.txtDescripcion.MenuManager = this.ribbonControl;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(328, 20);
@@ -312,7 +316,7 @@
             // 
             // txtNivel3
             // 
-            this.txtNivel3.Location = new System.Drawing.Point(123, 399);
+            this.txtNivel3.Location = new System.Drawing.Point(123, 382);
             this.txtNivel3.MenuManager = this.ribbonControl;
             this.txtNivel3.Name = "txtNivel3";
             this.txtNivel3.Properties.Mask.EditMask = "[0-9]*";
@@ -324,7 +328,7 @@
             // 
             // txtNivel2
             // 
-            this.txtNivel2.Location = new System.Drawing.Point(123, 375);
+            this.txtNivel2.Location = new System.Drawing.Point(123, 358);
             this.txtNivel2.MenuManager = this.ribbonControl;
             this.txtNivel2.Name = "txtNivel2";
             this.txtNivel2.Properties.Mask.EditMask = "[0-9]*";
@@ -336,7 +340,7 @@
             // 
             // txtNivel1
             // 
-            this.txtNivel1.Location = new System.Drawing.Point(123, 351);
+            this.txtNivel1.Location = new System.Drawing.Point(123, 334);
             this.txtNivel1.MenuManager = this.ribbonControl;
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Properties.Mask.EditMask = "[0-9]*";
@@ -352,7 +356,7 @@
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(780, 239);
+            this.dtg.Size = new System.Drawing.Size(780, 222);
             this.dtg.TabIndex = 5;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -442,7 +446,8 @@
             this.layoutControlItem2,
             this.emptySpaceItem1,
             this.layoutControlGroup2,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.layoutControlItem1});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(804, 443);
@@ -453,14 +458,14 @@
             this.layoutControlItem2.Control = this.dtg;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 20);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(784, 243);
+            this.layoutControlItem2.Size = new System.Drawing.Size(784, 226);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 263);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 246);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 22);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 22);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -481,7 +486,7 @@
             this.layoutControlItem3,
             this.layoutControlItem12,
             this.layoutControlItem7});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 285);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 268);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(784, 138);
             this.layoutControlGroup2.Text = "Datos del Centro de Costo";
@@ -594,6 +599,25 @@
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(96, 0);
             this.emptySpaceItem3.TextVisible = true;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 418);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 14;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.labelControl1;
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 406);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(784, 17);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextVisible = false;
+            // 
             // frmListadoCentroCosto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,6 +663,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -692,5 +717,7 @@
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

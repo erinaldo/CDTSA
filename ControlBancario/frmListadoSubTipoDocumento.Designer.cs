@@ -110,6 +110,7 @@
             this.btnAgregar.Id = 1;
             this.btnAgregar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAgregar.LargeGlyph")));
             this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnEditar
             // 
@@ -118,6 +119,7 @@
             this.btnEditar.Id = 2;
             this.btnEditar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEditar.LargeGlyph")));
             this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnGuardar
             // 
@@ -126,6 +128,7 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnCancelar
             // 
@@ -134,6 +137,7 @@
             this.btnCancelar.Id = 4;
             this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
             this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnEliminar
             // 
@@ -142,6 +146,7 @@
             this.btnEliminar.Id = 5;
             this.btnEliminar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEliminar.LargeGlyph")));
             this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // lblStatus
             // 
@@ -208,7 +213,7 @@
             this.chkActivo.Properties.Caption = "Activo";
             this.chkActivo.Size = new System.Drawing.Size(318, 19);
             this.chkActivo.StyleController = this.layoutControl1;
-            this.chkActivo.TabIndex = 9;
+            this.chkActivo.TabIndex = 4;
             // 
             // chkReadOnly
             // 
@@ -218,7 +223,7 @@
             this.chkReadOnly.Properties.Caption = "Read Only Sys";
             this.chkReadOnly.Size = new System.Drawing.Size(318, 19);
             this.chkReadOnly.StyleController = this.layoutControl1;
-            this.chkReadOnly.TabIndex = 8;
+            this.chkReadOnly.TabIndex = 3;
             // 
             // txtDescr
             // 
@@ -227,7 +232,7 @@
             this.txtDescr.Name = "txtDescr";
             this.txtDescr.Size = new System.Drawing.Size(553, 20);
             this.txtDescr.StyleController = this.layoutControl1;
-            this.txtDescr.TabIndex = 7;
+            this.txtDescr.TabIndex = 2;
             // 
             // txtSubTipo
             // 
@@ -238,7 +243,7 @@
             this.txtSubTipo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtSubTipo.Size = new System.Drawing.Size(553, 20);
             this.txtSubTipo.StyleController = this.layoutControl1;
-            this.txtSubTipo.TabIndex = 6;
+            this.txtSubTipo.TabIndex = 1;
             // 
             // slkupSubTipoDocumento
             // 
@@ -250,7 +255,7 @@
             this.slkupSubTipoDocumento.Properties.View = this.searchLookUpEdit1View;
             this.slkupSubTipoDocumento.Size = new System.Drawing.Size(553, 20);
             this.slkupSubTipoDocumento.StyleController = this.layoutControl1;
-            this.slkupSubTipoDocumento.TabIndex = 5;
+            this.slkupSubTipoDocumento.TabIndex = 0;
             // 
             // searchLookUpEdit1View
             // 

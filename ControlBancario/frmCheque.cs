@@ -275,6 +275,7 @@ namespace ControlBancario
                     this.slkupTipo.Enabled = false;
                     this.btnAprobar.Enabled = false;
                     this.btnImprimir.Enabled = false;
+                    this.btnAnular.Enabled = false;
 
                 }
                 else

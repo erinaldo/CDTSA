@@ -56,9 +56,11 @@
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSubirTipoCambio = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnSubirTipoCambio = new DevExpress.XtraBars.BarButtonItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
@@ -82,10 +84,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.btnRefrescar);
             this.layoutControl1.Controls.Add(this.dtpFecha);
             this.layoutControl1.Controls.Add(this.txtMonto);
@@ -171,7 +175,7 @@
             this.grid.Location = new System.Drawing.Point(12, 192);
             this.grid.MainView = this.gridView;
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(506, 181);
+            this.grid.Size = new System.Drawing.Size(506, 164);
             this.grid.TabIndex = 4;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -188,7 +192,8 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlGroup2,
-            this.layoutControlGroup3});
+            this.layoutControlGroup3,
+            this.layoutControlItem8});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(530, 385);
@@ -199,7 +204,7 @@
             this.layoutControlItem1.Control = this.grid;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 180);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(510, 185);
+            this.layoutControlItem1.Size = new System.Drawing.Size(510, 168);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -355,6 +360,15 @@
             this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
             this.btnExportar.Name = "btnExportar";
             // 
+            // btnSubirTipoCambio
+            // 
+            this.btnSubirTipoCambio.Caption = "Subir TC";
+            this.btnSubirTipoCambio.Glyph = ((System.Drawing.Image)(resources.GetObject("btnSubirTipoCambio.Glyph")));
+            this.btnSubirTipoCambio.Id = 3;
+            this.btnSubirTipoCambio.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnSubirTipoCambio.LargeGlyph")));
+            this.btnSubirTipoCambio.Name = "btnSubirTipoCambio";
+            this.btnSubirTipoCambio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubirTipoCambio_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -374,14 +388,24 @@
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
-            // btnSubirTipoCambio
+            // labelControl1
             // 
-            this.btnSubirTipoCambio.Caption = "Subir TC";
-            this.btnSubirTipoCambio.Glyph = ((System.Drawing.Image)(resources.GetObject("btnSubirTipoCambio.Glyph")));
-            this.btnSubirTipoCambio.Id = 3;
-            this.btnSubirTipoCambio.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnSubirTipoCambio.LargeGlyph")));
-            this.btnSubirTipoCambio.Name = "btnSubirTipoCambio";
-            this.btnSubirTipoCambio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSubirTipoCambio_ItemClick);
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 360);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 12;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.labelControl1;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 348);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(510, 17);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // frmTipoCambioDetalle
             // 
@@ -417,6 +441,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -454,5 +479,7 @@
         private DevExpress.XtraEditors.SimpleButton btnRefrescar;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraBars.BarButtonItem btnSubirTipoCambio;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }

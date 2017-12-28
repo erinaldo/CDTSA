@@ -31,6 +31,7 @@
             this.dtpFecha = new DevExpress.XtraEditors.DateEdit();
             this.btnSubir = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).BeginInit();
             this.SuspendLayout();
@@ -67,11 +68,21 @@
             this.labelControl1.Text = "Permite Subir los tipos de Cambios, del Banco Central para el mes de la fecha Sel" +
     "eccionada";
             // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl2.Location = new System.Drawing.Point(5, 164);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(248, 13);
+            this.labelControl2.TabIndex = 9;
+            this.labelControl2.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
             // frmSubirTipoCambio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(275, 179);
+            this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.btnSubir);
             this.Controls.Add(this.dtpFecha);
@@ -82,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFecha.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -90,5 +102,6 @@
         private DevExpress.XtraEditors.DateEdit dtpFecha;
         private DevExpress.XtraEditors.SimpleButton btnSubir;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
     }
 }

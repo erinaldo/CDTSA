@@ -103,6 +103,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -154,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -285,6 +288,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.txtNivel6);
             this.layoutControl1.Controls.Add(this.chkActiva);
             this.layoutControl1.Controls.Add(this.slkupCuentaMayor);
@@ -315,7 +319,7 @@
             // 
             // txtNivel6
             // 
-            this.txtNivel6.Location = new System.Drawing.Point(454, 425);
+            this.txtNivel6.Location = new System.Drawing.Point(454, 408);
             this.txtNivel6.MenuManager = this.ribbonControl;
             this.txtNivel6.Name = "txtNivel6";
             this.txtNivel6.Size = new System.Drawing.Size(257, 20);
@@ -324,7 +328,7 @@
             // 
             // chkActiva
             // 
-            this.chkActiva.Location = new System.Drawing.Point(268, 329);
+            this.chkActiva.Location = new System.Drawing.Point(268, 312);
             this.chkActiva.MenuManager = this.ribbonControl;
             this.chkActiva.Name = "chkActiva";
             this.chkActiva.Properties.Caption = "Activa";
@@ -334,7 +338,7 @@
             // 
             // slkupCuentaMayor
             // 
-            this.slkupCuentaMayor.Location = new System.Drawing.Point(114, 375);
+            this.slkupCuentaMayor.Location = new System.Drawing.Point(114, 358);
             this.slkupCuentaMayor.MenuManager = this.ribbonControl;
             this.slkupCuentaMayor.Name = "slkupCuentaMayor";
             this.slkupCuentaMayor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -354,7 +358,7 @@
             // 
             // slkupCuentaAnterior
             // 
-            this.slkupCuentaAnterior.Location = new System.Drawing.Point(114, 399);
+            this.slkupCuentaAnterior.Location = new System.Drawing.Point(114, 382);
             this.slkupCuentaAnterior.MenuManager = this.ribbonControl;
             this.slkupCuentaAnterior.Name = "slkupCuentaAnterior";
             this.slkupCuentaAnterior.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -373,7 +377,7 @@
             // 
             // chkEsMayor
             // 
-            this.chkEsMayor.Location = new System.Drawing.Point(177, 329);
+            this.chkEsMayor.Location = new System.Drawing.Point(177, 312);
             this.chkEsMayor.MenuManager = this.ribbonControl;
             this.chkEsMayor.Name = "chkEsMayor";
             this.chkEsMayor.Properties.Caption = "Es de Mayor";
@@ -384,7 +388,7 @@
             // 
             // chkAceptaDatos
             // 
-            this.chkAceptaDatos.Location = new System.Drawing.Point(177, 352);
+            this.chkAceptaDatos.Location = new System.Drawing.Point(177, 335);
             this.chkAceptaDatos.MenuManager = this.ribbonControl;
             this.chkAceptaDatos.Name = "chkAceptaDatos";
             this.chkAceptaDatos.Properties.Caption = "Acepta Datos";
@@ -395,7 +399,7 @@
             // 
             // chkUsaCentroCosto
             // 
-            this.chkUsaCentroCosto.Location = new System.Drawing.Point(24, 352);
+            this.chkUsaCentroCosto.Location = new System.Drawing.Point(24, 335);
             this.chkUsaCentroCosto.MenuManager = this.ribbonControl;
             this.chkUsaCentroCosto.Name = "chkUsaCentroCosto";
             this.chkUsaCentroCosto.Properties.Caption = "Usa Centro de Costo";
@@ -406,7 +410,7 @@
             // chkComplementaria
             // 
             this.chkComplementaria.Enabled = false;
-            this.chkComplementaria.Location = new System.Drawing.Point(24, 329);
+            this.chkComplementaria.Location = new System.Drawing.Point(24, 312);
             this.chkComplementaria.MenuManager = this.ribbonControl;
             this.chkComplementaria.Name = "chkComplementaria";
             this.chkComplementaria.Properties.Caption = "Complementaria";
@@ -416,7 +420,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(454, 281);
+            this.txtDescripcion.Location = new System.Drawing.Point(454, 264);
             this.txtDescripcion.MenuManager = this.ribbonControl;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(257, 20);
@@ -425,7 +429,7 @@
             // 
             // txtCuenta
             // 
-            this.txtCuenta.Location = new System.Drawing.Point(454, 257);
+            this.txtCuenta.Location = new System.Drawing.Point(454, 240);
             this.txtCuenta.MenuManager = this.ribbonControl;
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.Properties.ReadOnly = true;
@@ -435,7 +439,7 @@
             // 
             // txtNivel5
             // 
-            this.txtNivel5.Location = new System.Drawing.Point(454, 401);
+            this.txtNivel5.Location = new System.Drawing.Point(454, 384);
             this.txtNivel5.MenuManager = this.ribbonControl;
             this.txtNivel5.Name = "txtNivel5";
             this.txtNivel5.Size = new System.Drawing.Size(257, 20);
@@ -444,7 +448,7 @@
             // 
             // txtNivel4
             // 
-            this.txtNivel4.Location = new System.Drawing.Point(454, 377);
+            this.txtNivel4.Location = new System.Drawing.Point(454, 360);
             this.txtNivel4.MenuManager = this.ribbonControl;
             this.txtNivel4.Name = "txtNivel4";
             this.txtNivel4.Size = new System.Drawing.Size(257, 20);
@@ -453,7 +457,7 @@
             // 
             // txtNivel3
             // 
-            this.txtNivel3.Location = new System.Drawing.Point(454, 353);
+            this.txtNivel3.Location = new System.Drawing.Point(454, 336);
             this.txtNivel3.MenuManager = this.ribbonControl;
             this.txtNivel3.Name = "txtNivel3";
             this.txtNivel3.Size = new System.Drawing.Size(257, 20);
@@ -462,7 +466,7 @@
             // 
             // txtNivel2
             // 
-            this.txtNivel2.Location = new System.Drawing.Point(454, 329);
+            this.txtNivel2.Location = new System.Drawing.Point(454, 312);
             this.txtNivel2.MenuManager = this.ribbonControl;
             this.txtNivel2.Name = "txtNivel2";
             this.txtNivel2.Size = new System.Drawing.Size(257, 20);
@@ -471,7 +475,7 @@
             // 
             // txtNivel1
             // 
-            this.txtNivel1.Location = new System.Drawing.Point(454, 305);
+            this.txtNivel1.Location = new System.Drawing.Point(454, 288);
             this.txtNivel1.MenuManager = this.ribbonControl;
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Properties.ReadOnly = true;
@@ -481,7 +485,7 @@
             // 
             // slkupSubTipo
             // 
-            this.slkupSubTipo.Location = new System.Drawing.Point(114, 305);
+            this.slkupSubTipo.Location = new System.Drawing.Point(114, 288);
             this.slkupSubTipo.MenuManager = this.ribbonControl;
             this.slkupSubTipo.Name = "slkupSubTipo";
             this.slkupSubTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -500,7 +504,7 @@
             // 
             // slkupTipo
             // 
-            this.slkupTipo.Location = new System.Drawing.Point(114, 281);
+            this.slkupTipo.Location = new System.Drawing.Point(114, 264);
             this.slkupTipo.MenuManager = this.ribbonControl;
             this.slkupTipo.Name = "slkupTipo";
             this.slkupTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -519,7 +523,7 @@
             // 
             // slkupGrupo
             // 
-            this.slkupGrupo.Location = new System.Drawing.Point(114, 257);
+            this.slkupGrupo.Location = new System.Drawing.Point(114, 240);
             this.slkupGrupo.MenuManager = this.ribbonControl;
             this.slkupGrupo.Name = "slkupGrupo";
             this.slkupGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -543,7 +547,7 @@
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(711, 188);
+            this.dtg.Size = new System.Drawing.Size(711, 171);
             this.dtg.TabIndex = 4;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -695,7 +699,8 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlGroup2,
-            this.emptySpaceItem2});
+            this.emptySpaceItem2,
+            this.layoutControlItem20});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(735, 469);
@@ -706,7 +711,7 @@
             this.layoutControlItem1.Control = this.dtg;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 23);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(715, 192);
+            this.layoutControlItem1.Size = new System.Drawing.Size(715, 175);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -732,7 +737,7 @@
             this.layoutControlItem17,
             this.layoutControlItem2,
             this.layoutControlItem19});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 215);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 198);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(715, 234);
             this.layoutControlGroup2.Text = "Detalle de Cuentas Contables";
@@ -927,6 +932,25 @@
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(87, 0);
             this.emptySpaceItem2.TextVisible = true;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 444);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 100001;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem20
+            // 
+            this.layoutControlItem20.Control = this.labelControl1;
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 432);
+            this.layoutControlItem20.Name = "layoutControlItem20";
+            this.layoutControlItem20.Size = new System.Drawing.Size(715, 17);
+            this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem20.TextVisible = false;
+            // 
             // frmListadoCuentaContable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -993,6 +1017,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1074,5 +1099,7 @@
         private DevExpress.XtraEditors.TextEdit txtNivel6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
     }
 }

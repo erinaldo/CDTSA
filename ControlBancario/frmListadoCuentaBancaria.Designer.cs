@@ -92,6 +92,8 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -140,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -257,6 +260,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.slkupCuentaContable);
             this.layoutControl1.Controls.Add(this.txtLimite);
             this.layoutControl1.Controls.Add(this.gridCuenta);
@@ -284,7 +288,7 @@
             // 
             // slkupCuentaContable
             // 
-            this.slkupCuentaContable.Location = new System.Drawing.Point(125, 482);
+            this.slkupCuentaContable.Location = new System.Drawing.Point(125, 465);
             this.slkupCuentaContable.MenuManager = this.ribbonControl;
             this.slkupCuentaContable.Name = "slkupCuentaContable";
             this.slkupCuentaContable.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -303,7 +307,7 @@
             // 
             // txtLimite
             // 
-            this.txtLimite.Location = new System.Drawing.Point(437, 304);
+            this.txtLimite.Location = new System.Drawing.Point(437, 287);
             this.txtLimite.MenuManager = this.ribbonControl;
             this.txtLimite.Name = "txtLimite";
             this.txtLimite.Size = new System.Drawing.Size(127, 20);
@@ -316,7 +320,7 @@
             this.gridCuenta.MainView = this.gridView1;
             this.gridCuenta.MenuManager = this.ribbonControl;
             this.gridCuenta.Name = "gridCuenta";
-            this.gridCuenta.Size = new System.Drawing.Size(788, 226);
+            this.gridCuenta.Size = new System.Drawing.Size(788, 209);
             this.gridCuenta.TabIndex = 18;
             this.gridCuenta.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -383,7 +387,7 @@
             // 
             // chkActivo
             // 
-            this.chkActivo.Location = new System.Drawing.Point(568, 304);
+            this.chkActivo.Location = new System.Drawing.Point(568, 287);
             this.chkActivo.MenuManager = this.ribbonControl;
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Properties.Caption = "Activo";
@@ -393,7 +397,7 @@
             // 
             // chkSobreGirada
             // 
-            this.chkSobreGirada.Location = new System.Drawing.Point(568, 328);
+            this.chkSobreGirada.Location = new System.Drawing.Point(568, 311);
             this.chkSobreGirada.MenuManager = this.ribbonControl;
             this.chkSobreGirada.Name = "chkSobreGirada";
             this.chkSobreGirada.Properties.Caption = "Sobgre Girada";
@@ -404,7 +408,7 @@
             // 
             // txtUltTransferencia
             // 
-            this.txtUltTransferencia.Location = new System.Drawing.Point(125, 458);
+            this.txtUltTransferencia.Location = new System.Drawing.Point(125, 441);
             this.txtUltTransferencia.MenuManager = this.ribbonControl;
             this.txtUltTransferencia.Name = "txtUltTransferencia";
             this.txtUltTransferencia.Size = new System.Drawing.Size(651, 20);
@@ -413,7 +417,7 @@
             // 
             // txtUltimoCheque
             // 
-            this.txtUltimoCheque.Location = new System.Drawing.Point(125, 434);
+            this.txtUltimoCheque.Location = new System.Drawing.Point(125, 417);
             this.txtUltimoCheque.MenuManager = this.ribbonControl;
             this.txtUltimoCheque.Name = "txtUltimoCheque";
             this.txtUltimoCheque.Size = new System.Drawing.Size(651, 20);
@@ -422,7 +426,7 @@
             // 
             // txtUltDeposito
             // 
-            this.txtUltDeposito.Location = new System.Drawing.Point(125, 410);
+            this.txtUltDeposito.Location = new System.Drawing.Point(125, 393);
             this.txtUltDeposito.MenuManager = this.ribbonControl;
             this.txtUltDeposito.Name = "txtUltDeposito";
             this.txtUltDeposito.Size = new System.Drawing.Size(651, 20);
@@ -431,7 +435,7 @@
             // 
             // txtSaldoBancos
             // 
-            this.txtSaldoBancos.Location = new System.Drawing.Point(437, 328);
+            this.txtSaldoBancos.Location = new System.Drawing.Point(437, 311);
             this.txtSaldoBancos.MenuManager = this.ribbonControl;
             this.txtSaldoBancos.Name = "txtSaldoBancos";
             this.txtSaldoBancos.Properties.ReadOnly = true;
@@ -441,7 +445,7 @@
             // 
             // txtSaldoLibros
             // 
-            this.txtSaldoLibros.Location = new System.Drawing.Point(437, 352);
+            this.txtSaldoLibros.Location = new System.Drawing.Point(437, 335);
             this.txtSaldoLibros.MenuManager = this.ribbonControl;
             this.txtSaldoLibros.Name = "txtSaldoLibros";
             this.txtSaldoLibros.Properties.ReadOnly = true;
@@ -451,7 +455,7 @@
             // 
             // slkupTipo
             // 
-            this.slkupTipo.Location = new System.Drawing.Point(125, 458);
+            this.slkupTipo.Location = new System.Drawing.Point(125, 441);
             this.slkupTipo.MenuManager = this.ribbonControl;
             this.slkupTipo.Name = "slkupTipo";
             this.slkupTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -471,7 +475,7 @@
             // dtFechaCreacion
             // 
             this.dtFechaCreacion.EditValue = null;
-            this.dtFechaCreacion.Location = new System.Drawing.Point(497, 458);
+            this.dtFechaCreacion.Location = new System.Drawing.Point(497, 441);
             this.dtFechaCreacion.MenuManager = this.ribbonControl;
             this.dtFechaCreacion.Name = "dtFechaCreacion";
             this.dtFechaCreacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -484,7 +488,7 @@
             // 
             // slkupMoneda
             // 
-            this.slkupMoneda.Location = new System.Drawing.Point(497, 434);
+            this.slkupMoneda.Location = new System.Drawing.Point(497, 417);
             this.slkupMoneda.MenuManager = this.ribbonControl;
             this.slkupMoneda.Name = "slkupMoneda";
             this.slkupMoneda.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -503,7 +507,7 @@
             // 
             // slkupBanco
             // 
-            this.slkupBanco.Location = new System.Drawing.Point(125, 434);
+            this.slkupBanco.Location = new System.Drawing.Point(125, 417);
             this.slkupBanco.MenuManager = this.ribbonControl;
             this.slkupBanco.Name = "slkupBanco";
             this.slkupBanco.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -522,7 +526,7 @@
             // 
             // txtDescr
             // 
-            this.txtDescr.Location = new System.Drawing.Point(497, 410);
+            this.txtDescr.Location = new System.Drawing.Point(497, 393);
             this.txtDescr.MenuManager = this.ribbonControl;
             this.txtDescr.Name = "txtDescr";
             this.txtDescr.Size = new System.Drawing.Size(279, 20);
@@ -531,7 +535,7 @@
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(125, 410);
+            this.txtCodigo.Location = new System.Drawing.Point(125, 393);
             this.txtCodigo.MenuManager = this.ribbonControl;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(279, 20);
@@ -545,7 +549,8 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem15,
             this.layoutControlGroup4,
-            this.emptySpaceItem2});
+            this.emptySpaceItem2,
+            this.layoutControlItem17});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(812, 538);
@@ -556,7 +561,7 @@
             this.layoutControlItem15.Control = this.gridCuenta;
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(792, 230);
+            this.layoutControlItem15.Size = new System.Drawing.Size(792, 213);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
@@ -570,7 +575,7 @@
             this.layoutControlItem13,
             this.layoutControlItem8,
             this.layoutControlItem7});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 262);
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 245);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(792, 256);
             this.layoutControlGroup4.Text = "Datos Cuenta Bancaria";
@@ -776,6 +781,25 @@
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(86, 0);
             this.emptySpaceItem2.TextVisible = true;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 513);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 21;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.labelControl1;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 501);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(792, 17);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
             // frmListadoCuentaBancaria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -835,6 +859,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -905,5 +930,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Limite;
         private DevExpress.XtraBars.BarButtonItem btnFormato;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
     }
 }

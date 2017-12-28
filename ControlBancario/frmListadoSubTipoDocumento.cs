@@ -202,7 +202,7 @@ namespace ControlBancario
             HabilitarControles(true);
             ClearControls();
             currentRow = null;
-            this.txtDescr.Focus();
+            this.slkupSubTipoDocumento.Focus();
         }
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

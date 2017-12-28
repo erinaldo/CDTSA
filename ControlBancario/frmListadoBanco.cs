@@ -16,7 +16,7 @@ namespace ControlBancario
     public partial class frmListadoBanco : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private DataTable _dtBanco;
-        private DataTable _lstBanco;
+        
         private DataSet _dsBanco;
         private DataTable _dtSecurity;
 

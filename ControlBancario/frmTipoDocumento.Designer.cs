@@ -100,6 +100,7 @@
             this.btnAgregar.Id = 1;
             this.btnAgregar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAgregar.LargeGlyph")));
             this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnEditar
             // 
@@ -108,6 +109,7 @@
             this.btnEditar.Id = 2;
             this.btnEditar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEditar.LargeGlyph")));
             this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnGuardar
             // 
@@ -116,6 +118,7 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnCancelar
             // 
@@ -124,6 +127,7 @@
             this.btnCancelar.Id = 4;
             this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
             this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnEliminar
             // 
@@ -132,6 +136,7 @@
             this.btnEliminar.Id = 5;
             this.btnEliminar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEliminar.LargeGlyph")));
             this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // lblStatus
             // 

@@ -77,6 +77,8 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -111,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -217,6 +220,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.slkpTipoDeGrupo);
             this.layoutControl1.Controls.Add(this.cmbTipoGrupo);
             this.layoutControl1.Controls.Add(this.slkupGrupoAcumulador);
@@ -239,7 +243,7 @@
             // 
             // slkpTipoDeGrupo
             // 
-            this.slkpTipoDeGrupo.Location = new System.Drawing.Point(461, 350);
+            this.slkpTipoDeGrupo.Location = new System.Drawing.Point(461, 333);
             this.slkpTipoDeGrupo.MenuManager = this.ribbonControl;
             this.slkpTipoDeGrupo.Name = "slkpTipoDeGrupo";
             this.slkpTipoDeGrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -275,7 +279,7 @@
             // 
             // slkupGrupoAcumulador
             // 
-            this.slkupGrupoAcumulador.Location = new System.Drawing.Point(132, 327);
+            this.slkupGrupoAcumulador.Location = new System.Drawing.Point(132, 310);
             this.slkupGrupoAcumulador.MenuManager = this.ribbonControl;
             this.slkupGrupoAcumulador.Name = "slkupGrupoAcumulador";
             this.slkupGrupoAcumulador.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -294,7 +298,7 @@
             // 
             // chkAcumulador
             // 
-            this.chkAcumulador.Location = new System.Drawing.Point(353, 327);
+            this.chkAcumulador.Location = new System.Drawing.Point(353, 310);
             this.chkAcumulador.MenuManager = this.ribbonControl;
             this.chkAcumulador.Name = "chkAcumulador";
             this.chkAcumulador.Properties.Caption = "Acumulador";
@@ -304,7 +308,7 @@
             // 
             // txtCentro
             // 
-            this.txtCentro.Location = new System.Drawing.Point(461, 374);
+            this.txtCentro.Location = new System.Drawing.Point(461, 357);
             this.txtCentro.MenuManager = this.ribbonControl;
             this.txtCentro.Name = "txtCentro";
             this.txtCentro.Properties.ReadOnly = true;
@@ -314,7 +318,7 @@
             // 
             // chkActivo
             // 
-            this.chkActivo.Location = new System.Drawing.Point(435, 327);
+            this.chkActivo.Location = new System.Drawing.Point(435, 310);
             this.chkActivo.MenuManager = this.ribbonControl;
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Properties.Caption = "Activo";
@@ -324,7 +328,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(461, 398);
+            this.txtDescripcion.Location = new System.Drawing.Point(461, 381);
             this.txtDescripcion.MenuManager = this.ribbonControl;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(319, 20);
@@ -333,7 +337,7 @@
             // 
             // txtNivel3
             // 
-            this.txtNivel3.Location = new System.Drawing.Point(132, 399);
+            this.txtNivel3.Location = new System.Drawing.Point(132, 382);
             this.txtNivel3.MenuManager = this.ribbonControl;
             this.txtNivel3.Name = "txtNivel3";
             this.txtNivel3.Properties.Mask.EditMask = "[0-9]*";
@@ -345,7 +349,7 @@
             // 
             // txtNivel2
             // 
-            this.txtNivel2.Location = new System.Drawing.Point(132, 375);
+            this.txtNivel2.Location = new System.Drawing.Point(132, 358);
             this.txtNivel2.MenuManager = this.ribbonControl;
             this.txtNivel2.Name = "txtNivel2";
             this.txtNivel2.Properties.Mask.EditMask = "[0-9]*";
@@ -357,7 +361,7 @@
             // 
             // txtNivel1
             // 
-            this.txtNivel1.Location = new System.Drawing.Point(132, 351);
+            this.txtNivel1.Location = new System.Drawing.Point(132, 334);
             this.txtNivel1.MenuManager = this.ribbonControl;
             this.txtNivel1.Name = "txtNivel1";
             this.txtNivel1.Properties.Mask.EditMask = "[0-9]*";
@@ -373,7 +377,7 @@
             this.dtg.MainView = this.gridView;
             this.dtg.MenuManager = this.ribbonControl;
             this.dtg.Name = "dtg";
-            this.dtg.Size = new System.Drawing.Size(780, 213);
+            this.dtg.Size = new System.Drawing.Size(780, 196);
             this.dtg.TabIndex = 5;
             this.dtg.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -453,7 +457,8 @@
             this.layoutControlGroup2,
             this.layoutControlItem8,
             this.emptySpaceItem3,
-            this.emptySpaceItem4});
+            this.emptySpaceItem4,
+            this.layoutControlItem10});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(804, 443);
@@ -464,14 +469,14 @@
             this.layoutControlItem2.Control = this.dtg;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 46);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(784, 217);
+            this.layoutControlItem2.Size = new System.Drawing.Size(784, 200);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 263);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 246);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 22);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 22);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -492,7 +497,7 @@
             this.layoutControlItem1,
             this.layoutControlItem7,
             this.layoutControlItem9});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 285);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 268);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(784, 138);
             this.layoutControlGroup2.Text = "Datos del Centro de Costo";
@@ -624,6 +629,25 @@
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             this.emptySpaceItem4.TextVisible = true;
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 418);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 11;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.labelControl1;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 406);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(784, 17);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
             // frmGrupoEstadosFinancieros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,6 +696,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -727,5 +752,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
     }
 }
