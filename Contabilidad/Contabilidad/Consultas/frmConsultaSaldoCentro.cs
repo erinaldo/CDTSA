@@ -33,7 +33,10 @@ namespace CG
             {
                 DateTime fechatemp = DateTime.Today;
                 this.dtpFechaInicial.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
-                this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
+                if (fechatemp.Month + 1 < 13)
+                { this.dtpFechaFinal.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1); }
+                else
+                { this.dtpFechaFinal.EditValue = new DateTime(Convert.ToInt32(fechatemp.Year) + 1, 1, 1).AddDays(-1); }
 
 
                 _dtCuenta = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*","*" ,"*", "*", -1, -1, -1, 1, -1, -1).Tables[0];
@@ -175,10 +178,20 @@ namespace CG
 
         private void dtpFechaFinal_EditValueChanged(object sender, EventArgs e)
         {
-            if (this.dtpFechaInicial.EditValue != null)
+            CargarTipoCambio();
+        }
+
+
+        private void CargarTipoCambio()
+        {
+            if (this.dtpFechaFinal.EditValue != null)
             {
                 DateTime Fecha = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
-                Fecha = new DateTime(Fecha.Year, Fecha.Month + 1, 1).AddDays(-1);
+                if (Fecha.Month + 1 < 13)
+                { Fecha = new DateTime(Fecha.Year, Fecha.Month + 1, 1).AddDays(-1); }
+                else
+                { Fecha = new DateTime(Convert.ToInt32(Fecha.Year) + 1, 1, 1).AddDays(-1); }
+
                 double TipoCambio = TipoCambioDetalleDAC.GetLastTipoCambioFecha(Fecha);
                 this.txtTipoCambio.Text = TipoCambio.ToString();
             }

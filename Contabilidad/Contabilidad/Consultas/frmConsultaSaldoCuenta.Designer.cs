@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultaSaldoCuenta));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.SaldoFinal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtGridSaldoFinal = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -58,7 +58,6 @@
             this.txtGridDebito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.Creditos = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtGridCredito = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.dtHasta = new DevExpress.XtraEditors.DateEdit();
             this.dtDesde = new DevExpress.XtraEditors.DateEdit();
             this.slkupCentroCosto = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -69,7 +68,6 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
@@ -79,6 +77,9 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dtHasta = new DevExpress.XtraEditors.DateEdit();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -89,8 +90,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCentroCosto.Properties)).BeginInit();
@@ -102,7 +101,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
@@ -112,6 +110,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // SaldoFinal
@@ -131,9 +133,9 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.dtHasta);
             this.layoutControl1.Controls.Add(this.txtTasaCambio);
             this.layoutControl1.Controls.Add(this.grid);
-            this.layoutControl1.Controls.Add(this.dtHasta);
             this.layoutControl1.Controls.Add(this.dtDesde);
             this.layoutControl1.Controls.Add(this.slkupCentroCosto);
             this.layoutControl1.Controls.Add(this.txtSaldoInicial);
@@ -151,7 +153,7 @@
             // 
             // txtTasaCambio
             // 
-            this.txtTasaCambio.Location = new System.Drawing.Point(766, 36);
+            this.txtTasaCambio.Location = new System.Drawing.Point(766, 64);
             this.txtTasaCambio.MenuManager = this.ribbonControl;
             this.txtTasaCambio.Name = "txtTasaCambio";
             this.txtTasaCambio.Properties.DisplayFormat.FormatString = "#,###,###,###.00$";
@@ -268,7 +270,7 @@
             // 
             // grid
             // 
-            this.grid.Location = new System.Drawing.Point(12, 119);
+            this.grid.Location = new System.Drawing.Point(12, 147);
             this.grid.MainView = this.gridView1;
             this.grid.Name = "grid";
             this.grid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -276,7 +278,7 @@
             this.txtGridDebito,
             this.txtGridCredito,
             this.txtGridSaldoFinal});
-            this.grid.Size = new System.Drawing.Size(840, 146);
+            this.grid.Size = new System.Drawing.Size(840, 118);
             this.grid.TabIndex = 8;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -292,15 +294,15 @@
             this.Debitos,
             this.Creditos,
             this.SaldoFinal});
-            gridFormatRule1.Column = this.SaldoFinal;
-            gridFormatRule1.ColumnApplyTo = this.SaldoFinal;
-            gridFormatRule1.Name = "SaldoFinalNegativo";
-            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Less;
-            formatConditionRuleValue1.Value1 = 0D;
-            gridFormatRule1.Rule = formatConditionRuleValue1;
-            this.gridView1.FormatRules.Add(gridFormatRule1);
+            gridFormatRule2.Column = this.SaldoFinal;
+            gridFormatRule2.ColumnApplyTo = this.SaldoFinal;
+            gridFormatRule2.Name = "SaldoFinalNegativo";
+            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Less;
+            formatConditionRuleValue2.Value1 = 0D;
+            gridFormatRule2.Rule = formatConditionRuleValue2;
+            this.gridView1.FormatRules.Add(gridFormatRule2);
             this.gridView1.GridControl = this.grid;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
@@ -392,30 +394,16 @@
             this.txtGridCredito.AutoHeight = false;
             this.txtGridCredito.Name = "txtGridCredito";
             // 
-            // dtHasta
-            // 
-            this.dtHasta.EditValue = null;
-            this.dtHasta.Location = new System.Drawing.Point(336, 36);
-            this.dtHasta.Name = "dtHasta";
-            this.dtHasta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtHasta.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtHasta.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
-            this.dtHasta.Size = new System.Drawing.Size(196, 20);
-            this.dtHasta.StyleController = this.layoutControl1;
-            this.dtHasta.TabIndex = 6;
-            this.dtHasta.EditValueChanged += new System.EventHandler(this.dtHasta_EditValueChanged);
-            // 
             // dtDesde
             // 
             this.dtDesde.EditValue = null;
-            this.dtDesde.Location = new System.Drawing.Point(82, 36);
+            this.dtDesde.Location = new System.Drawing.Point(82, 64);
             this.dtDesde.Name = "dtDesde";
             this.dtDesde.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDesde.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtDesde.Properties.CalendarTimeProperties.Mask.EditMask = "d";
             this.dtDesde.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Buffered;
             this.dtDesde.Size = new System.Drawing.Size(180, 20);
             this.dtDesde.StyleController = this.layoutControl1;
@@ -423,7 +411,7 @@
             // 
             // slkupCentroCosto
             // 
-            this.slkupCentroCosto.Location = new System.Drawing.Point(82, 12);
+            this.slkupCentroCosto.Location = new System.Drawing.Point(82, 40);
             this.slkupCentroCosto.Name = "slkupCentroCosto";
             this.slkupCentroCosto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -441,7 +429,7 @@
             // 
             // txtSaldoInicial
             // 
-            this.txtSaldoInicial.Location = new System.Drawing.Point(121, 76);
+            this.txtSaldoInicial.Location = new System.Drawing.Point(121, 104);
             this.txtSaldoInicial.Name = "txtSaldoInicial";
             this.txtSaldoInicial.Properties.ReadOnly = true;
             this.txtSaldoInicial.Size = new System.Drawing.Size(123, 20);
@@ -450,7 +438,7 @@
             // 
             // txtTotalDebitos
             // 
-            this.txtTotalDebitos.Location = new System.Drawing.Point(248, 76);
+            this.txtTotalDebitos.Location = new System.Drawing.Point(248, 104);
             this.txtTotalDebitos.Name = "txtTotalDebitos";
             this.txtTotalDebitos.Properties.ReadOnly = true;
             this.txtTotalDebitos.Size = new System.Drawing.Size(144, 20);
@@ -459,7 +447,7 @@
             // 
             // txtTotalCredito
             // 
-            this.txtTotalCredito.Location = new System.Drawing.Point(396, 76);
+            this.txtTotalCredito.Location = new System.Drawing.Point(396, 104);
             this.txtTotalCredito.Name = "txtTotalCredito";
             this.txtTotalCredito.Properties.ReadOnly = true;
             this.txtTotalCredito.Size = new System.Drawing.Size(136, 20);
@@ -468,7 +456,7 @@
             // 
             // txtSaldoFinal
             // 
-            this.txtSaldoFinal.Location = new System.Drawing.Point(536, 76);
+            this.txtSaldoFinal.Location = new System.Drawing.Point(536, 104);
             this.txtSaldoFinal.Name = "txtSaldoFinal";
             this.txtSaldoFinal.Properties.ReadOnly = true;
             this.txtSaldoFinal.Size = new System.Drawing.Size(151, 20);
@@ -482,7 +470,6 @@
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.layoutControlItem3,
             this.layoutControlItem5,
             this.emptySpaceItem1,
             this.simpleLabelItem1,
@@ -491,7 +478,9 @@
             this.layoutControlItem9,
             this.layoutControlItem10,
             this.emptySpaceItem2,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem3,
+            this.emptySpaceItem3});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(864, 277);
@@ -500,7 +489,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.slkupCentroCosto;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 28);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(844, 24);
             this.layoutControlItem1.Text = "Centro Costo";
@@ -509,34 +498,25 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.dtDesde;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(254, 24);
             this.layoutControlItem2.Text = "Desde :";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(67, 13);
             // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.dtHasta;
-            this.layoutControlItem3.Location = new System.Drawing.Point(254, 24);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(270, 24);
-            this.layoutControlItem3.Text = "Hasta:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(67, 13);
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.grid;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 107);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 135);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(844, 150);
+            this.layoutControlItem5.Size = new System.Drawing.Size(844, 122);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 88);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 116);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 19);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 19);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -548,7 +528,7 @@
             // 
             this.simpleLabelItem1.AllowHotTrack = false;
             this.simpleLabelItem1.CustomizationFormText = "Moneda";
-            this.simpleLabelItem1.Location = new System.Drawing.Point(0, 48);
+            this.simpleLabelItem1.Location = new System.Drawing.Point(0, 76);
             this.simpleLabelItem1.MaxSize = new System.Drawing.Size(109, 17);
             this.simpleLabelItem1.MinSize = new System.Drawing.Size(109, 17);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
@@ -561,7 +541,7 @@
             // 
             this.layoutControlItem7.Control = this.txtSaldoInicial;
             this.layoutControlItem7.CustomizationFormText = "Saldo Inicial";
-            this.layoutControlItem7.Location = new System.Drawing.Point(109, 48);
+            this.layoutControlItem7.Location = new System.Drawing.Point(109, 76);
             this.layoutControlItem7.MaxSize = new System.Drawing.Size(127, 40);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(127, 40);
             this.layoutControlItem7.Name = "layoutControlItem7";
@@ -575,7 +555,7 @@
             // 
             this.layoutControlItem8.Control = this.txtTotalDebitos;
             this.layoutControlItem8.CustomizationFormText = "Total Débitos";
-            this.layoutControlItem8.Location = new System.Drawing.Point(236, 48);
+            this.layoutControlItem8.Location = new System.Drawing.Point(236, 76);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(148, 40);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(148, 40);
             this.layoutControlItem8.Name = "layoutControlItem8";
@@ -589,7 +569,7 @@
             // 
             this.layoutControlItem9.Control = this.txtTotalCredito;
             this.layoutControlItem9.CustomizationFormText = "Total Créditos";
-            this.layoutControlItem9.Location = new System.Drawing.Point(384, 48);
+            this.layoutControlItem9.Location = new System.Drawing.Point(384, 76);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(140, 40);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(140, 40);
             this.layoutControlItem9.Name = "layoutControlItem9";
@@ -603,7 +583,7 @@
             // 
             this.layoutControlItem10.Control = this.txtSaldoFinal;
             this.layoutControlItem10.CustomizationFormText = "Saldo Final";
-            this.layoutControlItem10.Location = new System.Drawing.Point(524, 48);
+            this.layoutControlItem10.Location = new System.Drawing.Point(524, 76);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(155, 40);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(155, 40);
             this.layoutControlItem10.Name = "layoutControlItem10";
@@ -616,19 +596,59 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(524, 24);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(469, 52);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(160, 24);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(215, 24);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtTasaCambio;
-            this.layoutControlItem4.Location = new System.Drawing.Point(684, 24);
+            this.layoutControlItem4.Location = new System.Drawing.Point(684, 52);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(160, 24);
             this.layoutControlItem4.Text = "T/C:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(67, 13);
+            // 
+            // dtHasta
+            // 
+            this.dtHasta.EditValue = null;
+            this.dtHasta.Location = new System.Drawing.Point(336, 64);
+            this.dtHasta.MenuManager = this.ribbonControl;
+            this.dtHasta.Name = "dtHasta";
+            this.dtHasta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtHasta.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtHasta.Size = new System.Drawing.Size(141, 20);
+            this.dtHasta.StyleController = this.layoutControl1;
+            this.dtHasta.TabIndex = 15;
+            this.dtHasta.EditValueChanged += new System.EventHandler(this.dtHasta_EditValueChanged);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.dtHasta;
+            this.layoutControlItem3.Location = new System.Drawing.Point(254, 52);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(215, 24);
+            this.layoutControlItem3.Text = "Hasta: ";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(67, 13);
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.AppearanceItemCaption.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.emptySpaceItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem3.AppearanceItemCaption.Options.UseFont = true;
+            this.emptySpaceItem3.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem3.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.emptySpaceItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 0);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(844, 28);
+            this.emptySpaceItem3.Text = "Consulta de Saldo por Cuenta Contable";
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(67, 0);
+            this.emptySpaceItem3.TextVisible = true;
             // 
             // frmConsultaSaldoCuenta
             // 
@@ -651,8 +671,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtGridSaldoInicial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGridDebito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGridCredito)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDesde.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCentroCosto.Properties)).EndInit();
@@ -664,7 +682,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
@@ -674,6 +691,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtHasta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -685,13 +706,11 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl grid;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.DateEdit dtHasta;
         private DevExpress.XtraEditors.DateEdit dtDesde;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCentroCosto;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
@@ -729,5 +748,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridDebito;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridCredito;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtGridSaldoFinal;
+        private DevExpress.XtraEditors.DateEdit dtHasta;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

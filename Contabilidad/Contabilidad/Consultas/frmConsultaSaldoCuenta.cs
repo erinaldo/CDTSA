@@ -29,17 +29,29 @@ namespace CG
 
         private void FrmConsultaSaldoCuenta_Load(object sender, EventArgs e)
         {
-            DateTime fechatemp = DateTime.Today;
-            this.dtDesde.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
-            this.dtHasta.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1);
+            try
+            {
+                DateTime fechatemp = DateTime.Today;
 
-            _dtCentroCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*",-1).Tables[0]; //No estamos tomando los acumuladores
+                this.dtDesde.EditValue = new DateTime(fechatemp.Year, fechatemp.Month, 1);
+                if (fechatemp.Month + 1 < 13)
+                { this.dtHasta.EditValue = new DateTime(fechatemp.Year, fechatemp.Month + 1, 1).AddDays(-1); }
+                else
+                { this.dtHasta.EditValue = new DateTime(Convert.ToInt32(fechatemp.Year) + 1, 1, 1).AddDays(-1); }
 
-            Util.Util.ConfigLookupEdit(this.slkupCentroCosto, _dtCentroCosto, "Descr", "IDCentro");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroCosto, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-            this.slkupCentroCosto.Properties.ShowClearButton = true;
-            this.slkupCentroCosto.Properties.PopupFormSize = new Size(400, 300);
-            this.slkupCentroCosto.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+
+
+                _dtCentroCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0]; //No estamos tomando los acumuladores
+
+                Util.Util.ConfigLookupEdit(this.slkupCentroCosto, _dtCentroCosto, "Descr", "IDCentro");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroCosto, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                this.slkupCentroCosto.Properties.ShowClearButton = true;
+                this.slkupCentroCosto.Properties.PopupFormSize = new Size(400, 300);
+                this.slkupCentroCosto.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores : " + ex.Message);
+            }
         }
 
         private void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -161,10 +173,19 @@ namespace CG
 
         private void dtHasta_EditValueChanged(object sender, EventArgs e)
         {
+            CargarTipoCambio();  
+        }
+
+        private void CargarTipoCambio()
+        {
             if (this.dtHasta.EditValue != null)
             {
                 DateTime Fecha = Convert.ToDateTime(this.dtHasta.EditValue);
-                Fecha = new DateTime(Fecha.Year, Fecha.Month + 1, 1).AddDays(-1);
+                if (Fecha.Month + 1 < 13)
+                { Fecha = new DateTime(Fecha.Year, Fecha.Month + 1, 1).AddDays(-1); }
+                else
+                { Fecha = new DateTime(Convert.ToInt32(Fecha.Year) + 1, 1, 1).AddDays(-1); }
+
                 double TipoCambio = TipoCambioDetalleDAC.GetLastTipoCambioFecha(Fecha);
                 this.txtTasaCambio.Text = TipoCambio.ToString();
             }

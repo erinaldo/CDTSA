@@ -111,11 +111,11 @@
             // chkCuentasMayor
             // 
             this.chkCuentasMayor.EditValue = true;
-            this.chkCuentasMayor.Location = new System.Drawing.Point(528, 24);
+            this.chkCuentasMayor.Location = new System.Drawing.Point(489, 24);
             this.chkCuentasMayor.MenuManager = this.ribbonControl;
             this.chkCuentasMayor.Name = "chkCuentasMayor";
-            this.chkCuentasMayor.Properties.Caption = "Cuentas de Mayor";
-            this.chkCuentasMayor.Size = new System.Drawing.Size(139, 19);
+            this.chkCuentasMayor.Properties.Caption = "Mostrar solo Cuentas de Mayor";
+            this.chkCuentasMayor.Size = new System.Drawing.Size(178, 19);
             this.chkCuentasMayor.StyleController = this.layoutControl1;
             this.chkCuentasMayor.TabIndex = 8;
             this.chkCuentasMayor.CheckedChanged += new System.EventHandler(this.chkCuentasMayor_CheckedChanged);
@@ -388,7 +388,7 @@
             this.chkComboCuenta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.chkComboCuenta.Properties.IncrementalSearch = true;
-            this.chkComboCuenta.Size = new System.Drawing.Size(412, 20);
+            this.chkComboCuenta.Size = new System.Drawing.Size(373, 20);
             this.chkComboCuenta.StyleController = this.layoutControl1;
             this.chkComboCuenta.TabIndex = 4;
             // 
@@ -442,7 +442,7 @@
             this.layoutControlItem1.Control = this.chkComboCuenta;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(504, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(465, 24);
             this.layoutControlItem1.Text = "Cuenta Contable:";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(85, 13);
             // 
@@ -467,9 +467,9 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.chkCuentasMayor;
-            this.layoutControlItem5.Location = new System.Drawing.Point(504, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(465, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(143, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(182, 24);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 

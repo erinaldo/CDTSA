@@ -200,6 +200,7 @@
             this.grid.TabIndex = 4;
             this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
+            this.grid.DoubleClick += new System.EventHandler(this.grid_DoubleClick);
             // 
             // gridView
             // 

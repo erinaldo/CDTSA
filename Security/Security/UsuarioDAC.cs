@@ -14,6 +14,7 @@ namespace Security
     {
         public static SqlDataAdapter oAdaptador = InicializarAdaptador();
         public static DataSet _DS = new DataSet();
+
         private static SqlDataAdapter InicializarAdaptador()
         {
             String getSQL = "SELECT USUARIO,DESCR  FROM secUSUARIO " +
@@ -91,6 +92,9 @@ namespace Security
             
         }
 
+        public static void ResetConnecion(){
+            oAdaptador = InicializarAdaptador();
+        }
 
         public static bool PermiteAccion(int IDAccion, DataTable DT)
         {

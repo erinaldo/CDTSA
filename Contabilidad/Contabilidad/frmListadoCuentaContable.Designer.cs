@@ -405,6 +405,7 @@
             // 
             // chkComplementaria
             // 
+            this.chkComplementaria.Enabled = false;
             this.chkComplementaria.Location = new System.Drawing.Point(24, 329);
             this.chkComplementaria.MenuManager = this.ribbonControl;
             this.chkComplementaria.Name = "chkComplementaria";

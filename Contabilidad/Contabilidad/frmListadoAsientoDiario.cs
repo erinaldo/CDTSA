@@ -239,13 +239,7 @@ namespace CG
 
         private void BtnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (_currentRow != null)
-            {
-                frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
-                ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
-                ofrmAsiento.ShowDialog();
-
-            }
+            CargarAsiento();
         }
 
         private void OfrmAsiento_FormClosed(object sender, FormClosedEventArgs e)
@@ -339,6 +333,23 @@ namespace CG
             }
 
            
+        }
+
+        private void grid_DoubleClick(object sender, EventArgs e)
+        {
+            CargarAsiento();
+        }
+
+
+        private void CargarAsiento()
+        {
+            if (_currentRow != null)
+            {
+                frmAsiento ofrmAsiento = new frmAsiento(_currentRow["Asiento"].ToString());
+                ofrmAsiento.FormClosed += OfrmAsiento_FormClosed;
+                ofrmAsiento.ShowDialog();
+
+            }
         }
 
 
