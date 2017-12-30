@@ -706,30 +706,88 @@ VALUES  ( 3 ,N'INGRESO POR TRASLADO (+)' , N'TR' , N'E' , 1 , 2 , 1 , 1 , 0 ,0 ,
 GO
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
-VALUES  ( 3 ,N'SALIDA POR TRASLADO (-)' , N'TR' , N'S' , -1 , 2 , 1 , 1 , 0 ,0 , 0 ,0 , 0 ,0 , 0 , 1 )
+VALUES  ( 4 ,N'SALIDA POR TRASLADO (-)' , N'TR' , N'S' , -1 , 2 , 1 , 1 , 0 ,0 , 0 ,0 , 0 ,0 , 0 , 1 )
 
 GO
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
-VALUES  ( 3 ,N'CONSUMO (-)' , N'CS' , N'S' , -1 , 3 , 1 , 0 , 0 ,1 , 0 ,0 , 0 ,0 , 1 , 0 )
+VALUES  ( 5 ,N'CONSUMO (-)' , N'CS' , N'S' , -1 , 3 , 1 , 0 , 0 ,1 , 0 ,0 , 0 ,0 , 1 , 0 )
 GO
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
-VALUES  ( 3 ,N'COMPRA (+)' , N'CO' , N'E' , 1 , 4 , 1 , 0 , 0 ,0 , 1 ,0 , 0 ,0 , 0, 0 )
+VALUES  ( 6 ,N'COMPRA (+)' , N'CO' , N'E' , 1 , 4 , 1 , 0 , 0 ,0 , 1 ,0 , 0 ,0 , 0, 0 )
 GO
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
-VALUES  ( 3 ,N'INGRESO POR AJUSTE (+)' , N'AJ' , N'E' , 1 , 5 , 1 , 0 , 0 ,0 , 0 ,0 , 1 ,0 , 0, 0 )
+VALUES  ( 7 ,N'INGRESO POR AJUSTE (+)' , N'AJ' , N'E' , 1 , 5 , 1 , 0 , 0 ,0 , 0 ,0 , 1 ,0 , 0, 0 )
 GO
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
-VALUES  ( 3 ,N'SALIDA POR AJUSTE (-)' , N'AJ' , N'S' , -1 , 6 , 1 , 0 , 0 ,0 , 0 ,0 , 1 ,0 , 0, 0 )
+VALUES  ( 8 ,N'SALIDA POR AJUSTE (-)' , N'AJ' , N'S' , -1 , 6 , 1 , 0 , 0 ,0 , 0 ,0 , 1 ,0 , 0, 0 )
 GO
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
-VALUES  ( 3 ,N'VENTA (-)' , N'VT' , N'S' , -1 , 7 , 1 , 0 , 0 ,0 , 0 ,1 , 0 ,0 , 0, 0 )
+VALUES  ( 9 ,N'VENTA (-)' , N'VT' , N'S' , -1 , 7 , 1 , 0 , 0 ,0 , 0 ,1 , 0 ,0 , 0, 0 )
 
 --PENDIENTE AJUSTE AL COSTO
+GO
+
+CREATE Procedure  [dbo].[cntUpdateProducto] @Operacion nvarchar(1), @IDProducto bigint, @Descr nvarchar(250), @Alias nvarchar(20),
+@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
+@FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @BajaPrecioDistribuidor BIT,
+@BajaPrecioProveedor BIT, @PorcDescuentoAlzaProveedor DECIMAL(28,4), @BonificaFA BIT, @BonificaCOPorCada DECIMAL(28,4),
+@BonificaCOCantidad DECIMAL(28,4), @Activo BIT,@UserInsert NVARCHAR(50),@UserUpdate NVARCHAR(50),@UpdateDate DATETIME
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.invProducto( Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
+	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
+	          Activo ,UserInsert ,UserUpdate  ,UpdateDate)
+	VALUES (@Descr,@Alias,@Clasif1,@Clasif2,@Clasif3,@Clasif4,@Clasif5,@Clasif6,@CodigoBarra,@IDUnidad,@FactorEmpaque,@TipoImpuesto,
+		@EsMuestra,@EsControlado,@EsEtico,@BajaPrecioDistribuidor,@BajaPrecioProveedor,@PorcDescuentoAlzaProveedor,@BonificaFA,@BonificaCOPorCada,@BonificaCOCantidad,
+		@Activo,@UserInsert,@UserUpdate,@UpdateDate)
+		
+	SET @IDProducto = @@IDENTITY
+		
+		INSERT INTO dbo.invLote( IDLote ,IDProducto ,LoteInterno ,LoteProveedor ,FechaVencimiento ,FechaFabricacion )
+		VALUES  ( 0 , 
+		          @IDProducto , -- IDProducto - bigint
+		          N'ND' , -- LoteInterno - nvarchar(50)
+		          N'ND' , -- LoteProveedor - nvarchar(50)
+		          '19810101' , -- FechaVencimiento - smalldatetime
+		          '19810101'-- FechaFabricacion - smalldatetime
+		        )
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDLote  from  dbo.invLote    Where IDProducto  = @IDProducto AND IDLote<>0)	
+	begin 
+		RAISERROR ( 'El artículo tiene asociado lotes, por favor elimine los lotes antes de eliminar el producto', 16, 1) ;
+		return				
+	end
+	if Exists ( Select IDProducto  from  dbo.invTransaccionLinea   Where IDProducto  = @IDProducto)	
+	begin 
+		RAISERROR ( 'El producto no puede ser eliminado, tiene movimientos en el inventario, unicamente lo puede desactivar', 16, 1) ;
+		return				
+	end
+	DELETE  FROM dbo.invProducto WHERE IDProducto = @IDProducto
+	DELETE FROM dbo.invLote WHERE IDLote=0 AND IDProducto=@IDProducto
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.invProducto SET Descr=@Descr, Alias = @Alias,Clasif1=@Clasif1,Clasif2=@Clasif2,Clasif3=@Clasif3,Clasif4=@Clasif4,Clasif5=@Clasif5,Clasif6=@Clasif6,
+	CodigoBarra =@CodigoBarra,IDUnidad=@IDUnidad,FactorEmpaque=@FactorEmpaque,TipoImpuesto=@TipoImpuesto,EsMuestra=@EsMuestra,EsControlado=@EsControlado,
+	EsEtico=@EsEtico,BajaPrecioDistribuidor=@BajaPrecioDistribuidor,BajaPrecioProveedor=@BajaPrecioProveedor,PorcDescuentoAlzaProveedor=@PorcDescuentoAlzaProveedor,
+	BonificaFA=@BonificaFA,BonificaCOPorCada=@BonificaCOPorCada,BonificaCOCantidad=@BonificaCOCantidad,Activo=@Activo,UserUpdate=@UserUpdate,UpdateDate=@UpdateDate
+	WHERE IDProducto=@IDProducto
+	
+end
+
 
 
 
