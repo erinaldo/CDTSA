@@ -226,6 +226,10 @@
       <Project>{574dcf6a-79a5-4bd7-bddf-d5d2ac2ccd8e}</Project>
       <Name>ControlBancario</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Inventario\Inventario\Inventario.csproj">
+      <Project>{4c93329e-8656-4dd9-aebd-6a806e8b70d4}</Project>
+      <Name>Inventario</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Security\Security\Security.csproj">
       <Project>{fdbe1059-0197-4f16-a0cf-d9ecb8ef8aa6}</Project>
       <Name>Security</Name>

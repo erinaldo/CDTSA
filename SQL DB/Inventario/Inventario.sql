@@ -45,6 +45,18 @@ CREATE TABLE [dbo].[invUnidadMedida](
 
 GO
 
+CREATE  TABLE [dbo].[globalImpuesto](
+	[IDImpuesto] [int] IDENTITY(1,1) NOT NULL,
+	[Descr] [nvarchar](250) NOT NULL,
+	[Porc] [decimal](28, 4) NULL,
+	[Activo] [bit] DEFAULT 1,
+ CONSTRAINT [pkglobalTipoImpuesto] PRIMARY KEY CLUSTERED 
+(
+	[IDImpuesto] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+) ON [PRIMARY]
+
+GO
 
 CREATE TABLE [dbo].[invProducto](
 	[IDProducto] [bigint] IDENTITY(1,1) NOT NULL,
@@ -139,6 +151,16 @@ GO
 
 ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoUnd]
 GO
+
+ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProducto_TipoImpuesto] FOREIGN KEY([TipoImpuesto])
+REFERENCES [dbo].[globalImpuesto] ([IDImpuesto])
+GO
+
+ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProducto_TipoImpuesto]
+GO
+
+
+
 
 
 CREATE TABLE [dbo].[invBodega](
@@ -802,5 +824,75 @@ AS
 	          (EsControlado =  @EsControlado OR @EsControlado =-1) AND (EsEtico= @EsEtico OR @EsEtico=-1) AND 
 	          (Descr =@Descr OR Descr LIKE '%' +@Descr + '%') AND (Alias=@Alias OR Alias LIKE '%'+ @Alias + '%')
 
+
+GO
+
+
+CREATE Procedure [dbo].[invUpdateUnidadMedida] @Operacion nvarchar(1), @IDUnidad int, @Descr nvarchar(250),@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.invUnidadMedida( Descr, Activo )
+	VALUES (@Descr,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDUnidad  from  dbo.invProducto    Where IDUnidad  = @IDUnidad)	
+	begin 
+		RAISERROR ( 'La unidad de medida que desea eliminar, esta asociada a un producto ', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.invUnidadMedida WHERE IDUnidad = @IDUnidad 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.invUnidadMedida SET  Descr = @Descr,Activo=@Activo WHERE IDUnidad=@IDUnidad
+
+end
+
+GO
+
+
+CREATE Procedure [dbo].[invUpdateglobalImpuesto] @Operacion nvarchar(1), @IDImpuesto int, @Descr nvarchar(250),@Porc DECIMAL(28,4),@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.globalImpuesto( Descr, Porc, Activo )
+	VALUES (@Descr,@Porc,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDProducto  from  dbo.invProducto    Where TipoImpuesto  = @IDImpuesto)	
+	begin 
+		RAISERROR ( 'El impuesto que desea eliminar, esta asociado a un producto ', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.globalImpuesto WHERE IDImpuesto = @IDImpuesto 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.globalImpuesto SET  Descr = @Descr,Porc = @Porc,Activo=@Activo WHERE IDImpuesto=@IDImpuesto
+
+end
+
+GO
+
+CREATE PROCEDURE dbo.invGetClasificacion @IDGrupo AS int	, @Descr nvarchar(250)
+AS 
+SELECT IDClasificacion,Descr  FROM dbo.invClasificacion WHERE IDGrupo=@IDGrupo AND (Descr LIKE '%'+@Descr+'%' OR @Descr = '*') AND Activo=1
+
+GO
 
 

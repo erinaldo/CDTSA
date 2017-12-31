@@ -14,6 +14,7 @@ using CG;
 using Security;
 using CDTSA.Properties;
 using ControlBancario;
+using CI;
 
 namespace MainMenu
 {
@@ -25,7 +26,7 @@ namespace MainMenu
         public frmMain()
         {
             InitializeComponent();
-            //CreateNodes(treeListInventario);
+            CreateNodes(treeListInventario);
             CreateNodes(treeListContabilidad);
             CreateNodes(treeListAdministracion);
             CreateNodes(treeListControlBancario);
@@ -485,7 +486,7 @@ namespace MainMenu
             {
                 case "treeListInventario":
                     TreeListNode nodeArticulo = tl.AppendNode(new object[] { "Artículo" }, -1, 11, 11, 11);
-                    nodeArticulo.Tag = "optArticulo";
+                    nodeArticulo.Tag = "frmProducto";
 
                     TreeListNode nodeLotes = tl.AppendNode(new object[] { "Lotes" }, -1, 11, 11, 11);
                     nodeLotes.Tag = "optLote";
@@ -643,12 +644,12 @@ namespace MainMenu
             node = ((TreeList)sender).FocusedNode;
             switch (node.Tag.ToString())
             {
-                case "optCuenta":
-                    frmListadoCuentaContable ofrmCuenta = new frmListadoCuentaContable();
-                    ofrmCuenta.MdiParent = this;
-                    ofrmCuenta.WindowState = FormWindowState.Maximized;
+                case "frmProducto":
+                    frmProducto ofrmProducto = new frmProducto();
+                    ofrmProducto.MdiParent = this;
+                    ofrmProducto.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
-                    ofrmCuenta.Show();
+                    ofrmProducto.Show();
                     break;
                 case "optArticulo":
                     break;
