@@ -889,9 +889,46 @@ end
 
 GO
 
-CREATE PROCEDURE dbo.invGetClasificacion @IDGrupo AS int	, @Descr nvarchar(250)
+CREATE Procedure [dbo].[invUpdateInvClasificacion] @Operacion nvarchar(1), @IDClasificacion int, @Descr nvarchar(250),@IDGrupo DECIMAL(28,4),@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.invClasificacion( IDClasificacion ,Descr ,IDGrupo ,Activo)
+	VALUES (@IDClasificacion,@Descr,@IDGrupo,@Activo)
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	if Exists ( Select IDProducto  from  dbo.invProducto    Where 
+		(@IDGrupo=1 AND Clasif1=@IDClasificacion ) OR
+		(@IDGrupo=2 AND Clasif2=@IDClasificacion) OR
+		(@IDGrupo=3 AND Clasif3=@IDClasificacion) OR
+		(@IDGrupo=4 AND Clasif4=@IDClasificacion) OR
+		(@IDGrupo=5 AND Clasif5=@IDClasificacion) OR
+		(@IDGrupo=6 AND Clasif6=@IDClasificacion) ) 	
+	begin 
+		RAISERROR ( 'La Clasificacion que desea eliminar, esta asociado a un producto ', 16, 1) ;
+		return				
+	end
+	
+	DELETE  FROM dbo.invClasificacion WHERE IDGrupo = @IDGrupo AND IDClasificacion=@IDClasificacion 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.invClasificacion SET  Descr = @Descr,IDGrupo = @IDGrupo,Activo=@Activo WHERE IDClasificacion=@IDClasificacion
+
+end
+
+GO
+
+
+CREATE  PROCEDURE dbo.invGetClasificacion @IDClasificacion AS INT, @IDGrupo AS int	, @Descr nvarchar(250)
 AS 
-SELECT IDClasificacion,Descr  FROM dbo.invClasificacion WHERE IDGrupo=@IDGrupo AND (Descr LIKE '%'+@Descr+'%' OR @Descr = '*') AND Activo=1
+SELECT IDClasificacion,Descr  FROM dbo.invClasificacion WHERE  (IDClasificacion = @IDClasificacion OR @IDClasificacion=-1) AND  IDGrupo=@IDGrupo AND (Descr LIKE '%'+@Descr+'%' OR @Descr = '*') AND Activo=1
 
 GO
 
