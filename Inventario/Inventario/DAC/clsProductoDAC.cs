@@ -155,6 +155,21 @@ namespace CI.DAC
             oAdaptador.InsertCommand.Transaction = (Activo) ? ConnectionManager.Tran : null;
         }
 
+        public static DataSet GetDataEmpty()
+        {
+            String strSQL = "SELECT  IDProducto ,Descr ,Alias ,CostoUltLocal ,CostoUltDolar ,CostoPromLocal ,CostoPromDolar ,PrecioPublicoLocal ,PrecioFarmaciaLocal ,PrecioCIFLocal ," +
+                            "PrecioFOBLocal ,PrecioDolar ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,EsMuestra , " +
+                            "EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ," +
+                            "Activo ,UserInsert ,UserUpdate ,CreateDate ,UpdateDate  FROM dbo.invProducto WHERE 1=2";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+            SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);
+            DataSet DS = CreateDataSet();
+
+            oAdaptador.Fill(DS.Tables["Data"]);
+            return DS;
+        }
+
         private static DataSet CreateDataSet()
         {
             DataSet DS = new DataSet();
@@ -189,3 +204,4 @@ namespace CI.DAC
 
     }
 }
+    

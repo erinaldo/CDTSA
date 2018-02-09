@@ -30,6 +30,7 @@ namespace CI.DAC
                 };
 
                 //Paremetros Select 
+                oAdaptador.SelectCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.SelectCommand.Parameters.Add("@IDClasificacion", SqlDbType.Int).SourceColumn = "IDClasificacion";
                 oAdaptador.SelectCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
                 oAdaptador.SelectCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
@@ -99,5 +100,5 @@ namespace CI.DAC
 
 
     }
-    }
+    
 }
