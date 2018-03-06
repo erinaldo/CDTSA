@@ -692,6 +692,19 @@ INSERT INTO dbo.invGrupoClasif  ( IDGrupo, Descr, Activo, Etiqueta )
 VALUES  ( 6,  N'ND',  1, N'ND' )
 
 GO
+
+--Tipo Impuesto
+INSERT INTO dbo.globalImpuesto(Descr,Activo)
+VALUES ('Exento',1)
+
+--Unidad de Medida
+INSERT INTO dbo.invUnidadMedida
+        ( Descr, Activo )
+VALUES  ( N'UND', -- Descr - nvarchar(250)
+          1  -- Activo - bit
+          )
+
+GO
 /* INSERT DE CLASIFICACIONES */
 
 INSERT INTO dbo.invClasificacion( IDClasificacion ,Descr ,IDGrupo ,Activo)
@@ -754,7 +767,7 @@ VALUES  ( 9 ,N'VENTA (-)' , N'VT' , N'S' , -1 , 7 , 1 , 0 , 0 ,0 , 0 ,1 , 0 ,0 ,
 --PENDIENTE AJUSTE AL COSTO
 GO
 
-CREATE Procedure  [dbo].[cntUpdateProducto] @Operacion nvarchar(1), @IDProducto bigint, @Descr nvarchar(250), @Alias nvarchar(20),
+CREATE Procedure  [dbo].[cntUpdateProducto] @Operacion nvarchar(1), @IDProducto BIGINT OUTPUT, @Descr nvarchar(250), @Alias nvarchar(20),
 @Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
 @FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @BajaPrecioDistribuidor BIT,
 @BajaPrecioProveedor BIT, @PorcDescuentoAlzaProveedor DECIMAL(28,4), @BonificaFA BIT, @BonificaCOPorCada DECIMAL(28,4),
@@ -812,17 +825,18 @@ end
 
 GO
 
-CREATE  PROCEDURE dbo.invGetProducto @IDProducto BIgint	,@Descr AS NVARCHAR(250),@Alias NVARCHAR(20),@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),
+CREATE  PROCEDURE [dbo].[invGetProducto] @IDProducto BIgint	,@Descr AS NVARCHAR(250),@Alias NVARCHAR(20),@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),
 															@EsMuestra INT,@EsControlado INT,@EsEtico INT
 AS 
-	SELECT Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
+	SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
 	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
-	          Activo ,UserInsert ,UserUpdate  ,UpdateDate FROM dbo.invProducto WHERE (IDProducto=@IDProducto OR  @IDProducto=-1)
+	          Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate FROM dbo.invProducto WHERE (IDProducto=@IDProducto OR  @IDProducto=-1)
 	          AND (Clasif1 =@Clasif1 OR @Clasif1=-1) AND (Clasif2 =@Clasif2 OR @Clasif2=-1) AND (Clasif3 =@Clasif3 OR @Clasif3=-1)
 	          AND (Clasif4 =@Clasif4 OR @Clasif4=-1) AND (Clasif5 =@Clasif5 OR @Clasif5=-1) AND (Clasif6 =@Clasif6 OR @Clasif6=-1)
 	          AND (CodigoBarra=@CodigoBarra OR @CodigoBarra='*') AND ( EsMuestra =@EsMuestra OR @EsMuestra=-1)  AND
 	          (EsControlado =  @EsControlado OR @EsControlado =-1) AND (EsEtico= @EsEtico OR @EsEtico=-1) AND 
-	          (Descr =@Descr OR Descr LIKE '%' +@Descr + '%') AND (Alias=@Alias OR Alias LIKE '%'+ @Alias + '%')
+	          (Descr =@Descr OR Descr LIKE '%' +@Descr + '%' OR @Descr='*') AND (Alias=@Alias OR Alias LIKE '%'+ @Alias + '%' OR @Alias = '*')  
+	          
 
 
 GO

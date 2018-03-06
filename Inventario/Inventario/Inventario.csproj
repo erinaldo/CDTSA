@@ -70,10 +70,14 @@
     <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,6 +93,18 @@
     <Compile Include="DAC\clsProductoDAC.cs" />
     <Compile Include="DAC\clsUnidadMedidaDAC.cs" />
     <Compile Include="DAC\globalTipoImpuestoDAC.cs" />
+    <Compile Include="frmFiltroProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFiltroProducto.Designer.cs">
+      <DependentUpon>frmFiltroProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoProducto.Designer.cs">
+      <DependentUpon>frmListadoProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +113,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmFiltroProducto.resx">
+      <DependentUpon>frmFiltroProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoProducto.resx">
+      <DependentUpon>frmListadoProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProducto.resx">
       <DependentUpon>frmProducto.cs</DependentUpon>
     </EmbeddedResource>

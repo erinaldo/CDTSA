@@ -42,6 +42,7 @@
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtCentro = new DevExpress.XtraEditors.TextEdit();
             this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
             this.chkReadSystemOnly = new DevExpress.XtraEditors.CheckEdit();
@@ -75,7 +76,6 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -156,6 +156,7 @@
             this.btnGuardar.Id = 3;
             this.btnGuardar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGuardar.LargeGlyph")));
             this.btnGuardar.Name = "btnGuardar";
+
             // 
             // btnCancelar
             // 
@@ -243,6 +244,16 @@
             this.layoutControl1.Size = new System.Drawing.Size(804, 443);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl1.Location = new System.Drawing.Point(12, 418);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(248, 13);
+            this.labelControl1.StyleController = this.layoutControl1;
+            this.labelControl1.TabIndex = 14;
+            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
             // 
             // txtCentro
             // 
@@ -598,16 +609,6 @@
             this.emptySpaceItem3.Text = "Listado Centro de Costos";
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(96, 0);
             this.emptySpaceItem3.TextVisible = true;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(12, 418);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(248, 13);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 14;
-            this.labelControl1.Text = "Alt + Flecha hacia abajo o F4 para mostrar las listas";
             // 
             // layoutControlItem1
             // 

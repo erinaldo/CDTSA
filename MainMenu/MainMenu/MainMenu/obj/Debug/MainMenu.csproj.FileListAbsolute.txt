@@ -12,12 +12,14 @@ C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\C
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CDTSA.exe
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CDTSA.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CG.exe
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CI.exe
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\ControlBancario.exe
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Security.dll
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Util.dll
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Newtonsoft.Json.dll
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CG.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\ControlBancario.pdb
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CI.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Security.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Util.pdb
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Newtonsoft.Json.xml
@@ -34,5 +36,3 @@ C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\C
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.application
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.exe
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.pdb
-C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CI.exe
-C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\CI.pdb

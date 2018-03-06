@@ -15,7 +15,7 @@ namespace CI.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT  IDImpuesto ,Descr ,Porc ,Activo  FROM dbo.globalImpuesto WHERE (IDImpuesto=@IDImpuesto OR @IDImpuesto =-1 ) AND (Descr = @Descr OR Descr LIKE '%'+@Descr+'%')";
+            String getSQL = "SELECT  IDImpuesto ,Descr ,Porc ,Activo  FROM dbo.globalImpuesto WHERE (IDImpuesto=@IDImpuesto OR @IDImpuesto =-1 ) AND (Descr = @Descr OR Descr LIKE '%'+@Descr+'%' or @Descr = '*')";
             String InsertSQL = "[dbo].[invUpdateglobalImpuesto]";
             String UpdateSQL = "[dbo].[invUpdateglobalImpuesto]";
             String DeleteSQL = "[dbo].[invUpdateglobalImpuesto]";

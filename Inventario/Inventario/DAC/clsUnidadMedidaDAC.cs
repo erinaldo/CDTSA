@@ -13,7 +13,7 @@ namespace CI.DAC
 
         private static SqlDataAdapter InicializarAdaptador()
         {
-            String getSQL = "SELECT IDUnidad,Descr,Activo  FROM dbo.invUnidadMedida WHERE (IDUnidad=@IDUnidad  OR @IDUnidad =-1) AND (Descr= @Descr  OR Descr LIKE '%' + @Descr + '%')";
+            String getSQL = "SELECT IDUnidad,Descr,Activo  FROM dbo.invUnidadMedida WHERE (IDUnidad=@IDUnidad  OR @IDUnidad =-1) AND (Descr= @Descr or @Descr = '*'  OR Descr LIKE '%' + @Descr + '%')";
             String InsertSQL = "[dbo].[invUpdateUnidadMedida]";
             String UpdateSQL = "[dbo].[invUpdateUnidadMedida]";
             String DeleteSQL = "[dbo].[invUpdateUnidadMedida]";

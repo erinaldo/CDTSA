@@ -30,13 +30,19 @@ namespace CI
         public frmProducto()
         {
             InitializeComponent();
-            Accion = "New";
+            InicializaNuevoElemento();
+        }
+
+        private void InicializaNuevoElemento() {
+             Accion = "New";
             _dsProducto = clsProductoDAC.GetDataEmpty();
             _dtProducto = _dsProducto.Tables[0];
+            _currentRow = null;
             InicializarNuevoElemento();
         }
 
-        public frmProducto(int Codigo) {
+        public frmProducto(int Codigo, String Accion) {
+            this.Accion = Accion;
             InitializeComponent();
             cargarProducto(Codigo);
         }
@@ -54,35 +60,35 @@ namespace CI
         private void AplicarPrivilegios()
         {
 
-            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarAsientodeDiario, _dtSecurity))
-            {
-                if (_dsProducto.Tables[0].Rows.Count > 0 )
-                    this.btnEditar.Enabled = false;
-                else
-                    this.btnEditar.Enabled = true;
-            }
-            else
-                this.btnEditar.Enabled = false;
+            //if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EditarAsientodeDiario, _dtSecurity))
+            //{
+            //    if (_dsProducto.Tables[0].Rows.Count > 0 )
+            //        this.btnEditar.Enabled = false;
+            //    else
+            //        this.btnEditar.Enabled = true;
+            //}
+            //else
+            //    this.btnEditar.Enabled = false;
 
-            if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarAsientodeDiario, _dtSecurity))
-            {
-                if (_dsProducto.Tables[0].Rows.Count > 0)
-                    this.btnEliminar.Enabled = false;
-                else
-                    this.btnEliminar.Enabled = true;
-            }
-            else
-                this.btnEliminar.Enabled = false;
+            //if (UsuarioDAC.PermiteAccion((int)Acciones.PrivilegiosContableType.EliminarAsientodeDiario, _dtSecurity))
+            //{
+            //    if (_dsProducto.Tables[0].Rows.Count > 0)
+            //        this.btnEliminar.Enabled = false;
+            //    else
+            //        this.btnEliminar.Enabled = true;
+            //}
+            //else
+            //    this.btnEliminar.Enabled = false;
 
         }
 
 
         private void InicializarNuevoElemento()
         {
-            
+
             DataSet DS = new DataSet();
             //Cargar el tipo de cambio por defecto
-            
+
             _currentRow = _dtProducto.NewRow();
             _currentRow["IDProducto"] = -1;
             _currentRow["Descr"] = "";
@@ -109,7 +115,7 @@ namespace CI
             _currentRow["Activo"] = true;
             _currentRow["UserInsert"] = sUsuario;
             _currentRow["UserUpdate"] = DateTime.Now;
-            _currentRow["UpdateDate"] = DateTime.Now; 
+            _currentRow["UpdateDate"] = DateTime.Now;
 
 
         }
@@ -168,7 +174,8 @@ namespace CI
 
         private void HabilitarControles(bool Activo)
         {
-            //this.txtIDProducto.EditValue = ;
+            
+            this.txtIDProducto.ReadOnly =true;
             this.txtDescr.ReadOnly = !Activo;
             this.txtAlias.ReadOnly = !Activo;
             this.txtCodigoBarra.ReadOnly = !Activo;
@@ -200,11 +207,26 @@ namespace CI
 
 
             //Pagina de auditoria
-            
 
-            this.btnEditar.Enabled = !Activo;
+            if (Accion == "New")
+            {
+                this.btnEditar.Enabled = false;
+                this.btnAgregar.Enabled = false;
+                
+            }
+            else if (Accion == "View")
+            {
+                this.btnEditar.Enabled = true;
+                this.btnAgregar.Enabled = true;
+
+            }
+            else if (Accion == "Edit") {
+                this.btnAgregar.Enabled = false;
+                this.btnEditar.Enabled = false;
+            }
+                
             this.btnGuardar.Enabled = Activo;
-            this.btnCancelar.Enabled = Activo;
+            this.btnCancelar.Enabled = true;
             this.btnEliminar.Enabled = !Activo;
         }
 
@@ -213,11 +235,49 @@ namespace CI
         {
             //    this.btnAgregar.ItemClick += btnAgregar_ItemClick;
             this.btnEditar.ItemClick += btnEditar_ItemClick;
-            //    this.btnEliminar.ItemClick += btnEliminar_ItemClick;
+            this.btnEliminar.ItemClick += btnEliminar_ItemClick;
             this.btnGuardar.ItemClick += btnGuardar_ItemClick;
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             //this.btnImprimir.ItemClick += BtnImprimir_ItemClick;
             //this.btnCuadreTemporal.ItemClick += BtnCuadreTemporal_ItemClick;
+        }
+
+        void btnEliminar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (_currentRow != null)
+            {
+
+                if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + _currentRow["IdProducto"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    DataSet _dsProductotmp = new DataSet();
+                    DataTable _dtProductotmp = new DataTable();
+
+
+                    //Validar las dependendicas
+                    //ToDo Validar dependencias de los prodcutos
+                    _currentRow.Delete();
+                    try
+                    {
+
+                        clsProductoDAC.oAdaptador.Update(_dsProducto, "Data");
+                        _dsProducto.AcceptChanges();
+
+
+                        // PopulateGrid();
+                        //lblStatus.Text = "El elemento se ha eliminado";
+                        //MessageBox.Show("El asiento se ha eliminado correctamente.");
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        _dsProducto.RejectChanges();
+                        MessageBox.Show("Han ocurrido errores al momento de eliminar el asiento por favor verifique" + ex.Message);
+                    }
+
+                    this.Close();
+
+                }
+
+            }
         }
 
 
@@ -263,21 +323,22 @@ namespace CI
                 //Obtener los datos
 
 
-                if (_currentRow != null)
+                //if (_currentRow != null)
+                if (Accion != "New")
                 {
                     Application.DoEvents();
                     _currentRow.BeginEdit();
 
-                    _dsProducto.Tables[0].Rows.Add(_currentRow);
+                    //_dsProducto.Tables[0].Rows.Add(_currentRow);
                     _currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
                     _currentRow["Descr"] = this.txtDescr.Text.Trim();
                     _currentRow["Alias"] = this.txtAlias.Text.Trim();
-                    _currentRow["Clasif1"] = this.slkupClasif1.EditValue;
-                    _currentRow["Clasif2"] = this.slkupClasif2.EditValue;
-                    _currentRow["Clasif3"] = this.slkupClasif3.EditValue;
-                    _currentRow["Clasif4"] = this.slkupClasif4.EditValue;
-                    _currentRow["Clasif5"] = this.slkupClasif5.EditValue;
-                    _currentRow["Clasif6"] = this.slkupClasif6.EditValue;
+                    _currentRow["Clasif1"] = (this.slkupClasif1.EditValue == null) ? 1 : Convert.ToInt32(this.slkupClasif1.EditValue);
+                    _currentRow["Clasif2"] = (this.slkupClasif2.EditValue == null) ? 2 : Convert.ToInt32(this.slkupClasif2.EditValue);
+                    _currentRow["Clasif3"] = (this.slkupClasif3.EditValue == null) ? 3 : Convert.ToInt32(this.slkupClasif3.EditValue);
+                    _currentRow["Clasif4"] = (this.slkupClasif4.EditValue == null) ? 4 : Convert.ToInt32(this.slkupClasif4.EditValue);
+                    _currentRow["Clasif5"] = (this.slkupClasif5.EditValue == null) ? 5 : Convert.ToInt32(this.slkupClasif5.EditValue);
+                    _currentRow["Clasif6"] = (this.slkupClasif6.EditValue == null) ? 6: Convert.ToInt32(this.slkupClasif6.EditValue);
                     _currentRow["CodigoBarra"] = this.txtCodigoBarra.EditValue;
                     _currentRow["IDUnidad"] = this.slkupUnidadMedida.EditValue;
                     _currentRow["FactorEmpaque"] = this.txtFactorEmpaque.EditValue;
@@ -344,15 +405,15 @@ namespace CI
                 else {
 
                     _currentRow = _dtProducto.NewRow();
-                    _currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
+                    //_currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
                     _currentRow["Descr"] = this.txtDescr.Text.Trim();
                     _currentRow["Alias"] = this.txtAlias.Text.Trim();
-                    _currentRow["Clasif1"] = this.slkupClasif1.EditValue;
-                    _currentRow["Clasif2"] = this.slkupClasif2.EditValue;
-                    _currentRow["Clasif3"] = this.slkupClasif3.EditValue;
-                    _currentRow["Clasif4"] = this.slkupClasif4.EditValue;
-                    _currentRow["Clasif5"] = this.slkupClasif5.EditValue;
-                    _currentRow["Clasif6"] = this.slkupClasif6.EditValue;
+                    _currentRow["Clasif1"] = (this.slkupClasif1.EditValue == null) ? 1 : Convert.ToInt32(this.slkupClasif1.EditValue);
+                    _currentRow["Clasif2"] = (this.slkupClasif2.EditValue == null) ? 2 : Convert.ToInt32(this.slkupClasif2.EditValue);
+                    _currentRow["Clasif3"] = (this.slkupClasif3.EditValue == null) ? 3 : Convert.ToInt32(this.slkupClasif3.EditValue);
+                    _currentRow["Clasif4"] = (this.slkupClasif4.EditValue == null) ? 4 : Convert.ToInt32(this.slkupClasif4.EditValue);
+                    _currentRow["Clasif5"] = (this.slkupClasif5.EditValue == null) ? 5 : Convert.ToInt32(this.slkupClasif5.EditValue);
+                    _currentRow["Clasif6"] = (this.slkupClasif6.EditValue == null) ? 6 : Convert.ToInt32(this.slkupClasif6.EditValue);
                     _currentRow["CodigoBarra"] = this.txtCodigoBarra.EditValue;
                     _currentRow["IDUnidad"] = this.slkupUnidadMedida.EditValue;
                     _currentRow["FactorEmpaque"] = this.txtFactorEmpaque.EditValue;
@@ -377,7 +438,8 @@ namespace CI
                     {
                         clsProductoDAC.oAdaptador.Update(_dsProducto, "Data");
                         _dsProducto.AcceptChanges();
-                        
+
+                        this.txtIDProducto.EditValue = clsProductoDAC.oAdaptador.InsertCommand.Parameters["@IDProducto"].Value.ToString();
                         lblStatus.Caption = "Se ha ingresado un nuevo registro";
                         Application.DoEvents();
                         
@@ -408,6 +470,7 @@ namespace CI
                 Accion = "Edit";
                 HabilitarControles(true);
                 AplicarPrivilegios();
+                
             
 
         }
@@ -416,13 +479,15 @@ namespace CI
         private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            if (Accion == "Edit")
+            if (Accion == "Edit" )
             {
-                HabilitarControles(true);
+                HabilitarControles(false);
                 AplicarPrivilegios();
                 //CargarAsiento(_currentRow["Asiento"].ToString());
                 UpdateControlsFromDataRow(_currentRow);
-                
+                Accion = "View";
+                this.btnEditar.Enabled = true;
+                this.btnAgregar.Enabled = true;
             }
             else
                 this.Close();
@@ -505,6 +570,9 @@ namespace CI
                 Util.Util.ConfigLookupEdit(this.slkupUnidadMedida, clsUnidadMedidaDAC.GetData(-1,"*").Tables[0], "Descr", "IDUnidad");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupUnidadMedida, "[{'ColumnCaption':'ID Unidad','ColumnField':'IDUnidad','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
+                Util.Util.ConfigLookupEdit(this.slkupTipoImpuesto, globalTipoImpuestoDAC.GetData(-1, "*").Tables[0], "Descr", "IDImpuesto");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoImpuesto, "[{'ColumnCaption':'ID Impuesto','ColumnField':'IDImpuesto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
 
                 UpdateControlsFromDataRow(_currentRow);
                 if (Accion == "New")
@@ -513,13 +581,16 @@ namespace CI
                     ClearControls();
                     this.tabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                     this.ValidateChildren();
+                } else if (Accion == "Edit"){
+                     HabilitarControles(true);
+                    AplicarPrivilegios();
                 }
-                else
+                else 
                 {
-                    Accion = "Edit";
-                    HabilitarControles(true);
+                    Accion = "View";
+                    HabilitarControles(false);
                     
-                }
+                } 
 
                 //if (_Estado == "PndtGuardar")
                 //{
@@ -534,6 +605,15 @@ namespace CI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnAgregar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            InicializaNuevoElemento();
+            HabilitarControles(true);
+            ClearControls();
+            this.tabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            this.ValidateChildren();
         }
         
     }

@@ -645,11 +645,11 @@ namespace MainMenu
             switch (node.Tag.ToString())
             {
                 case "frmProducto":
-                    frmProducto ofrmProducto = new frmProducto();
-                    ofrmProducto.MdiParent = this;
-                    ofrmProducto.WindowState = FormWindowState.Maximized;
+                    frmListadoProducto ofrmListado  = new frmListadoProducto();
+                    ofrmListado.MdiParent = this;
+                    ofrmListado.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
-                    ofrmProducto.Show();
+                    ofrmListado.Show();
                     break;
                 case "optArticulo":
                     break;
