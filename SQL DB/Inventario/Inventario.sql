@@ -588,23 +588,23 @@ ALTER TABLE [dbo].[invTransaccionLinea] CHECK CONSTRAINT [chktranlineaTransaccio
 GO
 
 
-CREATE TABLE [dbo].[invProveedor](
+CREATE TABLE [dbo].[cppProveedor](
 	[IDProveedor] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](250) NULL,
 	[IDRuc] int NULL DEFAULT 0,
 	[Activo] [bit] NULL DEFAULT 0,
- CONSTRAINT [pkinvProveedor] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [pkcppProveedor] PRIMARY KEY CLUSTERED 
 (
 	[IDProveedor] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 
-ALTER TABLE [dbo].[invProveedor]  WITH CHECK ADD  CONSTRAINT [fk_invProveedor_cbRUC] FOREIGN KEY([IDRuc])
+ALTER TABLE [dbo].[cppProveedor]  WITH CHECK ADD  CONSTRAINT [fk_cppProveedor_cbRUC] FOREIGN KEY([IDRuc])
 REFERENCES [dbo].[cbRUC] ([IDRuc])
 GO
 
-ALTER TABLE [dbo].[invProveedor] CHECK CONSTRAINT [fk_invProveedor_cbRUC]
+ALTER TABLE [dbo].[cppProveedor] CHECK CONSTRAINT [fk_cppProveedor_cbRUC]
 GO
 
 CREATE  TABLE [dbo].[invProveedorProducto](
@@ -629,7 +629,7 @@ ALTER TABLE [dbo].[invProveedorProducto] CHECK CONSTRAINT [fkdboinvProveedorProd
 GO
 
 ALTER TABLE [dbo].[invProveedorProducto]  WITH CHECK ADD  CONSTRAINT [fkdboinvProveedorProductoProv] FOREIGN KEY([IDProveedor])
-REFERENCES [dbo].[invProveedor] ([IDProveedor])
+REFERENCES [dbo].[cppProveedor] ([IDProveedor])
 GO
 
 ALTER TABLE [dbo].[invProveedorProducto] CHECK CONSTRAINT [fkdboinvProveedorProductoProv]
