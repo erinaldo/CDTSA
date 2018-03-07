@@ -947,3 +947,46 @@ SELECT IDClasificacion,Descr  FROM dbo.invClasificacion WHERE  (IDClasificacion 
 GO
 
 
+CREATE Procedure [dbo].[invUpdatePaquete] @Operacion nvarchar(1), @IDPaquete INT OUTPUT, @Paquete NVARCHAR(20), @Descr nvarchar(250),@IDconsecutivo INT ,@IDTipoTran AS INT,@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.invPaquete(Paquete,Descr,IDConsecutivo,IDTipoTran,Activo)
+	VALUES (@Paquete, @Descr,@IDConsecutivo,@IDTipoTran,@Activo)
+	
+	SET @IDPaquete = @@IDENTITY
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	--if Exists ( Select IDProducto  from  dbo.    Where TipoImpuesto  = @IDImpuesto)	
+	--begin 
+	--	RAISERROR ( 'El impuesto que desea eliminar, esta asociado a un producto ', 16, 1) ;
+	--	return				
+	--end
+	
+	DELETE  FROM dbo.invPaquete WHERE IdPaquete = @IDPaquete 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.invPaquete SET  Descr = @Descr,Paquete = @Paquete ,Activo=@Activo, IDConsecutivo = @IDconsecutivo, IDTipoTran = @IDTipoTran WHERE IDPaquete=@IDPaquete
+
+END
+
+GO
+
+CREATE   PROCEDURE dbo.invGetPaquete @IDPaquete int, @Paquete nvarchar(20), @Descr nvarchar(200),@IDTipoTran int , @IDConsecutivo int ,@Activo INT
+AS 
+SELECT  IDPaquete ,
+        PAQUETE ,
+        Descr ,
+        IDConsecutivo ,
+        IDTipoTran ,
+        Activo  FROM dbo.invPaquete
+WHERE IDPaquete = @IDPaquete  AND (PAQUETE LIKE '%' +@Paquete + ' %' OR @Paquete = '*') 
+AND (Descr LIKE '%' + @Descr + '%' OR @Descr ='*' ) 
+AND (IDTipoTran = @IDTipoTran OR @IDTipoTran =-1)  AND ( IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1 )  AND  (Activo = @Activo or @Activo =-1)
