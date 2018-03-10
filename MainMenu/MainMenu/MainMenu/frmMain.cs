@@ -509,6 +509,8 @@ namespace MainMenu
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
                     TreeListNode nodeConsecutivos = tl.AppendNode(new object[] { "Consecutivos" }, nodeAdministracion.Id, 11, 11, 11);
                     nodeConsecutivos.Tag = "frmConsecutivos";
+                    TreeListNode nodePaquetes = tl.AppendNode(new object[] { "Paquetes" }, nodeAdministracion.Id, 11, 11, 11);
+                    nodePaquetes.Tag = "frmPaquetes";
                     break;
                 case "treeListAdministracion":
                     TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
@@ -689,6 +691,13 @@ namespace MainMenu
                     ofrmConsecutivos.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmConsecutivos.Show();
+                    break;
+                case "frmPaquetes":
+                    frmPaquetes ofrmPaquete = new frmPaquetes();
+                    ofrmPaquete.MdiParent = this;
+                    ofrmPaquete.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmPaquete.Show();
                     break;
             }
 

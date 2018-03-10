@@ -318,7 +318,7 @@ GO
  
 
 CREATE TABLE [dbo].[invPaquete](
-	[IDPaquete] [int] NOT NULL,
+	[IDPaquete] [int] IDENTITY(1,1) NOT NULL,
 	[PAQUETE] [nvarchar](20) NULL,
 	[Descr] [nvarchar](250) NULL,
 	[IDConsecutivo] [int] NULL,

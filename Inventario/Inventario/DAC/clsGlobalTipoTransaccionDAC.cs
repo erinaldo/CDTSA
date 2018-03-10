@@ -19,7 +19,7 @@ namespace CI.DAC
 
             oCmd.Parameters.Add(new SqlParameter("@IDTipoTran", IDTipoTran));
             oCmd.Parameters.Add(new SqlParameter("@Descr", Descr));
-            oCmd.Parameters.Add(new SqlParameter("@Natrualeza", Naturaleza));
+            oCmd.Parameters.Add(new SqlParameter("@Naturaleza", Naturaleza));
             oCmd.Parameters.Add(new SqlParameter("@Transaccion", Transaccion));
             oCmd.CommandType = CommandType.StoredProcedure;
 

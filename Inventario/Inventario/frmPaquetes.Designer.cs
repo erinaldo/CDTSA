@@ -339,6 +339,7 @@
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 292);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(775, 161);
+            this.layoutControlGroup2.Text = "Paquete";
             // 
             // layoutControlItem2
             // 
