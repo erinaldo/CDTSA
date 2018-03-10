@@ -188,7 +188,7 @@
             // 
             // navBarControl
             // 
-            this.navBarControl.ActiveGroup = this.navGroupContabilidad;
+            this.navBarControl.ActiveGroup = this.navGroupInventario;
             this.navBarControl.Controls.Add(this.NavBarGroupControlContainer1);
             this.navBarControl.Controls.Add(this.NavBarGroupControlContainer2);
             this.navBarControl.Controls.Add(this.navBarGroupControlContainer3);
@@ -220,7 +220,6 @@
             // 
             this.navGroupContabilidad.Caption = "Contabilidad";
             this.navGroupContabilidad.ControlContainer = this.NavBarGroupControlContainer2;
-            this.navGroupContabilidad.Expanded = true;
             this.navGroupContabilidad.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
             this.navGroupContabilidad.GroupClientHeight = 223;
             this.navGroupContabilidad.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
@@ -392,6 +391,7 @@
             // 
             this.navGroupInventario.Caption = "Inventario";
             this.navGroupInventario.ControlContainer = this.NavBarGroupControlContainer1;
+            this.navGroupInventario.Expanded = true;
             this.navGroupInventario.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
             this.navGroupInventario.GroupClientHeight = 223;
             this.navGroupInventario.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;

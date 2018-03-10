@@ -294,12 +294,13 @@ ALTER TABLE [dbo].[globalTipoTran] CHECK CONSTRAINT [chkValorUnico]
 
 GO
 
+
+
 CREATE TABLE [dbo].[globalConsecutivos](
-	[IDConsecutivo] [int] NOT NULL,
+	[IDConsecutivo] [int] IDENTITY (1,1) NOT NULL,
 	[Descr] [nvarchar](250) NULL,
 	[Prefijo] NVARCHAR(50) NOT NULL,
 	[Consecutivo] INT NOT NULL DEFAULT 0,
-	[ConsecAutomatico] [bit] NULL DEFAULT 1,
 	[Documento] [nvarchar](20) NOT NULL,
 	[Activo] [bit] NULL,
 	CONSTRAINT [pkinvConsecutivo] PRIMARY KEY CLUSTERED(
@@ -990,3 +991,73 @@ SELECT  IDPaquete ,
 WHERE IDPaquete = @IDPaquete  AND (PAQUETE LIKE '%' +@Paquete + ' %' OR @Paquete = '*') 
 AND (Descr LIKE '%' + @Descr + '%' OR @Descr ='*' ) 
 AND (IDTipoTran = @IDTipoTran OR @IDTipoTran =-1)  AND ( IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1 )  AND  (Activo = @Activo or @Activo =-1)
+
+
+GO
+
+CREATE PROCEDURE  dbo.invGetGlobalTransacciones @IDTipoTran AS INT, @Descr AS NVARCHAR(250),@Transaccion AS NVARCHAR(20), @Naturaleza AS NVARCHAR(1)
+AS 
+SELECT	 IDTipoTran ,
+        Descr ,
+        Transaccion ,
+        Naturaleza ,
+        Factor ,
+        Orden ,
+        SystemReadOnly ,
+        EsTraslado ,
+        EsFisico ,
+        EsConsumo ,
+        EsCompra ,
+        EsVenta ,
+        EsAjuste ,
+        EsCosto ,
+        EsRequisable ,
+        DobleMovimiento  FROM dbo.globalTipoTran
+WHERE (IDTipoTran = @IDTipoTran OR @IDTipoTran =-1) 
+AND (Descr LIKE '%' + @Descr + '%' OR @Descr='*') 
+AND (Transaccion = @Transaccion OR @Transaccion = '*') 
+AND (Naturaleza = @Naturaleza OR @Naturaleza ='*')
+
+GO
+
+
+CREATE  Procedure [dbo].[invUpdateGlobalConsecutivos] @Operacion NVARCHAR(1), @IDConsecutivo INT OUTPUT, @Descr NVARCHAR(250), @Prefijo NVARCHAR(50), 
+																					@Consecutivo int,@Documento NVARCHAR(20),@Activo BIT
+as
+set nocount on 
+
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.globalConsecutivos( Descr ,Prefijo ,Consecutivo  ,Documento ,Activo)
+	VALUES  (@Descr,@Prefijo,@Consecutivo,@Documento,@Activo)
+	
+	SET @IDConsecutivo = @@IDENTITY
+end
+
+if upper(@Operacion) = 'D'
+begin
+
+	--if Exists ( Select IDProducto  from  dbo.invTransaccionLinea    Where IDConsecutivo  = @IDImpuesto)	
+	--begin 
+	--	RAISERROR ( 'El impuesto que desea eliminar, esta asociado a un producto ', 16, 1) ;
+	--	return				
+	--end
+	
+	DELETE  FROM dbo.globalConsecutivos WHERE IDConsecutivo = @IDConsecutivo 
+end
+
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.globalConsecutivos SET  Descr = @Descr,Prefijo = @Prefijo ,Activo=@Activo, Documento = @Documento WHERE IDConsecutivo=@IDConsecutivo
+
+END
+
+GO
+
+
+
+CREATE  PROCEDURE dbo.invGetGlobalConsecutivo(@IDConsecutivo AS INT,@Descr AS NVARCHAR(250),@Activo AS BIT)
+AS 
+SELECT  IDConsecutivo ,Descr ,Prefijo ,Consecutivo  ,Documento ,Activo 
+ FROM dbo.globalConsecutivos WHERE (IDConsecutivo= @IDConsecutivo OR @IDConsecutivo=-1) and (Descr LIKE '%' + @Descr + '%' OR @Descr='*')  AND (Activo=@Activo OR @Activo=-1)
+

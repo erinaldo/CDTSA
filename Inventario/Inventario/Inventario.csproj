@@ -89,10 +89,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAC\clsGlobalConsecutivosDAC.cs" />
+    <Compile Include="DAC\clsGlobalTipoTransaccionDAC.cs" />
+    <Compile Include="DAC\clsPaqueteDAC.cs" />
     <Compile Include="DAC\clsClasificacionDAC.cs" />
     <Compile Include="DAC\clsProductoDAC.cs" />
     <Compile Include="DAC\clsUnidadMedidaDAC.cs" />
     <Compile Include="DAC\globalTipoImpuestoDAC.cs" />
+    <Compile Include="frmConsecutivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConsecutivos.Designer.cs">
+      <DependentUpon>frmConsecutivos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFiltroProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +128,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConsecutivos.resx">
+      <DependentUpon>frmConsecutivos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFiltroProducto.resx">
       <DependentUpon>frmFiltroProducto.cs</DependentUpon>
     </EmbeddedResource>

@@ -16,6 +16,7 @@ using CDTSA.Properties;
 using ControlBancario;
 using CI;
 
+
 namespace MainMenu
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -506,6 +507,8 @@ namespace MainMenu
                     TreeListNode nodeReportes = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
                     TreeListNode nodeProcesos = tl.AppendNode(new object[] { "Processos" }, -1, 9, 10, 9);
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
+                    TreeListNode nodeConsecutivos = tl.AppendNode(new object[] { "Consecutivos" }, nodeAdministracion.Id, 11, 11, 11);
+                    nodeConsecutivos.Tag = "frmConsecutivos";
                     break;
                 case "treeListAdministracion":
                     TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
@@ -679,6 +682,13 @@ namespace MainMenu
                 case "optConsultaExistenciaLote":
                     break;
                 case "optConsultaTransacciones":
+                    break;
+                case "frmConsecutivos":
+                    frmConsecutivos ofrmConsecutivos = new frmConsecutivos();
+                    ofrmConsecutivos.MdiParent = this;
+                    ofrmConsecutivos.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmConsecutivos.Show();
                     break;
             }
 
