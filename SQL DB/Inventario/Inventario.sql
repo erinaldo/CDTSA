@@ -169,7 +169,7 @@ CREATE TABLE [dbo].[invBodega](
 	[Activo] [bit] NOT NULL DEFAULT 1,
 	[PuedeFacturar] BIT DEFAULT 0,
 	[PuedePreFacturar] BIT DEFAULT 0,
-	[ConsucutivoFactura]  INT NULL,
+	[IDPaqueteFactura]  INT  NULL,
 	[ConsecutivoPreFactura] INT NULL
  CONSTRAINT [pkinvBodega] PRIMARY KEY CLUSTERED 
 (
@@ -238,6 +238,16 @@ ALTER TABLE [dbo].[invExistenciaBodega] CHECK CONSTRAINT [fkExistenciaBodega_inv
 GO
 
 
+CREATE TABLE  dbo.globalClaseTipoTran( 
+[Transaccion] [nvarchar](3) NOT NULL, 
+Descr NVARCHAR(255)  NOT NULL,
+ CONSTRAINT [pkinvClaseTipoTran] PRIMARY KEY CLUSTERED 
+(
+	[Transaccion] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] 
+
+GO
 CREATE TABLE [dbo].[globalTipoTran](
 	[IDTipoTran] [int] NOT NULL,
 	[Descr] [nvarchar](250) NULL,
@@ -261,6 +271,8 @@ CREATE TABLE [dbo].[globalTipoTran](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+ALTER TABLE [dbo].[globalTipoTran]  ADD  CONSTRAINT [fkglobalTipoTranClase] FOREIGN KEY  (Transaccion )  REFERENCES dbo.globalClaseTipoTran (Transaccion)
 GO
 
 ALTER TABLE [dbo].[globalTipoTran]  WITH CHECK ADD  CONSTRAINT [chkfACTOR] CHECK  (([Factor]=(-1) OR [Factor]=(1)))
@@ -317,12 +329,12 @@ CREATE TABLE [dbo].[globalConsecutivos](
 GO
  
 
-CREATE TABLE [dbo].[invPaquete](
+CREATE  TABLE [dbo].[invPaquete](
 	[IDPaquete] [int] IDENTITY(1,1) NOT NULL,
 	[PAQUETE] [nvarchar](20) NULL,
 	[Descr] [nvarchar](250) NULL,
-	[IDConsecutivo] [int] NULL,
-	[IDTipoTran] [int] NULL,
+	[IDConsecutivo] [int] NOT  NULL,
+	[Transaccion] [nvarchar](3) not NULL,
 	[Activo] [bit] NULL,
  CONSTRAINT [PKINVPAQUETE] PRIMARY KEY CLUSTERED 
 (
@@ -344,11 +356,11 @@ ALTER TABLE [dbo].[invPaquete] CHECK CONSTRAINT [FK_invPaquete_globalConsecutivo
 GO
 
 
-ALTER TABLE [dbo].[invPaquete]  WITH CHECK ADD  CONSTRAINT [FK_invPaquete_globalTipoTran] FOREIGN KEY([IDTipoTran])
-REFERENCES [dbo].[globalTipoTran] ([IDTipoTran])
+ALTER TABLE [dbo].[invPaquete]  WITH CHECK ADD  CONSTRAINT [FK_invPaquete_globalClaseTipoTran] FOREIGN KEY([Transaccion])
+REFERENCES [dbo].[globalClaseTipoTran] ([Transaccion])
 GO
 
-ALTER TABLE [dbo].[invPaquete] CHECK CONSTRAINT [FK_invPaquete_globalTipoTran]
+ALTER TABLE [dbo].[invPaquete] CHECK CONSTRAINT [FK_invPaquete_globalClaseTipoTran]
 GO
 
 
@@ -727,7 +739,45 @@ GO
 INSERT INTO dbo.invClasificacion( IDClasificacion ,Descr ,IDGrupo ,Activo)
 VALUES  ( 6 , N'ND' , 6 , 1 )
 
+GO
+
 /* INSERT DE TIPO TRANSACIONES */
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('FI','Inventario Físico')
+
+go
+
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('TR','Traslados')
+
+go 
+
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('CS','Consumos')
+
+go
+
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('CO','Compras')
+
+go 
+
+
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('AJ','Ajustes')
+
+GO
+
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('VT','Ventas')
+
+GO
+
+INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
+VALUES ('DV','Devolución sobre Ventas')
+
+GO
+
 INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
 VALUES  ( 1 ,N'SALIDA POR INVENTARIO FISICO (-)' , N'FI' , N'S' , -1 , 1 , 1 , 0 , 1 ,0 , 0 ,0 , 0 ,0 , 0 , 0 )
@@ -765,10 +815,16 @@ INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Fact
           EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
 VALUES  ( 9 ,N'VENTA (-)' , N'VT' , N'S' , -1 , 7 , 1 , 0 , 0 ,0 , 0 ,1 , 0 ,0 , 0, 0 )
 
+GO
+
+INSERT INTO dbo.globalTipoTran( IDTipoTran ,Descr ,Transaccion ,Naturaleza ,Factor ,Orden ,SystemReadOnly ,EsTraslado ,
+          EsFisico ,EsConsumo ,EsCompra ,EsVenta ,EsAjuste ,EsCosto ,EsRequisable ,DobleMovimiento)
+VALUES  ( 10 ,N'DEVOLUCIONES SOBRE VENTA (+)' , N'DV' , N'E' , 1 , 8, 1 , 0 , 0 ,0 , 0 ,1 , 0 ,0 , 0, 0 )
+
 --PENDIENTE AJUSTE AL COSTO
 GO
 
-CREATE Procedure  [dbo].[cntUpdateProducto] @Operacion nvarchar(1), @IDProducto BIGINT OUTPUT, @Descr nvarchar(250), @Alias nvarchar(20),
+CREATE Procedure  [dbo].[invUpdateProducto] @Operacion nvarchar(1), @IDProducto BIGINT OUTPUT, @Descr nvarchar(250), @Alias nvarchar(20),
 @Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
 @FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @BajaPrecioDistribuidor BIT,
 @BajaPrecioProveedor BIT, @PorcDescuentoAlzaProveedor DECIMAL(28,4), @BonificaFA BIT, @BonificaCOPorCada DECIMAL(28,4),
@@ -810,8 +866,9 @@ begin
 		RAISERROR ( 'El producto no puede ser eliminado, tiene movimientos en el inventario, unicamente lo puede desactivar', 16, 1) ;
 		return				
 	end
-	DELETE  FROM dbo.invProducto WHERE IDProducto = @IDProducto
 	DELETE FROM dbo.invLote WHERE IDLote=0 AND IDProducto=@IDProducto
+	DELETE  FROM dbo.invProducto WHERE IDProducto = @IDProducto
+	
 end
 
 if upper(@Operacion) = 'U' 
@@ -980,7 +1037,7 @@ END
 
 GO
 
-CREATE   PROCEDURE dbo.invGetPaquete @IDPaquete int, @Paquete nvarchar(20), @Descr nvarchar(200),@IDTipoTran int , @IDConsecutivo int ,@Activo INT
+CREATE  PROCEDURE dbo.invGetPaquete @IDPaquete int, @Paquete nvarchar(20), @Descr nvarchar(200),@IDTipoTran int , @IDConsecutivo int ,@Activo INT
 AS 
 SELECT  IDPaquete ,
         PAQUETE ,
@@ -988,7 +1045,7 @@ SELECT  IDPaquete ,
         IDConsecutivo ,
         IDTipoTran ,
         Activo  FROM dbo.invPaquete
-WHERE IDPaquete = @IDPaquete  AND (PAQUETE LIKE '%' +@Paquete + ' %' OR @Paquete = '*') 
+WHERE (IDPaquete = @IDPaquete OR @IDPaquete=-1)  AND (PAQUETE LIKE '%' +@Paquete + ' %' OR @Paquete = '*') 
 AND (Descr LIKE '%' + @Descr + '%' OR @Descr ='*' ) 
 AND (IDTipoTran = @IDTipoTran OR @IDTipoTran =-1)  AND ( IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1 )  AND  (Activo = @Activo or @Activo =-1)
 
