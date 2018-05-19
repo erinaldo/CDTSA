@@ -90,7 +90,7 @@ namespace CI
             process.Start();
         }
 
-        private void frmPaquetes_Load(object sender, EventArgs e)
+        private void frmLote_Load(object sender, EventArgs e)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace CI
 
         private void PopulateGrid()
         {
-            _dsLote = clsPaqueteDAC.GetData(-1, "*", "*", -1, "*", -1);
+            _dsLote = clsLoteDAC.GetData(-1,-1,"*","*");
 
             _dtLote = _dsLote.Tables[0];
             this.dtgDetalle.DataSource = null;
@@ -176,7 +176,7 @@ namespace CI
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
-            this.txtLote.Text = Row["Lote"].ToString();
+            this.txtLote.Text = Row["LoteInterno"].ToString();
             this.txtLoteProveedor.Text = Row["LoteProveedor"].ToString();
             this.slkupProducto.EditValue = Row["IDProducto"].ToString();
             this.dtpFechaFabricacion.EditValue = Convert.ToDateTime( Row["FechaFabricacion"]);
@@ -237,7 +237,7 @@ namespace CI
                 sMensaje = sMensaje + "     • Fecha de Ingreso. \n\r";
             if (this.dtpFechaVence.EditValue == null)
                 sMensaje = sMensaje + "     • Fecha de Vencimiento. \n\r";
-
+            
             if (sMensaje != "")
             {
                 result = false;
@@ -261,12 +261,12 @@ namespace CI
                     Application.DoEvents();
                     currentRow.BeginEdit();
 
-                    currentRow["Lote"] = this.txtLote.Text;
+                    currentRow["LoteInterno"] = this.txtLote.Text;
                     currentRow["LoteProveedor"] = this.txtLoteProveedor.Text;
-                    currentRow["IDArticulo"] = this.slkupProducto.EditValue;
+                    currentRow["IDProducto"] = this.slkupProducto.EditValue;
                     currentRow["FechaFabricacion"] = this.dtpFechaFabricacion.EditValue;
                     currentRow["FechaIngreso"] = this.dtpFechaIngreso.EditValue;
-                    currentRow["FechaVencimienot"] = this.dtpFechaVence.EditValue;
+                    currentRow["FechaVencimiento"] = this.dtpFechaVence.EditValue;
 
                     currentRow.EndEdit();
 
@@ -319,12 +319,12 @@ namespace CI
                     //nuevo registro
                     currentRow = _dtLote.NewRow();
 
-                    currentRow["Lote"] = this.txtLote.Text;
+                    currentRow["LoteInterno"] = this.txtLote.Text;
                     currentRow["LoteProveedor"] = this.txtLoteProveedor.Text;
-                    currentRow["IDArticulo"] = this.slkupProducto.EditValue;
+                    currentRow["IDProducto"] = this.slkupProducto.EditValue;
                     currentRow["FechaFabricacion"] = this.dtpFechaFabricacion.EditValue;
                     currentRow["FechaIngreso"] = this.dtpFechaIngreso.EditValue;
-                    currentRow["FechaVencimienot"] = this.dtpFechaVence.EditValue;
+                    currentRow["FechaVencimiento"] = this.dtpFechaVence.EditValue;
 
                     _dtLote.Rows.Add(currentRow);
                     try
@@ -396,5 +396,7 @@ namespace CI
                 }
             }
         }
+
+        
     }
 }

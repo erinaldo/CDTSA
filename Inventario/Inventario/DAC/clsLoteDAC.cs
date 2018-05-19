@@ -46,7 +46,7 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@IDProducto", SqlDbType.Int).SourceColumn = "IDProducto";
                 oAdaptador.InsertCommand.Parameters.Add("@LoteInterno", SqlDbType.NVarChar).SourceColumn = "LoteInterno";
                 oAdaptador.InsertCommand.Parameters.Add("@LoteProveedor", SqlDbType.NVarChar).SourceColumn = "LoteProveedor";
-                oAdaptador.InsertCommand.Parameters.Add("@FechaVencimiento", SqlDbType.Date).SourceColumn = "FechaVecimiento";
+                oAdaptador.InsertCommand.Parameters.Add("@FechaVencimiento", SqlDbType.Date).SourceColumn = "FechaVencimiento";
                 oAdaptador.InsertCommand.Parameters.Add("@FechaFabricacion", SqlDbType.Date).SourceColumn = "FechaFabricacion";
                 oAdaptador.InsertCommand.Parameters.Add("@FechaIngreso", SqlDbType.DateTime).SourceColumn = "FechaIngreso";
 
@@ -57,7 +57,7 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@IDProducto", SqlDbType.Int).SourceColumn = "IDProducto";
                 oAdaptador.UpdateCommand.Parameters.Add("@LoteInterno", SqlDbType.NVarChar).SourceColumn = "LoteInterno";
                 oAdaptador.UpdateCommand.Parameters.Add("@LoteProveedor", SqlDbType.NVarChar).SourceColumn = "LoteProveedor";
-                oAdaptador.UpdateCommand.Parameters.Add("@FechaVencimiento", SqlDbType.Date).SourceColumn = "FechaVecimiento";
+                oAdaptador.UpdateCommand.Parameters.Add("@FechaVencimiento", SqlDbType.Date).SourceColumn = "FechaVencimiento";
                 oAdaptador.UpdateCommand.Parameters.Add("@FechaFabricacion", SqlDbType.Date).SourceColumn = "FechaFabricacion";
                 oAdaptador.UpdateCommand.Parameters.Add("@FechaIngreso", SqlDbType.DateTime).SourceColumn = "FechaIngreso";
 
@@ -68,7 +68,7 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@IDProducto", SqlDbType.Int).SourceColumn = "IDProducto";
                 oAdaptador.DeleteCommand.Parameters.Add("@LoteInterno", SqlDbType.NVarChar).SourceColumn = "LoteInterno";
                 oAdaptador.DeleteCommand.Parameters.Add("@LoteProveedor", SqlDbType.NVarChar).SourceColumn = "LoteProveedor";
-                oAdaptador.DeleteCommand.Parameters.Add("@FechaVencimiento", SqlDbType.Date).SourceColumn = "FechaVecimiento";
+                oAdaptador.DeleteCommand.Parameters.Add("@FechaVencimiento", SqlDbType.Date).SourceColumn = "FechaVencimiento";
                 oAdaptador.DeleteCommand.Parameters.Add("@FechaFabricacion", SqlDbType.Date).SourceColumn = "FechaFabricacion";
                 oAdaptador.DeleteCommand.Parameters.Add("@FechaIngreso", SqlDbType.DateTime).SourceColumn = "FechaIngreso";
                 return oAdaptador;

@@ -490,7 +490,7 @@ namespace MainMenu
                     nodeArticulo.Tag = "frmProducto";
 
                     TreeListNode nodeLotes = tl.AppendNode(new object[] { "Lotes" }, -1, 11, 11, 11);
-                    nodeLotes.Tag = "optLote";
+                    nodeLotes.Tag = "frmLote";
                     TreeListNode nodeTransacciones = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
                     TreeListNode nodeEjemplo = tl.AppendNode(new object[] { "Documentos" }, nodeTransacciones.Id, 11, 11, 11);
                     nodeEjemplo.Tag = "frmDocumentoInv";
@@ -671,13 +671,13 @@ namespace MainMenu
                 //AddHandler ofrm.FormClosed, AddressOf FomulariosClosed
 
                 //ribbonControl.SelectedPage = ribbonControl.Pages(1)
-                case "optLote":
-                    //frmListadoCentroCosto ofrm = new frmListadoCentroCosto();
-                    //ofrm.FormClosed += ofrm_FormClosed;
-                    //ofrm.MdiParent = this;
-                    //ofrm.WindowState = FormWindowState.Maximized;
-                    //ShowPagesRibbonMan(false);
-                    //ofrm.Show();
+                case "frmLote":
+                    frmLote ofrm = new frmLote();
+                    ofrm.FormClosed += ofrm_FormClosed;
+                    ofrm.MdiParent = this;
+                    ofrm.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrm.Show();
                     break;
                 case "frmDocumentoInv":
                     frmDocumentoInv ofrmDocumento = new frmDocumentoInv(4);

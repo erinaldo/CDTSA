@@ -52,8 +52,11 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.txtLoteProveedor = new DevExpress.XtraEditors.TextEdit();
+            this.dtpFechaIngreso = new DevExpress.XtraEditors.DateEdit();
+            this.dtpFechaFabricacion = new DevExpress.XtraEditors.DateEdit();
+            this.dtpFechaVence = new DevExpress.XtraEditors.DateEdit();
+            this.dtgDetalle = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ribbonControl2 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
@@ -66,57 +69,54 @@
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.txtLote = new DevExpress.XtraEditors.TextEdit();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.slkupProducto = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.dtgDetalle = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
+            this.txtLoteProveedor = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.item0 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dtpFechaVence = new DevExpress.XtraEditors.DateEdit();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dtpFechaFabricacion = new DevExpress.XtraEditors.DateEdit();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dtpFechaIngreso = new DevExpress.XtraEditors.DateEdit();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLoteProveedor.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLote.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoteProveedor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.item0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -341,25 +341,63 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // layoutControlGroup1
+            // dtpFechaIngreso
             // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.item0});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(687, 399);
-            this.layoutControlGroup1.TextVisible = false;
+            this.dtpFechaIngreso.EditValue = null;
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(127, 273);
+            this.dtpFechaIngreso.MenuManager = this.ribbonControl;
+            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
+            this.dtpFechaIngreso.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaIngreso.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaIngreso.Size = new System.Drawing.Size(214, 20);
+            this.dtpFechaIngreso.StyleController = this.layoutControl1;
+            this.dtpFechaIngreso.TabIndex = 13;
             // 
-            // txtLoteProveedor
+            // dtpFechaFabricacion
             // 
-            this.txtLoteProveedor.Location = new System.Drawing.Point(439, 297);
-            this.txtLoteProveedor.MenuManager = this.ribbonControl2;
-            this.txtLoteProveedor.Name = "txtLoteProveedor";
-            this.txtLoteProveedor.Size = new System.Drawing.Size(214, 20);
-            this.txtLoteProveedor.StyleController = this.layoutControl1;
-            this.txtLoteProveedor.TabIndex = 10;
+            this.dtpFechaFabricacion.EditValue = null;
+            this.dtpFechaFabricacion.Location = new System.Drawing.Point(438, 345);
+            this.dtpFechaFabricacion.MenuManager = this.ribbonControl;
+            this.dtpFechaFabricacion.Name = "dtpFechaFabricacion";
+            this.dtpFechaFabricacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaFabricacion.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaFabricacion.Size = new System.Drawing.Size(215, 20);
+            this.dtpFechaFabricacion.StyleController = this.layoutControl1;
+            this.dtpFechaFabricacion.TabIndex = 12;
+            // 
+            // dtpFechaVence
+            // 
+            this.dtpFechaVence.EditValue = null;
+            this.dtpFechaVence.Location = new System.Drawing.Point(127, 345);
+            this.dtpFechaVence.MenuManager = this.ribbonControl;
+            this.dtpFechaVence.Name = "dtpFechaVence";
+            this.dtpFechaVence.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaVence.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaVence.Size = new System.Drawing.Size(214, 20);
+            this.dtpFechaVence.StyleController = this.layoutControl1;
+            this.dtpFechaVence.TabIndex = 11;
+            // 
+            // dtgDetalle
+            // 
+            this.dtgDetalle.Location = new System.Drawing.Point(22, 54);
+            this.dtgDetalle.MainView = this.gridView2;
+            this.dtgDetalle.MenuManager = this.ribbonControl2;
+            this.dtgDetalle.Name = "dtgDetalle";
+            this.dtgDetalle.Size = new System.Drawing.Size(643, 159);
+            this.dtgDetalle.TabIndex = 4;
+            this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.dtgDetalle;
+            this.gridView2.Name = "gridView2";
             // 
             // ribbonControl2
             // 
@@ -465,12 +503,31 @@
             // 
             // txtLote
             // 
-            this.txtLote.Location = new System.Drawing.Point(128, 297);
+            this.txtLote.Location = new System.Drawing.Point(127, 297);
             this.txtLote.MenuManager = this.ribbonControl2;
             this.txtLote.Name = "txtLote";
-            this.txtLote.Size = new System.Drawing.Size(213, 20);
+            this.txtLote.Size = new System.Drawing.Size(214, 20);
             this.txtLote.StyleController = this.layoutControl1;
             this.txtLote.TabIndex = 5;
+            // 
+            // slkupProducto
+            // 
+            this.slkupProducto.Location = new System.Drawing.Point(127, 321);
+            this.slkupProducto.MenuManager = this.ribbonControl2;
+            this.slkupProducto.Name = "slkupProducto";
+            this.slkupProducto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupProducto.Properties.View = this.gridView1;
+            this.slkupProducto.Size = new System.Drawing.Size(526, 20);
+            this.slkupProducto.StyleController = this.layoutControl1;
+            this.slkupProducto.TabIndex = 7;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // checkEdit1
             // 
@@ -482,40 +539,25 @@
             this.checkEdit1.StyleController = this.layoutControl1;
             this.checkEdit1.TabIndex = 9;
             // 
-            // slkupProducto
+            // txtLoteProveedor
             // 
-            this.slkupProducto.Location = new System.Drawing.Point(128, 321);
-            this.slkupProducto.MenuManager = this.ribbonControl2;
-            this.slkupProducto.Name = "slkupProducto";
-            this.slkupProducto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupProducto.Properties.View = this.gridView1;
-            this.slkupProducto.Size = new System.Drawing.Size(525, 20);
-            this.slkupProducto.StyleController = this.layoutControl1;
-            this.slkupProducto.TabIndex = 7;
+            this.txtLoteProveedor.Location = new System.Drawing.Point(438, 297);
+            this.txtLoteProveedor.MenuManager = this.ribbonControl2;
+            this.txtLoteProveedor.Name = "txtLoteProveedor";
+            this.txtLoteProveedor.Size = new System.Drawing.Size(215, 20);
+            this.txtLoteProveedor.StyleController = this.layoutControl1;
+            this.txtLoteProveedor.TabIndex = 10;
             // 
-            // gridView1
+            // layoutControlGroup1
             // 
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // dtgDetalle
-            // 
-            this.dtgDetalle.Location = new System.Drawing.Point(22, 54);
-            this.dtgDetalle.MainView = this.gridView2;
-            this.dtgDetalle.MenuManager = this.ribbonControl2;
-            this.dtgDetalle.Name = "dtgDetalle";
-            this.dtgDetalle.Size = new System.Drawing.Size(643, 159);
-            this.dtgDetalle.TabIndex = 4;
-            this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView2
-            // 
-            this.gridView2.GridControl = this.dtgDetalle;
-            this.gridView2.Name = "gridView2";
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.item0});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(687, 399);
+            this.layoutControlGroup1.TextVisible = false;
             // 
             // item0
             // 
@@ -541,7 +583,6 @@
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 32);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(647, 163);
-            this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -588,9 +629,17 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(311, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(312, 24);
-            this.layoutControlItem6.Text = "layoutControlItem6";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.dtpFechaVence;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(311, 24);
+            this.layoutControlItem5.Text = "Fecha Vence:";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(90, 13);
             // 
             // layoutControlItem3
             // 
@@ -602,6 +651,24 @@
             this.layoutControlItem3.Text = "Lote Proveedor:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(90, 13);
             // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.dtpFechaIngreso;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(311, 24);
+            this.layoutControlItem8.Text = "Fecha Ingreso:";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(90, 13);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.dtpFechaFabricacion;
+            this.layoutControlItem7.Location = new System.Drawing.Point(311, 72);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(312, 24);
+            this.layoutControlItem7.Text = "Fecha Fabricación:";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(90, 13);
+            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
@@ -612,7 +679,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(647, 26);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.emptySpaceItem1.Text = "emptySpaceItem1";
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -631,75 +697,6 @@
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(90, 0);
             this.emptySpaceItem2.TextVisible = true;
             // 
-            // dtpFechaVence
-            // 
-            this.dtpFechaVence.EditValue = null;
-            this.dtpFechaVence.Location = new System.Drawing.Point(128, 345);
-            this.dtpFechaVence.MenuManager = this.ribbonControl;
-            this.dtpFechaVence.Name = "dtpFechaVence";
-            this.dtpFechaVence.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaVence.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaVence.Size = new System.Drawing.Size(213, 20);
-            this.dtpFechaVence.StyleController = this.layoutControl1;
-            this.dtpFechaVence.TabIndex = 11;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.dtpFechaVence;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(311, 24);
-            this.layoutControlItem5.Text = "Fecha Vence:";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(90, 13);
-            // 
-            // dtpFechaFabricacion
-            // 
-            this.dtpFechaFabricacion.EditValue = null;
-            this.dtpFechaFabricacion.Location = new System.Drawing.Point(439, 345);
-            this.dtpFechaFabricacion.MenuManager = this.ribbonControl;
-            this.dtpFechaFabricacion.Name = "dtpFechaFabricacion";
-            this.dtpFechaFabricacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaFabricacion.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaFabricacion.Size = new System.Drawing.Size(214, 20);
-            this.dtpFechaFabricacion.StyleController = this.layoutControl1;
-            this.dtpFechaFabricacion.TabIndex = 12;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.dtpFechaFabricacion;
-            this.layoutControlItem7.Location = new System.Drawing.Point(311, 72);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(312, 24);
-            this.layoutControlItem7.Text = "Fecha Fabricación:";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(90, 13);
-            // 
-            // dtpFechaIngreso
-            // 
-            this.dtpFechaIngreso.EditValue = null;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(128, 273);
-            this.dtpFechaIngreso.MenuManager = this.ribbonControl;
-            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
-            this.dtpFechaIngreso.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaIngreso.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(213, 20);
-            this.dtpFechaIngreso.StyleController = this.layoutControl1;
-            this.dtpFechaIngreso.TabIndex = 13;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.dtpFechaIngreso;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(311, 24);
-            this.layoutControlItem8.Text = "Fecha Ingreso:";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(90, 13);
-            // 
             // frmLote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -710,37 +707,38 @@
             this.Name = "frmLote";
             this.Ribbon = this.ribbonControl;
             this.Text = "Listado de Lotes";
+            this.Load += new System.EventHandler(this.frmLote_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLoteProveedor.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLote.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLoteProveedor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.item0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVence.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFabricacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

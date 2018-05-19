@@ -1268,7 +1268,15 @@ AS
 
 IF UPPER(@Operacion) ='I'
 BEGIN
-	SET @IDLote = ( SELECT MAX(IDLote)  FROM dbo.invLote)
+	IF Exists(SELECT *  FROM dbo.invLote WHERE LoteInterno=@LoteInterno AND IDProducto=@IDProducto)
+	BEGIN
+		 RAISERROR ('Ya existe el Lote que desea ingresar, para el producto.', -- Message text.
+               16, -- Severity.
+               1 -- State.
+               )
+         RETURN 
+	END
+	SET @IDLote = ( SELECT MAX(IDLote)+1  FROM dbo.invLote)
 	INSERT INTO dbo.invLote( IDLote ,IDProducto ,LoteInterno ,LoteProveedor ,FechaVencimiento ,FechaFabricacion ,FechaIngreso)
 	VALUES (@IDLote,@IDProducto,@LoteInterno,@LoteProveedor,@FechaVencimiento,@FechaFabricacion,@FechaIngreso)
 END
