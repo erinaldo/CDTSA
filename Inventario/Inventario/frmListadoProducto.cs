@@ -183,7 +183,7 @@ namespace CI
             sWhereSql = "";                
             ofrmFiltro.FormClosed -= OfrmFiltro_FormClosed;
             if (_IDProducto != -1)
-                sWhereSql = " IDProducto = " + _IDProducto;
+                sWhereSql = string.Format(" IDProducto = {0} and ", _IDProducto);
             if (_Descripcion !="*")
                 sWhereSql = string.Format("{0}  Descr LIKE '%{1}%' and ", sWhereSql, _Descripcion);
             if (_Alias != "*")

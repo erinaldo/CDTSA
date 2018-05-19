@@ -35,7 +35,7 @@ namespace CI.DAC
                 oAdaptador.SelectCommand.Parameters.Add("@IDPaquete", SqlDbType.Int).SourceColumn = "IDPaquete";
                 oAdaptador.SelectCommand.Parameters.Add("@Paquete", SqlDbType.NChar).SourceColumn = "Paquete";
                 oAdaptador.SelectCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.SelectCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
+                oAdaptador.SelectCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.SelectCommand.Parameters.Add("@IDconsecutivo", SqlDbType.Int).SourceColumn = "IDConsecutivo";
                 oAdaptador.SelectCommand.Parameters.Add("@Activo", SqlDbType.Int).SourceColumn = "Activo";
 
@@ -48,7 +48,7 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Paquete", SqlDbType.NVarChar).SourceColumn = "Paquete";
                 oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.InsertCommand.Parameters.Add("@IDConsecutivo", SqlDbType.Int).SourceColumn = "IDConsecutivo";
-                oAdaptador.InsertCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
+                oAdaptador.InsertCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
@@ -60,7 +60,7 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Paquete", SqlDbType.NVarChar).SourceColumn = "Paquete";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDConsecutivo", SqlDbType.Int).SourceColumn = "IDConsecutivo";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
+                oAdaptador.UpdateCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
@@ -71,7 +71,7 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@Paquete", SqlDbType.NVarChar).SourceColumn = "Paquete";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDConsecutivo", SqlDbType.Int).SourceColumn = "IDConsecutivo";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
+                oAdaptador.DeleteCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
@@ -99,14 +99,14 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDPaquete, String Paquete, String Descr, int IDConsecutivo, int IDTipoTran,int Activo)
+        public static DataSet GetData(int IDPaquete, String Paquete, String Descr, int IDConsecutivo, String Transaccion,int Activo)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDPaquete"].Value = IDPaquete;
             oAdaptador.SelectCommand.Parameters["@Paquete"].Value = Paquete;
             oAdaptador.SelectCommand.Parameters["@Descr"].Value = Descr;
             oAdaptador.SelectCommand.Parameters["@IDConsecutivo"].Value = IDConsecutivo;
-            oAdaptador.SelectCommand.Parameters["@IDTipoTran"].Value = IDTipoTran;
+            oAdaptador.SelectCommand.Parameters["@Transaccion"].Value = Transaccion;
             oAdaptador.SelectCommand.Parameters["@Activo"].Value = Activo;
             
 

@@ -22,6 +22,7 @@ namespace Util
 
         public enum FormatType
         {
+            Numerico,
             MonedaLocal,
             MonedaExtrangera,
             FechaCorta,
@@ -76,6 +77,11 @@ namespace Util
             System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
             switch (typeFormat)
             {
+                case FormatType.Numerico:
+                    texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Mask.EditMask = "n" + DecimalLenght;
+                    texto.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    break;
                 case FormatType.MonedaExtrangera:
 
                     ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency.Trim() +  " ";
@@ -142,6 +148,11 @@ namespace Util
             System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
             switch (typeFormat)
             {
+                case FormatType.Numerico:
+                    texto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+                    texto.Properties.Mask.EditMask = "n" + DecimalLenght;
+                    texto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    break;
                 case FormatType.MonedaExtrangera:
 
                     ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency.Trim() + " ";

@@ -492,8 +492,8 @@ namespace MainMenu
                     TreeListNode nodeLotes = tl.AppendNode(new object[] { "Lotes" }, -1, 11, 11, 11);
                     nodeLotes.Tag = "optLote";
                     TreeListNode nodeTransacciones = tl.AppendNode(new object[] { "Transacciones" }, -1, 9, 10, 9);
-                    TreeListNode nodeEjemplo = tl.AppendNode(new object[] { "Ejemplo" }, nodeTransacciones.Id, 11, 11, 11);
-                    nodeEjemplo.Tag = "optEjemplo";
+                    TreeListNode nodeEjemplo = tl.AppendNode(new object[] { "Documentos" }, nodeTransacciones.Id, 11, 11, 11);
+                    nodeEjemplo.Tag = "frmDocumentoInv";
                     TreeListNode nodeConsultas = tl.AppendNode(new object[] { "Consultas" }, -1, 9, 10, 9);
                     TreeListNode nodeConsultaArticulos = tl.AppendNode(new object[] { "Artículos" }, nodeConsultas.Id, 11, 11, 11);
                     nodeConsultaArticulos.Tag = "optConsultaArticulo";
@@ -511,6 +511,8 @@ namespace MainMenu
                     nodeConsecutivos.Tag = "frmConsecutivos";
                     TreeListNode nodePaquetes = tl.AppendNode(new object[] { "Paquetes" }, nodeAdministracion.Id, 11, 11, 11);
                     nodePaquetes.Tag = "frmPaquetes";
+                    TreeListNode nodeBodegas = tl.AppendNode(new object[] { "Bodegas" }, nodeAdministracion.Id, 11, 11, 11);
+                    nodeBodegas.Tag = "frmBodegas";
                     break;
                 case "treeListAdministracion":
                     TreeListNode nodeTipos = tl.AppendNode(new object[] { "Catálogos" }, -1, 9, 10, 9);
@@ -647,6 +649,8 @@ namespace MainMenu
 
             DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
             node = ((TreeList)sender).FocusedNode;
+            if (node.Tag == null)
+                return;
             switch (node.Tag.ToString())
             {
                 case "frmProducto":
@@ -675,7 +679,12 @@ namespace MainMenu
                     //ShowPagesRibbonMan(false);
                     //ofrm.Show();
                     break;
-                case "optEjemplo":
+                case "frmDocumentoInv":
+                    frmDocumentoInv ofrmDocumento = new frmDocumentoInv(4);
+                    ofrmDocumento.MdiParent = this;
+                    ofrmDocumento.WindowState = FormWindowState.Normal;
+                    ShowPagesRibbonMan(false);
+                    ofrmDocumento.Show();
                     break;
                 case "optConsultaArticulo":
                     break;
@@ -698,6 +707,13 @@ namespace MainMenu
                     ofrmPaquete.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmPaquete.Show();
+                    break;
+                case "frmBodegas":
+                    frmBodegas ofrmBodega = new frmBodegas();
+                    ofrmBodega.MdiParent = this;
+                    ofrmBodega.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmBodega.Show();
                     break;
             }
 

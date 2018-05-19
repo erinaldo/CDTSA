@@ -430,6 +430,8 @@ CREATE  TABLE [dbo].[invDetalleTraslados](
 
 GO
 
+
+
 ALTER TABLE [dbo].[invDetalleTraslados]  WITH CHECK ADD  CONSTRAINT [fkinvDetalleTraslados_invBodegaOrigen] FOREIGN KEY([IDBodegaOrigen])
 REFERENCES [dbo].[invBodega] ([IDBodega])
 GO
@@ -452,6 +454,14 @@ GO
 
 ALTER TABLE [dbo].[invDetalleTraslados] CHECK CONSTRAINT [fkinvDetalleTraslados_invLote]
 
+GO
+
+
+ALTER TABLE [dbo].[invDetalleTraslados]  WITH CHECK ADD  CONSTRAINT [fkinvDetalleTraslados_invTraslado] FOREIGN KEY([IDTraslado])
+REFERENCES [dbo].[invTraslados] ([IDTraslado])
+GO
+
+ALTER TABLE [dbo].[invDetalleTraslados] CHECK CONSTRAINT [fkinvDetalleTraslados_invTraslado]
 
 
 GO
@@ -490,9 +500,10 @@ ALTER TABLE [dbo].[invDetalleTrasladosEstados] CHECK CONSTRAINT [FK_invDetalleEs
 GO
 
 
-CREATE TABLE [dbo].[invTransaccion](
+CREATE   TABLE [dbo].[invTransaccion](
 	[IDTransaccion] [bigint] IDENTITY(1,1) NOT NULL,
 	[ModuloOrigen] NVARCHAR(4) NOT NULL,
+	[IDPaquete] INT  NOT NULL,
 	[Fecha] [smalldatetime] NOT NULL,
 	[Usuario] [nvarchar](20) NOT NULL,
 	[Referencia] [nvarchar](250) NULL,
@@ -501,7 +512,6 @@ CREATE TABLE [dbo].[invTransaccion](
 	[UniqueValue] [uniqueidentifier] NULL,
 	[EsTraslado] [bit] NULL DEFAULT 0,
 	[IDTraslado] [bigint] NULL,
-	[IDRequisa] [bigint] NULL,
 	[CreateDate] [datetime] NULL DEFAULT (GETDATE()),
  CONSTRAINT [pkinvTransaccion] PRIMARY KEY CLUSTERED 
 (
@@ -512,6 +522,11 @@ CREATE TABLE [dbo].[invTransaccion](
 	[UniqueValue] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[invTransaccion]
+ADD CONSTRAINT UC_invTransaccionUnique UNIQUE (Documento,IDPaquete,Fecha);
 
 GO
 
@@ -530,7 +545,6 @@ CREATE TABLE [dbo].[invTransaccionLinea](
 	[IDTipoTran] [int] NOT NULL,
 	[IDBodega] [int] NOT NULL,
 	[IDTraslado] [bigint] NULL,
-	[IDRequisa] [bigint] NULL ,
 	[Naturaleza] [nvarchar](1) NOT NULL,
 	[Factor] [smallint] NOT NULL DEFAULT 0,
 	[Cantidad] [decimal](28, 4) NULL DEFAULT 0,
@@ -1005,14 +1019,14 @@ SELECT IDClasificacion,Descr  FROM dbo.invClasificacion WHERE  (IDClasificacion 
 GO
 
 
-CREATE Procedure [dbo].[invUpdatePaquete] @Operacion nvarchar(1), @IDPaquete INT OUTPUT, @Paquete NVARCHAR(20), @Descr nvarchar(250),@IDconsecutivo INT ,@IDTipoTran AS INT,@Activo BIT
+CREATE  Procedure [dbo].[invUpdatePaquete] @Operacion nvarchar(1), @IDPaquete INT OUTPUT, @Paquete NVARCHAR(20), @Descr nvarchar(250),@IDconsecutivo INT ,@Transaccion AS NVARCHAR(3),@Activo BIT
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
 begin
-	INSERT INTO dbo.invPaquete(Paquete,Descr,IDConsecutivo,IDTipoTran,Activo)
-	VALUES (@Paquete, @Descr,@IDConsecutivo,@IDTipoTran,@Activo)
+	INSERT INTO dbo.invPaquete(Paquete,Descr,IDConsecutivo,Transaccion,Activo)
+	VALUES (@Paquete, @Descr,@IDConsecutivo,@Transaccion,@Activo)
 	
 	SET @IDPaquete = @@IDENTITY
 end
@@ -1031,23 +1045,23 @@ end
 
 if upper(@Operacion) = 'U' 
 BEGIN
-	UPDATE dbo.invPaquete SET  Descr = @Descr,Paquete = @Paquete ,Activo=@Activo, IDConsecutivo = @IDconsecutivo, IDTipoTran = @IDTipoTran WHERE IDPaquete=@IDPaquete
+	UPDATE dbo.invPaquete SET  Descr = @Descr,Paquete = @Paquete ,Activo=@Activo, IDConsecutivo = @IDconsecutivo, Transaccion = @Transaccion WHERE IDPaquete=@IDPaquete
 
 END
 
 GO
 
-CREATE  PROCEDURE dbo.invGetPaquete @IDPaquete int, @Paquete nvarchar(20), @Descr nvarchar(200),@IDTipoTran int , @IDConsecutivo int ,@Activo INT
+CREATE   PROCEDURE dbo.invGetPaquete @IDPaquete int, @Paquete nvarchar(20), @Descr nvarchar(200),@Transaccion nvarchar(3) , @IDConsecutivo int ,@Activo INT
 AS 
 SELECT  IDPaquete ,
         PAQUETE ,
         Descr ,
         IDConsecutivo ,
-        IDTipoTran ,
+        Transaccion ,
         Activo  FROM dbo.invPaquete
 WHERE (IDPaquete = @IDPaquete OR @IDPaquete=-1)  AND (PAQUETE LIKE '%' +@Paquete + ' %' OR @Paquete = '*') 
 AND (Descr LIKE '%' + @Descr + '%' OR @Descr ='*' ) 
-AND (IDTipoTran = @IDTipoTran OR @IDTipoTran =-1)  AND ( IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1 )  AND  (Activo = @Activo or @Activo =-1)
+AND (Transaccion = @Transaccion OR @Transaccion ='*')  AND ( IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1 )  AND  (Activo = @Activo or @Activo =-1)
 
 
 GO
@@ -1117,4 +1131,168 @@ CREATE  PROCEDURE dbo.invGetGlobalConsecutivo(@IDConsecutivo AS INT,@Descr AS NV
 AS 
 SELECT  IDConsecutivo ,Descr ,Prefijo ,Consecutivo  ,Documento ,Activo 
  FROM dbo.globalConsecutivos WHERE (IDConsecutivo= @IDConsecutivo OR @IDConsecutivo=-1) and (Descr LIKE '%' + @Descr + '%' OR @Descr='*')  AND (Activo=@Activo OR @Activo=-1)
+
+GO
+
+
+CREATE  PROCEDURE dbo.invUpdateDocumentoInv(@Operacion INT,@IDTransaccion AS INT OUTPUT,@ModuloOrigen NVARCHAR(4),@IDPaquete AS INT,@Fecha AS DATETIME,  @Usuario AS NVARCHAR(20),
+											@Referencia AS NVARCHAR(250),@Documento NVARCHAR(250),@Aplicado AS BIT,@EsTraslado AS BIT,@IDTraslado AS INT)
+AS 
+if upper(@Operacion) = 'I'
+begin
+	INSERT INTO dbo.invTransaccion( ModuloOrigen ,IDPaquete,Fecha ,Usuario ,Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado ,IDTraslado  ,CreateDate)
+	VALUES (@ModuloOrigen,@IDPaquete,@Fecha,@Usuario,@Referencia,@Documento,1,NEWID(),@EsTraslado,@IDTraslado,GETDATE())
+	
+	SET @IDTransaccion = @@IDENTITY
+END
+if upper(@Operacion) = 'D'
+BEGIN
+	DELETE FROM dbo.invTransaccionLinea WHERE IDTransaccion =@IDTransaccion
+	DELETE FROM dbo.invTransaccion WHERE IDTransaccion =@IDTransaccion
+END
+IF UPPER(@Operacion)='U'
+BEGIN
+	UPDATE dbo.invTransaccion SET Aplicado=@Aplicado,Fecha=@Fecha,Referencia =@Referencia,Documento=@Documento  WHERE IDTransaccion=@IDTransaccion
+END
+
+GO
+
+CREATE PROCEDURE dbo.invUpdateDocumentoInvDetalle(@Operacion AS NVARCHAR(1),@IDTransaccion AS INT,@IDProducto AS INT,@IDLote AS INT,@IDTipoTran AS INT,@IDBodega AS INT,
+											@IDTraslado AS INT,@Cantidad AS DECIMAL(28,4),@PrecioUnitarioDolar AS DECIMAL(28,4),@PrecioUnitarioLocal AS DECIMAL(28,4), @Transaccion AS NVARCHAR(3),@TipoCambio AS decimal(26,4),@Aplicado AS BIT)
+AS 
+DECLARE @CostoLocal AS DECIMAL(28,4),@CostoDolar AS DECIMAL(28,4)
+
+--Preguntar si se hace una revaloracion del costo dolar o costo local
+SELECT @CostoLocal= CostoPromLocal,@CostoDolar = @CostoDolar  FROM dbo.invProducto WHERE IDProducto = @IDProducto
+
+IF UPPER(@Operacion)='I'
+BEGIN
+	INSERT INTO dbo.invTransaccionLinea( IDTransaccion ,IDProducto ,IDLote ,IDTipoTran ,IDBodega ,IDTraslado  ,Naturaleza ,Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,Transaccion ,TipoCambio ,Aplicado)
+	VALUES (@IDTransaccion,@IDProducto,@IDLote,@IDTipoTran,@IDBodega,ISNULL(@IDTraslado,-1),CASE WHEN @Cantidad>0 THEN 'E' ELSE 'S' END ,CASE WHEN @Cantidad>0 THEN 1 ELSE -1 END,@Cantidad,@CostoLocal,@CostoDolar,@PrecioUnitarioLocal,@PrecioUnitarioDolar,@Transaccion,@TipoCambio,@Aplicado)
+END
+IF UPPER(@Operacion)='U'
+BEGIN
+	UPDATE dbo.invTransaccionLinea SET Cantidad =@Cantidad , Naturaleza= CASE WHEN @Cantidad>0 THEN 'E' ELSE 'S' END , Factor = CASE WHEN @Cantidad>0 THEN 1 ELSE -1 END,
+		PrecioUntLocal = @PrecioUnitarioLocal,PrecioUntDolar = @PrecioUnitarioDolar,TipoCambio = @TipoCambio,Aplicado = @Aplicado
+	WHERE IDTransaccion=@IDTransaccion AND IDProducto=@IDProducto AND IDLote=@IDLote AND IDTipoTran =@IDTipoTran AND IDBodega=@IDBodega
+END
+IF UPPER(@Operacion) = 'D'
+BEGIN	
+	DELETE FROM dbo.invTransaccionLinea WHERE   IDTransaccion=@IDTransaccion AND IDProducto=@IDProducto AND IDLote=@IDLote AND IDTipoTran =@IDTipoTran AND IDBodega=@IDBodega
+END
+
+GO
+
+CREATE   PROCEDURE dbo.invGetTransaccionCabecera(@IdTransaccion AS INT)
+AS 
+SELECT  IDTransaccion ,
+        ModuloOrigen ,
+		IDPaquete, 
+        Fecha ,
+        Usuario ,
+        Referencia ,
+        Documento ,
+        Aplicado ,
+        UniqueValue ,
+        EsTraslado ,
+        IDTraslado ,
+        CreateDate  FROM dbo.invTransaccion WHERE IDTransaccion =@IDTransaccion
+ 
+GO
+
+CREATE  PROCEDURE dbo.invGetTransaccionCabeceraByCriterio(@FechaInicio AS DATETIME,@FechaFinal AS DATETIME	, @Referencia AS NVARCHAR(250),
+						@Documento AS NVARCHAR(250),@EsTraslado AS INT,@IDTraslado AS INT,@Usuario AS NVARCHAR(20))
+AS 
+
+set @FechaInicio = CAST(SUBSTRING(CAST(@FechaInicio AS CHAR),1,11) + ' 00:00:00.000' AS DATETIME)
+set @FechaFinal = CAST(SUBSTRING(CAST(@FechaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
+
+SELECT  IDTransaccion ,
+        ModuloOrigen ,
+       IDPaquete, 
+        Fecha ,
+        Usuario ,
+        Referencia ,
+        Documento ,
+        Aplicado ,
+        UniqueValue ,
+        EsTraslado ,
+        IDTraslado ,
+        CreateDate  FROM dbo.invTransaccion 
+WHERE Fecha BETWEEN @FechaInicio AND @FechaFinal AND (Referencia LIKE  '%' + @Referencia +'%' OR @Referencia ='*') AND 
+			(Documento LIKE '%' +@Documento +'%' OR @Documento='*') AND (EsTraslado = @EsTraslado OR  @EsTraslado = -1) AND	
+			((EsTraslado = 1 AND IDTraslado = @IDTraslado ) OR @IDTraslado = -1) AND (Usuario = @Usuario OR @USuario = '*')
+			
+GO
+
+CREATE PROCEDURE dbo.invGetTransaccionInvDetalle (@IDTransaccion AS INT )
+AS 
+SELECT  IDTransaccion ,IDProducto ,IDLote ,IDTipoTran ,IDBodega ,IDTraslado ,Naturaleza ,Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,Transaccion ,TipoCambio ,Aplicado  
+FROM dbo.invTransaccionLinea WHERE IDTransaccion  = @IDTransaccion
+
+GO 
+
+CREATE  PROCEDURE  dbo.invUpdateBodega(@Operacion AS NVARCHAR(1), @IDBodega AS int OUTPUT, @Descr nvarchar(250), @Activo AS bit,@PuedeFacturar AS bit,@PuedePreFacturar AS bit	,@IDPaqueteFactura AS int,@ConsecutivoPreFactura AS int)
+AS 
+IF UPPER(@Operacion) ='I'
+BEGIN
+	INSERT INTO dbo.invBodega( Descr ,Activo ,PuedeFacturar ,PuedePreFacturar ,IDPaqueteFactura ,ConsecutivoPreFactura)
+	VALUES (@Descr,@Activo,@PuedeFacturar,@PuedePreFacturar,@IDPaqueteFactura,@ConsecutivoPreFactura)
+END
+IF UPPER(@Operacion) ='U'
+BEGIN
+	UPDATE dbo.invBodega SET PuedeFacturar =@PuedeFacturar,PuedePreFacturar = @PuedePreFacturar,IDPaqueteFactura = @IDPaqueteFactura, ConsecutivoPreFactura=@ConsecutivoPreFactura WHERE IDBodega = @IDBodega
+END
+IF UPPER(@Operacion)='D'
+BEGIN
+	DELETE FROM dbo.invBodega WHERE IDBodega=@IDBodega
+END
+
+GO
+
+CREATE PROCEDURE dbo.invGetBodega(@IDBodega AS INT,@Descr AS NVARCHAR(250),@Activo AS INT)
+AS 
+SELECT IDBodega,Descr,Activo,PuedeFacturar,PuedePreFacturar,IDPaqueteFactura,ConsecutivoPreFactura  FROM dbo.invBodega WHERE (IDBodega = @IDBodega OR @IDBodega =-1) AND (Descr LIKE '%'+ @Descr+'%' OR @Descr ='*') AND (Activo = @Activo OR @Activo=-1)
+
+GO 
+
+CREATE PROCEDURE dbo.GetGlobalClaseTipoTran(@Transaccion AS nvarchar(3),@Descr AS NVARCHAR(250))
+AS 
+SELECT Transaccion,Descr FROM dbo.globalClaseTipoTran WHERE (Transaccion = @Transaccion OR @Transaccion ='*') AND (Descr LIKE '%'+ @Descr+'%' OR @Descr ='*') 
+
+GO
+
+
+CREATE  PROCEDURE  dbo.invUpdateLote(@Operacion AS NVARCHAR(1), @IDLote AS int OUTPUT, @IDProducto INT, @LoteInterno AS NVARCHAR(50),@LoteProveedor AS NVARCHAR(50),@FechaVencimiento AS DATE,@FechaFabricacion AS DATE,@FechaIngreso AS DATE )
+AS 
+
+IF UPPER(@Operacion) ='I'
+BEGIN
+	SET @IDLote = ( SELECT MAX(IDLote)  FROM dbo.invLote)
+	INSERT INTO dbo.invLote( IDLote ,IDProducto ,LoteInterno ,LoteProveedor ,FechaVencimiento ,FechaFabricacion ,FechaIngreso)
+	VALUES (@IDLote,@IDProducto,@LoteInterno,@LoteProveedor,@FechaVencimiento,@FechaFabricacion,@FechaIngreso)
+END
+IF UPPER(@Operacion) ='U'
+BEGIN
+	UPDATE dbo.invLote SET LoteInterno =@LoteInterno,LoteProveedor = @LoteProveedor,FechaVencimiento = @FechaVencimiento, FechaFabricacion=@FechaFabricacion WHERE IDLote = @IDLote AND IDProducto=@IDProducto
+END
+IF UPPER(@Operacion)='D'
+BEGIN
+	DELETE FROM dbo.invLote WHERE IDLote=@IDLote  AND IDProducto=@IDProducto
+END
+
+GO
+
+CREATE   PROCEDURE dbo.invGetLote(@IDLote AS INT,@IDProducto AS INT ,@LoteInterno AS NVARCHAR(50),@LoteProveedor AS NVARCHAR(50))
+AS 
+SELECT  IDLote ,
+        IDProducto ,
+        LoteInterno ,
+        LoteProveedor ,
+        FechaVencimiento ,
+        FechaFabricacion ,
+        FechaIngreso  FROM dbo.invLote WHERE (IDLote = @IDLote OR @IDLote =-1) AND (IDProducto = @IDProducto OR @IDProducto =-1)  AND (LoteInterno LIKE '%'+ @LoteInterno+'%' OR @LoteInterno ='*') AND (LoteProveedor LIKE '%'+ @LoteProveedor+'%' OR @LoteProveedor ='*')  
+
+GO 
+
 

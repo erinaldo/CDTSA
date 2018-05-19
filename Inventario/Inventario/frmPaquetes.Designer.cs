@@ -205,10 +205,10 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(111, 381);
+            this.txtDescripcion.Location = new System.Drawing.Point(90, 381);
             this.txtDescripcion.MenuManager = this.ribbonControl;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(660, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(681, 20);
             this.txtDescripcion.StyleController = this.layoutControl1;
             this.txtDescripcion.TabIndex = 10;
             // 
@@ -224,13 +224,13 @@
             // 
             // slkupTipoTransaccion
             // 
-            this.slkupTipoTransaccion.Location = new System.Drawing.Point(111, 429);
+            this.slkupTipoTransaccion.Location = new System.Drawing.Point(90, 429);
             this.slkupTipoTransaccion.MenuManager = this.ribbonControl;
             this.slkupTipoTransaccion.Name = "slkupTipoTransaccion";
             this.slkupTipoTransaccion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupTipoTransaccion.Properties.View = this.searchLookUpEdit2View;
-            this.slkupTipoTransaccion.Size = new System.Drawing.Size(660, 20);
+            this.slkupTipoTransaccion.Size = new System.Drawing.Size(681, 20);
             this.slkupTipoTransaccion.StyleController = this.layoutControl1;
             this.slkupTipoTransaccion.TabIndex = 8;
             // 
@@ -243,13 +243,13 @@
             // 
             // slkpConsecutivo
             // 
-            this.slkpConsecutivo.Location = new System.Drawing.Point(111, 405);
+            this.slkpConsecutivo.Location = new System.Drawing.Point(90, 405);
             this.slkpConsecutivo.MenuManager = this.ribbonControl;
             this.slkpConsecutivo.Name = "slkpConsecutivo";
             this.slkpConsecutivo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkpConsecutivo.Properties.View = this.searchLookUpEdit1View;
-            this.slkpConsecutivo.Size = new System.Drawing.Size(660, 20);
+            this.slkpConsecutivo.Size = new System.Drawing.Size(681, 20);
             this.slkpConsecutivo.StyleController = this.layoutControl1;
             this.slkpConsecutivo.TabIndex = 7;
             // 
@@ -262,10 +262,10 @@
             // 
             // txtPaquete
             // 
-            this.txtPaquete.Location = new System.Drawing.Point(111, 357);
+            this.txtPaquete.Location = new System.Drawing.Point(90, 357);
             this.txtPaquete.MenuManager = this.ribbonControl;
             this.txtPaquete.Name = "txtPaquete";
-            this.txtPaquete.Size = new System.Drawing.Size(660, 20);
+            this.txtPaquete.Size = new System.Drawing.Size(681, 20);
             this.txtPaquete.StyleController = this.layoutControl1;
             this.txtPaquete.TabIndex = 5;
             // 
@@ -316,7 +316,7 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(775, 33);
             this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem3.Text = "Listado de Paquetes";
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(84, 0);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(63, 0);
             this.emptySpaceItem3.TextVisible = true;
             // 
             // layoutControlItem1
@@ -348,7 +348,7 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(751, 24);
             this.layoutControlItem2.Text = "Paquete:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(84, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(63, 13);
             // 
             // layoutControlItem4
             // 
@@ -357,7 +357,7 @@
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(751, 24);
             this.layoutControlItem4.Text = "Consecutivo:";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(84, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(63, 13);
             // 
             // layoutControlItem5
             // 
@@ -365,8 +365,8 @@
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 95);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(751, 24);
-            this.layoutControlItem5.Text = "Tipo Transacción:";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(84, 13);
+            this.layoutControlItem5.Text = "Transaccion";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(63, 13);
             // 
             // layoutControlItem6
             // 
@@ -384,7 +384,7 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(751, 24);
             this.layoutControlItem3.Text = "Descripción:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(84, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(63, 13);
             // 
             // emptySpaceItem1
             // 

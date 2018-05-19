@@ -201,6 +201,7 @@
             this.gridIdProducto.Name = "gridIdProducto";
             this.gridIdProducto.Visible = true;
             this.gridIdProducto.VisibleIndex = 0;
+            this.gridIdProducto.Width = 65;
             // 
             // grdDescr
             // 
@@ -209,6 +210,7 @@
             this.grdDescr.Name = "grdDescr";
             this.grdDescr.Visible = true;
             this.grdDescr.VisibleIndex = 1;
+            this.grdDescr.Width = 200;
             // 
             // grdAlias
             // 
@@ -217,14 +219,16 @@
             this.grdAlias.Name = "grdAlias";
             this.grdAlias.Visible = true;
             this.grdAlias.VisibleIndex = 2;
+            this.grdAlias.Width = 77;
             // 
             // grdFactorEmpaque
             // 
-            this.grdFactorEmpaque.Caption = "FactorEmpaque";
+            this.grdFactorEmpaque.Caption = "Factor Empaque";
             this.grdFactorEmpaque.FieldName = "FactorEmpaque";
             this.grdFactorEmpaque.Name = "grdFactorEmpaque";
             this.grdFactorEmpaque.Visible = true;
             this.grdFactorEmpaque.VisibleIndex = 3;
+            this.grdFactorEmpaque.Width = 90;
             // 
             // grdEsMuestra
             // 
@@ -233,6 +237,7 @@
             this.grdEsMuestra.Name = "grdEsMuestra";
             this.grdEsMuestra.Visible = true;
             this.grdEsMuestra.VisibleIndex = 4;
+            this.grdEsMuestra.Width = 62;
             // 
             // grdEsControlado
             // 
@@ -241,14 +246,16 @@
             this.grdEsControlado.Name = "grdEsControlado";
             this.grdEsControlado.Visible = true;
             this.grdEsControlado.VisibleIndex = 5;
+            this.grdEsControlado.Width = 79;
             // 
             // grdEsEtico
             // 
-            this.grdEsEtico.Caption = "EsEtico";
+            this.grdEsEtico.Caption = "Es Ético";
             this.grdEsEtico.FieldName = "EsEtico";
             this.grdEsEtico.Name = "grdEsEtico";
             this.grdEsEtico.Visible = true;
             this.grdEsEtico.VisibleIndex = 6;
+            this.grdEsEtico.Width = 63;
             // 
             // labelControl1
             // 

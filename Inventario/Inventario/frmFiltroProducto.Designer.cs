@@ -527,6 +527,8 @@
             // 
             this.txtIDProducto.Location = new System.Drawing.Point(87, 12);
             this.txtIDProducto.Name = "txtIDProducto";
+            this.txtIDProducto.Properties.Mask.EditMask = "d";
+            this.txtIDProducto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtIDProducto.Size = new System.Drawing.Size(460, 20);
             this.txtIDProducto.StyleController = this.layoutControl2;
             this.txtIDProducto.TabIndex = 4;

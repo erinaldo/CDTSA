@@ -135,23 +135,28 @@ namespace CI
             this.txtDescr.EditValue = _currentRow["Descr"].ToString();
             this.txtAlias.EditValue = _currentRow["Alias"].ToString();
             this.txtCodigoBarra.Text = _currentRow["CodigoBarra"].ToString(); 
-            this.txtFactorEmpaque.EditValue = _currentRow["FactorEmpaque"].ToString();
+            this.txtFactorEmpaque.EditValue = ((decimal) _currentRow["FactorEmpaque"]).ToString("N" + Util.Util.DecimalLenght);
             this.slkupUnidadMedida.EditValue = _currentRow["IDUnidad"];
             //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
             this.slkupTipoImpuesto.EditValue = _currentRow["TipoImpuesto"].ToString();
             this.chkActivo.EditValue = _currentRow["Activo"];
+            this.chkEsMuestra.EditValue = _currentRow["EsMuestra"];
             this.chkEsControlado.EditValue = _currentRow["EsControlado"];
             this.chkEsEtico.EditValue = _currentRow["EsEtico"];
-            this.chkBajaPrecioDistribuidor.EditValue = _currentRow["BajaPrecioDistribuidor"].ToString();
-            this.chkBajaPrecioProveedor.EditValue = _currentRow["BajaPrecioProveedor"].ToString();
+            this.chkBajaPrecioDistribuidor.EditValue = _currentRow["BajaPrecioDistribuidor"];
+            this.chkBajaPrecioProveedor.EditValue = _currentRow["BajaPrecioProveedor"];
             this.chkBonificaFactura.EditValue = _currentRow["BonificaFA"];
 
-            this.txtBonificaCOCantidad.EditValue = _currentRow["BonificaCOPorCada"].ToString();
-            this.txtBonificaCOPorCada.EditValue = _currentRow["BonificaCOCantidad"].ToString();
-            this.txtPorcDescAlzaProveedor.EditValue = _currentRow["PorcDescuentoAlzaProveedor"].ToString();
+            this.txtBonificaCOCantidad.EditValue = ((Decimal)_currentRow["BonificaCOPorCada"]).ToString("N" + Util.Util.DecimalLenght);
+            this.txtBonificaCOPorCada.EditValue = ((Decimal)_currentRow["BonificaCOCantidad"]).ToString("N" + Util.Util.DecimalLenght); 
+            this.txtPorcDescAlzaProveedor.EditValue = ((Decimal)_currentRow["PorcDescuentoAlzaProveedor"]).ToString("N" + Util.Util.DecimalLenght); 
 
+            //TODO Actualizar los Costos
             this.txtCostoPromDolar.EditValue = 0;
             this.txtCostoPromLocal.EditValue = 0;
+            this.txtUltimoCostoDolar.EditValue = 0;
+            this.txtUltimoCostoLocal.EditValue = 0;
+
 
             this.slkupClasif1.EditValue = _currentRow["Clasif1"];
             this.slkupClasif2.EditValue = _currentRow["Clasif2"];
@@ -348,10 +353,10 @@ namespace CI
                     _currentRow["EsEtico"] = this.chkEsEtico.EditValue;
                     _currentRow["BajaPrecioDistribuidor"] = this.chkBajaPrecioDistribuidor.EditValue;
                     _currentRow["BajaPrecioProveedor"] = this.chkBajaPrecioProveedor.EditValue;
-                    _currentRow["PorcDescuentoAlzaProveedor"] = this.txtPorcDescAlzaProveedor.EditValue;
+                    _currentRow["PorcDescuentoAlzaProveedor"] = this.txtPorcDescAlzaProveedor.EditValue =="" ? 0:this.txtPorcDescAlzaProveedor.EditValue;
                     _currentRow["BonificaFA"] = this.chkBonificaFactura.EditValue;
-                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue;
-                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue;
+                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue == "" ? 0:this.txtBonificaCOPorCada.EditValue;
+                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue=="" ? 0: this.txtBonificaCOCantidad.EditValue;
                     _currentRow["Activo"] = this.chkActivo.EditValue;
                     _currentRow["UserInsert"] = sUsuario;
                     _currentRow["UserUpdate"] = sUsuario;
@@ -392,6 +397,9 @@ namespace CI
 
                         _dsProducto.AcceptChanges();
                         HabilitarControles(false);
+                        Accion = "View";
+                        this.btnEditar.Enabled = true;
+                        this.btnAgregar.Enabled = true;
                         AplicarPrivilegios();
                     }
                     else
@@ -423,10 +431,10 @@ namespace CI
                     _currentRow["EsEtico"] = this.chkEsEtico.EditValue;
                     _currentRow["BajaPrecioDistribuidor"] = this.chkBajaPrecioDistribuidor.EditValue;
                     _currentRow["BajaPrecioProveedor"] = this.chkBajaPrecioProveedor.EditValue;
-                    _currentRow["PorcDescuentoAlzaProveedor"] = this.txtPorcDescAlzaProveedor.EditValue;
+                    _currentRow["PorcDescuentoAlzaProveedor"] = (this.txtPorcDescAlzaProveedor.EditValue=="") ? 0.0 : this.txtPorcDescAlzaProveedor.EditValue;
                     _currentRow["BonificaFA"] = this.chkBonificaFactura.EditValue;
-                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue;
-                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue;
+                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue=="" ? 0 : this.txtBonificaCOPorCada.EditValue;
+                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue == "" ? 0 : this.txtBonificaCOCantidad.EditValue;
                     _currentRow["Activo"] = this.chkActivo.EditValue;
                     _currentRow["UserInsert"] = sUsuario;
                     _currentRow["UserUpdate"] = sUsuario;
@@ -444,6 +452,9 @@ namespace CI
                         Application.DoEvents();
                         
                         HabilitarControles(false);
+                        Accion = "View";
+                        this.btnEditar.Enabled = true;
+                        this.btnAgregar.Enabled = true;
                         AplicarPrivilegios();
                         
                     }
@@ -573,7 +584,26 @@ namespace CI
                 Util.Util.ConfigLookupEdit(this.slkupTipoImpuesto, globalTipoImpuestoDAC.GetData(-1, "*").Tables[0], "Descr", "IDImpuesto");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoImpuesto, "[{'ColumnCaption':'ID Impuesto','ColumnField':'IDImpuesto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
+                //Setting default decimals
+                Util.Util.SetFormatTextEdit(txtFactorEmpaque, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtPorcDescAlzaProveedor, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtBonificaCOCantidad, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtBonificaCOPorCada, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtUltimoCostoDolar, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtUltimoCostoLocal, Util.Util.FormatType.Numerico);
 
+                this.txtFactorEmpaque.GotFocus += textEdit_Enter;
+                //this.txtFactorEmpaque.Click += textEdit_Enter;
+                this.txtBonificaCOCantidad.GotFocus += textEdit_Enter;
+                //this.txtBonificaCOCantidad.Click += textEdit_Enter;
+                this.txtPorcDescAlzaProveedor.GotFocus += textEdit_Enter;
+                //this.txtPorcDescAlzaProveedor.Click += textEdit_Enter;
+                this.txtBonificaCOCantidad.GotFocus += textEdit_Enter;
+                //this.txtBonificaCOCantidad.Click += textEdit_Enter;
+                this.txtBonificaCOPorCada.GotFocus += textEdit_Enter;
+                //this.txtBonificaCOPorCada.Click += textEdit_Enter;
+                
+                
                 UpdateControlsFromDataRow(_currentRow);
                 if (Accion == "New")
                 {
@@ -581,9 +611,11 @@ namespace CI
                     ClearControls();
                     this.tabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                     this.ValidateChildren();
+                    this.txtDescr.Focus();
                 } else if (Accion == "Edit"){
                      HabilitarControles(true);
                     AplicarPrivilegios();
+                    this.txtDescr.Focus();
                 }
                 else 
                 {
@@ -614,6 +646,13 @@ namespace CI
             ClearControls();
             this.tabAuditoria.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             this.ValidateChildren();
+            this.txtDescr.Focus();
+        }
+
+        private void textEdit_Enter(object sender, EventArgs e)
+        {
+            DevExpress.XtraEditors.TextEdit edit = sender as DevExpress.XtraEditors.TextEdit;
+            BeginInvoke(new Action(() => edit.SelectAll()));
         }
         
     }

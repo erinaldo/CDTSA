@@ -43,25 +43,25 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@IDClasificacion", SqlDbType.Int).SourceColumn = "IDClasificacion";
                 oAdaptador.InsertCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
                 oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.InsertCommand.Parameters.Add("@Avtivo", SqlDbType.Bit).SourceColumn = "Activo";
+                oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 
 
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
-                oAdaptador.InsertCommand.Parameters.Add("@IDClasificacion", SqlDbType.Int).SourceColumn = "IDClasificacion";
-                oAdaptador.InsertCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
-                oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.InsertCommand.Parameters.Add("@Avtivo", SqlDbType.Bit).SourceColumn = "Activo";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDClasificacion", SqlDbType.Int).SourceColumn = "IDClasificacion";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
+                oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
 
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
-                oAdaptador.InsertCommand.Parameters.Add("@IDClasificacion", SqlDbType.Int).SourceColumn = "IDClasificacion";
-                oAdaptador.InsertCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
-                oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
-                oAdaptador.InsertCommand.Parameters.Add("@Avtivo", SqlDbType.Bit).SourceColumn = "Activo";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDClasificacion", SqlDbType.Int).SourceColumn = "IDClasificacion";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
+                oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NChar).SourceColumn = "Descr";
+                oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 
                 return oAdaptador;
             }

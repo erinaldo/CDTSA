@@ -1,31 +1,32 @@
-﻿using System;
+﻿using CI.DAC;
+using DevExpress.XtraGrid.Views.Base;
+using Security;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
-using Security;
-using CI.DAC;
-using DevExpress.XtraGrid.Views.Base;
 
 namespace CI
 {
-    public partial class frmPaquetes : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmBodegas : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        private DataTable _dtPaquete;
-        private DataSet _dsPaquete;
+  
+
+        private DataTable _dtBodega;
+        private DataSet _dsBodega;
         private DataTable _dtSecurity;
 
         DataRow currentRow;
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
-        const String _tituloVentana = "Listado de Paquetes";
+        const String _tituloVentana = "Listado de Bodegas";
         private bool isEdition = false;
 
-        public frmPaquetes()
+        public frmBodegas()
         {
             InitializeComponent();
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
@@ -73,10 +74,10 @@ namespace CI
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string tempPath = System.IO.Path.GetTempPath();
-            String FileName = System.IO.Path.Combine(tempPath, "lstPaquetes.xlsx");
+            String FileName = System.IO.Path.Combine(tempPath, "lstBodegas.xlsx");
             DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
             {
-                SheetName = "Listado Paquetes"
+                SheetName = "Listado Bodegas"
             };
 
 
@@ -88,13 +89,13 @@ namespace CI
             process.Start();
         }
 
-        private void frmPaquetes_Load(object sender, EventArgs e)
+        private void frmBodegas_Load(object sender, EventArgs e)
         {
             try
             {
                 HabilitarControles(false);
 
-                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.gridControl, _tituloVentana, this);
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.dtgDetalle, _tituloVentana, this);
 
                 EnlazarEventos();
 
@@ -112,21 +113,19 @@ namespace CI
         private void PopulateData()
         {
             
-            Util.Util.ConfigLookupEdit(this.slkpConsecutivo, clsGlobalConsecutivosDAC.GetData(-1,"*",1).Tables[0], "Descr", "IDConsecutivo");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkpConsecutivo, "[{'ColumnCaption':'Consecutivo','ColumnField':'IDConsecutivo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+            Util.Util.ConfigLookupEdit(this.slkupPaqueteFactura, clsPaqueteDAC.GetData(-1,"*","*",-1,"VT",1).Tables[0], "Descr", "IDPaquete");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupPaqueteFactura, "[{'ColumnCaption':'IDPaquete','ColumnField':'IDPaquete','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            Util.Util.ConfigLookupEdit(this.slkupTipoTransaccion,clsGlobalClaseTipoTranDAC.GetData("*", "*").Tables[0], "Descr", "Transaccion",300,300);
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoTransaccion, "[{'ColumnCaption':'Transacción','ColumnField':'Transaccion','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':50},{'ColumnCaption':'Naturaleza','ColumnField':'Naturaleza','width':20}]");
-
+            
         }
 
         private void PopulateGrid()
         {
-            _dsPaquete = clsPaqueteDAC.GetData(-1, "*", "*", -1, "*", -1);
+            _dsBodega = clsBodegaDAC.GetData(-1,"*",-1);
 
-            _dtPaquete = _dsPaquete.Tables[0];
-            this.gridControl.DataSource = null;
-            this.gridControl.DataSource = _dtPaquete;
+            _dtBodega = _dsBodega.Tables[0];
+            this.dtgDetalle.DataSource = null;
+            this.dtgDetalle.DataSource = _dtBodega;
 
             PopulateData();
 
@@ -134,10 +133,11 @@ namespace CI
 
         private void ClearControls()
         {
-            this.txtPaquete.Text = "";
-            this.txtDescripcion.Text = "";
-            this.slkpConsecutivo.EditValue = null;
-            this.slkupTipoTransaccion.EditValue = null;
+            this.txtDescr.Text = "";
+            this.slkupPaqueteFactura.EditValue = null;
+            this.txtConsecutivoPreFactura.EditValue = "";
+            this.chkPuedeFacturar.EditValue = false;
+            this.chkPuedePrefacturar.EditValue = false;
             this.chkActivo.EditValue = true;
             
         }
@@ -145,13 +145,13 @@ namespace CI
 
         private void HabilitarControles(bool Activo)
         {
-            this.txtDescripcion.ReadOnly = !Activo;
+            this.txtDescr.ReadOnly = !Activo;
             this.chkActivo.ReadOnly = !Activo;
-            this.txtDescripcion.ReadOnly = !Activo;
-            this.txtPaquete.ReadOnly = !Activo;
-            this.slkpConsecutivo.ReadOnly = !Activo;
-            this.slkupTipoTransaccion.ReadOnly = !Activo;
-            this.gridControl.Enabled = !Activo;
+            this.slkupPaqueteFactura.ReadOnly = !Activo;
+            this.txtConsecutivoPreFactura.ReadOnly = !Activo;
+            this.chkPuedeFacturar.ReadOnly = !Activo;
+            this.chkPuedePrefacturar.ReadOnly = !Activo;
+            this.dtgDetalle.Enabled = !Activo;
             this.btnAgregar.Enabled = !Activo;
             this.btnEditar.Enabled = !Activo;
             this.btnGuardar.Enabled = Activo;
@@ -174,10 +174,11 @@ namespace CI
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
-            this.txtPaquete.Text = Row["PAQUETE"].ToString();
-            this.txtDescripcion.Text = Row["Descr"].ToString();
-            this.slkpConsecutivo.EditValue = Row["IDConsecutivo"].ToString();
-            this.slkupTipoTransaccion.EditValue = Row["Transaccion"].ToString();
+            this.txtDescr.Text = Row["Descr"].ToString();
+            this.txtConsecutivoPreFactura.Text = Row["ConsecutivoPreFactura"].ToString();
+            this.slkupPaqueteFactura.EditValue = Row["IDPaqueteFactura"].ToString();
+            this.chkPuedeFacturar.EditValue = Row["PuedeFacturar"].ToString();
+            this.chkPuedePrefacturar.EditValue = Row["PuedePreFacturar"].ToString();
             this.chkActivo.EditValue = Convert.ToBoolean(Row["Activo"]);
         }
 
@@ -196,7 +197,7 @@ namespace CI
             currentRow = null;
 
 
-            this.txtDescripcion.Focus();
+            this.txtDescr.Focus();
         }
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -213,7 +214,7 @@ namespace CI
 
 
             lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
-            this.txtDescripcion.Focus();
+            this.txtDescr.Focus();
         }
 
         private bool ValidarDatos()
@@ -222,15 +223,15 @@ namespace CI
             String sMensaje = "";
             //Este solo vale para el primer elemento
 
-            if (this.txtDescripcion.Text == "")
-                sMensaje = sMensaje + "     • Descripción del Consecutivo. \n\r";
-            if (this.txtPaquete.Text == "")
-                sMensaje = sMensaje + "     • Paquete. \n\r";
-            if (this.slkpConsecutivo.EditValue ==null)
-                sMensaje = sMensaje + "     • Consecutivo \n\r";
-            if (this.slkupTipoTransaccion.EditValue == null)
-                sMensaje = sMensaje + "     • Tipo Transacción. \n\r";
-
+            if (this.txtDescr.Text == "")
+                sMensaje = sMensaje + "     • Descripción de la Bodega. \n\r";
+            if ((bool)this.chkPuedeFacturar.EditValue == true)
+                if (this.slkupPaqueteFactura.EditValue.ToString() == "" || this.slkupPaqueteFactura.EditValue ==null )
+                    sMensaje = sMensaje + "     • Seleccione el Paquete de Factura. \n\r";
+            if ((bool)this.chkPuedePrefacturar.EditValue==true)
+                if (this.txtConsecutivoPreFactura.EditValue.ToString() =="" || this.txtConsecutivoPreFactura.EditValue==null)
+                    sMensaje = sMensaje + "     • Digite el consecutivo de la Pre Factura \n\r";
+            
             if (sMensaje != "")
             {
                 result = false;
@@ -254,15 +255,16 @@ namespace CI
                     Application.DoEvents();
                     currentRow.BeginEdit();
 
-                    currentRow["Descr"] = this.txtDescripcion.Text;
-                    currentRow["Paquete"] = this.txtPaquete.Text;
-                    currentRow["IDConsecutivo"] = this.slkpConsecutivo.EditValue;
-                    currentRow["Transaccion"] = this.slkupTipoTransaccion.EditValue;
+                    currentRow["Descr"] = this.txtDescr.Text;
+                    currentRow["IDPaqueteFactura"] = (this.slkupPaqueteFactura.EditValue == null ? DBNull.Value : this.slkupPaqueteFactura.EditValue);
+                    currentRow["PuedeFacturar"] = this.chkPuedeFacturar.EditValue;
+                    currentRow["PuedePreFacturar"] = this.chkPuedePrefacturar.EditValue;
+                    currentRow["ConsecutivoPreFactura"] = this.txtConsecutivoPreFactura.EditValue.ToString() == "" ? 0 : Convert.ToInt32(this.txtConsecutivoPreFactura.EditValue);
                     currentRow["Activo"] = this.chkActivo.EditValue;
 
                     currentRow.EndEdit();
 
-                    DataSet _dsChanged = _dsPaquete.GetChanges(DataRowState.Modified);
+                    DataSet _dsChanged = _dsBodega.GetChanges(DataRowState.Modified);
 
                     bool okFlag = true;
                     if (_dsChanged.HasErrors)
@@ -290,11 +292,11 @@ namespace CI
 
                     if (okFlag)
                     {
-                        clsPaqueteDAC.oAdaptador.Update(_dsChanged, "Data");
+                        clsBodegaDAC.oAdaptador.Update(_dsChanged, "Data");
                         lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                         Application.DoEvents();
                         isEdition = false;
-                        _dsPaquete.AcceptChanges();
+                        _dsBodega.AcceptChanges();
                         PopulateGrid();
                         SetCurrentRow();
                         HabilitarControles(false);
@@ -302,26 +304,27 @@ namespace CI
                     }
                     else
                     {
-                        _dsPaquete.RejectChanges();
+                        _dsBodega.RejectChanges();
 
                     }
                 }
                 else
                 {
                     //nuevo registro
-                    currentRow = _dtPaquete.NewRow();
+                    currentRow = _dtBodega.NewRow();
 
-                    currentRow["Descr"] = this.txtDescripcion.Text;
-                    currentRow["Paquete"] = this.txtPaquete.Text;
-                    currentRow["IDConsecutivo"] = this.slkpConsecutivo.EditValue;
-                    currentRow["Transaccion"] = this.slkupTipoTransaccion.EditValue;
+                    currentRow["Descr"] = this.txtDescr.Text;
+                    currentRow["IDPaqueteFactura"] = (this.slkupPaqueteFactura.EditValue == null ? DBNull.Value : this.slkupPaqueteFactura.EditValue);
+                    currentRow["PuedeFacturar"] = this.chkPuedeFacturar.EditValue;
+                    currentRow["PuedePreFacturar"] = this.chkPuedePrefacturar.EditValue;
+                    currentRow["ConsecutivoPreFactura"] = this.txtConsecutivoPreFactura.EditValue.ToString() == "" ? 0 : Convert.ToInt32(this.txtConsecutivoPreFactura.EditValue);
                     currentRow["Activo"] = this.chkActivo.EditValue;
 
-                    _dtPaquete.Rows.Add(currentRow);
+                    _dtBodega.Rows.Add(currentRow);
                     try
                     {
-                        clsPaqueteDAC.oAdaptador.Update(_dsPaquete, "Data");
-                        _dsPaquete.AcceptChanges();
+                        clsBodegaDAC.oAdaptador.Update(_dsBodega, "Data");
+                        _dsBodega.AcceptChanges();
                         isEdition = false;
                         lblStatus.Caption = "Se ha ingresado un nuevo registro";
                         Application.DoEvents();
@@ -334,7 +337,7 @@ namespace CI
                     }
                     catch (System.Data.SqlClient.SqlException ex)
                     {
-                        _dsPaquete.RejectChanges();
+                        _dsBodega.RejectChanges();
                         currentRow = null;
                         MessageBox.Show(ex.Message);
                     }
@@ -342,7 +345,7 @@ namespace CI
             }
             catch (Exception ex)
             {
-                _dsPaquete.RejectChanges();
+                _dsBodega.RejectChanges();
                 currentRow = null;
                 MessageBox.Show(ex.Message);
             }
@@ -371,8 +374,8 @@ namespace CI
                     try
                     {
 
-                        clsGlobalConsecutivosDAC.oAdaptador.Update(_dsPaquete, "Data");
-                        _dsPaquete.AcceptChanges();
+                        clsBodegaDAC.oAdaptador.Update(_dsBodega, "Data");
+                        _dsBodega.AcceptChanges();
 
                         PopulateGrid();
                         lblStatus.Caption = msg;
@@ -380,7 +383,7 @@ namespace CI
                     }
                     catch (System.Data.SqlClient.SqlException ex)
                     {
-                        _dsPaquete.RejectChanges();
+                        _dsBodega.RejectChanges();
                         lblStatus.Caption = "";
                         MessageBox.Show(ex.Message);
                     }
@@ -388,7 +391,20 @@ namespace CI
             }
         }
 
-        
+        private void chkPuedeFacturar_CheckedChanged(object sender, EventArgs e)
+        {
+            this.slkupPaqueteFactura.Enabled = this.chkPuedeFacturar.Checked;
+            if (this.chkPuedeFacturar.Checked == false) this.slkupPaqueteFactura.EditValue = null;
+        }
 
+        private void chkPuedePrefacturar_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtConsecutivoPreFactura.Enabled = this.chkPuedePrefacturar.Checked;
+            if (this.chkPuedePrefacturar.Checked == false) this.txtConsecutivoPreFactura.EditValue = "";
+        }
+
+     
+
+    
     }
 }

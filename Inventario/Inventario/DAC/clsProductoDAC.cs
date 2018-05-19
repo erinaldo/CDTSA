@@ -15,9 +15,9 @@ namespace CI.DAC
         private static SqlDataAdapter InicializarAdaptador()
         {
             String getSQL = "dbo.invGetProducto";
-            String InsertSQL = "[dbo].[cntUpdateProducto]";
-            String UpdateSQL = "[dbo].[cntUpdateProducto]";
-            String DeleteSQL = "[dbo].[cntUpdateProducto]";
+            String InsertSQL = "[dbo].[invUpdateProducto]";
+            String UpdateSQL = "[dbo].[invUpdateProducto]";
+            String DeleteSQL = "[dbo].[invUpdateProducto]";
 
             try
             {
@@ -45,9 +45,7 @@ namespace CI.DAC
                 oAdaptador.SelectCommand.Parameters.Add("@EsMuestra", SqlDbType.Int).SourceColumn = "EsMuestra";
                 oAdaptador.SelectCommand.Parameters.Add("@EsControlado", SqlDbType.Int).SourceColumn = "EsControlado";
                 oAdaptador.SelectCommand.Parameters.Add("@EsEtico", SqlDbType.Int).SourceColumn = "EsEtico";
-                oAdaptador.SelectCommand.Parameters.Add("@BajaPrecioDistribuidor", SqlDbType.Int).SourceColumn = "BajaPrecioDistribuidor";
-                oAdaptador.SelectCommand.Parameters.Add("@BajaPrecioProveedor", SqlDbType.Int).SourceColumn = "BajaPrecioProveedor";
-                oAdaptador.SelectCommand.Parameters.Add("@BonificaFactura", SqlDbType.Int).SourceColumn = "BonificaFactura";
+                
 
 
 
@@ -109,6 +107,9 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@BonificaCOPorCada", SqlDbType.Decimal).SourceColumn = "BonificaCOPorCada";
                 oAdaptador.UpdateCommand.Parameters.Add("@BonificaCOCantidad", SqlDbType.Decimal).SourceColumn = "BonificaCOCantidad";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
+                oAdaptador.UpdateCommand.Parameters.Add("@UserInsert", SqlDbType.NChar).SourceColumn = "UserInsert";
+                oAdaptador.UpdateCommand.Parameters.Add("@UserUpdate", SqlDbType.NChar).SourceColumn = "UserUpdate";
+                oAdaptador.UpdateCommand.Parameters.Add("@UpdateDate", SqlDbType.Date).SourceColumn = "UpdateDate";
                 
 
 

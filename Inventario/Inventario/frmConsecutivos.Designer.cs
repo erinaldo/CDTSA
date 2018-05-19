@@ -238,6 +238,9 @@
             this.txtPRefijo.Properties.Mask.EditMask = "\\p{Lu}\\p{Lu}\\p{Lu}";
             this.txtPRefijo.Properties.Mask.IgnoreMaskBlank = false;
             this.txtPRefijo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtPRefijo.Properties.Mask.SaveLiteral = false;
+            this.txtPRefijo.Properties.Mask.ShowPlaceHolders = false;
+            this.txtPRefijo.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPRefijo.Size = new System.Drawing.Size(91, 20);
             this.txtPRefijo.StyleController = this.layoutControl1;
             this.txtPRefijo.TabIndex = 7;
