@@ -46,8 +46,10 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
                 oAdaptador.InsertCommand.Parameters.Add("@Cantidad", SqlDbType.Decimal).SourceColumn = "Cantidad";
-                oAdaptador.InsertCommand.Parameters.Add("@PrecioUnitarioLocal", SqlDbType.Decimal).SourceColumn = "PrecioUnitarioLocal";
-                oAdaptador.InsertCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUnitarioDolar";
+                oAdaptador.InsertCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUntDolar";
+                oAdaptador.InsertCommand.Parameters.Add("@PrecioUnitarioLocal", SqlDbType.Decimal).SourceColumn = "PrecioUntLocal";
+                oAdaptador.InsertCommand.Parameters.Add("@CostoDolar", SqlDbType.Decimal).SourceColumn = "CostoUntDolar";
+                oAdaptador.InsertCommand.Parameters.Add("@CostoLocal", SqlDbType.Decimal).SourceColumn = "CostoUntLocal";
                 oAdaptador.InsertCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.InsertCommand.Parameters.Add("@TipoCambio", SqlDbType.Decimal).SourceColumn = "TipoCambio";
                 oAdaptador.InsertCommand.Parameters.Add("@Aplicado", SqlDbType.Bit).SourceColumn = "Aplicado";
@@ -64,8 +66,10 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
                 oAdaptador.UpdateCommand.Parameters.Add("@Cantidad", SqlDbType.Decimal).SourceColumn = "Cantidad";
-                oAdaptador.UpdateCommand.Parameters.Add("@PrecioUnitarioLocal", SqlDbType.Decimal).SourceColumn = "PrecioUnitarioLocal";
-                oAdaptador.UpdateCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUnitarioDolar";
+                oAdaptador.UpdateCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUntDolar";
+                oAdaptador.UpdateCommand.Parameters.Add("@PrecioUnitarioLocal", SqlDbType.Decimal).SourceColumn = "PrecioUntLocal";
+                oAdaptador.UpdateCommand.Parameters.Add("@CostoDolar", SqlDbType.Decimal).SourceColumn = "CostoUntDolar";
+                oAdaptador.UpdateCommand.Parameters.Add("@CostoLocal", SqlDbType.Decimal).SourceColumn = "CostoUntLocal";
                 oAdaptador.UpdateCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.UpdateCommand.Parameters.Add("@TipoCambio", SqlDbType.Decimal).SourceColumn = "TipoCambio";
                 oAdaptador.UpdateCommand.Parameters.Add("@Aplicado", SqlDbType.Bit).SourceColumn = "Aplicado";
@@ -80,8 +84,10 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
                 oAdaptador.DeleteCommand.Parameters.Add("@Cantidad", SqlDbType.Decimal).SourceColumn = "Cantidad";
-                oAdaptador.DeleteCommand.Parameters.Add("@PrecioUnitarioLocal", SqlDbType.Decimal).SourceColumn = "PrecioUnitarioLocal";
-                oAdaptador.DeleteCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUnitarioDolar";
+                oAdaptador.DeleteCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUntDolar";
+                oAdaptador.DeleteCommand.Parameters.Add("@PrecioUnitarioLocal", SqlDbType.Decimal).SourceColumn = "PrecioUntLocal";
+                oAdaptador.DeleteCommand.Parameters.Add("@CostoDolar", SqlDbType.Decimal).SourceColumn = "CostoUntDolar";
+                oAdaptador.DeleteCommand.Parameters.Add("@CostoLocal", SqlDbType.Decimal).SourceColumn = "CostoUntLocal";
                 oAdaptador.DeleteCommand.Parameters.Add("@Transaccion", SqlDbType.NVarChar).SourceColumn = "Transaccion";
                 oAdaptador.DeleteCommand.Parameters.Add("@TipoCambio", SqlDbType.Decimal).SourceColumn = "TipoCambio";
                 oAdaptador.DeleteCommand.Parameters.Add("@Aplicado", SqlDbType.Bit).SourceColumn = "Aplicado";
@@ -99,6 +105,7 @@ namespace CI.DAC
 
         public static void SetTransactionToAdaptador(bool Activo)
         {
+            oAdaptador.SelectCommand.Transaction = (Activo) ? ConnectionManager.Tran : null;
             oAdaptador.UpdateCommand.Transaction = (Activo) ? ConnectionManager.Tran : null;
             oAdaptador.DeleteCommand.Transaction = (Activo) ? ConnectionManager.Tran : null;
             oAdaptador.InsertCommand.Transaction = (Activo) ? ConnectionManager.Tran : null;
@@ -122,7 +129,7 @@ namespace CI.DAC
 
         public static DataSet GetDataEmpty()
         {
-            String strSQL = "SELECT  *  FROM dbo.invTransaccionLinea WHERE 1=2";
+            String strSQL = "dbo.invGetEmptyTransaccionInvDetalle ";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);

@@ -509,6 +509,7 @@
             this.txtLote.Size = new System.Drawing.Size(214, 20);
             this.txtLote.StyleController = this.layoutControl1;
             this.txtLote.TabIndex = 5;
+            this.txtLote.TextChanged += new System.EventHandler(this.txtLote_TextChanged);
             // 
             // slkupProducto
             // 

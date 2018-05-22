@@ -500,7 +500,7 @@ ALTER TABLE [dbo].[invDetalleTrasladosEstados] CHECK CONSTRAINT [FK_invDetalleEs
 GO
 
 
-CREATE   TABLE [dbo].[invTransaccion](
+CREATE    TABLE [dbo].[invTransaccion](
 	[IDTransaccion] [bigint] IDENTITY(1,1) NOT NULL,
 	[ModuloOrigen] NVARCHAR(4) NOT NULL,
 	[IDPaquete] INT  NOT NULL,
@@ -530,11 +530,11 @@ ADD CONSTRAINT UC_invTransaccionUnique UNIQUE (Documento,IDPaquete,Fecha);
 
 GO
 
-ALTER TABLE [dbo].[invTransaccion]  WITH CHECK ADD  CONSTRAINT [fkinvTransaccion] FOREIGN KEY([IDTraslado])
-REFERENCES [dbo].[invTraslados] ([IDTraslado])
-GO
+--ALTER TABLE [dbo].[invTransaccion]  WITH CHECK ADD  CONSTRAINT [fkinvTransaccion] FOREIGN KEY([IDTraslado])
+--REFERENCES [dbo].[invTraslados] ([IDTraslado])
+--GO
 
-ALTER TABLE [dbo].[invTransaccion] CHECK CONSTRAINT [fkinvTransaccion]
+--ALTER TABLE [dbo].[invTransaccion] CHECK CONSTRAINT [fkinvTransaccion]
 
 GO
 
@@ -608,11 +608,11 @@ GO
 ALTER TABLE [dbo].[invTransaccionLinea] CHECK CONSTRAINT [chktranlineaNaturaleza]
 GO
 
-ALTER TABLE [dbo].[invTransaccionLinea]  WITH NOCHECK ADD  CONSTRAINT [chktranlineaTransaccion] CHECK  (([Transaccion]='TR' OR ([Transaccion]='FI' OR ([Transaccion]='CS' OR ([Transaccion]='CO' OR [Transaccion]='AJ')))))
-GO
+--ALTER TABLE [dbo].[invTransaccionLinea]  WITH NOCHECK ADD  CONSTRAINT [chktranlineaTransaccion] CHECK  (([Transaccion]='TR' OR ([Transaccion]='FI' OR ([Transaccion]='CS' OR ([Transaccion]='CO' OR [Transaccion]='AJ' )))))
+--GO
 
-ALTER TABLE [dbo].[invTransaccionLinea] CHECK CONSTRAINT [chktranlineaTransaccion]
-GO
+--ALTER TABLE [dbo].[invTransaccionLinea] CHECK CONSTRAINT [chktranlineaTransaccion]
+--GO
 
 
 CREATE TABLE [dbo].[cppProveedor](
@@ -1135,7 +1135,7 @@ SELECT  IDConsecutivo ,Descr ,Prefijo ,Consecutivo  ,Documento ,Activo
 GO
 
 
-CREATE  PROCEDURE dbo.invUpdateDocumentoInv(@Operacion INT,@IDTransaccion AS INT OUTPUT,@ModuloOrigen NVARCHAR(4),@IDPaquete AS INT,@Fecha AS DATETIME,  @Usuario AS NVARCHAR(20),
+CREATE  PROCEDURE dbo.invUpdateDocumentoInv(@Operacion NVARCHAR(1),@IDTransaccion AS INT OUTPUT,@ModuloOrigen NVARCHAR(4),@IDPaquete AS INT,@Fecha AS DATETIME,  @Usuario AS NVARCHAR(20),
 											@Referencia AS NVARCHAR(250),@Documento NVARCHAR(250),@Aplicado AS BIT,@EsTraslado AS BIT,@IDTraslado AS INT)
 AS 
 if upper(@Operacion) = 'I'
@@ -1157,10 +1157,11 @@ END
 
 GO
 
-CREATE PROCEDURE dbo.invUpdateDocumentoInvDetalle(@Operacion AS NVARCHAR(1),@IDTransaccion AS INT,@IDProducto AS INT,@IDLote AS INT,@IDTipoTran AS INT,@IDBodega AS INT,
-											@IDTraslado AS INT,@Cantidad AS DECIMAL(28,4),@PrecioUnitarioDolar AS DECIMAL(28,4),@PrecioUnitarioLocal AS DECIMAL(28,4), @Transaccion AS NVARCHAR(3),@TipoCambio AS decimal(26,4),@Aplicado AS BIT)
+CREATE  PROCEDURE dbo.invUpdateDocumentoInvDetalle(@Operacion AS NVARCHAR(1),@IDTransaccion AS INT,@IDProducto AS INT,@IDLote AS INT,@IDTipoTran AS INT,@IDBodega AS INT,
+											@IDTraslado AS INT,@Cantidad AS DECIMAL(28,4),@PrecioUnitarioDolar AS DECIMAL(28,4),@PrecioUnitarioLocal AS DECIMAL(28,4), 
+											@CostoDolar AS decimal(28,4), @CostoLocal AS decimal(28,4), @Transaccion AS NVARCHAR(3),@TipoCambio AS decimal(26,4),@Aplicado AS BIT)
 AS 
-DECLARE @CostoLocal AS DECIMAL(28,4),@CostoDolar AS DECIMAL(28,4)
+
 
 --Preguntar si se hace una revaloracion del costo dolar o costo local
 SELECT @CostoLocal= CostoPromLocal,@CostoDolar = @CostoDolar  FROM dbo.invProducto WHERE IDProducto = @IDProducto
@@ -1228,7 +1229,20 @@ GO
 CREATE PROCEDURE dbo.invGetTransaccionInvDetalle (@IDTransaccion AS INT )
 AS 
 SELECT  IDTransaccion ,IDProducto ,IDLote ,IDTipoTran ,IDBodega ,IDTraslado ,Naturaleza ,Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,Transaccion ,TipoCambio ,Aplicado  
-FROM dbo.invTransaccionLinea WHERE IDTransaccion  = @IDTransaccion
+FROM dbo.invTransaccionLinea A WHERE IDTransaccion  = @IDTransaccion
+
+go
+
+CREATE   PROCEDURE dbo.invGetEmptyTransaccionInvDetalle 
+AS 
+SELECT  IDTransaccion ,A.IDProducto, P.Descr DescrProducto ,A.IDLote, L.LoteInterno,L.LoteProveedor ,A.IDTipoTran,TT.Descr DescrTipoTran ,A.IDBodega IDBodegaOrigen,BO.Descr DescrBodegaOrigen,A.IDBodega IDBodegaDestino,Bo.Descr DescrBodegaDestino ,IDTraslado ,A.Naturaleza ,A.Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,A.Transaccion ,TipoCambio ,Aplicado  
+FROM dbo.invTransaccionLinea A 
+INNER JOIN dbo.invProducto P ON	A.IDProducto = P.IDProducto
+INNER JOIN dbo.invBodega BO ON A.IDBodega= BO.IDBodega
+INNER JOIN dbo.invLote L ON A.IDLote= L.IDLote  AND A.IDProducto=L.IDProducto
+INNER JOIN dbo.globalTipoTran TT ON A.IDTipoTran = TT.IDTipoTran
+WHERE 1=2
+
 
 GO 
 

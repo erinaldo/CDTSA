@@ -397,6 +397,13 @@ namespace CI
             }
         }
 
+        private void txtLote_TextChanged(object sender, EventArgs e)
+        {
+            if (this.txtLoteProveedor.EditValue.ToString() == "" || this.txtLoteProveedor.EditValue == null) {
+                this.txtLoteProveedor.EditValue = this.txtLote.EditValue;
+            }
+        }
+
         
     }
 }
