@@ -847,7 +847,7 @@ as
 set nocount on 
 
 if upper(@Operacion) = 'I'
-begin
+BEGIN
 	INSERT INTO dbo.invProducto( Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
 	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
 	          Activo ,UserInsert ,UserUpdate  ,UpdateDate)
@@ -1135,11 +1135,39 @@ SELECT  IDConsecutivo ,Descr ,Prefijo ,Consecutivo  ,Documento ,Activo
 GO
 
 
+CREATE  PROCEDURE [dbo].[invGetNextGlobalConsecutivo] (@IDConsecutivo AS INT ,@Documento AS NVARCHAR(20) OUTPUT)
+AS
+BEGIN
+	
+
+	UPDATE  dbo.globalConsecutivos  SET Documento=Prefijo + RIGHT('00000000'+ CAST(ISNULL(Consecutivo,0) +1 AS NVARCHAR(20)),8) , Consecutivo = ISNULL(Consecutivo,0) + 1
+	WHERE IDConsecutivo=@IDConsecutivo
+
+	SELECT @Documento = Documento FROM dbo.globalConsecutivos WHERE IDConsecutivo=@IDConsecutivo
+
+	
+END
+
+
+GO
+
+
+
+
 CREATE  PROCEDURE dbo.invUpdateDocumentoInv(@Operacion NVARCHAR(1),@IDTransaccion AS INT OUTPUT,@ModuloOrigen NVARCHAR(4),@IDPaquete AS INT,@Fecha AS DATETIME,  @Usuario AS NVARCHAR(20),
-											@Referencia AS NVARCHAR(250),@Documento NVARCHAR(250),@Aplicado AS BIT,@EsTraslado AS BIT,@IDTraslado AS INT)
+											@Referencia AS NVARCHAR(250),@Documento NVARCHAR(250) OUTPUT,@Aplicado AS BIT,@EsTraslado AS BIT,@IDTraslado AS INT)
 AS 
 if upper(@Operacion) = 'I'
-begin
+BEGIN
+	--Obtener el siguiente consecutivo
+	DECLARE @IDConsecutivo AS BIGINT
+	SET @IDConsecutivo = (
+				SELECT TOP 1 C.IDConsecutivo  FROM dbo.invPaquete A
+				INNER JOIN dbo.globalConsecutivos C ON A.IDConsecutivo = C.IDConsecutivo
+				WHERE A.IDPaquete=@IDPaquete)
+	
+	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Documento OUTPUT
+
 	INSERT INTO dbo.invTransaccion( ModuloOrigen ,IDPaquete,Fecha ,Usuario ,Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado ,IDTraslado  ,CreateDate)
 	VALUES (@ModuloOrigen,@IDPaquete,@Fecha,@Usuario,@Referencia,@Documento,1,NEWID(),@EsTraslado,@IDTraslado,GETDATE())
 	

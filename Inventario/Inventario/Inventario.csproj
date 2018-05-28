@@ -248,6 +248,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contabilidad\Contabilidad\Contabilidad.csproj">
+      <Project>{9aab66d4-cb76-4809-9a52-d50282a6968d}</Project>
+      <Name>Contabilidad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Security\Security\Security.csproj">
       <Project>{fdbe1059-0197-4f16-a0cf-d9ecb8ef8aa6}</Project>
       <Name>Security</Name>

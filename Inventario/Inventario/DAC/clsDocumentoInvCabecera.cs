@@ -46,7 +46,8 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Fecha", SqlDbType.DateTime).SourceColumn = "Fecha";
                 oAdaptador.InsertCommand.Parameters.Add("@Usuario", SqlDbType.NVarChar).SourceColumn = "Usuario";
                 oAdaptador.InsertCommand.Parameters.Add("@Referencia", SqlDbType.NVarChar).SourceColumn = "Referencia";
-                oAdaptador.InsertCommand.Parameters.Add("@Documento", SqlDbType.NVarChar).SourceColumn = "Documento";
+                oAdaptador.InsertCommand.Parameters.Add("@Documento", SqlDbType.NVarChar,250).SourceColumn = "Documento";
+                oAdaptador.InsertCommand.Parameters["@Documento"].Direction = ParameterDirection.InputOutput;
                 oAdaptador.InsertCommand.Parameters.Add("@Aplicado", SqlDbType.Bit).SourceColumn = "Aplicado";
                 oAdaptador.InsertCommand.Parameters.Add("@EsTraslado", SqlDbType.Bit).SourceColumn = "EsTraslado";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
@@ -116,6 +117,7 @@ namespace CI.DAC
             return DS;
         }
 
+        
         public static DataSet GetDataEmpty()
         {
             String strSQL = "SELECT  IDTransaccion ,IDPaquete,ModuloOrigen ,Fecha ,Usuario , Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado , IDTraslado , CreateDate  FROM dbo.invTransaccion WHERE 1=2";

@@ -708,6 +708,7 @@
             this.txtPrecioLocal.Size = new System.Drawing.Size(257, 20);
             this.txtPrecioLocal.StyleController = this.layoutControl3;
             this.txtPrecioLocal.TabIndex = 15;
+            this.txtPrecioLocal.EditValueChanged += new System.EventHandler(this.txtPrecioLocal_EditValueChanged);
             // 
             // txtPrecioDolar
             // 
@@ -716,6 +717,7 @@
             this.txtPrecioDolar.Size = new System.Drawing.Size(257, 20);
             this.txtPrecioDolar.StyleController = this.layoutControl3;
             this.txtPrecioDolar.TabIndex = 16;
+            this.txtPrecioDolar.EditValueChanged += new System.EventHandler(this.txtPrecioDolar_EditValueChanged);
             // 
             // slkupBodegaDestino
             // 
@@ -1092,6 +1094,7 @@
             this.btnAddDoc.Id = 0;
             this.btnAddDoc.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAddDoc.LargeGlyph")));
             this.btnAddDoc.Name = "btnAddDoc";
+            this.btnAddDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddDoc_ItemClick);
             // 
             // btnSaveDoc
             // 

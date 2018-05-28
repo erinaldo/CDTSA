@@ -11,6 +11,7 @@ using Util;
 using Security; 
 using CI.DAC;
 
+
 namespace CI
 {
     public partial class frmDocumentoInv : Form
@@ -27,7 +28,7 @@ namespace CI
         private DataRow _currentRow;
         private DataRow _currentRowDetalle;
         private String _tituloVentana = "Documento de Inventario";
-
+        private Decimal TipoCambio;
         private String Accion = "NEW";
         private int IDPaquete = -1;
         private String AccionDetalle = "";
@@ -48,6 +49,12 @@ namespace CI
             _dtPaquete = clsPaqueteDAC.GetData(this.IDPaquete, "*", "*", -1, "*", -1).Tables[0];
             _dtDocumentoInv = _dsDocumentoInv.Tables[0];
             _dtDetalle = _dsDetalle.Tables[0];
+
+            DataSet DS = new DataSet();
+            String sTipoCambio = CG.ParametrosContabilidadDAC.GetTipoCambioModulo();
+            DS = CG.TipoCambioDetalleDAC.GetData(sTipoCambio, DateTime.Now);
+
+            TipoCambio = Convert.ToDecimal((DS.Tables[0].Rows.Count == 0) ? 0 : DS.Tables[0].Rows[0]["Monto"]);
             
             _currentRow = null;
             _currentRowDetalle = null;
@@ -380,6 +387,7 @@ namespace CI
                             return;
                         }
 
+
                         _dtDetalle.Rows.Add(_currentRowDetalle);
 
                         try
@@ -408,6 +416,8 @@ namespace CI
                     AccionDetalle = "View";
                     PopulateGrid(false);                    
                     HabilitarControlesDetalle(false);
+                    this.gridViewDetalle.ClearSelection();
+                      this.gridViewDetalle.FocusedRowHandle = -1;
                     break;
             }
                
@@ -449,6 +459,23 @@ namespace CI
             
         }
 
+        private void BotoneriaSuperior() {
+            if (Accion == "New")
+            {
+                this.btnAddDoc.Enabled = false;
+                this.btnCancelDoc.Enabled = true;
+                this.btnSaveDoc.Enabled = true;
+                this.btnPrintDoc.Enabled = false;
+            }
+            else
+            {
+                this.btnAddDoc.Enabled = true;
+                this.btnSaveDoc.Enabled = false;
+                this.btnCancelDoc.Enabled = false;
+                this.btnPrintDoc.Enabled = true;
+            }
+        }
+
         private void frmDocumentoInv_Load(object sender, EventArgs e)
         {
             try
@@ -475,7 +502,7 @@ namespace CI
                 Util.Util.SetFormatTextEdit(txtCostoLocal, Util.Util.FormatType.MonedaLocal);
                 Util.Util.SetFormatTextEdit(txtPrecioDolar, Util.Util.FormatType.MonedaExtrangera);
                 Util.Util.SetFormatTextEdit(txtPrecioLocal, Util.Util.FormatType.MonedaLocal);
-
+                BotoneriaSuperior();
                 UpdateControlsFromDataRow(_currentRow);
 
                 if (Accion == "New")
@@ -659,8 +686,10 @@ namespace CI
                     clsDocumentoInvCabecera.oAdaptador.Update(_dsDocumentoInv, "Data");
                     _dsDocumentoInv.AcceptChanges();
 
-                    
+                    this.txtIDTransaccion.EditValue = _dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
+                    this.txtDocumento.EditValue = _dsDocumentoInv.Tables[0].Rows[0]["Documento"];
                     DataTable dtTemp = dsTemp.Tables[0];
+
                     
 
                     //Actualizar los datos
@@ -692,14 +721,15 @@ namespace CI
                     dsTemp.AcceptChanges();
                    
                     Application.DoEvents();
-                    
-                   
+
+                    Accion = "View";
                     HabilitarControlesCabecera(false);
                     AplicarPrivilegios();
+                    BotoneriaSuperior();
 
                     ConnectionManager.CommitTran();
 
-                  
+                    MessageBox.Show("El documento se ha guardado correctamente");
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
@@ -711,6 +741,27 @@ namespace CI
                 }
             }
             
+        }
+
+        private void txtPrecioLocal_EditValueChanged(object sender, EventArgs e)
+        {
+            //convertir a Dolar
+            Decimal Precio =Convert.ToDecimal( this.txtPrecioLocal.EditValue);
+            this.txtPrecioDolar.EditValue = Precio / TipoCambio;
+            
+        }
+
+        private void txtPrecioDolar_EditValueChanged(object sender, EventArgs e)
+        {
+            //convertir a Dolar
+            Decimal Precio = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
+            this.txtPrecioLocal.EditValue = Precio * TipoCambio;
+        }
+
+        private void btnAddDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            InicializaNuevoElemento();
+           
         }
 
     
