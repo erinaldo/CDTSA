@@ -568,6 +568,7 @@
             // IDBodegaDestino
             // 
             this.IDBodegaDestino.Caption = "IDBodega Destino";
+            this.IDBodegaDestino.FieldName = "IDBodegaDestino";
             this.IDBodegaDestino.Name = "IDBodegaDestino";
             this.IDBodegaDestino.Visible = true;
             this.IDBodegaDestino.VisibleIndex = 7;
@@ -1120,6 +1121,7 @@
             this.btnPrintDoc.Id = 3;
             this.btnPrintDoc.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnPrintDoc.LargeGlyph")));
             this.btnPrintDoc.Name = "btnPrintDoc";
+            this.btnPrintDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPrintDoc_ItemClick);
             // 
             // bar3
             // 

@@ -1152,6 +1152,29 @@ END
 GO
 
 
+-- Se le pasa -1 para el nivel que quiero tomar el maximo
+CREATE FUNCTION [dbo].[invGetNextConsecutivoTraslado] ()
+RETURNS int
+AS
+BEGIN
+Declare @Resultado BIGINT
+
+set @Resultado = (
+	SELECT max (IDTraslado) FROM dbo.invTraslados
+	)
+if @Resultado is null
+	set @Resultado = 0
+
+
+RETURN @Resultado
+END
+
+
+
+
+
+GO
+
 
 
 CREATE  PROCEDURE dbo.invUpdateDocumentoInv(@Operacion NVARCHAR(1),@IDTransaccion AS INT OUTPUT,@ModuloOrigen NVARCHAR(4),@IDPaquete AS INT,@Fecha AS DATETIME,  @Usuario AS NVARCHAR(20),
@@ -1161,12 +1184,15 @@ if upper(@Operacion) = 'I'
 BEGIN
 	--Obtener el siguiente consecutivo
 	DECLARE @IDConsecutivo AS BIGINT
+	
 	SET @IDConsecutivo = (
 				SELECT TOP 1 C.IDConsecutivo  FROM dbo.invPaquete A
 				INNER JOIN dbo.globalConsecutivos C ON A.IDConsecutivo = C.IDConsecutivo
 				WHERE A.IDPaquete=@IDPaquete)
 	
 	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Documento OUTPUT
+	
+	
 
 	INSERT INTO dbo.invTransaccion( ModuloOrigen ,IDPaquete,Fecha ,Usuario ,Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado ,IDTraslado  ,CreateDate)
 	VALUES (@ModuloOrigen,@IDPaquete,@Fecha,@Usuario,@Referencia,@Documento,1,NEWID(),@EsTraslado,@IDTraslado,GETDATE())
@@ -1185,7 +1211,7 @@ END
 
 GO
 
-CREATE  PROCEDURE dbo.invUpdateDocumentoInvDetalle(@Operacion AS NVARCHAR(1),@IDTransaccion AS INT,@IDProducto AS INT,@IDLote AS INT,@IDTipoTran AS INT,@IDBodega AS INT,
+CREATE   PROCEDURE dbo.invUpdateDocumentoInvDetalle(@Operacion AS NVARCHAR(1),@IDTransaccion AS INT,@IDProducto AS INT,@IDLote AS INT,@IDTipoTran AS INT,@IDBodega AS INT,
 											@IDTraslado AS INT,@Cantidad AS DECIMAL(28,4),@PrecioUnitarioDolar AS DECIMAL(28,4),@PrecioUnitarioLocal AS DECIMAL(28,4), 
 											@CostoDolar AS decimal(28,4), @CostoLocal AS decimal(28,4), @Transaccion AS NVARCHAR(3),@TipoCambio AS decimal(26,4),@Aplicado AS BIT)
 AS 
@@ -1193,15 +1219,19 @@ AS
 
 --Preguntar si se hace una revaloracion del costo dolar o costo local
 SELECT @CostoLocal= CostoPromLocal,@CostoDolar = @CostoDolar  FROM dbo.invProducto WHERE IDProducto = @IDProducto
+DECLARE @Naturaleza AS NVARCHAR(1)
+DECLARE @Factor AS INT
+
+SELECT @Naturaleza = Naturaleza,@Factor=Factor  FROM dbo.globalTipoTran WHERE IDTipoTran=@IDTipoTran
 
 IF UPPER(@Operacion)='I'
 BEGIN
 	INSERT INTO dbo.invTransaccionLinea( IDTransaccion ,IDProducto ,IDLote ,IDTipoTran ,IDBodega ,IDTraslado  ,Naturaleza ,Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,Transaccion ,TipoCambio ,Aplicado)
-	VALUES (@IDTransaccion,@IDProducto,@IDLote,@IDTipoTran,@IDBodega,ISNULL(@IDTraslado,-1),CASE WHEN @Cantidad>0 THEN 'E' ELSE 'S' END ,CASE WHEN @Cantidad>0 THEN 1 ELSE -1 END,@Cantidad,@CostoLocal,@CostoDolar,@PrecioUnitarioLocal,@PrecioUnitarioDolar,@Transaccion,@TipoCambio,@Aplicado)
+	VALUES (@IDTransaccion,@IDProducto,@IDLote,@IDTipoTran,@IDBodega,ISNULL(@IDTraslado,-1),@Naturaleza ,@Factor,@Cantidad,@CostoLocal,@CostoDolar,@PrecioUnitarioLocal,@PrecioUnitarioDolar,@Transaccion,@TipoCambio,@Aplicado)
 END
 IF UPPER(@Operacion)='U'
 BEGIN
-	UPDATE dbo.invTransaccionLinea SET Cantidad =@Cantidad , Naturaleza= CASE WHEN @Cantidad>0 THEN 'E' ELSE 'S' END , Factor = CASE WHEN @Cantidad>0 THEN 1 ELSE -1 END,
+	UPDATE dbo.invTransaccionLinea SET Cantidad =@Cantidad , Naturaleza= @Naturaleza , Factor = @Factor,
 		PrecioUntLocal = @PrecioUnitarioLocal,PrecioUntDolar = @PrecioUnitarioDolar,TipoCambio = @TipoCambio,Aplicado = @Aplicado
 	WHERE IDTransaccion=@IDTransaccion AND IDProducto=@IDProducto AND IDLote=@IDLote AND IDTipoTran =@IDTipoTran AND IDBodega=@IDBodega
 END
@@ -1254,10 +1284,16 @@ WHERE Fecha BETWEEN @FechaInicio AND @FechaFinal AND (Referencia LIKE  '%' + @Re
 			
 GO
 
-CREATE PROCEDURE dbo.invGetTransaccionInvDetalle (@IDTransaccion AS INT )
+CREATE  PROCEDURE dbo.invGetTransaccionInvDetalle (@IDTransaccion AS INT )
 AS 
-SELECT  IDTransaccion ,IDProducto ,IDLote ,IDTipoTran ,IDBodega ,IDTraslado ,Naturaleza ,Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,Transaccion ,TipoCambio ,Aplicado  
-FROM dbo.invTransaccionLinea A WHERE IDTransaccion  = @IDTransaccion
+
+SELECT  IDTransaccion ,A.IDProducto, P.Descr DescrProducto ,A.IDLote, L.LoteInterno, L.LoteProveedor ,A.IDTipoTran,TT.Descr DescrTipoTran,B.IDBodega IDBodegaOrigen,B.Descr DescrBodegaOrigen ,IDTraslado ,A.Naturaleza ,A.Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,A.Transaccion ,TipoCambio ,Aplicado  
+FROM dbo.invTransaccionLinea A 
+INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
+INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
+INNER JOIN dbo.invLote L ON A.IDLote = L.IDLote
+INNER JOIN dbo.globalTipoTran TT ON A.IDTipoTran=TT.IDTipoTran
+ WHERE IDTransaccion  = @IDTransaccion
 
 go
 

@@ -680,7 +680,7 @@ namespace MainMenu
                     ofrm.Show();
                     break;
                 case "frmDocumentoInv":
-                    frmDocumentoInv ofrmDocumento = new frmDocumentoInv(4);
+                    frmDocumentoInv ofrmDocumento = new frmDocumentoInv(12,"View");
                     ofrmDocumento.MdiParent = this;
                     ofrmDocumento.WindowState = FormWindowState.Normal;
                     ShowPagesRibbonMan(false);

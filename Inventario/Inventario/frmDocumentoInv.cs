@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Util;
 using Security; 
 using CI.DAC;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 
 namespace CI
@@ -38,8 +40,9 @@ namespace CI
         public frmDocumentoInv(int IdPaquete)
         {
             InitializeComponent();
-            InicializaNuevoElemento();
             this.IDPaquete = IdPaquete;
+            InicializaNuevoElemento();
+            
         }
 
          private void InicializaNuevoElemento() {
@@ -65,7 +68,13 @@ namespace CI
          {
             this.Accion = Accion;
             InitializeComponent();
+            DataSet DS = new DataSet();
+            String sTipoCambio = CG.ParametrosContabilidadDAC.GetTipoCambioModulo();
+            DS = CG.TipoCambioDetalleDAC.GetData(sTipoCambio, DateTime.Now);
+
+            TipoCambio = Convert.ToDecimal((DS.Tables[0].Rows.Count == 0) ? 0 : DS.Tables[0].Rows[0]["Monto"]);
             cargarDocumento(IDTransaccion);
+
         }
 
            private void CargarPrivilegios()
@@ -104,6 +113,7 @@ namespace CI
             _dsDocumentoInv = clsDocumentoInvCabecera.GetData(IDTransaccion);
             _dtDocumentoInv = _dsDocumentoInv.Tables[0];
             _currentRow = _dtDocumentoInv.Rows[0];
+          
 
             _dtPaquete = clsPaqueteDAC.GetData(this.IDPaquete, "*", "*", -1, "*", -1).Tables[0];
             _dsDetalle = clsDocumentoInvDetalle.GetData(IDTransaccion);
@@ -116,6 +126,7 @@ namespace CI
         {
             //_currentRow = _dtAsiento.NewRow();
             this.txtDocumento.EditValue = _currentRow["Documento"].ToString();
+            this.txtIDTransaccion.EditValue = _currentRow["IDTransaccion"].ToString();
             this.txtIDTraslado.EditValue = _currentRow["IDTraslado"].ToString();
             this.txtReferencia.EditValue = _currentRow["Referencia"].ToString();
             this.dtpFecha.EditValue = (DateTime)_currentRow["Fecha"];
@@ -150,10 +161,13 @@ namespace CI
                this.slkupProducto.ReadOnly = !Activo;
                this.slkupLote.ReadOnly = !Activo;
                this.slkupBodegaOrigen.ReadOnly = !Activo;
-               if (_dtPaquete.Rows[0]["Paquete"] == "TR")
-                   this.slkupBodegaDestino.Enabled = true;
+               if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR" && Activo)
+                   this.slkupBodegaDestino.ReadOnly = !Activo;
                else
-                   this.slkupBodegaDestino.Enabled = false;
+                   this.slkupBodegaDestino.ReadOnly = true;
+
+               
+              
                this.txtPrecioDolar.Enabled = false;
                this.txtPrecioLocal.Enabled = false;
                this.txtCostoDolar.Enabled = false;
@@ -183,7 +197,7 @@ namespace CI
            private void PopulateGrid(bool GetDataByDB)
            {
 
-               if (GetDataByDB) _dsDetalle = clsDocumentoInvDetalle.GetData((int)_currentRow["IDTransaccion"]);
+               if (GetDataByDB) _dsDetalle = clsDocumentoInvDetalle.GetData(Convert.ToInt32(_currentRow["IDTransaccion"].ToString()));
                _dtDetalle = _dsDetalle.Tables[0];
 
                this.dtgDetalle.DataSource = _dtDetalle;
@@ -195,6 +209,7 @@ namespace CI
                this.slkupProducto.EditValue = null;
                this.slkupLote.EditValue = null;
                this.slkupBodegaOrigen.EditValue = null;
+               this.slkupBodegaDestino.EditValue = null;
                this.txtCantidad.EditValue = null;
                this.txtCostoDolar.EditValue = null;
                this.txtCostoLocal.EditValue = null;
@@ -214,6 +229,17 @@ namespace CI
                 case "Editar":
                     AccionDetalle = "Editar";
                     HabilitarControlesDetalle(true);
+                    if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
+                    {
+                        DataRow row = this.gridViewDetalle.GetDataRow(0);
+                        this.slkupTransaccion.EditValue = row["IDTipoTran"];
+                        this.slkupProducto.EditValue = row["IDProducto"];
+                        this.slkupLote.EditValue = row["IDLote"];
+                        this.slkupBodegaDestino.EditValue = row["IDBodegaDestino"];
+                        this.slkupBodegaOrigen.EditValue = row["IDBodegaOrigen"];
+                        this.txtCantidad.EditValue = row["Cantidad"];
+                    }
+                    
                     if (slkupTransaccion.EditValue != null)
                     {
                        dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
@@ -224,16 +250,35 @@ namespace CI
                             this.txtPrecioDolar.Enabled = true;
                             this.txtPrecioLocal.Enabled = true;
                         }
-                        else if (Convert.ToBoolean(dr["EsAjuste"]) || Convert.ToBoolean(dr["EsCompra"]))
+                        else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"])>0) || Convert.ToBoolean(dr["EsCompra"]))
                         {
                             this.txtCostoDolar.Enabled = true;
                             this.txtCostoLocal.Enabled = true;
                             this.txtPrecioDolar.Enabled = false;
                             this.txtPrecioLocal.Enabled = false;
                         }
+                        else if (Convert.ToBoolean(dr["EsTraslado"]))
+                        {
+                            this.txtCostoDolar.Enabled = false;
+                            this.txtCostoLocal.Enabled = false;
+                            this.txtPrecioDolar.Enabled = false;
+                            this.txtPrecioLocal.Enabled = false;
+                        }
+                        else
+                        {
+                            this.txtCostoDolar.Enabled = false;
+                            this.txtCostoLocal.Enabled = false;
+                            this.txtPrecioDolar.Enabled = false;
+                            this.txtPrecioLocal.Enabled = false;
+                        }
                     }
                     break;
                 case "Eliminar":
+                    if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
+                    {
+                        DataRow row = this.gridViewDetalle.GetDataRow(0);
+                        _dsDetalle.Tables[0].Rows.Remove(row);
+                    }
                     break;
                 case "Cancelar":
                     AccionDetalle = "View";
@@ -289,7 +334,7 @@ namespace CI
                         _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
                         _currentRowDetalle["Factor"] = dr["Factor"].ToString();
                         _currentRowDetalle["Naturaleza"] = dr["Naturaleza"].ToString();
-                        _currentRowDetalle["TipoCambio"] = 0;
+                        _currentRowDetalle["TipoCambio"] = TipoCambio;
                         _currentRowDetalle["Aplicado"] = 0;
                         _currentRow.EndEdit();
 
@@ -373,13 +418,13 @@ namespace CI
                         _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
                         _currentRowDetalle["Factor"] = dr["Factor"].ToString();
                         _currentRowDetalle["Naturaleza"] = dr["Naturaleza"].ToString();
-                        _currentRowDetalle["TipoCambio"] = 0;
+                        _currentRowDetalle["TipoCambio"] = TipoCambio;
                         _currentRowDetalle["Aplicado"] = 0;
 
                         //Validar que el elemento no exista
                         DataView Dv = new DataView();
                         Dv.Table = ((DataView)gridViewDetalle.DataSource).ToTable();
-                        Dv.RowFilter = string.Format("IDProducto={0} and IDLote ={1} and IDTipoTran = {2}", _currentRowDetalle["IDProducto"], _currentRowDetalle["IDLote"], _currentRowDetalle["IDTipoTran"]);
+                        Dv.RowFilter = string.Format("IDProducto={0} and IDLote ={1} and IDTipoTran = {2} and IDBodegaOrigen={3}", _currentRowDetalle["IDProducto"], _currentRowDetalle["IDLote"], _currentRowDetalle["IDTipoTran"], _currentRowDetalle["IDBodegaOrigen"]);
 
                         if (Dv.ToTable().Rows.Count > 0)
                         {
@@ -483,10 +528,20 @@ namespace CI
                 HabilitarControlesCabecera(false);
                 CargarPrivilegios();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
+                    DataTable stTemp ;
+                    if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR"){
+                        stTemp = clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0];
+                        stTemp.Rows[1].Delete();
+                        stTemp.Rows[0]["Descr"] = "Traslados";
 
-
-                Util.Util.ConfigLookupEdit(this.slkupTransaccion, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                        Util.Util.ConfigLookupEdit(this.slkupTransaccion, stTemp, "Descr", "IDTipoTran");
+                        Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                    }
+                    else
+                    {
+                        Util.Util.ConfigLookupEdit(this.slkupTransaccion, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
+                        Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                    }
 
                 Util.Util.ConfigLookupEdit(this.slkupBodegaOrigen, clsBodegaDAC.GetData(-1,"*",-1).Tables[0], "Descr", "IDBodega");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodegaOrigen, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
@@ -519,20 +574,28 @@ namespace CI
                     
                     HabilitarControlesCabecera(true);
                     
-                    PopulateGrid(true);
+                    PopulateGrid(false);
                     AplicarPrivilegios();
                     this.txtReferencia.Focus();
+
+
                 }
                 else
                 {
                     
                     Accion = "View";
-                    PopulateGrid(true);
+                    
+                    PopulateGrid(false);
                     HabilitarControlesCabecera(false);
+                    LayoutDetalleDocumento.CustomHeaderButtons["Agregar"].Properties.Enabled = false;
+                    LayoutDetalleDocumento.CustomHeaderButtons["Editar"].Properties.Enabled = false;
+                    LayoutDetalleDocumento.CustomHeaderButtons["Eliminar"].Properties.Enabled = false;
+                    LayoutDetalleDocumento.CustomHeaderButtons["Cancelar"].Properties.Enabled = false;
+                    LayoutDetalleDocumento.CustomHeaderButtons["Guardar"].Properties.Enabled = false;
 
                 }
 
-                HabilitarControlesDetalle(false);                    
+               // HabilitarControlesDetalle(false);                    
                 //if (_Estado == "PndtGuardar")
                 //{
                 //    btnEditar_ItemClick(this, null);
@@ -586,10 +649,17 @@ namespace CI
                         this.txtPrecioDolar.Enabled = true;
                         this.txtPrecioLocal.Enabled = true;
                     }
-                    else if (Convert.ToBoolean(dr["EsAjuste"]) || Convert.ToBoolean(dr["EsCompra"]))
+                    else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"])>0) || Convert.ToBoolean(dr["EsCompra"]))
                     {
                         this.txtCostoDolar.Enabled = true;
                         this.txtCostoLocal.Enabled = true;
+                        this.txtPrecioDolar.Enabled = false;
+                        this.txtPrecioLocal.Enabled = false;
+                    }
+                    else
+                    {
+                        this.txtCostoDolar.Enabled = false;
+                        this.txtCostoLocal.Enabled = false;
                         this.txtPrecioDolar.Enabled = false;
                         this.txtPrecioLocal.Enabled = false;
                     }
@@ -622,15 +692,15 @@ namespace CI
 
         private void UpdateControlsFromCurrentRow(DataRow _currentRowDetalle)
         {
-            this.slkupTransaccion.EditValue = _currentRowDetalle["IDTipoTran"];
-            this.slkupProducto.EditValue = _currentRowDetalle["IDProducto"];
-            this.slkupLote.EditValue = _currentRowDetalle["IDLote"];
-            this.slkupBodegaOrigen.EditValue = _currentRowDetalle["IDBodegaOrigen"];
-            this.slkupBodegaDestino.EditValue = _currentRowDetalle["IDBodegaDestino"];
-            this.txtCantidad.EditValue = _currentRowDetalle["Cantidad"];
-            this.txtPrecioLocal.EditValue = _currentRowDetalle["PrecioUntLocal"];
-            this.txtPrecioDolar.EditValue = _currentRowDetalle["PrecioUntDolar"];
-            this.txtCostoLocal.EditValue = _currentRowDetalle["PrecioUntLocal"];
+            //this.slkupTransaccion.EditValue = _currentRowDetalle["IDTipoTran"];
+            //this.slkupProducto.EditValue = _currentRowDetalle["IDProducto"];
+            //this.slkupLote.EditValue = _currentRowDetalle["IDLote"];
+            //this.slkupBodegaOrigen.EditValue = _currentRowDetalle["IDBodegaOrigen"];
+            //this.slkupBodegaDestino.EditValue = _currentRowDetalle["IDBodegaDestino"];
+            //this.txtCantidad.EditValue = _currentRowDetalle["Cantidad"];
+            //this.txtPrecioLocal.EditValue = _currentRowDetalle["PrecioUntLocal"];
+            //this.txtPrecioDolar.EditValue = _currentRowDetalle["PrecioUntDolar"];
+            //this.txtCostoLocal.EditValue = _currentRowDetalle["PrecioUntLocal"];
         }
 
 
@@ -695,24 +765,65 @@ namespace CI
                     //Actualizar los datos
                     for (int i = 0; i < _dsDetalle.Tables[0].Rows.Count; i++) {
                         _currentRowDetalle =  dtTemp.NewRow();
-                        _currentRowDetalle["IDTransaccion"] = _dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
-                        _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
-                        _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
-                        _currentRowDetalle["IDTipoTran"] = _dsDetalle.Tables[0].Rows[i]["IDTipoTran"];
-                        _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
-                        _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
-                        _currentRowDetalle["Naturaleza"] = _dsDetalle.Tables[0].Rows[i]["Naturaleza"];
-                        _currentRowDetalle["Factor"] = _dsDetalle.Tables[0].Rows[i]["Factor"];
-                        _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
-                        _currentRowDetalle["CostoUntDolar"] = _dsDetalle.Tables[0].Rows[i]["CostoUntDolar"];
-                        _currentRowDetalle["CostoUntLocal"] = _dsDetalle.Tables[0].Rows[i]["CostoUntLocal"];
-                        _currentRowDetalle["PrecioUntLocal"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntLocal"];
-                        _currentRowDetalle["PrecioUntDolar"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntDolar"];
-                        _currentRowDetalle["Transaccion"] = _dsDetalle.Tables[0].Rows[i]["Transaccion"];
-                        _currentRowDetalle["Factor"] = _dsDetalle.Tables[0].Rows[i]["Factor"];
-                        _currentRowDetalle["Naturaleza"] = _dsDetalle.Tables[0].Rows[i]["Naturaleza"];
-                        _currentRowDetalle["TipoCambio"] = _dsDetalle.Tables[0].Rows[i]["TipoCambio"];
-                        _currentRowDetalle["Aplicado"] = _dsDetalle.Tables[0].Rows[i]["Aplicado"];
+                        if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR")
+                        {
+                            _currentRowDetalle["IDTransaccion"] = _dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
+                            _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
+                            _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
+                            _currentRowDetalle["IDTipoTran"] = 4;
+                            _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
+                            _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
+                            _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
+                            _currentRowDetalle["CostoUntDolar"] = _dsDetalle.Tables[0].Rows[i]["CostoUntDolar"];
+                            _currentRowDetalle["CostoUntLocal"] = _dsDetalle.Tables[0].Rows[i]["CostoUntLocal"];
+                            _currentRowDetalle["PrecioUntLocal"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntLocal"];
+                            _currentRowDetalle["PrecioUntDolar"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntDolar"];
+                            _currentRowDetalle["Transaccion"] = "TR";
+
+                            _currentRowDetalle["TipoCambio"] = _dsDetalle.Tables[0].Rows[i]["TipoCambio"];
+                            _currentRowDetalle["Aplicado"] = _dsDetalle.Tables[0].Rows[i]["Aplicado"];
+                            dsTemp.Tables[0].Rows.Add(_currentRowDetalle);
+                            _currentRowDetalle = dtTemp.NewRow();
+                            _currentRowDetalle["IDTransaccion"] = _dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
+                            _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
+                            _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
+                            _currentRowDetalle["IDTipoTran"] = 3;
+                            _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaDestino"];
+                            _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
+                            
+                            _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
+                            _currentRowDetalle["CostoUntDolar"] = _dsDetalle.Tables[0].Rows[i]["CostoUntDolar"];
+                            _currentRowDetalle["CostoUntLocal"] = _dsDetalle.Tables[0].Rows[i]["CostoUntLocal"];
+                            _currentRowDetalle["PrecioUntLocal"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntLocal"];
+                            _currentRowDetalle["PrecioUntDolar"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntDolar"];
+                            _currentRowDetalle["Transaccion"] = "TR";
+
+                            _currentRowDetalle["TipoCambio"] = _dsDetalle.Tables[0].Rows[i]["TipoCambio"];
+                            _currentRowDetalle["Aplicado"] = _dsDetalle.Tables[0].Rows[i]["Aplicado"];
+
+                        }
+                        else
+                        {
+                            _currentRowDetalle["IDTransaccion"] = _dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
+                            _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
+                            _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
+                            _currentRowDetalle["IDTipoTran"] = _dsDetalle.Tables[0].Rows[i]["IDTipoTran"];
+                            _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
+                            _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
+                            _currentRowDetalle["Naturaleza"] = _dsDetalle.Tables[0].Rows[i]["Naturaleza"];
+                            _currentRowDetalle["Factor"] = _dsDetalle.Tables[0].Rows[i]["Factor"];
+                            _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
+                            _currentRowDetalle["CostoUntDolar"] = _dsDetalle.Tables[0].Rows[i]["CostoUntDolar"];
+                            _currentRowDetalle["CostoUntLocal"] = _dsDetalle.Tables[0].Rows[i]["CostoUntLocal"];
+                            _currentRowDetalle["PrecioUntLocal"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntLocal"];
+                            _currentRowDetalle["PrecioUntDolar"] = _dsDetalle.Tables[0].Rows[i]["PrecioUntDolar"];
+                            _currentRowDetalle["Transaccion"] = _dsDetalle.Tables[0].Rows[i]["Transaccion"];
+                            _currentRowDetalle["Factor"] = _dsDetalle.Tables[0].Rows[i]["Factor"];
+                            _currentRowDetalle["Naturaleza"] = _dsDetalle.Tables[0].Rows[i]["Naturaleza"];
+                            _currentRowDetalle["TipoCambio"] = _dsDetalle.Tables[0].Rows[i]["TipoCambio"];
+                            _currentRowDetalle["Aplicado"] = _dsDetalle.Tables[0].Rows[i]["Aplicado"];
+                           
+                        }
                         dsTemp.Tables[0].Rows.Add(_currentRowDetalle);
 
                     }
@@ -763,6 +874,36 @@ namespace CI
             InicializaNuevoElemento();
            
         }
+
+        private void btnPrintDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+           
+            if (Accion=="View")
+            {
+                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptDocumentoInv.repx", true);
+
+
+                SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+                SqlDataSource ds = report.DataSource as SqlDataSource;
+                ds.ConnectionName = "sqlDataSource1";
+                String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+                // Obtain a parameter, and set its value.
+                report.Parameters["IDTransaccion"].Value = Convert.ToInt32(this.txtIDTransaccion.Text.Trim());
+
+                // Show the report's print preview.
+                DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+                tool.ShowPreview();
+
+
+            }
+        }
+
+    
 
     
     }
