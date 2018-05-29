@@ -187,6 +187,11 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.slkupCuentaArticulo = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -286,6 +291,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaArticulo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -393,6 +403,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.slkupCuentaArticulo);
             this.layoutControl1.Controls.Add(this.chkEsMuestra);
             this.layoutControl1.Controls.Add(this.txtFactorEmpaque);
             this.layoutControl1.Controls.Add(this.slkupUnidadMedida);
@@ -1329,8 +1340,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 50);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup4;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(701, 422);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2,
@@ -1590,7 +1601,10 @@
             this.lyClasif3,
             this.lyClasif4,
             this.lyClasif5,
-            this.lyClasif6});
+            this.lyClasif6,
+            this.layoutControlItem25,
+            this.emptySpaceItem14,
+            this.emptySpaceItem15});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(677, 376);
@@ -1652,7 +1666,7 @@
             this.lyClasif6.CustomizationFormText = "Clasificacion2:";
             this.lyClasif6.Location = new System.Drawing.Point(0, 120);
             this.lyClasif6.Name = "lyClasif6";
-            this.lyClasif6.Size = new System.Drawing.Size(677, 256);
+            this.lyClasif6.Size = new System.Drawing.Size(677, 24);
             this.lyClasif6.Text = "Clasificacion6:";
             this.lyClasif6.TextSize = new System.Drawing.Size(145, 13);
             // 
@@ -1870,6 +1884,53 @@
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
+            // slkupCuentaArticulo
+            // 
+            this.slkupCuentaArticulo.Location = new System.Drawing.Point(172, 265);
+            this.slkupCuentaArticulo.MenuManager = this.ribbonControl;
+            this.slkupCuentaArticulo.Name = "slkupCuentaArticulo";
+            this.slkupCuentaArticulo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupCuentaArticulo.Properties.View = this.gridView8;
+            this.slkupCuentaArticulo.Size = new System.Drawing.Size(525, 20);
+            this.slkupCuentaArticulo.StyleController = this.layoutControl1;
+            this.slkupCuentaArticulo.TabIndex = 32;
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.slkupCuentaArticulo;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 169);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(677, 24);
+            this.layoutControlItem25.Text = "Cuenta Contable:";
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // gridView8
+            // 
+            this.gridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView8.Name = "gridView8";
+            this.gridView8.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView8.OptionsView.ShowGroupPanel = false;
+            // 
+            // emptySpaceItem14
+            // 
+            this.emptySpaceItem14.AllowHotTrack = false;
+            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 144);
+            this.emptySpaceItem14.MaxSize = new System.Drawing.Size(0, 25);
+            this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 25);
+            this.emptySpaceItem14.Name = "emptySpaceItem14";
+            this.emptySpaceItem14.Size = new System.Drawing.Size(677, 25);
+            this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem15
+            // 
+            this.emptySpaceItem15.AllowHotTrack = false;
+            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 193);
+            this.emptySpaceItem15.Name = "emptySpaceItem15";
+            this.emptySpaceItem15.Size = new System.Drawing.Size(677, 183);
+            this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // frmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1981,6 +2042,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCuentaArticulo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2146,5 +2212,10 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem13;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCuentaArticulo;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem14;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem15;
     }
 }

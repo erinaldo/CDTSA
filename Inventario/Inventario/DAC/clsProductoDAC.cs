@@ -63,6 +63,7 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Clasif4", SqlDbType.Int).SourceColumn = "Clasif4";
                 oAdaptador.InsertCommand.Parameters.Add("@Clasif5", SqlDbType.Int).SourceColumn = "Clasif5";
                 oAdaptador.InsertCommand.Parameters.Add("@Clasif6", SqlDbType.Int).SourceColumn = "Clasif6";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuentaProducto", SqlDbType.Int).SourceColumn = "IDCuentaProducto";
                 oAdaptador.InsertCommand.Parameters.Add("@CodigoBarra", SqlDbType.NChar).SourceColumn = "CodigoBarra";
                 oAdaptador.InsertCommand.Parameters.Add("@IDUnidad", SqlDbType.Int).SourceColumn = "IDUnidad";
                 oAdaptador.InsertCommand.Parameters.Add("@FactorEmpaque", SqlDbType.Decimal).SourceColumn = "FactorEmpaque";
@@ -93,6 +94,7 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Clasif4", SqlDbType.Int).SourceColumn = "Clasif4";
                 oAdaptador.UpdateCommand.Parameters.Add("@Clasif5", SqlDbType.Int).SourceColumn = "Clasif5";
                 oAdaptador.UpdateCommand.Parameters.Add("@Clasif6", SqlDbType.Int).SourceColumn = "Clasif6";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaProducto", SqlDbType.Int).SourceColumn = "IDCuentaProducto";
                 oAdaptador.UpdateCommand.Parameters.Add("@CodigoBarra", SqlDbType.NChar).SourceColumn = "CodigoBarra";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDUnidad", SqlDbType.Int).SourceColumn = "IDUnidad";
                 oAdaptador.UpdateCommand.Parameters.Add("@FactorEmpaque", SqlDbType.Decimal).SourceColumn = "FactorEmpaque";
@@ -125,6 +127,7 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@Clasif4", SqlDbType.Int).SourceColumn = "Clasif4";
                 oAdaptador.DeleteCommand.Parameters.Add("@Clasif5", SqlDbType.Int).SourceColumn = "Clasif5";
                 oAdaptador.DeleteCommand.Parameters.Add("@Clasif6", SqlDbType.Int).SourceColumn = "Clasif6";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaProducto", SqlDbType.Int).SourceColumn = "IDCuentaProducto";
                 oAdaptador.DeleteCommand.Parameters.Add("@CodigoBarra", SqlDbType.NChar).SourceColumn = "CodigoBarra";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDUnidad", SqlDbType.Int).SourceColumn = "IDUnidad";
                 oAdaptador.DeleteCommand.Parameters.Add("@FactorEmpaque", SqlDbType.Decimal).SourceColumn = "FactorEmpaque";
@@ -163,7 +166,7 @@ namespace CI.DAC
         public static DataSet GetDataEmpty()
         {
             String strSQL = "SELECT  IDProducto ,Descr ,Alias ,CostoUltLocal ,CostoUltDolar ,CostoPromLocal ,CostoPromDolar ,PrecioPublicoLocal ,PrecioFarmaciaLocal ,PrecioCIFLocal ," +
-                            "PrecioFOBLocal ,PrecioDolar ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,EsMuestra , " +
+                            "PrecioFOBLocal ,PrecioDolar ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,IDCuentaProducto,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,EsMuestra , " +
                             "EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ," +
                             "Activo ,UserInsert ,UserUpdate ,CreateDate ,UpdateDate  FROM dbo.invProducto WHERE 1=2";
 
