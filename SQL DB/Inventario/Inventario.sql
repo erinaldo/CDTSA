@@ -510,7 +510,7 @@ ALTER TABLE [dbo].[invDetalleTrasladosEstados] CHECK CONSTRAINT [FK_invDetalleEs
 GO
 
 
-CREATE    TABLE [dbo].[invTransaccion](
+CREATE  TABLE [dbo].[invTransaccion](
 	[IDTransaccion] [bigint] IDENTITY(1,1) NOT NULL,
 	[ModuloOrigen] NVARCHAR(4) NOT NULL,
 	[IDPaquete] INT  NOT NULL,
@@ -518,6 +518,7 @@ CREATE    TABLE [dbo].[invTransaccion](
 	[Usuario] [nvarchar](20) NOT NULL,
 	[Referencia] [nvarchar](250) NULL,
 	[Documento] [nvarchar](250) NULL,
+	[Asiento][nvarchar](20) NULL,
 	[Aplicado] [bit] NULL DEFAULT 0,
 	[UniqueValue] [uniqueidentifier] NULL,
 	[EsTraslado] [bit] NULL DEFAULT 0,
