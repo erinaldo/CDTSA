@@ -183,6 +183,12 @@
     <Compile Include="frmFiltroProducto.Designer.cs">
       <DependentUpon>frmFiltroProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInvCuentaContable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInvCuentaContable.Designer.cs">
+      <DependentUpon>frmInvCuentaContable.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListadoProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFiltroProducto.resx">
       <DependentUpon>frmFiltroProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInvCuentaContable.resx">
+      <DependentUpon>frmInvCuentaContable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoProducto.resx">
       <DependentUpon>frmListadoProducto.cs</DependentUpon>

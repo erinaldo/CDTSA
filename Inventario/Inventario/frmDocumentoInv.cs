@@ -504,6 +504,8 @@ namespace CI
                 if (this.txtCostoDolar.EditValue == null|| this.txtCostoLocal.EditValue.ToString() == "")
                     sMensaje = " • Ingrese sel costo del producto \n\r";
             }
+            else if (Convert.ToBoolean(dr["EsTraslado"])) { 
+            }
 
             if (sMensaje != "") {
                 MessageBox.Show("Estimado usuario, favor revise los siguientes errores: \n\r" + sMensaje);
