@@ -41,61 +41,61 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.searchLookUpEdit31 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaDesBonificacion = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit31View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit30 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaCompras = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit30View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit29 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaComisionCobros = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit29View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit28 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaComisionVenta = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit28View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit26 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaDesc = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit26View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit25 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrDescBonificacion = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit25View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit24 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrCompras = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit24View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit23 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrComisionCobros = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit23View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit22 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrComisionVenta = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit22View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit21 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrDesc = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit21View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit20 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaDescPorLinea = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit20View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit19 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaCostoVenta = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit19View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit18 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaDescVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit18View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit17 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkuCtaDevVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit17View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit16 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkuCtaVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit16View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit15 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaVencimiento = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit15View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit14 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaSobranteInventario = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit14View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit13 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaFaltanteInventario = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit13View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit12 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaVariacionCosto = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit12View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit11 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtaInventario = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit11View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit5 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrVencimiento = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit5View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.searchLookUpEdit4 = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit3 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrFaltanteInv = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit2 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrVariacionCosto = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrInventario = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.txtIdCuenta = new DevExpress.XtraEditors.TextEdit();
+            this.txtDescr = new DevExpress.XtraEditors.TextEdit();
+            this.dtgDetalle = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit8 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -108,13 +108,13 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit7 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkuCtrDevVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit6 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrDescVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit10 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrCostoVenta = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit9 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrDescPorLinea = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -133,7 +133,7 @@
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.s = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -146,7 +146,7 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.slkupCtrSobranteInventario = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -160,70 +160,70 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit31.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDesBonificacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit31View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit30.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaCompras.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit30View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit29.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaComisionCobros.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit29View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit28.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaComisionVenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit28View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit26.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDesc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit26View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit25.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDescBonificacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit25View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit24.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrCompras.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit24View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit23.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrComisionCobros.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit23View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit22.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrComisionVenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit22View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit21.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDesc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit21View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit20.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDescPorLinea.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit20View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit19.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaCostoVenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit19View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit18.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDescVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit18View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit17.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkuCtaDevVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit17View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit16.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkuCtaVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit16View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit15.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaVencimiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit15View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit14.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaSobranteInventario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit14View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit13.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaFaltanteInventario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit13View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit12.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaVariacionCosto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit12View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit11.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaInventario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit11View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVencimiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrFaltanteInv.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVariacionCosto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrInventario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIdCuenta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit8.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit7.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkuCtrDevVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit6.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDescVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit10.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrCostoVenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit9.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDescPorLinea.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -242,7 +242,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.s)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
@@ -255,7 +255,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrSobranteInventario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
@@ -372,39 +372,39 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit31);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit30);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit29);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit28);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit26);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit25);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit24);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit23);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit22);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit21);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit20);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit19);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit18);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit17);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit16);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit15);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit14);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit13);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit12);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit11);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit5);
+            this.layoutControl1.Controls.Add(this.slkupCtaDesBonificacion);
+            this.layoutControl1.Controls.Add(this.slkupCtaCompras);
+            this.layoutControl1.Controls.Add(this.slkupCtaComisionCobros);
+            this.layoutControl1.Controls.Add(this.slkupCtaComisionVenta);
+            this.layoutControl1.Controls.Add(this.slkupCtaDesc);
+            this.layoutControl1.Controls.Add(this.slkupCtrDescBonificacion);
+            this.layoutControl1.Controls.Add(this.slkupCtrCompras);
+            this.layoutControl1.Controls.Add(this.slkupCtrComisionCobros);
+            this.layoutControl1.Controls.Add(this.slkupCtrComisionVenta);
+            this.layoutControl1.Controls.Add(this.slkupCtrDesc);
+            this.layoutControl1.Controls.Add(this.slkupCtaDescPorLinea);
+            this.layoutControl1.Controls.Add(this.slkupCtaCostoVenta);
+            this.layoutControl1.Controls.Add(this.slkupCtaDescVentas);
+            this.layoutControl1.Controls.Add(this.slkuCtaDevVentas);
+            this.layoutControl1.Controls.Add(this.slkuCtaVentas);
+            this.layoutControl1.Controls.Add(this.slkupCtaVencimiento);
+            this.layoutControl1.Controls.Add(this.slkupCtaSobranteInventario);
+            this.layoutControl1.Controls.Add(this.slkupCtaFaltanteInventario);
+            this.layoutControl1.Controls.Add(this.slkupCtaVariacionCosto);
+            this.layoutControl1.Controls.Add(this.slkupCtaInventario);
+            this.layoutControl1.Controls.Add(this.slkupCtrVencimiento);
             this.layoutControl1.Controls.Add(this.searchLookUpEdit4);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit3);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit2);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit1);
-            this.layoutControl1.Controls.Add(this.textEdit2);
-            this.layoutControl1.Controls.Add(this.textEdit1);
-            this.layoutControl1.Controls.Add(this.gridControl1);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit8);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit7);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit6);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit10);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit9);
+            this.layoutControl1.Controls.Add(this.slkupCtrFaltanteInv);
+            this.layoutControl1.Controls.Add(this.slkupCtrVariacionCosto);
+            this.layoutControl1.Controls.Add(this.slkupCtrInventario);
+            this.layoutControl1.Controls.Add(this.txtIdCuenta);
+            this.layoutControl1.Controls.Add(this.txtDescr);
+            this.layoutControl1.Controls.Add(this.dtgDetalle);
+            this.layoutControl1.Controls.Add(this.slkupCtrVentas);
+            this.layoutControl1.Controls.Add(this.slkuCtrDevVentas);
+            this.layoutControl1.Controls.Add(this.slkupCtrDescVentas);
+            this.layoutControl1.Controls.Add(this.slkupCtrCostoVenta);
+            this.layoutControl1.Controls.Add(this.slkupCtrDescPorLinea);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 143);
             this.layoutControl1.Name = "layoutControl1";
@@ -413,17 +413,17 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // searchLookUpEdit31
+            // slkupCtaDesBonificacion
             // 
-            this.searchLookUpEdit31.Location = new System.Drawing.Point(760, 414);
-            this.searchLookUpEdit31.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit31.Name = "searchLookUpEdit31";
-            this.searchLookUpEdit31.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaDesBonificacion.Location = new System.Drawing.Point(760, 414);
+            this.slkupCtaDesBonificacion.MenuManager = this.ribbonControl;
+            this.slkupCtaDesBonificacion.Name = "slkupCtaDesBonificacion";
+            this.slkupCtaDesBonificacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit31.Properties.View = this.searchLookUpEdit31View;
-            this.searchLookUpEdit31.Size = new System.Drawing.Size(140, 20);
-            this.searchLookUpEdit31.StyleController = this.layoutControl1;
-            this.searchLookUpEdit31.TabIndex = 32;
+            this.slkupCtaDesBonificacion.Properties.View = this.searchLookUpEdit31View;
+            this.slkupCtaDesBonificacion.Size = new System.Drawing.Size(140, 20);
+            this.slkupCtaDesBonificacion.StyleController = this.layoutControl1;
+            this.slkupCtaDesBonificacion.TabIndex = 32;
             // 
             // searchLookUpEdit31View
             // 
@@ -432,17 +432,17 @@
             this.searchLookUpEdit31View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit31View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit30
+            // slkupCtaCompras
             // 
-            this.searchLookUpEdit30.Location = new System.Drawing.Point(760, 390);
-            this.searchLookUpEdit30.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit30.Name = "searchLookUpEdit30";
-            this.searchLookUpEdit30.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaCompras.Location = new System.Drawing.Point(760, 390);
+            this.slkupCtaCompras.MenuManager = this.ribbonControl;
+            this.slkupCtaCompras.Name = "slkupCtaCompras";
+            this.slkupCtaCompras.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit30.Properties.View = this.searchLookUpEdit30View;
-            this.searchLookUpEdit30.Size = new System.Drawing.Size(140, 20);
-            this.searchLookUpEdit30.StyleController = this.layoutControl1;
-            this.searchLookUpEdit30.TabIndex = 31;
+            this.slkupCtaCompras.Properties.View = this.searchLookUpEdit30View;
+            this.slkupCtaCompras.Size = new System.Drawing.Size(140, 20);
+            this.slkupCtaCompras.StyleController = this.layoutControl1;
+            this.slkupCtaCompras.TabIndex = 31;
             // 
             // searchLookUpEdit30View
             // 
@@ -451,17 +451,17 @@
             this.searchLookUpEdit30View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit30View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit29
+            // slkupCtaComisionCobros
             // 
-            this.searchLookUpEdit29.Location = new System.Drawing.Point(760, 366);
-            this.searchLookUpEdit29.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit29.Name = "searchLookUpEdit29";
-            this.searchLookUpEdit29.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaComisionCobros.Location = new System.Drawing.Point(760, 366);
+            this.slkupCtaComisionCobros.MenuManager = this.ribbonControl;
+            this.slkupCtaComisionCobros.Name = "slkupCtaComisionCobros";
+            this.slkupCtaComisionCobros.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit29.Properties.View = this.searchLookUpEdit29View;
-            this.searchLookUpEdit29.Size = new System.Drawing.Size(140, 20);
-            this.searchLookUpEdit29.StyleController = this.layoutControl1;
-            this.searchLookUpEdit29.TabIndex = 30;
+            this.slkupCtaComisionCobros.Properties.View = this.searchLookUpEdit29View;
+            this.slkupCtaComisionCobros.Size = new System.Drawing.Size(140, 20);
+            this.slkupCtaComisionCobros.StyleController = this.layoutControl1;
+            this.slkupCtaComisionCobros.TabIndex = 30;
             // 
             // searchLookUpEdit29View
             // 
@@ -470,17 +470,17 @@
             this.searchLookUpEdit29View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit29View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit28
+            // slkupCtaComisionVenta
             // 
-            this.searchLookUpEdit28.Location = new System.Drawing.Point(760, 342);
-            this.searchLookUpEdit28.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit28.Name = "searchLookUpEdit28";
-            this.searchLookUpEdit28.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaComisionVenta.Location = new System.Drawing.Point(760, 342);
+            this.slkupCtaComisionVenta.MenuManager = this.ribbonControl;
+            this.slkupCtaComisionVenta.Name = "slkupCtaComisionVenta";
+            this.slkupCtaComisionVenta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit28.Properties.View = this.searchLookUpEdit28View;
-            this.searchLookUpEdit28.Size = new System.Drawing.Size(140, 20);
-            this.searchLookUpEdit28.StyleController = this.layoutControl1;
-            this.searchLookUpEdit28.TabIndex = 29;
+            this.slkupCtaComisionVenta.Properties.View = this.searchLookUpEdit28View;
+            this.slkupCtaComisionVenta.Size = new System.Drawing.Size(140, 20);
+            this.slkupCtaComisionVenta.StyleController = this.layoutControl1;
+            this.slkupCtaComisionVenta.TabIndex = 29;
             // 
             // searchLookUpEdit28View
             // 
@@ -489,17 +489,17 @@
             this.searchLookUpEdit28View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit28View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit26
+            // slkupCtaDesc
             // 
-            this.searchLookUpEdit26.Location = new System.Drawing.Point(760, 318);
-            this.searchLookUpEdit26.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit26.Name = "searchLookUpEdit26";
-            this.searchLookUpEdit26.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaDesc.Location = new System.Drawing.Point(760, 318);
+            this.slkupCtaDesc.MenuManager = this.ribbonControl;
+            this.slkupCtaDesc.Name = "slkupCtaDesc";
+            this.slkupCtaDesc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit26.Properties.View = this.searchLookUpEdit26View;
-            this.searchLookUpEdit26.Size = new System.Drawing.Size(140, 20);
-            this.searchLookUpEdit26.StyleController = this.layoutControl1;
-            this.searchLookUpEdit26.TabIndex = 27;
+            this.slkupCtaDesc.Properties.View = this.searchLookUpEdit26View;
+            this.slkupCtaDesc.Size = new System.Drawing.Size(140, 20);
+            this.slkupCtaDesc.StyleController = this.layoutControl1;
+            this.slkupCtaDesc.TabIndex = 27;
             // 
             // searchLookUpEdit26View
             // 
@@ -508,17 +508,17 @@
             this.searchLookUpEdit26View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit26View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit25
+            // slkupCtrDescBonificacion
             // 
-            this.searchLookUpEdit25.Location = new System.Drawing.Point(599, 414);
-            this.searchLookUpEdit25.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit25.Name = "searchLookUpEdit25";
-            this.searchLookUpEdit25.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrDescBonificacion.Location = new System.Drawing.Point(599, 414);
+            this.slkupCtrDescBonificacion.MenuManager = this.ribbonControl;
+            this.slkupCtrDescBonificacion.Name = "slkupCtrDescBonificacion";
+            this.slkupCtrDescBonificacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit25.Properties.View = this.searchLookUpEdit25View;
-            this.searchLookUpEdit25.Size = new System.Drawing.Size(157, 20);
-            this.searchLookUpEdit25.StyleController = this.layoutControl1;
-            this.searchLookUpEdit25.TabIndex = 26;
+            this.slkupCtrDescBonificacion.Properties.View = this.searchLookUpEdit25View;
+            this.slkupCtrDescBonificacion.Size = new System.Drawing.Size(157, 20);
+            this.slkupCtrDescBonificacion.StyleController = this.layoutControl1;
+            this.slkupCtrDescBonificacion.TabIndex = 26;
             // 
             // searchLookUpEdit25View
             // 
@@ -527,17 +527,17 @@
             this.searchLookUpEdit25View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit25View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit24
+            // slkupCtrCompras
             // 
-            this.searchLookUpEdit24.Location = new System.Drawing.Point(599, 390);
-            this.searchLookUpEdit24.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit24.Name = "searchLookUpEdit24";
-            this.searchLookUpEdit24.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrCompras.Location = new System.Drawing.Point(599, 390);
+            this.slkupCtrCompras.MenuManager = this.ribbonControl;
+            this.slkupCtrCompras.Name = "slkupCtrCompras";
+            this.slkupCtrCompras.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit24.Properties.View = this.searchLookUpEdit24View;
-            this.searchLookUpEdit24.Size = new System.Drawing.Size(157, 20);
-            this.searchLookUpEdit24.StyleController = this.layoutControl1;
-            this.searchLookUpEdit24.TabIndex = 25;
+            this.slkupCtrCompras.Properties.View = this.searchLookUpEdit24View;
+            this.slkupCtrCompras.Size = new System.Drawing.Size(157, 20);
+            this.slkupCtrCompras.StyleController = this.layoutControl1;
+            this.slkupCtrCompras.TabIndex = 25;
             // 
             // searchLookUpEdit24View
             // 
@@ -546,17 +546,17 @@
             this.searchLookUpEdit24View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit24View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit23
+            // slkupCtrComisionCobros
             // 
-            this.searchLookUpEdit23.Location = new System.Drawing.Point(599, 366);
-            this.searchLookUpEdit23.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit23.Name = "searchLookUpEdit23";
-            this.searchLookUpEdit23.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrComisionCobros.Location = new System.Drawing.Point(599, 366);
+            this.slkupCtrComisionCobros.MenuManager = this.ribbonControl;
+            this.slkupCtrComisionCobros.Name = "slkupCtrComisionCobros";
+            this.slkupCtrComisionCobros.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit23.Properties.View = this.searchLookUpEdit23View;
-            this.searchLookUpEdit23.Size = new System.Drawing.Size(157, 20);
-            this.searchLookUpEdit23.StyleController = this.layoutControl1;
-            this.searchLookUpEdit23.TabIndex = 24;
+            this.slkupCtrComisionCobros.Properties.View = this.searchLookUpEdit23View;
+            this.slkupCtrComisionCobros.Size = new System.Drawing.Size(157, 20);
+            this.slkupCtrComisionCobros.StyleController = this.layoutControl1;
+            this.slkupCtrComisionCobros.TabIndex = 24;
             // 
             // searchLookUpEdit23View
             // 
@@ -565,17 +565,17 @@
             this.searchLookUpEdit23View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit23View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit22
+            // slkupCtrComisionVenta
             // 
-            this.searchLookUpEdit22.Location = new System.Drawing.Point(599, 342);
-            this.searchLookUpEdit22.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit22.Name = "searchLookUpEdit22";
-            this.searchLookUpEdit22.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrComisionVenta.Location = new System.Drawing.Point(599, 342);
+            this.slkupCtrComisionVenta.MenuManager = this.ribbonControl;
+            this.slkupCtrComisionVenta.Name = "slkupCtrComisionVenta";
+            this.slkupCtrComisionVenta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit22.Properties.View = this.searchLookUpEdit22View;
-            this.searchLookUpEdit22.Size = new System.Drawing.Size(157, 20);
-            this.searchLookUpEdit22.StyleController = this.layoutControl1;
-            this.searchLookUpEdit22.TabIndex = 23;
+            this.slkupCtrComisionVenta.Properties.View = this.searchLookUpEdit22View;
+            this.slkupCtrComisionVenta.Size = new System.Drawing.Size(157, 20);
+            this.slkupCtrComisionVenta.StyleController = this.layoutControl1;
+            this.slkupCtrComisionVenta.TabIndex = 23;
             // 
             // searchLookUpEdit22View
             // 
@@ -584,17 +584,17 @@
             this.searchLookUpEdit22View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit22View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit21
+            // slkupCtrDesc
             // 
-            this.searchLookUpEdit21.Location = new System.Drawing.Point(599, 318);
-            this.searchLookUpEdit21.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit21.Name = "searchLookUpEdit21";
-            this.searchLookUpEdit21.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrDesc.Location = new System.Drawing.Point(599, 318);
+            this.slkupCtrDesc.MenuManager = this.ribbonControl;
+            this.slkupCtrDesc.Name = "slkupCtrDesc";
+            this.slkupCtrDesc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit21.Properties.View = this.searchLookUpEdit21View;
-            this.searchLookUpEdit21.Size = new System.Drawing.Size(157, 20);
-            this.searchLookUpEdit21.StyleController = this.layoutControl1;
-            this.searchLookUpEdit21.TabIndex = 22;
+            this.slkupCtrDesc.Properties.View = this.searchLookUpEdit21View;
+            this.slkupCtrDesc.Size = new System.Drawing.Size(157, 20);
+            this.slkupCtrDesc.StyleController = this.layoutControl1;
+            this.slkupCtrDesc.TabIndex = 22;
             // 
             // searchLookUpEdit21View
             // 
@@ -603,17 +603,17 @@
             this.searchLookUpEdit21View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit21View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit20
+            // slkupCtaDescPorLinea
             // 
-            this.searchLookUpEdit20.Location = new System.Drawing.Point(291, 414);
-            this.searchLookUpEdit20.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit20.Name = "searchLookUpEdit20";
-            this.searchLookUpEdit20.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaDescPorLinea.Location = new System.Drawing.Point(291, 414);
+            this.slkupCtaDescPorLinea.MenuManager = this.ribbonControl;
+            this.slkupCtaDescPorLinea.Name = "slkupCtaDescPorLinea";
+            this.slkupCtaDescPorLinea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit20.Properties.View = this.searchLookUpEdit20View;
-            this.searchLookUpEdit20.Size = new System.Drawing.Size(185, 20);
-            this.searchLookUpEdit20.StyleController = this.layoutControl1;
-            this.searchLookUpEdit20.TabIndex = 21;
+            this.slkupCtaDescPorLinea.Properties.View = this.searchLookUpEdit20View;
+            this.slkupCtaDescPorLinea.Size = new System.Drawing.Size(185, 20);
+            this.slkupCtaDescPorLinea.StyleController = this.layoutControl1;
+            this.slkupCtaDescPorLinea.TabIndex = 21;
             // 
             // searchLookUpEdit20View
             // 
@@ -622,17 +622,17 @@
             this.searchLookUpEdit20View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit20View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit19
+            // slkupCtaCostoVenta
             // 
-            this.searchLookUpEdit19.Location = new System.Drawing.Point(291, 390);
-            this.searchLookUpEdit19.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit19.Name = "searchLookUpEdit19";
-            this.searchLookUpEdit19.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaCostoVenta.Location = new System.Drawing.Point(291, 390);
+            this.slkupCtaCostoVenta.MenuManager = this.ribbonControl;
+            this.slkupCtaCostoVenta.Name = "slkupCtaCostoVenta";
+            this.slkupCtaCostoVenta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit19.Properties.View = this.searchLookUpEdit19View;
-            this.searchLookUpEdit19.Size = new System.Drawing.Size(185, 20);
-            this.searchLookUpEdit19.StyleController = this.layoutControl1;
-            this.searchLookUpEdit19.TabIndex = 20;
+            this.slkupCtaCostoVenta.Properties.View = this.searchLookUpEdit19View;
+            this.slkupCtaCostoVenta.Size = new System.Drawing.Size(185, 20);
+            this.slkupCtaCostoVenta.StyleController = this.layoutControl1;
+            this.slkupCtaCostoVenta.TabIndex = 20;
             // 
             // searchLookUpEdit19View
             // 
@@ -641,17 +641,17 @@
             this.searchLookUpEdit19View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit19View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit18
+            // slkupCtaDescVentas
             // 
-            this.searchLookUpEdit18.Location = new System.Drawing.Point(291, 366);
-            this.searchLookUpEdit18.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit18.Name = "searchLookUpEdit18";
-            this.searchLookUpEdit18.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaDescVentas.Location = new System.Drawing.Point(291, 366);
+            this.slkupCtaDescVentas.MenuManager = this.ribbonControl;
+            this.slkupCtaDescVentas.Name = "slkupCtaDescVentas";
+            this.slkupCtaDescVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit18.Properties.View = this.searchLookUpEdit18View;
-            this.searchLookUpEdit18.Size = new System.Drawing.Size(185, 20);
-            this.searchLookUpEdit18.StyleController = this.layoutControl1;
-            this.searchLookUpEdit18.TabIndex = 19;
+            this.slkupCtaDescVentas.Properties.View = this.searchLookUpEdit18View;
+            this.slkupCtaDescVentas.Size = new System.Drawing.Size(185, 20);
+            this.slkupCtaDescVentas.StyleController = this.layoutControl1;
+            this.slkupCtaDescVentas.TabIndex = 19;
             // 
             // searchLookUpEdit18View
             // 
@@ -660,17 +660,17 @@
             this.searchLookUpEdit18View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit18View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit17
+            // slkuCtaDevVentas
             // 
-            this.searchLookUpEdit17.Location = new System.Drawing.Point(291, 342);
-            this.searchLookUpEdit17.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit17.Name = "searchLookUpEdit17";
-            this.searchLookUpEdit17.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkuCtaDevVentas.Location = new System.Drawing.Point(291, 342);
+            this.slkuCtaDevVentas.MenuManager = this.ribbonControl;
+            this.slkuCtaDevVentas.Name = "slkuCtaDevVentas";
+            this.slkuCtaDevVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit17.Properties.View = this.searchLookUpEdit17View;
-            this.searchLookUpEdit17.Size = new System.Drawing.Size(185, 20);
-            this.searchLookUpEdit17.StyleController = this.layoutControl1;
-            this.searchLookUpEdit17.TabIndex = 18;
+            this.slkuCtaDevVentas.Properties.View = this.searchLookUpEdit17View;
+            this.slkuCtaDevVentas.Size = new System.Drawing.Size(185, 20);
+            this.slkuCtaDevVentas.StyleController = this.layoutControl1;
+            this.slkuCtaDevVentas.TabIndex = 18;
             // 
             // searchLookUpEdit17View
             // 
@@ -679,17 +679,17 @@
             this.searchLookUpEdit17View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit17View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit16
+            // slkuCtaVentas
             // 
-            this.searchLookUpEdit16.Location = new System.Drawing.Point(291, 318);
-            this.searchLookUpEdit16.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit16.Name = "searchLookUpEdit16";
-            this.searchLookUpEdit16.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkuCtaVentas.Location = new System.Drawing.Point(291, 318);
+            this.slkuCtaVentas.MenuManager = this.ribbonControl;
+            this.slkuCtaVentas.Name = "slkuCtaVentas";
+            this.slkuCtaVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit16.Properties.View = this.searchLookUpEdit16View;
-            this.searchLookUpEdit16.Size = new System.Drawing.Size(185, 20);
-            this.searchLookUpEdit16.StyleController = this.layoutControl1;
-            this.searchLookUpEdit16.TabIndex = 17;
+            this.slkuCtaVentas.Properties.View = this.searchLookUpEdit16View;
+            this.slkuCtaVentas.Size = new System.Drawing.Size(185, 20);
+            this.slkuCtaVentas.StyleController = this.layoutControl1;
+            this.slkuCtaVentas.TabIndex = 17;
             // 
             // searchLookUpEdit16View
             // 
@@ -698,17 +698,17 @@
             this.searchLookUpEdit16View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit16View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit15
+            // slkupCtaVencimiento
             // 
-            this.searchLookUpEdit15.Location = new System.Drawing.Point(410, 414);
-            this.searchLookUpEdit15.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit15.Name = "searchLookUpEdit15";
-            this.searchLookUpEdit15.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaVencimiento.Location = new System.Drawing.Point(410, 414);
+            this.slkupCtaVencimiento.MenuManager = this.ribbonControl;
+            this.slkupCtaVencimiento.Name = "slkupCtaVencimiento";
+            this.slkupCtaVencimiento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit15.Properties.View = this.searchLookUpEdit15View;
-            this.searchLookUpEdit15.Size = new System.Drawing.Size(490, 20);
-            this.searchLookUpEdit15.StyleController = this.layoutControl1;
-            this.searchLookUpEdit15.TabIndex = 16;
+            this.slkupCtaVencimiento.Properties.View = this.searchLookUpEdit15View;
+            this.slkupCtaVencimiento.Size = new System.Drawing.Size(490, 20);
+            this.slkupCtaVencimiento.StyleController = this.layoutControl1;
+            this.slkupCtaVencimiento.TabIndex = 16;
             // 
             // searchLookUpEdit15View
             // 
@@ -717,17 +717,17 @@
             this.searchLookUpEdit15View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit15View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit14
+            // slkupCtaSobranteInventario
             // 
-            this.searchLookUpEdit14.Location = new System.Drawing.Point(410, 390);
-            this.searchLookUpEdit14.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit14.Name = "searchLookUpEdit14";
-            this.searchLookUpEdit14.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaSobranteInventario.Location = new System.Drawing.Point(410, 390);
+            this.slkupCtaSobranteInventario.MenuManager = this.ribbonControl;
+            this.slkupCtaSobranteInventario.Name = "slkupCtaSobranteInventario";
+            this.slkupCtaSobranteInventario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit14.Properties.View = this.searchLookUpEdit14View;
-            this.searchLookUpEdit14.Size = new System.Drawing.Size(490, 20);
-            this.searchLookUpEdit14.StyleController = this.layoutControl1;
-            this.searchLookUpEdit14.TabIndex = 15;
+            this.slkupCtaSobranteInventario.Properties.View = this.searchLookUpEdit14View;
+            this.slkupCtaSobranteInventario.Size = new System.Drawing.Size(490, 20);
+            this.slkupCtaSobranteInventario.StyleController = this.layoutControl1;
+            this.slkupCtaSobranteInventario.TabIndex = 15;
             // 
             // searchLookUpEdit14View
             // 
@@ -736,17 +736,17 @@
             this.searchLookUpEdit14View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit14View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit13
+            // slkupCtaFaltanteInventario
             // 
-            this.searchLookUpEdit13.Location = new System.Drawing.Point(410, 366);
-            this.searchLookUpEdit13.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit13.Name = "searchLookUpEdit13";
-            this.searchLookUpEdit13.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaFaltanteInventario.Location = new System.Drawing.Point(410, 366);
+            this.slkupCtaFaltanteInventario.MenuManager = this.ribbonControl;
+            this.slkupCtaFaltanteInventario.Name = "slkupCtaFaltanteInventario";
+            this.slkupCtaFaltanteInventario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit13.Properties.View = this.searchLookUpEdit13View;
-            this.searchLookUpEdit13.Size = new System.Drawing.Size(490, 20);
-            this.searchLookUpEdit13.StyleController = this.layoutControl1;
-            this.searchLookUpEdit13.TabIndex = 14;
+            this.slkupCtaFaltanteInventario.Properties.View = this.searchLookUpEdit13View;
+            this.slkupCtaFaltanteInventario.Size = new System.Drawing.Size(490, 20);
+            this.slkupCtaFaltanteInventario.StyleController = this.layoutControl1;
+            this.slkupCtaFaltanteInventario.TabIndex = 14;
             // 
             // searchLookUpEdit13View
             // 
@@ -755,17 +755,17 @@
             this.searchLookUpEdit13View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit13View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit12
+            // slkupCtaVariacionCosto
             // 
-            this.searchLookUpEdit12.Location = new System.Drawing.Point(410, 342);
-            this.searchLookUpEdit12.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit12.Name = "searchLookUpEdit12";
-            this.searchLookUpEdit12.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaVariacionCosto.Location = new System.Drawing.Point(410, 342);
+            this.slkupCtaVariacionCosto.MenuManager = this.ribbonControl;
+            this.slkupCtaVariacionCosto.Name = "slkupCtaVariacionCosto";
+            this.slkupCtaVariacionCosto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit12.Properties.View = this.searchLookUpEdit12View;
-            this.searchLookUpEdit12.Size = new System.Drawing.Size(490, 20);
-            this.searchLookUpEdit12.StyleController = this.layoutControl1;
-            this.searchLookUpEdit12.TabIndex = 13;
+            this.slkupCtaVariacionCosto.Properties.View = this.searchLookUpEdit12View;
+            this.slkupCtaVariacionCosto.Size = new System.Drawing.Size(490, 20);
+            this.slkupCtaVariacionCosto.StyleController = this.layoutControl1;
+            this.slkupCtaVariacionCosto.TabIndex = 13;
             // 
             // searchLookUpEdit12View
             // 
@@ -774,17 +774,17 @@
             this.searchLookUpEdit12View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit12View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit11
+            // slkupCtaInventario
             // 
-            this.searchLookUpEdit11.Location = new System.Drawing.Point(410, 318);
-            this.searchLookUpEdit11.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit11.Name = "searchLookUpEdit11";
-            this.searchLookUpEdit11.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtaInventario.Location = new System.Drawing.Point(410, 318);
+            this.slkupCtaInventario.MenuManager = this.ribbonControl;
+            this.slkupCtaInventario.Name = "slkupCtaInventario";
+            this.slkupCtaInventario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit11.Properties.View = this.searchLookUpEdit11View;
-            this.searchLookUpEdit11.Size = new System.Drawing.Size(490, 20);
-            this.searchLookUpEdit11.StyleController = this.layoutControl1;
-            this.searchLookUpEdit11.TabIndex = 12;
+            this.slkupCtaInventario.Properties.View = this.searchLookUpEdit11View;
+            this.slkupCtaInventario.Size = new System.Drawing.Size(490, 20);
+            this.slkupCtaInventario.StyleController = this.layoutControl1;
+            this.slkupCtaInventario.TabIndex = 12;
             // 
             // searchLookUpEdit11View
             // 
@@ -793,17 +793,17 @@
             this.searchLookUpEdit11View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit11View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit5
+            // slkupCtrVencimiento
             // 
-            this.searchLookUpEdit5.Location = new System.Drawing.Point(139, 414);
-            this.searchLookUpEdit5.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit5.Name = "searchLookUpEdit5";
-            this.searchLookUpEdit5.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrVencimiento.Location = new System.Drawing.Point(139, 414);
+            this.slkupCtrVencimiento.MenuManager = this.ribbonControl;
+            this.slkupCtrVencimiento.Name = "slkupCtrVencimiento";
+            this.slkupCtrVencimiento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit5.Properties.View = this.searchLookUpEdit5View;
-            this.searchLookUpEdit5.Size = new System.Drawing.Size(267, 20);
-            this.searchLookUpEdit5.StyleController = this.layoutControl1;
-            this.searchLookUpEdit5.TabIndex = 11;
+            this.slkupCtrVencimiento.Properties.View = this.searchLookUpEdit5View;
+            this.slkupCtrVencimiento.Size = new System.Drawing.Size(267, 20);
+            this.slkupCtrVencimiento.StyleController = this.layoutControl1;
+            this.slkupCtrVencimiento.TabIndex = 11;
             // 
             // searchLookUpEdit5View
             // 
@@ -831,17 +831,17 @@
             this.searchLookUpEdit4View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit4View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit3
+            // slkupCtrFaltanteInv
             // 
-            this.searchLookUpEdit3.Location = new System.Drawing.Point(139, 366);
-            this.searchLookUpEdit3.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit3.Name = "searchLookUpEdit3";
-            this.searchLookUpEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrFaltanteInv.Location = new System.Drawing.Point(139, 366);
+            this.slkupCtrFaltanteInv.MenuManager = this.ribbonControl;
+            this.slkupCtrFaltanteInv.Name = "slkupCtrFaltanteInv";
+            this.slkupCtrFaltanteInv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit3.Properties.View = this.searchLookUpEdit3View;
-            this.searchLookUpEdit3.Size = new System.Drawing.Size(267, 20);
-            this.searchLookUpEdit3.StyleController = this.layoutControl1;
-            this.searchLookUpEdit3.TabIndex = 9;
+            this.slkupCtrFaltanteInv.Properties.View = this.searchLookUpEdit3View;
+            this.slkupCtrFaltanteInv.Size = new System.Drawing.Size(267, 20);
+            this.slkupCtrFaltanteInv.StyleController = this.layoutControl1;
+            this.slkupCtrFaltanteInv.TabIndex = 9;
             // 
             // searchLookUpEdit3View
             // 
@@ -850,17 +850,17 @@
             this.searchLookUpEdit3View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit3View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit2
+            // slkupCtrVariacionCosto
             // 
-            this.searchLookUpEdit2.Location = new System.Drawing.Point(139, 342);
-            this.searchLookUpEdit2.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit2.Name = "searchLookUpEdit2";
-            this.searchLookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrVariacionCosto.Location = new System.Drawing.Point(139, 342);
+            this.slkupCtrVariacionCosto.MenuManager = this.ribbonControl;
+            this.slkupCtrVariacionCosto.Name = "slkupCtrVariacionCosto";
+            this.slkupCtrVariacionCosto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit2.Properties.View = this.searchLookUpEdit2View;
-            this.searchLookUpEdit2.Size = new System.Drawing.Size(267, 20);
-            this.searchLookUpEdit2.StyleController = this.layoutControl1;
-            this.searchLookUpEdit2.TabIndex = 8;
+            this.slkupCtrVariacionCosto.Properties.View = this.searchLookUpEdit2View;
+            this.slkupCtrVariacionCosto.Size = new System.Drawing.Size(267, 20);
+            this.slkupCtrVariacionCosto.StyleController = this.layoutControl1;
+            this.slkupCtrVariacionCosto.TabIndex = 8;
             // 
             // searchLookUpEdit2View
             // 
@@ -869,17 +869,17 @@
             this.searchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit1
+            // slkupCtrInventario
             // 
-            this.searchLookUpEdit1.Location = new System.Drawing.Point(139, 318);
-            this.searchLookUpEdit1.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit1.Name = "searchLookUpEdit1";
-            this.searchLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrInventario.Location = new System.Drawing.Point(139, 318);
+            this.slkupCtrInventario.MenuManager = this.ribbonControl;
+            this.slkupCtrInventario.Name = "slkupCtrInventario";
+            this.slkupCtrInventario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit1.Properties.View = this.searchLookUpEdit1View;
-            this.searchLookUpEdit1.Size = new System.Drawing.Size(267, 20);
-            this.searchLookUpEdit1.StyleController = this.layoutControl1;
-            this.searchLookUpEdit1.TabIndex = 7;
+            this.slkupCtrInventario.Properties.View = this.searchLookUpEdit1View;
+            this.slkupCtrInventario.Size = new System.Drawing.Size(267, 20);
+            this.slkupCtrInventario.StyleController = this.layoutControl1;
+            this.slkupCtrInventario.TabIndex = 7;
             // 
             // searchLookUpEdit1View
             // 
@@ -888,51 +888,51 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
-            // textEdit2
+            // txtIdCuenta
             // 
-            this.textEdit2.Location = new System.Drawing.Point(127, 236);
-            this.textEdit2.MenuManager = this.ribbonControl;
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(785, 20);
-            this.textEdit2.StyleController = this.layoutControl1;
-            this.textEdit2.TabIndex = 6;
+            this.txtIdCuenta.Location = new System.Drawing.Point(127, 236);
+            this.txtIdCuenta.MenuManager = this.ribbonControl;
+            this.txtIdCuenta.Name = "txtIdCuenta";
+            this.txtIdCuenta.Size = new System.Drawing.Size(785, 20);
+            this.txtIdCuenta.StyleController = this.layoutControl1;
+            this.txtIdCuenta.TabIndex = 6;
             // 
-            // textEdit1
+            // txtDescr
             // 
-            this.textEdit1.Location = new System.Drawing.Point(127, 260);
-            this.textEdit1.MenuManager = this.ribbonControl;
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(785, 20);
-            this.textEdit1.StyleController = this.layoutControl1;
-            this.textEdit1.TabIndex = 5;
+            this.txtDescr.Location = new System.Drawing.Point(127, 260);
+            this.txtDescr.MenuManager = this.ribbonControl;
+            this.txtDescr.Name = "txtDescr";
+            this.txtDescr.Size = new System.Drawing.Size(785, 20);
+            this.txtDescr.StyleController = this.layoutControl1;
+            this.txtDescr.TabIndex = 5;
             // 
-            // gridControl1
+            // dtgDetalle
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 32);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.MenuManager = this.ribbonControl;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(912, 170);
-            this.gridControl1.TabIndex = 4;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dtgDetalle.Location = new System.Drawing.Point(12, 32);
+            this.dtgDetalle.MainView = this.gridView1;
+            this.dtgDetalle.MenuManager = this.ribbonControl;
+            this.dtgDetalle.Name = "dtgDetalle";
+            this.dtgDetalle.Size = new System.Drawing.Size(912, 170);
+            this.dtgDetalle.TabIndex = 4;
+            this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GridControl = this.dtgDetalle;
             this.gridView1.Name = "gridView1";
             // 
-            // searchLookUpEdit8
+            // slkupCtrVentas
             // 
-            this.searchLookUpEdit8.Location = new System.Drawing.Point(139, 318);
-            this.searchLookUpEdit8.MenuManager = this.ribbonControl1;
-            this.searchLookUpEdit8.Name = "searchLookUpEdit8";
-            this.searchLookUpEdit8.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrVentas.Location = new System.Drawing.Point(139, 318);
+            this.slkupCtrVentas.MenuManager = this.ribbonControl1;
+            this.slkupCtrVentas.Name = "slkupCtrVentas";
+            this.slkupCtrVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit8.Properties.View = this.gridView4;
-            this.searchLookUpEdit8.Size = new System.Drawing.Size(148, 20);
-            this.searchLookUpEdit8.StyleController = this.layoutControl1;
-            this.searchLookUpEdit8.TabIndex = 7;
+            this.slkupCtrVentas.Properties.View = this.gridView4;
+            this.slkupCtrVentas.Size = new System.Drawing.Size(148, 20);
+            this.slkupCtrVentas.StyleController = this.layoutControl1;
+            this.slkupCtrVentas.TabIndex = 7;
             // 
             // ribbonControl1
             // 
@@ -1043,17 +1043,17 @@
             this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView4.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit7
+            // slkuCtrDevVentas
             // 
-            this.searchLookUpEdit7.Location = new System.Drawing.Point(139, 342);
-            this.searchLookUpEdit7.MenuManager = this.ribbonControl1;
-            this.searchLookUpEdit7.Name = "searchLookUpEdit7";
-            this.searchLookUpEdit7.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkuCtrDevVentas.Location = new System.Drawing.Point(139, 342);
+            this.slkuCtrDevVentas.MenuManager = this.ribbonControl1;
+            this.slkuCtrDevVentas.Name = "slkuCtrDevVentas";
+            this.slkuCtrDevVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit7.Properties.View = this.gridView3;
-            this.searchLookUpEdit7.Size = new System.Drawing.Size(148, 20);
-            this.searchLookUpEdit7.StyleController = this.layoutControl1;
-            this.searchLookUpEdit7.TabIndex = 8;
+            this.slkuCtrDevVentas.Properties.View = this.gridView3;
+            this.slkuCtrDevVentas.Size = new System.Drawing.Size(148, 20);
+            this.slkuCtrDevVentas.StyleController = this.layoutControl1;
+            this.slkuCtrDevVentas.TabIndex = 8;
             // 
             // gridView3
             // 
@@ -1062,17 +1062,17 @@
             this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView3.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit6
+            // slkupCtrDescVentas
             // 
-            this.searchLookUpEdit6.Location = new System.Drawing.Point(139, 366);
-            this.searchLookUpEdit6.MenuManager = this.ribbonControl1;
-            this.searchLookUpEdit6.Name = "searchLookUpEdit6";
-            this.searchLookUpEdit6.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrDescVentas.Location = new System.Drawing.Point(139, 366);
+            this.slkupCtrDescVentas.MenuManager = this.ribbonControl1;
+            this.slkupCtrDescVentas.Name = "slkupCtrDescVentas";
+            this.slkupCtrDescVentas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit6.Properties.View = this.gridView2;
-            this.searchLookUpEdit6.Size = new System.Drawing.Size(148, 20);
-            this.searchLookUpEdit6.StyleController = this.layoutControl1;
-            this.searchLookUpEdit6.TabIndex = 9;
+            this.slkupCtrDescVentas.Properties.View = this.gridView2;
+            this.slkupCtrDescVentas.Size = new System.Drawing.Size(148, 20);
+            this.slkupCtrDescVentas.StyleController = this.layoutControl1;
+            this.slkupCtrDescVentas.TabIndex = 9;
             // 
             // gridView2
             // 
@@ -1081,17 +1081,17 @@
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit10
+            // slkupCtrCostoVenta
             // 
-            this.searchLookUpEdit10.Location = new System.Drawing.Point(139, 390);
-            this.searchLookUpEdit10.MenuManager = this.ribbonControl1;
-            this.searchLookUpEdit10.Name = "searchLookUpEdit10";
-            this.searchLookUpEdit10.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrCostoVenta.Location = new System.Drawing.Point(139, 390);
+            this.slkupCtrCostoVenta.MenuManager = this.ribbonControl1;
+            this.slkupCtrCostoVenta.Name = "slkupCtrCostoVenta";
+            this.slkupCtrCostoVenta.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit10.Properties.View = this.gridView6;
-            this.searchLookUpEdit10.Size = new System.Drawing.Size(148, 20);
-            this.searchLookUpEdit10.StyleController = this.layoutControl1;
-            this.searchLookUpEdit10.TabIndex = 10;
+            this.slkupCtrCostoVenta.Properties.View = this.gridView6;
+            this.slkupCtrCostoVenta.Size = new System.Drawing.Size(148, 20);
+            this.slkupCtrCostoVenta.StyleController = this.layoutControl1;
+            this.slkupCtrCostoVenta.TabIndex = 10;
             // 
             // gridView6
             // 
@@ -1100,17 +1100,17 @@
             this.gridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView6.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit9
+            // slkupCtrDescPorLinea
             // 
-            this.searchLookUpEdit9.Location = new System.Drawing.Point(139, 414);
-            this.searchLookUpEdit9.MenuManager = this.ribbonControl1;
-            this.searchLookUpEdit9.Name = "searchLookUpEdit9";
-            this.searchLookUpEdit9.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrDescPorLinea.Location = new System.Drawing.Point(139, 414);
+            this.slkupCtrDescPorLinea.MenuManager = this.ribbonControl1;
+            this.slkupCtrDescPorLinea.Name = "slkupCtrDescPorLinea";
+            this.slkupCtrDescPorLinea.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit9.Properties.View = this.gridView5;
-            this.searchLookUpEdit9.Size = new System.Drawing.Size(148, 20);
-            this.searchLookUpEdit9.StyleController = this.layoutControl1;
-            this.searchLookUpEdit9.TabIndex = 11;
+            this.slkupCtrDescPorLinea.Properties.View = this.gridView5;
+            this.slkupCtrDescPorLinea.Size = new System.Drawing.Size(148, 20);
+            this.slkupCtrDescPorLinea.StyleController = this.layoutControl1;
+            this.slkupCtrDescPorLinea.TabIndex = 11;
             // 
             // gridView5
             // 
@@ -1134,7 +1134,7 @@
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.gridControl1;
+            this.layoutControlItem1.Control = this.dtgDetalle;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 20);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(916, 174);
@@ -1157,8 +1157,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 48);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup3;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(892, 166);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2,
@@ -1179,7 +1179,7 @@
             this.layoutControlItem23,
             this.layoutControlItem24,
             this.layoutControlItem29,
-            this.layoutControlItem25,
+            this.s,
             this.layoutControlItem26,
             this.layoutControlItem31,
             this.layoutControlItem32,
@@ -1191,10 +1191,11 @@
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(868, 120);
+            this.layoutControlGroup3.Text = "Venta / Compras";
             // 
             // layoutControlItem9
             // 
-            this.layoutControlItem9.Control = this.searchLookUpEdit8;
+            this.layoutControlItem9.Control = this.slkupCtrVentas;
             this.layoutControlItem9.CustomizationFormText = "layoutControlItem4";
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
@@ -1204,7 +1205,7 @@
             // 
             // layoutControlItem10
             // 
-            this.layoutControlItem10.Control = this.searchLookUpEdit7;
+            this.layoutControlItem10.Control = this.slkuCtrDevVentas;
             this.layoutControlItem10.CustomizationFormText = "layoutControlItem5";
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem10.Name = "layoutControlItem10";
@@ -1214,7 +1215,7 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.searchLookUpEdit6;
+            this.layoutControlItem11.Control = this.slkupCtrDescVentas;
             this.layoutControlItem11.CustomizationFormText = "layoutControlItem6";
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem11.Name = "layoutControlItem11";
@@ -1224,7 +1225,7 @@
             // 
             // layoutControlItem12
             // 
-            this.layoutControlItem12.Control = this.searchLookUpEdit10;
+            this.layoutControlItem12.Control = this.slkupCtrCostoVenta;
             this.layoutControlItem12.CustomizationFormText = "layoutControlItem7";
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem12.Name = "layoutControlItem12";
@@ -1234,7 +1235,7 @@
             // 
             // layoutControlItem13
             // 
-            this.layoutControlItem13.Control = this.searchLookUpEdit9;
+            this.layoutControlItem13.Control = this.slkupCtrDescPorLinea;
             this.layoutControlItem13.CustomizationFormText = "layoutControlItem8";
             this.layoutControlItem13.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem13.Name = "layoutControlItem13";
@@ -1244,7 +1245,7 @@
             // 
             // layoutControlItem19
             // 
-            this.layoutControlItem19.Control = this.searchLookUpEdit16;
+            this.layoutControlItem19.Control = this.slkuCtaVentas;
             this.layoutControlItem19.Location = new System.Drawing.Point(255, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Size = new System.Drawing.Size(189, 24);
@@ -1253,7 +1254,7 @@
             // 
             // layoutControlItem20
             // 
-            this.layoutControlItem20.Control = this.searchLookUpEdit17;
+            this.layoutControlItem20.Control = this.slkuCtaDevVentas;
             this.layoutControlItem20.Location = new System.Drawing.Point(255, 24);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Size = new System.Drawing.Size(189, 24);
@@ -1262,7 +1263,7 @@
             // 
             // layoutControlItem21
             // 
-            this.layoutControlItem21.Control = this.searchLookUpEdit18;
+            this.layoutControlItem21.Control = this.slkupCtaDescVentas;
             this.layoutControlItem21.Location = new System.Drawing.Point(255, 48);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(189, 24);
@@ -1271,7 +1272,7 @@
             // 
             // layoutControlItem22
             // 
-            this.layoutControlItem22.Control = this.searchLookUpEdit19;
+            this.layoutControlItem22.Control = this.slkupCtaCostoVenta;
             this.layoutControlItem22.Location = new System.Drawing.Point(255, 72);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Size = new System.Drawing.Size(189, 24);
@@ -1280,7 +1281,7 @@
             // 
             // layoutControlItem23
             // 
-            this.layoutControlItem23.Control = this.searchLookUpEdit20;
+            this.layoutControlItem23.Control = this.slkupCtaDescPorLinea;
             this.layoutControlItem23.Location = new System.Drawing.Point(255, 96);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Size = new System.Drawing.Size(189, 24);
@@ -1289,7 +1290,7 @@
             // 
             // layoutControlItem24
             // 
-            this.layoutControlItem24.Control = this.searchLookUpEdit21;
+            this.layoutControlItem24.Control = this.slkupCtrDesc;
             this.layoutControlItem24.Location = new System.Drawing.Point(460, 0);
             this.layoutControlItem24.Name = "layoutControlItem24";
             this.layoutControlItem24.Size = new System.Drawing.Size(264, 24);
@@ -1298,25 +1299,25 @@
             // 
             // layoutControlItem29
             // 
-            this.layoutControlItem29.Control = this.searchLookUpEdit26;
+            this.layoutControlItem29.Control = this.slkupCtaDesc;
             this.layoutControlItem29.Location = new System.Drawing.Point(724, 0);
             this.layoutControlItem29.Name = "layoutControlItem29";
             this.layoutControlItem29.Size = new System.Drawing.Size(144, 24);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
-            // layoutControlItem25
+            // s
             // 
-            this.layoutControlItem25.Control = this.searchLookUpEdit22;
-            this.layoutControlItem25.Location = new System.Drawing.Point(460, 24);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(264, 24);
-            this.layoutControlItem25.Text = "Comisión Ventas:";
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(100, 13);
+            this.s.Control = this.slkupCtrComisionVenta;
+            this.s.Location = new System.Drawing.Point(460, 24);
+            this.s.Name = "s";
+            this.s.Size = new System.Drawing.Size(264, 24);
+            this.s.Text = "Comisión Ventas:";
+            this.s.TextSize = new System.Drawing.Size(100, 13);
             // 
             // layoutControlItem26
             // 
-            this.layoutControlItem26.Control = this.searchLookUpEdit23;
+            this.layoutControlItem26.Control = this.slkupCtrComisionCobros;
             this.layoutControlItem26.Location = new System.Drawing.Point(460, 48);
             this.layoutControlItem26.Name = "layoutControlItem26";
             this.layoutControlItem26.Size = new System.Drawing.Size(264, 24);
@@ -1325,7 +1326,7 @@
             // 
             // layoutControlItem31
             // 
-            this.layoutControlItem31.Control = this.searchLookUpEdit28;
+            this.layoutControlItem31.Control = this.slkupCtaComisionVenta;
             this.layoutControlItem31.Location = new System.Drawing.Point(724, 24);
             this.layoutControlItem31.Name = "layoutControlItem31";
             this.layoutControlItem31.Size = new System.Drawing.Size(144, 24);
@@ -1334,7 +1335,7 @@
             // 
             // layoutControlItem32
             // 
-            this.layoutControlItem32.Control = this.searchLookUpEdit29;
+            this.layoutControlItem32.Control = this.slkupCtaComisionCobros;
             this.layoutControlItem32.Location = new System.Drawing.Point(724, 48);
             this.layoutControlItem32.Name = "layoutControlItem32";
             this.layoutControlItem32.Size = new System.Drawing.Size(144, 24);
@@ -1343,7 +1344,7 @@
             // 
             // layoutControlItem27
             // 
-            this.layoutControlItem27.Control = this.searchLookUpEdit24;
+            this.layoutControlItem27.Control = this.slkupCtrCompras;
             this.layoutControlItem27.Location = new System.Drawing.Point(460, 72);
             this.layoutControlItem27.Name = "layoutControlItem27";
             this.layoutControlItem27.Size = new System.Drawing.Size(264, 24);
@@ -1352,7 +1353,7 @@
             // 
             // layoutControlItem33
             // 
-            this.layoutControlItem33.Control = this.searchLookUpEdit30;
+            this.layoutControlItem33.Control = this.slkupCtaCompras;
             this.layoutControlItem33.Location = new System.Drawing.Point(724, 72);
             this.layoutControlItem33.Name = "layoutControlItem33";
             this.layoutControlItem33.Size = new System.Drawing.Size(144, 24);
@@ -1361,7 +1362,7 @@
             // 
             // layoutControlItem28
             // 
-            this.layoutControlItem28.Control = this.searchLookUpEdit25;
+            this.layoutControlItem28.Control = this.slkupCtrDescBonificacion;
             this.layoutControlItem28.Location = new System.Drawing.Point(460, 96);
             this.layoutControlItem28.Name = "layoutControlItem28";
             this.layoutControlItem28.Size = new System.Drawing.Size(264, 24);
@@ -1370,7 +1371,7 @@
             // 
             // layoutControlItem34
             // 
-            this.layoutControlItem34.Control = this.searchLookUpEdit31;
+            this.layoutControlItem34.Control = this.slkupCtaDesBonificacion;
             this.layoutControlItem34.Location = new System.Drawing.Point(724, 96);
             this.layoutControlItem34.Name = "layoutControlItem34";
             this.layoutControlItem34.Size = new System.Drawing.Size(144, 24);
@@ -1391,7 +1392,7 @@
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.layoutControlItem7,
+            this.slkupCtrSobranteInventario,
             this.layoutControlItem8,
             this.layoutControlItem14,
             this.layoutControlItem15,
@@ -1405,7 +1406,7 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.searchLookUpEdit1;
+            this.layoutControlItem4.Control = this.slkupCtrInventario;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(374, 24);
@@ -1414,7 +1415,7 @@
             // 
             // layoutControlItem5
             // 
-            this.layoutControlItem5.Control = this.searchLookUpEdit2;
+            this.layoutControlItem5.Control = this.slkupCtrVariacionCosto;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(374, 24);
@@ -1423,25 +1424,25 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.searchLookUpEdit3;
+            this.layoutControlItem6.Control = this.slkupCtrFaltanteInv;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(374, 24);
             this.layoutControlItem6.Text = "Faltante Inv. Físico:";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(100, 13);
             // 
-            // layoutControlItem7
+            // slkupCtrSobranteInventario
             // 
-            this.layoutControlItem7.Control = this.searchLookUpEdit4;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(374, 24);
-            this.layoutControlItem7.Text = "Sobrante Inv. Físico:";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(100, 13);
+            this.slkupCtrSobranteInventario.Control = this.searchLookUpEdit4;
+            this.slkupCtrSobranteInventario.Location = new System.Drawing.Point(0, 72);
+            this.slkupCtrSobranteInventario.Name = "slkupCtrSobranteInventario";
+            this.slkupCtrSobranteInventario.Size = new System.Drawing.Size(374, 24);
+            this.slkupCtrSobranteInventario.Text = "Sobrante Inv. Físico:";
+            this.slkupCtrSobranteInventario.TextSize = new System.Drawing.Size(100, 13);
             // 
             // layoutControlItem8
             // 
-            this.layoutControlItem8.Control = this.searchLookUpEdit5;
+            this.layoutControlItem8.Control = this.slkupCtrVencimiento;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(374, 24);
@@ -1450,7 +1451,7 @@
             // 
             // layoutControlItem14
             // 
-            this.layoutControlItem14.Control = this.searchLookUpEdit11;
+            this.layoutControlItem14.Control = this.slkupCtaInventario;
             this.layoutControlItem14.Location = new System.Drawing.Point(374, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(494, 24);
@@ -1459,7 +1460,7 @@
             // 
             // layoutControlItem15
             // 
-            this.layoutControlItem15.Control = this.searchLookUpEdit12;
+            this.layoutControlItem15.Control = this.slkupCtaVariacionCosto;
             this.layoutControlItem15.Location = new System.Drawing.Point(374, 24);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Size = new System.Drawing.Size(494, 24);
@@ -1468,7 +1469,7 @@
             // 
             // layoutControlItem16
             // 
-            this.layoutControlItem16.Control = this.searchLookUpEdit13;
+            this.layoutControlItem16.Control = this.slkupCtaFaltanteInventario;
             this.layoutControlItem16.Location = new System.Drawing.Point(374, 48);
             this.layoutControlItem16.Name = "layoutControlItem16";
             this.layoutControlItem16.Size = new System.Drawing.Size(494, 24);
@@ -1477,7 +1478,7 @@
             // 
             // layoutControlItem17
             // 
-            this.layoutControlItem17.Control = this.searchLookUpEdit14;
+            this.layoutControlItem17.Control = this.slkupCtaSobranteInventario;
             this.layoutControlItem17.Location = new System.Drawing.Point(374, 72);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(494, 24);
@@ -1486,7 +1487,7 @@
             // 
             // layoutControlItem18
             // 
-            this.layoutControlItem18.Control = this.searchLookUpEdit15;
+            this.layoutControlItem18.Control = this.slkupCtaVencimiento;
             this.layoutControlItem18.Location = new System.Drawing.Point(374, 96);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(494, 24);
@@ -1495,7 +1496,7 @@
             // 
             // layoutControlItem2
             // 
-            this.layoutControlItem2.Control = this.textEdit1;
+            this.layoutControlItem2.Control = this.txtDescr;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(892, 24);
@@ -1504,7 +1505,7 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.Control = this.textEdit2;
+            this.layoutControlItem3.Control = this.txtIdCuenta;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(892, 24);
@@ -1552,70 +1553,70 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit31.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDesBonificacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit31View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit30.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaCompras.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit30View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit29.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaComisionCobros.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit29View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit28.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaComisionVenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit28View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit26.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDesc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit26View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit25.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDescBonificacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit25View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit24.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrCompras.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit24View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit23.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrComisionCobros.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit23View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit22.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrComisionVenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit22View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit21.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDesc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit21View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit20.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDescPorLinea.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit20View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit19.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaCostoVenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit19View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit18.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDescVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit18View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit17.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkuCtaDevVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit17View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit16.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkuCtaVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit16View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit15.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaVencimiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit15View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit14.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaSobranteInventario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit14View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit13.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaFaltanteInventario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit13View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit12.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaVariacionCosto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit12View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit11.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaInventario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit11View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVencimiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrFaltanteInv.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVariacionCosto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrInventario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIdCuenta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit8.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit7.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkuCtrDevVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit6.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDescVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit10.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrCostoVenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit9.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrDescPorLinea.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1634,7 +1635,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.s)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
@@ -1647,7 +1648,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrSobranteInventario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
@@ -1678,21 +1679,21 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.GridControl dtgDetalle;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit5;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrVencimiento;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit5View;
         private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit4;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit4View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit3;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrFaltanteInv;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit3View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit2;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrVariacionCosto;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit2View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit1;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrInventario;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit txtIdCuenta;
+        private DevExpress.XtraEditors.TextEdit txtDescr;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup1;
@@ -1700,10 +1701,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.LayoutControlItem slkupCtrSobranteInventario;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit8;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrVentas;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
@@ -1716,13 +1717,13 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit7;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkuCtrDevVentas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit6;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrDescVentas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit10;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrCostoVenta;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit9;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrDescPorLinea;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
@@ -1730,25 +1731,25 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit20;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaDescPorLinea;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit20View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit19;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaCostoVenta;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit19View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit18;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaDescVentas;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit18View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit17;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkuCtaDevVentas;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit17View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit16;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkuCtaVentas;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit16View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit15;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaVencimiento;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit15View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit14;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaSobranteInventario;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit14View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit13;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaFaltanteInventario;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit13View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit12;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaVariacionCosto;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit12View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit11;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaInventario;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit11View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
@@ -1760,30 +1761,30 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit25;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrDescBonificacion;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit25View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit24;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrCompras;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit24View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit23;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrComisionCobros;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit23View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit22;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrComisionVenta;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit22View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit21;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrDesc;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit21View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
+        private DevExpress.XtraLayout.LayoutControlItem s;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit31;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaDesBonificacion;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit31View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit30;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaCompras;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit30View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit29;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaComisionCobros;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit29View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit28;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaComisionVenta;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit28View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit26;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtaDesc;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit26View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
