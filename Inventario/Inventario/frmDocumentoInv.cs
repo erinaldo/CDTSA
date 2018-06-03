@@ -34,6 +34,7 @@ namespace CI
         private String Accion = "NEW";
         private int IDPaquete = -1;
         private String AccionDetalle = "";
+        private String Error = "";
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
 
 
@@ -110,14 +111,28 @@ namespace CI
 
 
         public void cargarDocumento(int IDTransaccion) {
-            _dsDocumentoInv = clsDocumentoInvCabecera.GetData(IDTransaccion);
-            _dtDocumentoInv = _dsDocumentoInv.Tables[0];
-            _currentRow = _dtDocumentoInv.Rows[0];
-          
+            try
+            {
+                _dsDocumentoInv = clsDocumentoInvCabecera.GetData(IDTransaccion);
+                if (_dsDocumentoInv.Tables.Count > 0 && _dsDocumentoInv.Tables[0].Rows.Count > 0)
+                {
+                    _dtDocumentoInv = _dsDocumentoInv.Tables[0];
+                    _currentRow = _dtDocumentoInv.Rows[0];
+                }
+                else {
+                    this.Error = "El documento que quiere visualizar no existe en la base de datos";
 
-            _dtPaquete = clsPaqueteDAC.GetData(this.IDPaquete, "*", "*", -1, "*", -1).Tables[0];
-            _dsDetalle = clsDocumentoInvDetalle.GetData(IDTransaccion);
-            _dtDetalle = _dsDetalle.Tables[0];
+                    return;
+                }
+
+
+                _dtPaquete = clsPaqueteDAC.GetData(this.IDPaquete, "*", "*", -1, "*", -1).Tables[0];
+                _dsDetalle = clsDocumentoInvDetalle.GetData(IDTransaccion);
+                _dtDetalle = _dsDetalle.Tables[0];
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Error: "  + ex.Message);
+            }
 
 
         }
@@ -521,35 +536,35 @@ namespace CI
             }
         }
 
-        private void frmDocumentoInv_Load(object sender, EventArgs e)
-        {
+        private void CargarLoad() {
             try
             {
                 HabilitarControlesCabecera(false);
                 CargarPrivilegios();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
-                    DataTable stTemp ;
-                    if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR"){
-                        stTemp = clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0];
-                        stTemp.Rows[1].Delete();
-                        stTemp.Rows[0]["Descr"] = "Traslados";
+                DataTable stTemp;
+                if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR")
+                {
+                    stTemp = clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0];
+                    stTemp.Rows[1].Delete();
+                    stTemp.Rows[0]["Descr"] = "Traslados";
 
-                        Util.Util.ConfigLookupEdit(this.slkupTransaccion, stTemp, "Descr", "IDTipoTran");
-                        Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-                    }
-                    else
-                    {
-                        Util.Util.ConfigLookupEdit(this.slkupTransaccion, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
-                        Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-                    }
+                    Util.Util.ConfigLookupEdit(this.slkupTransaccion, stTemp, "Descr", "IDTipoTran");
+                    Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                }
+                else
+                {
+                    Util.Util.ConfigLookupEdit(this.slkupTransaccion, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
+                    Util.Util.ConfigLookupEditSetViewColumns(this.slkupTransaccion, "[{'ColumnCaption':'TipoTran','ColumnField':'IDTipoTran','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+                }
 
-                Util.Util.ConfigLookupEdit(this.slkupBodegaOrigen, clsBodegaDAC.GetData(-1,"*",-1).Tables[0], "Descr", "IDBodega");
+                Util.Util.ConfigLookupEdit(this.slkupBodegaOrigen, clsBodegaDAC.GetData(-1, "*", -1).Tables[0], "Descr", "IDBodega");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodegaOrigen, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 Util.Util.ConfigLookupEdit(this.slkupBodegaDestino, clsBodegaDAC.GetData(-1, "*", -1).Tables[0], "Descr", "IDBodega");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodegaDestino, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-   
-                Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetData(-1, "*","*", -1,-1,-1,-1,-1,-1,"*",-1,-1,-1).Tables[0], "Descr", "IDProducto");
+
+                Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0], "Descr", "IDProducto");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupProducto, "[{'ColumnCaption':'IdProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 Util.Util.SetFormatTextEdit(txtCantidad, Util.Util.FormatType.Numerico);
@@ -565,15 +580,15 @@ namespace CI
                     //Cargar  datos del Paquete
 
                     HabilitarControlesCabecera(true);
-                                     
+
                     this.ValidateChildren();
                     this.txtReferencia.Focus();
                 }
                 else if (Accion == "Edit")
                 {
-                    
+
                     HabilitarControlesCabecera(true);
-                    
+
                     PopulateGrid(false);
                     AplicarPrivilegios();
                     this.txtReferencia.Focus();
@@ -582,9 +597,9 @@ namespace CI
                 }
                 else
                 {
-                    
+
                     Accion = "View";
-                    
+
                     PopulateGrid(false);
                     HabilitarControlesCabecera(false);
                     LayoutDetalleDocumento.CustomHeaderButtons["Agregar"].Properties.Enabled = false;
@@ -595,18 +610,29 @@ namespace CI
 
                 }
 
-               // HabilitarControlesDetalle(false);                    
+                // HabilitarControlesDetalle(false);                    
                 //if (_Estado == "PndtGuardar")
                 //{
                 //    btnEditar_ItemClick(this, null);
                 //    this.btnCancelar.Enabled = false;
                 //}
                 AplicarPrivilegios();
-                
+
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void frmDocumentoInv_Load(object sender, EventArgs e)
+        {
+            if (this.Error != "") {
+                MessageBox.Show(this.Error);
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                this.Close();
+            }
+            CargarLoad();
         }
 
 
@@ -872,6 +898,7 @@ namespace CI
         private void btnAddDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             InicializaNuevoElemento();
+            CargarLoad();
            
         }
 

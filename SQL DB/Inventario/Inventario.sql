@@ -58,7 +58,7 @@ CREATE  TABLE [dbo].[globalImpuesto](
 
 GO
 
-CREATE    TABLE  [dbo].[invProducto](
+CREATE     TABLE  [dbo].[invProducto](
 	[IDProducto] [bigint] IDENTITY(1,1) NOT NULL,
 	[Descr] [nvarchar](250) NOT NULL,
 	[Alias] [nvarchar](20) NULL,
@@ -77,7 +77,7 @@ CREATE    TABLE  [dbo].[invProducto](
 	[Clasif4] [int] NOT NULL DEFAULT 4,
 	[Clasif5] [int] NOT NULL DEFAULT 5,
 	[Clasif6] [int] NOT NULL DEFAULT 6,
-	[IDCuentaProducto] [int] NOT NULL ,
+	[IDCuentaContable] [BigInt] NOT NULL ,
 	[CodigoBarra] [nvarchar](50) NULL,
 	[IDUnidad] [int] NOT NULL,
 	[FactorEmpaque] [decimal](28, 4) NULL DEFAULT 1,
@@ -147,8 +147,8 @@ GO
 ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoclas6]
 GO
 
-ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoCuenta] FOREIGN KEY([IDCuentaProducto])
-REFERENCES [dbo].[cntCuenta] ([IDCuenta])
+ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoCuentaContable] FOREIGN KEY([IDCuentaContable])
+REFERENCES [dbo].[invCuentaContable] ([IDCuenta])
 GO
 
 ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoCuenta]
@@ -170,7 +170,46 @@ ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProducto_TipoImpuesto]
 GO
 
 
+CREATE  TABLE [dbo].[invCuentaContable](
+	[IDCuenta] [bigint] NOT NULL,
+	[Descr][nvarchar](250)  NOT NULL,
+	[CtrInventario][int],
+	[CtaInventario][int],
+	[CtrVenta] [int], 
+	[CtaVenta] [int], 
+	[CtrCompra] [int], 
+	[CtaCompra][int],
+	[CtrDescVenta] [int],    
+	[CtaDescVenta] [int], 
+    [CtrCostoVenta] [int],     
+    [CtaCostoVenta] [int], 
+    [CtrComisionVenta] [int], 
+    [CtaComisionVenta] [int], 
+    [CtrComisionCobro] [int], 
+    [CtaComisionCobro] [int], 
+    [CtrDescrLinea] [int],
+    [CtaDescLinea] [int],  
+    [CtrCostoDesc] [int], 
+    [CtaCostoDesc] [int], 
+    [CtrSobranteInvFisico] [int], 
+    [CtaSobranteInvFisico] [int], 
+    [CtrFaltanteInvFisico] [int], 
+    [CtaFaltanteInvFisico] [int], 
+    [CtrVariacionCosto] [int],   
+    [CtaVariacionCosto] [int],  
+    [CtrVencimiento] [int], 
+    [CtaVencimiento] [int], 
+    [CtrDescBonificacion] [int], 
+    [CtaDescBonificacion] [int], 
+    [CtrDevVentas] [int], 
+    [CtaDevVentas] [int]
+ CONSTRAINT [pkinvCuentaContable] PRIMARY KEY CLUSTERED 
+(
+	[IDCuenta] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
+GO
 
 
 CREATE TABLE [dbo].[invBodega](
@@ -1391,5 +1430,41 @@ SELECT  IDLote ,
         FechaIngreso  FROM dbo.invLote WHERE (IDLote = @IDLote OR @IDLote =-1) AND (IDProducto = @IDProducto OR @IDProducto =-1)  AND (LoteInterno LIKE '%'+ @LoteInterno+'%' OR @LoteInterno ='*') AND (LoteProveedor LIKE '%'+ @LoteProveedor+'%' OR @LoteProveedor ='*')  
 
 GO 
+
+
+CREATE  PROCEDURE dbo.invUpdateCuentaContableInv(@Operacion NVARCHAR(1),@IDCuenta AS INT OUTPUT,@Descr NVARCHAR(250),@CtrInventario AS INT,@CtaInventario AS INT,  @CtrVenta AS INT,
+											@CtaVenta AS INT,@CtrCompra as INT,@CtaCompra AS INT,@CtrDescVenta AS INT,@CtaDescVenta AS INT, @CtrCostoVenta AS INT,@CtaCostoVenta AS INT,@CtrComisionVenta AS INT,
+											@CtaComisionVenta AS INT,@CtrComisionCobro AS INT,@CtaComisionCobro AS INT,@CtrDescLinea AS INT,@CtaDescLinea AS INT,@CtrCostoDesc AS INT,@CtaCostoDesc AS INT,@CtrSobranteInvFisico AS INT,
+											@CtaSobranteInvFisico AS INT,@CtrFaltanteInvFisico AS INT,@CtaFaltanteInvFisico AS INT,@CtrVariacionCosto AS int,@CtaVariacionCosto AS int, @CtrVencimiento AS int, @CtaVencimiento AS int	,
+											@CtrDescBonificacion AS int	,@CtaDescrBonifiacion AS int	,@CtrDevVentas AS int	,@CtaDevSVentas AS int	)
+AS 
+if upper(@Operacion) = 'I'
+BEGIN
+	--Obtener el siguiente consecutivo
+	DECLARE @IDConsecutivo AS BIGINT
+	
+	SET @IDConsecutivo = (
+				SELECT TOP 1 C.IDConsecutivo  FROM dbo.invPaquete A
+				INNER JOIN dbo.globalConsecutivos C ON A.IDConsecutivo = C.IDConsecutivo
+				WHERE A.IDPaquete=@IDPaquete)
+	
+	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Documento OUTPUT
+	
+	
+
+	INSERT INTO dbo.invTransaccion( ModuloOrigen ,IDPaquete,Fecha ,Usuario ,Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado ,IDTraslado  ,CreateDate)
+	VALUES (@ModuloOrigen,@IDPaquete,@Fecha,@Usuario,@Referencia,@Documento,1,NEWID(),@EsTraslado,@IDTraslado,GETDATE())
+	
+	SET @IDTransaccion = @@IDENTITY
+END
+if upper(@Operacion) = 'D'
+BEGIN
+	DELETE FROM dbo.invTransaccionLinea WHERE IDTransaccion =@IDTransaccion
+	DELETE FROM dbo.invTransaccion WHERE IDTransaccion =@IDTransaccion
+END
+IF UPPER(@Operacion)='U'
+BEGIN
+	UPDATE dbo.invTransaccion SET Aplicado=@Aplicado,Fecha=@Fecha,Referencia =@Referencia,Documento=@Documento  WHERE IDTransaccion=@IDTransaccion
+END
 
 
