@@ -187,7 +187,7 @@ CREATE  TABLE [dbo].[invCuentaContable](
     [CtaComisionVenta] [int], 
     [CtrComisionCobro] [int], 
     [CtaComisionCobro] [int], 
-    [CtrDescrLinea] [int],
+    [CtrDescLinea] [int],
     [CtaDescLinea] [int],  
     [CtrCostoDesc] [int], 
     [CtaCostoDesc] [int], 
@@ -1436,7 +1436,7 @@ CREATE  PROCEDURE dbo.invUpdateCuentaContableInv(@Operacion NVARCHAR(1),@IDCuent
 											@CtaVenta AS INT,@CtrCompra as INT,@CtaCompra AS INT,@CtrDescVenta AS INT,@CtaDescVenta AS INT, @CtrCostoVenta AS INT,@CtaCostoVenta AS INT,@CtrComisionVenta AS INT,
 											@CtaComisionVenta AS INT,@CtrComisionCobro AS INT,@CtaComisionCobro AS INT,@CtrDescLinea AS INT,@CtaDescLinea AS INT,@CtrCostoDesc AS INT,@CtaCostoDesc AS INT,@CtrSobranteInvFisico AS INT,
 											@CtaSobranteInvFisico AS INT,@CtrFaltanteInvFisico AS INT,@CtaFaltanteInvFisico AS INT,@CtrVariacionCosto AS int,@CtaVariacionCosto AS int, @CtrVencimiento AS int, @CtaVencimiento AS int	,
-											@CtrDescBonificacion AS int	,@CtaDescrBonifiacion AS int	,@CtrDevVentas AS int	,@CtaDevSVentas AS int	)
+											@CtrDescBonificacion AS int	,@CtaDescBonificacion AS int	,@CtrDevVentas AS int	,@CtaDevVentas AS int	)
 AS 
 if upper(@Operacion) = 'I'
 BEGIN
@@ -1444,27 +1444,90 @@ BEGIN
 	DECLARE @IDConsecutivo AS BIGINT
 	
 	SET @IDConsecutivo = (
-				SELECT TOP 1 C.IDConsecutivo  FROM dbo.invPaquete A
-				INNER JOIN dbo.globalConsecutivos C ON A.IDConsecutivo = C.IDConsecutivo
-				WHERE A.IDPaquete=@IDPaquete)
+				SELECT MAX( IDCuenta)  FROM dbo.invCuentaContable )
 	
-	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Documento OUTPUT
-	
-	
+	SET @IDCuenta = @IDConsecutivo
 
-	INSERT INTO dbo.invTransaccion( ModuloOrigen ,IDPaquete,Fecha ,Usuario ,Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado ,IDTraslado  ,CreateDate)
-	VALUES (@ModuloOrigen,@IDPaquete,@Fecha,@Usuario,@Referencia,@Documento,1,NEWID(),@EsTraslado,@IDTraslado,GETDATE())
+	INSERT INTO dbo.invCuentaContable(IDCuenta ,Descr ,CtrInventario ,CtaInventario ,CtrVenta , CtaVenta ,CtrCompra ,CtaCompra ,
+	          CtrDescVenta ,CtaDescVenta ,CtrCostoVenta ,CtaCostoVenta ,CtrComisionVenta ,CtaComisionVenta ,CtrComisionCobro ,
+	          CtaComisionCobro ,CtrDescLinea ,CtaDescLinea ,CtrCostoDesc ,CtaCostoDesc ,CtrSobranteInvFisico ,CtaSobranteInvFisico ,
+	          CtrFaltanteInvFisico ,CtaFaltanteInvFisico ,CtrVariacionCosto ,CtaVariacionCosto ,CtrVencimiento ,CtaVencimiento ,CtrDescBonificacion ,
+	          CtaDescBonificacion ,CtrDevVentas ,CtaDevVentas)
+	VALUES  ( @IDCuenta , -- IDCuenta - bigint
+	          @Descr , -- Descr - nvarchar(250)
+	          @CtrInventario , -- CtrInventario - int
+	          @CtaInventario , -- CtaInventario - int
+	          @CtrVenta , -- CtrVenta - int
+	          @CtaVenta , -- CtaVenta - int
+	          @CtrCompra , -- CtrCompra - int
+	          @CtaCompra , -- CtaCompra - int
+	          @CtrDescVenta , -- CtrDescVenta - int
+	          @CtaDescVenta , -- CtaDescVenta - int
+	          @CtrCostoVenta , -- CtrCostoVenta - int
+	          @CtaCostoVenta , -- CtaCostoVenta - int
+	          @CtrComisionVenta , -- CtrComisionVenta - int
+	          @CtaComisionVenta , -- CtaComisionVenta - int
+	          @CtrComisionCobro , -- CtrComisionCobro - int
+	          @CtaComisionCobro , -- CtaComisionCobro - int
+	          @CtrDescLinea , -- CtrDescrLinea - int
+	          @CtaDescLinea , -- CtaDescLinea - int
+	          @CtrCostoDesc , -- CtrCostoDesc - int
+	          @CtaCostoDesc , -- CtaCostoDesc - int
+	          @CtrSobranteInvFisico , -- CtrSobranteInvFisico - int
+	          @CtaSobranteInvFisico , -- CtaSobranteInvFisico - int
+	          @CtrFaltanteInvFisico , -- CtrFaltanteInvFisico - int
+	          @CtaFaltanteInvFisico , -- CtaFaltanteInvFisico - int
+	          @CtrVariacionCosto , -- CtrVariacionCosto - int
+	          @CtaVariacionCosto , -- CtaVariacionCosto - int
+	          @CtrVencimiento , -- CtrVencimiento - int
+	          @CtaVencimiento , -- CtaVencimiento - int
+	          @CtrDescBonificacion , -- CtrDescBonificacion - int
+	          @CtaDescBonificacion , -- CtaDescBonificacion - int
+	          @CtrDevVentas , -- CtrDevVentas - int
+	          @CtaDevVentas  -- CtaDevVentas - int
+	        )
 	
-	SET @IDTransaccion = @@IDENTITY
 END
 if upper(@Operacion) = 'D'
-BEGIN
-	DELETE FROM dbo.invTransaccionLinea WHERE IDTransaccion =@IDTransaccion
-	DELETE FROM dbo.invTransaccion WHERE IDTransaccion =@IDTransaccion
+BEGIN	
+	UPDATE dbo.invProducto SET  IDCuentaContable=NULL WHERE IDCuentaContable=@IDCuenta
+	DELETE FROM dbo.invCuentaContable WHERE IDCuenta =@IDCuenta
 END
 IF UPPER(@Operacion)='U'
 BEGIN
-	UPDATE dbo.invTransaccion SET Aplicado=@Aplicado,Fecha=@Fecha,Referencia =@Referencia,Documento=@Documento  WHERE IDTransaccion=@IDTransaccion
+	UPDATE dbo.invCuentaContable SET  
+		Descr =@Descr,
+		CtrInventario = @CtrInventario,
+		CtaInventario = @CtaInventario,
+		CtrVenta = @CtrVenta,
+		CtaVenta = @CtaVenta,
+		CtrCompra = @CtrCompra,
+		CtaCompra = @CtaCompra,
+		CtrDescVenta =@CtrDescVenta,
+		CtaDescVenta=@CtaDescVenta,
+		CtrCostoVenta = @CtrCostoVenta,
+		CtaCostoVenta = @CtaCostoVenta,
+		CtrComisionVenta =@CtrComisionVenta,
+		CtaComisionVenta = @CtaComisionVenta,
+		CtrComisionCobro =@CtrComisionCobro,
+		CtaComisionCobro = @CtaComisionCobro,
+		CtrDescLinea = @CtrDescLinea,
+		CtaDescLinea = @CtaDescLinea,
+		CtrCostoDesc= @CtrCostoDesc,
+		CtaCostoDesc = @CtaCostoDesc,
+		CtrSobranteInvFisico = @CtrSobranteInvFisico,
+		CtaSobranteInvFisico = @CtaSobranteInvFisico,
+		CtrFaltanteInvFisico = @CtrFaltanteInvFisico,
+		CtaFaltanteInvFisico= @CtaFaltanteInvFisico,
+		CtrVariacionCosto = @CtrVariacionCosto,
+		CtaVariacionCosto = @CtaVariacionCosto,
+		CtrVencimiento = @CtrVencimiento,
+		CtaVencimiento = @CtaVencimiento,
+		CtrDescBonificacion = @CtrDescBonificacion,
+		CtaDescBonificacion= @CtaDescBonificacion,
+		CtrDevVentas = @CtrDevVentas,
+		CtaDevVentas = @CtaDevVentas
+	WHERE IDCuenta=@IDCuenta
 END
 
 
