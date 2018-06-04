@@ -1550,6 +1550,7 @@
             this.Name = "frmInvCuentaContable";
             this.Ribbon = this.ribbonControl;
             this.Text = "frmInvCuentaContable";
+            this.Load += new System.EventHandler(this.frmInvCuentaContable_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

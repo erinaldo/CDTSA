@@ -511,6 +511,8 @@ namespace MainMenu
                     nodeConsecutivos.Tag = "frmConsecutivos";
                     TreeListNode nodePaquetes = tl.AppendNode(new object[] { "Paquetes" }, nodeAdministracion.Id, 11, 11, 11);
                     nodePaquetes.Tag = "frmPaquetes";
+                    TreeListNode nodeCuentasContables = tl.AppendNode(new object[] { "Cuentas Contables" }, nodeAdministracion.Id, 11, 11, 11);
+                    nodeCuentasContables.Tag = "frmInvCuentaContable";
                     TreeListNode nodeBodegas = tl.AppendNode(new object[] { "Bodegas" }, nodeAdministracion.Id, 11, 11, 11);
                     nodeBodegas.Tag = "frmBodegas";
                     break;
@@ -707,6 +709,13 @@ namespace MainMenu
                     ofrmPaquete.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmPaquete.Show();
+                    break;
+                case "frmInvCuentaContable":
+                    frmInvCuentaContable ofrmCuentas = new frmInvCuentaContable();
+                    ofrmCuentas.MdiParent = this;
+                    ofrmCuentas.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmCuentas.Show();
                     break;
                 case "frmBodegas":
                     frmBodegas ofrmBodega = new frmBodegas();

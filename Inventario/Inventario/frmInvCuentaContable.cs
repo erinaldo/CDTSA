@@ -196,8 +196,8 @@ namespace CI
             Util.Util.ConfigLookupEdit(this.slkupCtrInventario, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrInventario, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            Util.Util.ConfigLookupEdit(this.slkupCtaSobranteInventario, _dtCentrosCosto, "Descr", "IDCentro");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtaSobranteInventario, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+            Util.Util.ConfigLookupEdit(this.slkupCtrSobranteInventario, _dtCentrosCosto, "Descr", "IDCentro");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrSobranteInventario, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
             Util.Util.ConfigLookupEdit(this.slkupCtrVariacionCosto, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrVariacionCosto, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
@@ -207,6 +207,9 @@ namespace CI
 
             Util.Util.ConfigLookupEdit(this.slkupCtrVentas, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrVentas, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+
+            Util.Util.ConfigLookupEdit(this.slkuCtrDevVentas, _dtCentrosCosto, "Descr", "IDCentro");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkuCtrDevVentas, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
         }
 
@@ -262,36 +265,36 @@ namespace CI
         private void HabilitarControles(bool Activo)
         {
             this.txtDescr.Text = "";
-            this.slkuCtaDevVentas.Enabled = !Activo;
-            this.slkuCtaVentas.Enabled = !Activo;
-            this.slkuCtrDevVentas.Enabled = !Activo;
-            this.slkupCtaComisionCobros.Enabled = !Activo;
-            this.slkupCtaComisionVenta.Enabled = !Activo;
-            this.slkupCtaCompras.Enabled = !Activo;
-            this.slkupCtaCostoVenta.Enabled = !Activo;
-            this.slkupCtaDesBonificacion.Enabled = !Activo;
-            this.slkupCtaDesc.Enabled = !Activo;
-            this.slkupCtaDescPorLinea.Enabled = !Activo;
-            this.slkupCtaDescVentas.Enabled = !Activo;
-            this.slkupCtaFaltanteInventario.Enabled = !Activo;
-            this.slkupCtaInventario.Enabled = !Activo;
-            this.slkupCtaSobranteInventario.Enabled = !Activo;
-            this.slkupCtaVariacionCosto.Enabled = !Activo;
-            this.slkupCtaVencimiento.Enabled = !Activo;
-            this.slkupCtrComisionCobros.Enabled = !Activo;
-            this.slkupCtrComisionVenta.Enabled = !Activo;
-            this.slkupCtrCompras.Enabled = !Activo;
-            this.slkupCtrCostoVenta.Enabled = !Activo;
-            this.slkupCtrDesc.Enabled = !Activo;
-            this.slkupCtrDescBonificacion.Enabled = !Activo;
-            this.slkupCtrDescPorLinea.Enabled = !Activo;
-            this.slkupCtrDescVentas.Enabled = !Activo;
-            this.slkupCtrFaltanteInv.Enabled = !Activo;
-            this.slkupCtrInventario.Enabled = !Activo;
-            this.slkupCtrSobranteInventario.Enabled = !Activo;
-            this.slkupCtrVariacionCosto.Enabled = !Activo;
-            this.slkupCtrVencimiento.Enabled = !Activo;
-            this.slkupCtrVentas.Enabled = !Activo;
+            this.slkuCtaDevVentas.ReadOnly = !Activo;
+            this.slkuCtaVentas.ReadOnly = !Activo;
+            this.slkuCtrDevVentas.ReadOnly = !Activo;
+            this.slkupCtaComisionCobros.ReadOnly = !Activo;
+            this.slkupCtaComisionVenta.ReadOnly = !Activo;
+            this.slkupCtaCompras.ReadOnly = !Activo;
+            this.slkupCtaCostoVenta.ReadOnly = !Activo;
+            this.slkupCtaDesBonificacion.ReadOnly = !Activo;
+            this.slkupCtaDesc.ReadOnly = !Activo;
+            this.slkupCtaDescPorLinea.ReadOnly = !Activo;
+            this.slkupCtaDescVentas.ReadOnly = !Activo;
+            this.slkupCtaFaltanteInventario.ReadOnly = !Activo;
+            this.slkupCtaInventario.ReadOnly = !Activo;
+            this.slkupCtaSobranteInventario.ReadOnly = !Activo;
+            this.slkupCtaVariacionCosto.ReadOnly = !Activo;
+            this.slkupCtaVencimiento.ReadOnly = !Activo;
+            this.slkupCtrComisionCobros.ReadOnly = !Activo;
+            this.slkupCtrComisionVenta.ReadOnly = !Activo;
+            this.slkupCtrCompras.ReadOnly = !Activo;
+            this.slkupCtrCostoVenta.ReadOnly = !Activo;
+            this.slkupCtrDesc.ReadOnly = !Activo;
+            this.slkupCtrDescBonificacion.ReadOnly = !Activo;
+            this.slkupCtrDescPorLinea.ReadOnly = !Activo;
+            this.slkupCtrDescVentas.ReadOnly = !Activo;
+            this.slkupCtrFaltanteInv.ReadOnly = !Activo;
+            this.slkupCtrInventario.ReadOnly = !Activo;
+            this.slkupCtrSobranteInventario.ReadOnly = !Activo;
+            this.slkupCtrVariacionCosto.ReadOnly = !Activo;
+            this.slkupCtrVencimiento.ReadOnly = !Activo;
+            this.slkupCtrVentas.ReadOnly = !Activo;
 
             this.dtgDetalle.Enabled = !Activo;
 
