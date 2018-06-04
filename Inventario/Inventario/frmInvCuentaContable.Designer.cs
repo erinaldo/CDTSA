@@ -83,7 +83,7 @@
             this.searchLookUpEdit11View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.slkupCtrVencimiento = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit5View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.searchLookUpEdit4 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.slkupCtrSobranteInventario = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.slkupCtrFaltanteInv = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -94,7 +94,7 @@
             this.txtIdCuenta = new DevExpress.XtraEditors.TextEdit();
             this.txtDescr = new DevExpress.XtraEditors.TextEdit();
             this.dtgDetalle = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridViewDetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.slkupCtrVentas = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
@@ -120,6 +120,17 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.titles = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -142,17 +153,6 @@
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.slkupCtrSobranteInventario = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -202,7 +202,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit11View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVencimiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrSobranteInventario.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtrFaltanteInv.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3View)).BeginInit();
@@ -213,7 +213,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtIdCuenta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVentas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
@@ -229,6 +229,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.titles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
@@ -251,17 +262,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrSobranteInventario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
@@ -393,7 +393,7 @@
             this.layoutControl1.Controls.Add(this.slkupCtaVariacionCosto);
             this.layoutControl1.Controls.Add(this.slkupCtaInventario);
             this.layoutControl1.Controls.Add(this.slkupCtrVencimiento);
-            this.layoutControl1.Controls.Add(this.searchLookUpEdit4);
+            this.layoutControl1.Controls.Add(this.slkupCtrSobranteInventario);
             this.layoutControl1.Controls.Add(this.slkupCtrFaltanteInv);
             this.layoutControl1.Controls.Add(this.slkupCtrVariacionCosto);
             this.layoutControl1.Controls.Add(this.slkupCtrInventario);
@@ -812,17 +812,17 @@
             this.searchLookUpEdit5View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit5View.OptionsView.ShowGroupPanel = false;
             // 
-            // searchLookUpEdit4
+            // slkupCtrSobranteInventario
             // 
-            this.searchLookUpEdit4.Location = new System.Drawing.Point(139, 390);
-            this.searchLookUpEdit4.MenuManager = this.ribbonControl;
-            this.searchLookUpEdit4.Name = "searchLookUpEdit4";
-            this.searchLookUpEdit4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.slkupCtrSobranteInventario.Location = new System.Drawing.Point(139, 390);
+            this.slkupCtrSobranteInventario.MenuManager = this.ribbonControl;
+            this.slkupCtrSobranteInventario.Name = "slkupCtrSobranteInventario";
+            this.slkupCtrSobranteInventario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit4.Properties.View = this.searchLookUpEdit4View;
-            this.searchLookUpEdit4.Size = new System.Drawing.Size(267, 20);
-            this.searchLookUpEdit4.StyleController = this.layoutControl1;
-            this.searchLookUpEdit4.TabIndex = 10;
+            this.slkupCtrSobranteInventario.Properties.View = this.searchLookUpEdit4View;
+            this.slkupCtrSobranteInventario.Size = new System.Drawing.Size(267, 20);
+            this.slkupCtrSobranteInventario.StyleController = this.layoutControl1;
+            this.slkupCtrSobranteInventario.TabIndex = 10;
             // 
             // searchLookUpEdit4View
             // 
@@ -909,18 +909,18 @@
             // dtgDetalle
             // 
             this.dtgDetalle.Location = new System.Drawing.Point(12, 32);
-            this.dtgDetalle.MainView = this.gridView1;
+            this.dtgDetalle.MainView = this.gridViewDetalle;
             this.dtgDetalle.MenuManager = this.ribbonControl;
             this.dtgDetalle.Name = "dtgDetalle";
             this.dtgDetalle.Size = new System.Drawing.Size(912, 170);
             this.dtgDetalle.TabIndex = 4;
             this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gridViewDetalle});
             // 
-            // gridView1
+            // gridViewDetalle
             // 
-            this.gridView1.GridControl = this.dtgDetalle;
-            this.gridView1.Name = "gridView1";
+            this.gridViewDetalle.GridControl = this.dtgDetalle;
+            this.gridViewDetalle.Name = "gridViewDetalle";
             // 
             // slkupCtrVentas
             // 
@@ -1164,6 +1164,114 @@
             this.layoutControlGroup2,
             this.layoutControlGroup3});
             // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem4,
+            this.layoutControlItem5,
+            this.layoutControlItem6,
+            this.titles,
+            this.layoutControlItem8,
+            this.layoutControlItem14,
+            this.layoutControlItem15,
+            this.layoutControlItem16,
+            this.layoutControlItem17,
+            this.layoutControlItem18});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(868, 120);
+            this.layoutControlGroup2.Text = "General";
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.slkupCtrInventario;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(374, 24);
+            this.layoutControlItem4.Text = "Inventario:";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(100, 13);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.slkupCtrVariacionCosto;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(374, 24);
+            this.layoutControlItem5.Text = "Variación Costo:";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(100, 13);
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.slkupCtrFaltanteInv;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(374, 24);
+            this.layoutControlItem6.Text = "Faltante Inv. Físico:";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(100, 13);
+            // 
+            // titles
+            // 
+            this.titles.Control = this.slkupCtrSobranteInventario;
+            this.titles.Location = new System.Drawing.Point(0, 72);
+            this.titles.Name = "titles";
+            this.titles.Size = new System.Drawing.Size(374, 24);
+            this.titles.Text = "Sobrante Inv. Físico:";
+            this.titles.TextSize = new System.Drawing.Size(100, 13);
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.slkupCtrVencimiento;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(374, 24);
+            this.layoutControlItem8.Text = "Vencimiento:";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(100, 13);
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.slkupCtaInventario;
+            this.layoutControlItem14.Location = new System.Drawing.Point(374, 0);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(494, 24);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem14.TextVisible = false;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.slkupCtaVariacionCosto;
+            this.layoutControlItem15.Location = new System.Drawing.Point(374, 24);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(494, 24);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.slkupCtaFaltanteInventario;
+            this.layoutControlItem16.Location = new System.Drawing.Point(374, 48);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(494, 24);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.slkupCtaSobranteInventario;
+            this.layoutControlItem17.Location = new System.Drawing.Point(374, 72);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(494, 24);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.slkupCtaVencimiento;
+            this.layoutControlItem18.Location = new System.Drawing.Point(374, 96);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(494, 24);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
+            // 
             // layoutControlGroup3
             // 
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1386,114 +1494,6 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(16, 120);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem4,
-            this.layoutControlItem5,
-            this.layoutControlItem6,
-            this.slkupCtrSobranteInventario,
-            this.layoutControlItem8,
-            this.layoutControlItem14,
-            this.layoutControlItem15,
-            this.layoutControlItem16,
-            this.layoutControlItem17,
-            this.layoutControlItem18});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(868, 120);
-            this.layoutControlGroup2.Text = "General";
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.slkupCtrInventario;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(374, 24);
-            this.layoutControlItem4.Text = "Inventario:";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.slkupCtrVariacionCosto;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(374, 24);
-            this.layoutControlItem5.Text = "Variación Costo:";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.slkupCtrFaltanteInv;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(374, 24);
-            this.layoutControlItem6.Text = "Faltante Inv. Físico:";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // slkupCtrSobranteInventario
-            // 
-            this.slkupCtrSobranteInventario.Control = this.searchLookUpEdit4;
-            this.slkupCtrSobranteInventario.Location = new System.Drawing.Point(0, 72);
-            this.slkupCtrSobranteInventario.Name = "slkupCtrSobranteInventario";
-            this.slkupCtrSobranteInventario.Size = new System.Drawing.Size(374, 24);
-            this.slkupCtrSobranteInventario.Text = "Sobrante Inv. Físico:";
-            this.slkupCtrSobranteInventario.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.slkupCtrVencimiento;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 96);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(374, 24);
-            this.layoutControlItem8.Text = "Vencimiento:";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.slkupCtaInventario;
-            this.layoutControlItem14.Location = new System.Drawing.Point(374, 0);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(494, 24);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.slkupCtaVariacionCosto;
-            this.layoutControlItem15.Location = new System.Drawing.Point(374, 24);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(494, 24);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.slkupCtaFaltanteInventario;
-            this.layoutControlItem16.Location = new System.Drawing.Point(374, 48);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(494, 24);
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem16.TextVisible = false;
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.slkupCtaSobranteInventario;
-            this.layoutControlItem17.Location = new System.Drawing.Point(374, 72);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(494, 24);
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem17.TextVisible = false;
-            // 
-            // layoutControlItem18
-            // 
-            this.layoutControlItem18.Control = this.slkupCtaVencimiento;
-            this.layoutControlItem18.Location = new System.Drawing.Point(374, 96);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(494, 24);
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem18.TextVisible = false;
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtDescr;
@@ -1528,7 +1528,7 @@
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Size = new System.Drawing.Size(916, 20);
             this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.emptySpaceItem3.Text = "Listado Centro de Costos";
+            this.emptySpaceItem3.Text = "Listado Cuentas Contables de Inventario";
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(100, 0);
             this.emptySpaceItem3.TextVisible = true;
             // 
@@ -1595,7 +1595,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit11View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVencimiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit5View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrSobranteInventario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit4View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtrFaltanteInv.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit3View)).EndInit();
@@ -1606,7 +1606,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtIdCuenta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescr.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtrVentas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
@@ -1622,6 +1622,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.titles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
@@ -1644,17 +1655,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCtrSobranteInventario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
@@ -1680,11 +1680,11 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl dtgDetalle;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewDetalle;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrVencimiento;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit5View;
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit4;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrSobranteInventario;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit4View;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrFaltanteInv;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit3View;
@@ -1701,7 +1701,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem slkupCtrSobranteInventario;
+        private DevExpress.XtraLayout.LayoutControlItem titles;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCtrVentas;
