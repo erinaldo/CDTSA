@@ -153,6 +153,7 @@
     <Compile Include="DAC\clsGlobalClaseTipoTranDAC.cs" />
     <Compile Include="DAC\clsGlobalConsecutivosDAC.cs" />
     <Compile Include="DAC\clsGlobalTipoTransaccionDAC.cs" />
+    <Compile Include="DAC\clsInvCuentaInventarioDAC.cs" />
     <Compile Include="DAC\clsLoteDAC.cs" />
     <Compile Include="DAC\clsPaqueteDAC.cs" />
     <Compile Include="DAC\clsClasificacionDAC.cs" />

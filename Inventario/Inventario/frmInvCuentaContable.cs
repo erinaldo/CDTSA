@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CI.DAC;
 
 namespace CI
 {
@@ -211,9 +212,9 @@ namespace CI
 
         private void PopulateGrid()
         {
-            _dsCuenta = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1);
+            _dsCuenta = clsInvCuentaInventarioDAC.GetData(-1, "*");
 
-            _dsCuenta = _dsCuenta.Tables[0];
+            _dtCuenta = _dsCuenta.Tables[0];
             this.dtgDetalle.DataSource = null;
             this.dtgDetalle.DataSource = _dtCuenta;
 
@@ -489,8 +490,8 @@ namespace CI
 
                     if (okFlag)
                     {
-#cambiar
-                        CentroCostoDAC.oAdaptador.Update(_dsChanged, "Data");
+
+                        clsInvCuentaInventarioDAC.oAdaptador.Update(_dsChanged, "Data");
                         lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                         Application.DoEvents();
                         isEdition = false;
@@ -547,7 +548,7 @@ namespace CI
                     _dtCuenta.Rows.Add(currentRow);
                     try
                     {
-                        CentroCostoDAC.oAdaptador.Update(_dtCuenta, "Data");
+                        clsInvCuentaInventarioDAC.oAdaptador.Update(_dsCuenta, "Data");
                         _dtCuenta.AcceptChanges();
                         isEdition = false;
                         lblStatus.Caption = "Se ha ingresado un nuevo registro";
@@ -602,7 +603,7 @@ namespace CI
                     try
                     {
 
-                        CentroCostoDAC.oAdaptador.Update(_dsCuenta, "Data");
+                        clsInvCuentaInventarioDAC.oAdaptador.Update(_dsCuenta, "Data");
                         _dsCuenta.AcceptChanges();
 
                         PopulateGrid();
