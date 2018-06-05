@@ -40,7 +40,8 @@ namespace CI.DAC
                 //Paremetros Insert
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDBodega";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.InsertCommand.Parameters["@IDCuenta"].Direction = ParameterDirection.InputOutput;
                 oAdaptador.InsertCommand.Parameters.Add("@Descr", SqlDbType.NVarChar).SourceColumn = "Descr";
                 oAdaptador.InsertCommand.Parameters.Add("@CtrInventario", SqlDbType.Int).SourceColumn = "CtrInventario";
                 oAdaptador.InsertCommand.Parameters.Add("@CtaInventario", SqlDbType.Int).SourceColumn = "CtaInventario";
@@ -63,8 +64,9 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@CtrSobranteInvFisico", SqlDbType.Int).SourceColumn = "CtrSobranteInvFisico";
                 oAdaptador.InsertCommand.Parameters.Add("@CtaSobranteInvFisico", SqlDbType.Int).SourceColumn = "CtaSobranteInvFisico";
                 oAdaptador.InsertCommand.Parameters.Add("@CtrFaltanteInvFisico", SqlDbType.Int).SourceColumn = "CtrFaltanteInvFisico";
-                oAdaptador.InsertCommand.Parameters.Add("@CtaFaltanteInvFisico", SqlDbType.Int).SourceColumn = "@CtaFaltanteInvFisico";
+                oAdaptador.InsertCommand.Parameters.Add("@CtaFaltanteInvFisico", SqlDbType.Int).SourceColumn = "CtaFaltanteInvFisico";
                 oAdaptador.InsertCommand.Parameters.Add("@CtaVariacionCosto", SqlDbType.Int).SourceColumn = "CtaVariacionCosto";
+                oAdaptador.InsertCommand.Parameters.Add("@CtrVariacionCosto", SqlDbType.Int).SourceColumn = "CtrVariacionCosto";
                 oAdaptador.InsertCommand.Parameters.Add("@CtrVencimiento", SqlDbType.Int).SourceColumn = "CtrVencimiento";
                 oAdaptador.InsertCommand.Parameters.Add("@CtaVencimiento", SqlDbType.Int).SourceColumn = "CtaVencimiento";
                 oAdaptador.InsertCommand.Parameters.Add("@CtrDescBonificacion", SqlDbType.Int).SourceColumn = "CtrDescBonificacion";
@@ -77,7 +79,7 @@ namespace CI.DAC
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDBodega";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
                 oAdaptador.UpdateCommand.Parameters.Add("@Descr", SqlDbType.NVarChar).SourceColumn = "Descr";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtrInventario", SqlDbType.Int).SourceColumn = "CtrInventario";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtaInventario", SqlDbType.Int).SourceColumn = "CtaInventario";
@@ -100,8 +102,9 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@CtrSobranteInvFisico", SqlDbType.Int).SourceColumn = "CtrSobranteInvFisico";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtaSobranteInvFisico", SqlDbType.Int).SourceColumn = "CtaSobranteInvFisico";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtrFaltanteInvFisico", SqlDbType.Int).SourceColumn = "CtrFaltanteInvFisico";
-                oAdaptador.UpdateCommand.Parameters.Add("@CtaFaltanteInvFisico", SqlDbType.Int).SourceColumn = "@CtaFaltanteInvFisico";
+                oAdaptador.UpdateCommand.Parameters.Add("@CtaFaltanteInvFisico", SqlDbType.Int).SourceColumn = "CtaFaltanteInvFisico";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtaVariacionCosto", SqlDbType.Int).SourceColumn = "CtaVariacionCosto";
+                oAdaptador.UpdateCommand.Parameters.Add("@CtrVariacionCosto", SqlDbType.Int).SourceColumn = "CtrVariacionCosto";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtrVencimiento", SqlDbType.Int).SourceColumn = "CtrVencimiento";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtaVencimiento", SqlDbType.Int).SourceColumn = "CtaVencimiento";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtrDescBonificacion", SqlDbType.Int).SourceColumn = "CtrDescBonificacion";
@@ -112,7 +115,7 @@ namespace CI.DAC
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDBodega";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
                 oAdaptador.DeleteCommand.Parameters.Add("@Descr", SqlDbType.NVarChar).SourceColumn = "Descr";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtrInventario", SqlDbType.Int).SourceColumn = "CtrInventario";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtaInventario", SqlDbType.Int).SourceColumn = "CtaInventario";
@@ -135,8 +138,9 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@CtrSobranteInvFisico", SqlDbType.Int).SourceColumn = "CtrSobranteInvFisico";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtaSobranteInvFisico", SqlDbType.Int).SourceColumn = "CtaSobranteInvFisico";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtrFaltanteInvFisico", SqlDbType.Int).SourceColumn = "CtrFaltanteInvFisico";
-                oAdaptador.DeleteCommand.Parameters.Add("@CtaFaltanteInvFisico", SqlDbType.Int).SourceColumn = "@CtaFaltanteInvFisico";
+                oAdaptador.DeleteCommand.Parameters.Add("@CtaFaltanteInvFisico", SqlDbType.Int).SourceColumn = "CtaFaltanteInvFisico";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtaVariacionCosto", SqlDbType.Int).SourceColumn = "CtaVariacionCosto";
+                oAdaptador.DeleteCommand.Parameters.Add("@CtrVariacionCosto", SqlDbType.Int).SourceColumn = "CtrVariacionCosto";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtrVencimiento", SqlDbType.Int).SourceColumn = "CtrVencimiento";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtaVencimiento", SqlDbType.Int).SourceColumn = "CtaVencimiento";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtrDescBonificacion", SqlDbType.Int).SourceColumn = "CtrDescBonificacion";

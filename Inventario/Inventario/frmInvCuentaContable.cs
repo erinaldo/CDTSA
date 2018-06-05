@@ -96,11 +96,15 @@ namespace CI
         {
             try
             {
+                
                 HabilitarControles(false);
 
                 Util.Util.SetDefaultBehaviorControls(this.gridViewDetalle, false, this.dtgDetalle, _tituloVentana, this);
 
                 EnlazarEventos();
+
+                _dtCuentasContables = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", "*", -1, 0, 1, 1, -1, -1).Tables[0];
+                _dtCentrosCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1).Tables[0];
 
                 PopulateGrid();
 
@@ -115,9 +119,6 @@ namespace CI
 
         private void PopulateData()
         {
-            //Cargar Todos los controles searklokup edit
-            _dtCuentasContables = CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", "*", -1, 0, 1, 1, -1, -1).Tables[0];
-            _dtCentrosCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1).Tables[0];
 
             //Cuentas contables
             Util.Util.ConfigLookupEdit(this.slkuCtaDevVentas, _dtCuentasContables, "Descr", "IDCuenta");
@@ -175,7 +176,7 @@ namespace CI
             Util.Util.ConfigLookupEdit(this.slkupCtrCompras, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrCompras, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            Util.Util.ConfigLookupEdit(this.slkupCtrCostoVenta, _dtCuentasContables, "Descr", "IDCentro");
+            Util.Util.ConfigLookupEdit(this.slkupCtrCostoVenta, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrCostoVenta, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
             Util.Util.ConfigLookupEdit(this.slkupCtrDesc, _dtCentrosCosto, "Descr", "IDCentro");
@@ -264,7 +265,7 @@ namespace CI
 
         private void HabilitarControles(bool Activo)
         {
-            this.txtDescr.Text = "";
+            
             this.slkuCtaDevVentas.ReadOnly = !Activo;
             this.slkuCtaVentas.ReadOnly = !Activo;
             this.slkuCtrDevVentas.ReadOnly = !Activo;
@@ -321,7 +322,8 @@ namespace CI
 	           
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
-            this.txtDescr.Text = "";
+            this.txtIdCuenta.Text = Row["IDCuenta"].ToString();
+            this.txtDescr.Text = Row["Descr"].ToString();
             this.slkuCtaDevVentas.EditValue = Row["CtaDevVentas"].ToString();
             this.slkuCtaVentas.EditValue = Row["CtaVenta"].ToString();
             this.slkuCtrDevVentas.EditValue = Row["CtrDevVentas"].ToString();
@@ -384,6 +386,7 @@ namespace CI
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            //SetCurrentRow();
             if (currentRow == null)
             {
                 lblStatus.Caption = "Por favor seleccione un elemento de la Lista";
@@ -431,36 +434,36 @@ namespace CI
 
 
                     currentRow["Descr"] = (this.txtDescr.Text == "") ? "0" : this.txtDescr.Text;
-                    currentRow["CtaDevVentas"] =  this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtaVenta"] = this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtrDevVentas"] = this.slkuCtrDevVentas.EditValue;
-                    currentRow["CtaComisionCobro"] = this.slkupCtaComisionCobros.EditValue;
-                    currentRow["CtaComisionVenta"] = this.slkupCtaComisionVenta.EditValue;
-                    currentRow["CtaCompra"] = this.slkupCtaCompras.EditValue;
-                    currentRow["CtaCostoVenta"] = this.slkupCtaCostoVenta.EditValue;
-                    currentRow["CtaDescBonificacion"] = this.slkupCtaDesBonificacion.EditValue;
-                    currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue;
-                    currentRow["CtaDescLinea"] = this.slkupCtaDescPorLinea.EditValue;                    
-                    currentRow["CtaFaltanteInvFisico"] = this.slkupCtaFaltanteInventario.EditValue;
-                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue;
-                    currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue;
-                    currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue;
-                    currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue;
-                    currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue;
-                    currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue;
-                    currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue;
-                    currentRow["CtrCostoVenta"] = this.slkupCtrCostoVenta.EditValue;
-                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue;
-                    currentRow["CtrDescBonificacion"] = this.slkupCtrDescBonificacion.EditValue;
-                    currentRow["CtrDescLinea"] = this.slkupCtrDescPorLinea.EditValue;
-                    currentRow["CtrDescVenta"] = this.slkupCtrDescVentas.EditValue;
-                    currentRow["CtrFaltanteInvFisico"] = this.slkupCtrFaltanteInv.EditValue;
-                    currentRow["CtrInventario"] = this.slkupCtrInventario.EditValue;
-                    currentRow["CtrSobranteInvFisico"] = this.slkupCtrSobranteInventario.EditValue;
-                    currentRow["CtrVariacionCosto"] = this.slkupCtrVariacionCosto.EditValue;
-                    currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue;
-                    currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue;
+                    currentRow["CtaDevVentas"] = (this.slkuCtaDevVentas.EditValue.ToString()=="") ?  DBNull.Value :this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaVenta"] = (this.slkuCtaDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtrDevVentas"] = (this.slkuCtrDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtrDevVentas.EditValue;
+                    currentRow["CtaComisionCobro"] = (this.slkupCtaComisionCobros.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionCobros.EditValue;
+                    currentRow["CtaComisionVenta"] = (this.slkupCtaComisionVenta.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionVenta.EditValue;
+                    currentRow["CtaCompra"] = (this.slkupCtaCompras.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaCompras.EditValue;
+                    currentRow["CtaCostoVenta"] = this.slkupCtaCostoVenta.EditValue.ToString() =="" ? DBNull.Value: this.slkupCtaCostoVenta.EditValue;
+                    currentRow["CtaDescBonificacion"] = this.slkupCtaDesBonificacion.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDesBonificacion.EditValue;
+                    currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue.ToString()  == "" ? DBNull.Value : this.slkupCtaDesc.EditValue;
+                    currentRow["CtaDescLinea"] = this.slkupCtaDescPorLinea.EditValue.ToString() =="" ? DBNull.Value:this.slkupCtaDescPorLinea.EditValue;
+                    currentRow["CtaFaltanteInvFisico"] = this.slkupCtaFaltanteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaFaltanteInventario.EditValue;
+                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDesc.EditValue;
+                    currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaInventario.EditValue;
+                    currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaSobranteInventario.EditValue;
+                    currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
+                    currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionCobros.EditValue;
+                    currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionVenta.EditValue;
+                    currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCompras.EditValue;
+                    currentRow["CtrCostoVenta"] = this.slkupCtrCostoVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCostoVenta.EditValue;
+                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue.ToString() ==""? DBNull.Value:this.slkupCtrDesc.EditValue;
+                    currentRow["CtrDescBonificacion"] = this.slkupCtrDescBonificacion.EditValue.ToString()=="" ? DBNull.Value : this.slkupCtrDescBonificacion.EditValue;
+                    currentRow["CtrDescLinea"] = this.slkupCtrDescPorLinea.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDescPorLinea.EditValue;
+                    currentRow["CtrDescVenta"] = this.slkupCtrDescVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDescVentas.EditValue;
+                    currentRow["CtrFaltanteInvFisico"] = this.slkupCtrFaltanteInv.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrFaltanteInv.EditValue;
+                    currentRow["CtrInventario"] = this.slkupCtrInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrInventario.EditValue;
+                    currentRow["CtrSobranteInvFisico"] = this.slkupCtrSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrSobranteInventario.EditValue;
+                    currentRow["CtrVariacionCosto"] = this.slkupCtrVariacionCosto.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVariacionCosto.EditValue;
+                    currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVencimiento.EditValue;
+                    currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVentas.EditValue;
                     
 
                     currentRow.EndEdit();
@@ -515,39 +518,39 @@ namespace CI
                     //nuevo registro
                     currentRow = _dtCuenta.NewRow();
 
-                    
-                    
+
+                    currentRow["IDCuenta"] = -1; 
                     currentRow["Descr"] = (this.txtDescr.Text == "") ? "0" : this.txtDescr.Text;
-                    currentRow["CtaDevVentas"] =  this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtaVenta"] = this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtrDevVentas"] = this.slkuCtrDevVentas.EditValue;
-                    currentRow["CtaComisionCobro"] = this.slkupCtaComisionCobros.EditValue;
-                    currentRow["CtaComisionVenta"] = this.slkupCtaComisionVenta.EditValue;
-                    currentRow["CtaCompra"] = this.slkupCtaCompras.EditValue;
-                    currentRow["CtaCostoVenta"] = this.slkupCtaCostoVenta.EditValue;
-                    currentRow["CtaDescBonificacion"] = this.slkupCtaDesBonificacion.EditValue;
-                    currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue;
-                    currentRow["CtaDescLinea"] = this.slkupCtaDescPorLinea.EditValue;                    
-                    currentRow["CtaFaltanteInvFisico"] = this.slkupCtaFaltanteInventario.EditValue;
-                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue;
-                    currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue;
-                    currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue;
-                    currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue;
-                    currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue;
-                    currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue;
-                    currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue;
-                    currentRow["CtrCostoVenta"] = this.slkupCtrCostoVenta.EditValue;
-                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue;
-                    currentRow["CtrDescBonificacion"] = this.slkupCtrDescBonificacion.EditValue;
-                    currentRow["CtrDescLinea"] = this.slkupCtrDescPorLinea.EditValue;
-                    currentRow["CtrDescVenta"] = this.slkupCtrDescVentas.EditValue;
-                    currentRow["CtrFaltanteInvFisico"] = this.slkupCtrFaltanteInv.EditValue;
-                    currentRow["CtrInventario"] = this.slkupCtrInventario.EditValue;
-                    currentRow["CtrSobranteInvFisico"] = this.slkupCtrSobranteInventario.EditValue;
-                    currentRow["CtrVariacionCosto"] = this.slkupCtrVariacionCosto.EditValue;
-                    currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue;
-                    currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue;
+                    currentRow["CtaDevVentas"] = (this.slkuCtaDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaVenta"] = (this.slkuCtaDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtrDevVentas"] = (this.slkuCtrDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtrDevVentas.EditValue;
+                    currentRow["CtaComisionCobro"] = (this.slkupCtaComisionCobros.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionCobros.EditValue;
+                    currentRow["CtaComisionVenta"] = (this.slkupCtaComisionVenta.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionVenta.EditValue;
+                    currentRow["CtaCompra"] = (this.slkupCtaCompras.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaCompras.EditValue;
+                    currentRow["CtaCostoVenta"] = this.slkupCtaCostoVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaCostoVenta.EditValue;
+                    currentRow["CtaDescBonificacion"] = this.slkupCtaDesBonificacion.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDesBonificacion.EditValue;
+                    currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDesc.EditValue;
+                    currentRow["CtaDescLinea"] = this.slkupCtaDescPorLinea.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDescPorLinea.EditValue;
+                    currentRow["CtaFaltanteInvFisico"] = this.slkupCtaFaltanteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaFaltanteInventario.EditValue;
+                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue == "" ? DBNull.Value : this.slkupCtrDesc.EditValue;
+                    currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue == "" ? DBNull.Value : this.slkupCtaInventario.EditValue;
+                    currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaSobranteInventario.EditValue;
+                    currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
+                    currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionCobros.EditValue;
+                    currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionVenta.EditValue;
+                    currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCompras.EditValue;
+                    currentRow["CtrCostoVenta"] = this.slkupCtrCostoVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCostoVenta.EditValue;
+                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDesc.EditValue;
+                    currentRow["CtrDescBonificacion"] = this.slkupCtrDescBonificacion.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDescBonificacion.EditValue;
+                    currentRow["CtrDescLinea"] = this.slkupCtrDescPorLinea.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDescPorLinea.EditValue;
+                    currentRow["CtrDescVenta"] = this.slkupCtrDescVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDescVentas.EditValue;
+                    currentRow["CtrFaltanteInvFisico"] = this.slkupCtrFaltanteInv.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrFaltanteInv.EditValue;
+                    currentRow["CtrInventario"] = this.slkupCtrInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrInventario.EditValue;
+                    currentRow["CtrSobranteInvFisico"] = this.slkupCtrSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrSobranteInventario.EditValue;
+                    currentRow["CtrVariacionCosto"] = this.slkupCtrVariacionCosto.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVariacionCosto.EditValue;
+                    currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVencimiento.EditValue;
+                    currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVentas.EditValue;
                     _dtCuenta.Rows.Add(currentRow);
                     try
                     {
