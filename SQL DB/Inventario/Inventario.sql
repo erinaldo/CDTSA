@@ -1432,7 +1432,7 @@ SELECT  IDLote ,
 GO 
 
 
-CREATE  PROCEDURE dbo.invUpdateCuentaContableInv(@Operacion NVARCHAR(1),@IDCuenta AS INT OUTPUT,@Descr NVARCHAR(250),@CtrInventario AS INT,@CtaInventario AS INT,  @CtrVenta AS INT,
+CREATE    PROCEDURE dbo.invUpdateCuentaContableInv(@Operacion NVARCHAR(1),@IDCuenta AS INT OUTPUT,@Descr NVARCHAR(250),@CtrInventario AS INT,@CtaInventario AS INT,  @CtrVenta AS INT,
 											@CtaVenta AS INT,@CtrCompra as INT,@CtaCompra AS INT,@CtrDescVenta AS INT,@CtaDescVenta AS INT, @CtrCostoVenta AS INT,@CtaCostoVenta AS INT,@CtrComisionVenta AS INT,
 											@CtaComisionVenta AS INT,@CtrComisionCobro AS INT,@CtaComisionCobro AS INT,@CtrDescLinea AS INT,@CtaDescLinea AS INT,@CtrCostoDesc AS INT,@CtaCostoDesc AS INT,@CtrSobranteInvFisico AS INT,
 											@CtaSobranteInvFisico AS INT,@CtrFaltanteInvFisico AS INT,@CtaFaltanteInvFisico AS INT,@CtrVariacionCosto AS int,@CtaVariacionCosto AS int, @CtrVencimiento AS int, @CtaVencimiento AS int	,
@@ -1444,7 +1444,7 @@ BEGIN
 	DECLARE @IDConsecutivo AS BIGINT
 	
 	SET @IDConsecutivo = (
-				SELECT MAX( IDCuenta)  FROM dbo.invCuentaContable )
+				SELECT ISNULL(MAX( IDCuenta),0) +1 FROM dbo.invCuentaContable )
 	
 	SET @IDCuenta = @IDConsecutivo
 
@@ -1529,5 +1529,83 @@ BEGIN
 		CtaDevVentas = @CtaDevVentas
 	WHERE IDCuenta=@IDCuenta
 END
+
+
+GO 
+
+CREATE PROCEDURE dbo.invGetCuentaContableInv (@IDCuentaContable AS BIGINT,@Descr AS NVARCHAR(250))
+AS 
+SELECT  IDCuenta ,
+        Descr ,
+        CtrInventario ,
+        CtaInventario ,
+        CtrVenta ,
+        CtaVenta ,
+        CtrCompra ,
+        CtaCompra ,
+        CtrDescVenta ,
+        CtaDescVenta ,
+        CtrCostoVenta ,
+        CtaCostoVenta ,
+        CtrComisionVenta ,
+        CtaComisionVenta ,
+        CtrComisionCobro ,
+        CtaComisionCobro ,
+        CtrDescLinea ,
+        CtaDescLinea ,
+        CtrCostoDesc ,
+        CtaCostoDesc ,
+        CtrSobranteInvFisico ,
+        CtaSobranteInvFisico ,
+        CtrFaltanteInvFisico ,
+        CtaFaltanteInvFisico ,
+        CtrVariacionCosto ,
+        CtaVariacionCosto ,
+        CtrVencimiento ,
+        CtaVencimiento ,
+        CtrDescBonificacion ,
+        CtaDescBonificacion ,
+        CtrDevVentas ,
+        CtaDevVentas  FROM dbo.invCuentaContable WHERE (IDCuenta = @IDCuentaContable OR @IDCuentaContable = -1)
+AND (Descr  LIKE '%' + @Descr + '%' OR  @Descr = '*')
+
+
+GO 
+
+
+
+CREATE   PROCEDURE dbo.invGetExistenciaBodega (@IDBodega AS BIGINT,@IDProducto AS BIGINT,@IDLote AS  BIGINT)
+AS 
+SELECT A.IDBodega,B.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote, L.LoteInterno , L.LoteProveedor,L.FechaVencimiento,L.FechaIngreso,A.Existencia,A.Reservada  FROM dbo.invExistenciaBodega A
+INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
+INNER JOIN dbo.invLote L ON P.IDProducto = L.IDProducto AND A.IDLote=L.IDLote
+INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
+WHERE (A.IDBodega =  @IDBodega OR @IDBodega =-1) AND (A.IDProducto = @IDProducto OR @IDProducto=-1)
+AND (A.IDLote = @IDLote  OR @IDLote=-1)
+
+
+GO
+
+
+CREATE PROCEDURE dbo.invGetExistenciaBodegabyClasificacion (@Bodega AS NVARCHAR(4000), @Producto AS NVARCHAR(250),
+							@Lote AS  NVARCHAR(4000),@Clasif1 AS NVARCHAR(4000),@Clasif2 NVARCHAR(4000), @Clasif3 NVARCHAR(4000),
+							@Clasif4 NVARCHAR(4000), @Clasif5 NVARCHAR(4000), @Clasif6 NVARCHAR(4000))
+AS 
+
+
+SELECT A.IDBodega,B.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote, L.LoteInterno , L.LoteProveedor,L.FechaVencimiento,L.FechaIngreso,A.Existencia,A.Reservada  
+FROM dbo.invExistenciaBodega A
+INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
+INNER JOIN dbo.invLote L ON P.IDProducto = L.IDProducto AND A.IDLote=L.IDLote
+INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
+WHERE (A.IDBodega  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Bodega,'~') )or @Bodega ='*') AND (A.IDProducto IN (SELECT Value FROM [dbo].[ConvertListToTable](@Producto,'~')) OR @Producto='*')
+AND (A.IDLote  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Lote,'~')) OR @Lote='*') AND (P.Clasif1   IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif1,'~')) or @Clasif1='*') 
+AND (P.Clasif2  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif2,'~')) or @Clasif2='*') AND ( P.Clasif3 IN (SELECT Value FROM [dbo].[ConvertListToTable](@Producto,'~')) or @Clasif3='*')
+AND ( P.Clasif3 IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif3,'~')) or @Clasif3='*') AND (P.Clasif4  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif4,'~') ) or @Clasif4='*')
+AND (P.Clasif5  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif5,'~')) or @Clasif5='*')  AND (P.Clasif6 IN (SELECT Value FROM [dbo].[ConvertListToTable](@clasif6,'~')) or @Clasif6='*')
+
+
+GO
+
 
 

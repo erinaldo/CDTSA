@@ -150,6 +150,7 @@
     <Compile Include="DAC\clsBodegaDAC.cs" />
     <Compile Include="DAC\clsDocumentoInvCabecera.cs" />
     <Compile Include="DAC\clsDocumentoInvDetalle.cs" />
+    <Compile Include="DAC\clsExistenciaBodegaDAC.cs" />
     <Compile Include="DAC\clsGlobalClaseTipoTranDAC.cs" />
     <Compile Include="DAC\clsGlobalConsecutivosDAC.cs" />
     <Compile Include="DAC\clsGlobalTipoTransaccionDAC.cs" />

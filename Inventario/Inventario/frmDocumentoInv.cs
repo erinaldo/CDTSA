@@ -303,6 +303,12 @@ namespace CI
                 case "Guardar":
                     if (!ValidaDatosDetalle()) return;
 
+                    //Validar Existencias si la transaccion lo require.
+                    if (_dtPaquete.Rows[0]["Naturaleza"].ToString() == "S")
+                    {
+                        
+                    }
+
                     //Validar si la fecha del asiento contable corresponde a una fecha valida
                 
 
