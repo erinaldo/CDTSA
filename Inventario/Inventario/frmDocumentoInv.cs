@@ -306,7 +306,18 @@ namespace CI
                     //Validar Existencias si la transaccion lo require.
                     if (_dtPaquete.Rows[0]["Naturaleza"].ToString() == "S")
                     {
-                        
+                        DataSet dsExistencias = clsExistenciaBodegaDAC.GetExistenciasBodega(Convert.ToInt32(this.slkupBodegaOrigen.EditValue), Convert.ToInt32(this.slkupProducto.EditValue), Convert.ToInt32(this.slkupLote.EditValue));
+                        if (dsExistencias.Tables.Count > 0 && dsExistencias.Tables[0].Rows.Count > 0)
+                        {
+                            decimal Existencia=Convert.ToDecimal(dsExistencias.Tables[0].Rows[0]["Existencia"]);
+                            decimal Cantidad =Convert.ToDecimal(txtCantidad.Text.Trim());
+
+                            if (Existencia < Cantidad )
+                            {
+                                //Cambiar mostrar popup y agregar al inventari con una sena
+                                MessageBox.Show("Alerta: no hay suficiente inventario para satidfacer ");
+                            }
+                        }
                     }
 
                     //Validar si la fecha del asiento contable corresponde a una fecha valida
