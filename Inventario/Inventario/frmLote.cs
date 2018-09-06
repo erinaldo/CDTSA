@@ -64,7 +64,7 @@ namespace CI
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             this.btnExportar.ItemClick += BtnExportar_ItemClick;
             this.btnRefrescar.ItemClick += btnRefrescar_ItemClick;
-            this.gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            this.gridView2.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
         void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -82,7 +82,7 @@ namespace CI
             };
 
 
-            this.gridView1.ExportToXlsx(FileName, options);
+            this.gridView2.ExportToXlsx(FileName, options);
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             process.StartInfo.FileName = FileName;
             process.StartInfo.Verb = "Open";
@@ -96,11 +96,10 @@ namespace CI
             {
                 HabilitarControles(false);
 
-                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.dtgDetalle, _tituloVentana, this);
-
-                EnlazarEventos();
+                Util.Util.SetDefaultBehaviorControls(this.gridView2, false, this.dtgDetalle, _tituloVentana, this);
 
                 PopulateGrid();
+                EnlazarEventos();
 
                 CargarPrivilegios();
 
@@ -166,10 +165,10 @@ namespace CI
 
         private void SetCurrentRow()
         {
-            int index = (int)this.gridView1.FocusedRowHandle;
+            int index = (int)this.gridView2.FocusedRowHandle;
             if (index > -1)
             {
-                currentRow = gridView1.GetDataRow(index);
+                currentRow = gridView2.GetDataRow(index);
                 UpdateControlsFromCurrentRow(currentRow);
             }
         }
@@ -180,8 +179,8 @@ namespace CI
             this.txtLoteProveedor.Text = Row["LoteProveedor"].ToString();
             this.slkupProducto.EditValue = Row["IDProducto"].ToString();
             this.dtpFechaFabricacion.EditValue = Convert.ToDateTime( Row["FechaFabricacion"]);
-            this.dtpFechaIngreso.EditValue = Convert.ToBoolean(Row["FechaIngreso"]);
-            this.dtpFechaVence.EditValue = Convert.ToBoolean(Row["FechaVencimiento"]);
+            this.dtpFechaIngreso.EditValue = Convert.ToDateTime(Row["FechaIngreso"]);
+            this.dtpFechaVence.EditValue = Convert.ToDateTime(Row["FechaVencimiento"]);
         }
 
 
@@ -338,7 +337,7 @@ namespace CI
                         SetCurrentRow();
                         HabilitarControles(false);
                         AplicarPrivilegios();
-                        ColumnView view = this.gridView1;
+                        ColumnView view = this.gridView2;
                         view.MoveLast();
                     }
                     catch (System.Data.SqlClient.SqlException ex)
@@ -399,7 +398,8 @@ namespace CI
 
         private void txtLote_TextChanged(object sender, EventArgs e)
         {
-            if (this.txtLoteProveedor.EditValue.ToString() == "" || this.txtLoteProveedor.EditValue == null) {
+            if (this.txtLoteProveedor.EditValue == null || this.txtLoteProveedor.EditValue.ToString() == "")
+            {
                 this.txtLoteProveedor.EditValue = this.txtLote.EditValue;
             }
         }

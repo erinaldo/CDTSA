@@ -101,7 +101,7 @@ namespace CI
             _currentRow["Clasif5"] = -1;
             _currentRow["Clasif6"] = -1;
             _currentRow["CodigoBarra"] = "";
-            _currentRow["IDCuentaProducto"] = -1;
+            _currentRow["IDCuentaContable"] = -1;
             _currentRow["IDUnidad"] = -1;
             _currentRow["FactorEmpaque"] = 0;
             _currentRow["TipoImpuesto"] = 0;
@@ -166,7 +166,7 @@ namespace CI
             this.slkupClasif4.EditValue = _currentRow["Clasif4"];
             this.slkupClasif5.EditValue = _currentRow["Clasif5"];
             this.slkupClasif6.EditValue = _currentRow["Clasif6"];
-            this.slkupCuentaArticulo.EditValue = _currentRow["IDCuentaProducto"];
+            this.slkupCuentaArticulo.EditValue = _currentRow["IDCuentaContable"];
             
 
 
@@ -351,7 +351,7 @@ namespace CI
                     _currentRow["Clasif4"] = (this.slkupClasif4.EditValue == null) ? 4 : Convert.ToInt32(this.slkupClasif4.EditValue);
                     _currentRow["Clasif5"] = (this.slkupClasif5.EditValue == null) ? 5 : Convert.ToInt32(this.slkupClasif5.EditValue);
                     _currentRow["Clasif6"] = (this.slkupClasif6.EditValue == null) ? 6: Convert.ToInt32(this.slkupClasif6.EditValue);
-                    _currentRow["IDCuentaProducto"] = Convert.ToInt32(this.slkupCuentaArticulo.EditValue);
+                    _currentRow["IDCuentaContable"] = Convert.ToInt32(this.slkupCuentaArticulo.EditValue);
                     _currentRow["CodigoBarra"] = this.txtCodigoBarra.EditValue;
                     _currentRow["IDUnidad"] = this.slkupUnidadMedida.EditValue;
                     _currentRow["FactorEmpaque"] = this.txtFactorEmpaque.EditValue;
@@ -430,7 +430,7 @@ namespace CI
                     _currentRow["Clasif4"] = (this.slkupClasif4.EditValue == null) ? 4 : Convert.ToInt32(this.slkupClasif4.EditValue);
                     _currentRow["Clasif5"] = (this.slkupClasif5.EditValue == null) ? 5 : Convert.ToInt32(this.slkupClasif5.EditValue);
                     _currentRow["Clasif6"] = (this.slkupClasif6.EditValue == null) ? 6 : Convert.ToInt32(this.slkupClasif6.EditValue);
-                    _currentRow["IDCuentaProducto"] = Convert.ToInt32(this.slkupCuentaArticulo.EditValue);
+                    _currentRow["IDCuentaContable"] = Convert.ToInt32(this.slkupCuentaArticulo.EditValue);
                     _currentRow["CodigoBarra"] = this.txtCodigoBarra.EditValue;
                     _currentRow["IDUnidad"] = this.slkupUnidadMedida.EditValue;
                     _currentRow["FactorEmpaque"] = this.txtFactorEmpaque.EditValue;
@@ -587,7 +587,7 @@ namespace CI
                 Util.Util.ConfigLookupEdit(this.slkupClasif6, clsClasificacionDAC.GetData(-1, 6, "*").Tables[0], "Descr", "IDClasificacion");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupClasif6, "[{'ColumnCaption':'Clasificacion','ColumnField':'IDClasificacion','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-                Util.Util.ConfigLookupEdit(this.slkupCuentaArticulo, CG.CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*","*",-1,-1,-1,-1,-1,-1).Tables[0], "Descr", "IDCuenta");
+                Util.Util.ConfigLookupEdit(this.slkupCuentaArticulo, CI.DAC.clsInvCuentaInventarioDAC.GetData(-1,"*").Tables[0] , "Descr", "IDCuenta");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaArticulo, "[{'ColumnCaption':'IDCuenta','ColumnField':'IDCuenta','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
                 
                 

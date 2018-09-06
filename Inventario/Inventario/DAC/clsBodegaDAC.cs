@@ -104,6 +104,24 @@ namespace CI.DAC
             return DS;
         }
 
+        public static DataSet GetBodegaSplit(string lstBodega)
+        {
+            String strSQL = "dbo.invGetBodegaSplit";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+
+            oCmd.Parameters.Add(new SqlParameter("@lstBodega", lstBodega));
+            
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+            DS.Tables[0].TableName = "Data";
+            return DS;
+        }
+
 
     }
 

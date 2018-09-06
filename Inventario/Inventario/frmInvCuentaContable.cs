@@ -107,7 +107,7 @@ namespace CI
                 _dtCentrosCosto = CentroCostoDAC.GetData(-1, "*", "*", "*", "*", -1).Tables[0];
 
                 PopulateGrid();
-
+                PopulateData();
                 CargarPrivilegios();
 
             }
@@ -222,7 +222,7 @@ namespace CI
             this.dtgDetalle.DataSource = null;
             this.dtgDetalle.DataSource = _dtCuenta;
 
-            PopulateData();
+            
 
         }
 
@@ -265,7 +265,7 @@ namespace CI
 
         private void HabilitarControles(bool Activo)
         {
-            
+            this.txtDescr.ReadOnly = !Activo;
             this.slkuCtaDevVentas.ReadOnly = !Activo;
             this.slkuCtaVentas.ReadOnly = !Activo;
             this.slkuCtrDevVentas.ReadOnly = !Activo;

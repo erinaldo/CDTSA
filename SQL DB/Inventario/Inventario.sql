@@ -889,7 +889,7 @@ VALUES  ( 10 ,N'DEVOLUCIONES SOBRE VENTA (+)' , N'DV' , N'E' , 1 , 8, 1 , 0 , 0 
 GO
 
 CREATE  Procedure  [dbo].[invUpdateProducto] @Operacion nvarchar(1), @IDProducto BIGINT OUTPUT, @Descr nvarchar(250), @Alias nvarchar(20),
-@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT,@IDCuentaProducto AS INT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
+@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT,@IDCuentaContable AS INT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
 @FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @BajaPrecioDistribuidor BIT,
 @BajaPrecioProveedor BIT, @PorcDescuentoAlzaProveedor DECIMAL(28,4), @BonificaFA BIT, @BonificaCOPorCada DECIMAL(28,4),
 @BonificaCOCantidad DECIMAL(28,4), @Activo BIT,@UserInsert NVARCHAR(50),@UserUpdate NVARCHAR(50),@UpdateDate DATETIME
@@ -898,10 +898,10 @@ set nocount on
 
 if upper(@Operacion) = 'I'
 BEGIN
-	INSERT INTO dbo.invProducto( Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,IDCuentaProducto,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
+	INSERT INTO dbo.invProducto( Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,IDCuentaContable,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
 	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
 	          Activo ,UserInsert ,UserUpdate  ,UpdateDate)
-	VALUES (@Descr,@Alias,@Clasif1,@Clasif2,@Clasif3,@Clasif4,@Clasif5,@Clasif6,@IDCuentaProducto,@CodigoBarra,@IDUnidad,@FactorEmpaque,@TipoImpuesto,
+	VALUES (@Descr,@Alias,@Clasif1,@Clasif2,@Clasif3,@Clasif4,@Clasif5,@Clasif6,@IDCuentaContable,@CodigoBarra,@IDUnidad,@FactorEmpaque,@TipoImpuesto,
 		@EsMuestra,@EsControlado,@EsEtico,@BajaPrecioDistribuidor,@BajaPrecioProveedor,@PorcDescuentoAlzaProveedor,@BonificaFA,@BonificaCOPorCada,@BonificaCOCantidad,
 		@Activo,@UserInsert,@UserUpdate,@UpdateDate)
 		
@@ -938,7 +938,7 @@ end
 if upper(@Operacion) = 'U' 
 BEGIN
 	UPDATE dbo.invProducto SET Descr=@Descr, Alias = @Alias,Clasif1=@Clasif1,Clasif2=@Clasif2,Clasif3=@Clasif3,Clasif4=@Clasif4,Clasif5=@Clasif5,Clasif6=@Clasif6,
-	IDCuentaProducto = @IDCuentaProducto,CodigoBarra =@CodigoBarra,IDUnidad=@IDUnidad,FactorEmpaque=@FactorEmpaque,TipoImpuesto=@TipoImpuesto,EsMuestra=@EsMuestra,EsControlado=@EsControlado,
+	IDCuentaContable = @IDCuentaContable,CodigoBarra =@CodigoBarra,IDUnidad=@IDUnidad,FactorEmpaque=@FactorEmpaque,TipoImpuesto=@TipoImpuesto,EsMuestra=@EsMuestra,EsControlado=@EsControlado,
 	EsEtico=@EsEtico,BajaPrecioDistribuidor=@BajaPrecioDistribuidor,BajaPrecioProveedor=@BajaPrecioProveedor,PorcDescuentoAlzaProveedor=@PorcDescuentoAlzaProveedor,
 	BonificaFA=@BonificaFA,BonificaCOPorCada=@BonificaCOPorCada,BonificaCOCantidad=@BonificaCOCantidad,Activo=@Activo,UserUpdate=@UserUpdate,UpdateDate=@UpdateDate
 	WHERE IDProducto=@IDProducto
@@ -950,7 +950,7 @@ GO
 CREATE  PROCEDURE [dbo].[invGetProducto] @IDProducto BIgint	,@Descr AS NVARCHAR(250),@Alias NVARCHAR(20),@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),
 															@EsMuestra INT,@EsControlado INT,@EsEtico INT
 AS 
-	SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra,IDCuentaProducto ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
+	SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra,IDCuentaContable ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
 	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
 	          Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate FROM dbo.invProducto WHERE (IDProducto=@IDProducto OR  @IDProducto=-1)
 	          AND (Clasif1 =@Clasif1 OR @Clasif1=-1) AND (Clasif2 =@Clasif2 OR @Clasif2=-1) AND (Clasif3 =@Clasif3 OR @Clasif3=-1)
@@ -1310,7 +1310,7 @@ SELECT  IDTransaccion ,
 GO
 
 CREATE  PROCEDURE dbo.invGetTransaccionCabeceraByCriterio(@FechaInicio AS DATETIME,@FechaFinal AS DATETIME	, @Referencia AS NVARCHAR(250),
-						@Documento AS NVARCHAR(250),@EsTraslado AS INT,@IDTraslado AS INT,@Usuario AS NVARCHAR(20))
+						@Documento AS NVARCHAR(250),@IDPaquete AS INT,@EsTraslado AS INT,@IDTraslado AS INT,@Usuario AS NVARCHAR(20))
 AS 
 
 set @FechaInicio = CAST(SUBSTRING(CAST(@FechaInicio AS CHAR),1,11) + ' 00:00:00.000' AS DATETIME)
@@ -1330,26 +1330,32 @@ SELECT  IDTransaccion ,
         CreateDate  FROM dbo.invTransaccion 
 WHERE Fecha BETWEEN @FechaInicio AND @FechaFinal AND (Referencia LIKE  '%' + @Referencia +'%' OR @Referencia ='*') AND 
 			(Documento LIKE '%' +@Documento +'%' OR @Documento='*') AND (EsTraslado = @EsTraslado OR  @EsTraslado = -1) AND	
-			((EsTraslado = 1 AND IDTraslado = @IDTraslado ) OR @IDTraslado = -1) AND (Usuario = @Usuario OR @USuario = '*')
+			((EsTraslado = 1 AND IDTraslado = @IDTraslado ) OR @IDTraslado = -1) AND (Usuario = @Usuario OR @USuario = '*') AND 
+			(IDPaquete = @IDPaquete OR @IDPaquete =-1)
 			
+
 GO
 
 CREATE  PROCEDURE dbo.invGetTransaccionInvDetalle (@IDTransaccion AS INT )
 AS 
 
-SELECT  IDTransaccion ,A.IDProducto, P.Descr DescrProducto ,A.IDLote, L.LoteInterno, L.LoteProveedor ,A.IDTipoTran,TT.Descr DescrTipoTran,B.IDBodega IDBodegaOrigen,B.Descr DescrBodegaOrigen ,IDTraslado ,A.Naturaleza ,A.Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,A.Transaccion ,TipoCambio ,Aplicado  
+SELECT  IDTransaccion ,A.IDProducto, P.Descr DescrProducto ,A.IDLote, L.LoteInterno, L.LoteProveedor ,A.IDTipoTran,TT.Descr DescrTipoTran,
+				B.IDBodega IDBodegaOrigen,B.Descr DescrBodegaOrigen ,IDTraslado ,A.Naturaleza ,A.Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,
+				PrecioUntLocal ,PrecioUntDolar ,A.Transaccion ,TipoCambio ,Aplicado, CASE WHEN ISNULL(E.Existencia,0) < A.Cantidad THEN 'E' ELSE 'N' END Estado
 FROM dbo.invTransaccionLinea A 
 INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
 INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
-INNER JOIN dbo.invLote L ON A.IDLote = L.IDLote
+INNER JOIN dbo.invLote L ON A.IDLote = L.IDLote AND  A.IDProducto = L.IDProducto
 INNER JOIN dbo.globalTipoTran TT ON A.IDTipoTran=TT.IDTipoTran
+LEFT  JOIN dbo.invExistenciaBodega E ON a.IDBodega = E.IDBodega AND A.IDProducto=E.IDProducto AND A.IDLote=E.IDLote
  WHERE IDTransaccion  = @IDTransaccion
+
 
 go
 
-CREATE   PROCEDURE dbo.invGetEmptyTransaccionInvDetalle 
+CREATE    PROCEDURE dbo.invGetEmptyTransaccionInvDetalle 
 AS 
-SELECT  IDTransaccion ,A.IDProducto, P.Descr DescrProducto ,A.IDLote, L.LoteInterno,L.LoteProveedor ,A.IDTipoTran,TT.Descr DescrTipoTran ,A.IDBodega IDBodegaOrigen,BO.Descr DescrBodegaOrigen,A.IDBodega IDBodegaDestino,Bo.Descr DescrBodegaDestino ,IDTraslado ,A.Naturaleza ,A.Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,A.Transaccion ,TipoCambio ,Aplicado  
+SELECT  IDTransaccion ,'A' Estado,A.IDProducto, P.Descr DescrProducto ,A.IDLote, L.LoteInterno,L.LoteProveedor ,A.IDTipoTran,TT.Descr DescrTipoTran ,A.IDBodega IDBodegaOrigen,BO.Descr DescrBodegaOrigen,A.IDBodega IDBodegaDestino,Bo.Descr DescrBodegaDestino ,IDTraslado ,A.Naturaleza ,A.Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,A.Transaccion ,TipoCambio ,Aplicado  
 FROM dbo.invTransaccionLinea A 
 INNER JOIN dbo.invProducto P ON	A.IDProducto = P.IDProducto
 INNER JOIN dbo.invBodega BO ON A.IDBodega= BO.IDBodega
@@ -1422,12 +1428,15 @@ GO
 CREATE   PROCEDURE dbo.invGetLote(@IDLote AS INT,@IDProducto AS INT ,@LoteInterno AS NVARCHAR(50),@LoteProveedor AS NVARCHAR(50))
 AS 
 SELECT  IDLote ,
-        IDProducto ,
+        L.IDProducto ,
+        P.Descr DescrProducto,  
         LoteInterno ,
         LoteProveedor ,
         FechaVencimiento ,
         FechaFabricacion ,
-        FechaIngreso  FROM dbo.invLote WHERE (IDLote = @IDLote OR @IDLote =-1) AND (IDProducto = @IDProducto OR @IDProducto =-1)  AND (LoteInterno LIKE '%'+ @LoteInterno+'%' OR @LoteInterno ='*') AND (LoteProveedor LIKE '%'+ @LoteProveedor+'%' OR @LoteProveedor ='*')  
+        FechaIngreso  FROM dbo.invLote L
+       INNER JOIN dbo.invProducto P ON L.IDProducto = P.IDProducto
+        WHERE (IDLote = @IDLote OR @IDLote =-1) AND (L.IDProducto = @IDProducto OR @IDProducto =-1)  AND (LoteInterno LIKE '%'+ @LoteInterno+'%' OR @LoteInterno ='*') AND (LoteProveedor LIKE '%'+ @LoteProveedor+'%' OR @LoteProveedor ='*')  
 
 GO 
 
@@ -1607,5 +1616,65 @@ AND (P.Clasif5  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif5,'~')) 
 
 GO
 
+
+
+CREATE PROCEDURE dbo.invGetClasificacionesSplit(@IDGrupo INT ,@lstClasificaciones NVARCHAR(2000))
+AS 
+/*
+DECLARE @IDGrupo AS INT
+DECLARE @lstClasificaciones  AS NVARCHAR(2000)
+SET @IDGrupo=-1
+SET @lstClasificaciones ='3,5'
+*/
+
+
+SELECT IDClasificacion,Descr
+FROM dbo.invClasificacion A
+WHERE (IDGrupo = @IDGrupo OR @IDGrupo=-1) 
+AND (IDClasificacion IN (SELECT *  FROM dbo.ConvertListToTable(@lstClasificaciones,',')) OR @lstClasificaciones='*')
+AND Activo=1
+
+GO
+
+
+CREATE PROCEDURE dbo.invGetProductoSplit(@lstProducto NVARCHAR(2000))
+AS 
+/*
+DECLARE @lstProducto  AS NVARCHAR(2000)
+SET @lstProducto ='1,2'
+*/
+
+SELECT IDProducto,Descr
+FROM dbo.invProducto A
+WHERE (IDProducto IN (SELECT *  FROM dbo.ConvertListToTable(@lstProducto,',')) OR @lstProducto='*')
+AND Activo=1
+
+GO
+
+
+CREATE PROCEDURE dbo.invGetLoteSplit(@lstProducto NVARCHAR(2000),@lstLote NVARCHAR(2000))
+AS 
+/*
+DECLARE @lstProducto  AS NVARCHAR(2000)
+SET @lstProducto ='1,2'
+*/
+
+SELECT IDLote,LoteProveedor
+FROM dbo.invLote A
+WHERE (IDProducto IN (SELECT *  FROM dbo.ConvertListToTable(@lstProducto,',')) OR @lstProducto='*') AND (IDLote IN (SELECT *  FROM dbo.ConvertListToTable(@lstLote,',')) OR @lstLote='*')
+
+
+GO
+
+CREATE PROCEDURE dbo.invGetBodegaSplit(@lstBodega NVARCHAR(2000))
+AS 
+/*
+DECLARE @lstProducto  AS NVARCHAR(2000)
+SET @lstProducto ='1,2'
+*/
+
+SELECT IDBodega,Descr
+FROM dbo.invBodega A
+WHERE (IDBodega IN (SELECT *  FROM dbo.ConvertListToTable(@lstBodega,',')) OR @lstBodega='*') 
 
 

@@ -28,8 +28,8 @@ namespace CI
         public frmPaquetes()
         {
             InitializeComponent();
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.StartPosition = FormStartPosition.CenterScreen;
+            //this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
+            //this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void CargarPrivilegios()
@@ -388,6 +388,7 @@ namespace CI
             }
         }
 
+    
         
 
     }

@@ -105,5 +105,26 @@ namespace CI.DAC
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }
+
+        public static DataSet GetLoteSplit(String lstProducto,string lstLote)
+        {
+            String strSQL = "dbo.invGetLoteSplit";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+
+            oCmd.Parameters.Add(new SqlParameter("@lstLote", lstLote));
+            oCmd.Parameters.Add(new SqlParameter("@lstProducto", lstProducto));
+            
+
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+            DS.Tables[0].TableName = "Data";
+            return DS;
+        }
     }
 }

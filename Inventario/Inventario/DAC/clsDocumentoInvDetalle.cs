@@ -43,7 +43,7 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@IDProducto", SqlDbType.Int).SourceColumn = "IDProducto";
                 oAdaptador.InsertCommand.Parameters.Add("@IDLote", SqlDbType.Int).SourceColumn = "IDLote";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
-                oAdaptador.InsertCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
+                oAdaptador.InsertCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodegaOrigen";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
                 oAdaptador.InsertCommand.Parameters.Add("@Cantidad", SqlDbType.Decimal).SourceColumn = "Cantidad";
                 oAdaptador.InsertCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUntDolar";
@@ -63,7 +63,7 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@IDProducto", SqlDbType.Int).SourceColumn = "IDProducto";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDLote", SqlDbType.Int).SourceColumn = "IDLote";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodegaOrigen";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
                 oAdaptador.UpdateCommand.Parameters.Add("@Cantidad", SqlDbType.Decimal).SourceColumn = "Cantidad";
                 oAdaptador.UpdateCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUntDolar";
@@ -81,7 +81,7 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@IDProducto", SqlDbType.Int).SourceColumn = "IDProducto";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDLote", SqlDbType.Int).SourceColumn = "IDLote";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipoTran", SqlDbType.Int).SourceColumn = "IDTipoTran";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodegaOrigen";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTraslado", SqlDbType.Int).SourceColumn = "IDTraslado";
                 oAdaptador.DeleteCommand.Parameters.Add("@Cantidad", SqlDbType.Decimal).SourceColumn = "Cantidad";
                 oAdaptador.DeleteCommand.Parameters.Add("@PrecioUnitarioDolar", SqlDbType.Decimal).SourceColumn = "PrecioUntDolar";
@@ -118,7 +118,7 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDTransaccion)
+        public static DataSet GetData(long IDTransaccion)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDTransaccion"].Value = IDTransaccion;

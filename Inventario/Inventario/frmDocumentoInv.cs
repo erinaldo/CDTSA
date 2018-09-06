@@ -12,6 +12,7 @@ using Security;
 using CI.DAC;
 using DevExpress.DataAccess.Sql;
 using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.XtraGrid.Views.Grid;
 
 
 namespace CI
@@ -78,7 +79,7 @@ namespace CI
 
         }
 
-           private void CargarPrivilegios()
+        private void CargarPrivilegios()
         {
             DataSet DS = new DataSet();
             DataTable DT = new DataTable();
@@ -110,7 +111,7 @@ namespace CI
         }
 
 
-        public void cargarDocumento(int IDTransaccion) {
+        public void cargarDocumento(long IDTransaccion) {
             try
             {
                 _dsDocumentoInv = clsDocumentoInvCabecera.GetData(IDTransaccion);
@@ -137,7 +138,7 @@ namespace CI
 
         }
 
-           public void UpdateControlsFromDataRow(DataRow row)
+        public void UpdateControlsFromDataRow(DataRow row)
         {
             //_currentRow = _dtAsiento.NewRow();
             this.txtDocumento.EditValue = _currentRow["Documento"].ToString();
@@ -250,41 +251,52 @@ namespace CI
                         this.slkupTransaccion.EditValue = row["IDTipoTran"];
                         this.slkupProducto.EditValue = row["IDProducto"];
                         this.slkupLote.EditValue = row["IDLote"];
-                        this.slkupBodegaDestino.EditValue = row["IDBodegaDestino"];
+                        this.slkupTransaccion.ShowPopup();
+                        this.slkupTransaccion.ClosePopup();
+                        
+                        //    
                         this.slkupBodegaOrigen.EditValue = row["IDBodegaOrigen"];
                         this.txtCantidad.EditValue = row["Cantidad"];
-                    }
-                    
-                    if (slkupTransaccion.EditValue != null)
-                    {
-                       dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
-                        if (Convert.ToBoolean(dr["EsVenta"]))
+
+
+                        if (slkupTransaccion.EditValue != null)
                         {
-                            this.txtCostoDolar.Enabled = false;
-                            this.txtCostoLocal.Enabled = false;
-                            this.txtPrecioDolar.Enabled = true;
-                            this.txtPrecioLocal.Enabled = true;
-                        }
-                        else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"])>0) || Convert.ToBoolean(dr["EsCompra"]))
-                        {
-                            this.txtCostoDolar.Enabled = true;
-                            this.txtCostoLocal.Enabled = true;
-                            this.txtPrecioDolar.Enabled = false;
-                            this.txtPrecioLocal.Enabled = false;
-                        }
-                        else if (Convert.ToBoolean(dr["EsTraslado"]))
-                        {
-                            this.txtCostoDolar.Enabled = false;
-                            this.txtCostoLocal.Enabled = false;
-                            this.txtPrecioDolar.Enabled = false;
-                            this.txtPrecioLocal.Enabled = false;
-                        }
-                        else
-                        {
-                            this.txtCostoDolar.Enabled = false;
-                            this.txtCostoLocal.Enabled = false;
-                            this.txtPrecioDolar.Enabled = false;
-                            this.txtPrecioLocal.Enabled = false;
+                            dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                            if (Convert.ToBoolean(dr["EsVenta"]))
+                            {
+                                this.txtCostoDolar.Enabled = false;
+                                this.txtCostoLocal.Enabled = false;
+                                this.txtPrecioDolar.Enabled = true;
+                                this.txtPrecioLocal.Enabled = true;
+                                this.txtPrecioDolar.EditValue = row["PrecioUntDolar"];
+                                this.txtPrecioLocal.EditValue = row["PrecioUntLocal"];
+
+
+                            }
+                            else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"]) > 0) || Convert.ToBoolean(dr["EsCompra"]))
+                            {
+                                this.txtCostoDolar.Enabled = true;
+                                this.txtCostoLocal.Enabled = true;
+                                this.txtPrecioDolar.Enabled = false;
+                                this.txtPrecioLocal.Enabled = false;
+                                this.txtCostoLocal.EditValue = row["CostoUntLocal"];
+                                this.txtCostoDolar.EditValue = row["CostoUntDolar"];
+                            }
+                            else if (Convert.ToBoolean(dr["EsTraslado"]))
+                            {
+                                this.slkupBodegaDestino.EditValue = row["IDBodegaDestino"];
+                                this.txtCostoDolar.Enabled = false;
+                                this.txtCostoLocal.Enabled = false;
+                                this.txtPrecioDolar.Enabled = false;
+                                this.txtPrecioLocal.Enabled = false;
+                            }
+                            else
+                            {
+                                this.txtCostoDolar.Enabled = false;
+                                this.txtCostoLocal.Enabled = false;
+                                this.txtPrecioDolar.Enabled = false;
+                                this.txtPrecioLocal.Enabled = false;
+                            }
                         }
                     }
                     break;
@@ -301,22 +313,33 @@ namespace CI
                     LimpiarCamposDetalle();
                     break;
                 case "Guardar":
+                    String sEstado = "";
                     if (!ValidaDatosDetalle()) return;
 
+                    //Traer la transaccion
+                    DataTable dt = clsGlobalTipoTransaccionDAC.Get(Convert.ToInt32(this.slkupTransaccion.EditValue),"*","*","*").Tables[0];
+
                     //Validar Existencias si la transaccion lo require.
-                    if (_dtPaquete.Rows[0]["Naturaleza"].ToString() == "S")
+                    if (dt.Rows[0]["Naturaleza"].ToString() == "S")
                     {
                         DataSet dsExistencias = clsExistenciaBodegaDAC.GetExistenciasBodega(Convert.ToInt32(this.slkupBodegaOrigen.EditValue), Convert.ToInt32(this.slkupProducto.EditValue), Convert.ToInt32(this.slkupLote.EditValue));
                         if (dsExistencias.Tables.Count > 0 && dsExistencias.Tables[0].Rows.Count > 0)
                         {
-                            decimal Existencia=Convert.ToDecimal(dsExistencias.Tables[0].Rows[0]["Existencia"]);
-                            decimal Cantidad =Convert.ToDecimal(txtCantidad.Text.Trim());
+                            decimal Existencia = Convert.ToDecimal(dsExistencias.Tables[0].Rows[0]["Existencia"]);
+                            decimal Cantidad = Convert.ToDecimal(txtCantidad.Text.Trim());
 
-                            if (Existencia < Cantidad )
+                            if (Existencia < Cantidad)
                             {
+                                sEstado = "E";
                                 //Cambiar mostrar popup y agregar al inventari con una sena
-                                MessageBox.Show("Alerta: no hay suficiente inventario para satidfacer ");
+                                MessageBox.Show("Alerta: no hay suficiente inventario para satisfacer ");
                             }
+                        }
+                        else {
+
+                            sEstado = "E";
+                            //Cambiar mostrar popup y agregar al inventari con una sena
+                            MessageBox.Show("Alerta: no hay suficiente inventario para satisfacer ");
                         }
                     }
 
@@ -337,6 +360,7 @@ namespace CI
                         
                         //_dsProducto.Tables[0].Rows.Add(_currentRow);
                         _currentRowDetalle["IDTransaccion"] = -1;
+                        _currentRowDetalle["Estado"] = sEstado;
                         dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
                         _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
                         _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
@@ -422,6 +446,7 @@ namespace CI
                         _currentRowDetalle = _dtDetalle.NewRow();
                         //_currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
                         _currentRowDetalle["IDTransaccion"] = -1;
+                        _currentRowDetalle["Estado"] = sEstado;
                         dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
                         _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
                         _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
@@ -478,6 +503,7 @@ namespace CI
                         
                           
                             AccionDetalle = "View";
+                            sEstado = "";
                             AplicarPrivilegios();
                             LimpiarCamposDetalle();
                         
@@ -539,7 +565,7 @@ namespace CI
         }
 
         private void BotoneriaSuperior() {
-            if (Accion == "New")
+            if (Accion == "New" || Accion=="Edit")
             {
                 this.btnAddDoc.Enabled = false;
                 this.btnCancelDoc.Enabled = true;
@@ -599,6 +625,7 @@ namespace CI
                     //Cargar  datos del Paquete
 
                     HabilitarControlesCabecera(true);
+                    HabilitarControlesDetalle(false);
 
                     this.ValidateChildren();
                     this.txtReferencia.Focus();
@@ -607,6 +634,7 @@ namespace CI
                 {
 
                     HabilitarControlesCabecera(true);
+                    HabilitarControlesDetalle(false);
 
                     PopulateGrid(false);
                     AplicarPrivilegios();
@@ -621,6 +649,7 @@ namespace CI
 
                     PopulateGrid(false);
                     HabilitarControlesCabecera(false);
+                    HabilitarControlesDetalle(false);
                     LayoutDetalleDocumento.CustomHeaderButtons["Agregar"].Properties.Enabled = false;
                     LayoutDetalleDocumento.CustomHeaderButtons["Editar"].Properties.Enabled = false;
                     LayoutDetalleDocumento.CustomHeaderButtons["Eliminar"].Properties.Enabled = false;
@@ -717,7 +746,7 @@ namespace CI
             if (this.slkupProducto.EditValue != null)
             {
                 Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1, Convert.ToInt32(slkupProducto.EditValue), "*", "*").Tables[0], "LoteInterno", "IDLote");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IdLote','width':30},{'ColumnCaption':'Lote','ColumnField':'LoteInterno','width':70}]");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':30},{'ColumnCaption':'Lote','ColumnField':'LoteInterno','width':70}]");
                 this.slkupLote.Enabled = true;
             }
             else {
@@ -770,10 +799,22 @@ namespace CI
             return result;            
         }
 
+        private bool ValidarDatosDetalle() {
+            foreach (DataRow item in _dsDetalle.Tables[0].Rows) {
+                if (item["Estado"].ToString() == "E")
+                {
+                    MessageBox.Show("El documento contiene productos con problemas de existencias");
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void btnSaveDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //Validar  los datos de Cabecera
-            if (ValidasDatosCabecera()) { 
+            if (ValidasDatosCabecera() && ValidarDatosDetalle())
+            { 
                 //Proceder a guardar los datos de cabecera.
                 _currentRow = _dtDocumentoInv.NewRow();
                 _currentRow["IDTransaccion"] = -1;
@@ -816,7 +857,7 @@ namespace CI
                             _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
                             _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
                             _currentRowDetalle["IDTipoTran"] = 4;
-                            _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
+                            _currentRowDetalle["IDBodegaOrigen"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
                             _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
                             _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
                             _currentRowDetalle["CostoUntDolar"] = _dsDetalle.Tables[0].Rows[i]["CostoUntDolar"];
@@ -833,7 +874,7 @@ namespace CI
                             _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
                             _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
                             _currentRowDetalle["IDTipoTran"] = 3;
-                            _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaDestino"];
+                            _currentRowDetalle["IDBodegaOrigen"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaDestino"];
                             _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
                             
                             _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
@@ -853,7 +894,7 @@ namespace CI
                             _currentRowDetalle["IDProducto"] = _dsDetalle.Tables[0].Rows[i]["IDProducto"];
                             _currentRowDetalle["IDLote"] = _dsDetalle.Tables[0].Rows[i]["IDLote"];
                             _currentRowDetalle["IDTipoTran"] = _dsDetalle.Tables[0].Rows[i]["IDTipoTran"];
-                            _currentRowDetalle["IDBodega"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
+                            _currentRowDetalle["IDBodegaOrigen"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaOrigen"];
                             _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
                             _currentRowDetalle["Naturaleza"] = _dsDetalle.Tables[0].Rows[i]["Naturaleza"];
                             _currentRowDetalle["Factor"] = _dsDetalle.Tables[0].Rows[i]["Factor"];
@@ -947,6 +988,30 @@ namespace CI
 
 
             }
+        }
+
+        private void gridViewDetalle_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            
+            GridView view = sender as GridView;
+            DataRow row1 = view.GetDataRow(e.RowHandle);
+            if (!Convert.ToBoolean(row1["Aplicado"]))
+            {
+                if (e.RowHandle >= 0)
+                {
+                    String Estado = row1["Estado"].ToString();
+                    if (Estado == "E")
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+                }
+            }
+        }
+
+        private void btnCancelDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            this.Close();
         }
 
     

@@ -57,6 +57,12 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colIDConsecutivo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescr = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrefijo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colConsecutivo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDocumento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colActivo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -257,28 +263,35 @@
             // 
             // gridControl
             // 
-            this.gridControl.Location = new System.Drawing.Point(12, 34);
+            this.gridControl.Location = new System.Drawing.Point(12, 39);
             this.gridControl.MainView = this.gridView1;
             this.gridControl.MenuManager = this.ribbonControl;
             this.gridControl.Name = "gridControl";
-            this.gridControl.Size = new System.Drawing.Size(700, 261);
+            this.gridControl.Size = new System.Drawing.Size(700, 256);
             this.gridControl.TabIndex = 5;
             this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIDConsecutivo,
+            this.colDescr,
+            this.colPrefijo,
+            this.colConsecutivo,
+            this.colDocumento,
+            this.colActivo});
             this.gridView1.GridControl = this.gridControl;
             this.gridView1.Name = "gridView1";
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DeepPink;
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DodgerBlue;
             this.labelControl1.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
-            this.labelControl1.Location = new System.Drawing.Point(237, 12);
+            this.labelControl1.Location = new System.Drawing.Point(202, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(249, 18);
+            this.labelControl1.Size = new System.Drawing.Size(320, 23);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "Listado de Consecutivos Globales";
@@ -306,7 +319,7 @@
             this.layoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(704, 22);
+            this.layoutControlItem1.Size = new System.Drawing.Size(704, 27);
             this.layoutControlItem1.Text = "Listado de Consecutivos Globales";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -314,9 +327,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.gridControl;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 22);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 27);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(704, 265);
+            this.layoutControlItem2.Size = new System.Drawing.Size(704, 260);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -364,6 +377,65 @@
             this.layoutControlItem8.Size = new System.Drawing.Size(105, 24);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
+            // 
+            // colIDConsecutivo
+            // 
+            this.colIDConsecutivo.Caption = "ID Consecutivo";
+            this.colIDConsecutivo.FieldName = "IDConsecutivo";
+            this.colIDConsecutivo.Name = "colIDConsecutivo";
+            this.colIDConsecutivo.OptionsColumn.FixedWidth = true;
+            this.colIDConsecutivo.Visible = true;
+            this.colIDConsecutivo.VisibleIndex = 0;
+            this.colIDConsecutivo.Width = 88;
+            // 
+            // colDescr
+            // 
+            this.colDescr.Caption = "Descripción";
+            this.colDescr.FieldName = "Descr";
+            this.colDescr.Name = "colDescr";
+            this.colDescr.Visible = true;
+            this.colDescr.VisibleIndex = 1;
+            this.colDescr.Width = 225;
+            // 
+            // colPrefijo
+            // 
+            this.colPrefijo.Caption = "Prefijo";
+            this.colPrefijo.FieldName = "Prefijo";
+            this.colPrefijo.Name = "colPrefijo";
+            this.colPrefijo.OptionsColumn.FixedWidth = true;
+            this.colPrefijo.Visible = true;
+            this.colPrefijo.VisibleIndex = 2;
+            this.colPrefijo.Width = 80;
+            // 
+            // colConsecutivo
+            // 
+            this.colConsecutivo.Caption = "Consecutivo";
+            this.colConsecutivo.FieldName = "Consecutivo";
+            this.colConsecutivo.Name = "colConsecutivo";
+            this.colConsecutivo.OptionsColumn.FixedWidth = true;
+            this.colConsecutivo.Visible = true;
+            this.colConsecutivo.VisibleIndex = 3;
+            this.colConsecutivo.Width = 81;
+            // 
+            // colDocumento
+            // 
+            this.colDocumento.Caption = "Documento";
+            this.colDocumento.FieldName = "Documento";
+            this.colDocumento.Name = "colDocumento";
+            this.colDocumento.OptionsColumn.FixedWidth = true;
+            this.colDocumento.Visible = true;
+            this.colDocumento.VisibleIndex = 4;
+            this.colDocumento.Width = 70;
+            // 
+            // colActivo
+            // 
+            this.colActivo.Caption = "Activo";
+            this.colActivo.FieldName = "Activo";
+            this.colActivo.Name = "colActivo";
+            this.colActivo.OptionsColumn.FixedWidth = true;
+            this.colActivo.Visible = true;
+            this.colActivo.VisibleIndex = 5;
+            this.colActivo.Width = 105;
             // 
             // frmConsecutivos
             // 
@@ -428,5 +500,11 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraGrid.Columns.GridColumn colIDConsecutivo;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescr;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrefijo;
+        private DevExpress.XtraGrid.Columns.GridColumn colConsecutivo;
+        private DevExpress.XtraGrid.Columns.GridColumn colDocumento;
+        private DevExpress.XtraGrid.Columns.GridColumn colActivo;
     }
 }

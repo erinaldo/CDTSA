@@ -215,7 +215,7 @@
             // 
             this.txtPaquete.Location = new System.Drawing.Point(503, 38);
             this.txtPaquete.Name = "txtPaquete";
-            this.txtPaquete.Properties.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtPaquete.Properties.Appearance.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtPaquete.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaquete.Properties.Appearance.Options.UseBackColor = true;
             this.txtPaquete.Properties.Appearance.Options.UseFont = true;
@@ -229,7 +229,7 @@
             // 
             this.txtDocumento.Location = new System.Drawing.Point(503, 84);
             this.txtDocumento.Name = "txtDocumento";
-            this.txtDocumento.Properties.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtDocumento.Properties.Appearance.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtDocumento.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDocumento.Properties.Appearance.Options.UseBackColor = true;
             this.txtDocumento.Properties.Appearance.Options.UseFont = true;
@@ -507,6 +507,7 @@
             this.gridViewDetalle.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewDetalle.OptionsView.ColumnAutoWidth = false;
             this.gridViewDetalle.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewDetalle.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDetalle_RowCellStyle);
             this.gridViewDetalle.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewDetalle_FocusedRowChanged);
             // 
             // IDProducto
@@ -889,7 +890,7 @@
             // 
             this.txtIDTransaccion.Location = new System.Drawing.Point(97, 60);
             this.txtIDTransaccion.Name = "txtIDTransaccion";
-            this.txtIDTransaccion.Properties.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtIDTransaccion.Properties.Appearance.BackColor = System.Drawing.SystemColors.Info;
             this.txtIDTransaccion.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDTransaccion.Properties.Appearance.Options.UseBackColor = true;
             this.txtIDTransaccion.Properties.Appearance.Options.UseFont = true;
@@ -903,7 +904,7 @@
             // 
             this.txtModuloOrigen.Location = new System.Drawing.Point(503, 60);
             this.txtModuloOrigen.Name = "txtModuloOrigen";
-            this.txtModuloOrigen.Properties.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtModuloOrigen.Properties.Appearance.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtModuloOrigen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtModuloOrigen.Properties.Appearance.Options.UseBackColor = true;
             this.txtModuloOrigen.Properties.Appearance.Options.UseFont = true;
@@ -917,7 +918,7 @@
             // 
             this.txtIDTraslado.Location = new System.Drawing.Point(97, 84);
             this.txtIDTraslado.Name = "txtIDTraslado";
-            this.txtIDTraslado.Properties.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtIDTraslado.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtIDTraslado.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDTraslado.Properties.Appearance.Options.UseBackColor = true;
             this.txtIDTraslado.Properties.Appearance.Options.UseFont = true;
@@ -1027,7 +1028,7 @@
             // 
             this.emptySpaceItem9.AllowHotTrack = false;
             this.emptySpaceItem9.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emptySpaceItem9.AppearanceItemCaption.ForeColor = System.Drawing.Color.DeepPink;
+            this.emptySpaceItem9.AppearanceItemCaption.ForeColor = System.Drawing.Color.DodgerBlue;
             this.emptySpaceItem9.AppearanceItemCaption.Options.UseFont = true;
             this.emptySpaceItem9.AppearanceItemCaption.Options.UseForeColor = true;
             this.emptySpaceItem9.AppearanceItemCaption.Options.UseTextOptions = true;
@@ -1113,6 +1114,7 @@
             this.btnCancelDoc.Id = 2;
             this.btnCancelDoc.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelDoc.LargeGlyph")));
             this.btnCancelDoc.Name = "btnCancelDoc";
+            this.btnCancelDoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelDoc_ItemClick);
             // 
             // btnPrintDoc
             // 

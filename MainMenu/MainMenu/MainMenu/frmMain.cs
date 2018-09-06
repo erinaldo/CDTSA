@@ -503,7 +503,7 @@ namespace MainMenu
                     TreeListNode nodeConsultaExistenciasLote = tl.AppendNode(new object[] { "Lote" }, nodeConsultaExistencias.Id, 11, 11, 11);
                     nodeConsultaExistenciasLote.Tag = "optConsultaExistenciaLote";
                     TreeListNode nodeConsultaTransacciones = tl.AppendNode(new object[] { "Articulos" }, nodeConsultas.Id, 11, 11, 11);
-                    nodeConsultaArticulos.Tag = "optConsultaTransacciones";
+                    nodeConsultaTransacciones.Tag = "optConsultaTransacciones";
                     TreeListNode nodeReportes = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
                     TreeListNode nodeProcesos = tl.AppendNode(new object[] { "Processos" }, -1, 9, 10, 9);
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
@@ -682,13 +682,24 @@ namespace MainMenu
                     ofrm.Show();
                     break;
                 case "frmDocumentoInv":
-                    frmDocumentoInv ofrmDocumento = new frmDocumentoInv(12,"View");
+                    /*frmDocumentoInv ofrmDocumento = new frmDocumentoInv(4);
                     ofrmDocumento.MdiParent = this;
                     ofrmDocumento.WindowState = FormWindowState.Normal;
                     ShowPagesRibbonMan(false);
-                    ofrmDocumento.Show();
+                    ofrmDocumento.Show();    */
+
+                    frmListadoDocumentos ofrmListadoDocumento = new frmListadoDocumentos();
+                    ofrmListadoDocumento.MdiParent = this;
+                    ofrmListadoDocumento.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoDocumento.Show();
                     break;
                 case "optConsultaArticulo":
+                    frmFiltroConsultaExistencia ofrmFiltro = new frmFiltroConsultaExistencia();
+                    ofrmFiltro.MdiParent = this;
+                    ofrmFiltro.WindowState = FormWindowState.Normal;
+                    ShowPagesRibbonMan(false);
+                    ofrmFiltro.Show();
                     break;
                 case "optConsultaExistenciaBodega":
                     break;
@@ -708,7 +719,8 @@ namespace MainMenu
                     ofrmPaquete.MdiParent = this;
                     ofrmPaquete.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
-                    ofrmPaquete.Show();
+                    ofrmPaquete.Show();  
+         
                     break;
                 case "frmInvCuentaContable":
                     frmInvCuentaContable ofrmCuentas = new frmInvCuentaContable();

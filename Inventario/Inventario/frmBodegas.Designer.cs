@@ -72,6 +72,12 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colIDBodega = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescr = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPuedeFacturar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPuedePreFacturar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIDPaqueteFactura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colConsecutivoPreFactura = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -261,29 +267,36 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DeepPink;
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DodgerBlue;
             this.labelControl1.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
-            this.labelControl1.Location = new System.Drawing.Point(307, 22);
+            this.labelControl1.Location = new System.Drawing.Point(286, 22);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(144, 18);
+            this.labelControl1.Size = new System.Drawing.Size(186, 23);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "Listado de Bodegas";
             // 
             // dtgDetalle
             // 
-            this.dtgDetalle.Location = new System.Drawing.Point(22, 44);
+            this.dtgDetalle.Location = new System.Drawing.Point(22, 49);
             this.dtgDetalle.MainView = this.gridView1;
             this.dtgDetalle.MenuManager = this.ribbonControl1;
             this.dtgDetalle.Name = "dtgDetalle";
-            this.dtgDetalle.Size = new System.Drawing.Size(714, 210);
+            this.dtgDetalle.Size = new System.Drawing.Size(714, 205);
             this.dtgDetalle.TabIndex = 5;
             this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIDBodega,
+            this.colDescr,
+            this.colPuedeFacturar,
+            this.colPuedePreFacturar,
+            this.colIDPaqueteFactura,
+            this.colConsecutivoPreFactura});
             this.gridView1.GridControl = this.dtgDetalle;
             this.gridView1.Name = "gridView1";
             // 
@@ -458,7 +471,7 @@
             this.layoutControlItem1.CustomizationFormText = "Listado de Consecutivos Globales";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(718, 22);
+            this.layoutControlItem1.Size = new System.Drawing.Size(718, 27);
             this.layoutControlItem1.Text = "Listado de Consecutivos Globales";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
@@ -467,9 +480,9 @@
             // 
             this.layoutControlItem2.Control = this.dtgDetalle;
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 22);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 27);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(718, 214);
+            this.layoutControlItem2.Size = new System.Drawing.Size(718, 209);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -530,6 +543,63 @@
             this.layoutControlItem5.Text = "Consecutivo Pre Factura:";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(122, 13);
             // 
+            // colIDBodega
+            // 
+            this.colIDBodega.Caption = "ID Bodega";
+            this.colIDBodega.FieldName = "IDBodega";
+            this.colIDBodega.Name = "colIDBodega";
+            this.colIDBodega.OptionsColumn.FixedWidth = true;
+            this.colIDBodega.Visible = true;
+            this.colIDBodega.VisibleIndex = 0;
+            // 
+            // colDescr
+            // 
+            this.colDescr.Caption = "Descripción";
+            this.colDescr.FieldName = "Descr";
+            this.colDescr.Name = "colDescr";
+            this.colDescr.Visible = true;
+            this.colDescr.VisibleIndex = 1;
+            this.colDescr.Width = 250;
+            // 
+            // colPuedeFacturar
+            // 
+            this.colPuedeFacturar.Caption = "PuedeFacturar";
+            this.colPuedeFacturar.FieldName = "PuedeFacturar";
+            this.colPuedeFacturar.Name = "colPuedeFacturar";
+            this.colPuedeFacturar.OptionsColumn.FixedWidth = true;
+            this.colPuedeFacturar.Visible = true;
+            this.colPuedeFacturar.VisibleIndex = 2;
+            this.colPuedeFacturar.Width = 85;
+            // 
+            // colPuedePreFacturar
+            // 
+            this.colPuedePreFacturar.Caption = "Pre Venta ";
+            this.colPuedePreFacturar.FieldName = "PuedePreFacturar";
+            this.colPuedePreFacturar.Name = "colPuedePreFacturar";
+            this.colPuedePreFacturar.OptionsColumn.FixedWidth = true;
+            this.colPuedePreFacturar.Visible = true;
+            this.colPuedePreFacturar.VisibleIndex = 3;
+            // 
+            // colIDPaqueteFactura
+            // 
+            this.colIDPaqueteFactura.Caption = "IDPaquete Factura";
+            this.colIDPaqueteFactura.FieldName = "IDPaqueteFactura";
+            this.colIDPaqueteFactura.Name = "colIDPaqueteFactura";
+            this.colIDPaqueteFactura.OptionsColumn.FixedWidth = true;
+            this.colIDPaqueteFactura.Visible = true;
+            this.colIDPaqueteFactura.VisibleIndex = 4;
+            this.colIDPaqueteFactura.Width = 101;
+            // 
+            // colConsecutivoPreFactura
+            // 
+            this.colConsecutivoPreFactura.Caption = "Consecutivo PreFactura";
+            this.colConsecutivoPreFactura.FieldName = "ConsecutivoPreFactura";
+            this.colConsecutivoPreFactura.Name = "colConsecutivoPreFactura";
+            this.colConsecutivoPreFactura.OptionsColumn.FixedWidth = true;
+            this.colConsecutivoPreFactura.Visible = true;
+            this.colConsecutivoPreFactura.VisibleIndex = 5;
+            this.colConsecutivoPreFactura.Width = 130;
+            // 
             // frmBodegas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,7 +609,7 @@
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmBodegas";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmBodegas";
+            this.Text = "Listado de Bodegas";
             this.Load += new System.EventHandler(this.frmBodegas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -614,5 +684,11 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraGrid.Columns.GridColumn colIDBodega;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescr;
+        private DevExpress.XtraGrid.Columns.GridColumn colPuedeFacturar;
+        private DevExpress.XtraGrid.Columns.GridColumn colPuedePreFacturar;
+        private DevExpress.XtraGrid.Columns.GridColumn colIDPaqueteFactura;
+        private DevExpress.XtraGrid.Columns.GridColumn colConsecutivoPreFactura;
     }
 }

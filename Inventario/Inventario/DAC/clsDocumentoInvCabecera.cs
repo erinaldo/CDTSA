@@ -108,7 +108,7 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDTransaccion)
+        public static DataSet GetData(long IDTransaccion)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDTransaccion"].Value = IDTransaccion;
@@ -130,7 +130,7 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetDataByCriterio(DateTime FechaInicial, DateTime FechaFinal, String Referencia, String  Documento, int EsTralado, int  IDTraslado,String Usuario)
+        public static DataSet GetDataByCriterio(DateTime FechaInicial, DateTime FechaFinal, String Referencia, String  Documento, int IDPaquete,int EsTralado, int  IDTraslado,String Usuario)
         {
             String strSQL = "dbo.invGetTransaccionCabeceraByCriterio";
 
@@ -140,6 +140,7 @@ namespace CI.DAC
             oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
             oCmd.Parameters.Add(new SqlParameter("@Documento", Documento));
             oCmd.Parameters.Add(new SqlParameter("@Referencia", Referencia));
+            oCmd.Parameters.Add(new SqlParameter("@IDPaquete", IDPaquete));
             oCmd.Parameters.Add(new SqlParameter("@EsTraslado", EsTralado));
             oCmd.Parameters.Add(new SqlParameter("@IDTraslado", IDTraslado));
             oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
