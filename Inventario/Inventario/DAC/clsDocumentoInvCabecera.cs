@@ -153,5 +153,69 @@ namespace CI.DAC
             return DS;
         }
 
+        
+							
+        public static DataSet GetTransaccionesInventarioByCriterio(String Bodega, String Producto, String Lote, 
+                    String Clasif1, String Clasif2, String Clasif3, String Clasif4, String Clasif5, String Clasif6, 
+                    String Transacciones,String Paquete,String Documento,String Referencia,DateTime FechaInicial,DateTime FechaFinal)
+        {
+            String strSQL = "dbo.invGetConsultaTransaccionesByCriterio";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@Bodega", Bodega));
+            oCmd.Parameters.Add(new SqlParameter("@Lote", Lote));
+            oCmd.Parameters.Add(new SqlParameter("@Producto", Producto));
+            oCmd.Parameters.Add(new SqlParameter("@Clasif1", Clasif1));
+            oCmd.Parameters.Add(new SqlParameter("@Clasif2", Clasif2));
+            oCmd.Parameters.Add(new SqlParameter("@Clasif3", Clasif3));
+            oCmd.Parameters.Add(new SqlParameter("@Clasif4", Clasif4));
+            oCmd.Parameters.Add(new SqlParameter("@Clasif5", Clasif5));
+            oCmd.Parameters.Add(new SqlParameter("@Clasif6", Clasif6));
+            oCmd.Parameters.Add(new SqlParameter("@Transacciones", Transacciones));
+            oCmd.Parameters.Add(new SqlParameter("@Paquete", Paquete));
+            oCmd.Parameters.Add(new SqlParameter("@Documento", Documento));
+            oCmd.Parameters.Add(new SqlParameter("@Referencia", Referencia));
+            oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
+            oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
+
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+            DS.Tables[0].TableName = "Transacciones";
+            return DS;
+        }
+
+        public static DataSet GetTransaccionesByArticulo(String Bodega, int IDProducto, String Lote,
+                    String Transacciones, String Paquete, String Documento, String Referencia, DateTime FechaInicial, DateTime FechaFinal)
+        {
+            String strSQL = "dbo.invGetTransaccionesByProducto";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@Bodega", Bodega));
+            oCmd.Parameters.Add(new SqlParameter("@Lote", Lote));
+            oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+            oCmd.Parameters.Add(new SqlParameter("@Transacciones", Transacciones));
+            oCmd.Parameters.Add(new SqlParameter("@Paquete", Paquete));
+            oCmd.Parameters.Add(new SqlParameter("@Documento", Documento));
+            oCmd.Parameters.Add(new SqlParameter("@Referencia", Referencia));
+            oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
+            oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
+
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            oAdap.Fill(DS);
+            DS.Tables[0].TableName = "Transacciones";
+            return DS;
+        }
+
+
     }
 }

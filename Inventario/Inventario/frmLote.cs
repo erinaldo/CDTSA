@@ -214,7 +214,7 @@ namespace CI
             HabilitarControles(true);
 
 
-            lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
+            //lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
             this.txtLote.Focus();
         }
 

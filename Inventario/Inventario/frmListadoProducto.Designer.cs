@@ -56,6 +56,9 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -67,6 +70,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -167,13 +172,14 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.labelControl2);
             this.layoutControl1.Controls.Add(this.pictureEdit1);
             this.layoutControl1.Controls.Add(this.gridControl1);
             this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 130);
             this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(738, 184, 250, 350);
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1034, 170, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(702, 322);
             this.layoutControl1.TabIndex = 1;
@@ -190,17 +196,17 @@
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit1.Size = new System.Drawing.Size(44, 42);
+            this.pictureEdit1.Size = new System.Drawing.Size(44, 32);
             this.pictureEdit1.StyleController = this.layoutControl1;
             this.pictureEdit1.TabIndex = 6;
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 58);
+            this.gridControl1.Location = new System.Drawing.Point(12, 63);
             this.gridControl1.MainView = this.gridView;
             this.gridControl1.MenuManager = this.ribbonControl;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(678, 252);
+            this.gridControl1.Size = new System.Drawing.Size(678, 230);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -227,10 +233,13 @@
             this.gridView.Name = "gridView";
             this.gridView.OptionsBehavior.Editable = false;
             this.gridView.OptionsView.ShowAutoFilterRow = true;
+            this.gridView.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridView.OptionsView.ShowGroupPanel = false;
             // 
             // gridIdProducto
             // 
+            this.gridIdProducto.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridIdProducto.AppearanceHeader.Options.UseFont = true;
             this.gridIdProducto.Caption = "ID Producto";
             this.gridIdProducto.FieldName = "IDProducto";
             this.gridIdProducto.Name = "gridIdProducto";
@@ -241,6 +250,8 @@
             // 
             // grdDescr
             // 
+            this.grdDescr.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdDescr.AppearanceHeader.Options.UseFont = true;
             this.grdDescr.Caption = "Descripción";
             this.grdDescr.FieldName = "Descr";
             this.grdDescr.Name = "grdDescr";
@@ -251,6 +262,8 @@
             // 
             // grdAlias
             // 
+            this.grdAlias.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdAlias.AppearanceHeader.Options.UseFont = true;
             this.grdAlias.Caption = "Alias";
             this.grdAlias.FieldName = "Alias";
             this.grdAlias.Name = "grdAlias";
@@ -261,6 +274,8 @@
             // 
             // grdFactorEmpaque
             // 
+            this.grdFactorEmpaque.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdFactorEmpaque.AppearanceHeader.Options.UseFont = true;
             this.grdFactorEmpaque.Caption = "Factor Empaque";
             this.grdFactorEmpaque.FieldName = "FactorEmpaque";
             this.grdFactorEmpaque.Name = "grdFactorEmpaque";
@@ -271,6 +286,8 @@
             // 
             // grdEsMuestra
             // 
+            this.grdEsMuestra.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdEsMuestra.AppearanceHeader.Options.UseFont = true;
             this.grdEsMuestra.Caption = "Es Muestra";
             this.grdEsMuestra.FieldName = "EsMuestra";
             this.grdEsMuestra.Name = "grdEsMuestra";
@@ -280,6 +297,8 @@
             // 
             // grdEsControlado
             // 
+            this.grdEsControlado.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdEsControlado.AppearanceHeader.Options.UseFont = true;
             this.grdEsControlado.Caption = "Es Controlado";
             this.grdEsControlado.FieldName = "EsControlado";
             this.grdEsControlado.Name = "grdEsControlado";
@@ -290,6 +309,8 @@
             // 
             // grdEsEtico
             // 
+            this.grdEsEtico.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdEsEtico.AppearanceHeader.Options.UseFont = true;
             this.grdEsEtico.Caption = "Es Ético";
             this.grdEsEtico.FieldName = "EsEtico";
             this.grdEsEtico.Name = "grdEsEtico";
@@ -300,12 +321,12 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.labelControl1.Location = new System.Drawing.Point(60, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(534, 42);
+            this.labelControl1.Size = new System.Drawing.Size(526, 32);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "Listado de Productos";
@@ -318,7 +339,9 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.emptySpaceItem1,
-            this.layoutControlItem3});
+            this.layoutControlItem3,
+            this.emptySpaceItem2,
+            this.layoutControlItem4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(702, 322);
@@ -329,10 +352,9 @@
             this.layoutControlItem1.Control = this.labelControl1;
             this.layoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.layoutControlItem1.Location = new System.Drawing.Point(48, 0);
-            this.layoutControlItem1.MaxSize = new System.Drawing.Size(0, 46);
-            this.layoutControlItem1.MinSize = new System.Drawing.Size(205, 46);
+            this.layoutControlItem1.MinSize = new System.Drawing.Size(205, 27);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(538, 46);
+            this.layoutControlItem1.Size = new System.Drawing.Size(530, 36);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "Listado de Productos";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -341,10 +363,10 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.gridControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 46);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 51);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(104, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(682, 256);
+            this.layoutControlItem2.Size = new System.Drawing.Size(682, 234);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -352,11 +374,10 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(586, 0);
-            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(96, 0);
-            this.emptySpaceItem1.MinSize = new System.Drawing.Size(96, 10);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(578, 0);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(104, 24);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(96, 46);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(104, 36);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -364,13 +385,44 @@
             // 
             this.layoutControlItem3.Control = this.pictureEdit1;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(48, 46);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(48, 46);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(48, 36);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(48, 36);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(48, 46);
+            this.layoutControlItem3.Size = new System.Drawing.Size(48, 36);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 36);
+            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 15);
+            this.emptySpaceItem2.MinSize = new System.Drawing.Size(10, 15);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(682, 15);
+            this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.Gray;
+            this.labelControl2.Location = new System.Drawing.Point(12, 297);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(664, 13);
+            this.labelControl2.StyleController = this.layoutControl1;
+            this.labelControl2.TabIndex = 7;
+            this.labelControl2.Text = "La primer fila de la grilla, permite filtrar los datos. Solo ubiquese en la colum" +
+    "na que desea filtrar y escriba una aproximación de su buqueda,";
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.labelControl2;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 285);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(682, 17);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
             // 
             // frmListadoProducto
             // 
@@ -397,6 +449,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,5 +485,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

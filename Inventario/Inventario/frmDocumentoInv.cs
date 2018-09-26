@@ -37,7 +37,8 @@ namespace CI
         private String AccionDetalle = "";
         private String Error = "";
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
-
+        private bool bCostoLocalActive = false;
+        private bool bPrecioLocalActive = false;
 
         public frmDocumentoInv(int IdPaquete)
         {
@@ -142,8 +143,8 @@ namespace CI
         {
             //_currentRow = _dtAsiento.NewRow();
             this.txtDocumento.EditValue = _currentRow["Documento"].ToString();
-            this.txtIDTransaccion.EditValue = _currentRow["IDTransaccion"].ToString();
-            this.txtIDTraslado.EditValue = _currentRow["IDTraslado"].ToString();
+            this.txtIDTransaccion.EditValue = (_currentRow["IDTransaccion"].ToString()=="-1") ? "--": _currentRow["IDTransaccion"].ToString();
+            this.txtIDTraslado.EditValue = (_currentRow["IDTraslado"].ToString()=="-1") ? "--" : _currentRow["IDTraslado"].ToString();
             this.txtReferencia.EditValue = _currentRow["Referencia"].ToString();
             this.dtpFecha.EditValue = (DateTime)_currentRow["Fecha"];
             this.dtpFechaCreacion.EditValue = (DateTime)_currentRow["CreateDate"];
@@ -178,9 +179,15 @@ namespace CI
                this.slkupLote.ReadOnly = !Activo;
                this.slkupBodegaOrigen.ReadOnly = !Activo;
                if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR" && Activo)
+               {
                    this.slkupBodegaDestino.ReadOnly = !Activo;
+                   
+               }
                else
+               {
                    this.slkupBodegaDestino.ReadOnly = true;
+                   
+               }
 
                
               
@@ -241,6 +248,7 @@ namespace CI
                     
                     AccionDetalle = "Agregar";
                     HabilitarControlesDetalle(true);
+                    this.slkupTransaccion.Focus();
                     break;
                 case "Editar":
                     AccionDetalle = "Editar";
@@ -379,7 +387,7 @@ namespace CI
                             _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
                         }
                         
-                        _currentRowDetalle["IDTraslado"] = Convert.ToInt32(this.txtIDTraslado.EditValue);
+                        _currentRowDetalle["IDTraslado"] = _currentRow["IDTraslado"];
                         _currentRowDetalle["Cantidad"] = Convert.ToDecimal(this.txtCantidad.EditValue);
                         _currentRowDetalle["PrecioUntLocal"] = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
                         _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
@@ -464,7 +472,7 @@ namespace CI
                             _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
                             _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
                         }
-                        _currentRowDetalle["IDTraslado"] = Convert.ToInt32(this.txtIDTraslado.EditValue);
+                        _currentRowDetalle["IDTraslado"] = Convert.ToInt32(_currentRow["IDTraslado"]);
                         _currentRowDetalle["Cantidad"] = Convert.ToDecimal(this.txtCantidad.EditValue);
                         _currentRowDetalle["PrecioUntLocal"] = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
                         _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
@@ -530,11 +538,11 @@ namespace CI
         {
             bool result = true;
             String sMensaje = "";
-            if (this.slkupTransaccion.EditValue.ToString() == "" || this.slkupTransaccion.EditValue == null)
+            if (this.slkupTransaccion.EditValue == null || this.slkupTransaccion.EditValue.ToString() == "")
                 sMensaje = " • Por favor seleccion la Transacción\n\r";
-            if (this.slkupProducto.EditValue.ToString() == "" || this.slkupProducto.EditValue == null)
+            if (this.slkupProducto.EditValue == null || this.slkupProducto.EditValue.ToString() == "" )
                 sMensaje = " • Por favor seleccion el producto \n\r";
-            if (this.txtCantidad.EditValue.ToString() == "" )
+            if (this.txtCantidad.EditValue==null || this.txtCantidad.EditValue.ToString() == "" )
                 sMensaje = " • Por favor ingrese la cantidad\n\r";
             
             DataRowView dr =  (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
@@ -609,7 +617,7 @@ namespace CI
                 Util.Util.ConfigLookupEdit(this.slkupBodegaDestino, clsBodegaDAC.GetData(-1, "*", -1).Tables[0], "Descr", "IDBodega");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodegaDestino, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-                Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0], "Descr", "IDProducto");
+                Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0], "Descr", "IDProducto",450);
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupProducto, "[{'ColumnCaption':'IdProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 Util.Util.SetFormatTextEdit(txtCantidad, Util.Util.FormatType.Numerico);
@@ -745,8 +753,8 @@ namespace CI
         {
             if (this.slkupProducto.EditValue != null)
             {
-                Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1, Convert.ToInt32(slkupProducto.EditValue), "*", "*").Tables[0], "LoteInterno", "IDLote");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':30},{'ColumnCaption':'Lote','ColumnField':'LoteInterno','width':70}]");
+                Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1, Convert.ToInt32(slkupProducto.EditValue), "*", "*").Tables[0], "LoteProveedor", "IDLote",350);
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':20},{'ColumnCaption':'Lote','ColumnField':'LoteProveedor','width':60},{'ColumnCaption':'F.V','ColumnField':'FechaVencimiento','width':20}]");
                 this.slkupLote.Enabled = true;
             }
             else {
@@ -822,6 +830,7 @@ namespace CI
                 _currentRow["IDPaquete"] = this.IDPaquete;
                 _currentRow["Fecha"] = this.dtpFecha.EditValue;
                 _currentRow["Usuario"]= sUsuario;
+
                 _currentRow["Referencia"] =this.txtReferencia.Text.Trim();
                 _currentRow["Documento"] = this.txtDocumento.Text.Trim();
                 _currentRow["Aplicado"] = true;
@@ -943,16 +952,23 @@ namespace CI
         private void txtPrecioLocal_EditValueChanged(object sender, EventArgs e)
         {
             //convertir a Dolar
-            Decimal Precio =Convert.ToDecimal( this.txtPrecioLocal.EditValue);
-            this.txtPrecioDolar.EditValue = Precio / TipoCambio;
+            if (bPrecioLocalActive)
+            {
+                Decimal Precio = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
+                this.txtPrecioDolar.EditValue = Precio / TipoCambio;
+            }
             
         }
 
         private void txtPrecioDolar_EditValueChanged(object sender, EventArgs e)
         {
             //convertir a Dolar
-            Decimal Precio = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
-            this.txtPrecioLocal.EditValue = Precio * TipoCambio;
+            if (!bPrecioLocalActive)
+            {
+                Decimal Precio = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
+                this.txtPrecioLocal.EditValue = Precio * TipoCambio;
+            }
+            
         }
 
         private void btnAddDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1012,6 +1028,45 @@ namespace CI
         {
 
             this.Close();
+        }
+
+        private void txtCostoDolar_Enter(object sender, EventArgs e)
+        {
+            this.bCostoLocalActive = false;
+            
+        }
+
+        private void txtCostoDolar_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!bCostoLocalActive)
+            {
+                Decimal Costo = Convert.ToDecimal(this.txtCostoDolar.EditValue);
+                this.txtCostoLocal.EditValue = Costo * TipoCambio;
+            }
+        }
+
+        private void txtCostoLocal_EditValueChanged(object sender, EventArgs e)
+        {
+            if (bCostoLocalActive)
+            {
+                Decimal Costo = Convert.ToDecimal(this.txtCostoLocal.EditValue);
+                this.txtCostoDolar.EditValue = Costo / TipoCambio;
+            }
+        }
+
+        private void txtCostoLocal_Enter(object sender, EventArgs e)
+        {
+            bCostoLocalActive = true;
+        }
+
+        private void txtPrecioLocal_Enter(object sender, EventArgs e)
+        {
+            bPrecioLocalActive = true;
+        }
+
+        private void txtPrecioDolar_Enter(object sender, EventArgs e)
+        {
+            bPrecioLocalActive = false;
         }
 
     

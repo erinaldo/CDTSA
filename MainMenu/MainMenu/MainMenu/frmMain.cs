@@ -496,14 +496,11 @@ namespace MainMenu
                     nodeEjemplo.Tag = "frmDocumentoInv";
                     TreeListNode nodeConsultas = tl.AppendNode(new object[] { "Consultas" }, -1, 9, 10, 9);
                     TreeListNode nodeConsultaArticulos = tl.AppendNode(new object[] { "Artículos" }, nodeConsultas.Id, 11, 11, 11);
-                    nodeConsultaArticulos.Tag = "optConsultaArticulo";
-                    TreeListNode nodeConsultaExistencias = tl.AppendNode(new object[] { "Existencias" }, nodeConsultas.Id, 9, 10, 9);
-                    TreeListNode nodeConsultaExistenciasBodega = tl.AppendNode(new object[] { "Bodega" }, nodeConsultaExistencias.Id, 11, 11, 11);
-                    nodeConsultaExistenciasBodega.Tag = "optConsultaExistenciaBodega";
-                    TreeListNode nodeConsultaExistenciasLote = tl.AppendNode(new object[] { "Lote" }, nodeConsultaExistencias.Id, 11, 11, 11);
-                    nodeConsultaExistenciasLote.Tag = "optConsultaExistenciaLote";
-                    TreeListNode nodeConsultaTransacciones = tl.AppendNode(new object[] { "Articulos" }, nodeConsultas.Id, 11, 11, 11);
-                    nodeConsultaTransacciones.Tag = "optConsultaTransacciones";
+                    nodeConsultaArticulos.Tag = "frmConsultaArticulo";
+                    TreeListNode nodeConsultaExistenciasBodega = tl.AppendNode(new object[] { "Bodega" }, nodeConsultas.Id, 11, 11, 11);
+                    nodeConsultaExistenciasBodega.Tag = "frmConsultaExistenciaBodega";
+                    TreeListNode nodeConsultaTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultas.Id, 11, 11, 11);
+                    nodeConsultaTransacciones.Tag = "frmConsultaTransacciones";
                     TreeListNode nodeReportes = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
                     TreeListNode nodeProcesos = tl.AppendNode(new object[] { "Processos" }, -1, 9, 10, 9);
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
@@ -682,30 +679,33 @@ namespace MainMenu
                     ofrm.Show();
                     break;
                 case "frmDocumentoInv":
-                    /*frmDocumentoInv ofrmDocumento = new frmDocumentoInv(4);
-                    ofrmDocumento.MdiParent = this;
-                    ofrmDocumento.WindowState = FormWindowState.Normal;
-                    ShowPagesRibbonMan(false);
-                    ofrmDocumento.Show();    */
-
                     frmListadoDocumentos ofrmListadoDocumento = new frmListadoDocumentos();
                     ofrmListadoDocumento.MdiParent = this;
                     ofrmListadoDocumento.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmListadoDocumento.Show();
                     break;
-                case "optConsultaArticulo":
-                    frmFiltroConsultaExistencia ofrmFiltro = new frmFiltroConsultaExistencia();
-                    ofrmFiltro.MdiParent = this;
-                    ofrmFiltro.WindowState = FormWindowState.Normal;
+                case "frmConsultaArticulo":
+                    CI.Consultas.frmConsultaArticulo ofrmConsultaArticulo = new CI.Consultas.frmConsultaArticulo();
+                    ofrmConsultaArticulo.MdiParent = this;
+                    ofrmConsultaArticulo.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
-                    ofrmFiltro.Show();
+                    ofrmConsultaArticulo.Show();
+                   
                     break;
-                case "optConsultaExistenciaBodega":
+                case "frmConsultaExistenciaBodega":
+                     frmConsultaExistenciaBodega ofrmConsulta = new frmConsultaExistenciaBodega();
+                    ofrmConsulta.MdiParent = this;
+                    ofrmConsulta.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmConsulta.Show();
                     break;
-                case "optConsultaExistenciaLote":
-                    break;
-                case "optConsultaTransacciones":
+                case "frmConsultaTransacciones":
+                    frmConsultaTransacciones ofrmConTran = new frmConsultaTransacciones();
+                    ofrmConTran.MdiParent = this;
+                    ofrmConTran.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmConTran.Show();
                     break;
                 case "frmConsecutivos":
                     frmConsecutivos ofrmConsecutivos = new frmConsecutivos();

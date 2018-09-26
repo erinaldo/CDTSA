@@ -61,6 +61,7 @@
             this.colLoteProveedor = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLoteInterno = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colArticulo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescrProducto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaVencimiento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaFabricacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaIngreso = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -94,7 +95,7 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.colDescrProducto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -128,6 +129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -372,60 +374,60 @@
             this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.pictureEdit1.Size = new System.Drawing.Size(45, 38);
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+            this.pictureEdit1.Size = new System.Drawing.Size(45, 32);
             this.pictureEdit1.StyleController = this.layoutControl1;
             this.pictureEdit1.TabIndex = 14;
             // 
             // dtpFechaIngreso
             // 
             this.dtpFechaIngreso.EditValue = null;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(117, 296);
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(118, 289);
             this.dtpFechaIngreso.MenuManager = this.ribbonControl;
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
             this.dtpFechaIngreso.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaIngreso.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(224, 20);
+            this.dtpFechaIngreso.Size = new System.Drawing.Size(222, 20);
             this.dtpFechaIngreso.StyleController = this.layoutControl1;
             this.dtpFechaIngreso.TabIndex = 13;
             // 
             // dtpFechaFabricacion
             // 
             this.dtpFechaFabricacion.EditValue = null;
-            this.dtpFechaFabricacion.Location = new System.Drawing.Point(438, 368);
+            this.dtpFechaFabricacion.Location = new System.Drawing.Point(439, 367);
             this.dtpFechaFabricacion.MenuManager = this.ribbonControl;
             this.dtpFechaFabricacion.Name = "dtpFechaFabricacion";
             this.dtpFechaFabricacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaFabricacion.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaFabricacion.Size = new System.Drawing.Size(225, 20);
+            this.dtpFechaFabricacion.Size = new System.Drawing.Size(223, 20);
             this.dtpFechaFabricacion.StyleController = this.layoutControl1;
             this.dtpFechaFabricacion.TabIndex = 12;
             // 
             // dtpFechaVence
             // 
             this.dtpFechaVence.EditValue = null;
-            this.dtpFechaVence.Location = new System.Drawing.Point(117, 368);
+            this.dtpFechaVence.Location = new System.Drawing.Point(118, 367);
             this.dtpFechaVence.MenuManager = this.ribbonControl;
             this.dtpFechaVence.Name = "dtpFechaVence";
             this.dtpFechaVence.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaVence.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpFechaVence.Size = new System.Drawing.Size(224, 20);
+            this.dtpFechaVence.Size = new System.Drawing.Size(222, 20);
             this.dtpFechaVence.StyleController = this.layoutControl1;
             this.dtpFechaVence.TabIndex = 11;
             // 
             // dtgDetalle
             // 
-            this.dtgDetalle.Location = new System.Drawing.Point(12, 54);
+            this.dtgDetalle.Location = new System.Drawing.Point(12, 65);
             this.dtgDetalle.MainView = this.gridView2;
             this.dtgDetalle.MenuManager = this.ribbonControl2;
             this.dtgDetalle.Name = "dtgDetalle";
-            this.dtgDetalle.Size = new System.Drawing.Size(663, 182);
+            this.dtgDetalle.Size = new System.Drawing.Size(663, 163);
             this.dtgDetalle.TabIndex = 4;
             this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -448,6 +450,8 @@
             // 
             // colLoteProveedor
             // 
+            this.colLoteProveedor.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colLoteProveedor.AppearanceHeader.Options.UseFont = true;
             this.colLoteProveedor.Caption = "Lote Proveedor";
             this.colLoteProveedor.FieldName = "LoteProveedor";
             this.colLoteProveedor.Name = "colLoteProveedor";
@@ -456,6 +460,8 @@
             // 
             // colLoteInterno
             // 
+            this.colLoteInterno.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colLoteInterno.AppearanceHeader.Options.UseFont = true;
             this.colLoteInterno.Caption = "Lote Interno";
             this.colLoteInterno.FieldName = "LoteInterno";
             this.colLoteInterno.Name = "colLoteInterno";
@@ -464,14 +470,28 @@
             // 
             // colArticulo
             // 
+            this.colArticulo.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colArticulo.AppearanceHeader.Options.UseFont = true;
             this.colArticulo.Caption = "Articulo";
             this.colArticulo.FieldName = "IDProducto";
             this.colArticulo.Name = "colArticulo";
             this.colArticulo.Visible = true;
             this.colArticulo.VisibleIndex = 3;
             // 
+            // colDescrProducto
+            // 
+            this.colDescrProducto.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colDescrProducto.AppearanceHeader.Options.UseFont = true;
+            this.colDescrProducto.Caption = "Descr Producto";
+            this.colDescrProducto.FieldName = "DescrProducto";
+            this.colDescrProducto.Name = "colDescrProducto";
+            this.colDescrProducto.Visible = true;
+            this.colDescrProducto.VisibleIndex = 2;
+            // 
             // colFechaVencimiento
             // 
+            this.colFechaVencimiento.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colFechaVencimiento.AppearanceHeader.Options.UseFont = true;
             this.colFechaVencimiento.Caption = "Fecha Vencimiento";
             this.colFechaVencimiento.FieldName = "FechaVencimiento";
             this.colFechaVencimiento.Name = "colFechaVencimiento";
@@ -480,6 +500,8 @@
             // 
             // colFechaFabricacion
             // 
+            this.colFechaFabricacion.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colFechaFabricacion.AppearanceHeader.Options.UseFont = true;
             this.colFechaFabricacion.Caption = "Fecha Fabricación";
             this.colFechaFabricacion.FieldName = "FechaFabricacion";
             this.colFechaFabricacion.Name = "colFechaFabricacion";
@@ -488,6 +510,8 @@
             // 
             // colFechaIngreso
             // 
+            this.colFechaIngreso.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colFechaIngreso.AppearanceHeader.Options.UseFont = true;
             this.colFechaIngreso.Caption = "Fecha Ingreso";
             this.colFechaIngreso.FieldName = "FechaIngreso";
             this.colFechaIngreso.Name = "colFechaIngreso";
@@ -598,23 +622,23 @@
             // 
             // txtLote
             // 
-            this.txtLote.Location = new System.Drawing.Point(117, 320);
+            this.txtLote.Location = new System.Drawing.Point(118, 315);
             this.txtLote.MenuManager = this.ribbonControl2;
             this.txtLote.Name = "txtLote";
-            this.txtLote.Size = new System.Drawing.Size(224, 20);
+            this.txtLote.Size = new System.Drawing.Size(222, 20);
             this.txtLote.StyleController = this.layoutControl1;
             this.txtLote.TabIndex = 5;
             this.txtLote.TextChanged += new System.EventHandler(this.txtLote_TextChanged);
             // 
             // slkupProducto
             // 
-            this.slkupProducto.Location = new System.Drawing.Point(117, 344);
+            this.slkupProducto.Location = new System.Drawing.Point(118, 341);
             this.slkupProducto.MenuManager = this.ribbonControl2;
             this.slkupProducto.Name = "slkupProducto";
             this.slkupProducto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.slkupProducto.Properties.View = this.gridView1;
-            this.slkupProducto.Size = new System.Drawing.Size(546, 20);
+            this.slkupProducto.Size = new System.Drawing.Size(544, 20);
             this.slkupProducto.StyleController = this.layoutControl1;
             this.slkupProducto.TabIndex = 7;
             // 
@@ -627,20 +651,20 @@
             // 
             // checkEdit1
             // 
-            this.checkEdit1.Location = new System.Drawing.Point(345, 296);
+            this.checkEdit1.Location = new System.Drawing.Point(346, 289);
             this.checkEdit1.MenuManager = this.ribbonControl2;
             this.checkEdit1.Name = "checkEdit1";
             this.checkEdit1.Properties.Caption = "Activo";
-            this.checkEdit1.Size = new System.Drawing.Size(318, 19);
+            this.checkEdit1.Size = new System.Drawing.Size(316, 19);
             this.checkEdit1.StyleController = this.layoutControl1;
             this.checkEdit1.TabIndex = 9;
             // 
             // txtLoteProveedor
             // 
-            this.txtLoteProveedor.Location = new System.Drawing.Point(438, 320);
+            this.txtLoteProveedor.Location = new System.Drawing.Point(439, 315);
             this.txtLoteProveedor.MenuManager = this.ribbonControl2;
             this.txtLoteProveedor.Name = "txtLoteProveedor";
-            this.txtLoteProveedor.Size = new System.Drawing.Size(225, 20);
+            this.txtLoteProveedor.Size = new System.Drawing.Size(223, 20);
             this.txtLoteProveedor.StyleController = this.layoutControl1;
             this.txtLoteProveedor.TabIndex = 10;
             // 
@@ -666,7 +690,8 @@
             this.layoutControlGroup3,
             this.emptySpaceItem1,
             this.emptySpaceItem2,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.emptySpaceItem3});
             this.item0.Location = new System.Drawing.Point(0, 0);
             this.item0.Name = "item0";
             this.item0.Size = new System.Drawing.Size(687, 412);
@@ -678,14 +703,17 @@
             // 
             this.layoutControlItem1.Control = this.dtgDetalle;
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 42);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 53);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(667, 186);
+            this.layoutControlItem1.Size = new System.Drawing.Size(667, 167);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // layoutControlGroup3
             // 
+            this.layoutControlGroup3.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.layoutControlGroup3.AppearanceGroup.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlGroup3.AppearanceGroup.Options.UseFont = true;
             this.layoutControlGroup3.CustomizationFormText = "Paquete";
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2,
@@ -695,18 +723,19 @@
             this.layoutControlItem3,
             this.layoutControlItem8,
             this.layoutControlItem7});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 254);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(0, 246);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(667, 138);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(667, 146);
             this.layoutControlGroup3.Text = "Lote";
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.txtLote;
             this.layoutControlItem2.CustomizationFormText = "Paquete:";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(321, 24);
+            this.layoutControlItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem2.Size = new System.Drawing.Size(321, 26);
             this.layoutControlItem2.Text = "Lote:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(90, 13);
             // 
@@ -714,9 +743,10 @@
             // 
             this.layoutControlItem4.Control = this.slkupProducto;
             this.layoutControlItem4.CustomizationFormText = "Consecutivo:";
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(643, 24);
+            this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem4.Size = new System.Drawing.Size(643, 26);
             this.layoutControlItem4.Text = "Producto:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(90, 13);
             // 
@@ -726,16 +756,18 @@
             this.layoutControlItem6.CustomizationFormText = "layoutControlItem6";
             this.layoutControlItem6.Location = new System.Drawing.Point(321, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(322, 24);
+            this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem6.Size = new System.Drawing.Size(322, 26);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.dtpFechaVence;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 78);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(321, 24);
+            this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem5.Size = new System.Drawing.Size(321, 26);
             this.layoutControlItem5.Text = "Fecha Vence:";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(90, 13);
             // 
@@ -743,9 +775,10 @@
             // 
             this.layoutControlItem3.Control = this.txtLoteProveedor;
             this.layoutControlItem3.CustomizationFormText = "Descripción:";
-            this.layoutControlItem3.Location = new System.Drawing.Point(321, 24);
+            this.layoutControlItem3.Location = new System.Drawing.Point(321, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(322, 24);
+            this.layoutControlItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem3.Size = new System.Drawing.Size(322, 26);
             this.layoutControlItem3.Text = "Lote Proveedor:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(90, 13);
             // 
@@ -754,16 +787,18 @@
             this.layoutControlItem8.Control = this.dtpFechaIngreso;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(321, 24);
+            this.layoutControlItem8.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem8.Size = new System.Drawing.Size(321, 26);
             this.layoutControlItem8.Text = "Fecha Ingreso:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(90, 13);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.dtpFechaFabricacion;
-            this.layoutControlItem7.Location = new System.Drawing.Point(321, 72);
+            this.layoutControlItem7.Location = new System.Drawing.Point(321, 78);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(322, 24);
+            this.layoutControlItem7.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.layoutControlItem7.Size = new System.Drawing.Size(322, 26);
             this.layoutControlItem7.Text = "Fecha Fabricación:";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(90, 13);
             // 
@@ -771,7 +806,7 @@
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.CustomizationFormText = "emptySpaceItem1";
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 228);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 220);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 26);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 26);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
@@ -782,16 +817,17 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emptySpaceItem2.AppearanceItemCaption.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.emptySpaceItem2.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emptySpaceItem2.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.emptySpaceItem2.AppearanceItemCaption.Options.UseFont = true;
             this.emptySpaceItem2.AppearanceItemCaption.Options.UseForeColor = true;
             this.emptySpaceItem2.AppearanceItemCaption.Options.UseTextOptions = true;
             this.emptySpaceItem2.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.emptySpaceItem2.Location = new System.Drawing.Point(49, 0);
-            this.emptySpaceItem2.MinSize = new System.Drawing.Size(194, 24);
+            this.emptySpaceItem2.MaxSize = new System.Drawing.Size(0, 36);
+            this.emptySpaceItem2.MinSize = new System.Drawing.Size(194, 36);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(618, 42);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(618, 36);
             this.emptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem2.Text = "Listado de Lotes";
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(90, 0);
@@ -801,21 +837,23 @@
             // 
             this.layoutControlItem9.Control = this.pictureEdit1;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem9.MaxSize = new System.Drawing.Size(49, 42);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(49, 42);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(24, 24);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(49, 42);
+            this.layoutControlItem9.Size = new System.Drawing.Size(49, 36);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
-            // colDescrProducto
+            // emptySpaceItem3
             // 
-            this.colDescrProducto.Caption = "Descr Producto";
-            this.colDescrProducto.FieldName = "DescrProducto";
-            this.colDescrProducto.Name = "colDescrProducto";
-            this.colDescrProducto.Visible = true;
-            this.colDescrProducto.VisibleIndex = 2;
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 36);
+            this.emptySpaceItem3.MaxSize = new System.Drawing.Size(0, 17);
+            this.emptySpaceItem3.MinSize = new System.Drawing.Size(10, 17);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(667, 17);
+            this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmLote
             // 
@@ -862,6 +900,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -935,5 +974,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colFechaFabricacion;
         private DevExpress.XtraGrid.Columns.GridColumn colFechaIngreso;
         private DevExpress.XtraGrid.Columns.GridColumn colDescrProducto;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

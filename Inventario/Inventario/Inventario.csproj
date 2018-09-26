@@ -147,6 +147,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultas\frmConsultaArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmConsultaArticulo.Designer.cs">
+      <DependentUpon>frmConsultaArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\frmFiltroConsultaArticuloExistencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmFiltroConsultaArticuloExistencias.Designer.cs">
+      <DependentUpon>frmFiltroConsultaArticuloExistencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\frmFiltroConsultaArticuloTransacciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmFiltroConsultaArticuloTransacciones.Designer.cs">
+      <DependentUpon>frmFiltroConsultaArticuloTransacciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAC\clsBodegaDAC.cs" />
     <Compile Include="DAC\clsDocumentoInvCabecera.cs" />
     <Compile Include="DAC\clsDocumentoInvDetalle.cs" />
@@ -161,10 +179,16 @@
     <Compile Include="DAC\clsProductoDAC.cs" />
     <Compile Include="DAC\clsUnidadMedidaDAC.cs" />
     <Compile Include="DAC\globalTipoImpuestoDAC.cs" />
-    <Compile Include="frmFiltroConsultaExistencia.cs">
+    <Compile Include="Consultas\frmConsultaTransacciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFiltroConsultaExistencia.Designer.cs">
+    <Compile Include="Consultas\frmConsultaTransacciones.Designer.cs">
+      <DependentUpon>frmConsultaTransacciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\frmFiltroConsultaExistencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consultas\frmFiltroConsultaExistencia.Designer.cs">
       <DependentUpon>frmFiltroConsultaExistencia.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBodegas.cs">
@@ -185,10 +209,10 @@
     <Compile Include="frmDocumentoInv.Designer.cs">
       <DependentUpon>frmDocumentoInv.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConsultaExistenciaBodega.cs">
+    <Compile Include="Consultas\frmConsultaExistenciaBodega.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConsultaExistenciaBodega.Designer.cs">
+    <Compile Include="Consultas\frmConsultaExistenciaBodega.Designer.cs">
       <DependentUpon>frmConsultaExistenciaBodega.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFiltroProducto.cs">
@@ -241,7 +265,19 @@
     <Compile Include="Reportes\rptDocumentoInv.Designer.cs">
       <DependentUpon>rptDocumentoInv.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmFiltroConsultaExistencia.resx">
+    <EmbeddedResource Include="Consultas\frmConsultaArticulo.resx">
+      <DependentUpon>frmConsultaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmConsultaTransacciones.resx">
+      <DependentUpon>frmConsultaTransacciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmFiltroConsultaArticuloExistencias.resx">
+      <DependentUpon>frmFiltroConsultaArticuloExistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmFiltroConsultaArticuloTransacciones.resx">
+      <DependentUpon>frmFiltroConsultaArticuloTransacciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consultas\frmFiltroConsultaExistencia.resx">
       <DependentUpon>frmFiltroConsultaExistencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBodegas.resx">
@@ -253,7 +289,7 @@
     <EmbeddedResource Include="frmDocumentoInv.resx">
       <DependentUpon>frmDocumentoInv.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConsultaExistenciaBodega.resx">
+    <EmbeddedResource Include="Consultas\frmConsultaExistenciaBodega.resx">
       <DependentUpon>frmConsultaExistenciaBodega.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFiltroProducto.resx">

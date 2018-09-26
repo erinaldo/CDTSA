@@ -226,14 +226,16 @@ namespace Util
             lkupControl.Properties.NullText = "--- ---";
             lkupControl.Properties.View.BestFitColumns();
             lkupControl.Properties.NullValuePrompt = "--- ---";
+            lkupControl.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
         }
 
         public static void ConfigLookupEditSetViewColumns(SearchLookUpEdit lkupControl, String Columns)
         {
             dynamic oColumns = JArray.Parse(Columns);
-            DevExpress.XtraGrid.Views.Grid.GridView lookupView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            DevExpress.XtraGrid.Views.Grid.GridView lookupView = lkupControl.Properties.View; //new DevExpress.XtraGrid.Views.Grid.GridView();
             bool AutoWidth = false;
             int count = 0;
+            lookupView.Columns.Clear();
             foreach (dynamic ele in oColumns)
             {
                 DevExpress.XtraGrid.Columns.GridColumn col = new DevExpress.XtraGrid.Columns.GridColumn();
