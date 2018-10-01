@@ -1031,7 +1031,9 @@ as
 set nocount on 
 
 if upper(@Operacion) = 'I'
-begin
+BEGIN
+	SET @IDClasificacion  = (SELECT dbo.[invNextConsecutivoClasificacionInv]())
+	
 	INSERT INTO dbo.invClasificacion( IDClasificacion ,Descr ,IDGrupo ,Activo)
 	VALUES (@IDClasificacion,@Descr,@IDGrupo,@Activo)
 end
@@ -1063,9 +1065,12 @@ end
 GO
 
 
-CREATE  PROCEDURE dbo.invGetClasificacion @IDClasificacion AS INT, @IDGrupo AS int	, @Descr nvarchar(250)
+CREATE   PROCEDURE dbo.invGetClasificacion @IDClasificacion AS INT, @IDGrupo AS int	, @Descr nvarchar(250)
 AS 
-SELECT IDClasificacion,Descr  FROM dbo.invClasificacion WHERE  (IDClasificacion = @IDClasificacion OR @IDClasificacion=-1) AND  IDGrupo=@IDGrupo AND (Descr LIKE '%'+@Descr+'%' OR @Descr = '*') AND Activo=1
+SELECT B.IDGrupo,B.Descr DescrGrupo, IDClasificacion,A.Descr,A.Activo  FROM dbo.invClasificacion A
+INNER JOIN dbo.invGrupoClasif B ON A.IDGrupo = B.IDGrupo
+ WHERE  (IDClasificacion = @IDClasificacion OR @IDClasificacion=-1) AND  (A.IDGrupo=@IDGrupo OR @IDGrupo=-1) AND (A.Descr LIKE '%'+@Descr+'%' OR @Descr = '*') AND A.Activo=1
+
 
 GO
 
@@ -1760,3 +1765,40 @@ AS
 			  LEFT JOIN dbo.invClasificacion C6 ON P.Clasif6=C6.IDClasificacion  AND C6.IDGrupo=6
 	          WHERE (IDProducto=@IDProducto OR  @IDProducto=-1) AND 
 	          (P.Descr =@Descr OR P.Descr LIKE '%' +@Descr + '%' OR @Descr='*') 
+	          
+GO
+
+CREATE  PROCEDURE dbo.invGetGrupoClasif (@IDGrupo AS int	,@Descr AS nvarchar(250))
+AS 
+SELECT IDGrupo,Descr ,Etiqueta,Activo FROM dbo.invGrupoClasif
+WHERE (IDGrupo=@IDGrupo OR @IDGrupo=-1) AND (Descr LIKE '%Descr%' OR @Descr ='*')
+AND Activo=1
+
+GO
+ 
+CREATE  FUNCTION  [dbo].[invNextConsecutivoClasificacionInv] ()
+RETURNS bigint
+AS 
+BEGIN	
+DECLARE @NextConsecutivo AS bigint 
+SELECT @NextConsecutivo= ISNULL(MAX(IDClasificacion),0) + 1 
+FROM dbo.invClasificacion 
+
+RETURN   @NextConsecutivo
+
+END 
+
+GO
+ 
+
+CREATE Procedure [dbo].[invUpdateInvGrupoClasificacion] @Operacion nvarchar(1), @IDGrupo int, @Descr nvarchar(250),@Activo BIT
+as
+set nocount on 
+if upper(@Operacion) = 'U' 
+BEGIN
+	UPDATE dbo.invGrupoClasif SET  Descr = @Descr,Activo=@Activo WHERE IDGrupo = @IDGrupo
+
+end
+
+GO
+ 

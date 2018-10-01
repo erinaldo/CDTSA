@@ -552,7 +552,7 @@ namespace CI
             }
             else if (Convert.ToBoolean(dr["EsAjuste"]) || Convert.ToBoolean(dr["EsCompra"]))
             {
-                if (this.txtCostoDolar.EditValue == null|| this.txtCostoLocal.EditValue.ToString() == "")
+                if (this.txtCostoDolar.EditValue == null || this.txtCostoDolar.EditValue.ToString() == "")
                     sMensaje = " • Ingrese sel costo del producto \n\r";
             }
             else if (Convert.ToBoolean(dr["EsTraslado"])) { 

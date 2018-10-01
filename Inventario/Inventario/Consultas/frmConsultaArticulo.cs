@@ -27,6 +27,31 @@ namespace CI.Consultas
         }
 
 
+        private void CargarDescripcionesClasificaciones()
+        {
+            DataTable DT = clsGrupoClasificacionDAC.GetData(-1, "*").Tables[0];
+
+            this.lyClasif1.Text = DT.Rows[0]["Descr"].ToString() + ":";
+            this.lyClasif1.Visibility = (Convert.ToBoolean(DT.Rows[0]["Activo"]) == true) ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            this.lyClasif2.Text = DT.Rows[1]["Descr"].ToString() + ":";
+            this.lyClasif2.Visibility = (Convert.ToBoolean(DT.Rows[1]["Activo"]) == true) ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            this.lyClasif3.Text = DT.Rows[2]["Descr"].ToString() + ":";
+            this.lyClasif3.Visibility = (Convert.ToBoolean(DT.Rows[2]["Activo"]) == true) ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            this.lyClasif4.Text = DT.Rows[3]["Descr"].ToString() + ":";
+            this.lyClasif4.Visibility = (Convert.ToBoolean(DT.Rows[3]["Activo"]) == true) ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            this.lyClasif5.Text = DT.Rows[4]["Descr"].ToString() + ":";
+            this.lyClasif5.Visibility = (Convert.ToBoolean(DT.Rows[4]["Activo"]) == true) ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            this.lyClasif6.Text = DT.Rows[5]["Descr"].ToString() + ":"; 
+            this.lyClasif6.Visibility = (Convert.ToBoolean(DT.Rows[5]["Activo"]) == true) ? DevExpress.XtraLayout.Utils.LayoutVisibility.Always : DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+        }
+
+
         private void frmConsultaArticulo_Load(object sender, EventArgs e)
         {
             sBodega = sLote=sPaquete=sTransaccion=sAplicacion=sReferencia= "*" ;
@@ -35,7 +60,8 @@ namespace CI.Consultas
 
             Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetProductoByID(-1, "*").Tables[0], "Descr", "IDProducto");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupProducto, "[{'ColumnCaption':'ID Producto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
-
+            
+            CargarDescripcionesClasificaciones();
             
 
         }

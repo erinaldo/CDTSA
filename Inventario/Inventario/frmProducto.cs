@@ -555,6 +555,29 @@ namespace CI
 
         }
 
+        private void CargarDescripcionesClasificaciones() {
+            DataTable DT = clsGrupoClasificacionDAC.GetData(-1, "*").Tables[0];
+
+            this.lyClasif1.Text = DT.Rows[0]["Descr"].ToString() + ":";
+            this.slkupClasif1.Enabled = Convert.ToBoolean(DT.Rows[0]["Activo"]);
+
+            this.lyClasif2.Text = DT.Rows[1]["Descr"].ToString() + ":";
+            this.slkupClasif1.Enabled = Convert.ToBoolean(DT.Rows[1]["Activo"]);
+
+            this.lyClasif3.Text = DT.Rows[2]["Descr"].ToString() + ":";
+            this.slkupClasif1.Enabled = Convert.ToBoolean(DT.Rows[2]["Activo"]);
+
+            this.lyClasif4.Text = DT.Rows[3]["Descr"].ToString() + ":";
+            this.slkupClasif1.Enabled = Convert.ToBoolean(DT.Rows[3]["Activo"]);
+
+            this.lyClasif5.Text = DT.Rows[4]["Descr"].ToString() + ":";
+            this.slkupClasif1.Enabled = Convert.ToBoolean(DT.Rows[4]["Activo"]);
+
+            this.lyClasif6.Text = DT.Rows[5]["Descr"].ToString() + ":"; 
+            this.slkupClasif1.Enabled = Convert.ToBoolean(DT.Rows[5]["Activo"]);
+
+        }
+
         private void frmProducto_Load(object sender, EventArgs e)
         {
             try
@@ -564,6 +587,8 @@ namespace CI
                 
                 CargarPrivilegios();
                 EnlazarEventos();
+
+                CargarDescripcionesClasificaciones();
 
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
 

@@ -172,6 +172,7 @@
     <Compile Include="DAC\clsGlobalClaseTipoTranDAC.cs" />
     <Compile Include="DAC\clsGlobalConsecutivosDAC.cs" />
     <Compile Include="DAC\clsGlobalTipoTransaccionDAC.cs" />
+    <Compile Include="DAC\clsGrupoClasificacionDAC.cs" />
     <Compile Include="DAC\clsInvCuentaInventarioDAC.cs" />
     <Compile Include="DAC\clsLoteDAC.cs" />
     <Compile Include="DAC\clsPaqueteDAC.cs" />
@@ -197,6 +198,12 @@
     <Compile Include="frmBodegas.Designer.cs">
       <DependentUpon>frmBodegas.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatalogoClasificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatalogoClasificaciones.Designer.cs">
+      <DependentUpon>frmCatalogoClasificaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConsecutivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +227,12 @@
     </Compile>
     <Compile Include="frmFiltroProducto.Designer.cs">
       <DependentUpon>frmFiltroProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGrupoClasificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGrupoClasificaciones.Designer.cs">
+      <DependentUpon>frmGrupoClasificaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInvCuentaContable.cs">
       <SubType>Form</SubType>
@@ -283,6 +296,9 @@
     <EmbeddedResource Include="frmBodegas.resx">
       <DependentUpon>frmBodegas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCatalogoClasificaciones.resx">
+      <DependentUpon>frmCatalogoClasificaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConsecutivos.resx">
       <DependentUpon>frmConsecutivos.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFiltroProducto.resx">
       <DependentUpon>frmFiltroProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGrupoClasificaciones.resx">
+      <DependentUpon>frmGrupoClasificaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInvCuentaContable.resx">
       <DependentUpon>frmInvCuentaContable.cs</DependentUpon>

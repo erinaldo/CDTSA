@@ -60,12 +60,12 @@
             this.txtClasificacion2 = new System.Windows.Forms.TextBox();
             this.txtClasificacion1 = new System.Windows.Forms.TextBox();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tabCostos = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
             this.txtCostoPromDolar = new System.Windows.Forms.TextBox();
@@ -127,12 +127,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif6)).BeginInit();
             this.tabCostos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
             this.layoutControl4.SuspendLayout();
@@ -466,76 +466,76 @@
             this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup3.GroupBordersVisible = false;
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem11,
-            this.layoutControlItem12,
-            this.layoutControlItem13,
-            this.layoutControlItem14,
-            this.layoutControlItem15,
-            this.layoutControlItem16});
+            this.lyClasif1,
+            this.lyClasif2,
+            this.lyClasif3,
+            this.lyClasif4,
+            this.lyClasif5,
+            this.lyClasif6});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "Root";
             this.layoutControlGroup3.Size = new System.Drawing.Size(706, 280);
             this.layoutControlGroup3.TextVisible = false;
             // 
-            // layoutControlItem11
+            // lyClasif1
             // 
-            this.layoutControlItem11.Control = this.txtClasificacion1;
-            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem11.Size = new System.Drawing.Size(686, 26);
-            this.layoutControlItem11.Text = "Clasificacion 1:";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(71, 13);
+            this.lyClasif1.Control = this.txtClasificacion1;
+            this.lyClasif1.Location = new System.Drawing.Point(0, 0);
+            this.lyClasif1.Name = "lyClasif1";
+            this.lyClasif1.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.lyClasif1.Size = new System.Drawing.Size(686, 26);
+            this.lyClasif1.Text = "Clasificacion 1:";
+            this.lyClasif1.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // layoutControlItem12
+            // lyClasif2
             // 
-            this.layoutControlItem12.Control = this.txtClasificacion2;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 26);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem12.Size = new System.Drawing.Size(686, 26);
-            this.layoutControlItem12.Text = "Clasificacion 2:";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(71, 13);
+            this.lyClasif2.Control = this.txtClasificacion2;
+            this.lyClasif2.Location = new System.Drawing.Point(0, 26);
+            this.lyClasif2.Name = "lyClasif2";
+            this.lyClasif2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.lyClasif2.Size = new System.Drawing.Size(686, 26);
+            this.lyClasif2.Text = "Clasificacion 2:";
+            this.lyClasif2.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // layoutControlItem13
+            // lyClasif3
             // 
-            this.layoutControlItem13.Control = this.txtClasificacion3;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 52);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem13.Size = new System.Drawing.Size(686, 26);
-            this.layoutControlItem13.Text = "Clasificacion 3:";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(71, 13);
+            this.lyClasif3.Control = this.txtClasificacion3;
+            this.lyClasif3.Location = new System.Drawing.Point(0, 52);
+            this.lyClasif3.Name = "lyClasif3";
+            this.lyClasif3.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.lyClasif3.Size = new System.Drawing.Size(686, 26);
+            this.lyClasif3.Text = "Clasificacion 3:";
+            this.lyClasif3.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // layoutControlItem14
+            // lyClasif4
             // 
-            this.layoutControlItem14.Control = this.txtClasificacion4;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 78);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem14.Size = new System.Drawing.Size(686, 26);
-            this.layoutControlItem14.Text = "Clasificacion 4:";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(71, 13);
+            this.lyClasif4.Control = this.txtClasificacion4;
+            this.lyClasif4.Location = new System.Drawing.Point(0, 78);
+            this.lyClasif4.Name = "lyClasif4";
+            this.lyClasif4.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.lyClasif4.Size = new System.Drawing.Size(686, 26);
+            this.lyClasif4.Text = "Clasificacion 4:";
+            this.lyClasif4.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // layoutControlItem15
+            // lyClasif5
             // 
-            this.layoutControlItem15.Control = this.txtClasificacion5;
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 104);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem15.Size = new System.Drawing.Size(686, 26);
-            this.layoutControlItem15.Text = "Clasificaicon 5:";
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(71, 13);
+            this.lyClasif5.Control = this.txtClasificacion5;
+            this.lyClasif5.Location = new System.Drawing.Point(0, 104);
+            this.lyClasif5.Name = "lyClasif5";
+            this.lyClasif5.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.lyClasif5.Size = new System.Drawing.Size(686, 26);
+            this.lyClasif5.Text = "Clasificaicon 5:";
+            this.lyClasif5.TextSize = new System.Drawing.Size(71, 13);
             // 
-            // layoutControlItem16
+            // lyClasif6
             // 
-            this.layoutControlItem16.Control = this.txtClasificacion6;
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 130);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem16.Size = new System.Drawing.Size(686, 130);
-            this.layoutControlItem16.Text = "Clasifiacion 6:";
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(71, 13);
+            this.lyClasif6.Control = this.txtClasificacion6;
+            this.lyClasif6.Location = new System.Drawing.Point(0, 130);
+            this.lyClasif6.Name = "lyClasif6";
+            this.lyClasif6.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
+            this.lyClasif6.Size = new System.Drawing.Size(686, 130);
+            this.lyClasif6.Text = "Clasifiacion 6:";
+            this.lyClasif6.TextSize = new System.Drawing.Size(71, 13);
             // 
             // tabCostos
             // 
@@ -946,12 +946,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif6)).EndInit();
             this.tabCostos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
             this.layoutControl4.ResumeLayout(false);
@@ -1032,12 +1032,12 @@
         private System.Windows.Forms.TextBox txtClasificacion2;
         private System.Windows.Forms.TextBox txtClasificacion1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private DevExpress.XtraLayout.LayoutControlItem lyClasif1;
+        private DevExpress.XtraLayout.LayoutControlItem lyClasif2;
+        private DevExpress.XtraLayout.LayoutControlItem lyClasif3;
+        private DevExpress.XtraLayout.LayoutControlItem lyClasif4;
+        private DevExpress.XtraLayout.LayoutControlItem lyClasif5;
+        private DevExpress.XtraLayout.LayoutControlItem lyClasif6;
         private DevExpress.XtraLayout.LayoutControl layoutControl4;
         private DevExpress.XtraEditors.TextEdit txtCostoUltLocal;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;

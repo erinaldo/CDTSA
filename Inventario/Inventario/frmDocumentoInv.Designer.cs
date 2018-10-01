@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentoInv));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtPaquete = new DevExpress.XtraEditors.TextEdit();
@@ -108,7 +109,7 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnAddDoc = new DevExpress.XtraBars.BarButtonItem();
             this.btnSaveDoc = new DevExpress.XtraBars.BarButtonItem();
@@ -259,7 +260,7 @@
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.tabGeneral;
             this.xtraTabControl1.Size = new System.Drawing.Size(758, 462);
-            this.xtraTabControl1.TabIndex = 4;
+            this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabGeneral,
             this.tabDetalle});
@@ -270,7 +271,7 @@
             this.tabGeneral.Appearance.Header.Options.UseFont = true;
             this.tabGeneral.Controls.Add(this.layoutControl2);
             this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Size = new System.Drawing.Size(752, 407);
+            this.tabGeneral.Size = new System.Drawing.Size(752, 433);
             this.tabGeneral.Text = "General";
             // 
             // layoutControl2
@@ -284,7 +285,7 @@
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(694, 341, 250, 350);
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(752, 407);
+            this.layoutControl2.Size = new System.Drawing.Size(752, 433);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -304,7 +305,7 @@
             this.txtReferencia.Properties.ReadOnly = true;
             this.txtReferencia.Size = new System.Drawing.Size(625, 103);
             this.txtReferencia.StyleController = this.layoutControl2;
-            this.txtReferencia.TabIndex = 6;
+            this.txtReferencia.TabIndex = 1;
             // 
             // dtpFecha
             // 
@@ -318,7 +319,7 @@
             this.dtpFecha.Properties.ReadOnly = true;
             this.dtpFecha.Size = new System.Drawing.Size(269, 20);
             this.dtpFecha.StyleController = this.layoutControl2;
-            this.dtpFecha.TabIndex = 3;
+            this.dtpFecha.TabIndex = 0;
             // 
             // dtpFechaCreacion
             // 
@@ -342,7 +343,7 @@
             this.Root});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(752, 407);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(752, 433);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // Root
@@ -359,7 +360,7 @@
             this.layoutControlItem5});
             this.Root.Location = new System.Drawing.Point(0, 0);
             this.Root.Name = "item0";
-            this.Root.Size = new System.Drawing.Size(732, 387);
+            this.Root.Size = new System.Drawing.Size(732, 413);
             this.Root.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.Root.Text = "Root";
             this.Root.TextVisible = false;
@@ -408,7 +409,7 @@
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 161);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.emptySpaceItem2.Size = new System.Drawing.Size(712, 206);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(712, 232);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
@@ -489,7 +490,7 @@
             this.slkupLote.Properties.View = this.searchLookUpEdit1View;
             this.slkupLote.Size = new System.Drawing.Size(266, 20);
             this.slkupLote.StyleController = this.layoutControl3;
-            this.slkupLote.TabIndex = 14;
+            this.slkupLote.TabIndex = 8;
             // 
             // searchLookUpEdit1View
             // 
@@ -679,7 +680,7 @@
             this.slkupTransaccion.Properties.View = this.gridView5;
             this.slkupTransaccion.Size = new System.Drawing.Size(266, 20);
             this.slkupTransaccion.StyleController = this.layoutControl3;
-            this.slkupTransaccion.TabIndex = 8;
+            this.slkupTransaccion.TabIndex = 3;
             this.slkupTransaccion.EditValueChanged += new System.EventHandler(this.slkupTransaccion_EditValueChanged);
             // 
             // gridView5
@@ -698,7 +699,7 @@
             this.slkupProducto.Properties.View = this.gridView1;
             this.slkupProducto.Size = new System.Drawing.Size(620, 20);
             this.slkupProducto.StyleController = this.layoutControl3;
-            this.slkupProducto.TabIndex = 12;
+            this.slkupProducto.TabIndex = 6;
             this.slkupProducto.EditValueChanged += new System.EventHandler(this.slkupProducto_EditValueChanged);
             // 
             // gridView1
@@ -718,7 +719,7 @@
             this.slkupBodegaOrigen.Properties.View = this.gridView4;
             this.slkupBodegaOrigen.Size = new System.Drawing.Size(266, 20);
             this.slkupBodegaOrigen.StyleController = this.layoutControl3;
-            this.slkupBodegaOrigen.TabIndex = 10;
+            this.slkupBodegaOrigen.TabIndex = 4;
             // 
             // gridView4
             // 
@@ -733,7 +734,7 @@
             this.txtCostoDolar.Name = "txtCostoDolar";
             this.txtCostoDolar.Size = new System.Drawing.Size(266, 20);
             this.txtCostoDolar.StyleController = this.layoutControl3;
-            this.txtCostoDolar.TabIndex = 18;
+            this.txtCostoDolar.TabIndex = 12;
             this.txtCostoDolar.EditValueChanged += new System.EventHandler(this.txtCostoDolar_EditValueChanged);
             this.txtCostoDolar.Enter += new System.EventHandler(this.txtCostoDolar_Enter);
             // 
@@ -743,7 +744,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(266, 20);
             this.txtCantidad.StyleController = this.layoutControl3;
-            this.txtCantidad.TabIndex = 13;
+            this.txtCantidad.TabIndex = 7;
             // 
             // txtCostoLocal
             // 
@@ -751,7 +752,7 @@
             this.txtCostoLocal.Name = "txtCostoLocal";
             this.txtCostoLocal.Size = new System.Drawing.Size(266, 20);
             this.txtCostoLocal.StyleController = this.layoutControl3;
-            this.txtCostoLocal.TabIndex = 17;
+            this.txtCostoLocal.TabIndex = 11;
             this.txtCostoLocal.EditValueChanged += new System.EventHandler(this.txtCostoLocal_EditValueChanged);
             this.txtCostoLocal.Enter += new System.EventHandler(this.txtCostoLocal_Enter);
             // 
@@ -761,7 +762,7 @@
             this.txtPrecioLocal.Name = "txtPrecioLocal";
             this.txtPrecioLocal.Size = new System.Drawing.Size(266, 20);
             this.txtPrecioLocal.StyleController = this.layoutControl3;
-            this.txtPrecioLocal.TabIndex = 15;
+            this.txtPrecioLocal.TabIndex = 9;
             this.txtPrecioLocal.EditValueChanged += new System.EventHandler(this.txtPrecioLocal_EditValueChanged);
             this.txtPrecioLocal.Enter += new System.EventHandler(this.txtPrecioLocal_Enter);
             // 
@@ -771,7 +772,7 @@
             this.txtPrecioDolar.Name = "txtPrecioDolar";
             this.txtPrecioDolar.Size = new System.Drawing.Size(266, 20);
             this.txtPrecioDolar.StyleController = this.layoutControl3;
-            this.txtPrecioDolar.TabIndex = 16;
+            this.txtPrecioDolar.TabIndex = 10;
             this.txtPrecioDolar.EditValueChanged += new System.EventHandler(this.txtPrecioDolar_EditValueChanged);
             this.txtPrecioDolar.Enter += new System.EventHandler(this.txtPrecioDolar_Enter);
             // 
@@ -785,7 +786,7 @@
             this.slkupBodegaDestino.Properties.View = this.gridView3;
             this.slkupBodegaDestino.Size = new System.Drawing.Size(266, 20);
             this.slkupBodegaDestino.StyleController = this.layoutControl3;
-            this.slkupBodegaDestino.TabIndex = 11;
+            this.slkupBodegaDestino.TabIndex = 5;
             // 
             // gridView3
             // 

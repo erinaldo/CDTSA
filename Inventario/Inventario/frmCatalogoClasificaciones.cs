@@ -13,27 +13,25 @@ using System.Windows.Forms;
 
 namespace CI
 {
-    public partial class frmLote : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmCatalogoClasificaciones : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-      
-
-
-        private DataTable _dtLote;
-        private DataSet _dsLote;
+        private DataTable _dtClasificaciones;
+        private DataSet _dsClasificaciones;
         private DataTable _dtSecurity;
 
         DataRow currentRow;
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
-        const String _tituloVentana = "Listado de Lotes";
+        const String _tituloVentana = "Listado de Clasficaciones";
         private bool isEdition = false;
 
-        public frmLote()
+        public frmCatalogoClasificaciones()
         {
             InitializeComponent();
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
+        //Carga de Privilegios
         private void CargarPrivilegios()
         {
             DataSet DS = new DataSet();
@@ -64,7 +62,7 @@ namespace CI
             this.btnCancelar.ItemClick += btnCancelar_ItemClick;
             this.btnExportar.ItemClick += BtnExportar_ItemClick;
             this.btnRefrescar.ItemClick += btnRefrescar_ItemClick;
-            this.gridView2.FocusedRowChanged += gridView1_FocusedRowChanged;
+            this.gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
         void btnRefrescar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -75,14 +73,14 @@ namespace CI
         private void BtnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string tempPath = System.IO.Path.GetTempPath();
-            String FileName = System.IO.Path.Combine(tempPath, "lstLotes.xlsx");
+            String FileName = System.IO.Path.Combine(tempPath, "lstClasificaciones.xlsx");
             DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
             {
-                SheetName = "Listado de Lotes"
+                SheetName = "Listado de Clasificaciones"
             };
 
 
-            this.gridView2.ExportToXlsx(FileName, options);
+            this.gridView1.ExportToXlsx(FileName, options);
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             process.StartInfo.FileName = FileName;
             process.StartInfo.Verb = "Open";
@@ -90,13 +88,15 @@ namespace CI
             process.Start();
         }
 
-        private void frmLote_Load(object sender, EventArgs e)
+
+
+        private void frmCatalogoClasificaciones_Load(object sender, EventArgs e)
         {
             try
             {
                 HabilitarControles(false);
 
-                Util.Util.SetDefaultBehaviorControls(this.gridView2, false, this.dtgDetalle, _tituloVentana, this);
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.gridClasificaciones, _tituloVentana, this);
 
                 PopulateGrid();
                 EnlazarEventos();
@@ -112,20 +112,20 @@ namespace CI
 
         private void PopulateData()
         {
-            
-            Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetData(-1,"*","*",-1,-1,-1,-1,-1,-1,"*",-1,-1,-1).Tables[0], "Descr", "IDProducto");
-            Util.Util.ConfigLookupEditSetViewColumns(this.slkupProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+                     //Cargar Grupo
+            Util.Util.ConfigLookupEdit(this.slkupGrupo, clsGrupoClasificacionDAC.GetData(-1,"*").Tables[0], "Descr", "IDGrupo");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupGrupo, "[{'ColumnCaption':'IDGrupo','ColumnField':'IDGrupo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            
+
         }
 
         private void PopulateGrid()
         {
-            _dsLote = clsLoteDAC.GetData(-1,-1,"*","*");
+            _dsClasificaciones = clsClasificacionDAC.GetData(-1,-1,"*");
 
-            _dtLote = _dsLote.Tables[0];
-            this.dtgDetalle.DataSource = null;
-            this.dtgDetalle.DataSource = _dtLote;
+            _dtClasificaciones = _dsClasificaciones.Tables[0];
+            this.gridClasificaciones.DataSource = null;
+            this.gridClasificaciones.DataSource = _dtClasificaciones;
 
             PopulateData();
 
@@ -133,26 +133,18 @@ namespace CI
 
         private void ClearControls()
         {
-            this.txtLote.Text = "";
-            this.txtLoteProveedor.Text = "";
-            this.slkupProducto.EditValue = null;
-            this.dtpFechaIngreso.EditValue = DateTime.Now;
-            this.dtpFechaVence.EditValue = null;
-            this.dtpFechaFabricacion.EditValue = null;
-            
-            
+            this.txtDescr.Text = "";
+            this.chkActivo.Checked = true;
+            this.slkupGrupo.EditValue = null;
         }
 
 
         private void HabilitarControles(bool Activo)
         {
-            this.txtLote.ReadOnly = !Activo;
-            this.txtLoteProveedor.ReadOnly = !Activo;
-            this.slkupProducto.ReadOnly = !Activo;
-            this.dtpFechaFabricacion.ReadOnly = !Activo;
-            this.dtpFechaIngreso.ReadOnly = !Activo;
-            this.dtpFechaVence.ReadOnly = !Activo;
-            this.dtgDetalle.Enabled = !Activo;
+            this.txtDescr.ReadOnly = !Activo;
+            this.chkActivo.ReadOnly = !Activo;
+            this.slkupGrupo.ReadOnly = !Activo;
+            this.gridClasificaciones.Enabled = !Activo;
             this.btnAgregar.Enabled = !Activo;
             this.btnEditar.Enabled = !Activo;
             this.btnGuardar.Enabled = Activo;
@@ -160,29 +152,24 @@ namespace CI
             this.btnEliminar.Enabled = !Activo;
             this.btnExportar.Enabled = !Activo;
             this.btnRefrescar.Enabled = !Activo;
-
         }
 
         private void SetCurrentRow()
         {
-            int index = (int)this.gridView2.FocusedRowHandle;
+            int index = (int)this.gridView1.FocusedRowHandle;
             if (index > -1)
             {
-                currentRow = gridView2.GetDataRow(index);
+                currentRow = gridView1.GetDataRow(index);
                 UpdateControlsFromCurrentRow(currentRow);
             }
         }
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
-            this.txtLote.Text = Row["LoteInterno"].ToString();
-            this.txtLoteProveedor.Text = Row["LoteProveedor"].ToString();
-            this.slkupProducto.EditValue = Row["IDProducto"].ToString();
-            this.dtpFechaFabricacion.EditValue = Convert.ToDateTime( Row["FechaFabricacion"]);
-            this.dtpFechaIngreso.EditValue = Convert.ToDateTime(Row["FechaIngreso"]);
-            this.dtpFechaVence.EditValue = Convert.ToDateTime(Row["FechaVencimiento"]);
+            this.txtDescr.Text = Row["Descr"].ToString();
+            this.chkActivo.Checked = Convert.ToBoolean( Row["Activo"]);
+            this.slkupGrupo.EditValue = Row["IDGrupo"].ToString();
         }
-
 
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -198,7 +185,7 @@ namespace CI
             currentRow = null;
 
 
-            this.txtLote.Focus();
+            this.txtDescr.Focus();
         }
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -215,7 +202,7 @@ namespace CI
 
 
             //lblStatus.Caption = "Editando el registro : " + currentRow["Descr"].ToString();
-            this.txtLote.Focus();
+            this.txtDescr.Focus();
         }
 
         private bool ValidarDatos()
@@ -224,19 +211,10 @@ namespace CI
             String sMensaje = "";
             //Este solo vale para el primer elemento
 
-            if (this.txtLote.Text == "")
-                sMensaje = sMensaje + "     • Lote del Producto. \n\r";
-            if (this.txtLoteProveedor.Text == "")
-                sMensaje = sMensaje + "     • Lote del Proveedor. \n\r";
-            if (this.slkupProducto.EditValue ==null)
-                sMensaje = sMensaje + "     • Articulo del Lote \n\r";
-            if (this.dtpFechaFabricacion.EditValue == null)
-                sMensaje = sMensaje + "     • Fecha de Fabricación. \n\r";
-            if (this.dtpFechaIngreso.EditValue == null)
-                sMensaje = sMensaje + "     • Fecha de Ingreso. \n\r";
-            if (this.dtpFechaVence.EditValue == null)
-                sMensaje = sMensaje + "     • Fecha de Vencimiento. \n\r";
-            
+            if (this.txtDescr.Text == "")
+                sMensaje = sMensaje + "     • Descripción de la Clasificacion. \n\r";
+            if (this.slkupGrupo.EditValue ==  null || this.slkupGrupo.EditValue.ToString()=="")
+                sMensaje = sMensaje + "     • Grupo al que pertenece la Clasificación. \n\r";
             if (sMensaje != "")
             {
                 result = false;
@@ -255,21 +233,18 @@ namespace CI
 
                 if (currentRow != null)
                 {
-                    lblStatus.Caption = "Actualizando : " + currentRow["LoteProveedor"].ToString();
+                    lblStatus.Caption = "Actualizando : " + currentRow["Descr"].ToString();
 
                     Application.DoEvents();
                     currentRow.BeginEdit();
 
-                    currentRow["LoteInterno"] = this.txtLote.Text;
-                    currentRow["LoteProveedor"] = this.txtLoteProveedor.Text;
-                    currentRow["IDProducto"] = this.slkupProducto.EditValue;
-                    currentRow["FechaFabricacion"] = this.dtpFechaFabricacion.EditValue;
-                    currentRow["FechaIngreso"] = this.dtpFechaIngreso.EditValue;
-                    currentRow["FechaVencimiento"] = this.dtpFechaVence.EditValue;
-
+                    currentRow["Descr"] = this.txtDescr.Text;
+                    currentRow["IDGrupo"] = this.slkupGrupo.EditValue;
+                    currentRow["Activo"] = this.chkActivo.EditValue;
+                    
                     currentRow.EndEdit();
 
-                    DataSet _dsChanged = _dsLote.GetChanges(DataRowState.Modified);
+                    DataSet _dsChanged = _dsClasificaciones.GetChanges(DataRowState.Modified);
 
                     bool okFlag = true;
                     if (_dsChanged.HasErrors)
@@ -285,7 +260,7 @@ namespace CI
 
                                 foreach (DataRow dr in errosRow)
                                 {
-                                    msg = msg + dr["LoteProveedor"].ToString();
+                                    msg = msg + dr["Descr"].ToString();
                                 }
                             }
                         }
@@ -297,39 +272,37 @@ namespace CI
 
                     if (okFlag)
                     {
-                        clsLoteDAC.oAdaptador.Update(_dsChanged, "Data");
-                        lblStatus.Caption = "Actualizado " + currentRow["LoteProveedor"].ToString();
+                        clsClasificacionDAC.oAdaptador.Update(_dsChanged, "Data");
+                        lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
                         Application.DoEvents();
                         isEdition = false;
-                        _dsLote.AcceptChanges();
+                        _dsClasificaciones.AcceptChanges();
                         PopulateGrid();
                         SetCurrentRow();
                         HabilitarControles(false);
                         AplicarPrivilegios();
+                        
                     }
                     else
                     {
-                        _dsLote.RejectChanges();
+                        _dsClasificaciones.RejectChanges();
 
                     }
                 }
                 else
                 {
                     //nuevo registro
-                    currentRow = _dtLote.NewRow();
+                    currentRow = _dtClasificaciones.NewRow();
 
-                    currentRow["LoteInterno"] = this.txtLote.Text;
-                    currentRow["LoteProveedor"] = this.txtLoteProveedor.Text;
-                    currentRow["IDProducto"] = this.slkupProducto.EditValue;
-                    currentRow["FechaFabricacion"] = this.dtpFechaFabricacion.EditValue;
-                    currentRow["FechaIngreso"] = this.dtpFechaIngreso.EditValue;
-                    currentRow["FechaVencimiento"] = this.dtpFechaVence.EditValue;
+                    currentRow["Descr"] = this.txtDescr.Text;
+                    currentRow["IDGrupo"] = this.slkupGrupo.EditValue;
+                    currentRow["Activo"] = this.chkActivo.EditValue;
 
-                    _dtLote.Rows.Add(currentRow);
+                    _dtClasificaciones.Rows.Add(currentRow);
                     try
                     {
-                        clsLoteDAC.oAdaptador.Update(_dsLote, "Data");
-                        _dsLote.AcceptChanges();
+                        clsClasificacionDAC.oAdaptador.Update(_dsClasificaciones, "Data");
+                        _dsClasificaciones.AcceptChanges();
                         isEdition = false;
                         lblStatus.Caption = "Se ha ingresado un nuevo registro";
                         Application.DoEvents();
@@ -337,12 +310,12 @@ namespace CI
                         SetCurrentRow();
                         HabilitarControles(false);
                         AplicarPrivilegios();
-                        ColumnView view = this.gridView2;
+                        ColumnView view = this.gridView1;
                         view.MoveLast();
                     }
                     catch (System.Data.SqlClient.SqlException ex)
                     {
-                        _dsLote.RejectChanges();
+                        _dsClasificaciones.RejectChanges();
                         currentRow = null;
                         MessageBox.Show(ex.Message);
                     }
@@ -350,7 +323,7 @@ namespace CI
             }
             catch (Exception ex)
             {
-                _dsLote.RejectChanges();
+                _dsClasificaciones.RejectChanges();
                 currentRow = null;
                 MessageBox.Show(ex.Message);
             }
@@ -369,18 +342,18 @@ namespace CI
         {
             if (currentRow != null)
             {
-                string msg = currentRow["LoteProveedor"] + " eliminado..";
+                string msg = currentRow["Descr"] + " eliminado..";
 
 
-                if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["LoteProveedor"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["Descr"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
                     currentRow.Delete();
 
                     try
                     {
 
-                        clsLoteDAC.oAdaptador.Update(_dsLote, "Data");
-                        _dsLote.AcceptChanges();
+                        clsClasificacionDAC.oAdaptador.Update(_dsClasificaciones, "Data");
+                        _dsClasificaciones.AcceptChanges();
 
                         PopulateGrid();
                         lblStatus.Caption = msg;
@@ -388,7 +361,7 @@ namespace CI
                     }
                     catch (System.Data.SqlClient.SqlException ex)
                     {
-                        _dsLote.RejectChanges();
+                        _dsClasificaciones.RejectChanges();
                         lblStatus.Caption = "";
                         MessageBox.Show(ex.Message);
                     }
@@ -396,14 +369,13 @@ namespace CI
             }
         }
 
-        private void txtLote_TextChanged(object sender, EventArgs e)
+        private void btnGrupos_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (this.txtLoteProveedor.EditValue == null || this.txtLoteProveedor.EditValue.ToString() == "")
-            {
-                this.txtLoteProveedor.EditValue = this.txtLote.EditValue;
-            }
+            frmGrupoClasificaciones ofrmGrupo = new frmGrupoClasificaciones();
+            ofrmGrupo.ShowDialog();
         }
 
         
+
     }
 }

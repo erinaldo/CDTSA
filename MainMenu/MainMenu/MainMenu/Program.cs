@@ -20,6 +20,7 @@ namespace MainMenu
             SplashScreenManager.ShowForm(null, typeof(CDTSA.splash), true, true, false, 0);
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CDTSA.frmLogin());
+            
         }
     }
 }
