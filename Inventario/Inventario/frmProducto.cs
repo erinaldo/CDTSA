@@ -11,6 +11,8 @@ using DevExpress.XtraBars;
 using Security;
 using CI.DAC;
 using CG.DAC;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 
 namespace CI
@@ -361,10 +363,10 @@ namespace CI
                     _currentRow["EsEtico"] = this.chkEsEtico.EditValue;
                     _currentRow["BajaPrecioDistribuidor"] = this.chkBajaPrecioDistribuidor.EditValue;
                     _currentRow["BajaPrecioProveedor"] = this.chkBajaPrecioProveedor.EditValue;
-                    _currentRow["PorcDescuentoAlzaProveedor"] = this.txtPorcDescAlzaProveedor.EditValue =="" ? 0:this.txtPorcDescAlzaProveedor.EditValue;
+                    _currentRow["PorcDescuentoAlzaProveedor"] = this.txtPorcDescAlzaProveedor.EditValue.ToString() =="" ? 0:this.txtPorcDescAlzaProveedor.EditValue;
                     _currentRow["BonificaFA"] = this.chkBonificaFactura.EditValue;
-                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue == "" ? 0:this.txtBonificaCOPorCada.EditValue;
-                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue=="" ? 0: this.txtBonificaCOCantidad.EditValue;
+                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue.ToString() == "" ? 0:this.txtBonificaCOPorCada.EditValue;
+                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue.ToString()=="" ? 0: this.txtBonificaCOCantidad.EditValue;
                     _currentRow["Activo"] = this.chkActivo.EditValue;
                     _currentRow["UserInsert"] = sUsuario;
                     _currentRow["UserUpdate"] = sUsuario;
@@ -691,6 +693,30 @@ namespace CI
         {
             DevExpress.XtraEditors.TextEdit edit = sender as DevExpress.XtraEditors.TextEdit;
             BeginInvoke(new Action(() => edit.SelectAll()));
+        }
+
+        private void btnExportar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptFichaProducto.repx", true);
+
+
+                SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+                SqlDataSource ds = report.DataSource as SqlDataSource;
+                ds.ConnectionName = "sqlDataSource1";
+                String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+                // Obtain a parameter, and set its value.
+                report.Parameters["IDProducto"].Value = Convert.ToInt32(this.txtIDProducto.Text);
+                report.Parameters["Descr"].Value = "*";
+
+                // Show the report's print preview.
+                DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+                tool.ShowPreview();
+            }
         }
         
     }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CI.DAC;
 using DevExpress.XtraEditors;
+using DevExpress.DataAccess.Sql;
 
 namespace CI.Consultas
 {
@@ -175,6 +176,40 @@ namespace CI.Consultas
                     sBodega = ofrmFiltro.getLstFiltro("Bodega");
                     CargarExistencias();
             }
+
+        }
+
+        private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            if (this.slkupProducto.EditValue != null || this.slkupProducto.EditValue.ToString() != "")
+            {
+                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptFichaProducto.repx", true);
+
+
+                SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+                SqlDataSource ds = report.DataSource as SqlDataSource;
+                ds.ConnectionName = "sqlDataSource1";
+                String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+                // Obtain a parameter, and set its value.
+                report.Parameters["IDProducto"].Value = Convert.ToInt32(this.slkupProducto.EditValue);
+                report.Parameters["Descr"].Value = "*";
+
+                // Show the report's print preview.
+                DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+                tool.ShowPreview();
+            }
+
 
         }
     }
