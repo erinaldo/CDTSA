@@ -143,7 +143,7 @@ namespace CG
         public static Double GetLastTipoCambioFecha(DateTime Fecha)
         {
             double TC = 0;
-            String strSQL = " select isnull([dbo].[globalGetTipoCambio](@Fecha),0) Monto"; 
+            String strSQL = " select isnull([dbo].[globalGetTipoCambio]( @Fecha, (SELECT  TipoCambio FROM dbo.cntParametros)),0)) Monto"; 
                 
                 //"DECLARE @FechaMax AS DATE " +
                 //            "SET @FechaMax = (SELECT MAX(Fecha)  FROM dbo.cntSaldo) " +
