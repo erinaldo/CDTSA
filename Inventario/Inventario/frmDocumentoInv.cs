@@ -13,6 +13,7 @@ using CI.DAC;
 using DevExpress.DataAccess.Sql;
 using DevExpress.DataAccess.ConnectionParameters;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraEditors;
 
 
 namespace CI
@@ -105,6 +106,7 @@ namespace CI
             _currentRow["Documento"] ="-- --";
             _currentRow["Aplicado"] = false;
             _currentRow["EsTraslado"] =false;
+            _currentRow["Asiento"] = "--";
             _currentRow["IDTraslado"] = -1;
             _currentRow["CreateDate"] = DateTime.Now;
             _currentRow["IDPaquete"] =Convert.ToInt32 (_dtPaquete.Rows[0]["IDPaquete"]);
@@ -145,6 +147,7 @@ namespace CI
             this.txtDocumento.EditValue = _currentRow["Documento"].ToString();
             this.txtIDTransaccion.EditValue = (_currentRow["IDTransaccion"].ToString()=="-1") ? "--": _currentRow["IDTransaccion"].ToString();
             this.txtIDTraslado.EditValue = (_currentRow["IDTraslado"].ToString()=="-1") ? "--" : _currentRow["IDTraslado"].ToString();
+            this.hlblAsiento.Text = _currentRow["Asiento"].ToString();
             this.txtReferencia.EditValue = _currentRow["Referencia"].ToString();
             this.dtpFecha.EditValue = (DateTime)_currentRow["Fecha"];
             this.dtpFechaCreacion.EditValue = (DateTime)_currentRow["CreateDate"];
@@ -175,26 +178,36 @@ namespace CI
            private void HabilitarControlesDetalle(bool Activo)
            {
                this.slkupTransaccion.ReadOnly = !Activo;
+               this.slkupTransaccion.TabStop = Activo;
                this.slkupProducto.ReadOnly = !Activo;
+               this.slkupProducto.TabStop = Activo;
                this.slkupLote.ReadOnly = !Activo;
+               this.slkupLote.TabStop = Activo;
                this.slkupBodegaOrigen.ReadOnly = !Activo;
+               this.slkupBodegaOrigen.TabStop = Activo;
                if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR" && Activo)
                {
                    this.slkupBodegaDestino.ReadOnly = !Activo;
+                   this.slkupBodegaDestino.TabStop = Activo;
                    
                }
                else
                {
                    this.slkupBodegaDestino.ReadOnly = true;
+                   this.slkupBodegaDestino.TabStop = false;
                    
                }
 
                
               
                this.txtPrecioDolar.Enabled = false;
+               this.txtPrecioDolar.TabStop = false;
                this.txtPrecioLocal.Enabled = false;
+               this.txtPrecioLocal.TabStop = false;
                this.txtCostoDolar.Enabled = false;
+               this.txtCostoDolar.TabStop = false;
                this.txtCostoLocal.Enabled = false;
+               this.txtCostoLocal.TabStop = false;
                this.txtCantidad.ReadOnly = !Activo;
                if (AccionDetalle == "Agregar" || AccionDetalle =="Editar")
                {
@@ -240,299 +253,309 @@ namespace CI
                this.txtPrecioLocal.EditValue=null;
            }
 
+
+           private void HandlerMenu(String sOption) {
+
+               DataRowView dr;
+               switch (sOption)
+               {
+                   case "Agregar":
+
+                       AccionDetalle = "Agregar";
+                       HabilitarControlesDetalle(true);
+                       this.slkupTransaccion.Focus();
+                       break;
+                   case "Editar":
+                       AccionDetalle = "Editar";
+                       HabilitarControlesDetalle(true);
+                       if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
+                       {
+                           DataRow row = this.gridViewDetalle.GetDataRow(0);
+                           this.slkupTransaccion.EditValue = row["IDTipoTran"];
+                           this.slkupProducto.EditValue = row["IDProducto"];
+                           this.slkupLote.EditValue = row["IDLote"];
+                           this.slkupTransaccion.ShowPopup();
+                           this.slkupTransaccion.ClosePopup();
+
+                           //    
+                           this.slkupBodegaOrigen.EditValue = row["IDBodegaOrigen"];
+                           this.txtCantidad.EditValue = row["Cantidad"];
+
+
+                           if (slkupTransaccion.EditValue != null)
+                           {
+                               dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                               if (Convert.ToBoolean(dr["EsVenta"]))
+                               {
+                                   this.txtCostoDolar.Enabled = false;
+                                   this.txtCostoLocal.Enabled = false;
+                                   this.txtPrecioDolar.Enabled = true;
+                                   this.txtPrecioLocal.Enabled = true;
+                                   this.txtPrecioDolar.EditValue = row["PrecioUntDolar"];
+                                   this.txtPrecioLocal.EditValue = row["PrecioUntLocal"];
+
+
+                               }
+                               else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"]) > 0) || Convert.ToBoolean(dr["EsCompra"]))
+                               {
+                                   this.txtCostoDolar.Enabled = true;
+                                   this.txtCostoLocal.Enabled = true;
+                                   this.txtPrecioDolar.Enabled = false;
+                                   this.txtPrecioLocal.Enabled = false;
+                                   this.txtCostoLocal.EditValue = row["CostoUntLocal"];
+                                   this.txtCostoDolar.EditValue = row["CostoUntDolar"];
+                               }
+                               else if (Convert.ToBoolean(dr["EsTraslado"]))
+                               {
+                                   this.slkupBodegaDestino.EditValue = row["IDBodegaDestino"];
+                                   this.txtCostoDolar.Enabled = false;
+                                   this.txtCostoLocal.Enabled = false;
+                                   this.txtPrecioDolar.Enabled = false;
+                                   this.txtPrecioLocal.Enabled = false;
+                               }
+                               else
+                               {
+                                   this.txtCostoDolar.Enabled = false;
+                                   this.txtCostoLocal.Enabled = false;
+                                   this.txtPrecioDolar.Enabled = false;
+                                   this.txtPrecioLocal.Enabled = false;
+                               }
+                           }
+                       }
+                       break;
+                   case "Eliminar":
+                       if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
+                       {
+                           DataRow row = this.gridViewDetalle.GetDataRow(0);
+                           _dsDetalle.Tables[0].Rows.Remove(row);
+                       }
+                       break;
+                   case "Cancelar":
+                       AccionDetalle = "View";
+                       HabilitarControlesDetalle(false);
+                       LimpiarCamposDetalle();
+                       break;
+                   case "Guardar":
+                       String sEstado = "";
+                       if (!ValidaDatosDetalle()) return;
+
+                       //Traer la transaccion
+                       DataTable dt = clsGlobalTipoTransaccionDAC.Get(Convert.ToInt32(this.slkupTransaccion.EditValue), "*", "*", "*").Tables[0];
+
+                       //Validar Existencias si la transaccion lo require.
+                       if (dt.Rows[0]["Naturaleza"].ToString() == "S")
+                       {
+                           DataSet dsExistencias = clsExistenciaBodegaDAC.GetExistenciasBodega(Convert.ToInt32(this.slkupBodegaOrigen.EditValue), Convert.ToInt32(this.slkupProducto.EditValue), Convert.ToInt32(this.slkupLote.EditValue));
+                           if (dsExistencias.Tables.Count > 0 && dsExistencias.Tables[0].Rows.Count > 0)
+                           {
+                               decimal Existencia = Convert.ToDecimal(dsExistencias.Tables[0].Rows[0]["Existencia"]);
+                               decimal Cantidad = Convert.ToDecimal(txtCantidad.Text.Trim());
+
+                               if (Existencia < Cantidad)
+                               {
+                                   sEstado = "E";
+                                   //Cambiar mostrar popup y agregar al inventari con una sena
+                                   MessageBox.Show("Alerta: no hay suficiente inventario para satisfacer ");
+                               }
+                           }
+                           else
+                           {
+
+                               sEstado = "E";
+                               //Cambiar mostrar popup y agregar al inventari con una sena
+                               MessageBox.Show("Alerta: no hay suficiente inventario para satisfacer ");
+                           }
+                       }
+
+                       //Validar si la fecha del asiento contable corresponde a una fecha valida
+
+
+                       //Obtener los datos
+
+
+                       //if (_currentRow != null)
+                       if (AccionDetalle != "Agregar")
+                       {
+
+                           Application.DoEvents();
+                           _currentRowDetalle.BeginEdit();
+
+
+
+                           //_dsProducto.Tables[0].Rows.Add(_currentRow);
+                           _currentRowDetalle["IDTransaccion"] = -1;
+                           _currentRowDetalle["Estado"] = sEstado;
+                           dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                           _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
+                           _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
+                           _currentRowDetalle["IDLote"] = Convert.ToInt32(this.slkupLote.EditValue);
+                           dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                           _currentRowDetalle["LoteInterno"] = dr["LoteInterno"].ToString();
+                           _currentRowDetalle["IDTipoTran"] = Convert.ToInt32(this.slkupTransaccion.EditValue);
+                           dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
+                           _currentRowDetalle["IDBodegaOrigen"] = Convert.ToInt32(this.slkupBodegaOrigen.EditValue);
+                           _currentRowDetalle["DescrBodegaOrigen"] = dr["Descr"].ToString();
+                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           if (dr["Transaccion"].ToString() == "TR")
+                           {
+                               dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
+                               _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
+                               _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
+                           }
+
+                           _currentRowDetalle["IDTraslado"] = _currentRow["IDTraslado"];
+                           _currentRowDetalle["Cantidad"] = Convert.ToDecimal(this.txtCantidad.EditValue);
+                           _currentRowDetalle["PrecioUntLocal"] = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
+                           _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
+                           _currentRowDetalle["CostoUntLocal"] = Convert.ToDecimal(this.txtCostoLocal.EditValue);
+                           _currentRowDetalle["CostoUntDolar"] = Convert.ToDecimal(this.txtCostoDolar.EditValue);
+                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           _currentRowDetalle["Transaccion"] = dr["Transaccion"].ToString();
+                           _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
+                           _currentRowDetalle["Factor"] = dr["Factor"].ToString();
+                           _currentRowDetalle["Naturaleza"] = dr["Naturaleza"].ToString();
+                           _currentRowDetalle["TipoCambio"] = TipoCambio;
+                           _currentRowDetalle["Aplicado"] = 0;
+                           _currentRow.EndEdit();
+
+                           //DataSet _dsChanged = _dsDocumentoInv.GetChanges(DataRowState.Modified);
+
+                           //bool okFlag = true;
+                           //if (_dsChanged.HasErrors)
+                           //{
+                           //    okFlag = false;
+                           //    string msg = "Error en la fila con el tipo Id";
+
+                           //    foreach (DataTable tb in _dsChanged.Tables)
+                           //    {
+                           //        if (tb.HasErrors)
+                           //        {
+                           //            DataRow[] errosRow = tb.GetErrors();
+
+                           //            foreach (DataRow dr in errosRow)
+                           //            {
+                           //                msg = msg + dr["IdDocumento"].ToString();
+                           //            }
+                           //        }
+                           //    }
+
+                           //    //lblStatus.Caption = msg;
+                           //}
+
+                           ////Si no hay errores
+
+                           //if (okFlag)
+                           //{
+                           //clsDocumentoInvCabecera.oAdaptador.Update(_dsChanged, "Data");
+                           //lblStatus.Caption = "Actualizado " + _currentRow["Descr"].ToString();
+                           //Application.DoEvents();
+
+                           //_dsDocumentoInv.AcceptChanges();
+
+                           AccionDetalle = "View";
+                           AplicarPrivilegios();
+                           //}
+                           //else
+                           //{
+                           //    _dsDocumentoInv.RejectChanges();
+
+                           //}
+
+
+                       }
+                       else
+                       {
+
+
+
+                           _currentRowDetalle = _dtDetalle.NewRow();
+                           //_currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
+                           _currentRowDetalle["IDTransaccion"] = -1;
+                           _currentRowDetalle["Estado"] = sEstado;
+                           dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                           _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
+                           _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
+                           _currentRowDetalle["IDLote"] = Convert.ToInt32(this.slkupLote.EditValue);
+                           dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                           _currentRowDetalle["LoteInterno"] = dr["LoteInterno"].ToString();
+                           _currentRowDetalle["IDTipoTran"] = Convert.ToInt32(this.slkupTransaccion.EditValue);
+                           dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
+                           _currentRowDetalle["IDBodegaOrigen"] = Convert.ToInt32(this.slkupBodegaOrigen.EditValue);
+                           _currentRowDetalle["DescrBodegaOrigen"] = dr["Descr"].ToString();
+                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           if (dr["Transaccion"].ToString() == "TR")
+                           {
+                               dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
+                               _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
+                               _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
+                           }
+                           _currentRowDetalle["IDTraslado"] = Convert.ToInt32(_currentRow["IDTraslado"]);
+                           _currentRowDetalle["Cantidad"] = Convert.ToDecimal(this.txtCantidad.EditValue);
+                           _currentRowDetalle["PrecioUntLocal"] = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
+                           _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
+                           _currentRowDetalle["CostoUntLocal"] = Convert.ToDecimal(this.txtCostoLocal.EditValue);
+                           _currentRowDetalle["CostoUntDolar"] = Convert.ToDecimal(this.txtCostoDolar.EditValue);
+                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           _currentRowDetalle["Transaccion"] = dr["Transaccion"].ToString();
+                           _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
+                           _currentRowDetalle["Factor"] = dr["Factor"].ToString();
+                           _currentRowDetalle["Naturaleza"] = dr["Naturaleza"].ToString();
+                           _currentRowDetalle["TipoCambio"] = TipoCambio;
+                           _currentRowDetalle["Aplicado"] = 0;
+
+                           //Validar que el elemento no exista
+                           DataView Dv = new DataView();
+                           Dv.Table = ((DataView)gridViewDetalle.DataSource).ToTable();
+                           Dv.RowFilter = string.Format("IDProducto={0} and IDLote ={1} and IDTipoTran = {2} and IDBodegaOrigen={3}", _currentRowDetalle["IDProducto"], _currentRowDetalle["IDLote"], _currentRowDetalle["IDTipoTran"], _currentRowDetalle["IDBodegaOrigen"]);
+
+                           if (Dv.ToTable().Rows.Count > 0)
+                           {
+                               MessageBox.Show("El elemento que desea agregar ya existe en la lista, por favor verifique");
+                               return;
+                           }
+
+
+                           _dtDetalle.Rows.Add(_currentRowDetalle);
+
+                           try
+                           {
+                               //clsDocumentoInvCabecera.oAdaptador.Update(_dsDocumentoInv, "Data");
+                               //_dsDocumentoInv.AcceptChanges();
+
+                               //this.txt.EditValue = clsProductoDAC.oAdaptador.InsertCommand.Parameters["@IDProducto"].Value.ToString();
+                               //lblStatus.Caption = "Se ha ingresado un nuevo registro";
+                               Application.DoEvents();
+
+
+                               AccionDetalle = "View";
+                               sEstado = "";
+                               AplicarPrivilegios();
+                               LimpiarCamposDetalle();
+
+                           }
+                           catch (System.Data.SqlClient.SqlException ex)
+                           {
+                               //_dsDocumentoInv.RejectChanges();
+                               //_currentRow = null;
+                               MessageBox.Show(ex.Message);
+                           }
+
+                       }
+                       AccionDetalle = "View";
+                       PopulateGrid(false);
+                       HabilitarControlesDetalle(false);
+                       this.gridViewDetalle.ClearSelection();
+                       this.gridViewDetalle.FocusedRowHandle = -1;
+                       break;
+               }
+           }  
+
         private void LayoutDetalleDocumento_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
         {
-            DataRowView dr;
-            switch (e.Button.Properties.Caption) { 
-                case "Agregar":
-                    
-                    AccionDetalle = "Agregar";
-                    HabilitarControlesDetalle(true);
-                    this.slkupTransaccion.Focus();
-                    break;
-                case "Editar":
-                    AccionDetalle = "Editar";
-                    HabilitarControlesDetalle(true);
-                    if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
-                    {
-                        DataRow row = this.gridViewDetalle.GetDataRow(0);
-                        this.slkupTransaccion.EditValue = row["IDTipoTran"];
-                        this.slkupProducto.EditValue = row["IDProducto"];
-                        this.slkupLote.EditValue = row["IDLote"];
-                        this.slkupTransaccion.ShowPopup();
-                        this.slkupTransaccion.ClosePopup();
-                        
-                        //    
-                        this.slkupBodegaOrigen.EditValue = row["IDBodegaOrigen"];
-                        this.txtCantidad.EditValue = row["Cantidad"];
-
-
-                        if (slkupTransaccion.EditValue != null)
-                        {
-                            dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
-                            if (Convert.ToBoolean(dr["EsVenta"]))
-                            {
-                                this.txtCostoDolar.Enabled = false;
-                                this.txtCostoLocal.Enabled = false;
-                                this.txtPrecioDolar.Enabled = true;
-                                this.txtPrecioLocal.Enabled = true;
-                                this.txtPrecioDolar.EditValue = row["PrecioUntDolar"];
-                                this.txtPrecioLocal.EditValue = row["PrecioUntLocal"];
-
-
-                            }
-                            else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"]) > 0) || Convert.ToBoolean(dr["EsCompra"]))
-                            {
-                                this.txtCostoDolar.Enabled = true;
-                                this.txtCostoLocal.Enabled = true;
-                                this.txtPrecioDolar.Enabled = false;
-                                this.txtPrecioLocal.Enabled = false;
-                                this.txtCostoLocal.EditValue = row["CostoUntLocal"];
-                                this.txtCostoDolar.EditValue = row["CostoUntDolar"];
-                            }
-                            else if (Convert.ToBoolean(dr["EsTraslado"]))
-                            {
-                                this.slkupBodegaDestino.EditValue = row["IDBodegaDestino"];
-                                this.txtCostoDolar.Enabled = false;
-                                this.txtCostoLocal.Enabled = false;
-                                this.txtPrecioDolar.Enabled = false;
-                                this.txtPrecioLocal.Enabled = false;
-                            }
-                            else
-                            {
-                                this.txtCostoDolar.Enabled = false;
-                                this.txtCostoLocal.Enabled = false;
-                                this.txtPrecioDolar.Enabled = false;
-                                this.txtPrecioLocal.Enabled = false;
-                            }
-                        }
-                    }
-                    break;
-                case "Eliminar":
-                    if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
-                    {
-                        DataRow row = this.gridViewDetalle.GetDataRow(0);
-                        _dsDetalle.Tables[0].Rows.Remove(row);
-                    }
-                    break;
-                case "Cancelar":
-                    AccionDetalle = "View";
-                    HabilitarControlesDetalle(false);
-                    LimpiarCamposDetalle();
-                    break;
-                case "Guardar":
-                    String sEstado = "";
-                    if (!ValidaDatosDetalle()) return;
-
-                    //Traer la transaccion
-                    DataTable dt = clsGlobalTipoTransaccionDAC.Get(Convert.ToInt32(this.slkupTransaccion.EditValue),"*","*","*").Tables[0];
-
-                    //Validar Existencias si la transaccion lo require.
-                    if (dt.Rows[0]["Naturaleza"].ToString() == "S")
-                    {
-                        DataSet dsExistencias = clsExistenciaBodegaDAC.GetExistenciasBodega(Convert.ToInt32(this.slkupBodegaOrigen.EditValue), Convert.ToInt32(this.slkupProducto.EditValue), Convert.ToInt32(this.slkupLote.EditValue));
-                        if (dsExistencias.Tables.Count > 0 && dsExistencias.Tables[0].Rows.Count > 0)
-                        {
-                            decimal Existencia = Convert.ToDecimal(dsExistencias.Tables[0].Rows[0]["Existencia"]);
-                            decimal Cantidad = Convert.ToDecimal(txtCantidad.Text.Trim());
-
-                            if (Existencia < Cantidad)
-                            {
-                                sEstado = "E";
-                                //Cambiar mostrar popup y agregar al inventari con una sena
-                                MessageBox.Show("Alerta: no hay suficiente inventario para satisfacer ");
-                            }
-                        }
-                        else {
-
-                            sEstado = "E";
-                            //Cambiar mostrar popup y agregar al inventari con una sena
-                            MessageBox.Show("Alerta: no hay suficiente inventario para satisfacer ");
-                        }
-                    }
-
-                    //Validar si la fecha del asiento contable corresponde a una fecha valida
-                
-
-                    //Obtener los datos
-                  
-
-                    //if (_currentRow != null)
-                    if (AccionDetalle != "Agregar")
-                    {
-
-                        Application.DoEvents();
-                        _currentRowDetalle.BeginEdit();
-
-                        
-                        
-                        //_dsProducto.Tables[0].Rows.Add(_currentRow);
-                        _currentRowDetalle["IDTransaccion"] = -1;
-                        _currentRowDetalle["Estado"] = sEstado;
-                        dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
-                        _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
-                        _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
-                        _currentRowDetalle["IDLote"] = Convert.ToInt32(this.slkupLote.EditValue);
-                        dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
-                        _currentRowDetalle["LoteInterno"] = dr["LoteInterno"].ToString();
-                        _currentRowDetalle["IDTipoTran"] = Convert.ToInt32(this.slkupTransaccion.EditValue);
-                        dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
-                        _currentRowDetalle["IDBodegaOrigen"] = Convert.ToInt32(this.slkupBodegaOrigen.EditValue);
-                        _currentRowDetalle["DescrBodegaOrigen"] = dr["Descr"].ToString();
-                        dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
-                        if (dr["Transaccion"].ToString() == "TR")
-                        {
-                            dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
-                            _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
-                            _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
-                        }
-                        
-                        _currentRowDetalle["IDTraslado"] = _currentRow["IDTraslado"];
-                        _currentRowDetalle["Cantidad"] = Convert.ToDecimal(this.txtCantidad.EditValue);
-                        _currentRowDetalle["PrecioUntLocal"] = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
-                        _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
-                        _currentRowDetalle["CostoUntLocal"] = Convert.ToDecimal(this.txtCostoLocal.EditValue);
-                        _currentRowDetalle["CostoUntDolar"] = Convert.ToDecimal(this.txtCostoDolar.EditValue);
-                        dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
-                        _currentRowDetalle["Transaccion"] = dr["Transaccion"].ToString();
-                        _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
-                        _currentRowDetalle["Factor"] = dr["Factor"].ToString();
-                        _currentRowDetalle["Naturaleza"] = dr["Naturaleza"].ToString();
-                        _currentRowDetalle["TipoCambio"] = TipoCambio;
-                        _currentRowDetalle["Aplicado"] = 0;
-                        _currentRow.EndEdit();
-
-                        //DataSet _dsChanged = _dsDocumentoInv.GetChanges(DataRowState.Modified);
-
-                        //bool okFlag = true;
-                        //if (_dsChanged.HasErrors)
-                        //{
-                        //    okFlag = false;
-                        //    string msg = "Error en la fila con el tipo Id";
-
-                        //    foreach (DataTable tb in _dsChanged.Tables)
-                        //    {
-                        //        if (tb.HasErrors)
-                        //        {
-                        //            DataRow[] errosRow = tb.GetErrors();
-
-                        //            foreach (DataRow dr in errosRow)
-                        //            {
-                        //                msg = msg + dr["IdDocumento"].ToString();
-                        //            }
-                        //        }
-                        //    }
-
-                        //    //lblStatus.Caption = msg;
-                        //}
-
-                        ////Si no hay errores
-
-                        //if (okFlag)
-                        //{
-                            //clsDocumentoInvCabecera.oAdaptador.Update(_dsChanged, "Data");
-                            //lblStatus.Caption = "Actualizado " + _currentRow["Descr"].ToString();
-                            //Application.DoEvents();
-
-                            //_dsDocumentoInv.AcceptChanges();
-                          
-                            AccionDetalle = "View";
-                            AplicarPrivilegios();
-                        //}
-                        //else
-                        //{
-                        //    _dsDocumentoInv.RejectChanges();
-
-                        //}
-
-
-                    }
-                    else {
-
-                        
-
-                        _currentRowDetalle = _dtDetalle.NewRow();
-                        //_currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
-                        _currentRowDetalle["IDTransaccion"] = -1;
-                        _currentRowDetalle["Estado"] = sEstado;
-                        dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
-                        _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
-                        _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
-                        _currentRowDetalle["IDLote"] = Convert.ToInt32(this.slkupLote.EditValue);
-                        dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
-                        _currentRowDetalle["LoteInterno"] = dr["LoteInterno"].ToString();
-                        _currentRowDetalle["IDTipoTran"] = Convert.ToInt32(this.slkupTransaccion.EditValue);
-                        dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
-                        _currentRowDetalle["IDBodegaOrigen"] = Convert.ToInt32(this.slkupBodegaOrigen.EditValue);
-                        _currentRowDetalle["DescrBodegaOrigen"] = dr["Descr"].ToString();
-                        dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
-                        if (dr["Transaccion"].ToString() =="TR")
-                        {
-                            dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
-                            _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
-                            _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
-                        }
-                        _currentRowDetalle["IDTraslado"] = Convert.ToInt32(_currentRow["IDTraslado"]);
-                        _currentRowDetalle["Cantidad"] = Convert.ToDecimal(this.txtCantidad.EditValue);
-                        _currentRowDetalle["PrecioUntLocal"] = Convert.ToDecimal(this.txtPrecioLocal.EditValue);
-                        _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
-                        _currentRowDetalle["CostoUntLocal"] = Convert.ToDecimal(this.txtCostoLocal.EditValue);
-                        _currentRowDetalle["CostoUntDolar"] = Convert.ToDecimal(this.txtCostoDolar.EditValue);
-                        dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
-                        _currentRowDetalle["Transaccion"] = dr["Transaccion"].ToString();
-                        _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
-                        _currentRowDetalle["Factor"] = dr["Factor"].ToString();
-                        _currentRowDetalle["Naturaleza"] = dr["Naturaleza"].ToString();
-                        _currentRowDetalle["TipoCambio"] = TipoCambio;
-                        _currentRowDetalle["Aplicado"] = 0;
-
-                        //Validar que el elemento no exista
-                        DataView Dv = new DataView();
-                        Dv.Table = ((DataView)gridViewDetalle.DataSource).ToTable();
-                        Dv.RowFilter = string.Format("IDProducto={0} and IDLote ={1} and IDTipoTran = {2} and IDBodegaOrigen={3}", _currentRowDetalle["IDProducto"], _currentRowDetalle["IDLote"], _currentRowDetalle["IDTipoTran"], _currentRowDetalle["IDBodegaOrigen"]);
-
-                        if (Dv.ToTable().Rows.Count > 0)
-                        {
-                            MessageBox.Show("El elemento que desea agregar ya existe en la lista, por favor verifique");
-                            return;
-                        }
-
-
-                        _dtDetalle.Rows.Add(_currentRowDetalle);
-
-                        try
-                        {
-                            //clsDocumentoInvCabecera.oAdaptador.Update(_dsDocumentoInv, "Data");
-                            //_dsDocumentoInv.AcceptChanges();
-
-                            //this.txt.EditValue = clsProductoDAC.oAdaptador.InsertCommand.Parameters["@IDProducto"].Value.ToString();
-                            //lblStatus.Caption = "Se ha ingresado un nuevo registro";
-                            Application.DoEvents();
-                        
-                          
-                            AccionDetalle = "View";
-                            sEstado = "";
-                            AplicarPrivilegios();
-                            LimpiarCamposDetalle();
-                        
-                        }
-                        catch (System.Data.SqlClient.SqlException ex)
-                        {
-                            //_dsDocumentoInv.RejectChanges();
-                            //_currentRow = null;
-                            MessageBox.Show(ex.Message);
-                        }
-                
-                    }
-                    AccionDetalle = "View";
-                    PopulateGrid(false);                    
-                    HabilitarControlesDetalle(false);
-                    this.gridViewDetalle.ClearSelection();
-                      this.gridViewDetalle.FocusedRowHandle = -1;
-                    break;
-            }
+            HandlerMenu(e.Button.Properties.Caption);
                
         }
+        
 
         private bool ValidaDatosDetalle()
         {
@@ -594,6 +617,7 @@ namespace CI
             {
                 HabilitarControlesCabecera(false);
                 CargarPrivilegios();
+                AplicarPrivilegios();
                 Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, _tituloVentana, this);
                 DataTable stTemp;
                 if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR")
@@ -636,7 +660,8 @@ namespace CI
                     HabilitarControlesDetalle(false);
 
                     this.ValidateChildren();
-                    this.txtReferencia.Focus();
+                    this.txtReferencia.Select();
+                    
                 }
                 else if (Accion == "Edit")
                 {
@@ -672,7 +697,7 @@ namespace CI
                 //    btnEditar_ItemClick(this, null);
                 //    this.btnCancelar.Enabled = false;
                 //}
-                AplicarPrivilegios();
+              
 
             }
             catch (Exception ex)
@@ -933,6 +958,9 @@ namespace CI
                     AplicarPrivilegios();
                     BotoneriaSuperior();
 
+                    //Crear el asiento contable y aplicar el documento en inventario
+
+
                     ConnectionManager.CommitTran();
 
                     MessageBox.Show("El documento se ha guardado correctamente");
@@ -1069,6 +1097,73 @@ namespace CI
             bPrecioLocalActive = false;
         }
 
+        private void hlblAsiento_Click(object sender, EventArgs e)
+        {
+            if (this.hlblAsiento.Text != "ND" && this.hlblAsiento.Text.Trim() !="--") {
+                CG.frmAsiento frmAsiento = new CG.frmAsiento(this.hlblAsiento.Text.Trim());
+                frmAsiento.Show();
+            }
+        }
+
+        private void txtReferencia_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void txtReferencia_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                this.xtraTabControl1.SelectedTabPageIndex = 1;
+            } 
+        }
+
+        private void frmDocumentoInv_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1) {
+                MessageBox.Show("Presione f1");
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F1)
+            {
+                HandlerMenu("Agregar");
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == Keys.F2)
+            {
+                HandlerMenu("Editar");
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == Keys.F4)
+            {
+                HandlerMenu("Eliminar");
+                return true;    // indicate that you handled this keystroke
+            }
+
+            // Call the base class
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
+        private void slkupTransaccion_Spin(object sender, DevExpress.XtraEditors.Controls.SpinEventArgs e)
+        {
+            
+            SearchLookUpEdit edito = (SearchLookUpEdit)sender;
+            edito.ShowPopup();      
+        }
+
+        private void slkupcontrol_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+                SearchLookUpEdit control = (SearchLookUpEdit)sender;
+                control.ShowPopup();
+            }
+        }
     
 
     

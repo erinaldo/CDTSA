@@ -243,7 +243,7 @@ namespace Util
                 col.FieldName = ele.ColumnField;
                 col.MinWidth = 10;
                 col.Visible = true;
-
+                col.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
                 col.VisibleIndex = count;
 
                 if (ele.width != null)

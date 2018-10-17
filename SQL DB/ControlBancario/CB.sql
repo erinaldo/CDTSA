@@ -737,8 +737,10 @@ DECLARE @Asiento AS NVARCHAR(20)
 DECLARE @Monto AS DECIMAL(28,4)
 DECLARE @IDRuc AS INT
 
+DECLARE	@TipoTC AS NVARCHAR(20)
+SELECT @TipoTC = TipoCambio FROM dbo.cntParametros
 
-SET @TipoCambio = (SELECT dbo.globalGetTipoCambio(@Fecha))
+SET @TipoCambio = (SELECT dbo.globalGetTipoCambio(@Fecha,@TipoTC))
 SELECT @Fecha = Fecha , @Monto = CASE WHEN C.IDMoneda=2  THEN Monto * @TipoCambio ELSE Monto END, @IDRuc =IDRuc  FROM dbo.cbMovimientos M
 INNER JOIN dbo.cbCuentaBancaria C ON M.IDCuentaBanco = C.IDCuentaBanco
  WHERE M.IDCuentaBanco=@IDCuentaBanco AND M.IDTipo=@IDTipo AND IDSubTipo =@IDSubTipo AND Numero=@Numero
@@ -845,7 +847,11 @@ DECLARE @Monto AS DECIMAL(28,4)
 
 SELECT @AsientoAnt = asiento FROM dbo.cbMovimientos WHERE IDCuentaBanco=@IDCuentaBanco AND IDSubTipo=@IDSubTipo AND IDTipo=@IDTipo AND Numero=@Numero
 
-SET @TipoCambio = (SELECT dbo.globalGetTipoCambio(@Fecha))
+
+DECLARE	@TipoTC AS NVARCHAR(20)
+SELECT @TipoTC = TipoCambio FROM dbo.cntParametros
+
+SET @TipoCambio = (SELECT dbo.globalGetTipoCambio(@Fecha,@TipoTC))
 
 declare @LongAsiento INT , @Consecutivo int 
 

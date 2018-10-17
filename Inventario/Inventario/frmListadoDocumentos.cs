@@ -95,6 +95,8 @@ namespace CI
                 Util.Util.ConfigLookupEdit(this.slkupPaquete, clsPaqueteDAC.GetData(-1,"*","*",-1,"*",-1).Tables[0], "Descr", "IDPaquete");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupPaquete, "[{'ColumnCaption':'IDPaquete','ColumnField':'IDPaquete','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
+                this.dtpFechaInicial.EditValue = DateTime.Now.AddMonths(-1);
+                this.dtpFechaFinal.EditValue = DateTime.Now;
 
                 PopulateGrid();
                // CargarPrivilegios();

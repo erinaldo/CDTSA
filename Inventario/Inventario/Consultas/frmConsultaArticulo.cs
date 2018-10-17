@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CI.DAC;
 using DevExpress.XtraEditors;
 using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 namespace CI.Consultas
 {

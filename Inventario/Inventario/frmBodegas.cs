@@ -403,8 +403,8 @@ namespace CI
             if (this.chkPuedePrefacturar.Checked == false) this.txtConsecutivoPreFactura.EditValue = "";
         }
 
-     
 
+     
     
     }
 }

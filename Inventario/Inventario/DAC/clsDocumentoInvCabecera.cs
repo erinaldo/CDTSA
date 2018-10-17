@@ -120,7 +120,7 @@ namespace CI.DAC
         
         public static DataSet GetDataEmpty()
         {
-            String strSQL = "SELECT  IDTransaccion ,IDPaquete,ModuloOrigen ,Fecha ,Usuario , Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado , IDTraslado , CreateDate  FROM dbo.invTransaccion WHERE 1=2";
+            String strSQL = "SELECT  IDTransaccion ,IDPaquete,ModuloOrigen ,Fecha ,Usuario,Asiento , Referencia ,Documento ,Aplicado ,UniqueValue ,EsTraslado , IDTraslado , CreateDate  FROM dbo.invTransaccion WHERE 1=2";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
             SqlDataAdapter oAdaptador = new SqlDataAdapter(oCmd);

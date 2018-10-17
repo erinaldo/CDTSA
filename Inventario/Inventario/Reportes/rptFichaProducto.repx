@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XtraReportsLayoutSerializer SerializerVersion="15.2.7.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="rptFichaProducto" ReportUnit="TenthsOfAMillimeter" Margins="108, 138, 390, 254" PageWidth="2159" PageHeight="2794" Version="15.2" DataMember="invGetProductoByID" DataSource="#Ref-0" Dpi="254">
   <Parameters>
-    <Item1 Ref="3" ValueInfo="2" Name="IDProducto" Type="#Ref-2" />
-    <Item2 Ref="5" ValueInfo="*" Name="Descr" />
+    <Item1 Ref="3" Visible="false" ValueInfo="2" Name="IDProducto" Type="#Ref-2" />
+    <Item2 Ref="5" Visible="false" ValueInfo="*" Name="Descr" />
   </Parameters>
   <CalculatedFields>
     <Item1 Ref="6" Name="Producto" Expression="[IDProducto] + ' - ' +  Upper([Descr])" DataMember="invGetProductoByID" />

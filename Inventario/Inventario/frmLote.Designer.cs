@@ -79,7 +79,6 @@
             this.txtLote = new DevExpress.XtraEditors.TextEdit();
             this.slkupProducto = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.txtLoteProveedor = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.item0 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -87,7 +86,6 @@
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -96,6 +94,7 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -113,7 +112,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLoteProveedor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.item0)).BeginInit();
@@ -121,7 +119,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
@@ -130,6 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -352,7 +350,6 @@
             this.layoutControl1.Controls.Add(this.dtgDetalle);
             this.layoutControl1.Controls.Add(this.txtLote);
             this.layoutControl1.Controls.Add(this.slkupProducto);
-            this.layoutControl1.Controls.Add(this.checkEdit1);
             this.layoutControl1.Controls.Add(this.txtLoteProveedor);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 130);
@@ -450,23 +447,27 @@
             // 
             // colLoteProveedor
             // 
-            this.colLoteProveedor.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colLoteProveedor.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.colLoteProveedor.AppearanceHeader.Options.UseFont = true;
             this.colLoteProveedor.Caption = "Lote Proveedor";
             this.colLoteProveedor.FieldName = "LoteProveedor";
             this.colLoteProveedor.Name = "colLoteProveedor";
+            this.colLoteProveedor.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.colLoteProveedor.Visible = true;
             this.colLoteProveedor.VisibleIndex = 0;
+            this.colLoteProveedor.Width = 87;
             // 
             // colLoteInterno
             // 
-            this.colLoteInterno.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colLoteInterno.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.colLoteInterno.AppearanceHeader.Options.UseFont = true;
             this.colLoteInterno.Caption = "Lote Interno";
             this.colLoteInterno.FieldName = "LoteInterno";
             this.colLoteInterno.Name = "colLoteInterno";
+            this.colLoteInterno.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.colLoteInterno.Visible = true;
             this.colLoteInterno.VisibleIndex = 1;
+            this.colLoteInterno.Width = 87;
             // 
             // colArticulo
             // 
@@ -476,7 +477,8 @@
             this.colArticulo.FieldName = "IDProducto";
             this.colArticulo.Name = "colArticulo";
             this.colArticulo.Visible = true;
-            this.colArticulo.VisibleIndex = 3;
+            this.colArticulo.VisibleIndex = 2;
+            this.colArticulo.Width = 87;
             // 
             // colDescrProducto
             // 
@@ -485,18 +487,22 @@
             this.colDescrProducto.Caption = "Descr Producto";
             this.colDescrProducto.FieldName = "DescrProducto";
             this.colDescrProducto.Name = "colDescrProducto";
+            this.colDescrProducto.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.colDescrProducto.Visible = true;
-            this.colDescrProducto.VisibleIndex = 2;
+            this.colDescrProducto.VisibleIndex = 3;
+            this.colDescrProducto.Width = 89;
             // 
             // colFechaVencimiento
             // 
             this.colFechaVencimiento.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.colFechaVencimiento.AppearanceHeader.Options.UseFont = true;
-            this.colFechaVencimiento.Caption = "Fecha Vencimiento";
+            this.colFechaVencimiento.Caption = "Fecha Vence";
             this.colFechaVencimiento.FieldName = "FechaVencimiento";
             this.colFechaVencimiento.Name = "colFechaVencimiento";
+            this.colFechaVencimiento.OptionsColumn.FixedWidth = true;
             this.colFechaVencimiento.Visible = true;
             this.colFechaVencimiento.VisibleIndex = 4;
+            this.colFechaVencimiento.Width = 85;
             // 
             // colFechaFabricacion
             // 
@@ -505,8 +511,10 @@
             this.colFechaFabricacion.Caption = "Fecha Fabricación";
             this.colFechaFabricacion.FieldName = "FechaFabricacion";
             this.colFechaFabricacion.Name = "colFechaFabricacion";
+            this.colFechaFabricacion.OptionsColumn.FixedWidth = true;
             this.colFechaFabricacion.Visible = true;
             this.colFechaFabricacion.VisibleIndex = 5;
+            this.colFechaFabricacion.Width = 110;
             // 
             // colFechaIngreso
             // 
@@ -515,8 +523,10 @@
             this.colFechaIngreso.Caption = "Fecha Ingreso";
             this.colFechaIngreso.FieldName = "FechaIngreso";
             this.colFechaIngreso.Name = "colFechaIngreso";
+            this.colFechaIngreso.OptionsColumn.FixedWidth = true;
             this.colFechaIngreso.Visible = true;
             this.colFechaIngreso.VisibleIndex = 6;
+            this.colFechaIngreso.Width = 90;
             // 
             // ribbonControl2
             // 
@@ -649,16 +659,6 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // checkEdit1
-            // 
-            this.checkEdit1.Location = new System.Drawing.Point(346, 289);
-            this.checkEdit1.MenuManager = this.ribbonControl2;
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Activo";
-            this.checkEdit1.Size = new System.Drawing.Size(316, 19);
-            this.checkEdit1.StyleController = this.layoutControl1;
-            this.checkEdit1.TabIndex = 9;
-            // 
             // txtLoteProveedor
             // 
             this.txtLoteProveedor.Location = new System.Drawing.Point(439, 315);
@@ -718,11 +718,11 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2,
             this.layoutControlItem4,
-            this.layoutControlItem6,
             this.layoutControlItem5,
             this.layoutControlItem3,
             this.layoutControlItem8,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.emptySpaceItem4});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 246);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(667, 146);
@@ -749,17 +749,6 @@
             this.layoutControlItem4.Size = new System.Drawing.Size(643, 26);
             this.layoutControlItem4.Text = "Producto:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(90, 13);
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.checkEdit1;
-            this.layoutControlItem6.CustomizationFormText = "layoutControlItem6";
-            this.layoutControlItem6.Location = new System.Drawing.Point(321, 0);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem6.Size = new System.Drawing.Size(322, 26);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem5
             // 
@@ -855,6 +844,14 @@
             this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(321, 0);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(322, 26);
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // frmLote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -884,7 +881,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLoteProveedor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.item0)).EndInit();
@@ -892,7 +888,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
@@ -901,6 +896,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -947,7 +943,6 @@
         private DevExpress.XtraEditors.TextEdit txtLote;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupProducto;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.TextEdit txtLoteProveedor;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup item0;
@@ -955,7 +950,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
@@ -975,5 +969,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colFechaIngreso;
         private DevExpress.XtraGrid.Columns.GridColumn colDescrProducto;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
     }
 }

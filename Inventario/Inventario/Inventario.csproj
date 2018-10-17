@@ -278,6 +278,12 @@
     <Compile Include="Reportes\rptDocumentoInv.Designer.cs">
       <DependentUpon>rptDocumentoInv.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\rptFichaProducto.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\rptFichaProducto.Designer.cs">
+      <DependentUpon>rptFichaProducto.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Consultas\frmConsultaArticulo.resx">
       <DependentUpon>frmConsultaArticulo.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +352,9 @@
     <EmbeddedResource Include="Reportes\rptDocumentoInv.resx">
       <DependentUpon>rptDocumentoInv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptFichaProducto.resx">
+      <DependentUpon>rptFichaProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -357,6 +366,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Reportes\rptDocumentoInv.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reportes\rptFichaProducto.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

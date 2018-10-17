@@ -138,8 +138,7 @@ namespace CI
             this.slkupProducto.EditValue = null;
             this.dtpFechaIngreso.EditValue = DateTime.Now;
             this.dtpFechaVence.EditValue = null;
-            this.dtpFechaFabricacion.EditValue = null;
-            
+            this.dtpFechaFabricacion.EditValue = null;          
             
         }
 
@@ -266,6 +265,7 @@ namespace CI
                     currentRow["FechaFabricacion"] = this.dtpFechaFabricacion.EditValue;
                     currentRow["FechaIngreso"] = this.dtpFechaIngreso.EditValue;
                     currentRow["FechaVencimiento"] = this.dtpFechaVence.EditValue;
+                    
 
                     currentRow.EndEdit();
 

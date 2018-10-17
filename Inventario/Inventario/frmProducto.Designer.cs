@@ -465,7 +465,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(719, 108, 438, 435);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(721, 462);
+            this.layoutControl1.Size = new System.Drawing.Size(721, 467);
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -541,6 +541,7 @@
             this.txtFechaModificacion.Location = new System.Drawing.Point(172, 169);
             this.txtFechaModificacion.MenuManager = this.ribbonControl;
             this.txtFechaModificacion.Name = "txtFechaModificacion";
+            this.txtFechaModificacion.Properties.ReadOnly = true;
             this.txtFechaModificacion.Size = new System.Drawing.Size(525, 20);
             this.txtFechaModificacion.StyleController = this.layoutControl1;
             this.txtFechaModificacion.TabIndex = 31;
@@ -550,6 +551,7 @@
             this.txtUsuarioModificacion.Location = new System.Drawing.Point(172, 145);
             this.txtUsuarioModificacion.MenuManager = this.ribbonControl;
             this.txtUsuarioModificacion.Name = "txtUsuarioModificacion";
+            this.txtUsuarioModificacion.Properties.ReadOnly = true;
             this.txtUsuarioModificacion.Size = new System.Drawing.Size(525, 20);
             this.txtUsuarioModificacion.StyleController = this.layoutControl1;
             this.txtUsuarioModificacion.TabIndex = 30;
@@ -559,6 +561,7 @@
             this.txtFechaCreacion.Location = new System.Drawing.Point(172, 121);
             this.txtFechaCreacion.MenuManager = this.ribbonControl;
             this.txtFechaCreacion.Name = "txtFechaCreacion";
+            this.txtFechaCreacion.Properties.ReadOnly = true;
             this.txtFechaCreacion.Size = new System.Drawing.Size(525, 20);
             this.txtFechaCreacion.StyleController = this.layoutControl1;
             this.txtFechaCreacion.TabIndex = 29;
@@ -568,6 +571,7 @@
             this.txtUsuarioCreacion.Location = new System.Drawing.Point(172, 97);
             this.txtUsuarioCreacion.MenuManager = this.ribbonControl;
             this.txtUsuarioCreacion.Name = "txtUsuarioCreacion";
+            this.txtUsuarioCreacion.Properties.ReadOnly = true;
             this.txtUsuarioCreacion.Size = new System.Drawing.Size(525, 20);
             this.txtUsuarioCreacion.StyleController = this.layoutControl1;
             this.txtUsuarioCreacion.TabIndex = 28;
@@ -711,6 +715,7 @@
             this.txtCostoPromDolar.Location = new System.Drawing.Point(310, 152);
             this.txtCostoPromDolar.MenuManager = this.ribbonControl;
             this.txtCostoPromDolar.Name = "txtCostoPromDolar";
+            this.txtCostoPromDolar.Properties.ReadOnly = true;
             this.txtCostoPromDolar.Size = new System.Drawing.Size(149, 20);
             this.txtCostoPromDolar.StyleController = this.layoutControl1;
             this.txtCostoPromDolar.TabIndex = 12;
@@ -720,6 +725,7 @@
             this.txtUltimoCostoDolar.Location = new System.Drawing.Point(310, 128);
             this.txtUltimoCostoDolar.MenuManager = this.ribbonControl;
             this.txtUltimoCostoDolar.Name = "txtUltimoCostoDolar";
+            this.txtUltimoCostoDolar.Properties.ReadOnly = true;
             this.txtUltimoCostoDolar.Size = new System.Drawing.Size(149, 20);
             this.txtUltimoCostoDolar.StyleController = this.layoutControl1;
             this.txtUltimoCostoDolar.TabIndex = 11;
@@ -729,6 +735,7 @@
             this.txtCostoPromLocal.Location = new System.Drawing.Point(172, 152);
             this.txtCostoPromLocal.MenuManager = this.ribbonControl;
             this.txtCostoPromLocal.Name = "txtCostoPromLocal";
+            this.txtCostoPromLocal.Properties.ReadOnly = true;
             this.txtCostoPromLocal.Size = new System.Drawing.Size(134, 20);
             this.txtCostoPromLocal.StyleController = this.layoutControl1;
             this.txtCostoPromLocal.TabIndex = 10;
@@ -738,16 +745,17 @@
             this.txtUltimoCostoLocal.Location = new System.Drawing.Point(172, 128);
             this.txtUltimoCostoLocal.MenuManager = this.ribbonControl;
             this.txtUltimoCostoLocal.Name = "txtUltimoCostoLocal";
+            this.txtUltimoCostoLocal.Properties.ReadOnly = true;
             this.txtUltimoCostoLocal.Size = new System.Drawing.Size(134, 20);
             this.txtUltimoCostoLocal.StyleController = this.layoutControl1;
             this.txtUltimoCostoLocal.TabIndex = 9;
             // 
             // txtAlias
             // 
-            this.txtAlias.Location = new System.Drawing.Point(172, 97);
+            this.txtAlias.Location = new System.Drawing.Point(139, 97);
             this.txtAlias.MenuManager = this.ribbonControl;
             this.txtAlias.Name = "txtAlias";
-            this.txtAlias.Size = new System.Drawing.Size(525, 20);
+            this.txtAlias.Size = new System.Drawing.Size(558, 20);
             this.txtAlias.StyleController = this.layoutControl1;
             this.txtAlias.TabIndex = 1;
             // 
@@ -764,13 +772,13 @@
             // 
             // txtIDProducto
             // 
-            this.txtIDProducto.Location = new System.Drawing.Point(78, 12);
+            this.txtIDProducto.Location = new System.Drawing.Point(88, 12);
             this.txtIDProducto.MenuManager = this.ribbonControl;
             this.txtIDProducto.Name = "txtIDProducto";
             this.txtIDProducto.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDProducto.Properties.Appearance.Options.UseFont = true;
             this.txtIDProducto.Properties.ReadOnly = true;
-            this.txtIDProducto.Size = new System.Drawing.Size(186, 20);
+            this.txtIDProducto.Size = new System.Drawing.Size(176, 20);
             this.txtIDProducto.StyleController = this.layoutControl1;
             this.txtIDProducto.TabIndex = 4;
             // 
@@ -1395,7 +1403,7 @@
             this.emptySpaceItem23});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(721, 462);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(721, 467);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // tabbedControlGroup1
@@ -1455,7 +1463,9 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(677, 24);
             this.layoutControlItem3.Text = "Alias:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(145, 13);
+            this.layoutControlItem3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(110, 13);
+            this.layoutControlItem3.TextToControlDistance = 5;
             // 
             // layoutControlItem5
             // 
@@ -2056,9 +2066,9 @@
             this.layoutControlItem1.Size = new System.Drawing.Size(256, 24);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "ID Producto:";
-            this.layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(61, 13);
-            this.layoutControlItem1.TextToControlDistance = 5;
+            this.layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(70, 13);
+            this.layoutControlItem1.TextToControlDistance = 6;
             // 
             // layoutControlItem2
             // 
@@ -2110,7 +2120,7 @@
             this.simpleLabelItem1.AllowHotTrack = false;
             this.simpleLabelItem1.Location = new System.Drawing.Point(0, 419);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(79, 23);
+            this.simpleLabelItem1.Size = new System.Drawing.Size(79, 28);
             this.simpleLabelItem1.Text = "Los campos con";
             this.simpleLabelItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.simpleLabelItem1.TextSize = new System.Drawing.Size(75, 13);
@@ -2122,7 +2132,7 @@
             this.simpleLabelItem2.Location = new System.Drawing.Point(91, 419);
             this.simpleLabelItem2.MinSize = new System.Drawing.Size(149, 17);
             this.simpleLabelItem2.Name = "simpleLabelItem2";
-            this.simpleLabelItem2.Size = new System.Drawing.Size(610, 23);
+            this.simpleLabelItem2.Size = new System.Drawing.Size(610, 28);
             this.simpleLabelItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.simpleLabelItem2.Text = " son requeridos.";
             this.simpleLabelItem2.TextSize = new System.Drawing.Size(145, 13);
@@ -2135,7 +2145,7 @@
             this.emptySpaceItem23.CustomizationFormText = "*";
             this.emptySpaceItem23.Location = new System.Drawing.Point(79, 419);
             this.emptySpaceItem23.Name = "emptySpaceItem23";
-            this.emptySpaceItem23.Size = new System.Drawing.Size(12, 23);
+            this.emptySpaceItem23.Size = new System.Drawing.Size(12, 28);
             this.emptySpaceItem23.Text = "*";
             this.emptySpaceItem23.TextSize = new System.Drawing.Size(145, 0);
             this.emptySpaceItem23.TextVisible = true;
@@ -2144,7 +2154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 592);
+            this.ClientSize = new System.Drawing.Size(721, 597);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

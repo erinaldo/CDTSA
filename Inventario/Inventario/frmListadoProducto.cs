@@ -346,6 +346,11 @@ namespace CI
             else _currentRow = null;
         }
 
+        private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
     
       
     }

@@ -631,6 +631,8 @@ namespace CI
                 Util.Util.SetFormatTextEdit(txtBonificaCOPorCada, Util.Util.FormatType.Numerico);
                 Util.Util.SetFormatTextEdit(txtUltimoCostoDolar, Util.Util.FormatType.Numerico);
                 Util.Util.SetFormatTextEdit(txtUltimoCostoLocal, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtCostoPromDolar, Util.Util.FormatType.Numerico);
+                Util.Util.SetFormatTextEdit(txtCostoPromLocal, Util.Util.FormatType.Numerico);
 
                 this.txtFactorEmpaque.GotFocus += textEdit_Enter;
                 //this.txtFactorEmpaque.Click += textEdit_Enter;
@@ -719,5 +721,5 @@ namespace CI
             }
         }
         
-    }
+ 
 }

@@ -307,12 +307,12 @@
             this.gridIdTransaccion.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.gridIdTransaccion.AppearanceHeader.Options.UseFont = true;
             this.gridIdTransaccion.Caption = "IDTransaccion";
-            this.gridIdTransaccion.FieldName = "IDProducto";
+            this.gridIdTransaccion.FieldName = "IDTransaccion";
             this.gridIdTransaccion.Name = "gridIdTransaccion";
             this.gridIdTransaccion.OptionsColumn.FixedWidth = true;
             this.gridIdTransaccion.Visible = true;
             this.gridIdTransaccion.VisibleIndex = 0;
-            this.gridIdTransaccion.Width = 85;
+            this.gridIdTransaccion.Width = 95;
             // 
             // colDocumento
             // 
@@ -321,10 +321,11 @@
             this.colDocumento.Caption = "Documento";
             this.colDocumento.FieldName = "Documento";
             this.colDocumento.Name = "colDocumento";
+            this.colDocumento.OptionsColumn.FixedWidth = true;
             this.colDocumento.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.colDocumento.Visible = true;
             this.colDocumento.VisibleIndex = 1;
-            this.colDocumento.Width = 110;
+            this.colDocumento.Width = 80;
             // 
             // colReferencia
             // 
@@ -336,7 +337,7 @@
             this.colReferencia.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
             this.colReferencia.Visible = true;
             this.colReferencia.VisibleIndex = 2;
-            this.colReferencia.Width = 157;
+            this.colReferencia.Width = 358;
             // 
             // colFecha
             // 
