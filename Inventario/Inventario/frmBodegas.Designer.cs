@@ -127,6 +127,7 @@
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl.Size = new System.Drawing.Size(758, 143);
+            this.ribbonControl.Click += new System.EventHandler(this.ribbonControl_Click);
             // 
             // btnAgregar
             // 

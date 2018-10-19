@@ -742,63 +742,69 @@ namespace CG
 
         private void GridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
-            GridView view = sender as GridView;
-            GridColumn CentroCol = view.Columns["IDCentro"];
-            GridColumn CuentaCol = view.Columns["IDCuenta"];
-            GridColumn DebitoCol = view.Columns["Debito"];
-            GridColumn CreditoCol = view.Columns["Credito"];
-
-            object vCentro = (object)(view.GetRowCellValue(e.RowHandle, CentroCol));
-            object vCuenta = (object)(view.GetRowCellValue(e.RowHandle, CuentaCol));
-            object vDebito = (object)(view.GetRowCellValue(e.RowHandle, DebitoCol));
-            object vCredito = (object)(view.GetRowCellValue(e.RowHandle, CreditoCol));
-            if (Convert.IsDBNull(vCentro))
+            try
             {
-                e.Valid = false;
-                view.SetColumnError(CentroCol, "El campo no deberia ser vacio");
-                return;
-            }
+                GridView view = sender as GridView;
+                GridColumn CentroCol = view.Columns["IDCentro"];
+                GridColumn CuentaCol = view.Columns["IDCuenta"];
+                GridColumn DebitoCol = view.Columns["Debito"];
+                GridColumn CreditoCol = view.Columns["Credito"];
 
-            if (Convert.IsDBNull(vCuenta))
-            {
-                e.Valid = false;
-                view.SetColumnError(CuentaCol, "El campo no deberia ser vacio");
-                return;
-            }
-
-            if (Convert.IsDBNull(vDebito) && Convert.IsDBNull(vCredito))
-            {
-                if (Convert.IsDBNull(vDebito))
+                object vCentro = (object)(view.GetRowCellValue(e.RowHandle, CentroCol));
+                object vCuenta = (object)(view.GetRowCellValue(e.RowHandle, CuentaCol));
+                object vDebito = (object)(view.GetRowCellValue(e.RowHandle, DebitoCol));
+                object vCredito = (object)(view.GetRowCellValue(e.RowHandle, CreditoCol));
+                if (Convert.IsDBNull(vCentro))
                 {
                     e.Valid = false;
-                    view.SetColumnError(DebitoCol, "El campo no deberia ser vacio");
+                    view.SetColumnError(CentroCol, "El campo no deberia ser vacio");
                     return;
                 }
-                if (Convert.IsDBNull(vCredito))
+
+                if (Convert.IsDBNull(vCuenta))
                 {
                     e.Valid = false;
-                    view.SetColumnError(CreditoCol, "El campo no deberia ser vacio");
+                    view.SetColumnError(CuentaCol, "El campo no deberia ser vacio");
                     return;
                 }
+
+                if (Convert.IsDBNull(vDebito) && Convert.IsDBNull(vCredito))
+                {
+                    if (Convert.IsDBNull(vDebito))
+                    {
+                        e.Valid = false;
+                        view.SetColumnError(DebitoCol, "El campo no deberia ser vacio");
+                        return;
+                    }
+                    if (Convert.IsDBNull(vCredito))
+                    {
+                        e.Valid = false;
+                        view.SetColumnError(CreditoCol, "El campo no deberia ser vacio");
+                        return;
+                    }
+                }
+
+                if (e.Row == null) return;
+                //Get the value of the first column
+                int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
+                //Get the value of the second column
+                long iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (long)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
+                //Validity criterion
+
+                DataView Dv = new DataView();
+                Dv.Table = ((DataView)view.DataSource).ToTable();
+                Dv.RowFilter = string.Format("IDCuenta={0} and IDCentro ={1}", iCuenta, iCentro);
+
+                if (Dv.ToTable().Rows.Count > 1)
+                {
+                    e.Valid = false;
+                    //Set errors with specific descriptions for the columns
+                    view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
+                    view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
+                }
             }
-
-            if (e.Row == null) return;
-            //Get the value of the first column
-            int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
-            //Get the value of the second column
-            int iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
-            //Validity criterion
-
-            DataView Dv = new DataView();
-            Dv.Table = ((DataView)view.DataSource).ToTable();
-            Dv.RowFilter = string.Format("IDCuenta={0} and IDCentro ={1}", iCuenta, iCentro);
-
-            if (Dv.ToTable().Rows.Count > 1)
-            {
-                e.Valid = false;
-                //Set errors with specific descriptions for the columns
-                view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
-                view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
 
         }

@@ -122,7 +122,7 @@ namespace CG
 
 
 
-        public static DataSet GetCentroByCuenta(int IDCuenta)
+        public static DataSet GetCentroByCuenta(long IDCuenta)
         {
                 String strSQL = "dbo.cntGetCentroCostoByCuentaContable";
 

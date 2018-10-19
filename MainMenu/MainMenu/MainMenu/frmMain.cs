@@ -502,7 +502,11 @@ namespace MainMenu
                     TreeListNode nodeConsultaTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultas.Id, 11, 11, 11);
                     nodeConsultaTransacciones.Tag = "frmConsultaTransacciones";
                     TreeListNode nodeReportes = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
+                    
                     TreeListNode nodeProcesos = tl.AppendNode(new object[] { "Processos" }, -1, 9, 10, 9);
+                    TreeListNode nodeBoletaInventario = tl.AppendNode(new object[] { "Boleta Inventario" }, nodeProcesos.Id, 11, 11, 11);
+                    nodeBoletaInventario.Tag = "frmBoleta";
+
                     TreeListNode nodeAdministracion = tl.AppendNode(new object[] { "Administración" }, -1, 9, 10, 9);
                     TreeListNode nodeConsecutivos = tl.AppendNode(new object[] { "Consecutivos" }, nodeAdministracion.Id, 11, 11, 11);
                     nodeConsecutivos.Tag = "frmConsecutivos";
@@ -637,7 +641,7 @@ namespace MainMenu
             }
 
             tl.EndUnboundLoad();
-        }
+        }                                                          
 
 
         private void ShowPagesRibbonMan(bool valor)
@@ -744,6 +748,13 @@ namespace MainMenu
                     ofrmBodega.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmBodega.Show();
+                    break;
+                case "frmBoleta":
+                    CI.Fisico.frmBoleta ofrmBoleta = new CI.Fisico.frmBoleta();
+                    ofrmBoleta.MdiParent = this;
+                    ofrmBoleta.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmBoleta.Show();
                     break;
             }
 

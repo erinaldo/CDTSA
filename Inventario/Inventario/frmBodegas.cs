@@ -403,6 +403,11 @@ namespace CI
             if (this.chkPuedePrefacturar.Checked == false) this.txtConsecutivoPreFactura.EditValue = "";
         }
 
+        private void ribbonControl_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
      
     

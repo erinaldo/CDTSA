@@ -33,7 +33,7 @@ namespace CG
 
                 //Paremetros Select 
                 oAdaptador.SelectCommand.Parameters.Add("@Asiento", SqlDbType.NVarChar).SourceColumn = "Asiento";
-                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 oAdaptador.SelectCommand.Parameters.Add("@IDCentro", SqlDbType.Int).SourceColumn = "IDCentro";
 
 
@@ -57,7 +57,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(String Asiento,int IDCentro,int IDCuenta)
+        public static DataSet GetData(String Asiento,int IDCentro,long IDCuenta)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@Asiento"].Value = Asiento;

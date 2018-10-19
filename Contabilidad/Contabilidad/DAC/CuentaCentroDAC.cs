@@ -33,7 +33,7 @@ namespace CG
 
                 //Paremetros Select 
                 oAdaptador.SelectCommand.Parameters.Add("@IDCentro", SqlDbType.Int).SourceColumn = "IDCentro";
-                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.NChar).SourceColumn = "IDCuenta";
+                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 
 
 
@@ -41,7 +41,7 @@ namespace CG
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
                 oAdaptador.InsertCommand.Parameters.Add("@IDCentro", SqlDbType.Int).SourceColumn = "IDCentro";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 
 
 
@@ -49,7 +49,7 @@ namespace CG
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCentro", SqlDbType.Int).SourceColumn = "IDCentro";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.NChar).SourceColumn = "IDCuenta";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
 
 
                 return oAdaptador;
@@ -76,7 +76,7 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(int IDCentro, int  IDCuenta)
+        public static DataSet GetData(int IDCentro, long  IDCuenta)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDCentro"].Value = IDCentro;
@@ -96,7 +96,7 @@ namespace CG
         }
 
 
-        public static DataSet GetCentroNotInCentroCuenta( int IDCuenta)
+        public static DataSet GetCentroNotInCentroCuenta( long IDCuenta)
         {
             DataSet DS = new DataSet();
             SqlCommand oCmd = new SqlCommand("SELECT IDCentro,Centro, Descr  FROM dbo.cntCentroCosto " +

@@ -47,8 +47,8 @@ namespace CG
                 oAdaptador.InsertCommand.Parameters.Add("@CantCharNivel4", SqlDbType.NVarChar).SourceColumn = "CantCharNivel4";
                 oAdaptador.InsertCommand.Parameters.Add("@CantCharNivel5", SqlDbType.NVarChar).SourceColumn = "CantCharNivel5";
                 oAdaptador.InsertCommand.Parameters.Add("@CantCharNivel6", SqlDbType.NVarChar).SourceColumn = "CantCharNivel6";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCtaUtilidadAcumulada", SqlDbType.Int).SourceColumn = "IDCtaUtilidadAcumulada";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCtaUtilidadPeriodo", SqlDbType.Int).SourceColumn = "IDCtaUtilidadPeriodo";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCtaUtilidadAcumulada", SqlDbType.BigInt).SourceColumn = "IDCtaUtilidadAcumulada";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCtaUtilidadPeriodo", SqlDbType.BigInt).SourceColumn = "IDCtaUtilidadPeriodo";
                 oAdaptador.InsertCommand.Parameters.Add("@MesInicioPeriodoFiscal", SqlDbType.Int).SourceColumn = "MesInicioPeriodoFiscal";
                 oAdaptador.InsertCommand.Parameters.Add("@MesFinalPeriodoFiscal", SqlDbType.Int).SourceColumn = "MesFinalPeriodoFiscal";
                 oAdaptador.InsertCommand.Parameters.Add("@UsaSeparadorCentro", SqlDbType.Int).SourceColumn = "UsaSeparadorCentro";
@@ -71,8 +71,8 @@ namespace CG
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel3", SqlDbType.NVarChar).SourceColumn = "CantCharNivel3";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel4", SqlDbType.NVarChar).SourceColumn = "CantCharNivel4";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel6", SqlDbType.NVarChar).SourceColumn = "CantCharNivel6";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCtaUtilidadAcumulada", SqlDbType.Int).SourceColumn = "IDCtaUtilidadAcumulada";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCtaUtilidadPeriodo", SqlDbType.Int).SourceColumn = "IDCtaUtilidadPeriodo";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCtaUtilidadAcumulada", SqlDbType.BigInt).SourceColumn = "IDCtaUtilidadAcumulada";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCtaUtilidadPeriodo", SqlDbType.BigInt).SourceColumn = "IDCtaUtilidadPeriodo";
                 oAdaptador.UpdateCommand.Parameters.Add("@MesInicioPeriodoFiscal", SqlDbType.Int).SourceColumn = "MesInicioPeriodoFiscal";
                 oAdaptador.UpdateCommand.Parameters.Add("@MesFinalPeriodoFiscal", SqlDbType.Int).SourceColumn = "MesFinalPeriodoFiscal";
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaSeparadorCentro", SqlDbType.Int).SourceColumn = "UsaSeparadorCentro";

@@ -36,7 +36,7 @@ namespace CG.DAC
                 //Paremetros Insert
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 oAdaptador.InsertCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
 
 
@@ -45,7 +45,7 @@ namespace CG.DAC
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
 
 
@@ -83,7 +83,7 @@ namespace CG.DAC
         }
 
 
-        public static bool Insert(int IDCuenta, int IDGrupo)
+        public static bool Insert(long IDCuenta, int IDGrupo)
         {
             bool bResult = false;
             String strSQL = "INSERT INTO dbo.cntCuentaGrupoEstadosFinancieros        ( IDCuenta, IDGrupo )VALUES  ( @IDCuenta,@IDGrupo )";
@@ -92,7 +92,7 @@ namespace CG.DAC
             try
             {
                 oCmd.Parameters.Add("@IDGrupo", SqlDbType.Int).Value = IDGrupo;
-                oCmd.Parameters.Add("@IDCuenta", SqlDbType.Int).Value = IDCuenta;
+                oCmd.Parameters.Add("@IDCuenta", SqlDbType.BigInt).Value = IDCuenta;
                 oCmd.CommandType = CommandType.Text;
 
 
@@ -119,7 +119,7 @@ namespace CG.DAC
             return bResult;
         }
 
-        public static bool Delete(int IDCuenta, int IDGrupo)
+        public static bool Delete(long IDCuenta, int IDGrupo)
         {
             bool bResult = false;
             String strSQL = "delete from dbo.cntCuentaGrupoEstadosFinancieros where IDCuenta = @IDCuenta and IDGrupo =@IDGrupo ";
@@ -128,7 +128,7 @@ namespace CG.DAC
             try
             {
                 oCmd.Parameters.Add("@IDGrupo", SqlDbType.Int).Value = IDGrupo;
-                oCmd.Parameters.Add("@IDCuenta", SqlDbType.Int).Value = IDCuenta;
+                oCmd.Parameters.Add("@IDCuenta", SqlDbType.BigInt).Value = IDCuenta;
                 oCmd.CommandType = CommandType.Text;
 
 

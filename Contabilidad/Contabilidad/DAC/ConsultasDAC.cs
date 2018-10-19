@@ -11,7 +11,7 @@ namespace CG.DAC
 {
     public static class ConsultasDAC
     {
-        public static DataSet GetSaldosByCentroCuenta(int IdCuenta,int IDCentro,DateTime FechaInicial, DateTime FechaFinal)
+        public static DataSet GetSaldosByCentroCuenta(long IdCuenta,int IDCentro,DateTime FechaInicial, DateTime FechaFinal)
         {
             String strSQL = "dbo.cntConsultaSaldosByCentroCuenta";
 
@@ -32,7 +32,7 @@ namespace CG.DAC
         }
 
 
-            public static DataSet GetMovimientosByCentroCuenta(int IdCuenta,int IDCentro,DateTime FechaInicial, DateTime FechaFinal)
+            public static DataSet GetMovimientosByCentroCuenta(long IdCuenta,int IDCentro,DateTime FechaInicial, DateTime FechaFinal)
         {
             String strSQL = "dbo.cntGetMovimientosCentroCuenta";
 
@@ -52,7 +52,7 @@ namespace CG.DAC
         }
 
 
-        public static DataSet ConsultaLibroMayor(int CuentasDeMayor,DateTime FechaInicial, DateTime FechaFinal,DataTable DTCuentas)
+        public static DataSet ConsultaLibroMayor(long CuentasDeMayor,DateTime FechaInicial, DateTime FechaFinal,DataTable DTCuentas)
         {
             String strSQL = "dbo.cntConsultaLibroMayor";
 

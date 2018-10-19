@@ -1804,3 +1804,88 @@ end
 
 GO
  
+
+CREATE TABLE dbo.invBoletaInvFisico ( 
+	IDBodega  INT NOT NULL,
+	IDProducto  BIGINT NOT NULL,
+	IDLote   INT NOT NULL,	 
+	Cantidad  decimal(28,4) DEFAULT 0,
+	Validada BIT DEFAULT 0,
+	Usuario  nvarchar(50) NOT NULL,
+	Fecha  date,
+	RecordDate  DATETIME,
+	CONSTRAINT [pkinvBoletaInvFisico] PRIMARY KEY CLUSTERED 
+(
+	IDBodega ASC,
+	IDProducto ASC,
+	IDLote ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+
+ALTER TABLE dbo.invBoletaInvFisico  WITH CHECK ADD  CONSTRAINT fkBoleta_Bodega FOREIGN KEY(IDBodega)
+REFERENCES [dbo].invBodega (IDBodega)
+GO
+
+ALTER TABLE dbo.invBoletaInvFisico CHECK CONSTRAINT fkBoleta_Bodega
+GO
+
+
+ALTER TABLE dbo.invBoletaInvFisico  WITH CHECK ADD  CONSTRAINT fkBoleta_Producto FOREIGN KEY(IDProducto)
+REFERENCES [dbo].invProducto (IDProducto)
+GO
+
+ALTER TABLE dbo.invBoletaInvFisico CHECK CONSTRAINT fkBoleta_Producto
+GO
+
+
+ALTER TABLE dbo.invBoletaInvFisico  WITH CHECK ADD  CONSTRAINT fkBoleta_Lote FOREIGN KEY(IDLote,IDProducto)
+REFERENCES [dbo].invLote (IDLote,IDProducto)
+GO
+
+ALTER TABLE dbo.invBoletaInvFisico CHECK CONSTRAINT fkBoleta_Lote
+GO
+ 
+
+CREATE  PROCEDURE  dbo.invUpdateBoletaInvFisico(@Operacion AS NVARCHAR(1), @IDBodega INT, @IDProducto BIGINT, @IDLote AS INT,@Cantidad INT,@Validada BIT, @Usuario NVARCHAR(50),@Fecha AS DATE )
+AS 
+IF UPPER(@Operacion) ='I'
+BEGIN
+	IF Exists(SELECT *  FROM dbo.invBoletaInvFisico WHERE IDBodega=@IDBodega AND IDProducto=@IDProducto AND IDLote = @IDLote)
+	BEGIN
+		 RAISERROR ('La boleta  que desea ingresar, ya existe .', -- Message text.
+               16, -- Severity.
+               1 -- State.
+               )
+         RETURN 
+	END
+	
+	INSERT INTO dbo.invBoletaInvFisico( IDBodega ,IDProducto ,IDLote , Cantidad ,Validada ,Usuario ,Fecha ,RecordDate)
+	VALUES (@IDBodega,@IDProducto,@IDLote,@Cantidad,@Validada,@Usuario,@Fecha,GETDATE())
+END
+IF UPPER(@Operacion) ='U'
+BEGIN
+	UPDATE dbo.invBoletaInvFisico SET  Cantidad = @Cantidad, Validada = @Validada, Fecha = @Fecha WHERE IDBodega = @IDBodega AND  IDLote = @IDLote AND IDProducto=@IDProducto
+END
+IF UPPER(@Operacion)='D'
+BEGIN
+	DELETE FROM dbo.invBoletaInvFisico WHERE IDBodega = @IDBodega AND  IDLote = @IDLote AND IDProducto=@IDProducto
+END
+
+GO
+ 
+
+CREATE  PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT	,@Fecha AS DATE
+AS
+	SELECT *  FROM dbo.invBoletaInvFisico A
+	INNER JOIN dbo.invBodega B ON A.IDBodega = B.IDBodega
+	INNER JOIN dbo.invProducto P ON A.IDProducto= P.IDProducto
+	INNER JOIN dbo.invLote L ON P.IDProducto = L.IDProducto AND A.IDLote=L.IDLote
+	WHERE (A.IDProducto=@IDProducto OR  @IDProducto=-1)
+	          AND (A.IDBodega = @IDBodega OR @IDBodega=-1) 
+	          AND (A.IDLote =@IDLote  OR @IDLote=-1) 
+	          AND (A.Fecha =@Fecha OR @Fecha='19810821')
+	          
+ 

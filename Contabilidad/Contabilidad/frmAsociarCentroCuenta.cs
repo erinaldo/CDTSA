@@ -17,7 +17,7 @@ namespace CG
         private DataTable _dtCentro;
         private DataSet _dsCentro;
         private DataSet _dsCentroCuenta;
-        private int _IDCuenta;
+        private long _IDCuenta;
         
       
         

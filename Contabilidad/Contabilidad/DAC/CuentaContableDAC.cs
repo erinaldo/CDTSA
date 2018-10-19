@@ -47,7 +47,7 @@ namespace CG
 
 
                 //Paremetros Select 
-                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCentro";
+                oAdaptador.SelectCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCentro";
                 oAdaptador.SelectCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "Nivel1";
                 oAdaptador.SelectCommand.Parameters.Add("@IDSubTipo", SqlDbType.NVarChar).SourceColumn = "Nivel2";
                 oAdaptador.SelectCommand.Parameters.Add("@Nivel1", SqlDbType.NVarChar).SourceColumn = "Nivel3";
@@ -61,15 +61,15 @@ namespace CG
                 oAdaptador.SelectCommand.Parameters.Add("@EsMayor", SqlDbType.Int).SourceColumn = "Acumulador";
                 oAdaptador.SelectCommand.Parameters.Add("@AceptaDatos", SqlDbType.Int).SourceColumn = "Acumulador";
                 oAdaptador.SelectCommand.Parameters.Add("@Activa", SqlDbType.Int).SourceColumn = "Acumulador";
-                oAdaptador.SelectCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "Acumulador";
-                oAdaptador.SelectCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Int).SourceColumn = "Acumulador";
+                oAdaptador.SelectCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.BigInt).SourceColumn = "Acumulador";
+                oAdaptador.SelectCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.BigInt).SourceColumn = "Acumulador";
 
 
 
                 //Paremetros Insert
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 oAdaptador.InsertCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
                 oAdaptador.InsertCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.InsertCommand.Parameters.Add("@IDSubTipo", SqlDbType.NVarChar).SourceColumn = "IDSubTipo";
@@ -84,8 +84,8 @@ namespace CG
                 oAdaptador.InsertCommand.Parameters.Add("@EsMayor", SqlDbType.Bit).SourceColumn = "EsMayor";
                 oAdaptador.InsertCommand.Parameters.Add("@AceptaDatos", SqlDbType.Bit).SourceColumn = "AceptaDatos";
                 oAdaptador.InsertCommand.Parameters.Add("@Activa", SqlDbType.Bit).SourceColumn = "Activa";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.Int).SourceColumn = "IDCuentaAnterior";
-                oAdaptador.InsertCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "IDCuentaMayor";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.BigInt).SourceColumn = "IDCuentaAnterior";
+                oAdaptador.InsertCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.BigInt).SourceColumn = "IDCuentaMayor";
                 oAdaptador.InsertCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
                 
 
@@ -93,7 +93,7 @@ namespace CG
                 //Paremetros Update 
                 oAdaptador.UpdateCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "U";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDSubTipo", SqlDbType.NVarChar).SourceColumn = "IDSubTipo";
@@ -108,8 +108,8 @@ namespace CG
                 oAdaptador.UpdateCommand.Parameters.Add("@EsMayor", SqlDbType.Bit).SourceColumn = "EsMayor";
                 oAdaptador.UpdateCommand.Parameters.Add("@AceptaDatos", SqlDbType.Bit).SourceColumn = "AceptaDatos";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activa", SqlDbType.Bit).SourceColumn = "Activa";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.Int).SourceColumn = "IDCuentaAnterior";
-                oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "IDCuentaMayor";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.BigInt).SourceColumn = "IDCuentaAnterior";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.BigInt).SourceColumn = "IDCuentaMayor";
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
                 
 
@@ -119,7 +119,7 @@ namespace CG
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
                 oAdaptador.DeleteCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "D";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.Int).SourceColumn = "IDCuenta";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuenta", SqlDbType.BigInt).SourceColumn = "IDCuenta";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDGrupo", SqlDbType.Int).SourceColumn = "IDGrupo";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDTipo", SqlDbType.Int).SourceColumn = "IDTipo";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDSubTipo", SqlDbType.NVarChar).SourceColumn = "IDSubTipo";
@@ -134,8 +134,8 @@ namespace CG
                 oAdaptador.DeleteCommand.Parameters.Add("@EsMayor", SqlDbType.Bit).SourceColumn = "EsMayor";
                 oAdaptador.DeleteCommand.Parameters.Add("@AceptaDatos", SqlDbType.Bit).SourceColumn = "AceptaDatos";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activa", SqlDbType.Bit).SourceColumn = "Activa";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.Int).SourceColumn = "IDCuentaAnterior";
-                oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.Int).SourceColumn = "IDCuentaMayor";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaAnterior", SqlDbType.BigInt).SourceColumn = "IDCuentaAnterior";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaMayor", SqlDbType.BigInt).SourceColumn = "IDCuentaMayor";
                 oAdaptador.DeleteCommand.Parameters.Add("@UsaCentroCosto", SqlDbType.Bit).SourceColumn = "UsaCentroCosto";
                 
                 
@@ -163,9 +163,9 @@ namespace CG
             return DS;
         }
 
-        public static DataSet GetData(int IDCuenta,int IDGrupo,int IDSubGrupo,String Nivel1, String Nivel2, String Nivel3,
+        public static DataSet GetData(long IDCuenta,int IDGrupo,int IDSubGrupo,String Nivel1, String Nivel2, String Nivel3,
                                        String Nivel4, String Nivel5, String Nivel6, String Cuenta,int Complementaria,int EsMayor,int AceptaDatos,
-                                       int Activa,int IDCuentaMayor,int UsaCentroCosto )
+                                       int Activa,long IDCuentaMayor,long UsaCentroCosto )
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDCuenta"].Value = IDCuenta;
@@ -193,9 +193,9 @@ namespace CG
 
 
     
-        public static int GetNextConsecutivo(int Nivel1,int Nivel2, int Nivel3, int Nivel4, int Nivel5,int Nivel6)
+        public static long GetNextConsecutivo(int Nivel1,int Nivel2, int Nivel3, int Nivel4, int Nivel5,int Nivel6)
         {
-        int ID = 0;
+            long ID = 0;
             DataSet DS = new DataSet();
     
             SqlCommand oCmd = new SqlCommand("dbo.cntGetNextConsecutivoCuenta", ConnectionManager.GetConnection());
@@ -219,7 +219,7 @@ namespace CG
                 oCmd.ExecuteNonQuery();
 
                 if (oCmd.Parameters["@Resultado"].Value != DBNull.Value)
-                    ID = (int)oCmd.Parameters["@Resultado"].Value;
+                    ID = (long)oCmd.Parameters["@Resultado"].Value;
      
             }catch (Exception)
             {
@@ -236,9 +236,9 @@ namespace CG
         }
 
 
-        public static int GetNextConsecutivoFinal(int Nivel1, int Nivel2, int Nivel3, int Nivel4, int Nivel5, int Nivel6)
+        public static long GetNextConsecutivoFinal(int Nivel1, int Nivel2, int Nivel3, int Nivel4, int Nivel5, int Nivel6)
         {
-            int ID = 0;
+            long ID = 0;
             DataSet DS = new DataSet();
 
             SqlCommand oCmd = new SqlCommand("dbo.cntGetProximaCuenta", ConnectionManager.GetConnection());

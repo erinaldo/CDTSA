@@ -166,6 +166,7 @@
       <DependentUpon>frmFiltroConsultaArticuloTransacciones.cs</DependentUpon>
     </Compile>
     <Compile Include="DAC\clsBodegaDAC.cs" />
+    <Compile Include="DAC\clsBoletaInvFisicoDAC.cs" />
     <Compile Include="DAC\clsDocumentoInvCabecera.cs" />
     <Compile Include="DAC\clsDocumentoInvDetalle.cs" />
     <Compile Include="DAC\clsExistenciaBodegaDAC.cs" />
@@ -191,6 +192,12 @@
     </Compile>
     <Compile Include="Consultas\frmFiltroConsultaExistencia.Designer.cs">
       <DependentUpon>frmFiltroConsultaExistencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fisico\frmBoleta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisico\frmBoleta.Designer.cs">
+      <DependentUpon>frmBoleta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBodegas.cs">
       <SubType>Form</SubType>
@@ -298,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas\frmFiltroConsultaExistencia.resx">
       <DependentUpon>frmFiltroConsultaExistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fisico\frmBoleta.resx">
+      <DependentUpon>frmBoleta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBodegas.resx">
       <DependentUpon>frmBodegas.cs</DependentUpon>
