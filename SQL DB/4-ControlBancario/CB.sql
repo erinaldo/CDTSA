@@ -290,7 +290,7 @@ IDBanco int not null, IDMoneda int not null, SaldoInicial decimal(28,4 ) default
 IDTipo int not null, 
 SaldoLibro decimal(28,4 ) default 0, SaldoBanco decimal(28,4 ) default 0, ConsecDeposito int default 0, ConsecCheque int default 0,
 ConsecTransferencia int default 0, Limite decimal(28,4 ) default 0, 
-Sobregiro bit default 0, IDCuenta int not null, Activa bit default 1 )
+Sobregiro bit default 0, IDCuenta BIGINT not null, Activa bit default 1 )
 
 go
 

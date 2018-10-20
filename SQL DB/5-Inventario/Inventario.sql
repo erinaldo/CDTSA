@@ -77,7 +77,7 @@ CREATE     TABLE  [dbo].[invProducto](
 	[Clasif4] [int] NOT NULL DEFAULT 4,
 	[Clasif5] [int] NOT NULL DEFAULT 5,
 	[Clasif6] [int] NOT NULL DEFAULT 6,
-	[IDCuentaContable] [BigInt] NOT NULL ,
+	[IDCuentaContable] [BigInt]  ,
 	[CodigoBarra] [nvarchar](50) NULL,
 	[IDUnidad] [int] NOT NULL,
 	[FactorEmpaque] [decimal](28, 4) NULL DEFAULT 1,
@@ -147,12 +147,6 @@ GO
 ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoclas6]
 GO
 
-ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoCuentaContable] FOREIGN KEY([IDCuentaContable])
-REFERENCES [dbo].[invCuentaContable] ([IDCuenta])
-GO
-
-ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoCuenta]
-GO
 
 
 ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoUnd] FOREIGN KEY([IDUnidad])
@@ -174,35 +168,35 @@ CREATE  TABLE [dbo].[invCuentaContable](
 	[IDCuenta] [bigint] NOT NULL,
 	[Descr][nvarchar](250)  NOT NULL,
 	[CtrInventario][int],
-	[CtaInventario][int],
+	[CtaInventario][bigint],
 	[CtrVenta] [int], 
-	[CtaVenta] [int], 
+	[CtaVenta] [bigint], 
 	[CtrCompra] [int], 
-	[CtaCompra][int],
+	[CtaCompra][bigint],
 	[CtrDescVenta] [int],    
-	[CtaDescVenta] [int], 
+	[CtaDescVenta] [bigint], 
     [CtrCostoVenta] [int],     
-    [CtaCostoVenta] [int], 
+    [CtaCostoVenta] [bigint], 
     [CtrComisionVenta] [int], 
-    [CtaComisionVenta] [int], 
+    [CtaComisionVenta] [bigint], 
     [CtrComisionCobro] [int], 
-    [CtaComisionCobro] [int], 
+    [CtaComisionCobro] [bigint], 
     [CtrDescLinea] [int],
-    [CtaDescLinea] [int],  
+    [CtaDescLinea] [bigint],  
     [CtrCostoDesc] [int], 
-    [CtaCostoDesc] [int], 
+    [CtaCostoDesc] [bigint], 
     [CtrSobranteInvFisico] [int], 
-    [CtaSobranteInvFisico] [int], 
+    [CtaSobranteInvFisico] [bigint], 
     [CtrFaltanteInvFisico] [int], 
-    [CtaFaltanteInvFisico] [int], 
+    [CtaFaltanteInvFisico] [bigint], 
     [CtrVariacionCosto] [int],   
-    [CtaVariacionCosto] [int],  
+    [CtaVariacionCosto] [bigint],  
     [CtrVencimiento] [int], 
-    [CtaVencimiento] [int], 
+    [CtaVencimiento] [bigint], 
     [CtrDescBonificacion] [int], 
-    [CtaDescBonificacion] [int], 
+    [CtaDescBonificacion] [bigint], 
     [CtrDevVentas] [int], 
-    [CtaDevVentas] [int]
+    [CtaDevVentas] [bigint]
  CONSTRAINT [pkinvCuentaContable] PRIMARY KEY CLUSTERED 
 (
 	[IDCuenta] ASC
@@ -211,6 +205,226 @@ CREATE  TABLE [dbo].[invCuentaContable](
 
 GO
 
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrInventario] FOREIGN KEY([CtrInventario])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrInventario]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrVenta] FOREIGN KEY([CtrVenta])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrVenta]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrCompra] FOREIGN KEY([CtrCompra])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrCompra]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrDescVenta] FOREIGN KEY([CtrDescVenta])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrDescVenta]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrCostoVenta] FOREIGN KEY([CtrCostoVenta])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrCostoVenta]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrComisionVenta] FOREIGN KEY([CtrComisionVenta])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrComisionVenta]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrComisionCobro] FOREIGN KEY([CtrComisionCobro])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrComisionCobro]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrDescLinea] FOREIGN KEY([CtrDescLinea])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrDescLinea]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrCostoDesc] FOREIGN KEY([CtrCostoDesc])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrCostoDesc]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrFaltanteInvFisico] FOREIGN KEY([CtrFaltanteInvFisico])
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrFaltanteInvFisico]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrVariacionCosto] FOREIGN KEY(CtrVariacionCosto)
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrVariacionCosto]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrVencimiento] FOREIGN KEY(CtrVencimiento)
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrVencimiento]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrDescBonificacion] FOREIGN KEY(CtrDescBonificacion)
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrDescBonificacion]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrDevVentas] FOREIGN KEY(CtrDevVentas)
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrDevVentas]
+GO
+
+
+ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoCuentaContable] FOREIGN KEY([IDCuentaContable])
+REFERENCES [dbo].[invCuentaContable] ([IDCuenta])
+GO
+
+ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoCuentaContable]
+GO
+
+
+
+--//Begin
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaInventario] FOREIGN KEY([CtaInventario])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaInventario]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaVenta] FOREIGN KEY([CtaVenta])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaVenta]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaCompra] FOREIGN KEY([CtaCompra])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaCompra]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaDescVenta] FOREIGN KEY([CtaDescVenta])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaDescVenta]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaCostoVenta] FOREIGN KEY([CtaCostoVenta])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaCostoVenta]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaComisionVenta] FOREIGN KEY([CtaComisionVenta])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaComisionVenta]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaComisionCobro] FOREIGN KEY([CtaComisionCobro])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaComisionCobro]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaDescLinea] FOREIGN KEY([CtaDescLinea])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaDescLinea]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaCostoDesc] FOREIGN KEY([CtaCostoDesc])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaCostoDesc]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaFaltanteInvFisico] FOREIGN KEY([CtaFaltanteInvFisico])
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaFaltanteInvFisico]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaVariacionCosto] FOREIGN KEY(CtaVariacionCosto)
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaVariacionCosto]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaVencimiento] FOREIGN KEY(CtaVencimiento)
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaVencimiento]
+GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaDescBonificacion] FOREIGN KEY(CtaDescBonificacion)
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaDescBonificacion]
+GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaDevVentas] FOREIGN KEY(CtaDevVentas)
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaDevVentas]
+GO
+
+--//End
 
 CREATE TABLE [dbo].[invBodega](
 	[IDBodega] [int] IDENTITY(1,1) NOT NULL,
@@ -889,7 +1103,7 @@ VALUES  ( 10 ,N'DEVOLUCIONES SOBRE VENTA (+)' , N'DV' , N'E' , 1 , 8, 1 , 0 , 0 
 GO
 
 CREATE  Procedure  [dbo].[invUpdateProducto] @Operacion nvarchar(1), @IDProducto BIGINT OUTPUT, @Descr nvarchar(250), @Alias nvarchar(20),
-@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT,@IDCuentaContable AS INT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
+@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT,@IDCuentaContable AS BIGINT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
 @FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @BajaPrecioDistribuidor BIT,
 @BajaPrecioProveedor BIT, @PorcDescuentoAlzaProveedor DECIMAL(28,4), @BonificaFA BIT, @BonificaCOPorCada DECIMAL(28,4),
 @BonificaCOCantidad DECIMAL(28,4), @Activo BIT,@UserInsert NVARCHAR(50),@UserUpdate NVARCHAR(50),@UpdateDate DATETIME
@@ -1691,27 +1905,6 @@ WHERE (IDBodega IN (SELECT *  FROM dbo.ConvertListToTable(@lstBodega,',')) OR @l
 
 GO
 
-
-CREATE  PROCEDURE dbo.invGetExistenciaBodegabyClasificacion (@Bodega AS NVARCHAR(4000), @Producto AS NVARCHAR(250),
-							@Lote AS  NVARCHAR(4000),@Clasif1 AS NVARCHAR(4000),@Clasif2 NVARCHAR(4000), @Clasif3 NVARCHAR(4000),
-							@Clasif4 NVARCHAR(4000), @Clasif5 NVARCHAR(4000), @Clasif6 NVARCHAR(4000))
-AS 
-DECLARE @Separador AS NVARCHAR(1)
-SET @Separador =','
-
-SELECT A.IDBodega,B.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote, L.LoteInterno , L.LoteProveedor,L.FechaVencimiento,L.FechaIngreso,A.Existencia,A.Reservada  
-FROM dbo.invExistenciaBodega A
-INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
-INNER JOIN dbo.invLote L ON P.IDProducto = L.IDProducto AND A.IDLote=L.IDLote
-INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
-WHERE (A.IDBodega  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Bodega,@Separador) )or @Bodega ='*') AND (A.IDProducto IN (SELECT Value FROM [dbo].[ConvertListToTable](@Producto,@Separador)) OR @Producto='*')
-AND (A.IDLote  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Lote,@Separador)) OR @Lote='*') AND (P.Clasif1   IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif1,@Separador)) or @Clasif1='*') 
-AND (P.Clasif2  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif2,@Separador)) or @Clasif2='*') AND ( P.Clasif3 IN (SELECT Value FROM [dbo].[ConvertListToTable](@Producto,@Separador)) or @Clasif3='*')
-AND ( P.Clasif3 IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif3,@Separador)) or @Clasif3='*') AND (P.Clasif4  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif4,@Separador) ) or @Clasif4='*')
-AND (P.Clasif5  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Clasif5,@Separador)) or @Clasif5='*')  AND (P.Clasif6 IN (SELECT Value FROM [dbo].[ConvertListToTable](@clasif6,@Separador)) or @Clasif6='*')
-
-
-GO
 
 
 CREATE  PROCEDURE dbo.invGetConsultaTransaccionesByCriterio (@Bodega AS NVARCHAR(4000), @Producto AS NVARCHAR(250),
