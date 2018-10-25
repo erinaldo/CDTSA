@@ -64,7 +64,33 @@ namespace CI.Fisico
 
         void btnEliminar_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (currentRow != null)
+            {
+                string msg = currentRow["IDProducto"] + " eliminado..";
+
+
+                if (MessageBox.Show("Esta seguro que desea eliminar el elemento: " + currentRow["IDProducto"].ToString(), _tituloVentana, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    currentRow.Delete();
+
+                    try
+                    {
+
+                        clsBoletaInvFisicoDAC.oAdaptador.Update(_dsBoleta, "Data");
+                        _dsBoleta.AcceptChanges();
+
+                        PopulateGrid();
+                        lblStatus.Caption = msg;
+                        Application.DoEvents();
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        _dsBoleta.RejectChanges();
+                        lblStatus.Caption = "";
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
         }
 
         void btnGuardar_Click(object sender, EventArgs e)
@@ -100,27 +126,16 @@ namespace CI.Fisico
         private void ClearControls()
         {
             this.slkupProducto.EditValue = null;
+            this.txtCantidad.EditValue = 0;
+            this.txtLote.Text = "";
+            this.txtFechaVence.Text = "";
             //this.slkupBodega.EditValue = null;
-            this.slkupLote.EditValue = "";
+            this.slkupLote.EditValue = null;
             
 
         }
 
-        private void HabilitarControles(bool Activo)
-        {
-            this.slkupLote.ReadOnly = !Activo;
-            this.slkupBodega.ReadOnly = !Activo;
-            this.txtCantidad.ReadOnly = !Activo;
-            this.slkupProducto.ReadOnly = !Activo;
-            
-            this.btnGuardar.Enabled = Activo;
-            this.btnCancelar.Enabled = Activo;
-            this.btnEliminar.Enabled = !Activo;
-            this.btnExportar.Enabled = !Activo;
-            this.btnRefrescar.Enabled = !Activo;
-
-        }
-        
+       
 
         private void frmBoleta_Load(object sender, EventArgs e)
         {
@@ -141,6 +156,8 @@ namespace CI.Fisico
                 Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1,-1,"*","*").Tables[0], "LoteProveedor", "IDLote");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':30},{'ColumnCaption':'Lote Proveedor','ColumnField':'LoteProveedor','width':70}]");
 
+                this.dtpFecha.EditValue = DateTime.Now;
+
                 PopulateGrid();
 
                 CargarPrivilegios();
@@ -157,7 +174,7 @@ namespace CI.Fisico
 
         private void PopulateGrid()
         {
-            _dsBoleta = clsBoletaInvFisicoDAC.GetData(-1, -1,-1,Convert.ToDateTime("19810821"));
+            _dsBoleta = clsBoletaInvFisicoDAC.GetData(-1, -1,-1,Convert.ToDateTime("1981/08/21"));
 
             _dtBoleta = _dsBoleta.Tables[0];
             this.dtgGrid.DataSource = null;
@@ -170,16 +187,24 @@ namespace CI.Fisico
             if (index > -1)
             {
                 currentRow = gridView1.GetDataRow(index);
-                UpdateControlsFromCurrentRow(currentRow);
+                //
             }
         }
 
 
         private void UpdateControlsFromCurrentRow(DataRow Row)
         {
-            this.slkupProducto.EditValue = Row["IDProducto"].ToString();
             this.slkupBodega.EditValue = Row["IDBodega"].ToString();
+            this.slkupProducto.EditValue = Row["IDProducto"].ToString();
             this.slkupLote.EditValue = Row["IDLote"].ToString();
+            this.dtpFecha.EditValue = currentRow["Fecha"];
+            this.txtCantidad.EditValue = currentRow["Cantidad"];
+
+            searchLookUpEdit2View.GridControl.ForceInitialize();
+            searchLookUpEdit2View.GridControl.BindingContext = new BindingContext();
+
+            searchLookUpEdit3View.GridControl.ForceInitialize();
+            searchLookUpEdit3View.GridControl.BindingContext = new BindingContext();
             
         }
 
@@ -192,9 +217,8 @@ namespace CI.Fisico
         private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             isEdition = true;
-            HabilitarControles(true);
-            ClearControls();
-            currentRow = null;
+            
+            
 
 
             this.slkupProducto.Focus();
@@ -207,13 +231,13 @@ namespace CI.Fisico
             String sMensaje = "";
             //Este solo vale para el primer elemento
 
-            if (this.slkupProducto.EditValue== null || this.slkupProducto.EditValue == "")
+            if (this.slkupProducto.EditValue== null || this.slkupProducto.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Producto. \n\r";
-            if (this.slkupBodega.EditValue == null || this.slkupBodega.EditValue == "")
+            if (this.slkupBodega.EditValue == null || this.slkupBodega.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Bodega. \n\r";
-            if (this.slkupLote.EditValue == null || this.slkupLote.EditValue == "")
+            if (this.slkupLote.EditValue == null || this.slkupLote.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Lote. \n\r";
-            if (this.dtpFecha.EditValue == null || this.dtpFecha.EditValue == "")
+            if (this.dtpFecha.EditValue == null || this.dtpFecha.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Fecha. \n\r";
             if (this.txtCantidad.Text.Trim() == "")
                 sMensaje = sMensaje + "     • Cantidad. \n\r";
@@ -227,7 +251,53 @@ namespace CI.Fisico
             return result;
         }
 
-        private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+
+        private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            isEdition = false;
+            
+            AplicarPrivilegios();
+            SetCurrentRow();
+            lblStatus.Caption = "";
+        }
+
+        private void slkupProducto_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.slkupProducto.EditValue != null)
+            {
+
+                Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1, Convert.ToInt32(slkupProducto.EditValue), "*", "*").Tables[0], "LoteProveedor", "IDLote", 350);
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':20},{'ColumnCaption':'Lote','ColumnField':'LoteProveedor','width':60},{'ColumnCaption':'F.V','ColumnField':'FechaVencimiento','width':20}]");
+                
+                //DataRowView dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                DataRowView dr = (DataRowView)slkupProducto.Properties.GetRowByKeyValue(this.slkupProducto.EditValue);
+                this.txtDescrProducto.Text = dr["Descr"].ToString();
+                this.slkupLote.Enabled = true;
+            }
+            else
+            {
+                this.slkupLote.Enabled = false;
+                this.txtDescrProducto.Text = "";
+            }
+        }
+
+        private void slkupLote_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.slkupLote.EditValue != null)
+            {
+                //DataRowView dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                DataRowView dr = (DataRowView)slkupLote.Properties.GetRowByKeyValue(slkupLote.EditValue);
+                this.txtLote.Text = dr["LoteProveedor"].ToString();
+                this.txtFechaVence.Text = Convert.ToDateTime(dr["FechaVencimiento"]).ToShortDateString();
+            }
+            else
+            {
+                this.txtLote.Text = "";
+                this.txtFechaVence.Text = "";
+            }
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -235,18 +305,19 @@ namespace CI.Fisico
                 if (!ValidarDatos())
                     return;
 
-                if (currentRow != null)
+                if (currentRow != null && isEdition)
                 {
-                    lblStatus.Caption = "Actualizando : " + currentRow["IDProd"].ToString();
+                    lblStatus.Caption = "Actualizando : " + currentRow["IDProducto"].ToString();
 
                     Application.DoEvents();
                     currentRow.BeginEdit();
 
                     currentRow["IDBodega"] = (this.slkupBodega.EditValue == null ? DBNull.Value : this.slkupBodega.EditValue);
-                    currentRow["IDProduto"] = (this.slkupProducto.EditValue == null ? DBNull.Value : this.slkupProducto.EditValue);
+                    currentRow["IDProducto"] = (this.slkupProducto.EditValue == null ? DBNull.Value : this.slkupProducto.EditValue);
                     currentRow["IDLote"] = (this.slkupLote.EditValue == null ? DBNull.Value : this.slkupLote.EditValue);
                     currentRow["Cantidad"] = this.txtCantidad.EditValue;
                     currentRow["Usuario"] = _sUsuario;
+
                     currentRow["Fecha"] = this.dtpFecha.EditValue;
 
                     currentRow.EndEdit();
@@ -279,14 +350,14 @@ namespace CI.Fisico
 
                     if (okFlag)
                     {
-                        clsBodegaDAC.oAdaptador.Update(_dsChanged, "Data");
-                        lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
+                        clsBoletaInvFisicoDAC.oAdaptador.Update(_dsChanged, "Data");
+                        lblStatus.Caption = "Actualizado " + currentRow["IDProducto"].ToString();
                         Application.DoEvents();
                         isEdition = false;
                         _dsBoleta.AcceptChanges();
                         PopulateGrid();
                         SetCurrentRow();
-                        HabilitarControles(false);
+                       
                         AplicarPrivilegios();
                     }
                     else
@@ -301,23 +372,24 @@ namespace CI.Fisico
                     currentRow = _dtBoleta.NewRow();
 
                     currentRow["IDBodega"] = (this.slkupBodega.EditValue == null ? DBNull.Value : this.slkupBodega.EditValue);
-                    currentRow["IDProduto"] = (this.slkupProducto.EditValue == null ? DBNull.Value : this.slkupProducto.EditValue);
+                    currentRow["IDProducto"] = (this.slkupProducto.EditValue == null ? DBNull.Value : this.slkupProducto.EditValue);
                     currentRow["IDLote"] = (this.slkupLote.EditValue == null ? DBNull.Value : this.slkupLote.EditValue);
                     currentRow["Cantidad"] = this.txtCantidad.EditValue;
+                    currentRow["Validada"] = false;
                     currentRow["Usuario"] = _sUsuario;
                     currentRow["Fecha"] = this.dtpFecha.EditValue;
 
                     _dtBoleta.Rows.Add(currentRow);
                     try
                     {
-                        clsBodegaDAC.oAdaptador.Update(_dsBoleta, "Data");
+                        clsBoletaInvFisicoDAC.oAdaptador.Update(_dsBoleta, "Data");
                         _dsBoleta.AcceptChanges();
                         isEdition = false;
                         lblStatus.Caption = "Se ha ingresado un nuevo registro";
                         Application.DoEvents();
                         PopulateGrid();
                         SetCurrentRow();
-                        HabilitarControles(false);
+                       
                         AplicarPrivilegios();
                         ColumnView view = this.gridView1;
                         view.MoveLast();
@@ -329,6 +401,14 @@ namespace CI.Fisico
                         MessageBox.Show(ex.Message);
                     }
                 }
+
+
+                ClearControls();
+                currentRow = null;
+                this.btnEditar.Enabled = true;
+                this.btnEliminar.Enabled = true;
+                this.btnCancelar.Enabled = false;
+                this.btnGuardar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -338,46 +418,24 @@ namespace CI.Fisico
             }
         }
 
-        private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnEditar_Click(object sender, EventArgs e)
         {
-            isEdition = false;
-            HabilitarControles(false);
-            AplicarPrivilegios();
-            SetCurrentRow();
-            lblStatus.Caption = "";
-        }
-
-        private void slkupProducto_EditValueChanged(object sender, EventArgs e)
-        {
-            if (this.slkupProducto.EditValue != null)
-            {
-                Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1, Convert.ToInt32(slkupProducto.EditValue), "*", "*").Tables[0], "LoteProveedor", "IDLote", 350);
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':20},{'ColumnCaption':'Lote','ColumnField':'LoteProveedor','width':60},{'ColumnCaption':'F.V','ColumnField':'FechaVencimiento','width':20}]");
-
-                DataRowView dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
-                this.txtDescrProducto.Text = dr["Descr"].ToString();
-                this.slkupLote.Enabled = true;
-            }
-            else
-            {
-                this.slkupLote.Enabled = false;
-                this.txtDescrProducto.Text = "";
+            if (currentRow != null) {
+                isEdition = true;
+                UpdateControlsFromCurrentRow(currentRow);
+                this.btnEditar.Enabled = false;
+                this.btnEliminar.Enabled = false;
+                this.btnCancelar.Enabled = true;
+                this.btnGuardar.Enabled = true;
             }
         }
 
-        private void slkupLote_EditValueChanged(object sender, EventArgs e)
+        private void btnCancelDet_Click(object sender, EventArgs e)
         {
-            if (this.slkupLote.EditValue != null)
-            {
-                DataRowView dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
-                this.txtLote.Text = dr["LoteProveedor"].ToString();
-                this.txtFechaVence.Text = Convert.ToDateTime(dr["FechaVencimiento"]).ToShortDateString();
-            }
-            else
-            {
-                this.txtLote.Text = "";
-                this.txtFechaVence.Text = "";
-            }
+            this.btnEditar.Enabled = true;
+            this.btnEliminar.Enabled = true;
+            this.btnCancelar.Enabled = false;
+            this.btnGuardar.Enabled = true;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace CI.DAC
 
                 //Paremetros Insert
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
-                oAdaptador.UpdateCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
+                oAdaptador.InsertCommand.Parameters.Add("@Operacion", SqlDbType.NChar).Value = "I";
                 oAdaptador.InsertCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
                 oAdaptador.InsertCommand.Parameters.Add("@IDProducto", SqlDbType.BigInt).SourceColumn = "IDProducto";
                 oAdaptador.InsertCommand.Parameters.Add("@IDLote", SqlDbType.Int).SourceColumn = "IDLote";
@@ -101,6 +101,7 @@ namespace CI.DAC
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDBodega"].Value = IDBodega;
             oAdaptador.SelectCommand.Parameters["@IDProducto"].Value = IDProducto;
+            oAdaptador.SelectCommand.Parameters["@IDLote"].Value = IdLote;
             oAdaptador.SelectCommand.Parameters["@Fecha"].Value = Fecha;
 
             oAdaptador.Fill(DS.Tables["Data"]);

@@ -2070,9 +2070,11 @@ END
 GO
  
 
-CREATE  PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT	,@Fecha AS DATE
+CREATE   PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT	,@Fecha AS DATE
 AS
-	SELECT *  FROM dbo.invBoletaInvFisico A
+	SELECT A.IDBodega,B.Descr DescrBodega,A.IDProducto, P.Descr DescrProducto,A.IDLote, L.LoteProveedor,L.LoteInterno,
+				L.FechaVencimiento,A.Cantidad,A.Fecha,A.Usuario,A.Validada
+	 FROM dbo.invBoletaInvFisico A
 	INNER JOIN dbo.invBodega B ON A.IDBodega = B.IDBodega
 	INNER JOIN dbo.invProducto P ON A.IDProducto= P.IDProducto
 	INNER JOIN dbo.invLote L ON P.IDProducto = L.IDProducto AND A.IDLote=L.IDLote

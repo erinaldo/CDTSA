@@ -284,7 +284,8 @@ namespace CI
 
                            if (slkupTransaccion.EditValue != null)
                            {
-                               dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                               //dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                               dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(this.slkupTransaccion.EditValue);
                                if (Convert.ToBoolean(dr["EsVenta"]))
                                {
                                    this.txtCostoDolar.Enabled = false;
@@ -385,20 +386,25 @@ namespace CI
                            //_dsProducto.Tables[0].Rows.Add(_currentRow);
                            _currentRowDetalle["IDTransaccion"] = -1;
                            _currentRowDetalle["Estado"] = sEstado;
-                           dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                           //dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                           dr = (DataRowView)slkupProducto.Properties.GetRowByKeyValue(slkupProducto.EditValue);
                            _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
                            _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
                            _currentRowDetalle["IDLote"] = Convert.ToInt32(this.slkupLote.EditValue);
-                           dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                           //dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                           dr = (DataRowView)slkupLote.Properties.GetRowByKeyValue(slkupLote.EditValue);
                            _currentRowDetalle["LoteInterno"] = dr["LoteInterno"].ToString();
                            _currentRowDetalle["IDTipoTran"] = Convert.ToInt32(this.slkupTransaccion.EditValue);
-                           dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
+                           //dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
+                           dr = (DataRowView)slkupBodegaOrigen.Properties.GetRowByKeyValue(slkupBodegaOrigen.EditValue);
                            _currentRowDetalle["IDBodegaOrigen"] = Convert.ToInt32(this.slkupBodegaOrigen.EditValue);
                            _currentRowDetalle["DescrBodegaOrigen"] = dr["Descr"].ToString();
-                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           //dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
                            if (dr["Transaccion"].ToString() == "TR")
                            {
-                               dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
+                               //dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
+                               dr = (DataRowView)slkupBodegaDestino.Properties.GetRowByKeyValue(slkupBodegaDestino.EditValue);
                                _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
                                _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
                            }
@@ -409,7 +415,8 @@ namespace CI
                            _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
                            _currentRowDetalle["CostoUntLocal"] = Convert.ToDecimal(this.txtCostoLocal.EditValue);
                            _currentRowDetalle["CostoUntDolar"] = Convert.ToDecimal(this.txtCostoDolar.EditValue);
-                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           //dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
                            _currentRowDetalle["Transaccion"] = dr["Transaccion"].ToString();
                            _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
                            _currentRowDetalle["Factor"] = dr["Factor"].ToString();
@@ -472,20 +479,25 @@ namespace CI
                            //_currentRow["IDProducto"] = this.txtIDProducto.Text.Trim();
                            _currentRowDetalle["IDTransaccion"] = -1;
                            _currentRowDetalle["Estado"] = sEstado;
-                           dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                           //dr = (DataRowView)slkupProducto.Properties.View.GetRow(slkupProducto.Properties.GetIndexByKeyValue(slkupProducto.EditValue));
+                           dr = (DataRowView)slkupProducto.Properties.GetRowByKeyValue(slkupProducto.EditValue);
                            _currentRowDetalle["IDProducto"] = Convert.ToInt32(this.slkupProducto.EditValue);
                            _currentRowDetalle["DescrProducto"] = dr["Descr"].ToString();
                            _currentRowDetalle["IDLote"] = Convert.ToInt32(this.slkupLote.EditValue);
-                           dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                           //dr = (DataRowView)slkupLote.Properties.View.GetRow(slkupLote.Properties.GetIndexByKeyValue(slkupLote.EditValue));
+                           dr = (DataRowView)slkupLote.Properties.GetRowByKeyValue(slkupLote.EditValue);
                            _currentRowDetalle["LoteInterno"] = dr["LoteInterno"].ToString();
                            _currentRowDetalle["IDTipoTran"] = Convert.ToInt32(this.slkupTransaccion.EditValue);
-                           dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
+                           //dr = (DataRowView)slkupBodegaOrigen.Properties.View.GetRow(slkupBodegaOrigen.Properties.GetIndexByKeyValue(slkupBodegaOrigen.EditValue));
+                           dr = (DataRowView)slkupBodegaOrigen.Properties.GetRowByKeyValue(slkupBodegaOrigen.EditValue);
                            _currentRowDetalle["IDBodegaOrigen"] = Convert.ToInt32(this.slkupBodegaOrigen.EditValue);
                            _currentRowDetalle["DescrBodegaOrigen"] = dr["Descr"].ToString();
-                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           //dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
                            if (dr["Transaccion"].ToString() == "TR")
                            {
-                               dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
+                               //dr = (DataRowView)slkupBodegaDestino.Properties.View.GetRow(slkupBodegaDestino.Properties.GetIndexByKeyValue(slkupBodegaDestino.EditValue));
+                               dr = (DataRowView)slkupBodegaDestino.Properties.GetRowByKeyValue(slkupBodegaDestino.EditValue);
                                _currentRowDetalle["IDBodegaDestino"] = Convert.ToInt32(this.slkupBodegaDestino.EditValue);
                                _currentRowDetalle["DescrBodegaDestino"] = dr["Descr"].ToString();
                            }
@@ -495,7 +507,8 @@ namespace CI
                            _currentRowDetalle["PrecioUntDolar"] = Convert.ToDecimal(this.txtPrecioDolar.EditValue);
                            _currentRowDetalle["CostoUntLocal"] = Convert.ToDecimal(this.txtCostoLocal.EditValue);
                            _currentRowDetalle["CostoUntDolar"] = Convert.ToDecimal(this.txtCostoDolar.EditValue);
-                           dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           //dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                           dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
                            _currentRowDetalle["Transaccion"] = dr["Transaccion"].ToString();
                            _currentRowDetalle["DescrTipoTran"] = dr["Descr"].ToString();
                            _currentRowDetalle["Factor"] = dr["Factor"].ToString();
@@ -568,7 +581,8 @@ namespace CI
             if (this.txtCantidad.EditValue==null || this.txtCantidad.EditValue.ToString() == "" )
                 sMensaje = " • Por favor ingrese la cantidad\n\r";
             
-            DataRowView dr =  (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+            //DataRowView dr =  (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+            DataRowView dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
             if (Convert.ToBoolean(dr["EsVenta"])) {
                if  (this.txtPrecioDolar.EditValue ==null || this.txtPrecioLocal.EditValue.ToString()=="")
                    sMensaje = " • Ingrese el precio del producto \n\r";
@@ -748,7 +762,8 @@ namespace CI
             {
                 if (slkupTransaccion.EditValue != null)
                 {
-                    DataRowView dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                    //DataRowView dr = (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
+                    DataRowView dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
                     if (Convert.ToBoolean(dr["EsVenta"]))
                     {
                         this.txtCostoDolar.Enabled = false;
