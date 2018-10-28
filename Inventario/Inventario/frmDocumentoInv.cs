@@ -1167,7 +1167,6 @@ namespace CI
 
         private void slkupTransaccion_Spin(object sender, DevExpress.XtraEditors.Controls.SpinEventArgs e)
         {
-            
             SearchLookUpEdit edito = (SearchLookUpEdit)sender;
             edito.ShowPopup();      
         }

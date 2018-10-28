@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="15.2.7.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="rptBoletasInv" ReportUnit="TenthsOfAMillimeter" Margins="98, 85, 119, 254" PageWidth="2159" PageHeight="2794" Version="15.2" DataMember="invGetBoletas" DataSource="#Ref-0" Dpi="254">
+  <FormattingRuleSheet>
+    <Item1 Ref="2" Name="showProd" Condition="[Parameters.ConsolidaByProducto]=true">
+      <Formatting Ref="3" Visible="True" BorderStyle="Inset" StringFormat="Near;Near;0;None;Character;Default" />
+    </Item1>
+    <Item2 Ref="4" Name="HideProd" Condition="[Parameters.ConsolidaByProducto]=false">
+      <Formatting Ref="5" Visible="False" BorderStyle="Inset" StringFormat="Near;Near;0;None;Character;Default" />
+    </Item2>
+    <Item3 Ref="6" Name="HideLote" Condition="[Parameters.ConsolidaByProducto]=true">
+      <Formatting Ref="7" Visible="False" BorderStyle="Inset" StringFormat="Near;Near;0;None;Character;Default" />
+    </Item3>
+    <Item4 Ref="8" Name="showLote" Condition="[Parameters.ConsolidaByProducto]=false">
+      <Formatting Ref="9" Visible="True" BorderStyle="Inset" StringFormat="Near;Near;0;None;Character;Default" />
+    </Item4>
+  </FormattingRuleSheet>
+  <Parameters>
+    <Item1 Ref="11" Visible="false" ValueInfo="-1" Name="IDBodega" Type="#Ref-10" />
+    <Item2 Ref="12" Visible="false" ValueInfo="-1" Name="IDProducto" Type="#Ref-10" />
+    <Item3 Ref="13" Visible="false" ValueInfo="-1" Name="Clasif1" Type="#Ref-10" />
+    <Item4 Ref="14" Visible="false" ValueInfo="-1" Name="Clasif2" Type="#Ref-10" />
+    <Item5 Ref="15" Visible="false" ValueInfo="-1" Name="Clasif3" Type="#Ref-10" />
+    <Item6 Ref="16" Visible="false" ValueInfo="-1" Name="Clasif4" Type="#Ref-10" />
+    <Item7 Ref="17" Visible="false" ValueInfo="-1" Name="Clasif5" Type="#Ref-10" />
+    <Item8 Ref="18" Visible="false" ValueInfo="-1" Name="Clasif6" Type="#Ref-10" />
+    <Item9 Ref="20" Visible="false" ValueInfo="False" Name="ConsolidaByProducto" Type="#Ref-19" />
+  </Parameters>
+  <Bands>
+    <Item1 Ref="21" ControlType="DetailBand" Name="LotesDetail" HeightF="0" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
+      <SubBands>
+        <Item1 Ref="22" ControlType="SubBand" Name="SubBand1" HeightF="68.7916641" Dpi="254">
+          <FormattingRuleLinks>
+            <Item1 Ref="23" Value="#Ref-4" />
+            <Item2 Ref="24" Value="#Ref-2" />
+          </FormattingRuleLinks>
+          <Controls>
+            <Item1 Ref="25" ControlType="XRLabel" Name="xrLabel18" Text="xrLabel3" SizeF="1603.37524,58.42" LocationFloat="186.312439, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="26" PropertyName="Text" DataMember="invGetBoletas.DescrProducto" />
+              </DataBindings>
+              <StylePriority Ref="27" UseFont="false" />
+            </Item1>
+            <Item2 Ref="28" ControlType="XRLabel" Name="xrLabel19" Text="xrLabel4" SizeF="171.767456,58.42" LocationFloat="0, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="29" PropertyName="Text" DataMember="invGetBoletas.IDProducto" />
+              </DataBindings>
+              <StylePriority Ref="30" UseFont="false" />
+            </Item2>
+            <Item3 Ref="31" ControlType="XRLabel" Name="xrLabel23" Text="xrLabel8" TextAlignment="TopRight" SizeF="190.499512,58.42" LocationFloat="1789.68787, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="32" FormatString="{0:n2}" PropertyName="Text" DataMember="invGetBoletas.Cantidad" />
+              </DataBindings>
+              <StylePriority Ref="33" UseFont="false" UseTextAlignment="false" />
+            </Item3>
+          </Controls>
+        </Item1>
+        <Item2 Ref="34" ControlType="SubBand" Name="SubBand4" HeightF="66.1458359" Dpi="254">
+          <FormattingRuleLinks>
+            <Item1 Ref="35" Value="#Ref-6" />
+            <Item2 Ref="36" Value="#Ref-8" />
+          </FormattingRuleLinks>
+          <Controls>
+            <Item1 Ref="37" ControlType="XRLabel" Name="xrLabel3" Text="xrLabel3" SizeF="883.496948,58.42" LocationFloat="190.500244, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="38" PropertyName="Text" DataMember="invGetBoletas.DescrProducto" />
+              </DataBindings>
+              <StylePriority Ref="39" UseFont="false" />
+            </Item1>
+            <Item2 Ref="40" ControlType="XRLabel" Name="xrLabel4" Text="xrLabel4" SizeF="171.767456,58.42" LocationFloat="0.0003229777, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="41" PropertyName="Text" DataMember="invGetBoletas.IDProducto" />
+              </DataBindings>
+              <StylePriority Ref="42" UseFont="false" />
+            </Item2>
+            <Item3 Ref="43" ControlType="XRLabel" Name="xrLabel5" Text="xrLabel5" SizeF="156.104248,58.42" LocationFloat="1100.45544, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="44" PropertyName="Text" DataMember="invGetBoletas.IDLote" />
+              </DataBindings>
+              <StylePriority Ref="45" UseFont="false" />
+            </Item3>
+            <Item4 Ref="46" ControlType="XRLabel" Name="xrLabel6" Text="xrLabel6" SizeF="306.916748,58.42" LocationFloat="1275.08044, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="47" PropertyName="Text" DataMember="invGetBoletas.LoteProveedor" />
+              </DataBindings>
+              <StylePriority Ref="48" UseFont="false" />
+            </Item4>
+            <Item5 Ref="49" ControlType="XRLabel" Name="xrLabel7" Text="xrLabel7" SizeF="177.271,58.42" LocationFloat="1605.80994, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="50" FormatString="{0:MM/yyy}" PropertyName="Text" DataMember="invGetBoletas.Fecha" />
+              </DataBindings>
+              <StylePriority Ref="51" UseFont="false" />
+            </Item5>
+            <Item6 Ref="52" ControlType="XRLabel" Name="xrLabel8" Text="xrLabel8" TextAlignment="TopRight" SizeF="190.499512,58.42" LocationFloat="1793.876, 0" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+              <DataBindings>
+                <Item1 Ref="53" FormatString="{0:n2}" PropertyName="Text" DataMember="invGetBoletas.Cantidad" />
+              </DataBindings>
+              <StylePriority Ref="54" UseFont="false" UseTextAlignment="false" />
+            </Item6>
+          </Controls>
+        </Item2>
+      </SubBands>
+    </Item1>
+    <Item2 Ref="55" ControlType="TopMarginBand" Name="TopMargin" SnapLinePadding="5,5,5,5,254" HeightF="119" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254" />
+    <Item3 Ref="56" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="254" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254" />
+    <Item4 Ref="57" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="209.338364" Dpi="254">
+      <Controls>
+        <Item1 Ref="58" ControlType="XRLabel" Name="xrLabel17" Text="xrLabel17" TextAlignment="TopCenter" SizeF="1449.91663,58.42" LocationFloat="280.4585, 125.91835" Dpi="254" Padding="2,2,0,0,96">
+          <DataBindings>
+            <Item1 Ref="59" PropertyName="Text" DataMember="Generales.Nombre" />
+          </DataBindings>
+          <StylePriority Ref="60" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="61" ControlType="XRPictureBox" Name="xrPictureBox1" SizeF="254,209.338364" LocationFloat="14.8167639, 0" Dpi="254">
+          <DataBindings>
+            <Item1 Ref="62" PropertyName="Image" DataMember="Generales.Logo" />
+          </DataBindings>
+        </Item2>
+        <Item3 Ref="63" ControlType="XRLabel" Name="xrLabel10" Text="Boleta de Inventario" TextAlignment="TopCenter" SizeF="1449.91663,58.4200058" LocationFloat="280.4585, 55.35087" Dpi="254" Font="Verdana, 14pt" Padding="5,5,0,0,254">
+          <StylePriority Ref="64" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+      </Controls>
+    </Item4>
+    <Item5 Ref="65" ControlType="GroupHeaderBand" Name="CabeceraLotes" HeightF="173.037567" Dpi="254">
+      <SubBands>
+        <Item1 Ref="66" ControlType="SubBand" Name="SubBand2" HeightF="100.541664" Dpi="254">
+          <FormattingRuleLinks>
+            <Item1 Ref="67" Value="#Ref-2" />
+            <Item2 Ref="68" Value="#Ref-4" />
+          </FormattingRuleLinks>
+          <Controls>
+            <Item1 Ref="69" ControlType="XRLabel" Name="xrLabel20" Text="Descripción" SizeF="883.496643,40.9574738" LocationFloat="190.500244, 25.0000076" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="70" UseFont="false" />
+            </Item1>
+            <Item2 Ref="71" ControlType="XRLabel" Name="xrLabel24" Text="Cantidad" SizeF="190.499634,40.9574738" LocationFloat="1793.87537, 24.9999275" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="72" UseFont="false" />
+            </Item2>
+            <Item3 Ref="73" ControlType="XRLine" Name="xrLine3" LineWidth="3" SizeF="1997,18.5208435" LocationFloat="8.074442E-05, 65.95746" Dpi="254" />
+            <Item4 Ref="74" ControlType="XRLine" Name="xrLine4" LineWidth="3" SizeF="1997,18.52082" LocationFloat="8.074442E-05, 6.479094" Dpi="254" />
+            <Item5 Ref="75" ControlType="XRLabel" Name="xrLabel26" Text="ID Prod" SizeF="171.767456,40.9574738" LocationFloat="8.074442E-05, 24.9999275" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="76" UseFont="false" />
+            </Item5>
+          </Controls>
+        </Item1>
+        <Item2 Ref="77" ControlType="SubBand" Name="SubBand3" HeightF="74.0833359" Dpi="254">
+          <FormattingRuleLinks>
+            <Item1 Ref="78" Value="#Ref-6" />
+            <Item2 Ref="79" Value="#Ref-8" />
+          </FormattingRuleLinks>
+          <Controls>
+            <Item1 Ref="80" ControlType="XRLabel" Name="xrLabel11" Text="Descripción" SizeF="883.496643,40.9574738" LocationFloat="190.500244, 8.125862" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="81" UseFont="false" />
+            </Item1>
+            <Item2 Ref="82" ControlType="XRLabel" Name="xrLabel12" Text="ID Lote" SizeF="156.104126,40.9574738" LocationFloat="1100.45557, 8.125862" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="83" UseFont="false" />
+            </Item2>
+            <Item3 Ref="84" ControlType="XRLabel" Name="xrLabel13" Multiline="true" Text="Lote Proveedor&#xD;&#xA;" SizeF="306.916748,40.9574738" LocationFloat="1275.08008, 8.125862" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="85" UseFont="false" />
+            </Item3>
+            <Item4 Ref="86" ControlType="XRLabel" Name="xrLabel14" Text="Cantidad" SizeF="190.499634,40.9574738" LocationFloat="1793.87537, 8.125862" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="87" UseFont="false" />
+            </Item4>
+            <Item5 Ref="88" ControlType="XRLabel" Name="xrLabel15" Text="F.V" SizeF="177.270752,40.9574738" LocationFloat="1605.80957, 8.125862" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="89" UseFont="false" />
+            </Item5>
+            <Item6 Ref="90" ControlType="XRLine" Name="xrLine1" LineWidth="3" SizeF="1997,18.5208435" LocationFloat="8.074442E-05, 40.9573669" Dpi="254" />
+            <Item7 Ref="91" ControlType="XRLine" Name="xrLine2" LineWidth="3" SizeF="1997,18.52082" LocationFloat="8.074442E-05, 0" Dpi="254" />
+            <Item8 Ref="92" ControlType="XRLabel" Name="xrLabel16" Text="ID Prod" SizeF="171.767456,40.9574738" LocationFloat="8.074442E-05, 8.125862" Dpi="254" Font="Verdana, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+              <StylePriority Ref="93" UseFont="false" />
+            </Item8>
+          </Controls>
+        </Item2>
+      </SubBands>
+      <Controls>
+        <Item1 Ref="94" ControlType="XRLabel" Name="xrLabel9" Text="Bodega:" SizeF="156.9507,58.420002" LocationFloat="14.8167639, 11.4300194" Dpi="254" Font="Verdana, 9.75pt" Padding="5,5,0,0,254">
+          <StylePriority Ref="95" UseFont="false" />
+        </Item1>
+        <Item2 Ref="96" ControlType="XRLabel" Name="xrLabel2" Text="xrLabel2" SizeF="481.5417,58.420002" LocationFloat="280.4585, 11.4300194" Dpi="254" Font="Verdana, 10pt, style=Bold" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="97" PropertyName="Text" DataMember="invGetBoletas.DescrBodega" />
+          </DataBindings>
+          <StylePriority Ref="98" UseFont="false" />
+        </Item2>
+        <Item3 Ref="99" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="89.9583,58.420002" LocationFloat="190.500168, 11.4300194" Dpi="254" Font="Verdana, 10pt, style=Bold" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="100" PropertyName="Text" DataMember="invGetBoletas.IDBodega" />
+          </DataBindings>
+          <StylePriority Ref="101" UseFont="false" />
+        </Item3>
+      </Controls>
+    </Item5>
+  </Bands>
+  <ComponentStorage>
+    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v15.2" Name="sqlDataSource1" Base64="PFNxbERhdGFTb3VyY2U+PE5hbWU+c3FsRGF0YVNvdXJjZTE8L05hbWU+PENvbm5lY3Rpb24gTmFtZT0iQ29uZXhpb24iIEZyb21BcHBDb25maWc9InRydWUiIC8+PFF1ZXJ5IFR5cGU9IlN0b3JlZFByb2NRdWVyeSIgTmFtZT0iaW52R2V0Qm9sZXRhcyI+PFBhcmFtZXRlciBOYW1lPSJASURCb2RlZ2EiIFR5cGU9IkRldkV4cHJlc3MuRGF0YUFjY2Vzcy5FeHByZXNzaW9uIj4oU3lzdGVtLkludDMyLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkpKFtQYXJhbWV0ZXJzLklEQm9kZWdhXSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBJRFByb2R1Y3RvIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5JRFByb2R1Y3RvXSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDbGFzaWYxIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5DbGFzaWYxXSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDbGFzaWYyIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5DbGFzaWYyXSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDbGFzaWYzIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5DbGFzaWYzXSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDbGFzaWY0IiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5DbGFzaWY0XSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDbGFzaWY1IiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5DbGFzaWY1XSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDbGFzaWY2IiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQzMiwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5DbGFzaWY2XSk8L1BhcmFtZXRlcj48UGFyYW1ldGVyIE5hbWU9IkBDb25zb2xpZGFCeVByb2R1Y3RvIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5Cb29sZWFuLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkpKFtQYXJhbWV0ZXJzLkNvbnNvbGlkYUJ5UHJvZHVjdG9dKTwvUGFyYW1ldGVyPjxQcm9jTmFtZT5pbnZHZXRCb2xldGFzPC9Qcm9jTmFtZT48L1F1ZXJ5PjxRdWVyeSBUeXBlPSJDdXN0b21TcWxRdWVyeSIgTmFtZT0iR2VuZXJhbGVzIj48U3FsPlNlbGVjdCBOb21icmUsVGVsZWZvbm8sTG9nbyAgZnJvbSBnbG9iYWxDb21wYW5pYQ0KPC9TcWw+PC9RdWVyeT48UmVzdWx0U2NoZW1hPjxEYXRhU2V0IE5hbWU9InNxbERhdGFTb3VyY2UxIj48VmlldyBOYW1lPSJHZW5lcmFsZXMiPjxGaWVsZCBOYW1lPSJOb21icmUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iVGVsZWZvbm8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTG9nbyIgVHlwZT0iQnl0ZUFycmF5IiAvPjwvVmlldz48VmlldyBOYW1lPSJpbnZHZXRCb2xldGFzIj48RmllbGQgTmFtZT0iSURCb2RlZ2EiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJEZXNjckJvZGVnYSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJRFByb2R1Y3RvIiBUeXBlPSJJbnQ2NCIgLz48RmllbGQgTmFtZT0iRGVzY3JQcm9kdWN0byIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJRExvdGUiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJMb3RlUHJvdmVlZG9yIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkZlY2hhVmVuY2ltaWVudG8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ2FudGlkYWQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkZlY2hhIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iVmFsaWRhZGEiIFR5cGU9IkJvb2xlYW4iIC8+PC9WaWV3PjwvRGF0YVNldD48L1Jlc3VsdFNjaGVtYT48L1NxbERhdGFTb3VyY2U+" />
+  </ComponentStorage>
+  <ObjectStorage>
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v15.2" Ref="10" Content="System.Int32" Type="System.Type" />
+    <Item2 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v15.2" Ref="19" Content="System.Boolean" Type="System.Type" />
+  </ObjectStorage>
+</XtraReportsLayoutSerializer>

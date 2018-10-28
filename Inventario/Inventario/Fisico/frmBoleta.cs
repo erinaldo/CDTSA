@@ -11,6 +11,9 @@ using DevExpress.XtraEditors;
 using Security;
 using CI.DAC;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.DataAccess.Sql;
+using DevExpress.DataAccess.ConnectionParameters;
 
 namespace CI.Fisico
 {
@@ -20,6 +23,9 @@ namespace CI.Fisico
         private DataTable _dtBoleta;
         private DataSet _dsBoleta;
         private DataTable _dtSecurity;
+
+        List<DataRowView> SelectedValidate = new List<DataRowView>();
+       
 
         DataRow currentRow;
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
@@ -273,6 +279,7 @@ namespace CI.Fisico
                 DataRowView dr = (DataRowView)slkupProducto.Properties.GetRowByKeyValue(this.slkupProducto.EditValue);
                 this.txtDescrProducto.Text = dr["Descr"].ToString();
                 this.slkupLote.Enabled = true;
+                this.slkupLote.Focus();
             }
             else
             {
@@ -289,6 +296,7 @@ namespace CI.Fisico
                 DataRowView dr = (DataRowView)slkupLote.Properties.GetRowByKeyValue(slkupLote.EditValue);
                 this.txtLote.Text = dr["LoteProveedor"].ToString();
                 this.txtFechaVence.Text = Convert.ToDateTime(dr["FechaVencimiento"]).ToShortDateString();
+                this.txtCantidad.Focus();
             }
             else
             {
@@ -409,6 +417,7 @@ namespace CI.Fisico
                 this.btnEliminar.Enabled = true;
                 this.btnCancelar.Enabled = false;
                 this.btnGuardar.Enabled = true;
+                this.slkupProducto.Focus();
             }
             catch (Exception ex)
             {
@@ -436,6 +445,164 @@ namespace CI.Fisico
             this.btnEliminar.Enabled = true;
             this.btnCancelar.Enabled = false;
             this.btnGuardar.Enabled = true;
+        }
+
+        private void slkup_Properties_Spin(object sender, DevExpress.XtraEditors.Controls.SpinEventArgs e)
+        {
+            SearchLookUpEdit edito = (SearchLookUpEdit)sender;
+            edito.ShowPopup();  
+        }
+
+        private void slkup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchLookUpEdit control = (SearchLookUpEdit)sender;
+                control.ShowPopup();
+            }
+        }
+
+        private void txtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.btnGuardar.Focus();
+            }
+        }
+
+        private void gridView1_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+
+            if (e.Column.FieldName.ToUpper() == "VALIDADA")
+            {
+                // TODO: conwes 2016-04-25
+                // Räkna om moms
+                DataRow DR = (DataRow)this.gridView1.GetDataRow(e.RowHandle);
+                // LevFaktRad shRow = (LevFaktRad)e.;
+                // e.RepositoryItem = RULF_AvgiftRow_Combobox_DCT[shRow.ProduktGUID];
+                if ((bool)DR["Validada"] == true) { 
+                
+                }
+               
+            }
+        }
+
+
+        private void setItemSelected()
+        {
+           
+               
+               // List<int> selection = new List<int>();
+                //foreach (DataRowView val in SelectedValidate)
+                //{
+                    for (int i = 0; i < this.gridView1.RowCount; i++)
+                    {
+                        DataRowView ele = (DataRowView)gridView1.GetRow(i);
+                        if (Convert.ToBoolean(((ele["Validada"]== DBNull.Value) ? false :ele["Validada"]) )==true)
+                        {
+                         
+                            gridView1.SelectRow(i);
+                        }
+                    }
+               // }
+               
+        }
+
+        private void togleValidacionBoleta_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.togleValidacionBoleta.Checked == true )
+            {
+                this.gridView1.OptionsSelection.MultiSelect = true;
+                this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+                this.togleAplicacion.Enabled = false;
+                this.btnAplicar.Enabled = false;
+                this.btnValidar.Enabled = true;
+                setItemSelected();
+                //Cargar todas aquellas boletas que esten validadas
+
+            }
+            else {
+                this.gridView1.OptionsSelection.MultiSelect = false;
+                this.togleAplicacion.Enabled = true;
+                this.btnAplicar.Enabled = false;
+                this.btnValidar.Enabled = false;
+                this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            }
+        }
+
+        private void togleAplicacion_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.togleAplicacion.Checked == true &&  this.togleValidacionBoleta.Checked==false)
+            {
+                this.gridView1.OptionsSelection.MultiSelect = true;
+                this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+                this.togleValidacionBoleta.Enabled = false;
+                this.btnAplicar.Enabled = true;
+                this.btnValidar.Enabled = false;
+            }
+            else
+            {
+                this.gridView1.OptionsSelection.MultiSelect = false;
+                this.togleValidacionBoleta.Enabled = true;
+                this.btnAplicar.Enabled = false;
+                this.btnValidar.Enabled = false;
+                this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            }
+        }
+
+
+        private void btnValidar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+            try
+            {
+                if (MessageBox.Show("Las lineas marcadas, se cambiaran a estado Validada", "Validación de Boletas", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    
+                    for (int i = 0; i < this.gridView1.RowCount; i++)
+                    {
+                        DataRowView ele = (DataRowView)gridView1.GetRow(i);
+                       
+                        ele.BeginEdit();                                                                                                          
+                        if (SelectedValidate.Exists(a => a == ele))
+                            ele["Validada"] = true;
+                        else
+                            ele["Validada"] = false;
+                        ele.EndEdit();
+
+                        DataSet _dsChanged = _dsBoleta.GetChanges(DataRowState.Modified);
+                        clsBoletaInvFisicoDAC.oAdaptador.Update(_dsChanged, "Data");
+                        _dsBoleta.AcceptChanges();
+                    }
+                    MessageBox.Show("Los datos se han actualizado correctamente!", "Validación de Boletas");
+                    //recargar los datos.
+                    PopulateGrid();
+                    setItemSelected();
+                }
+                
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores: " + ex.Message);
+                _dsBoleta.RejectChanges();
+            }
+        }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            GridView view = sender as GridView;
+            DataRowView Valor ;
+            
+            Valor = (DataRowView)view.GetRow(e.ControllerRow);
+            if (e.Action == CollectionChangeAction.Add)
+                SelectedValidate.Add(Valor);
+            else if (e.Action == CollectionChangeAction.Remove)
+                SelectedValidate.Remove(Valor);
+        }
+
+        private void btnImprimirBoletas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmPrintBoletasInv ofrmPrint = new frmPrintBoletasInv();
+            ofrmPrint.ShowDialog();
         }
     }
 }

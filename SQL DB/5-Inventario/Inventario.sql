@@ -2082,5 +2082,166 @@ AS
 	          AND (A.IDBodega = @IDBodega OR @IDBodega=-1) 
 	          AND (A.IDLote =@IDLote  OR @IDLote=-1) 
 	          AND (A.Fecha =@Fecha OR @Fecha='19810821')
+
+
+go
+
+
+--// Imprime las Boletas
+CREATE PROCEDURE dbo.invGetBoletas @IDBodega AS INT,@IDProducto AS INT,@Clasif1 AS INT,@Clasif2 AS INT,@Clasif3 AS INT,@Clasif4 AS INT,@Clasif5 AS INT, @Clasif6 AS INT,@ConsolidaByProducto AS BIT
+AS
+/*SET @IDBodega=-1
+SET @IDProducto=-1
+SET @Clasif1 =-1
+SET @Clasif2 = -1
+SET @Clasif3 =-1
+SET @Clasif4=-1
+SET @Clasif5=-1
+SET @Clasif6=-1
+SET @ConsolidaByProducto=1
+*/
+IF (@ConsolidaByProducto=1)
+BEGIN
+	SELECT B.IDBodega,BO.Descr DescrBodega,B.IDProducto,P.Descr DescrProducto,0 IDLote,'xx' LoteProveedor,'2018/01/01' FechaVencimiento,B.Cantidad,B.Fecha,B.Validada
+	FROM dbo.invBoletaInvFisico B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	INNER JOIN dbo.invBodega BO ON B.IDBodega=BO.IDBodega
+	INNER JOIN dbo.invLote L ON B.IDLote=L.IDLote AND B.IDProducto=L.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1) AND 
+					(B.IDProducto =@IDProducto OR @IDProducto=-1) AND 
+					(P.Clasif1=@Clasif1 OR @Clasif1=-1) AND 
+					(p.Clasif2=@Clasif2 OR @Clasif2=-1) AND
+				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
+				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
+				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+	GROUP BY  B.IDBodega,BO.Descr ,B.IDProducto,P.Descr ,B.Cantidad,B.Fecha,B.Validada
+END
+ELSE 
+BEGIN
+	SELECT B.IDBodega,BO.Descr DescrBodega,B.IDProducto,P.Descr DescrProducto,L.IDLote,L.LoteProveedor,L.FechaVencimiento,B.Cantidad,B.Fecha,B.Validada
+	FROM dbo.invBoletaInvFisico B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	INNER JOIN dbo.invBodega BO ON B.IDBodega=BO.IDBodega
+	INNER JOIN dbo.invLote L ON B.IDLote=L.IDLote AND B.IDProducto=L.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1) AND 
+					(B.IDProducto =@IDProducto OR @IDProducto=-1) AND 
+					(P.Clasif1=@Clasif1 OR @Clasif1=-1) AND 
+					(p.Clasif2=@Clasif2 OR @Clasif2=-1) AND
+				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
+				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
+				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+END
+
+GO
+
+
+
+--// Cuadre de Diferencias
+
+CREATE PROCEDURE dbo.invGetBoletasVrsInventario @IDBodega AS INT,@IDProducto AS INT,@Clasif1 AS INT,@Clasif2 AS INT,@Clasif3 AS INT,@Clasif4 AS INT,@Clasif5 AS INT, @Clasif6 AS INT,@ConsolidaByProducto AS BIT
+AS
+/*
+SET @IDBodega=-1
+SET @IDProducto=-1
+SET @Clasif1 =-1
+SET @Clasif2 = -1
+SET @Clasif3 =-1
+SET @Clasif4=-1
+SET @Clasif5=-1
+SET @Clasif6=-1
+SET @ConsolidaByProducto=0
+*/
+CREATE TABLE  #Boletas (IDBodega int,IDProducto INT,IDLote INT,Cantidad DECIMAL(28,4))
+
+CREATE TABLE  #Inventario (IDBodega int,IDProducto INT,IDLote INT,Cantidad DECIMAL(28,4))
+
+
+IF (@ConsolidaByProducto=1)
+BEGIN
+	--//Cargar Boletas
+	INSERT INTO #Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	SELECT B.IDBodega,B.IDProducto,-1 IDLote,SUM(B.Cantidad )
+	FROM dbo.invBoletaInvFisico B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1) AND 
+					(B.IDProducto =@IDProducto OR @IDProducto=-1) AND 
+					(P.Clasif1=@Clasif1 OR @Clasif1=-1) AND 
+					(p.Clasif2=@Clasif2 OR @Clasif2=-1) AND
+				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
+				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
+				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+	GROUP BY  B.IDBodega ,B.IDProducto 
+	
+	--//Cargar Inventario
+	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	SELECT B.IDBodega,B.IDProducto,-1 IDLote,SUM(B.Existencia)
+	FROM dbo.invExistenciaBodega B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1) AND 
+					(B.IDProducto =@IDProducto OR @IDProducto=-1) AND 
+					(P.Clasif1=@Clasif1 OR @Clasif1=-1) AND 
+					(p.Clasif2=@Clasif2 OR @Clasif2=-1) AND
+				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
+				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
+				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+	GROUP BY  B.IDBodega ,B.IDProducto 
+END
+ELSE 
+BEGIN
+	INSERT INTO #Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Cantidad
+	FROM dbo.invBoletaInvFisico B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1) AND 
+					(B.IDProducto =@IDProducto OR @IDProducto=-1) AND 
+					(P.Clasif1=@Clasif1 OR @Clasif1=-1) AND 
+					(p.Clasif2=@Clasif2 OR @Clasif2=-1) AND
+				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
+				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
+				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+				    
+	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Existencia
+	FROM dbo.invExistenciaBodega B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1) AND 
+					(B.IDProducto =@IDProducto OR @IDProducto=-1) AND 
+					(P.Clasif1=@Clasif1 OR @Clasif1=-1) AND 
+					(p.Clasif2=@Clasif2 OR @Clasif2=-1) AND
+				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
+				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
+				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)				 
+END
+
+SELECT DISTINCT   IDBodega ,
+        IDProducto ,
+        IDLote  INTO #Catalogo FROM 
+(
+SELECT IDBodega,IDProducto,IDLote  FROM #Boletas
+UNION 
+SELECT IDBodega,IDProducto,IDLote  FROM #Inventario
+) A
+
+
+SELECT A.IDBodega,BO.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote,L.LoteProveedor,L.FechaVencimiento,ISNULL(B.Cantidad,0) Boleta,ISNULL(C.Cantidad,0) Inventario,ISNULL(B.Cantidad,0) - ISNULL(C.Cantidad,0)  Diferencia FROM #Catalogo A
+LEFT  JOIN #Boletas B ON A.IDBodega = B.IDBodega AND a.IDLote=B.IDLote AND A.IDProducto = B.IDProducto
+LEFT  JOIN #Inventario C ON A.IDBodega = C.IDBodega AND A.IDLote = C.IDLote AND A.IDProducto = C.IDProducto
+LEFT  JOIN dbo.invBodega BO ON A.IDBodega=BO.IDBodega
+LEFT JOIN dbo.invLote L ON A.IDLote = L.IDLote AND A.IDProducto=L.IDProducto
+LEFT  JOIN dbo.invProducto P ON A.IDProducto=P.IDProducto
+WHERE ISNULL(B.Cantidad,0)<> ISNULL(C.Cantidad,0)
+
+
+DROP TABLE #Boletas
+DROP TABLE #Inventario
+DROP TABLE #Catalogo
+
+
 	          
  
