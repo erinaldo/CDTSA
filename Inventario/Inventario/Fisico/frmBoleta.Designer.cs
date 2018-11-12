@@ -211,6 +211,7 @@
             this.btnAplicar.Id = 8;
             this.btnAplicar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAplicar.LargeGlyph")));
             this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAplicar_ItemClick);
             // 
             // btnImprimirBoletas
             // 

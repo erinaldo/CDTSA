@@ -767,23 +767,35 @@ namespace CI
                     if (Convert.ToBoolean(dr["EsVenta"]))
                     {
                         this.txtCostoDolar.Enabled = false;
+                        this.txtCostoDolar.TabStop = false;
                         this.txtCostoLocal.Enabled = false;
+                        this.txtCostoLocal.TabStop = false;
                         this.txtPrecioDolar.Enabled = true;
+                        this.txtPrecioDolar.TabStop = true;
                         this.txtPrecioLocal.Enabled = true;
+                        this.txtPrecioLocal.TabStop = true;
                     }
                     else if ((Convert.ToBoolean(dr["EsAjuste"]) && Convert.ToInt32(dr["Factor"])>0) || Convert.ToBoolean(dr["EsCompra"]))
                     {
                         this.txtCostoDolar.Enabled = true;
+                        this.txtCostoDolar.TabStop = true;
                         this.txtCostoLocal.Enabled = true;
+                        this.txtCostoLocal.TabStop = true;
                         this.txtPrecioDolar.Enabled = false;
+                        this.txtPrecioDolar.TabStop = false;
                         this.txtPrecioLocal.Enabled = false;
+                        this.txtPrecioLocal.TabStop = false;
                     }
                     else
                     {
                         this.txtCostoDolar.Enabled = false;
+                        this.txtCostoDolar.TabStop = false;
                         this.txtCostoLocal.Enabled = false;
+                        this.txtCostoLocal.TabStop = false;
                         this.txtPrecioDolar.Enabled = false;
+                        this.txtPrecioDolar.TabStop = false;
                         this.txtPrecioLocal.Enabled = false;
+                        this.txtPrecioLocal.TabStop = false;
                     }
                 }
             }
@@ -1059,7 +1071,8 @@ namespace CI
                 if (e.RowHandle >= 0)
                 {
                     String Estado = row1["Estado"].ToString();
-                    if (Estado == "E")
+                    String Naturaleza = row1["Naturaleza"].ToString();
+                    if (Estado == "E" && Naturaleza=="S")
                     {
                         e.Appearance.ForeColor = Color.Red;
                     }

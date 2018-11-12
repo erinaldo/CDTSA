@@ -265,7 +265,7 @@ namespace CI
                     currentRow["FechaFabricacion"] = this.dtpFechaFabricacion.EditValue;
                     currentRow["FechaIngreso"] = this.dtpFechaIngreso.EditValue;
                     currentRow["FechaVencimiento"] = this.dtpFechaVence.EditValue;
-                    
+
 
                     currentRow.EndEdit();
 
@@ -389,6 +389,7 @@ namespace CI
                     catch (System.Data.SqlClient.SqlException ex)
                     {
                         _dsLote.RejectChanges();
+                        PopulateGrid();
                         lblStatus.Caption = "";
                         MessageBox.Show(ex.Message);
                     }

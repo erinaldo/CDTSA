@@ -32,6 +32,7 @@ namespace CG
                     UpdateCommand = new SqlCommand(UpdateSQL, ConnectionManager.GetConnection())
                 };
 
+          
                 
                 //Paremetros Insert
                 oAdaptador.InsertCommand.CommandType = CommandType.StoredProcedure;
@@ -70,6 +71,7 @@ namespace CG
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel2", SqlDbType.NVarChar).SourceColumn = "CantCharNivel2";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel3", SqlDbType.NVarChar).SourceColumn = "CantCharNivel3";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel4", SqlDbType.NVarChar).SourceColumn = "CantCharNivel4";
+                oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel5", SqlDbType.NVarChar).SourceColumn = "CantCharNivel5";
                 oAdaptador.UpdateCommand.Parameters.Add("@CantCharNivel6", SqlDbType.NVarChar).SourceColumn = "CantCharNivel6";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCtaUtilidadAcumulada", SqlDbType.BigInt).SourceColumn = "IDCtaUtilidadAcumulada";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCtaUtilidadPeriodo", SqlDbType.BigInt).SourceColumn = "IDCtaUtilidadPeriodo";

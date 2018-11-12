@@ -106,7 +106,7 @@ namespace CI
                 _iClasificacion6 = -1;
 
 
-                sSql = "SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ," +
+                sSql = "SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque,IDCuentaContable ,TipoImpuesto ," +
                         "EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ," +
                         "BonificaCOCantidad , Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate  FROM dbo.invProducto";
               
@@ -242,6 +242,7 @@ namespace CI
                     _currentRow.Delete();
                     try
                     {
+                        //TODO: validar si 
 
                         clsProductoDAC.oAdaptador.Update(_dsProducto, "Data");
                         _dsProducto.AcceptChanges();
@@ -254,7 +255,7 @@ namespace CI
                     catch (System.Data.SqlClient.SqlException ex)
                     {
                         _dsProducto.RejectChanges();
-                        MessageBox.Show("Han ocurrido errores al momento de eliminar el asiento por favor verifique" + ex.Message);
+                        MessageBox.Show("Han ocurrido errores, por favor verifique:\n\r" + ex.Message);
                     }
 
                     PopulateGrid();

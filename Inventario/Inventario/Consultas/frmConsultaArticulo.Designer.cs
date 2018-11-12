@@ -88,6 +88,23 @@
             this.tabTransacciones = new DevExpress.XtraTab.XtraTabPage();
             this.dtgTransacciones = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.IDTransaccion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ModuloOrigen = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrPaquete = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Fecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.IDProducto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DescrProd = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Bodega = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TipoTran = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.IDLote = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LoteProveedor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FechaVence = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cantidad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CostoUnitDolar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Referencia = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Documento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Asiento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkActivo = new System.Windows.Forms.CheckBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.slkupProducto = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -104,6 +121,7 @@
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
             this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
             this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -611,9 +629,12 @@
             // 
             this.layoutControlItem17.Control = this.txtCostoUltLocal;
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 25);
+            this.layoutControlItem17.MaxSize = new System.Drawing.Size(362, 26);
+            this.layoutControlItem17.MinSize = new System.Drawing.Size(362, 26);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem17.Size = new System.Drawing.Size(362, 26);
+            this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem17.Text = "Costo Ultimo:";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(75, 13);
             // 
@@ -621,9 +642,12 @@
             // 
             this.layoutControlItem18.Control = this.txtCostoPromedioLocal;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 51);
+            this.layoutControlItem18.MaxSize = new System.Drawing.Size(362, 26);
+            this.layoutControlItem18.MinSize = new System.Drawing.Size(362, 26);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem18.Size = new System.Drawing.Size(362, 26);
+            this.layoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem18.Text = "Costo Promedio";
             this.layoutControlItem18.TextSize = new System.Drawing.Size(75, 13);
             // 
@@ -631,9 +655,12 @@
             // 
             this.layoutControlItem19.Control = this.txtCostoUltimoDolar;
             this.layoutControlItem19.Location = new System.Drawing.Point(362, 25);
+            this.layoutControlItem19.MaxSize = new System.Drawing.Size(248, 26);
+            this.layoutControlItem19.MinSize = new System.Drawing.Size(248, 26);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem19.Size = new System.Drawing.Size(248, 26);
+            this.layoutControlItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
             // 
@@ -641,9 +668,12 @@
             // 
             this.layoutControlItem20.Control = this.txtCostoPromDolar;
             this.layoutControlItem20.Location = new System.Drawing.Point(362, 51);
+            this.layoutControlItem20.MaxSize = new System.Drawing.Size(248, 26);
+            this.layoutControlItem20.MinSize = new System.Drawing.Size(248, 26);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem20.Size = new System.Drawing.Size(248, 26);
+            this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
@@ -653,9 +683,12 @@
             this.emptySpaceItem3.AppearanceItemCaption.Options.UseTextOptions = true;
             this.emptySpaceItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.emptySpaceItem3.Location = new System.Drawing.Point(362, 0);
+            this.emptySpaceItem3.MaxSize = new System.Drawing.Size(248, 25);
+            this.emptySpaceItem3.MinSize = new System.Drawing.Size(248, 25);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
             this.emptySpaceItem3.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.emptySpaceItem3.Size = new System.Drawing.Size(248, 25);
+            this.emptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem3.Text = "Dólar";
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(75, 0);
             this.emptySpaceItem3.TextVisible = true;
@@ -666,7 +699,8 @@
             this.emptySpaceItem4.AppearanceItemCaption.Options.UseTextOptions = true;
             this.emptySpaceItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.emptySpaceItem4.Location = new System.Drawing.Point(113, 0);
-            this.emptySpaceItem4.MinSize = new System.Drawing.Size(179, 24);
+            this.emptySpaceItem4.MaxSize = new System.Drawing.Size(249, 25);
+            this.emptySpaceItem4.MinSize = new System.Drawing.Size(249, 25);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.emptySpaceItem4.Size = new System.Drawing.Size(249, 25);
@@ -724,6 +758,7 @@
             // 
             this.gridView1.GridControl = this.dtgExistencias;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowAutoFilterRow = true;
             // 
             // tabTransacciones
             // 
@@ -745,8 +780,168 @@
             // 
             // gridView2
             // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.IDTransaccion,
+            this.ModuloOrigen,
+            this.DescrPaquete,
+            this.Fecha,
+            this.IDProducto,
+            this.DescrProd,
+            this.Bodega,
+            this.TipoTran,
+            this.IDLote,
+            this.LoteProveedor,
+            this.FechaVence,
+            this.Cantidad,
+            this.CostoUnitDolar,
+            this.Referencia,
+            this.Documento,
+            this.Asiento,
+            this.Usuario});
             this.gridView2.GridControl = this.dtgTransacciones;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
+            this.gridView2.OptionsView.ShowAutoFilterRow = true;
+            // 
+            // IDTransaccion
+            // 
+            this.IDTransaccion.Caption = "IDTransaccion";
+            this.IDTransaccion.FieldName = "IDTransaccion";
+            this.IDTransaccion.Name = "IDTransaccion";
+            this.IDTransaccion.Visible = true;
+            this.IDTransaccion.VisibleIndex = 0;
+            this.IDTransaccion.Width = 93;
+            // 
+            // ModuloOrigen
+            // 
+            this.ModuloOrigen.Caption = "Modulo Origen";
+            this.ModuloOrigen.FieldName = "ModuloOrigen";
+            this.ModuloOrigen.Name = "ModuloOrigen";
+            this.ModuloOrigen.Visible = true;
+            this.ModuloOrigen.VisibleIndex = 1;
+            this.ModuloOrigen.Width = 79;
+            // 
+            // DescrPaquete
+            // 
+            this.DescrPaquete.Caption = "Descr Paquete";
+            this.DescrPaquete.FieldName = "DescrPaquete";
+            this.DescrPaquete.Name = "DescrPaquete";
+            this.DescrPaquete.Visible = true;
+            this.DescrPaquete.VisibleIndex = 2;
+            this.DescrPaquete.Width = 80;
+            // 
+            // Fecha
+            // 
+            this.Fecha.Caption = "Fecha";
+            this.Fecha.FieldName = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = true;
+            this.Fecha.VisibleIndex = 3;
+            // 
+            // IDProducto
+            // 
+            this.IDProducto.Caption = "ID Producto";
+            this.IDProducto.FieldName = "IDProducto";
+            this.IDProducto.Name = "IDProducto";
+            this.IDProducto.Visible = true;
+            this.IDProducto.VisibleIndex = 4;
+            // 
+            // DescrProd
+            // 
+            this.DescrProd.Caption = "Producto";
+            this.DescrProd.FieldName = "DescrProducto";
+            this.DescrProd.Name = "DescrProd";
+            this.DescrProd.Visible = true;
+            this.DescrProd.VisibleIndex = 5;
+            // 
+            // Bodega
+            // 
+            this.Bodega.Caption = "Bodega";
+            this.Bodega.FieldName = "DescrBodega";
+            this.Bodega.Name = "Bodega";
+            this.Bodega.Visible = true;
+            this.Bodega.VisibleIndex = 6;
+            // 
+            // TipoTran
+            // 
+            this.TipoTran.Caption = "Tipo Tran";
+            this.TipoTran.FieldName = "DescrTipoTran";
+            this.TipoTran.Name = "TipoTran";
+            this.TipoTran.Visible = true;
+            this.TipoTran.VisibleIndex = 7;
+            // 
+            // IDLote
+            // 
+            this.IDLote.Caption = "ID Lote";
+            this.IDLote.FieldName = "IDLote";
+            this.IDLote.Name = "IDLote";
+            this.IDLote.Visible = true;
+            this.IDLote.VisibleIndex = 8;
+            // 
+            // LoteProveedor
+            // 
+            this.LoteProveedor.Caption = "Lote Proveedor";
+            this.LoteProveedor.FieldName = "LoteProveedor";
+            this.LoteProveedor.Name = "LoteProveedor";
+            this.LoteProveedor.Visible = true;
+            this.LoteProveedor.VisibleIndex = 9;
+            // 
+            // FechaVence
+            // 
+            this.FechaVence.Caption = "F.V";
+            this.FechaVence.FieldName = "FechaVencimiento";
+            this.FechaVence.Name = "FechaVence";
+            this.FechaVence.Visible = true;
+            this.FechaVence.VisibleIndex = 10;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.Caption = "Cantidad";
+            this.Cantidad.FieldName = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Visible = true;
+            this.Cantidad.VisibleIndex = 11;
+            // 
+            // CostoUnitDolar
+            // 
+            this.CostoUnitDolar.Caption = "Costo U Dolar";
+            this.CostoUnitDolar.FieldName = "CostoUntDolar";
+            this.CostoUnitDolar.Name = "CostoUnitDolar";
+            this.CostoUnitDolar.Visible = true;
+            this.CostoUnitDolar.VisibleIndex = 12;
+            // 
+            // Referencia
+            // 
+            this.Referencia.Caption = "Referencia";
+            this.Referencia.FieldName = "Referencia";
+            this.Referencia.Name = "Referencia";
+            this.Referencia.Visible = true;
+            this.Referencia.VisibleIndex = 13;
+            this.Referencia.Width = 219;
+            // 
+            // Documento
+            // 
+            this.Documento.Caption = "Documento";
+            this.Documento.FieldName = "Documento";
+            this.Documento.Name = "Documento";
+            this.Documento.Visible = true;
+            this.Documento.VisibleIndex = 14;
+            // 
+            // Asiento
+            // 
+            this.Asiento.Caption = "Asiento";
+            this.Asiento.FieldName = "Asiento";
+            this.Asiento.Name = "Asiento";
+            this.Asiento.Visible = true;
+            this.Asiento.VisibleIndex = 15;
+            // 
+            // Usuario
+            // 
+            this.Usuario.Caption = "Usuario";
+            this.Usuario.FieldName = "Usuario";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.Visible = true;
+            this.Usuario.VisibleIndex = 16;
             // 
             // chkActivo
             // 
@@ -857,9 +1052,10 @@
             this.btnFiltro,
             this.btnCancelar,
             this.lblStatus,
-            this.btnExportar});
+            this.btnExportar,
+            this.btnRefrescar});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 4;
+            this.ribbonControl.MaxItemId = 5;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -899,6 +1095,14 @@
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
             // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 4;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -911,6 +1115,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Acciones";
             // 
@@ -1068,6 +1273,24 @@
         private DevExpress.XtraBars.BarButtonItem btnExportar;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        private DevExpress.XtraGrid.Columns.GridColumn IDTransaccion;
+        private DevExpress.XtraGrid.Columns.GridColumn ModuloOrigen;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrPaquete;
+        private DevExpress.XtraGrid.Columns.GridColumn Fecha;
+        private DevExpress.XtraGrid.Columns.GridColumn IDProducto;
+        private DevExpress.XtraGrid.Columns.GridColumn DescrProd;
+        private DevExpress.XtraGrid.Columns.GridColumn Bodega;
+        private DevExpress.XtraGrid.Columns.GridColumn TipoTran;
+        private DevExpress.XtraGrid.Columns.GridColumn IDLote;
+        private DevExpress.XtraGrid.Columns.GridColumn LoteProveedor;
+        private DevExpress.XtraGrid.Columns.GridColumn FechaVence;
+        private DevExpress.XtraGrid.Columns.GridColumn Cantidad;
+        private DevExpress.XtraGrid.Columns.GridColumn CostoUnitDolar;
+        private DevExpress.XtraGrid.Columns.GridColumn Referencia;
+        private DevExpress.XtraGrid.Columns.GridColumn Documento;
+        private DevExpress.XtraGrid.Columns.GridColumn Asiento;
+        private DevExpress.XtraGrid.Columns.GridColumn Usuario;
 
 
     }

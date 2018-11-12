@@ -1133,17 +1133,25 @@ end
 
 if upper(@Operacion) = 'D'
 begin
+	
+	if Exists ( Select IDProducto  from  dbo.invTransaccionLinea   Where IDProducto  = @IDProducto)	
+	begin 
+		RAISERROR ( 'El producto no puede ser eliminado, tiene movimientos en el inventario, unicamente lo puede desactivar', 16, 1) ;
+		return				
+	END
+	
+	if Exists ( SELECT IDProducto  from  dbo.invExistenciaBodega    Where IDProducto  = @IDProducto AND Existencia>0 )	
+	begin 
+		RAISERROR ( 'El artículo tiene existencia en Bodega, no se puede eliminar', 16, 1) ;
+		return				
+	END
 
 	if Exists ( Select IDLote  from  dbo.invLote    Where IDProducto  = @IDProducto AND IDLote<>0)	
 	begin 
 		RAISERROR ( 'El artículo tiene asociado lotes, por favor elimine los lotes antes de eliminar el producto', 16, 1) ;
 		return				
 	end
-	if Exists ( Select IDProducto  from  dbo.invTransaccionLinea   Where IDProducto  = @IDProducto)	
-	begin 
-		RAISERROR ( 'El producto no puede ser eliminado, tiene movimientos en el inventario, unicamente lo puede desactivar', 16, 1) ;
-		return				
-	end
+	
 	DELETE FROM dbo.invLote WHERE IDLote=0 AND IDProducto=@IDProducto
 	DELETE  FROM dbo.invProducto WHERE IDProducto = @IDProducto
 	
@@ -1158,6 +1166,8 @@ BEGIN
 	WHERE IDProducto=@IDProducto
 	
 end
+
+
 
 GO
 
@@ -1642,8 +1652,27 @@ BEGIN
 END
 IF UPPER(@Operacion)='D'
 BEGIN
+		if Exists ( Select IDProducto  from  dbo.invExistenciaBodega   Where IDProducto  = @IDProducto AND IDLote=@IDLote)	
+	begin 
+		RAISERROR ( 'El lote no puede ser eliminado, tiene Existencias en el inventario, unicamente lo puede desactivar', 16, 1) ;
+		return				
+	END
+	
+	if Exists ( Select IDProducto  from  dbo.invTransaccionLinea   Where IDProducto  = @IDProducto AND IDLote=@IDLote)	
+	begin 
+		RAISERROR ( 'El lote no puede ser eliminado, tiene movimientos en el inventario, unicamente lo puede desactivar', 16, 1) ;
+		return				
+	END
+	
+	if Exists ( Select *  from  dbo.invBoletaInvFisico   Where IDProducto  = @IDProducto AND IDLote=@IDLote)	
+	begin 
+		RAISERROR ( 'El lote tiene registro en Boletas de inventario. ', 16, 1) ;
+		return				
+	END
+
 	DELETE FROM dbo.invLote WHERE IDLote=@IDLote  AND IDProducto=@IDProducto
 END
+
 
 GO
 
@@ -1906,6 +1935,36 @@ WHERE (IDBodega IN (SELECT *  FROM dbo.ConvertListToTable(@lstBodega,',')) OR @l
 GO
 
 
+CREATE  PROCEDURE [dbo].[invGetTransaccionesByProducto] (@Bodega AS NVARCHAR(4000), @IDProducto AS INT,
+							@Lote AS  NVARCHAR(4000),@Transacciones NVARCHAR(4000),@Paquete NVARCHAR(4000),
+							@Documento NVARCHAR(4000), @Referencia NVARCHAR(4000),@FechaInicial DATE, @FechaFinal DATE)
+AS 
+DECLARE @Separador NVARCHAR(1)
+SET @Separador =','
+
+SELECT  A.IDTransaccion ,A.ModuloOrigen ,A.IDPaquete ,PQ.Descr DescrPaquete,A.Fecha ,A.Usuario ,B.IDProducto,P.Descr DescrProducto,
+		B.IDBodega ,C.Descr DescrBodega,B.IDTipoTran,T.Descr DescrTipoTran,B.IDLote ,L.LoteProveedor,L.FechaIngreso,L.FechaVencimiento,L.FechaFabricacion,B.Cantidad ,
+		B.PrecioUntDolar , B.PrecioUntLocal,B.CostoUntDolar,B.CostoUntLocal, B.TipoCambio, A.Referencia ,A.Documento ,A.Asiento ,A.Aplicado  ,A.EsTraslado ,A.IDTraslado ,A.CreateDate 
+FROM dbo.invTransaccion A
+INNER JOIN dbo.invTransaccionLinea B ON A.IDTransaccion = B.IDTransaccion
+INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+INNER JOIN dbo.invBodega C ON B.IDBodega = C.IDBodega
+INNER JOIN dbo.invPaquete PQ ON A.IDPaquete = PQ.IDPaquete
+INNER JOIN dbo.invLote L ON B.IDLote=L.IDLote AND B.IDProducto =L.IDProducto
+INNER JOIN dbo.globalTipoTran T ON B.IDTipoTran = T.IDTipoTran
+WHERE (B.IDBodega  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Bodega,@Separador) )or @Bodega ='*') 
+AND (B.IDProducto =@IDProducto OR @IDProducto=-1)
+AND (B.IDLote  IN (SELECT Value FROM [dbo].[ConvertListToTable](@Lote,@Separador)) OR @Lote='*') 
+AND (b.IDTransaccion IN (SELECT *  FROM dbo.ConvertListToTable(@Transacciones,@Separador)) or @Transacciones='*')
+AND (A.IDPaquete IN (SELECT *  FROM dbo.ConvertListToTable(@Paquete,@Separador)) or @Paquete='*')
+AND (A.Documento LIKE '%' + @Documento +'%' OR  @Documento='*')
+AND (A.Referencia LIKE '%' +  @Referencia + '%' OR  @Referencia ='*')
+AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal
+
+GO
+
+
+
 
 CREATE  PROCEDURE dbo.invGetConsultaTransaccionesByCriterio (@Bodega AS NVARCHAR(4000), @Producto AS NVARCHAR(250),
 							@Lote AS  NVARCHAR(4000),@Clasif1 AS NVARCHAR(4000),@Clasif2 NVARCHAR(4000), @Clasif3 NVARCHAR(4000),
@@ -1944,7 +2003,7 @@ AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal
 GO 
 
 
-CREATE     PROCEDURE [dbo].[invGetProductoByID] @IDProducto BIgint	,@Descr AS NVARCHAR(250)
+CREATE  ALTER   PROCEDURE [dbo].[invGetProductoByID] @IDProducto BIgint	,@Descr AS NVARCHAR(250)
 AS 
 	SELECT IDProducto,P.Descr ,Alias ,Clasif1,C1.Descr DescrClasif1 ,Clasif2 ,C2.Descr DescrClasif2,Clasif3,C3.Descr DescrClasif3 ,Clasif4 ,C4.Descr DescrClasif4,
 				Clasif5 ,C5.Descr DescrClasif5 ,Clasif6, C6.Descr DescrClasif6 ,P.CostoPromDolar,P.CostoPromLocal,P.CostoUltDolar,P.CostoUltLocal,CodigoBarra,IDCuentaContable ,P.IDUnidad ,UM.Descr DescrUnidadMedida,FactorEmpaque ,TipoImpuesto , I.Descr DescrTipoImpuesto,
@@ -2243,5 +2302,221 @@ DROP TABLE #Inventario
 DROP TABLE #Catalogo
 
 
-	          
+
+GO
+
+
+--//Generación de Paquetes
+
+CREATE PROCEDURE dbo.invCreaPaqueteInvFisico(@IDBodega AS INT,@IDPaquete AS NVARCHAR(20),@IDTransaccion AS INT OUTPUT,@Fecha AS DATE,@ProductoNoInvSetCero AS BIT,@Usuario AS NVARCHAR(50))
+AS 
+/*SET @IDBodega =-1
+SET @IDPaquete=11
+SET @ProductoNoInvSetCero=0
+SET @Usuario='jespinoza'
+SET @Fecha = '20180101'*/
+
+SET  NOCOUNT ON
+
+
+CREATE TABLE  #Boletas (IDBodega int,IDProducto INT,IDLote INT,Cantidad DECIMAL(28,4))
+CREATE TABLE  #Inventario (IDBodega int,IDProducto INT,IDLote INT,Cantidad DECIMAL(28,4))
+CREATE TABLE #Catalogo(IDBodega INT,IDProducto INT,IDLote INT)
+
+
+	INSERT INTO #Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Cantidad
+	FROM dbo.invBoletaInvFisico B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto 
+	--WHERE B.Validada=1
+				    
+	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Existencia
+	FROM dbo.invExistenciaBodega B
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1)
+	
+	
+	IF (@ProductoNoInvSetCero =1)
+	BEGIN	
+		INSERT INTO #Catalogo
+		        ( IDBodega, IDProducto, IDLote )
+		SELECT DISTINCT   IDBodega ,
+			IDProducto ,
+			IDLote  FROM 
+		(
+			SELECT IDBodega,IDProducto,IDLote  FROM #Boletas
+			UNION 
+			SELECT IDBodega,IDProducto,IDLote  FROM #Inventario
+		) A
+	END
+	ELSE 
+	BEGIN
+		INSERT INTO #Catalogo
+		        ( IDBodega, IDProducto, IDLote )
+		SELECT DISTINCT   IDBodega ,
+			IDProducto ,
+			IDLote  FROM 
+		(
+			SELECT IDBodega,IDProducto,IDLote  FROM #Boletas
+		) A
+	END
+
+
+	SELECT ROW_NUMBER() OVER (ORDER BY A.IDBodega,A.IDProducto,A.IDLote) ID, A.IDBodega,BO.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote,L.LoteProveedor,L.FechaVencimiento,ISNULL(B.Cantidad,0) Boleta,ISNULL(C.Cantidad,0) Inventario,ISNULL(B.Cantidad,0) - ISNULL(C.Cantidad,0)  Diferencia INTO #Result
+	 FROM #Catalogo A
+	LEFT  JOIN #Boletas B ON A.IDBodega = B.IDBodega AND a.IDLote=B.IDLote AND A.IDProducto = B.IDProducto
+	LEFT  JOIN #Inventario C ON A.IDBodega = C.IDBodega AND A.IDLote = C.IDLote AND A.IDProducto = C.IDProducto
+	LEFT  JOIN dbo.invBodega BO ON A.IDBodega=BO.IDBodega
+	LEFT JOIN dbo.invLote L ON A.IDLote = L.IDLote AND A.IDProducto=L.IDProducto
+	LEFT  JOIN dbo.invProducto P ON A.IDProducto=P.IDProducto
+	WHERE ISNULL(B.Cantidad,0)<> ISNULL(C.Cantidad,0)
+	
+	DECLARE @Count AS INT
+	DECLARE @i AS INT
+
+	DECLARE @Documento NVARCHAR(20)
+	
+	SET @Count = @@ROWCOUNT
+	SET @i=1
+	--//Validar si hay elementos para realizar el paquete
+	IF (@Count>0)
+		EXEC dbo.invUpdateDocumentoInv 'I',@IDTransaccion OUTPUT,'CI',@IDPaquete,@Fecha,@Usuario,'Aplicacion de Inventario Fiscal',@Documento OUTPUT,0,0,-1
+	
+	WHILE (@i<=@Count)
+	BEGIN
+		DECLARE @IDProducto AS INT,@IDLote AS INT,@IDBodegaDet AS INT,@Boleta AS DECIMAL(28,4),@Existencia AS DECIMAL(28,4) ,@Dif AS decimal(28,4),@CostoLocal AS DECIMAL(28,4),@CostoDolar AS DECIMAL(28,4)
+		DECLARE @IDTipoTran AS INT
+		DECLARE @Tran AS NVARCHAR(3)
+		
+		SELECT @IDProducto = A.IDProducto,@IDLote = IDLote,@IDBodegaDet =  IDBodega,@Boleta=Boleta,@Existencia = Inventario,@Dif = Diferencia,
+					  @CostoLocal= CostoPromLocal,@CostoDolar= CostoPromDolar  
+		FROM #Result A
+		INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto WHERE ID=@i
+		
+		SELECT @Tran = Transaccion  FROM dbo.invPaquete WHERE IDPaquete=@IDPaquete
+		
+		DECLARE @TipoCambio AS DECIMAL(28,4)
+		DECLARE @TipoC AS NVARCHAR(3)
+		
+		SELECT @TipoC =TipoCambio  FROM dbo.cntParametros
+		
+		SET @TipoCambio = ( SELECT dbo.globalGetLastTipoCambio(@Fecha,@TipoC))
+		
+		IF (@Dif<0)
+			SET @IDTipoTran = 1
+		ELSE 
+			SET @IDTipoTran =2	
+		
+		SET @Dif = ABS(@Dif);
+		EXEC  dbo.invUpdateDocumentoInvDetalle  'I',@IDTransaccion,@IDProducto,@IDLote, @IDTipoTran,@IDBodegaDet , -1,@Dif, 0, 0, @CostoDolar ,@CostoLocal , 
+		    @Tran, @TipoCambio,0 
+		SET @i = @i+1
+	END
+
+	
+	DROP TABLE #Boletas
+	DROP TABLE #Inventario
+	DROP TABLE #Catalogo
+	DROP TABLE #Result
  
+
+GO
+
+CREATE PROCEDURE dbo.invCreaPaqueteInvFactura (@Modulo AS NVARCHAR(4),@IDDocumento AS INT,@Usuario AS NVARCHAR(50))
+AS 
+/*SET @Modulo = 'FAC'
+SET @IDDocumento= 2
+SET @Usuario= 'jespinoza'
+*/
+DECLARE @IDConsecutivo  AS INT
+DECLARE @IDTransaccion AS BIGINT
+DECLARE @DocumentoInv AS NVARCHAR(20)
+DECLARE @FechaDocumento DATE
+DECLARE @Referencia AS NVARCHAR(250)
+DECLARE @Documento AS NVARCHAR(20) --//Numero del documento Fisico
+DECLARE @Transaccion AS NVARCHAR(2)
+DECLARE @IDTipoTran AS INT
+DECLARE @Factor AS INT
+DECLARE @IDPaquete AS INT 
+DECLARE @TipoCambioCont AS NVARCHAR(4)
+DECLARE @TipoCambio AS DECIMAL(28,4)	
+DECLARE @Naturaleza AS NVARCHAR(1)
+
+
+IF (@Modulo = 'FAC')
+BEGIN
+	--//Leer parametros de configuración
+	SELECT TOP	1 @IDPaquete = IDPaquete, @TipoCambioCont= TipoCambioCont  FROM dbo.fafParametros
+	
+	IF (@IDPaquete IS NULL)
+	BEGIN
+		RAISERROR ( 'GENERACIÓN DEL DOCUMENTO: Revise los parametros de Factura, si el paquete de inventario se encuentra establecido', 16, 1) ;
+		return		
+	END
+	
+	SELECT @FechaDocumento = Fecha, @Referencia = 'Factura: ' + Factura , @Documento = Factura
+	 FROM dbo.fafFACTURA WHERE IDFactura =@IDDocumento 
+	 
+	--//Cargar el Tipo de Cambio Contabilidad
+	SELECT @TipoCambio = dbo.globalGetTipoCambio(@FechaDocumento,@TipoCambioCont) 
+	  
+	--//Crear la cabecera del Documento  
+	EXEC  dbo.invUpdateDocumentoInv  @Operacion = N'I', -- nvarchar(1)
+	    @IDTransaccion = @IDTransaccion OUTPUT, -- int
+	    @ModuloOrigen = N'FA', -- nvarchar(4)
+	    @IDPaquete =@IDPaquete, -- int
+	    @Fecha = @FechaDocumento, -- datetime
+	    @Usuario =@Usuario, -- nvarchar(20)
+	    @Referencia = @Referencia, -- nvarchar(250)
+	    @Documento = @Documento OUTPUT, -- nvarchar(250)
+	    @Aplicado = 1, -- bit
+	    @EsTraslado = 0, -- bit
+	    @IDTraslado = -1 -- int
+	
+	--//Obtener las transacciones asociadas al Paquete.
+	SELECT @IDTipoTran =IDTipoTran, @Factor = Factor,@Naturaleza = Naturaleza, @Transaccion=Transaccion  FROM dbo.globalTipoTran WHERE  Transaccion = (SELECT Transaccion  FROM dbo.invPaquete WHERE IDPaquete=@IDPaquete) 
+
+	--//Insertar el detalle del documento
+	INSERT INTO dbo.invTransaccionLinea( IDTransaccion ,IDProducto ,IDLote ,IDTipoTran ,IDBodega ,IDTraslado , Naturaleza ,Factor ,Cantidad ,CostoUntLocal ,CostoUntDolar ,PrecioUntLocal ,PrecioUntDolar ,Transaccion ,TipoCambio ,Aplicado)
+	SELECT @IDTransaccion, A.IDProducto,B.IDLote,@IDTipoTran,A.IDBodega,-1 IDTranslado,@Naturaleza,@Factor ,B.Cantidad, P.CostoPromLocal,CostoPromDolar,A.PrecioLocal,A.PrecioDolar,@Transaccion, @TipoCambio, 0 Aplicado
+	 FROM dbo.fafFacturaProd A
+	INNER JOIN dbo.fafFacturaProdLote B ON A.IDFacturaProd = B.IDFacturaProd
+	INNER JOIN dbo.invProducto P ON A.IDProducto=P.IDProducto
+	WHERE A.IDFactura=@IDDocumento
+
+END  
+
+GO
+
+
+CREATE PROCEDURE dbo.invAplicaTransaccion ( @IDTransaccion AS  INT)
+AS 
+
+--// Insertar todos los productos que no existen en existencia bodega // --
+INSERT INTO dbo.invExistenciaBodega( IDBodega ,IDProducto ,IDLote ,Existencia ,Reservada ,Transito)
+SELECT A.IDBodega,A.IDProducto,A.IDLote,0,0,0 FROM dbo.invTransaccionLinea A
+LEFT JOIN dbo.invExistenciaBodega B ON	A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
+WHERE IDTransaccion =@IDTransaccion  AND B.IDProducto IS NULL AND B.IDBodega IS NULL AND B.IDLote IS NULL
+
+
+--Validar Datos
+IF  EXISTS(SELECT  *  FROM dbo.invTransaccionLinea A
+INNER JOIN dbo.invExistenciaBodega B ON	A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
+WHERE IDTransaccion =@IDTransaccion AND B.Existencia + ( A.Cantidad * A.Factor)<0)
+BEGIN
+		RAISERROR ( 'No hay suficientes existencias para aplicar el documento', 16, 1) ;
+		return		
+END
+
+--Actualizar las existencias
+UPDATE B SET B.Existencia = B.Existencia + (A.Cantidad * A.Factor) FROM dbo.invTransaccionLinea A
+INNER JOIN dbo.invExistenciaBodega B ON	A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
+WHERE IDTransaccion =@IDTransaccion 
+
+
+GO
+
+
+
+

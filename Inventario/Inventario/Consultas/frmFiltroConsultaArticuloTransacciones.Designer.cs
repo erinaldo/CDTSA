@@ -63,7 +63,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(231, 276);
+            this.btnCancelar.Location = new System.Drawing.Point(231, 281);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(83, 29);
             this.btnCancelar.TabIndex = 8;
@@ -72,7 +72,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(99, 276);
+            this.btnAceptar.Location = new System.Drawing.Point(99, 281);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(83, 29);
             this.btnAceptar.TabIndex = 9;
@@ -265,7 +265,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 317);
+            this.ClientSize = new System.Drawing.Size(417, 322);
             this.Controls.Add(this.dtpFechaFinal);
             this.Controls.Add(this.dtpFechaInicial);
             this.Controls.Add(this.txtReferencia);

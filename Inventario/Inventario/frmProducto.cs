@@ -282,7 +282,7 @@ namespace CI
                     catch (System.Data.SqlClient.SqlException ex)
                     {
                         _dsProducto.RejectChanges();
-                        MessageBox.Show("Han ocurrido errores al momento de eliminar el asiento por favor verifique" + ex.Message);
+                        MessageBox.Show("Han ocurrido errores al momento de eliminar el producto, por favor verifique: \n\r" + ex.Message);
                     }
 
                     this.Close();

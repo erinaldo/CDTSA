@@ -286,7 +286,7 @@
             this.tabGeneral.Appearance.Header.Options.UseFont = true;
             this.tabGeneral.Controls.Add(this.layoutControl2);
             this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Size = new System.Drawing.Size(752, 391);
+            this.tabGeneral.Size = new System.Drawing.Size(752, 433);
             this.tabGeneral.Text = "General";
             // 
             // layoutControl2
@@ -300,7 +300,7 @@
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(694, 341, 250, 350);
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(752, 391);
+            this.layoutControl2.Size = new System.Drawing.Size(752, 433);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -360,7 +360,7 @@
             this.Root});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(752, 391);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(752, 433);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // Root
@@ -377,7 +377,7 @@
             this.layoutControlItem5});
             this.Root.Location = new System.Drawing.Point(0, 0);
             this.Root.Name = "item0";
-            this.Root.Size = new System.Drawing.Size(732, 371);
+            this.Root.Size = new System.Drawing.Size(732, 413);
             this.Root.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.Root.Text = "Root";
             this.Root.TextVisible = false;
@@ -426,7 +426,7 @@
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 161);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.emptySpaceItem2.Size = new System.Drawing.Size(712, 190);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(712, 232);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
@@ -486,6 +486,7 @@
             this.separatorControl2.Name = "separatorControl2";
             this.separatorControl2.Size = new System.Drawing.Size(704, 20);
             this.separatorControl2.TabIndex = 20;
+            this.separatorControl2.TabStop = false;
             // 
             // separatorControl1
             // 

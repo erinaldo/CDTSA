@@ -53,7 +53,6 @@
             this.Clasif5 = new DevExpress.XtraReports.Parameters.Parameter();
             this.Clasif6 = new DevExpress.XtraReports.Parameters.Parameter();
             this.ConsolidaByProducto = new DevExpress.XtraReports.Parameters.Parameter();
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
@@ -92,6 +91,7 @@
             this.HideProd = new DevExpress.XtraReports.UI.FormattingRule();
             this.HideLote = new DevExpress.XtraReports.UI.FormattingRule();
             this.showLote = new DevExpress.XtraReports.UI.FormattingRule();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // LotesDetail
@@ -184,55 +184,6 @@
             this.ConsolidaByProducto.Type = typeof(bool);
             this.ConsolidaByProducto.ValueInfo = "True";
             this.ConsolidaByProducto.Visible = false;
-            // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.ConnectionName = "Conexion";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "invGetBoletas";
-            queryParameter1.Name = "@IDBodega";
-            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter1.Value = new DevExpress.DataAccess.Expression("[Parameters.IDBodega]", typeof(int));
-            queryParameter2.Name = "@IDProducto";
-            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter2.Value = new DevExpress.DataAccess.Expression("[Parameters.IDProducto]", typeof(int));
-            queryParameter3.Name = "@Clasif1";
-            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter3.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif1]", typeof(int));
-            queryParameter4.Name = "@Clasif2";
-            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter4.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif2]", typeof(int));
-            queryParameter5.Name = "@Clasif3";
-            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter5.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif3]", typeof(int));
-            queryParameter6.Name = "@Clasif4";
-            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter6.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif4]", typeof(int));
-            queryParameter7.Name = "@Clasif5";
-            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter7.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif5]", typeof(int));
-            queryParameter8.Name = "@Clasif6";
-            queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter8.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif6]", typeof(int));
-            queryParameter9.Name = "@ConsolidaByProducto";
-            queryParameter9.Type = typeof(DevExpress.DataAccess.Expression);
-            queryParameter9.Value = new DevExpress.DataAccess.Expression("[Parameters.ConsolidaByProducto]", typeof(bool));
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.Parameters.Add(queryParameter5);
-            storedProcQuery1.Parameters.Add(queryParameter6);
-            storedProcQuery1.Parameters.Add(queryParameter7);
-            storedProcQuery1.Parameters.Add(queryParameter8);
-            storedProcQuery1.Parameters.Add(queryParameter9);
-            storedProcQuery1.StoredProcName = "invGetBoletas";
-            customSqlQuery1.Name = "Generales";
-            customSqlQuery1.Sql = "Select Nombre,Telefono,Logo  from globalCompania\r\n";
-            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1,
-            customSqlQuery1});
-            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // xrLabel1
             // 
@@ -676,6 +627,55 @@
             this.showLote.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.showLote.Name = "showLote";
             // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionName = "Conexion";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery1.Name = "invGetBoletas";
+            queryParameter1.Name = "@IDBodega";
+            queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("[Parameters.IDBodega]", typeof(int));
+            queryParameter2.Name = "@IDProducto";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("[Parameters.IDProducto]", typeof(int));
+            queryParameter3.Name = "@Clasif1";
+            queryParameter3.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter3.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif1]", typeof(int));
+            queryParameter4.Name = "@Clasif2";
+            queryParameter4.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter4.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif2]", typeof(int));
+            queryParameter5.Name = "@Clasif3";
+            queryParameter5.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter5.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif3]", typeof(int));
+            queryParameter6.Name = "@Clasif4";
+            queryParameter6.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter6.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif4]", typeof(int));
+            queryParameter7.Name = "@Clasif5";
+            queryParameter7.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter7.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif5]", typeof(int));
+            queryParameter8.Name = "@Clasif6";
+            queryParameter8.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter8.Value = new DevExpress.DataAccess.Expression("[Parameters.Clasif6]", typeof(int));
+            queryParameter9.Name = "@ConsolidaByProducto";
+            queryParameter9.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter9.Value = new DevExpress.DataAccess.Expression("[Parameters.ConsolidaByProducto]", typeof(bool));
+            storedProcQuery1.Parameters.Add(queryParameter1);
+            storedProcQuery1.Parameters.Add(queryParameter2);
+            storedProcQuery1.Parameters.Add(queryParameter3);
+            storedProcQuery1.Parameters.Add(queryParameter4);
+            storedProcQuery1.Parameters.Add(queryParameter5);
+            storedProcQuery1.Parameters.Add(queryParameter6);
+            storedProcQuery1.Parameters.Add(queryParameter7);
+            storedProcQuery1.Parameters.Add(queryParameter8);
+            storedProcQuery1.Parameters.Add(queryParameter9);
+            storedProcQuery1.StoredProcName = "invGetBoletas";
+            customSqlQuery1.Name = "Generales";
+            customSqlQuery1.Sql = "Select Nombre,Telefono,Logo  from globalCompania\r\n";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery1,
+            customSqlQuery1});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            // 
             // rptBoletasInv
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -694,7 +694,7 @@
             this.HideProd,
             this.HideLote,
             this.showLote});
-            this.Margins = new System.Drawing.Printing.Margins(98, 85, 119, 254);
+            this.Margins = new System.Drawing.Printing.Margins(98, 87, 119, 254);
             this.PageHeight = 2794;
             this.PageWidth = 2159;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
@@ -733,7 +733,6 @@
         private DevExpress.XtraReports.Parameters.Parameter Clasif5;
         private DevExpress.XtraReports.Parameters.Parameter Clasif6;
         private DevExpress.XtraReports.Parameters.Parameter ConsolidaByProducto;
-        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
@@ -766,5 +765,6 @@
         private DevExpress.XtraReports.UI.XRLine xrLine4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
         private DevExpress.XtraReports.UI.SubBand SubBand3;
+        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
     }
 }

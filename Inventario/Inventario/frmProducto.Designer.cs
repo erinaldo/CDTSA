@@ -780,7 +780,8 @@
             this.txtIDProducto.Properties.ReadOnly = true;
             this.txtIDProducto.Size = new System.Drawing.Size(176, 20);
             this.txtIDProducto.StyleController = this.layoutControl1;
-            this.txtIDProducto.TabIndex = 4;
+            this.txtIDProducto.TabIndex = 10000;
+            this.txtIDProducto.TabStop = false;
             // 
             // slkupClasif2
             // 

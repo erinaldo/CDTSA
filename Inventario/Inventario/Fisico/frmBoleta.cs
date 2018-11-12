@@ -604,5 +604,13 @@ namespace CI.Fisico
             frmPrintBoletasInv ofrmPrint = new frmPrintBoletasInv();
             ofrmPrint.ShowDialog();
         }
+
+        private void btnAplicar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("Las Boletas marcadas seran aplicadas al inventario", "Aplicación del Inventario", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+            {
+                 
+            }
+        }
     }
 }

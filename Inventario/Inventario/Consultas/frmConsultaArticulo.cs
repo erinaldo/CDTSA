@@ -18,8 +18,8 @@ namespace CI.Consultas
     {
         
 
-        String sBodega, sLote,sPaquete,sTransaccion,sAplicacion,sReferencia ;
-        DateTime FechaInicial, FechaFinal;
+        String sBodega="*", sLote="*",sPaquete="*",sTransaccion="*",sAplicacion="*",sReferencia ="*";
+        DateTime FechaInicial , FechaFinal;
         
         
 
@@ -86,6 +86,8 @@ namespace CI.Consultas
             int theIndex = editor.Properties.GetIndexByKeyValue(editor.EditValue);
             DataRow myRow = editor.Properties.View.GetDataRow(theIndex);
             SetDataToControl(myRow);
+            CargarExistencias();
+            CargarTransacciones();
            
         }
 
@@ -119,15 +121,35 @@ namespace CI.Consultas
         private void TabControl_Selected(object sender, DevExpress.XtraTab.TabPageEventArgs e)
         {
             if (e.PageIndex == 0)
+            {
                 btnFiltro.Enabled = false;
+                btnRefrescar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
             if (e.PageIndex == 1)
+            {
                 btnFiltro.Enabled = false;
+                btnRefrescar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
             if (e.PageIndex == 2)
+            {
                 btnFiltro.Enabled = false;
+                btnRefrescar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
             if (e.PageIndex == 3)
+            {
                 btnFiltro.Enabled = true;
+                btnRefrescar.ItemClick += null;
+                btnRefrescar.ItemClick += btnRefrescarExistencias;
+                btnRefrescar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
             if (e.PageIndex == 4)
+            {
+                btnRefrescar.ItemClick += null;
+                btnRefrescar.ItemClick += btnRefrescarTransacciones;
                 btnFiltro.Enabled = true;
+                btnRefrescar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+               
+            }
             
         }
 
@@ -213,5 +235,16 @@ namespace CI.Consultas
 
 
         }
+
+        private void btnRefrescarExistencias(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+                CargarExistencias();
+        }
+          private void btnRefrescarTransacciones(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CargarTransacciones();
+        }
+
+        
     }
 }
