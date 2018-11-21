@@ -178,6 +178,8 @@
             this.gridViewConsultaExistencia.Name = "gridViewConsultaExistencia";
             this.gridViewConsultaExistencia.OptionsBehavior.Editable = false;
             this.gridViewConsultaExistencia.OptionsBehavior.ReadOnly = true;
+            this.gridViewConsultaExistencia.OptionsView.ColumnAutoWidth = false;
+            this.gridViewConsultaExistencia.OptionsView.ShowAutoFilterRow = true;
             // 
             // IDBodega
             // 

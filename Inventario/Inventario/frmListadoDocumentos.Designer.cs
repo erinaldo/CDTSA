@@ -122,7 +122,7 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Caption = "Editar";
+            this.btnEditar.Caption = "Visualizar";
             this.btnEditar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnEditar.Glyph")));
             this.btnEditar.Id = 2;
             this.btnEditar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEditar.LargeGlyph")));
@@ -135,6 +135,7 @@
             this.btnCancelar.Id = 4;
             this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
             this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelar_ItemClick);
             // 
             // btnEliminar
             // 
@@ -159,6 +160,7 @@
             this.btnRefrescar.Id = 3;
             this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
             this.btnRefrescar.Name = "btnRefrescar";
+            this.btnRefrescar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefrescar_ItemClick_1);
             // 
             // ribbonPage1
             // 
@@ -526,7 +528,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmListadoDocumentos";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmListadoDocumentos";
+            this.Text = "Listado de Documentos";
             this.Load += new System.EventHandler(this.frmListadoDocumentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

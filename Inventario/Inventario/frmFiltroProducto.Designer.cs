@@ -410,10 +410,10 @@
             // 
             // xtraTabControl1
             // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(12, 47);
+            this.xtraTabControl1.Location = new System.Drawing.Point(12, 46);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.tabGeneral;
-            this.xtraTabControl1.Size = new System.Drawing.Size(565, 338);
+            this.xtraTabControl1.Size = new System.Drawing.Size(565, 339);
             this.xtraTabControl1.TabIndex = 4;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabGeneral,
@@ -423,7 +423,7 @@
             // 
             this.tabGeneral.Controls.Add(this.layoutControl2);
             this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Size = new System.Drawing.Size(559, 310);
+            this.tabGeneral.Size = new System.Drawing.Size(559, 311);
             this.tabGeneral.Text = "General";
             // 
             // layoutControl2
@@ -446,13 +446,13 @@
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(559, 310);
+            this.layoutControl2.Size = new System.Drawing.Size(559, 311);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(384, 275);
+            this.btnCancelar.Location = new System.Drawing.Point(384, 276);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(162, 22);
             this.btnCancelar.StyleController = this.layoutControl2;
@@ -462,7 +462,7 @@
             // 
             // btnTodos
             // 
-            this.btnTodos.Location = new System.Drawing.Point(201, 275);
+            this.btnTodos.Location = new System.Drawing.Point(201, 276);
             this.btnTodos.Name = "btnTodos";
             this.btnTodos.Size = new System.Drawing.Size(177, 22);
             this.btnTodos.StyleController = this.layoutControl2;
@@ -472,7 +472,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(13, 275);
+            this.btnAceptar.Location = new System.Drawing.Point(13, 276);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(182, 22);
             this.btnAceptar.StyleController = this.layoutControl2;
@@ -617,7 +617,7 @@
             this.emptySpaceItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(559, 310);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(559, 311);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem1
@@ -763,7 +763,7 @@
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.btnAceptar;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 262);
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 263);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem20.Size = new System.Drawing.Size(188, 28);
@@ -773,7 +773,7 @@
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.btnTodos;
-            this.layoutControlItem21.Location = new System.Drawing.Point(188, 262);
+            this.layoutControlItem21.Location = new System.Drawing.Point(188, 263);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem21.Size = new System.Drawing.Size(183, 28);
@@ -783,7 +783,7 @@
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.btnCancelar;
-            this.layoutControlItem22.Location = new System.Drawing.Point(371, 262);
+            this.layoutControlItem22.Location = new System.Drawing.Point(371, 263);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
             this.layoutControlItem22.Size = new System.Drawing.Size(168, 28);
@@ -795,14 +795,14 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 247);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(522, 10);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(539, 16);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // tabClasificaciones
             // 
             this.tabClasificaciones.Controls.Add(this.layoutControl3);
             this.tabClasificaciones.Name = "tabClasificaciones";
-            this.tabClasificaciones.Size = new System.Drawing.Size(559, 294);
+            this.tabClasificaciones.Size = new System.Drawing.Size(559, 311);
             this.tabClasificaciones.Text = "Clasificaciones";
             // 
             // layoutControl3
@@ -817,7 +817,7 @@
             this.layoutControl3.Location = new System.Drawing.Point(0, 0);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup3;
-            this.layoutControl3.Size = new System.Drawing.Size(559, 294);
+            this.layoutControl3.Size = new System.Drawing.Size(559, 311);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -948,7 +948,7 @@
             this.layoutControlItem11});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup2";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(559, 294);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(559, 311);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem6
@@ -1007,7 +1007,7 @@
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 130);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Padding = new DevExpress.XtraLayout.Utils.Padding(3, 3, 3, 3);
-            this.layoutControlItem11.Size = new System.Drawing.Size(539, 144);
+            this.layoutControlItem11.Size = new System.Drawing.Size(539, 161);
             this.layoutControlItem11.Text = "Clasificación6:";
             this.layoutControlItem11.TextSize = new System.Drawing.Size(68, 13);
             // 
@@ -1027,9 +1027,9 @@
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.xtraTabControl1;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 35);
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(569, 342);
+            this.layoutControlItem17.Size = new System.Drawing.Size(569, 343);
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
             // 

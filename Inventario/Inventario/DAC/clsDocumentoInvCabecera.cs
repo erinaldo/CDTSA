@@ -130,7 +130,7 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetDataByCriterio(DateTime FechaInicial, DateTime FechaFinal, String Referencia, String  Documento, int IDPaquete,int EsTralado, int  IDTraslado,String Usuario)
+        public static DataSet GetDataByCriterio(DateTime FechaInicial, DateTime FechaFinal, String Referencia, String  Documento,String AsientoContable, int IDPaquete,int EsTralado, int  IDTraslado,String Usuario)
         {
             String strSQL = "dbo.invGetTransaccionCabeceraByCriterio";
 
@@ -142,6 +142,7 @@ namespace CI.DAC
             oCmd.Parameters.Add(new SqlParameter("@Referencia", Referencia));
             oCmd.Parameters.Add(new SqlParameter("@IDPaquete", IDPaquete));
             oCmd.Parameters.Add(new SqlParameter("@EsTraslado", EsTralado));
+            oCmd.Parameters.Add(new SqlParameter("@AsientoContable", AsientoContable));
             oCmd.Parameters.Add(new SqlParameter("@IDTraslado", IDTraslado));
             oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
             oCmd.CommandType = CommandType.StoredProcedure;
@@ -214,6 +215,22 @@ namespace CI.DAC
             oAdap.Fill(DS);
             DS.Tables[0].TableName = "Transacciones";
             return DS;
+        }
+
+        public static bool AplicaInventario (long IDTransaccion)
+        {
+            bool result = false;
+            String strSQL = "dbo.invAplicaTransaccion";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDTransaccion", IDTransaccion));
+            
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.ExecuteNonQuery();
+            result = true;
+            return result;
+    
         }
 
 

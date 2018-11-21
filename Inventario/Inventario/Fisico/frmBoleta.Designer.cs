@@ -271,7 +271,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(578, 227, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(862, 320);
+            this.layoutControl1.Size = new System.Drawing.Size(862, 330);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -345,7 +345,7 @@
             this.dtgGrid.Name = "dtgGrid";
             this.dtgGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.dtgGrid.Size = new System.Drawing.Size(838, 170);
+            this.dtgGrid.Size = new System.Drawing.Size(838, 180);
             this.dtgGrid.TabIndex = 11;
             this.dtgGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -581,7 +581,7 @@
             this.layoutControlItem9});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(862, 320);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(862, 330);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -643,7 +643,7 @@
             this.layoutControlItem8.Control = this.dtgGrid;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 126);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(842, 174);
+            this.layoutControlItem8.Size = new System.Drawing.Size(842, 184);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -748,7 +748,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 463);
+            this.ClientSize = new System.Drawing.Size(862, 473);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.ribbonControl);
             this.Name = "frmBoleta";

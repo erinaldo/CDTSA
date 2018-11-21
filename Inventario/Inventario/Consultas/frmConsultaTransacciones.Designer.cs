@@ -171,6 +171,7 @@
             this.FechaRegistro});
             this.gridView1.GridControl = this.dtgDetalleTransacciones;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             // 
             // paquete
             // 
@@ -187,6 +188,7 @@
             this.documento.Name = "documento";
             this.documento.Visible = true;
             this.documento.VisibleIndex = 1;
+            this.documento.Width = 97;
             // 
             // FechaDoc
             // 
@@ -195,6 +197,7 @@
             this.FechaDoc.Name = "FechaDoc";
             this.FechaDoc.Visible = true;
             this.FechaDoc.VisibleIndex = 2;
+            this.FechaDoc.Width = 97;
             // 
             // referencia
             // 
@@ -203,6 +206,7 @@
             this.referencia.Name = "referencia";
             this.referencia.Visible = true;
             this.referencia.VisibleIndex = 3;
+            this.referencia.Width = 117;
             // 
             // IdProducto
             // 
@@ -219,6 +223,7 @@
             this.DescrProd.Name = "DescrProd";
             this.DescrProd.Visible = true;
             this.DescrProd.VisibleIndex = 5;
+            this.DescrProd.Width = 119;
             // 
             // Cantidad
             // 
@@ -299,6 +304,7 @@
             this.Asiento.Name = "Asiento";
             this.Asiento.Visible = true;
             this.Asiento.VisibleIndex = 15;
+            this.Asiento.Width = 85;
             // 
             // FechaRegistro
             // 
@@ -307,6 +313,7 @@
             this.FechaRegistro.Name = "FechaRegistro";
             this.FechaRegistro.Visible = true;
             this.FechaRegistro.VisibleIndex = 16;
+            this.FechaRegistro.Width = 102;
             // 
             // frmConsultaTransacciones
             // 

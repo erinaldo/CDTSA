@@ -33,6 +33,7 @@ namespace CI.DAC
                 oAdaptador.SelectCommand.Parameters.Add("@IDBodega", SqlDbType.Int).SourceColumn = "IDBodega";
                 oAdaptador.SelectCommand.Parameters.Add("@IDProducto", SqlDbType.BigInt).SourceColumn = "IDProducto";
                 oAdaptador.SelectCommand.Parameters.Add("@IDLote", SqlDbType.Int).SourceColumn = "IDLote";
+                oAdaptador.SelectCommand.Parameters.Add("@Validada", SqlDbType.Int).SourceColumn = "Validada";
                 oAdaptador.SelectCommand.Parameters.Add("@Fecha", SqlDbType.Date).SourceColumn = "Fecha";
 
 
@@ -96,12 +97,13 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDBodega, long IDProducto, int IdLote, DateTime Fecha)
+        public static DataSet GetData(int IDBodega, long IDProducto, int IdLote,int Validada, DateTime Fecha)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDBodega"].Value = IDBodega;
             oAdaptador.SelectCommand.Parameters["@IDProducto"].Value = IDProducto;
             oAdaptador.SelectCommand.Parameters["@IDLote"].Value = IdLote;
+            oAdaptador.SelectCommand.Parameters["@Validada"].Value = Validada;
             oAdaptador.SelectCommand.Parameters["@Fecha"].Value = Fecha;
 
             oAdaptador.Fill(DS.Tables["Data"]);

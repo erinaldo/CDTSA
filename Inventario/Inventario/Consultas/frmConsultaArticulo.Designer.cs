@@ -86,6 +86,16 @@
             this.dtgExistencias = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabTransacciones = new DevExpress.XtraTab.XtraTabPage();
+            this.layoutControl5 = new DevExpress.XtraLayout.LayoutControl();
+            this.dtpFechaFinal = new DevExpress.XtraEditors.DateEdit();
+            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.btnFiltro = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
+            this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.dtgTransacciones = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.IDTransaccion = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,6 +115,14 @@
             this.Documento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Asiento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dtpFechaInicial = new DevExpress.XtraEditors.DateEdit();
+            this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem10 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem12 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.chkActivo = new System.Windows.Forms.CheckBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.slkupProducto = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -116,14 +134,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.btnFiltro = new DevExpress.XtraBars.BarButtonItem();
-            this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
-            this.lblStatus = new DevExpress.XtraBars.BarStaticItem();
-            this.btnExportar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRefrescar = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
@@ -169,8 +179,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgExistencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tabTransacciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl5)).BeginInit();
+            this.layoutControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTransacciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -180,7 +204,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -762,18 +785,121 @@
             // 
             // tabTransacciones
             // 
-            this.tabTransacciones.Controls.Add(this.dtgTransacciones);
+            this.tabTransacciones.Controls.Add(this.layoutControl5);
             this.tabTransacciones.Name = "tabTransacciones";
             this.tabTransacciones.Size = new System.Drawing.Size(706, 280);
             this.tabTransacciones.Text = "Transacciones";
+            this.tabTransacciones.Paint += new System.Windows.Forms.PaintEventHandler(this.tabTransacciones_Paint);
+            // 
+            // layoutControl5
+            // 
+            this.layoutControl5.Controls.Add(this.dtpFechaFinal);
+            this.layoutControl5.Controls.Add(this.dtgTransacciones);
+            this.layoutControl5.Controls.Add(this.dtpFechaInicial);
+            this.layoutControl5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl5.Name = "layoutControl5";
+            this.layoutControl5.Root = this.layoutControlGroup5;
+            this.layoutControl5.Size = new System.Drawing.Size(706, 280);
+            this.layoutControl5.TabIndex = 5;
+            this.layoutControl5.Text = "layoutControl5";
+            // 
+            // dtpFechaFinal
+            // 
+            this.dtpFechaFinal.EditValue = null;
+            this.dtpFechaFinal.Location = new System.Drawing.Point(243, 12);
+            this.dtpFechaFinal.MenuManager = this.ribbonControl;
+            this.dtpFechaFinal.Name = "dtpFechaFinal";
+            this.dtpFechaFinal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaFinal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaFinal.Size = new System.Drawing.Size(127, 20);
+            this.dtpFechaFinal.StyleController = this.layoutControl5;
+            this.dtpFechaFinal.TabIndex = 2;
+            this.dtpFechaFinal.EditValueChanged += new System.EventHandler(this.dtpFechaFinal_EditValueChanged);
+            // 
+            // ribbonControl
+            // 
+            this.ribbonControl.ExpandCollapseItem.Id = 0;
+            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl.ExpandCollapseItem,
+            this.btnFiltro,
+            this.btnCancelar,
+            this.lblStatus,
+            this.btnExportar,
+            this.btnRefrescar});
+            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.MaxItemId = 5;
+            this.ribbonControl.Name = "ribbonControl";
+            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
+            this.ribbonControl.Size = new System.Drawing.Size(736, 143);
+            // 
+            // btnFiltro
+            // 
+            this.btnFiltro.Caption = "Filtro";
+            this.btnFiltro.Glyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.Glyph")));
+            this.btnFiltro.Id = 1;
+            this.btnFiltro.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.LargeGlyph")));
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnFiltro_ItemClick);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Caption = "Cancelar";
+            this.btnCancelar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Glyph")));
+            this.btnCancelar.Id = 4;
+            this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelar_ItemClick);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Id = 1;
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Caption = "Exportar";
+            this.btnExportar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.Glyph")));
+            this.btnExportar.Id = 2;
+            this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
+            // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Caption = "Refrescar";
+            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
+            this.btnRefrescar.Id = 4;
+            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
+            this.btnRefrescar.Name = "btnRefrescar";
+            // 
+            // ribbonPage1
+            // 
+            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Text = "Operaciones Centro Costo";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "Acciones";
             // 
             // dtgTransacciones
             // 
-            this.dtgTransacciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgTransacciones.Location = new System.Drawing.Point(0, 0);
+            this.dtgTransacciones.Location = new System.Drawing.Point(12, 46);
             this.dtgTransacciones.MainView = this.gridView2;
             this.dtgTransacciones.Name = "dtgTransacciones";
-            this.dtgTransacciones.Size = new System.Drawing.Size(706, 280);
+            this.dtgTransacciones.Size = new System.Drawing.Size(682, 222);
             this.dtgTransacciones.TabIndex = 0;
             this.dtgTransacciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -943,6 +1069,100 @@
             this.Usuario.Visible = true;
             this.Usuario.VisibleIndex = 16;
             // 
+            // dtpFechaInicial
+            // 
+            this.dtpFechaInicial.EditValue = null;
+            this.dtpFechaInicial.Location = new System.Drawing.Point(49, 12);
+            this.dtpFechaInicial.MenuManager = this.ribbonControl;
+            this.dtpFechaInicial.Name = "dtpFechaInicial";
+            this.dtpFechaInicial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaInicial.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpFechaInicial.Size = new System.Drawing.Size(120, 20);
+            this.dtpFechaInicial.StyleController = this.layoutControl5;
+            this.dtpFechaInicial.TabIndex = 1;
+            this.dtpFechaInicial.EditValueChanged += new System.EventHandler(this.dtpFechaInicial_EditValueChanged);
+            // 
+            // layoutControlGroup5
+            // 
+            this.layoutControlGroup5.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup5.GroupBordersVisible = false;
+            this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem11,
+            this.layoutControlItem13,
+            this.layoutControlItem12,
+            this.emptySpaceItem10,
+            this.emptySpaceItem11,
+            this.emptySpaceItem12});
+            this.layoutControlGroup5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup5.Name = "layoutControlGroup5";
+            this.layoutControlGroup5.Size = new System.Drawing.Size(706, 280);
+            this.layoutControlGroup5.TextVisible = false;
+            // 
+            // layoutControlItem11
+            // 
+            this.layoutControlItem11.Control = this.dtpFechaInicial;
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(161, 24);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(161, 24);
+            this.layoutControlItem11.Name = "layoutControlItem11";
+            this.layoutControlItem11.Size = new System.Drawing.Size(161, 24);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem11.Text = "Desde:";
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(34, 13);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.dtgTransacciones;
+            this.layoutControlItem13.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(686, 226);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.dtpFechaFinal;
+            this.layoutControlItem12.Location = new System.Drawing.Point(194, 0);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(168, 24);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(168, 24);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(168, 24);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem12.Text = "Hasta:";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(34, 13);
+            // 
+            // emptySpaceItem10
+            // 
+            this.emptySpaceItem10.AllowHotTrack = false;
+            this.emptySpaceItem10.Location = new System.Drawing.Point(161, 0);
+            this.emptySpaceItem10.MaxSize = new System.Drawing.Size(33, 0);
+            this.emptySpaceItem10.MinSize = new System.Drawing.Size(33, 10);
+            this.emptySpaceItem10.Name = "emptySpaceItem10";
+            this.emptySpaceItem10.Size = new System.Drawing.Size(33, 24);
+            this.emptySpaceItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem11
+            // 
+            this.emptySpaceItem11.AllowHotTrack = false;
+            this.emptySpaceItem11.Location = new System.Drawing.Point(362, 0);
+            this.emptySpaceItem11.Name = "emptySpaceItem11";
+            this.emptySpaceItem11.Size = new System.Drawing.Size(324, 24);
+            this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem12
+            // 
+            this.emptySpaceItem12.AllowHotTrack = false;
+            this.emptySpaceItem12.Location = new System.Drawing.Point(0, 24);
+            this.emptySpaceItem12.MaxSize = new System.Drawing.Size(0, 10);
+            this.emptySpaceItem12.MinSize = new System.Drawing.Size(10, 10);
+            this.emptySpaceItem12.Name = "emptySpaceItem12";
+            this.emptySpaceItem12.Size = new System.Drawing.Size(686, 10);
+            this.emptySpaceItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // chkActivo
             // 
             this.chkActivo.Location = new System.Drawing.Point(204, 36);
@@ -1044,81 +1264,6 @@
             this.emptySpaceItem6.Size = new System.Drawing.Size(512, 29);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // ribbonControl
-            // 
-            this.ribbonControl.ExpandCollapseItem.Id = 0;
-            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl.ExpandCollapseItem,
-            this.btnFiltro,
-            this.btnCancelar,
-            this.lblStatus,
-            this.btnExportar,
-            this.btnRefrescar});
-            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 5;
-            this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1});
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
-            this.ribbonControl.Size = new System.Drawing.Size(736, 143);
-            // 
-            // btnFiltro
-            // 
-            this.btnFiltro.Caption = "Filtro";
-            this.btnFiltro.Glyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.Glyph")));
-            this.btnFiltro.Id = 1;
-            this.btnFiltro.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnFiltro.LargeGlyph")));
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnFiltro_ItemClick);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Caption = "Cancelar";
-            this.btnCancelar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Glyph")));
-            this.btnCancelar.Id = 4;
-            this.btnCancelar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCancelar.LargeGlyph")));
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCancelar_ItemClick);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Id = 1;
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.Caption = "Exportar";
-            this.btnExportar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.Glyph")));
-            this.btnExportar.Id = 2;
-            this.btnExportar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnExportar.LargeGlyph")));
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportar_ItemClick);
-            // 
-            // btnRefrescar
-            // 
-            this.btnRefrescar.Caption = "Refrescar";
-            this.btnRefrescar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.Glyph")));
-            this.btnRefrescar.Id = 4;
-            this.btnRefrescar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRefrescar.LargeGlyph")));
-            this.btnRefrescar.Name = "btnRefrescar";
-            // 
-            // ribbonPage1
-            // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Operaciones Centro Costo";
-            // 
-            // ribbonPageGroup1
-            // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnFiltro);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnExportar);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnRefrescar);
-            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Acciones";
-            // 
             // frmConsultaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1177,8 +1322,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgExistencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tabTransacciones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl5)).EndInit();
+            this.layoutControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTransacciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpFechaInicial.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupProducto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -1188,7 +1347,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1291,6 +1449,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn Documento;
         private DevExpress.XtraGrid.Columns.GridColumn Asiento;
         private DevExpress.XtraGrid.Columns.GridColumn Usuario;
+        private DevExpress.XtraEditors.DateEdit dtpFechaFinal;
+        private DevExpress.XtraEditors.DateEdit dtpFechaInicial;
+        private DevExpress.XtraLayout.LayoutControl layoutControl5;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem10;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem12;
 
 
     }

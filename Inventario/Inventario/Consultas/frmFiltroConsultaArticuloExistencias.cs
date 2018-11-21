@@ -24,7 +24,7 @@ namespace CI.Consultas
         List<object> valuesLote = new List<object>();
         List<object> valuesBodega = new List<object>();
         
-        public frmFiltroConsultaArticuloExistencias(int IDProducto,String sLote,string sBodega)
+        public frmFiltroConsultaArticuloExistencias(int IDProducto,string sLote,string sBodega)
         {
             InitializeComponent();
             this.sLote = sLote;
@@ -39,32 +39,47 @@ namespace CI.Consultas
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':20},{'ColumnCaption':'Lote Proveedor','ColumnField':'LoteProveedor','width':90}]");
             this.slkupLote.Properties.View.OptionsSelection.MultiSelect = true;
             this.slkupLote.Properties.View.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.slkupLote.Popup += slkupLote_Popup;
 
             DTBodega = clsBodegaDAC.GetData(-1, "*", -1).Tables[0];
             Util.Util.ConfigLookupEdit(this.slkupBodega, DTBodega, "Descr", "IDBodega", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodega, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':20},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':90}]");
             this.slkupBodega.Properties.View.OptionsSelection.MultiSelect = true;
             this.slkupBodega.Properties.View.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.slkupBodega.Popup += slkupBodega_Popup;
 
-            setItemSelected(sLote, this.slkupLote);
-            setItemSelected(sBodega, this.slkupBodega);
             
         }
 
-        private List<int> GetSelection(string[] values, string fieldName, GridView view)
+        void slkupBodega_Popup(object sender, EventArgs e)
         {
-            List<int> selection = new List<int>();
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sBodega, edit);
+        }
+
+        void slkupLote_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sLote, edit);
+        }
+
+
+        private void SetSelection(string[] values, string fieldName, GridView view)
+        {
             foreach (string val in values)
             {
                 for (int i = 0; i < view.RowCount; i++)
                 {
+
                     if (view.GetRowCellValue(i, fieldName).ToString() == val)
-                        selection.Add(i);
+                        view.SelectRow(i);
                 }
             }
-            return selection;
-        }
 
+        }
+      
 
         private String GetFieldFind(string Nombre)
         {
@@ -81,18 +96,9 @@ namespace CI.Consultas
         {
             if (sLst != "*")
             {
-                //HabilitarControles(crt.Name, true);
                 String[] valores = sLst.Split(',');
-                crt.ShowPopup();
-                crt.ClosePopup();
                 GridView view = crt.Properties.View;
-
-                List<int> selection = GetSelection(valores, GetFieldFind(crt.Name), view);
-                foreach (int rowHandle in selection)
-                {
-                    view.SelectRow(rowHandle);
-                }
-
+                SetSelection(valores, GetFieldFind(crt.Name), view);
             }
         }
 

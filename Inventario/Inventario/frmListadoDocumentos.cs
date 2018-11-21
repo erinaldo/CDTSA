@@ -109,19 +109,19 @@ namespace CI
 
         private void PopulateGrid()
         {
-            if (this.slkupPaquete.EditValue != null)
-            {
+            //if (this.slkupPaquete.EditValue != null)
+            //{
 
                 DateTime fechaInicial = (this.dtpFechaInicial.EditValue == null) ? Convert.ToDateTime("2009/01/01")  : (DateTime)this.dtpFechaInicial.EditValue;
 
                 DateTime fechaFinal = (this.dtpFechaFinal.EditValue==null) ? DateTime.Now: (DateTime) this.dtpFechaFinal.EditValue;
-                int IdPaquete = (int)this.slkupPaquete.EditValue;
+                int IdPaquete =(this.slkupPaquete.EditValue == null)? -1: (int)this.slkupPaquete.EditValue;
 
-                _dsProducto = clsDocumentoInvCabecera.GetDataByCriterio(fechaInicial, fechaFinal, "*", "*", IdPaquete, -1, -1, "*");
+                _dsProducto = clsDocumentoInvCabecera.GetDataByCriterio(fechaInicial, fechaFinal,"*", "*", "*", IdPaquete, -1, -1, "*");
                 _dtProducto = _dsProducto.Tables[0];
                 this.gridListadoDocumento.DataSource = null;
                 this.gridListadoDocumento.DataSource = _dtProducto;
-            }
+            //}
         }
 
         private void CargarElementoSeleccionado() {
@@ -152,6 +152,18 @@ namespace CI
             }
             else _currentRow = null;
         }
+
+        private void btnCancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRefrescar_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+  
 
       
     }

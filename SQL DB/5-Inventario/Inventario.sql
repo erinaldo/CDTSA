@@ -196,7 +196,9 @@ CREATE  TABLE [dbo].[invCuentaContable](
     [CtrDescBonificacion] [int], 
     [CtaDescBonificacion] [bigint], 
     [CtrDevVentas] [int], 
-    [CtaDevVentas] [bigint]
+    [CtaDevVentas] [bigint],
+    [CtrConsumo] [int],
+    [CtaConsumo] [bigint]
  CONSTRAINT [pkinvCuentaContable] PRIMARY KEY CLUSTERED 
 (
 	[IDCuenta] ASC
@@ -308,6 +310,14 @@ GO
 
 ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrDevVentas]
 GO
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtrConsumo] FOREIGN KEY(CtrConsumo)
+REFERENCES dbo.cntCentroCosto ([IDCentro])
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtrConsumo]
+GO
+
 
 
 ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoCuentaContable] FOREIGN KEY([IDCuentaContable])
@@ -423,6 +433,15 @@ GO
 
 ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaDevVentas]
 GO
+
+
+ALTER TABLE [dbo].[invCuentaContable]  WITH CHECK ADD  CONSTRAINT [fkinvCuentaContable_CtaConsumo] FOREIGN KEY(CtaConsumo)
+REFERENCES dbo.cntCuenta (IDCuenta)
+GO
+
+ALTER TABLE [dbo].[invCuentaContable] CHECK CONSTRAINT [fkinvCuentaContable_CtaConsumo]
+GO
+
 
 --//End
 
@@ -1541,7 +1560,7 @@ SELECT  IDTransaccion ,
 GO
 
 CREATE  PROCEDURE dbo.invGetTransaccionCabeceraByCriterio(@FechaInicio AS DATETIME,@FechaFinal AS DATETIME	, @Referencia AS NVARCHAR(250),
-						@Documento AS NVARCHAR(250),@IDPaquete AS INT,@EsTraslado AS INT,@IDTraslado AS INT,@Usuario AS NVARCHAR(20))
+						@Documento AS NVARCHAR(250),@IDPaquete AS INT,@EsTraslado AS INT,@IDTraslado AS INT,@AsientoContable NVARCHAR(20),@Usuario AS NVARCHAR(20))
 AS 
 
 set @FechaInicio = CAST(SUBSTRING(CAST(@FechaInicio AS CHAR),1,11) + ' 00:00:00.000' AS DATETIME)
@@ -1555,6 +1574,7 @@ SELECT  IDTransaccion ,
         Referencia ,
         ISNULL(Asiento,'ND') Asiento,
         Documento ,
+        ASIENTO,
         Aplicado ,
         UniqueValue ,
         EsTraslado ,
@@ -1563,7 +1583,7 @@ SELECT  IDTransaccion ,
 WHERE Fecha BETWEEN @FechaInicio AND @FechaFinal AND (Referencia LIKE  '%' + @Referencia +'%' OR @Referencia ='*') AND 
 			(Documento LIKE '%' +@Documento +'%' OR @Documento='*') AND (EsTraslado = @EsTraslado OR  @EsTraslado = -1) AND	
 			((EsTraslado = 1 AND IDTraslado = @IDTraslado ) OR @IDTraslado = -1) AND (Usuario = @Usuario OR @USuario = '*') AND 
-			(IDPaquete = @IDPaquete OR @IDPaquete =-1)
+			(IDPaquete = @IDPaquete OR @IDPaquete =-1) AND (Asiento =@AsientoContable  OR @AsientoContable='*')
 			
 
 GO
@@ -1964,8 +1984,6 @@ AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal
 GO
 
 
-
-
 CREATE  PROCEDURE dbo.invGetConsultaTransaccionesByCriterio (@Bodega AS NVARCHAR(4000), @Producto AS NVARCHAR(250),
 							@Lote AS  NVARCHAR(4000),@Clasif1 AS NVARCHAR(4000),@Clasif2 NVARCHAR(4000), @Clasif3 NVARCHAR(4000),
 							@Clasif4 NVARCHAR(4000), @Clasif5 NVARCHAR(4000), @Clasif6 NVARCHAR(4000),@Transacciones NVARCHAR(4000),
@@ -2129,7 +2147,7 @@ END
 GO
  
 
-CREATE   PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT	,@Fecha AS DATE
+CREATE   PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT,@Validada INT	,@Fecha AS DATE
 AS
 	SELECT A.IDBodega,B.Descr DescrBodega,A.IDProducto, P.Descr DescrProducto,A.IDLote, L.LoteProveedor,L.LoteInterno,
 				L.FechaVencimiento,A.Cantidad,A.Fecha,A.Usuario,A.Validada
@@ -2140,6 +2158,7 @@ AS
 	WHERE (A.IDProducto=@IDProducto OR  @IDProducto=-1)
 	          AND (A.IDBodega = @IDBodega OR @IDBodega=-1) 
 	          AND (A.IDLote =@IDLote  OR @IDLote=-1) 
+	          AND (A.Validada =@Validada OR @Validada=-1)
 	          AND (A.Fecha =@Fecha OR @Fecha='19810821')
 
 
@@ -2490,7 +2509,7 @@ END
 GO
 
 
-CREATE PROCEDURE dbo.invAplicaTransaccion ( @IDTransaccion AS  INT)
+CREATE PROCEDURE dbo.invAplicaTransaccion ( @IDTransaccion AS  BIGINT)
 AS 
 
 --// Insertar todos los productos que no existen en existencia bodega // --
@@ -2518,5 +2537,325 @@ WHERE IDTransaccion =@IDTransaccion
 GO
 
 
+
+CREATE PROCEDURE dbo.fafGeneraAsientoContableFactura @Modulo AS NVARCHAR(4), @IDDocumento AS INT,@Usuario AS NVARCHAR(50)
+AS
+--BEGIN TRAN
+/*
+SET @Modulo = 'FAC'
+SET @IDDocumento= 2
+SET @Usuario= 'jespinoza'
+*/
+
+DECLARE @Documento AS NVARCHAR(20)
+DECLARE @FechaDocumento AS NVARCHAR(20)
+DECLARE @TipoCambio AS DECIMAL(28,4)
+
+--//Seleccionar el documento y Fechas
+SELECT @Documento = Factura,@FechaDocumento = Fecha,@TipoCambio = TipoCambio  FROM dbo.fafFACTURA WHERE IDFactura=@IDDocumento
+
+DECLARE @Rows AS INT
+DECLARE @Fecha AS DATE
+
+SET @Fecha =  DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,@FechaDocumento)+1,0))
+DECLARE @IDEjercicio AS INT,@Periodo NVARCHAR(10), @Cerrado AS BIT,@Activo AS BIT
+
+SELECT  @IDEjercicio =IDEjercicio ,
+        @Periodo = Periodo ,
+        @Cerrado =Cerrado,
+        @Activo = Activo
+  FROM dbo.cntPeriodoContable WHERE FechaFinal=@Fecha
+
+IF (@Cerrado =1 OR @Activo=0) 
+BEGIN
+	RAISERROR ( 'GENERACIÓN DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
+	return		
+END
+
+--//Generar la cabecera del Asiento
+DECLARE @Asiento AS NVARCHAR(20)
+
+ EXEC [dbo].[globalGetNextConsecutivo] 'FA', @Asiento OUTPUT
+	
+INSERT INTO dbo.cntAsiento( IDEjercicio ,Periodo ,Asiento ,Tipo ,Fecha ,FechaHora ,Createdby ,CreateDate ,
+						Mayorizadoby ,MayorizadoDate ,Anuladoby ,AnuladoDate ,Concepto ,Mayorizado ,Anulado ,TipoCambio ,ModuloFuente ,CuadreTemporal)
+VALUES (	@IDEjercicio,@Periodo	,@Asiento,'FA',@FechaDocumento,GETDATE(),@Usuario,GETDATE(),NULL,NULL,NULL,NULL,'Factura',0,0,@TipoCambio,'FA',0)		
+						
+SELECT A.IDProducto,A.IDBodega,L.IDLote,L.Cantidad,A.PrecioDolar,A.PrecioLocal,P.CostoPromDolar,P.CostoPromLocal,SubTotalLocal,SubTotalDolar,DescuentoLocal,DescuentoDolar,DescuentoEspecialLocal,DescuentoEspecialDolar,ImpuestoLocal,ImpuestoDolar,
+			C.CtaCostoVenta,C.CtrCostoVenta,    C.CtaCostoDesc,C.CtrCostoDesc,   C.CtaDescBonificacion,C.CtrDescBonificacion,   C.CtaDescVenta, C.CtrDescVenta    ,
+			C.CtaInventario,C.CtrInventario     ,C.CtaVenta,C.CtrVenta INTO #tmpFactura  FROM  dbo.fafFacturaProd A
+INNER JOIN dbo.fafFacturaProdLote L ON A.IDFacturaProd = L.IDFacturaProd
+INNER JOIN dbo.invProducto P ON A.IDProducto=P.IDProducto
+LEFT  JOIN dbo.invCuentaContable C ON P.IDCuentaContable=C.IDCuenta
+WHERE IDFactura =@IDDocumento
+
+
+SET @Rows = @@ROWCOUNT
+
+DECLARE @IDProducto AS INT,@IDBodega AS INT,@IDLote AS INT,@Cantidad AS DECIMAL(28,4),@PrecioLocal AS DECIMAL(28,4),@PrecioDolar AS DECIMAL(28,4),
+@CostoPromDolar AS DECIMAL(28,4),@CostoPromLocal AS DECIMAL(28,4),
+@CtaContado AS BIGINT,@CtrContado AS INT,
+@CtaCostoVenta AS BIGINT, @CtrCostoVenta AS INT,
+@CtaCostoDesc AS BIGINT, @CtrCostoDesc AS INT,
+@CtaDescBonificacion AS BIGINT,@CtrDescBonificacion AS INT,
+@CtaDescVenta AS BIGINT,@CtrDescVenta AS INT,
+@CtaInventario AS BIGINT,@CtrInventario AS INT,
+@CtaVenta AS BIGINT, @CtrVenta AS INT,@CtrIVA AS INT,@CtaIVA AS INT
+
+ALTER TABLE #tmpFactura ADD	 ID INT IDENTITY(1,1)
+
+DECLARE @i AS INT
+DECLARE @Linea AS INT
+SET @i=1
+SET @Linea = 0
+
+WHILE (@Rows>=@i)
+BEGIN
+	SELECT @IDProducto = IDProducto, @IDBodega = IDBodega, @IDLote = IDLote,@Cantidad = Cantidad, @PrecioLocal = PrecioLocal, @PrecioDolar = PrecioDolar,
+	@CostoPromDolar = CostoPromDolar,@CostoPromLocal = CostoPromLocal,@CtaCostoVenta =CtaCostoVenta, @CtrCostoVenta=CtrCostoVenta,@CtaCostoDesc = CtaCostoDesc,
+	@CtaDescBonificacion =CtaDescBonificacion, @CtrDescBonificacion = CtaDescBonificacion, @CtaDescVenta = CtaDescVenta, @CtrDescVenta = CtrDescVenta,
+	@CtaInventario = CtaInventario,@CtrInventario = CtrInventario,@CtaVenta = CtaVenta, @CtrVenta = CtrVenta
+	  FROM #tmpFactura WHERE ID =@Rows
+	  
+	  
+	 SELECT @CtrIVa = CtrImpuesto,@CtaIVA=CtaImpuesto  FROM dbo.fafParametros
+	 --//Costo de Venta
+	SET @Linea = @Linea + 1 
+	INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+	VALUES (@Asiento,@Linea,@CtrCostoVenta,@CtaCostoVenta,'Costo de Venta: Venta de ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, @CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+	
+	 --//Inventario
+	SET @Linea = @Linea + 1 
+	INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+	VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Venta de ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, 0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+
+	
+	SET @i = @i +1
+END
+
+DECLARE @IVALocal AS DECIMAL(28,4),@DescLocal AS DECIMAL(28,4),@DescEspecial AS DECIMAL(28,4), @VentaLocal AS DECIMAL(28,4)
+
+SELECT  @IVALocal = SUM(ImpuestoLocal) ,@DescLocal = SUM(DescuentoLocal) ,@DescEspecial = SUM(DescuentoEspecialLocal), @VentaLocal = SUM(SubTotalLocal)  
+FROM #tmpFactura
+
+	SELECT @IDProducto = IDProducto, @IDBodega = IDBodega, @IDLote = IDLote,@Cantidad = Cantidad, @PrecioLocal = PrecioLocal, @PrecioDolar = PrecioDolar,
+	@CostoPromDolar = CostoPromDolar,@CostoPromLocal = CostoPromLocal,@CtaCostoVenta =CtaCostoVenta, @CtrCostoVenta=CtrCostoVenta,@CtaCostoDesc = CtaCostoDesc,
+	@CtaDescBonificacion =CtaDescBonificacion, @CtrDescBonificacion = CtaDescBonificacion, @CtaDescVenta = CtaDescVenta, @CtrDescVenta = CtrDescVenta,
+	@CtaInventario = CtaInventario,@CtrInventario = CtrInventario,@CtaVenta = CtaVenta, @CtrVenta = CtrVenta
+	  FROM #tmpFactura WHERE ID =1
+	  
+
+ --//IVA
+SET @Linea = @Linea + 1 
+INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+VALUES (@Asiento,@Linea,@CtrIVA,@CtaIVA,'IVA: Venta de ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, 0,@IVALocal,@Documento,GETDATE())
+
+--//Venta
+SET @Linea = @Linea + 1 
+DECLARE @FondosPorDep AS DECIMAL(28,4) 
+--SET @FondosPorDep =  @VentaLocal + @IVALocal - @DescLocal - @DescEspecial
+INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+VALUES (@Asiento,@Linea,@CtrVenta,@CtaVenta,'Venta: Venta de ' + CAST(@IDProducto AS NVARCHAR(20))+ 'CI-' + @Documento, @FondosPorDep,0,@Documento,GETDATE())
+
+
+ --//Fondos X Dep
+SET @Linea = @Linea + 1 
+SET @FondosPorDep =  @VentaLocal + @IVALocal - @DescLocal - @DescEspecial
+INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+VALUES (@Asiento,@Linea,@CtrContado,@CtaContado,'Venta: Venta de ' + CAST(@IDProducto AS NVARCHAR(20))+ 'CI-' + @Documento, @FondosPorDep,0,@Documento,GETDATE())
+
+SELECT *  FROM dbo.fafCategoriaCliente
+DROP TABLE #tmpFactura
+
+go
+
+
+
+CREATE PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50)
+
+AS 
+
+--//Esto genera la mayoria de los movimientos de inventario excepto factuira
+--BEGIN TRAN
+
+--SET @IDDocumento= 2
+--SET @Usuario= 'jespinoza'
+DECLARE @Documento AS NVARCHAR(20)
+DECLARE @FechaDocumento AS NVARCHAR(20)
+DECLARE @TipoCambio AS DECIMAL(28,4)
+DECLARE @IDPaquete AS INT
+
+
+SELECT @Documento = Documento ,@FechaDocumento = Fecha, @IDPaquete = IDPaquete  FROM DBO.invTransaccion WHERE IDTransaccion = @IDDocumento
+
+DECLARE @Rows AS INT
+DECLARE @Fecha AS DATE
+
+SET @Fecha =  DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,@FechaDocumento)+1,0))
+DECLARE @IDEjercicio AS INT,@Periodo NVARCHAR(10), @Cerrado AS BIT,@Activo AS BIT
+
+SELECT  @IDEjercicio =IDEjercicio ,
+        @Periodo = Periodo ,
+        @Cerrado =Cerrado,
+        @Activo = Activo
+  FROM dbo.cntPeriodoContable WHERE FechaFinal=@Fecha
+
+IF (@Cerrado =1 OR @Activo=0) 
+BEGIN
+	RAISERROR ( 'GENERACIÓN DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
+	return		
+END
+
+--//Generar la cabecera del Asiento
+DECLARE @Asiento AS NVARCHAR(20)
+
+ EXEC [dbo].globalGetNextConsecutivo 'IN', @Asiento OUTPUT
+
+DECLARE @DescrPaquete NVARCHAR(256)
+SELECT @DescrPaquete = Descr FROM dbo.invPaquete WHERE IDPaquete = @IDPaquete
+	
+INSERT INTO dbo.cntAsiento( IDEjercicio ,Periodo ,Asiento ,Tipo ,Fecha ,FechaHora ,Createdby ,CreateDate ,
+						Mayorizadoby ,MayorizadoDate ,Anuladoby ,AnuladoDate ,Concepto ,Mayorizado ,Anulado ,TipoCambio ,ModuloFuente ,CuadreTemporal)
+VALUES (	@IDEjercicio,@Periodo	,@Asiento,'CI',@FechaDocumento,GETDATE(),@Usuario,GETDATE(),NULL,NULL,NULL,NULL,@DescrPaquete,0,0,@TipoCambio,'CI',0)		
+						
+SELECT A.IDProducto,A.IDBodega,A.IDLote,A.Cantidad,P.CostoPromDolar,P.CostoPromLocal,
+			C.CtaInventario,C.CtrInventario , C.CtaSobranteInvFisico,C.CtrSobranteInvFisico,
+			C.CtaFaltanteInvFisico,C.CtrFaltanteInvFisico,C.CtaVariacionCosto,C.CtrVariacionCosto,C.CtaVencimiento,C.CtrVencimiento,
+			C.CtaCompra,C.CtrCompra, C.CtaConsumo,C.CtrConsumo,
+			A.IDTipoTran INTO #tmpDocumento 
+			FROM dbo.invTransaccionLinea A
+			INNER JOIN dbo.invProducto P ON A.IDProducto=P.IDProducto
+			LEFT  JOIN dbo.invCuentaContable C ON P.IDCuentaContable=C.IDCuenta
+			WHERE IDTransaccion=@IDDocumento
+
+SET @Rows = @@ROWCOUNT
+
+DECLARE @IDProducto AS INT,@IDBodega AS INT,@IDLote AS INT,@Cantidad AS DECIMAL(28,4),
+@CostoPromDolar AS DECIMAL(28,4),@CostoPromLocal AS DECIMAL(28,4),
+@CtaInventario AS BIGINT,@CtrInventario AS INT,
+@CtaSobranteInvFisico AS BIGINT, @CtrSobranteInvFisico AS INT,
+@CtaFaltanteInvFisico AS BIGINT, @CtrFaltantanteInvFisico AS INT,
+@CtaVariacionCosto AS BIGINT, @CtrVariacionCosto AS INT,
+@CtaVencimiento AS BIGINT, @CtrVencimiento AS INT,
+@CtaCompra AS BIGINT,@CtrCompra AS INT,
+@CtaConsumo AS BIGINT ,@CtrConsumo AS INT,
+@IDTipoTran AS INT
+
+ALTER TABLE #tmpDocumento ADD	 ID INT IDENTITY(1,1)
+
+DECLARE @i AS INT
+DECLARE @Linea AS INT
+SET @i=1
+SET @Linea = 0
+
+WHILE (@Rows>=@i)
+BEGIN
+	SELECT @IDProducto = IDProducto, @IDBodega = IDBodega, @IDLote = IDLote,@Cantidad = Cantidad, 
+	@CostoPromDolar = CostoPromDolar,@CostoPromLocal = CostoPromLocal,@CtaInventario =CtaInventario, @CtrInventario=CtrInventario,
+	@CtaSobranteInvFisico = CtaSobranteInvFisico,@CtrSobranteInvFisico = CtrSobranteInvFisico,
+	@CtaFaltanteInvFisico = CtaFaltanteInvFisico, @CtrFaltantanteInvFisico =CtrFaltanteInvFisico,
+	@CtaVariacionCosto = CtaVariacionCosto, @CtrVariacionCosto = CtrVariacionCosto,
+	@CtaVencimiento = CtaVencimiento, @CtrVencimiento = CtrVencimiento,
+	@CtaCompra = CtaCompra,@CtrCompra = CtrCompra,
+	@CtaConsumo =  CtaConsumo,@CtrConsumo = CtrConsumo,
+	@IDTipoTran = IDTipoTran
+	  FROM #tmpDocumento WHERE ID =@Rows
+
+	  SELECT *  FROM dbo.globalTipoTran
+	  SELECT *  FROM dbo.invCuentaContable
+	  --//Salida de inventario Fisico
+	  IF (@IDTipoTran =1)
+	  BEGIN
+			 --//Compras Locales
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrCompra,@CtaCompra,'Salida Inv Fisico' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, @CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+			
+			 --//Inventario
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Venta de ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, 0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+	 END 
+	
+	  --//Ingreso de inventario Fisico
+	  IF (@IDTipoTran =2)
+	  BEGIN
+			 --//Compras Locales
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrCompra,@CtaCompra,'Salida Inv Fisico' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, 0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+			
+			 --//Inventario
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Venta de ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, @CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+	 END  
+	
+	 --//Consumo de Inventario
+	  IF (@IDTipoTran =5)
+	  BEGIN
+			 --//Consumos
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrConsumo,@CtaConsumo,'Consumo de Inventario' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, 0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+			
+			 --//Inventario
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Consumo ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento, @CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+	 END   
+	
+	--//Compra de Inventario
+	  IF (@IDTipoTran =6)
+	  BEGIN
+			 --//Compras Locales
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrCompra,@CtaCompra,'Consumo de Inventario' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,@CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+			
+			 --//Inventario
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Consumo ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+	 END    
+	
+		--//Ingreso por ajuste
+	  IF (@IDTipoTran =7)
+	  BEGIN
+			 --//Compras Locales
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrCompra,@CtaCompra,'Ingreso por Ajuste de Inventario' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,@CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+			
+			 --//Inventario
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Ingreso ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+	 END     
+	
+		--//Salida por ajuste
+	  IF (@IDTipoTran =8)
+	  BEGIN
+			 --//Compras Locales
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrCompra,@CtaCompra,'Salida por Ajuste de Inventario' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+			
+			 --//Inventario
+			SET @Linea = @Linea + 1 
+			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Salida ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,@CostoPromLocal * @Cantidad,0,@Documento,GETDATE())
+	 END      
+	
+	SET @i = @i +1
+END
+
+DROP TABLE #tmpDocumento
+
+
+--SELECT *  FROM dbo.cntAsientoDetalle WHERE Asiento=@Asiento
+
+--ROLLBACK
+GO 
 
 

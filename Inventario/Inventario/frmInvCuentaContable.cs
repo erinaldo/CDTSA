@@ -166,6 +166,9 @@ namespace CI
             Util.Util.ConfigLookupEdit(this.slkupCtaVencimiento, _dtCuentasContables, "Descr", "IDCuenta");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtaVencimiento, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
+            Util.Util.ConfigLookupEdit(this.slkupCtaConsumo, _dtCuentasContables, "Descr", "IDCuenta");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtaConsumo, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+
             //Centros de Costos
             Util.Util.ConfigLookupEdit(this.slkupCtrComisionCobros, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtrComisionCobros, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
@@ -212,6 +215,9 @@ namespace CI
             Util.Util.ConfigLookupEdit(this.slkuCtrDevVentas, _dtCentrosCosto, "Descr", "IDCentro");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkuCtrDevVentas, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
+            Util.Util.ConfigLookupEdit(this.slkupCtroConsumo, _dtCentrosCosto, "Descr", "IDCentro");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupCtroConsumo, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+
         }
 
         private void PopulateGrid()
@@ -246,6 +252,7 @@ namespace CI
             this.slkupCtaSobranteInventario.EditValue = null;
             this.slkupCtaVariacionCosto.EditValue = null;
             this.slkupCtaVencimiento.EditValue = null;
+            this.slkupCtaConsumo.EditValue = null;
             this.slkupCtrComisionCobros.EditValue = null;
             this.slkupCtrComisionVenta.EditValue = null;
             this.slkupCtrCompras.EditValue = null;
@@ -260,6 +267,7 @@ namespace CI
             this.slkupCtrVariacionCosto.EditValue = null;
             this.slkupCtrVencimiento.EditValue = null;
             this.slkupCtrVentas.EditValue = null;
+            this.slkupCtroConsumo.EditValue = null;
 
         }
 
@@ -282,6 +290,7 @@ namespace CI
             this.slkupCtaSobranteInventario.ReadOnly = !Activo;
             this.slkupCtaVariacionCosto.ReadOnly = !Activo;
             this.slkupCtaVencimiento.ReadOnly = !Activo;
+            this.slkupCtaConsumo.ReadOnly = !Activo;
             this.slkupCtrComisionCobros.ReadOnly = !Activo;
             this.slkupCtrComisionVenta.ReadOnly = !Activo;
             this.slkupCtrCompras.ReadOnly = !Activo;
@@ -296,6 +305,7 @@ namespace CI
             this.slkupCtrVariacionCosto.ReadOnly = !Activo;
             this.slkupCtrVencimiento.ReadOnly = !Activo;
             this.slkupCtrVentas.ReadOnly = !Activo;
+            this.slkupCtroConsumo.ReadOnly = !Activo;
 
             this.dtgDetalle.Enabled = !Activo;
 
@@ -340,6 +350,8 @@ namespace CI
             this.slkupCtaSobranteInventario.EditValue = Row["CtaSobranteInvFisico"].ToString();
             this.slkupCtaVariacionCosto.EditValue = Row["CtaVariacionCosto"].ToString();
             this.slkupCtaVencimiento.EditValue = Row["CtaVencimiento"].ToString();
+            this.slkupCtaConsumo.EditValue = Row["CtaConsumo"].ToString();
+
             this.slkupCtrComisionCobros.EditValue = Row["CtrComisionCobro"].ToString();
             this.slkupCtrComisionVenta.EditValue = Row["CtrComisionVenta"].ToString();
             this.slkupCtrCompras.EditValue = Row["CtrCompra"].ToString();
@@ -354,6 +366,7 @@ namespace CI
             this.slkupCtrVariacionCosto.EditValue = Row["CtrVariacionCosto"].ToString();
             this.slkupCtrVencimiento.EditValue = Row["CtrVencimiento"].ToString();
             this.slkupCtrVentas.EditValue =   Row["CtrVenta"].ToString();
+            this.slkupCtroConsumo.EditValue = Row["CtrConsumo"].ToString();
 
             
         }
@@ -450,6 +463,8 @@ namespace CI
                     currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaSobranteInventario.EditValue;
                     currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
                     currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaConsumo"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+
                     currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionCobros.EditValue;
                     currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionVenta.EditValue;
                     currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCompras.EditValue;
@@ -464,6 +479,7 @@ namespace CI
                     currentRow["CtrVariacionCosto"] = this.slkupCtrVariacionCosto.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVariacionCosto.EditValue;
                     currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVencimiento.EditValue;
                     currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVentas.EditValue;
+                    currentRow["CtrConsumo"] = this.slkupCtroConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtroConsumo.EditValue;
                     
 
                     currentRow.EndEdit();
@@ -537,6 +553,7 @@ namespace CI
                     currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaSobranteInventario.EditValue;
                     currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
                     currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaConsumo"] = this.slkupCtaConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaConsumo.EditValue;                    
                     currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionCobros.EditValue;
                     currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionVenta.EditValue;
                     currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCompras.EditValue;
@@ -551,6 +568,7 @@ namespace CI
                     currentRow["CtrVariacionCosto"] = this.slkupCtrVariacionCosto.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVariacionCosto.EditValue;
                     currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVencimiento.EditValue;
                     currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVentas.EditValue;
+                    currentRow["CtrConsumo"] = this.slkupCtroConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtroConsumo.EditValue;
                     _dtCuenta.Rows.Add(currentRow);
                     try
                     {

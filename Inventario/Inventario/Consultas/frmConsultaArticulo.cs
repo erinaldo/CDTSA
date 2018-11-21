@@ -11,6 +11,7 @@ using CI.DAC;
 using DevExpress.XtraEditors;
 using DevExpress.DataAccess.Sql;
 using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace CI.Consultas
 {
@@ -59,6 +60,8 @@ namespace CI.Consultas
             sBodega = sLote=sPaquete=sTransaccion=sAplicacion=sReferencia= "*" ;
             FechaInicial = DateTime.Now.AddMonths(-1);
             FechaFinal = DateTime.Now;
+            this.dtpFechaInicial.EditValue = FechaInicial;
+            this.dtpFechaFinal.EditValue = FechaFinal;
 
             Util.Util.ConfigLookupEdit(this.slkupProducto, clsProductoDAC.GetProductoByID(-1, "*").Tables[0], "Descr", "IDProducto");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupProducto, "[{'ColumnCaption':'ID Producto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
@@ -184,6 +187,9 @@ namespace CI.Consultas
                 sReferencia = ofrmFiltroTran.GetReferencia();
                 FechaInicial = ofrmFiltroTran.GetFechaInicial();
                 FechaFinal = ofrmFiltroTran.GetFechaFinal();
+                this.dtpFechaInicial.EditValue = FechaInicial;
+                this.dtpFechaFinal.EditValue = FechaFinal;
+
                 CargarTransacciones();
             }
             
@@ -207,30 +213,58 @@ namespace CI.Consultas
             this.Close();
         }
 
+        private void ExportarToExcel(GridView Grilla, String NameFile, String NameSheet)
+        {
+            string tempPath = System.IO.Path.GetTempPath();
+            String FileName = System.IO.Path.Combine(tempPath, "ExistenciasInventario.xlsx");
+            DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
+            {
+                SheetName = "Existencias"
+            };
+
+
+            Grilla.ExportToXlsx(FileName, options);
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = FileName;
+            process.StartInfo.Verb = "Open";
+            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            process.Start();
+        }
+
         private void btnExportar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+            
             if (this.slkupProducto.EditValue != null || this.slkupProducto.EditValue.ToString() != "")
             {
-                DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptFichaProducto.repx", true);
+
+                if (this.TabControl.SelectedTabPageIndex == 0 || this.TabControl.SelectedTabPageIndex == 1 || this.TabControl.SelectedTabPageIndex == 2)
+                {
+
+                    DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptFichaProducto.repx", true);
 
 
-                SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+                    SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
 
-                SqlDataSource ds = report.DataSource as SqlDataSource;
-                ds.ConnectionName = "sqlDataSource1";
-                String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
-                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
-                ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+                    SqlDataSource ds = report.DataSource as SqlDataSource;
+                    ds.ConnectionName = "sqlDataSource1";
+                    String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+                    System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+                    ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
 
-                // Obtain a parameter, and set its value.
-                report.Parameters["IDProducto"].Value = Convert.ToInt32(this.slkupProducto.EditValue);
-                report.Parameters["Descr"].Value = "*";
+                    // Obtain a parameter, and set its value.
+                    report.Parameters["IDProducto"].Value = Convert.ToInt32(this.slkupProducto.EditValue);
+                    report.Parameters["Descr"].Value = "*";
 
-                // Show the report's print preview.
-                DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+                    // Show the report's print preview.
+                    DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
 
-                tool.ShowPreview();
+                    tool.ShowPreview();
+                }
+                else if (this.TabControl.SelectedTabPageIndex == 3)
+                    ExportarToExcel(this.gridView1, "Existencias Inventario", "Existencias");
+                else if (this.TabControl.SelectedTabPageIndex == 4)
+                    ExportarToExcel(this.gridView2, "Transacciones Inventario", "Transacciones");
             }
 
 
@@ -244,6 +278,21 @@ namespace CI.Consultas
         {
             CargarTransacciones();
         }
+
+          private void tabTransacciones_Paint(object sender, PaintEventArgs e)
+          {
+
+          }
+
+          private void dtpFechaInicial_EditValueChanged(object sender, EventArgs e)
+          {
+              this.FechaInicial = Convert.ToDateTime(this.dtpFechaInicial.EditValue);
+          }
+
+          private void dtpFechaFinal_EditValueChanged(object sender, EventArgs e)
+          {
+              this.FechaFinal = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
+          }
 
         
     }

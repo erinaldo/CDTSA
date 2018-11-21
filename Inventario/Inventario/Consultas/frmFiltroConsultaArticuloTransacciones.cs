@@ -33,7 +33,7 @@ namespace CI.Consultas
 
 
 
-        public frmFiltroConsultaArticuloTransacciones(int IdProducto,string sLote,string sBodega, string sPaquete,string sTransaccion, string sAplicacion,string sReferencia, DateTime FechaInicial,DateTime FechaFinal)
+        public  frmFiltroConsultaArticuloTransacciones(int IdProducto,string sLote,string sBodega, string sPaquete,string sTransaccion, string sAplicacion,string sReferencia, DateTime FechaInicial,DateTime FechaFinal)
         {
             InitializeComponent();
             this.sLote = sLote;
@@ -59,13 +59,14 @@ namespace CI.Consultas
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':20},{'ColumnCaption':'Lote Proveedor','ColumnField':'LoteProveedor','width':90}]");
             this.slkupLote.Properties.View.OptionsSelection.MultiSelect = true;
             this.slkupLote.Properties.View.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-            
+            this.slkupLote.Popup += slkLote_Popup;          
             
             DTBodega = clsBodegaDAC.GetData(-1, "*", -1).Tables[0];
             Util.Util.ConfigLookupEdit(this.slkupBodega, DTBodega, "Descr", "IDBodega", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodega, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':20},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':90}]");
             this.slkupBodega.Properties.View.OptionsSelection.MultiSelect = true;
             this.slkupBodega.Properties.View.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.slkupBodega.Popup += slkBodega_Popup;          
             
             DTTransaccion = clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", "*").Tables[0];
             Util.Util.ConfigLookupEdit(this.slkupTransaccion, DTTransaccion, "Descr", "IDTipoTran", 250);
@@ -73,16 +74,14 @@ namespace CI.Consultas
             this.slkupTransaccion.Properties.View.GridControl.DataSource = slkupTransaccion.Properties.DataSource;
             this.slkupTransaccion.Properties.View.GridControl.ForceInitialize();
             this.slkupTransaccion.Properties.View.GridControl.BindingContext = new System.Windows.Forms.BindingContext();
+            this.slkupTransaccion.Popup += slkTransaccion_Popup;          
 
             DTPaquete = clsPaqueteDAC.GetData(-1, "*", "*", -1, "*", 1).Tables[0];
             Util.Util.ConfigLookupEdit(this.slkupPaquete, DTPaquete, "Descr", "IDPaquete", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupPaquete, "[{'ColumnCaption':'Paquete','ColumnField':'PAQUETE','width':10},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':100}]");
+            this.slkupPaquete.Popup += slkPaquete_Popup;          
             
-            setItemSelected(sLote, this.slkupLote);
-            setItemSelected(sBodega, this.slkupBodega);
-            setItemSelected(sPaquete, this.slkupPaquete);
-            setItemSelected(sTransaccion, this.slkupTransaccion);
-
+            
             this.txtAplicacion.Text = (sAplicacion == "*") ? "" : sAplicacion;
             this.txtReferencia.Text = (sReferencia == "*") ? "" : sReferencia;
             this.dtpFechaInicial.Value = FechaInicial;
@@ -90,19 +89,50 @@ namespace CI.Consultas
             
         }
 
-
-        private List<int> GetSelection(string[] values, string fieldName, GridView view)
+        void slkLote_Popup(object sender, EventArgs e)
         {
-            List<int> selection = new List<int>();
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sLote, edit);
+
+        }
+
+        void slkBodega_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sBodega, edit);
+
+        }
+
+        void slkTransaccion_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sTransaccion, edit);
+
+        }
+
+        void slkPaquete_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sPaquete, edit);
+
+        }
+
+
+        private void SetSelection(string[] values, string fieldName, GridView view)
+        {
             foreach (string val in values)
             {
                 for (int i = 0; i < view.RowCount; i++)
                 {
                     if (view.GetRowCellValue(i, fieldName).ToString() == val)
-                        selection.Add(i);
+                        view.SelectRow(i);
                 }
             }
-            return selection;
+  
         }
 
 
@@ -177,26 +207,14 @@ namespace CI.Consultas
         {
             if (sLst != "*")
             {
-                //HabilitarControles(crt.Name, true);
                 String[] valores = sLst.Split(',');
-                //Type type = typeof(PopupBaseEdit);
-                //object form = type.GetMethod("GetPopupForm", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(searchLookUpEdit1, null)
-           
-                //crt.Properties.PopulateViewColumns();
-                
                 GridView view = crt.Properties.View;
-                //view.PopulateColumns();
-                
-
-                List<int> selection = GetSelection(valores, GetFieldFind(crt.Name), view);
-                foreach (int rowHandle in selection)
-                {
-                    view.SelectRow(rowHandle);
-                }
-
+                SetSelection(valores, GetFieldFind(crt.Name), view);
+               
             }
         }
 
+      
         private void slkupLote_EditValueChanged(object sender, EventArgs e)
         {
 

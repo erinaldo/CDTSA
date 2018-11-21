@@ -1173,7 +1173,7 @@
             this.btnSaveDoc,
             this.btnCancelDoc,
             this.btnPrintDoc});
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 5;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1

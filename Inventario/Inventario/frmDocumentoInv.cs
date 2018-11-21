@@ -124,7 +124,7 @@ namespace CI
                     _currentRow = _dtDocumentoInv.Rows[0];
                 }
                 else {
-                    this.Error = "El documento que quiere visualizar no existe en la base de datos";
+                    this.Error = "  • El documento que quiere visualizar no existe en la base de datos";
 
                     return;
                 }
@@ -135,7 +135,7 @@ namespace CI
                 _dtDetalle = _dsDetalle.Tables[0];
             }
             catch (Exception ex) {
-                MessageBox.Show("Error: "  + ex.Message);
+                MessageBox.Show("Error:  \n\r"  + ex.Message);
             }
 
 
@@ -425,49 +425,10 @@ namespace CI
                            _currentRowDetalle["Aplicado"] = 0;
                            _currentRow.EndEdit();
 
-                           //DataSet _dsChanged = _dsDocumentoInv.GetChanges(DataRowState.Modified);
-
-                           //bool okFlag = true;
-                           //if (_dsChanged.HasErrors)
-                           //{
-                           //    okFlag = false;
-                           //    string msg = "Error en la fila con el tipo Id";
-
-                           //    foreach (DataTable tb in _dsChanged.Tables)
-                           //    {
-                           //        if (tb.HasErrors)
-                           //        {
-                           //            DataRow[] errosRow = tb.GetErrors();
-
-                           //            foreach (DataRow dr in errosRow)
-                           //            {
-                           //                msg = msg + dr["IdDocumento"].ToString();
-                           //            }
-                           //        }
-                           //    }
-
-                           //    //lblStatus.Caption = msg;
-                           //}
-
-                           ////Si no hay errores
-
-                           //if (okFlag)
-                           //{
-                           //clsDocumentoInvCabecera.oAdaptador.Update(_dsChanged, "Data");
-                           //lblStatus.Caption = "Actualizado " + _currentRow["Descr"].ToString();
-                           //Application.DoEvents();
-
-                           //_dsDocumentoInv.AcceptChanges();
-
+                         
                            AccionDetalle = "View";
                            AplicarPrivilegios();
-                           //}
-                           //else
-                           //{
-                           //    _dsDocumentoInv.RejectChanges();
-
-                           //}
-
+                         
 
                        }
                        else
@@ -532,11 +493,7 @@ namespace CI
 
                            try
                            {
-                               //clsDocumentoInvCabecera.oAdaptador.Update(_dsDocumentoInv, "Data");
-                               //_dsDocumentoInv.AcceptChanges();
-
-                               //this.txt.EditValue = clsProductoDAC.oAdaptador.InsertCommand.Parameters["@IDProducto"].Value.ToString();
-                               //lblStatus.Caption = "Se ha ingresado un nuevo registro";
+                               
                                Application.DoEvents();
 
 
@@ -548,9 +505,8 @@ namespace CI
                            }
                            catch (System.Data.SqlClient.SqlException ex)
                            {
-                               //_dsDocumentoInv.RejectChanges();
-                               //_currentRow = null;
-                               MessageBox.Show(ex.Message);
+                               
+                               MessageBox.Show("Ha ocurrido el siguiente error: \n\r" + ex.Message);
                            }
 
                        }
@@ -575,11 +531,11 @@ namespace CI
             bool result = true;
             String sMensaje = "";
             if (this.slkupTransaccion.EditValue == null || this.slkupTransaccion.EditValue.ToString() == "")
-                sMensaje = " • Por favor seleccion la Transacción\n\r";
+                sMensaje = " •  Seleccione la Transacción\n\r";
             if (this.slkupProducto.EditValue == null || this.slkupProducto.EditValue.ToString() == "" )
-                sMensaje = " • Por favor seleccion el producto \n\r";
+                sMensaje = " • Seleccione el producto \n\r";
             if (this.txtCantidad.EditValue==null || this.txtCantidad.EditValue.ToString() == "" )
-                sMensaje = " • Por favor ingrese la cantidad\n\r";
+                sMensaje = " • Ingrese la cantidad\n\r";
             
             //DataRowView dr =  (DataRowView)slkupTransaccion.Properties.View.GetRow(slkupTransaccion.Properties.GetIndexByKeyValue(slkupTransaccion.EditValue));
             DataRowView dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
@@ -705,13 +661,7 @@ namespace CI
 
                 }
 
-                // HabilitarControlesDetalle(false);                    
-                //if (_Estado == "PndtGuardar")
-                //{
-                //    btnEditar_ItemClick(this, null);
-                //    this.btnCancelar.Enabled = false;
-                //}
-              
+
 
             }
             catch (Exception ex)
@@ -847,9 +797,9 @@ namespace CI
             bool result = true;
             String sMensaje = "";
             if (this.txtReferencia.Text.Trim() == "")
-                sMensaje = sMensaje + " • Por favor ingrese la referencia del documento\n\r";
+                sMensaje = sMensaje + " • Ingrese la referencia del documento\n\r";
             if (this.dtpFecha.EditValue.ToString() == "" || this.dtpFecha.EditValue == null)
-                sMensaje = sMensaje + " • Por favor seleccione la fecha del documento \n\r";
+                sMensaje = sMensaje + " • Seleccione la fecha del documento \n\r";
             if (_dtDetalle.Rows.Count == 0)
                 sMensaje = sMensaje + " • Debe ingresar al menos una linea en el documento para poder aplicarlo \n\r";
             if (sMensaje !="") {
@@ -863,7 +813,7 @@ namespace CI
             foreach (DataRow item in _dsDetalle.Tables[0].Rows) {
                 if (item["Estado"].ToString() == "E")
                 {
-                    MessageBox.Show("El documento contiene productos con problemas de existencias");
+                    MessageBox.Show("El documento contiene productos con problemas de existencias, por favor verifique para poder guardar.");
                     return false;
                 }
             }
@@ -1170,6 +1120,12 @@ namespace CI
             if (keyData == Keys.F4)
             {
                 HandlerMenu("Eliminar");
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == Keys.F10)
+            {
+                HandlerMenu("Guardar");
                 return true;    // indicate that you handled this keystroke
             }
 

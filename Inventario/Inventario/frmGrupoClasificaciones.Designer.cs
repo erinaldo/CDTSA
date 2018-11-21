@@ -269,7 +269,8 @@
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl1);
             this.Name = "frmGrupoClasificaciones";
-            this.Text = "frmGrupoClasificaciones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Clasificaciones de Grupos";
             this.Load += new System.EventHandler(this.frmGrupoClasificaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrC1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrC2.Properties)).EndInit();

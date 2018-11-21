@@ -239,20 +239,34 @@ namespace CI
         }
 
 
-
-        private List<int> GetSelection(string[] values, string fieldName, GridView view)
+        private void SetSelection(string[] values, string fieldName, GridView view)
         {
-            List<int> selection = new List<int>();
             foreach (string val in values)
             {
                 for (int i = 0; i < view.RowCount; i++)
                 {
+
                     if (view.GetRowCellValue(i, fieldName).ToString() == val)
-                        selection.Add(i);
+                        view.SelectRow(i);
                 }
             }
-            return selection;
+
         }
+
+
+        //private List<int> GetSelection(string[] values, string fieldName, GridView view)
+        //{
+        //    List<int> selection = new List<int>();
+        //    foreach (string val in values)
+        //    {
+        //        for (int i = 0; i < view.RowCount; i++)
+        //        {
+        //            if (view.GetRowCellValue(i, fieldName).ToString() == val)
+        //                selection.Add(i);
+        //        }
+        //    }
+        //    return selection;
+        //}
 
 
         private String GetFieldFind(string Nombre)
@@ -280,18 +294,29 @@ namespace CI
             {
                 HabilitarControles(crt.Name, true);
                 String[] valores = sLst.Split(',');
-                crt.ShowPopup();
-                crt.ClosePopup();
                 GridView view = crt.Properties.View;
-
-                List<int> selection = GetSelection(valores, GetFieldFind(crt.Name), view);
-                foreach (int rowHandle in selection)
-                {
-                    view.SelectRow(rowHandle);
-                }
-
+                SetSelection(valores, GetFieldFind(crt.Name), view);
             }
         }
+
+        //private void setItemSelected(string sLst, SearchLookUpEdit crt)
+        //{
+        //    if (sLst != "*")
+        //    {
+        //        HabilitarControles(crt.Name, true);
+        //        String[] valores = sLst.Split(',');
+        //        crt.ShowPopup();
+        //        crt.ClosePopup();
+        //        GridView view = crt.Properties.View;
+
+        //        List<int> selection = GetSelection(valores, GetFieldFind(crt.Name), view);
+        //        foreach (int rowHandle in selection)
+        //        {
+        //            view.SelectRow(rowHandle);
+        //        }
+
+        //    }
+        //}
 
 
 
@@ -610,6 +635,71 @@ namespace CI
                 this.valuesPaquete.Add(Valor);
             else if (e.Action == CollectionChangeAction.Remove)
                 valuesPaquete.Remove(Valor);
+        }
+
+        private void chkBoxProducto_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sProducto, edit);
+        }
+
+
+        private void chkBoxLote_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sLote, edit);
+        }
+
+        private void chkBoxBodega_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sBodega, edit);
+        }
+
+        private void chkBoxClasif1_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sClasif1, edit);
+        }
+
+        private void chkBoxClasif2_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sClasif2, edit);
+        }
+
+        private void chkBoxClasif3_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sClasif3, edit);
+        }
+
+        private void chkBoxClasif4_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sClasif4, edit);
+        }
+
+        private void chkBoxClasif5_Popup(object sender, EventArgs e)
+        {
+              var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sClasif5, edit);
+        }
+
+        private void chkBoxClasif6_Popup(object sender, EventArgs e)
+        {
+            var edit = (SearchLookUpEdit)sender;
+            //edit.Properties.View.SelectRow(0);
+            setItemSelected(sClasif6, edit);
+       
         }
 
 

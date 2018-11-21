@@ -229,6 +229,7 @@
             this.chkBoxProducto.Properties.View = this.gridView1;
             this.chkBoxProducto.Size = new System.Drawing.Size(179, 20);
             this.chkBoxProducto.TabIndex = 9;
+            this.chkBoxProducto.Popup += new System.EventHandler(this.chkBoxProducto_Popup);
             // 
             // gridView1
             // 
@@ -249,6 +250,7 @@
             this.chkBoxLote.Properties.View = this.gridView2;
             this.chkBoxLote.Size = new System.Drawing.Size(179, 20);
             this.chkBoxLote.TabIndex = 8;
+            this.chkBoxLote.Popup += new System.EventHandler(this.chkBoxLote_Popup);
             // 
             // gridView2
             // 
@@ -269,6 +271,7 @@
             this.chkBoxBodega.Properties.View = this.gridView3;
             this.chkBoxBodega.Size = new System.Drawing.Size(179, 20);
             this.chkBoxBodega.TabIndex = 7;
+            this.chkBoxBodega.Popup += new System.EventHandler(this.chkBoxBodega_Popup);
             // 
             // gridView3
             // 
@@ -424,6 +427,7 @@
             this.chkBoxClasif1.Properties.View = this.gridView4;
             this.chkBoxClasif1.Size = new System.Drawing.Size(179, 20);
             this.chkBoxClasif1.TabIndex = 11;
+            this.chkBoxClasif1.Popup += new System.EventHandler(this.chkBoxClasif1_Popup);
             // 
             // gridView4
             // 
@@ -444,6 +448,7 @@
             this.chkBoxClasif2.Properties.View = this.gridView5;
             this.chkBoxClasif2.Size = new System.Drawing.Size(179, 20);
             this.chkBoxClasif2.TabIndex = 10;
+            this.chkBoxClasif2.Popup += new System.EventHandler(this.chkBoxClasif2_Popup);
             // 
             // gridView5
             // 
@@ -464,6 +469,7 @@
             this.chkBoxClasif3.Properties.View = this.gridView6;
             this.chkBoxClasif3.Size = new System.Drawing.Size(179, 20);
             this.chkBoxClasif3.TabIndex = 9;
+            this.chkBoxClasif3.Popup += new System.EventHandler(this.chkBoxClasif3_Popup);
             // 
             // gridView6
             // 
@@ -484,6 +490,7 @@
             this.chkBoxClasif4.Properties.View = this.gridView7;
             this.chkBoxClasif4.Size = new System.Drawing.Size(179, 20);
             this.chkBoxClasif4.TabIndex = 8;
+            this.chkBoxClasif4.Popup += new System.EventHandler(this.chkBoxClasif4_Popup);
             // 
             // gridView7
             // 
@@ -504,6 +511,7 @@
             this.chkBoxClasif5.Properties.View = this.gridView8;
             this.chkBoxClasif5.Size = new System.Drawing.Size(179, 20);
             this.chkBoxClasif5.TabIndex = 8;
+            this.chkBoxClasif5.Popup += new System.EventHandler(this.chkBoxClasif5_Popup);
             // 
             // gridView8
             // 
@@ -524,6 +532,7 @@
             this.chkBoxClasif6.Properties.View = this.gridView9;
             this.chkBoxClasif6.Size = new System.Drawing.Size(179, 20);
             this.chkBoxClasif6.TabIndex = 8;
+            this.chkBoxClasif6.Popup += new System.EventHandler(this.chkBoxClasif6_Popup);
             // 
             // gridView9
             // 

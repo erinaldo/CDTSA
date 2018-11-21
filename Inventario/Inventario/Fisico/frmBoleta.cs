@@ -31,6 +31,7 @@ namespace CI.Fisico
         string _sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         const String _tituloVentana = "Boletas de Inventario";
         private bool isEdition = false;
+        private int Validada = -1;
 
         public frmBoleta()
         {
@@ -180,7 +181,7 @@ namespace CI.Fisico
 
         private void PopulateGrid()
         {
-            _dsBoleta = clsBoletaInvFisicoDAC.GetData(-1, -1,-1,Convert.ToDateTime("1981/08/21"));
+            _dsBoleta = clsBoletaInvFisicoDAC.GetData(-1, -1, -1, Validada, Convert.ToDateTime("1981/08/21"));
 
             _dtBoleta = _dsBoleta.Tables[0];
             this.dtgGrid.DataSource = null;
@@ -534,19 +535,24 @@ namespace CI.Fisico
         {
             if (this.togleAplicacion.Checked == true &&  this.togleValidacionBoleta.Checked==false)
             {
-                this.gridView1.OptionsSelection.MultiSelect = true;
-                this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+                //this.gridView1.OptionsSelection.MultiSelect = true;
+                //this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
                 this.togleValidacionBoleta.Enabled = false;
                 this.btnAplicar.Enabled = true;
                 this.btnValidar.Enabled = false;
+                //Cargar Boletas Aprobadas
+                Validada = 1;
+                PopulateGrid();
             }
             else
             {
-                this.gridView1.OptionsSelection.MultiSelect = false;
+                //this.gridView1.OptionsSelection.MultiSelect = false;
                 this.togleValidacionBoleta.Enabled = true;
                 this.btnAplicar.Enabled = false;
                 this.btnValidar.Enabled = false;
-                this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+                Validada = -1;
+                PopulateGrid();
+                //this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             }
         }
 
