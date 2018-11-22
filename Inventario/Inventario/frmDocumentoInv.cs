@@ -936,8 +936,9 @@ namespace CI
                     BotoneriaSuperior();
 
                     //Crear el asiento contable y aplicar el documento en inventario
-
-
+                    long IDTransaccion =  (long)_dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
+                    bool result =  clsDocumentoInvCabecera.AplicaInventario(IDTransaccion,ConnectionManager.Tran);
+                    result = result && clsDocumentoInvCabecera.GeneraAsientoTransaccion(IDTransaccion, sUsuario, ConnectionManager.Tran);
                     ConnectionManager.CommitTran();
 
                     MessageBox.Show("El documento se ha guardado correctamente");

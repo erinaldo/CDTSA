@@ -73,6 +73,8 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@CtaDescBonificacion", SqlDbType.Int).SourceColumn = "CtaDescBonificacion";
                 oAdaptador.InsertCommand.Parameters.Add("@CtrDevVentas", SqlDbType.Int).SourceColumn = "CtrDevVentas";
                 oAdaptador.InsertCommand.Parameters.Add("@CtaDevVentas", SqlDbType.Int).SourceColumn = "CtaDevVentas";
+                oAdaptador.InsertCommand.Parameters.Add("@CtrConsumo", SqlDbType.Int).SourceColumn = "CtrConsumo";
+                oAdaptador.InsertCommand.Parameters.Add("@CtaConsumo", SqlDbType.Int).SourceColumn = "CtaConsumo";
 
                 
 
@@ -111,6 +113,9 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@CtaDescBonificacion", SqlDbType.Int).SourceColumn = "CtaDescBonificacion";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtrDevVentas", SqlDbType.Int).SourceColumn = "CtrDevVentas";
                 oAdaptador.UpdateCommand.Parameters.Add("@CtaDevVentas", SqlDbType.Int).SourceColumn = "CtaDevVentas";
+                oAdaptador.UpdateCommand.Parameters.Add("@CtrConsumo", SqlDbType.Int).SourceColumn = "CtrConsumo";
+                oAdaptador.UpdateCommand.Parameters.Add("@CtaConsumo", SqlDbType.Int).SourceColumn = "CtaConsumo";
+
 
                 //Paremetros Delete 
                 oAdaptador.DeleteCommand.CommandType = CommandType.StoredProcedure;
@@ -147,7 +152,8 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@CtaDescBonificacion", SqlDbType.Int).SourceColumn = "CtaDescBonificacion";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtrDevVentas", SqlDbType.Int).SourceColumn = "CtrDevVentas";
                 oAdaptador.DeleteCommand.Parameters.Add("@CtaDevVentas", SqlDbType.Int).SourceColumn = "CtaDevVentas";
-
+                oAdaptador.DeleteCommand.Parameters.Add("@CtrConsumo", SqlDbType.Int).SourceColumn = "CtrConsumo";
+                oAdaptador.DeleteCommand.Parameters.Add("@CtaConsumo", SqlDbType.Int).SourceColumn = "CtaConsumo";
                 return oAdaptador;
             }
             catch (Exception)

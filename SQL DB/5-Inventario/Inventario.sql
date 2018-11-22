@@ -1712,11 +1712,11 @@ SELECT  IDLote ,
 GO 
 
 
-CREATE    PROCEDURE dbo.invUpdateCuentaContableInv(@Operacion NVARCHAR(1),@IDCuenta AS INT OUTPUT,@Descr NVARCHAR(250),@CtrInventario AS INT,@CtaInventario AS INT,  @CtrVenta AS INT,
-											@CtaVenta AS INT,@CtrCompra as INT,@CtaCompra AS INT,@CtrDescVenta AS INT,@CtaDescVenta AS INT, @CtrCostoVenta AS INT,@CtaCostoVenta AS INT,@CtrComisionVenta AS INT,
-											@CtaComisionVenta AS INT,@CtrComisionCobro AS INT,@CtaComisionCobro AS INT,@CtrDescLinea AS INT,@CtaDescLinea AS INT,@CtrCostoDesc AS INT,@CtaCostoDesc AS INT,@CtrSobranteInvFisico AS INT,
-											@CtaSobranteInvFisico AS INT,@CtrFaltanteInvFisico AS INT,@CtaFaltanteInvFisico AS INT,@CtrVariacionCosto AS int,@CtaVariacionCosto AS int, @CtrVencimiento AS int, @CtaVencimiento AS int	,
-											@CtrDescBonificacion AS int	,@CtaDescBonificacion AS int	,@CtrDevVentas AS int	,@CtaDevVentas AS int	)
+CREATE   PROCEDURE dbo.invUpdateCuentaContableInv(@Operacion NVARCHAR(1),@IDCuenta AS INT OUTPUT,@Descr NVARCHAR(250),@CtrInventario AS INT,@CtaInventario AS BIGINT,  @CtrVenta AS INT,
+											@CtaVenta AS BIGINT,@CtrCompra as INT,@CtaCompra AS BIGINT,@CtrDescVenta AS INT,@CtaDescVenta AS BIGINT, @CtrCostoVenta AS INT,@CtaCostoVenta AS BIGINT,@CtrComisionVenta AS INT,
+											@CtaComisionVenta AS BIGINT,@CtrComisionCobro AS INT,@CtaComisionCobro AS BIGINT,@CtrDescLinea AS INT,@CtaDescLinea AS BIGINT,@CtrCostoDesc AS INT,@CtaCostoDesc AS BIGINT,@CtrSobranteInvFisico AS INT,
+											@CtaSobranteInvFisico AS BIGINT,@CtrFaltanteInvFisico AS INT,@CtaFaltanteInvFisico AS BIGINT,@CtrVariacionCosto AS int,@CtaVariacionCosto AS BIGINT, @CtrVencimiento AS int, @CtaVencimiento AS BIGINT	,
+											@CtrDescBonificacion AS int	,@CtaDescBonificacion AS BIGINT	,@CtrDevVentas AS int	,@CtaDevVentas AS BIGINT,@CtrConsumo AS INT,@CtaConsumo AS BIGINT	)
 AS 
 if upper(@Operacion) = 'I'
 BEGIN
@@ -1732,7 +1732,7 @@ BEGIN
 	          CtrDescVenta ,CtaDescVenta ,CtrCostoVenta ,CtaCostoVenta ,CtrComisionVenta ,CtaComisionVenta ,CtrComisionCobro ,
 	          CtaComisionCobro ,CtrDescLinea ,CtaDescLinea ,CtrCostoDesc ,CtaCostoDesc ,CtrSobranteInvFisico ,CtaSobranteInvFisico ,
 	          CtrFaltanteInvFisico ,CtaFaltanteInvFisico ,CtrVariacionCosto ,CtaVariacionCosto ,CtrVencimiento ,CtaVencimiento ,CtrDescBonificacion ,
-	          CtaDescBonificacion ,CtrDevVentas ,CtaDevVentas)
+	          CtaDescBonificacion ,CtrDevVentas ,CtaDevVentas,CtrConsumo,CtaConsumo)
 	VALUES  ( @IDCuenta , -- IDCuenta - bigint
 	          @Descr , -- Descr - nvarchar(250)
 	          @CtrInventario , -- CtrInventario - int
@@ -1764,7 +1764,9 @@ BEGIN
 	          @CtrDescBonificacion , -- CtrDescBonificacion - int
 	          @CtaDescBonificacion , -- CtaDescBonificacion - int
 	          @CtrDevVentas , -- CtrDevVentas - int
-	          @CtaDevVentas  -- CtaDevVentas - int
+	          @CtaDevVentas,  -- CtaDevVentas - int
+	          @CtrConsumo,
+	          @CtaConsumo
 	        )
 	
 END
@@ -1806,14 +1808,16 @@ BEGIN
 		CtrDescBonificacion = @CtrDescBonificacion,
 		CtaDescBonificacion= @CtaDescBonificacion,
 		CtrDevVentas = @CtrDevVentas,
-		CtaDevVentas = @CtaDevVentas
+		CtaDevVentas = @CtaDevVentas,
+		CtrConsumo = @CtrConsumo,
+		CtaConsumo = @CtaConsumo
 	WHERE IDCuenta=@IDCuenta
 END
 
 
 GO 
 
-CREATE PROCEDURE dbo.invGetCuentaContableInv (@IDCuentaContable AS BIGINT,@Descr AS NVARCHAR(250))
+CREATE  PROCEDURE dbo.invGetCuentaContableInv (@IDCuentaContable AS BIGINT,@Descr AS NVARCHAR(250))
 AS 
 SELECT  IDCuenta ,
         Descr ,
@@ -1846,7 +1850,9 @@ SELECT  IDCuenta ,
         CtrDescBonificacion ,
         CtaDescBonificacion ,
         CtrDevVentas ,
-        CtaDevVentas  FROM dbo.invCuentaContable WHERE (IDCuenta = @IDCuentaContable OR @IDCuentaContable = -1)
+        CtaDevVentas,
+        CtrConsumo,
+        CtaConsumo  FROM dbo.invCuentaContable WHERE (IDCuenta = @IDCuentaContable OR @IDCuentaContable = -1)
 AND (Descr  LIKE '%' + @Descr + '%' OR  @Descr = '*')
 
 

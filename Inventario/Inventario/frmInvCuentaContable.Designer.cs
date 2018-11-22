@@ -41,6 +41,10 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.slkupCtaConsumo = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.slkupCtroConsumo = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.slkupCtaDesBonificacion = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit31View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -134,6 +138,8 @@
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -161,15 +167,13 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.slkupCtroConsumo = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.slkupCtaConsumo = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaConsumo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtroConsumo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDesBonificacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit31View)).BeginInit();
@@ -251,6 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
@@ -278,12 +284,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCtroConsumo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaConsumo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -434,6 +434,44 @@
             this.layoutControl1.Size = new System.Drawing.Size(936, 470);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // slkupCtaConsumo
+            // 
+            this.slkupCtaConsumo.Location = new System.Drawing.Point(410, 414);
+            this.slkupCtaConsumo.MenuManager = this.ribbonControl;
+            this.slkupCtaConsumo.Name = "slkupCtaConsumo";
+            this.slkupCtaConsumo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupCtaConsumo.Properties.View = this.gridView7;
+            this.slkupCtaConsumo.Size = new System.Drawing.Size(490, 20);
+            this.slkupCtaConsumo.StyleController = this.layoutControl1;
+            this.slkupCtaConsumo.TabIndex = 35;
+            // 
+            // gridView7
+            // 
+            this.gridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView7.Name = "gridView7";
+            this.gridView7.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView7.OptionsView.ShowGroupPanel = false;
+            // 
+            // slkupCtroConsumo
+            // 
+            this.slkupCtroConsumo.Location = new System.Drawing.Point(139, 414);
+            this.slkupCtroConsumo.MenuManager = this.ribbonControl;
+            this.slkupCtroConsumo.Name = "slkupCtroConsumo";
+            this.slkupCtroConsumo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupCtroConsumo.Properties.View = this.gridView1;
+            this.slkupCtroConsumo.Size = new System.Drawing.Size(267, 20);
+            this.slkupCtroConsumo.StyleController = this.layoutControl1;
+            this.slkupCtroConsumo.TabIndex = 34;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // pictureEdit1
             // 
@@ -1225,8 +1263,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 52);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 0;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup3;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(892, 200);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2,
@@ -1351,6 +1389,24 @@
             this.layoutControlItem18.Size = new System.Drawing.Size(494, 26);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.slkupCtroConsumo;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 130);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(374, 24);
+            this.layoutControlItem25.Text = "Consumo:";
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(100, 13);
+            // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.slkupCtaConsumo;
+            this.layoutControlItem30.Location = new System.Drawing.Point(374, 130);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(494, 24);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem30.TextVisible = false;
             // 
             // layoutControlGroup3
             // 
@@ -1649,62 +1705,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(186, 240);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // slkupCtroConsumo
-            // 
-            this.slkupCtroConsumo.Location = new System.Drawing.Point(139, 414);
-            this.slkupCtroConsumo.MenuManager = this.ribbonControl;
-            this.slkupCtroConsumo.Name = "slkupCtroConsumo";
-            this.slkupCtroConsumo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupCtroConsumo.Properties.View = this.gridView1;
-            this.slkupCtroConsumo.Size = new System.Drawing.Size(267, 20);
-            this.slkupCtroConsumo.StyleController = this.layoutControl1;
-            this.slkupCtroConsumo.TabIndex = 34;
-            // 
-            // layoutControlItem25
-            // 
-            this.layoutControlItem25.Control = this.slkupCtroConsumo;
-            this.layoutControlItem25.Location = new System.Drawing.Point(0, 130);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(374, 24);
-            this.layoutControlItem25.Text = "Consumo:";
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(100, 13);
-            // 
-            // gridView1
-            // 
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // slkupCtaConsumo
-            // 
-            this.slkupCtaConsumo.Location = new System.Drawing.Point(410, 414);
-            this.slkupCtaConsumo.MenuManager = this.ribbonControl;
-            this.slkupCtaConsumo.Name = "slkupCtaConsumo";
-            this.slkupCtaConsumo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupCtaConsumo.Properties.View = this.gridView7;
-            this.slkupCtaConsumo.Size = new System.Drawing.Size(490, 20);
-            this.slkupCtaConsumo.StyleController = this.layoutControl1;
-            this.slkupCtaConsumo.TabIndex = 35;
-            // 
-            // layoutControlItem30
-            // 
-            this.layoutControlItem30.Control = this.slkupCtaConsumo;
-            this.layoutControlItem30.Location = new System.Drawing.Point(374, 130);
-            this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(494, 24);
-            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem30.TextVisible = false;
-            // 
-            // gridView7
-            // 
-            this.gridView7.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView7.Name = "gridView7";
-            this.gridView7.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView7.OptionsView.ShowGroupPanel = false;
-            // 
             // frmInvCuentaContable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1721,6 +1721,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaConsumo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupCtroConsumo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCtaDesBonificacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit31View)).EndInit();
@@ -1802,6 +1806,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
@@ -1829,12 +1835,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCtroConsumo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupCtaConsumo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

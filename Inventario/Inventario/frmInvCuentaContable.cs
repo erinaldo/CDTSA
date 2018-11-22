@@ -448,22 +448,23 @@ namespace CI
 
                     currentRow["Descr"] = (this.txtDescr.Text == "") ? "0" : this.txtDescr.Text;
                     currentRow["CtaDevVentas"] = (this.slkuCtaDevVentas.EditValue.ToString()=="") ?  DBNull.Value :this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtaVenta"] = (this.slkuCtaDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaVenta"] = (this.slkuCtaVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaVentas.EditValue;
                     currentRow["CtrDevVentas"] = (this.slkuCtrDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtrDevVentas.EditValue;
+                    currentRow["CtaDescVenta"] = (this.slkupCtaDescVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaDescVentas.EditValue;
                     currentRow["CtaComisionCobro"] = (this.slkupCtaComisionCobros.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionCobros.EditValue;
                     currentRow["CtaComisionVenta"] = (this.slkupCtaComisionVenta.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionVenta.EditValue;
                     currentRow["CtaCompra"] = (this.slkupCtaCompras.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaCompras.EditValue;
                     currentRow["CtaCostoVenta"] = this.slkupCtaCostoVenta.EditValue.ToString() =="" ? DBNull.Value: this.slkupCtaCostoVenta.EditValue;
                     currentRow["CtaDescBonificacion"] = this.slkupCtaDesBonificacion.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDesBonificacion.EditValue;
-                    currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue.ToString()  == "" ? DBNull.Value : this.slkupCtaDesc.EditValue;
+                    currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDesc.EditValue;
                     currentRow["CtaDescLinea"] = this.slkupCtaDescPorLinea.EditValue.ToString() =="" ? DBNull.Value:this.slkupCtaDescPorLinea.EditValue;
                     currentRow["CtaFaltanteInvFisico"] = this.slkupCtaFaltanteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaFaltanteInventario.EditValue;
                     currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDesc.EditValue;
                     currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaInventario.EditValue;
                     currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaSobranteInventario.EditValue;
-                    currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
-                    currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtaConsumo"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaVariacionCosto"] = this.slkupCtaVariacionCosto.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVariacionCosto.EditValue;
+                    currentRow["CtaVencimiento"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
+                    currentRow["CtaConsumo"] = this.slkupCtaConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaConsumo.EditValue;
 
                     currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionCobros.EditValue;
                     currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionVenta.EditValue;
@@ -535,11 +536,12 @@ namespace CI
                     currentRow = _dtCuenta.NewRow();
 
 
-                    currentRow["IDCuenta"] = -1; 
+                    currentRow["IDCuenta"] = -1;
                     currentRow["Descr"] = (this.txtDescr.Text == "") ? "0" : this.txtDescr.Text;
                     currentRow["CtaDevVentas"] = (this.slkuCtaDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtaVenta"] = (this.slkuCtaDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
+                    currentRow["CtaVenta"] = (this.slkuCtaVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtaVentas.EditValue;
                     currentRow["CtrDevVentas"] = (this.slkuCtrDevVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkuCtrDevVentas.EditValue;
+                    currentRow["CtaDescVenta"] = (this.slkupCtaDescVentas.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaDescVentas.EditValue;
                     currentRow["CtaComisionCobro"] = (this.slkupCtaComisionCobros.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionCobros.EditValue;
                     currentRow["CtaComisionVenta"] = (this.slkupCtaComisionVenta.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaComisionVenta.EditValue;
                     currentRow["CtaCompra"] = (this.slkupCtaCompras.EditValue.ToString() == "") ? DBNull.Value : this.slkupCtaCompras.EditValue;
@@ -548,12 +550,13 @@ namespace CI
                     currentRow["CtaCostoDesc"] = this.slkupCtaDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDesc.EditValue;
                     currentRow["CtaDescLinea"] = this.slkupCtaDescPorLinea.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaDescPorLinea.EditValue;
                     currentRow["CtaFaltanteInvFisico"] = this.slkupCtaFaltanteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaFaltanteInventario.EditValue;
-                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue == "" ? DBNull.Value : this.slkupCtrDesc.EditValue;
-                    currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue == "" ? DBNull.Value : this.slkupCtaInventario.EditValue;
+                    currentRow["CtrCostoDesc"] = this.slkupCtrDesc.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrDesc.EditValue;
+                    currentRow["CtaInventario"] = this.slkupCtaInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaInventario.EditValue;
                     currentRow["CtaSobranteInvFisico"] = this.slkupCtaSobranteInventario.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaSobranteInventario.EditValue;
-                    currentRow["CtaVariacionCosto"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
-                    currentRow["CtaVencimiento"] = this.slkuCtaDevVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkuCtaDevVentas.EditValue;
-                    currentRow["CtaConsumo"] = this.slkupCtaConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaConsumo.EditValue;                    
+                    currentRow["CtaVariacionCosto"] = this.slkupCtaVariacionCosto.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVariacionCosto.EditValue;
+                    currentRow["CtaVencimiento"] = this.slkupCtaVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaVencimiento.EditValue;
+                    currentRow["CtaConsumo"] = this.slkupCtaConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtaConsumo.EditValue;
+
                     currentRow["CtrComisionCobro"] = this.slkupCtrComisionCobros.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionCobros.EditValue;
                     currentRow["CtrComisionVenta"] = this.slkupCtrComisionVenta.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrComisionVenta.EditValue;
                     currentRow["CtrCompra"] = this.slkupCtrCompras.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrCompras.EditValue;
@@ -569,6 +572,7 @@ namespace CI
                     currentRow["CtrVencimiento"] = this.slkupCtrVencimiento.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVencimiento.EditValue;
                     currentRow["CtrVenta"] = this.slkupCtrVentas.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtrVentas.EditValue;
                     currentRow["CtrConsumo"] = this.slkupCtroConsumo.EditValue.ToString() == "" ? DBNull.Value : this.slkupCtroConsumo.EditValue;
+                    
                     _dtCuenta.Rows.Add(currentRow);
                     try
                     {

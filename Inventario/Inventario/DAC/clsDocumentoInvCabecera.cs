@@ -217,7 +217,7 @@ namespace CI.DAC
             return DS;
         }
 
-        public static bool AplicaInventario (long IDTransaccion)
+        public static bool AplicaInventario (long IDTransaccion, SqlTransaction tran)
         {
             bool result = false;
             String strSQL = "dbo.invAplicaTransaccion";
@@ -227,10 +227,28 @@ namespace CI.DAC
             oCmd.Parameters.Add(new SqlParameter("@IDTransaccion", IDTransaccion));
             
             oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
             oCmd.ExecuteNonQuery();
             result = true;
             return result;
     
+        }
+
+        public static bool GeneraAsientoTransaccion(long IDTransaccion, string Usuario, SqlTransaction tran)
+        {
+            bool result = false;
+            String strSQL = "dbo.invGeneraAsientoTransaccion";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDDocumento", IDTransaccion));
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", IDTransaccion));
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            oCmd.ExecuteNonQuery();
+            result = true;
+            return result;
+
         }
 
 
