@@ -2448,14 +2448,13 @@ CREATE TABLE #Catalogo(IDBodega INT,IDProducto INT,IDLote INT)
 
 GO
 
-CREATE PROCEDURE dbo.invCreaPaqueteInvFactura (@Modulo AS NVARCHAR(4),@IDDocumento AS INT,@Usuario AS NVARCHAR(50))
+CREATE PROCEDURE dbo.invCreaPaqueteInvFactura (@Modulo AS NVARCHAR(4),@IDDocumento AS INT,@Usuario AS NVARCHAR(50),@IDTransaccion AS BIGINT OUTPUT)
 AS 
 /*SET @Modulo = 'FAC'
 SET @IDDocumento= 2
 SET @Usuario= 'jespinoza'
 */
 DECLARE @IDConsecutivo  AS INT
-DECLARE @IDTransaccion AS BIGINT
 DECLARE @DocumentoInv AS NVARCHAR(20)
 DECLARE @FechaDocumento DATE
 DECLARE @Referencia AS NVARCHAR(250)
@@ -2544,7 +2543,7 @@ GO
 
 
 
-CREATE PROCEDURE dbo.fafGeneraAsientoContableFactura @Modulo AS NVARCHAR(4), @IDDocumento AS INT,@Usuario AS NVARCHAR(50)
+CREATE PROCEDURE dbo.fafGeneraAsientoContableFactura @Modulo AS NVARCHAR(4), @IDDocumento AS INT,@Usuario AS NVARCHAR(50),@Asiento AS NVARCHAR(20) OUTPUT 
 AS
 --BEGIN TRAN
 /*
@@ -2577,9 +2576,6 @@ BEGIN
 	RAISERROR ( 'GENERACIÓN DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
 	return		
 END
-
---//Generar la cabecera del Asiento
-DECLARE @Asiento AS NVARCHAR(20)
 
  EXEC [dbo].[globalGetNextConsecutivo] 'FA', @Asiento OUTPUT
 	
@@ -2670,14 +2666,14 @@ SET @FondosPorDep =  @VentaLocal + @IVALocal - @DescLocal - @DescEspecial
 INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
 VALUES (@Asiento,@Linea,@CtrContado,@CtaContado,'Venta: Venta de ' + CAST(@IDProducto AS NVARCHAR(20))+ 'CI-' + @Documento, @FondosPorDep,0,@Documento,GETDATE())
 
-SELECT *  FROM dbo.fafCategoriaCliente
+
 DROP TABLE #tmpFactura
 
 go
 
 
 
-CREATE PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50)
+CREATE PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50),@Asiento NVARCHAR(20) OUTPUT
 
 AS 
 
@@ -2713,7 +2709,6 @@ BEGIN
 END
 
 --//Generar la cabecera del Asiento
-DECLARE @Asiento AS NVARCHAR(20)
 
  EXEC [dbo].globalGetNextConsecutivo 'IN', @Asiento OUTPUT
 
