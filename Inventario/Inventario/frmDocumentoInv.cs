@@ -841,11 +841,15 @@ namespace CI
                 _currentRow["IDTraslado"] = "-1"; //Cambiar
                 _currentRow["CreateDate"] = DateTime.Now;
 
-                _dsDocumentoInv.Tables[0].Rows.Add(_currentRow);
-
                 ConnectionManager.BeginTran();
                 clsDocumentoInvCabecera.SetTransactionToAdaptador(true);
                 clsDocumentoInvDetalle.SetTransactionToAdaptador(true);
+
+                if (_dsDocumentoInv.Tables[0].Rows.Count > 0)
+                    _dsDocumentoInv.Tables[0].Rows.Clear();
+                _dsDocumentoInv.Tables[0].Rows.Add(_currentRow);
+
+               
 
                 DataSet dsTemp = clsDocumentoInvDetalle.GetData(-1);
                 try
@@ -938,15 +942,21 @@ namespace CI
                     //Crear el asiento contable y aplicar el documento en inventario
                     long IDTransaccion =  (long)_dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
                     bool result =  clsDocumentoInvCabecera.AplicaInventario(IDTransaccion,ConnectionManager.Tran);
-                    result = result && clsDocumentoInvCabecera.GeneraAsientoTransaccion(IDTransaccion, sUsuario, ConnectionManager.Tran);
-                    ConnectionManager.CommitTran();
+                    String Asiento = clsDocumentoInvCabecera.GeneraAsientoTransaccion(IDTransaccion, sUsuario, ConnectionManager.Tran);
+                    this.hlblAsiento.Text = Asiento;
+                    if (result && Asiento != null)
+                        ConnectionManager.CommitTran();
+                    else
+                        throw new Exception("Ha ocurrido un error");
 
                     MessageBox.Show("El documento se ha guardado correctamente");
                 }
                 catch (System.Data.SqlClient.SqlException ex)
                 {
                     _dsDocumentoInv.RejectChanges();
+                    //_dsDetalle.RejectChanges();
                     dsTemp.RejectChanges();
+                    this.btnSaveDoc.Enabled = true;
                     ConnectionManager.RollBackTran();
                     //_currentRow = null;
                     MessageBox.Show(ex.Message);

@@ -595,14 +595,29 @@ namespace CI.Fisico
 
         private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
-            GridView view = sender as GridView;
+            GridView view = sender as GridView;                
             DataRowView Valor ;
             
             Valor = (DataRowView)view.GetRow(e.ControllerRow);
-            if (e.Action == CollectionChangeAction.Add)
-                SelectedValidate.Add(Valor);
-            else if (e.Action == CollectionChangeAction.Remove)
-                SelectedValidate.Remove(Valor);
+            if (Valor != null)
+            {
+                if (e.Action == CollectionChangeAction.Add)
+                    SelectedValidate.Add(Valor);
+                else if (e.Action == CollectionChangeAction.Remove)
+                    SelectedValidate.Remove(Valor);
+            }
+            else {
+                SelectedValidate.Clear();
+                Int32[] selectedRowHandles = gridView1.GetSelectedRows();
+                for (int i = 0; i < selectedRowHandles.Length; i++)
+                {
+                    int selectedRowHandle = selectedRowHandles[i];
+                    if (selectedRowHandle >= 0)
+                        SelectedValidate.Add((DataRowView)view.GetRow(selectedRowHandle));
+                }
+            }
+
+          
         }
 
         private void btnImprimirBoletas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -617,6 +632,11 @@ namespace CI.Fisico
             {
                  
             }
+        }
+
+        private void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e)
+        {
+
         }
     }
 }

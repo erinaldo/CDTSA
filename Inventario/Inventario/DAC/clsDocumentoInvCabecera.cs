@@ -234,20 +234,23 @@ namespace CI.DAC
     
         }
 
-        public static bool GeneraAsientoTransaccion(long IDTransaccion, string Usuario, SqlTransaction tran)
+        public static String GeneraAsientoTransaccion(long IDTransaccion, string Usuario, SqlTransaction tran)
         {
-            bool result = false;
+            String Asiento = "";
             String strSQL = "dbo.invGeneraAsientoTransaccion";
 
             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
             oCmd.Parameters.Add(new SqlParameter("@IDDocumento", IDTransaccion));
-            oCmd.Parameters.Add(new SqlParameter("@Usuario", IDTransaccion));
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+            oCmd.Parameters.Add("@Asiento", SqlDbType.NVarChar, 20).Value = Asiento;
+            oCmd.Parameters["@Asiento"].Direction = ParameterDirection.InputOutput;
             oCmd.CommandType = CommandType.StoredProcedure;
             oCmd.Transaction = tran;
             oCmd.ExecuteNonQuery();
-            result = true;
-            return result;
+
+            Asiento = oCmd.Parameters["@Asiento"].Value.ToString();
+            return Asiento;
 
         }
 
