@@ -67,10 +67,14 @@ namespace CI
         private void BtnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //validar que el paquete este seleccionado
-            if (this.slkupPaquete.EditValue != null) {
+            if (this.slkupPaquete.EditValue != null)
+            {
                 int IDPaquete = (int)this.slkupPaquete.EditValue;
                 frmDocumentoInv ofrmDocumento = new frmDocumentoInv(IDPaquete);
                 ofrmDocumento.ShowDialog();
+            }
+            else {
+                MessageBox.Show("Por favor seleccione un paquete, para poder agregar el documento.");
             }
         }
 

@@ -118,6 +118,7 @@ namespace CI
             try
             {
                 _dsDocumentoInv = clsDocumentoInvCabecera.GetData(IDTransaccion);
+                this.IDPaquete = Convert.ToInt32(_dsDocumentoInv.Tables[0].Rows[0]["IDPaquete"]);
                 if (_dsDocumentoInv.Tables.Count > 0 && _dsDocumentoInv.Tables[0].Rows.Count > 0)
                 {
                     _dtDocumentoInv = _dsDocumentoInv.Tables[0];
@@ -1124,7 +1125,8 @@ namespace CI
 
             if (keyData == Keys.F2)
             {
-                HandlerMenu("Editar");
+                if (this.gridViewDetalle.GetSelectedRows().Count() > 0)
+                    HandlerMenu("Editar");
                 return true;    // indicate that you handled this keystroke
             }
 

@@ -1517,7 +1517,10 @@ AS
 
 
 --Preguntar si se hace una revaloracion del costo dolar o costo local
-SELECT @CostoLocal= CostoPromLocal,@CostoDolar = @CostoDolar  FROM dbo.invProducto WHERE IDProducto = @IDProducto
+IF @IDTipoTran NOT IN (6,7)  
+BEGIN
+	SELECT @CostoLocal= CostoPromLocal,@CostoDolar = @CostoDolar  FROM dbo.invProducto WHERE IDProducto = @IDProducto
+END
 DECLARE @Naturaleza AS NVARCHAR(1)
 DECLARE @Factor AS INT
 
@@ -2753,8 +2756,6 @@ SELECT A.IDProducto,A.IDBodega,A.IDLote,A.Cantidad,P.CostoPromDolar,P.CostoPromL
 			LEFT  JOIN dbo.invCuentaContable C ON P.IDCuentaContable=C.IDCuenta
 			WHERE IDTransaccion=@IDDocumento
 
-SELECT *  FROM dbo.invTransaccionLinea
-
 SET @Rows = @@ROWCOUNT
 
 DECLARE @IDProducto AS INT,@IDBodega AS INT,@IDLote AS INT,@Cantidad AS DECIMAL(28,4),
@@ -2844,7 +2845,7 @@ BEGIN
 			 --//Inventario
 			SET @Linea = @Linea + 1 
 			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
-			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Consumo ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Consumo ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoUntLocal * @Cantidad,@Documento,GETDATE())
 	 END    
 	
 		--//Ingreso por ajuste
@@ -2858,7 +2859,7 @@ BEGIN
 			 --//Inventario
 			SET @Linea = @Linea + 1 
 			INSERT INTO dbo.cntAsientoDetalle( Asiento ,Linea ,IDCentro ,IDCuenta ,Referencia ,Debito ,Credito ,Documento ,daterecord)
-			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Ingreso ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoPromLocal * @Cantidad,@Documento,GETDATE())
+			VALUES (@Asiento,@Linea,@CtrInventario,@CtaInventario,'Inventario: Ingreso ' + CAST(@IDProducto AS NVARCHAR(20)) + 'CI-' + @Documento,0,@CostoUntLocal * @Cantidad,@Documento,GETDATE())
 	 END     
 	
 		--//Salida por ajuste
