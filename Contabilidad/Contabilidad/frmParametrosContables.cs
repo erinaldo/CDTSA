@@ -40,7 +40,7 @@ namespace CG
         {
             _CurrentRow["UsaSeparadorCta"]= this.chkUsaSeparadorCuenta.EditValue;
             _CurrentRow["SeparadorCta"] = this.txtSimboloSeparadorCuenta.EditValue;
-            _CurrentRow["UsaPredecesor"]= this.chkUsaSeparadorCuenta.EditValue;
+            _CurrentRow["UsaPredecesor"]= this.chkUsaPredecesor.EditValue;
             _CurrentRow["charPredecesor"]= this.txtCaracterPredecesor.EditValue;
             _CurrentRow["CantCharNivel1"] = this.txtCantNivel1.EditValue;
             _CurrentRow["CantCharNivel2"]= this.txtCantNivel2.EditValue;
@@ -61,56 +61,62 @@ namespace CG
 
         private void BtnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (_CurrentRow != null)
+            try
             {
-                Application.DoEvents();
-                _CurrentRow.BeginEdit();
-                ObtenerDatos();
-                _CurrentRow.EndEdit();
-               
-
-                 DataSet _dsChanged = _dsParametros.GetChanges(DataRowState.Modified);
-
-                bool okFlag = true;
-                if (_dsChanged.HasErrors)
+                if (_CurrentRow != null)
                 {
-                    okFlag = false;
-                    string msg = "Error en la fila con el tipo Id";
+                    Application.DoEvents();
+                    _CurrentRow.BeginEdit();
+                    ObtenerDatos();
+                    _CurrentRow.EndEdit();
 
-                    foreach (DataTable tb in _dsChanged.Tables)
+
+                    DataSet _dsChanged = _dsParametros.GetChanges(DataRowState.Modified);
+
+                    bool okFlag = true;
+                    if (_dsChanged.HasErrors)
                     {
-                        if (tb.HasErrors)
-                        {
-                            DataRow[] errosRow = tb.GetErrors();
+                        okFlag = false;
+                        string msg = "Error en la fila con el tipo Id";
 
-                            foreach (DataRow dr in errosRow)
+                        foreach (DataTable tb in _dsChanged.Tables)
+                        {
+                            if (tb.HasErrors)
                             {
-                                msg = msg + dr["Centro"].ToString();
+                                DataRow[] errosRow = tb.GetErrors();
+
+                                foreach (DataRow dr in errosRow)
+                                {
+                                    msg = msg + dr["Centro"].ToString();
+                                }
                             }
                         }
+
+
                     }
 
-                  
-                }
+                    //Si no hay errores
 
-                //Si no hay errores
+                    if (okFlag)
+                    {
+                        ParametrosContabilidadDAC.oAdaptador.Update(_dsChanged, "Data");
+                        // lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
+                        Application.DoEvents();
+                        // isEdition = false;
+                        _dsParametros.AcceptChanges();
+                        // PopulateGrid();
+                        //HabilitarControles(false);
+                        MessageBox.Show("Los Parámetros contables han sido Actualizados");
+                    }
+                    else
+                    {
+                        _dsParametros.RejectChanges();
 
-                if (okFlag)
-                {
-                    ParametrosContabilidadDAC.oAdaptador.Update(_dsChanged, "Data");
-                   // lblStatus.Caption = "Actualizado " + currentRow["Descr"].ToString();
-                    Application.DoEvents();
-                   // isEdition = false;
-                    _dsParametros.AcceptChanges();
-                   // PopulateGrid();
-                    //HabilitarControles(false);
-                    MessageBox.Show("Los Parámetros contables han sido Actualizados");
+                    }
                 }
-                else
-                {
-                    _dsParametros.RejectChanges();
-
-                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -124,7 +130,7 @@ namespace CG
                 _CurrentRow = _dsParametros.Tables[0].Rows[0];
                 this.chkUsaSeparadorCuenta.EditValue = Convert.ToBoolean(_CurrentRow["UsaSeparadorCta"]);
                 this.txtSimboloSeparadorCuenta.EditValue = _CurrentRow["SeparadorCta"].ToString();
-                this.chkUsaSeparadorCuenta.EditValue = Convert.ToBoolean(_CurrentRow["UsaPredecesor"]);
+                this.chkUsaPredecesor.EditValue = Convert.ToBoolean(_CurrentRow["UsaPredecesor"]);
                 this.txtCaracterPredecesor.EditValue = _CurrentRow["charPredecesor"].ToString();
                 this.txtCantNivel1.EditValue = _CurrentRow["CantCharNivel1"].ToString();
                 this.txtCantNivel2.EditValue = _CurrentRow["CantCharNivel2"].ToString();

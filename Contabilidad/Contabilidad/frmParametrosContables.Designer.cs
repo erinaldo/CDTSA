@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmParametrosContables));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.dtpMesFinPeriodoFiscal = new DevExpress.XtraScheduler.UI.MonthEdit();
+            this.txtCantNivel6 = new DevExpress.XtraEditors.TextEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
@@ -40,6 +40,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.dtpMesFinPeriodoFiscal = new DevExpress.XtraScheduler.UI.MonthEdit();
             this.dtpMesInicioPeriodoFiscal = new DevExpress.XtraScheduler.UI.MonthEdit();
             this.txtLogitudAsiento = new DevExpress.XtraEditors.TextEdit();
             this.txtPredecesorCentro = new DevExpress.XtraEditors.TextEdit();
@@ -71,6 +72,7 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -84,12 +86,11 @@
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.txtCantNivel6 = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpMesFinPeriodoFiscal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel6.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpMesFinPeriodoFiscal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpMesInicioPeriodoFiscal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogitudAsiento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPredecesorCentro.Properties)).BeginInit();
@@ -121,6 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
@@ -134,8 +136,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -168,16 +168,14 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // dtpMesFinPeriodoFiscal
+            // txtCantNivel6
             // 
-            this.dtpMesFinPeriodoFiscal.Location = new System.Drawing.Point(166, 94);
-            this.dtpMesFinPeriodoFiscal.MenuManager = this.barManager1;
-            this.dtpMesFinPeriodoFiscal.Name = "dtpMesFinPeriodoFiscal";
-            this.dtpMesFinPeriodoFiscal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtpMesFinPeriodoFiscal.Size = new System.Drawing.Size(361, 20);
-            this.dtpMesFinPeriodoFiscal.StyleController = this.layoutControl1;
-            this.dtpMesFinPeriodoFiscal.TabIndex = 23;
+            this.txtCantNivel6.Location = new System.Drawing.Point(166, 214);
+            this.txtCantNivel6.MenuManager = this.barManager1;
+            this.txtCantNivel6.Name = "txtCantNivel6";
+            this.txtCantNivel6.Size = new System.Drawing.Size(361, 20);
+            this.txtCantNivel6.StyleController = this.layoutControl1;
+            this.txtCantNivel6.TabIndex = 24;
             // 
             // barManager1
             // 
@@ -245,6 +243,17 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(551, 47);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 349);
+            // 
+            // dtpMesFinPeriodoFiscal
+            // 
+            this.dtpMesFinPeriodoFiscal.Location = new System.Drawing.Point(166, 94);
+            this.dtpMesFinPeriodoFiscal.MenuManager = this.barManager1;
+            this.dtpMesFinPeriodoFiscal.Name = "dtpMesFinPeriodoFiscal";
+            this.dtpMesFinPeriodoFiscal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtpMesFinPeriodoFiscal.Size = new System.Drawing.Size(361, 20);
+            this.dtpMesFinPeriodoFiscal.StyleController = this.layoutControl1;
+            this.dtpMesFinPeriodoFiscal.TabIndex = 23;
             // 
             // dtpMesInicioPeriodoFiscal
             // 
@@ -424,8 +433,8 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup2;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup3;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 2;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(531, 329);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup5,
@@ -531,6 +540,15 @@
             this.layoutControlItem2.Size = new System.Drawing.Size(358, 24);
             this.layoutControlItem2.Text = "Simbolo Separador Cuenta";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(139, 13);
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.txtCantNivel6;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 168);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(507, 115);
+            this.layoutControlItem18.Text = "Cant Carácteres Nivel6:";
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlGroup5
             // 
@@ -655,24 +673,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(26, 283);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // txtCantNivel6
-            // 
-            this.txtCantNivel6.Location = new System.Drawing.Point(166, 214);
-            this.txtCantNivel6.MenuManager = this.barManager1;
-            this.txtCantNivel6.Name = "txtCantNivel6";
-            this.txtCantNivel6.Size = new System.Drawing.Size(361, 20);
-            this.txtCantNivel6.StyleController = this.layoutControl1;
-            this.txtCantNivel6.TabIndex = 24;
-            // 
-            // layoutControlItem18
-            // 
-            this.layoutControlItem18.Control = this.txtCantNivel6;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 168);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(507, 115);
-            this.layoutControlItem18.Text = "Cant Carácteres Nivel6:";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(139, 13);
-            // 
             // frmParametrosContables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -692,8 +692,9 @@
             this.Text = "frmParametrosContables";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtpMesFinPeriodoFiscal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel6.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpMesFinPeriodoFiscal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpMesInicioPeriodoFiscal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogitudAsiento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPredecesorCentro.Properties)).EndInit();
@@ -725,6 +726,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
@@ -738,8 +740,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCantNivel6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

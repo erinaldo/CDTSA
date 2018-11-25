@@ -578,7 +578,7 @@ namespace CI
             {
                 this.btnAddDoc.Enabled = true;
                 this.btnSaveDoc.Enabled = false;
-                this.btnCancelDoc.Enabled = false;
+                this.btnCancelDoc.Enabled = true;
                 this.btnPrintDoc.Enabled = true;
             }
         }
@@ -823,6 +823,8 @@ namespace CI
 
         private void btnSaveDoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (MessageBox.Show("La acción que va realizar aplicará el documento al inventario \n\r Desea proseguir? ", "Aplicación del Documento", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
+                return;
             //Validar  los datos de Cabecera
             if (ValidasDatosCabecera() && ValidarDatosDetalle())
             { 
@@ -862,11 +864,12 @@ namespace CI
                     this.txtDocumento.EditValue = _dsDocumentoInv.Tables[0].Rows[0]["Documento"];
                     DataTable dtTemp = dsTemp.Tables[0];
 
-                    
+
 
                     //Actualizar los datos
-                    for (int i = 0; i < _dsDetalle.Tables[0].Rows.Count; i++) {
-                        _currentRowDetalle =  dtTemp.NewRow();
+                    for (int i = 0; i < _dsDetalle.Tables[0].Rows.Count; i++)
+                    {
+                        _currentRowDetalle = dtTemp.NewRow();
                         if (_dtPaquete.Rows[0]["Transaccion"].ToString() == "TR")
                         {
                             _currentRowDetalle["IDTransaccion"] = _dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
@@ -892,7 +895,7 @@ namespace CI
                             _currentRowDetalle["IDTipoTran"] = 3;
                             _currentRowDetalle["IDBodegaOrigen"] = _dsDetalle.Tables[0].Rows[i]["IDBodegaDestino"];
                             _currentRowDetalle["IDTraslado"] = _dsDetalle.Tables[0].Rows[i]["IDTraslado"];
-                            
+
                             _currentRowDetalle["Cantidad"] = _dsDetalle.Tables[0].Rows[i]["Cantidad"];
                             _currentRowDetalle["CostoUntDolar"] = _dsDetalle.Tables[0].Rows[i]["CostoUntDolar"];
                             _currentRowDetalle["CostoUntLocal"] = _dsDetalle.Tables[0].Rows[i]["CostoUntLocal"];
@@ -924,7 +927,7 @@ namespace CI
                             _currentRowDetalle["Naturaleza"] = _dsDetalle.Tables[0].Rows[i]["Naturaleza"];
                             _currentRowDetalle["TipoCambio"] = _dsDetalle.Tables[0].Rows[i]["TipoCambio"];
                             _currentRowDetalle["Aplicado"] = _dsDetalle.Tables[0].Rows[i]["Aplicado"];
-                           
+
                         }
                         dsTemp.Tables[0].Rows.Add(_currentRowDetalle);
 
@@ -932,7 +935,7 @@ namespace CI
 
                     clsDocumentoInvDetalle.oAdaptador.Update(dsTemp, "Data");
                     dsTemp.AcceptChanges();
-                   
+
                     Application.DoEvents();
 
                     Accion = "View";
@@ -941,8 +944,8 @@ namespace CI
                     BotoneriaSuperior();
 
                     //Crear el asiento contable y aplicar el documento en inventario
-                    long IDTransaccion =  (long)_dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
-                    bool result =  clsDocumentoInvCabecera.AplicaInventario(IDTransaccion,ConnectionManager.Tran);
+                    long IDTransaccion = (long)_dsDocumentoInv.Tables[0].Rows[0]["IDTransaccion"];
+                    bool result = clsDocumentoInvCabecera.AplicaInventario(IDTransaccion, ConnectionManager.Tran);
                     String Asiento = clsDocumentoInvCabecera.GeneraAsientoTransaccion(IDTransaccion, sUsuario, ConnectionManager.Tran);
                     this.hlblAsiento.Text = Asiento;
                     if (result && Asiento != null)
@@ -952,7 +955,8 @@ namespace CI
 
                     MessageBox.Show("El documento se ha guardado correctamente");
                 }
-                catch (System.Data.SqlClient.SqlException ex)
+               
+                catch (Exception ex)
                 {
                     _dsDocumentoInv.RejectChanges();
                     //_dsDetalle.RejectChanges();

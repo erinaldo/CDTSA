@@ -672,10 +672,12 @@ namespace CG
                     DataTable dt = dv.ToTable();
                     if (dt.Rows.Count == 0)
                         return;
-                    bool EsMayor = Convert.ToBoolean((this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue);
-                    //if (!EsMayor)
-                    //{
 
+                    //Este parametro permite seleccionar cual sera el tipo por defento que se seleccione
+                    bool EsMayor = false ;
+                    if ((this.chkEsMayor.EditValue != null) || (this.chkAceptaDatos.EditValue!=null)){
+                        EsMayor  = Convert.ToBoolean((this.chkEsMayor.EditValue == null) ? false : this.chkEsMayor.EditValue);
+                    }
 
                  
 
@@ -745,9 +747,11 @@ namespace CG
                     }
                     else
                     {
-                        this.chkEsMayor.EditValue = true;
-                        this.chkEsMayor.Enabled = true;
-                        //this.chkAceptaDatos.Enabled = true;
+                        if (EsMayor)
+                            this.chkEsMayor.EditValue = true;
+                        else
+                            this.chkAceptaDatos.EditValue = true;
+                        
                     }
 
                     this.txtDescripcion.Text = "";

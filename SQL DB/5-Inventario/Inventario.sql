@@ -2546,7 +2546,7 @@ GO
 
 
 
-CREATE PROCEDURE dbo.fafGeneraAsientoContableFactura @Modulo AS NVARCHAR(4), @IDDocumento AS INT,@Usuario AS NVARCHAR(50),@Asiento AS NVARCHAR(20) OUTPUT 
+CREATE  PROCEDURE dbo.fafGeneraAsientoContableFactura @Modulo AS NVARCHAR(4), @IDDocumento AS INT,@Usuario AS NVARCHAR(50),@Asiento AS NVARCHAR(20) OUTPUT 
 AS
 --BEGIN TRAN
 /*
@@ -2697,9 +2697,29 @@ DROP TABLE #tmpFactura
 
 go
 
+CREATE PROCEDURE dbo.invCalculaCostoPromProd  @IDProducto AS BIGINT,
+																							 @Cantidad AS DECIMAL(28,4),
+																							 @CostoUnt AS DECIMAL(28,4)  OUTPUT
+AS 
+--SET @IDProducto =26003 
+--SET @Cantidad=20
+--SET @CostoUnt = 400
+
+DECLARE @CostoPromLoc AS DECIMAL(28,4),@CostoPromDol AS DECIMAL(28,4),@ExistenciaActual AS DECIMAL(28,4),@NewCostoProm AS DECIMAL(28,4)
+
+--//Obtener el costo del Producto Actual
+SELECT @CostoPromLoc = ISNULL(CostoPromLocal,0) , @CostoPromDol = ISNULL(CostoPromDolar,0)
+FROM dbo.invProducto WHERE IDProducto=@IDProducto
+
+--//Inventario actual
+SELECT @ExistenciaActual = ISNULL(SUM(Existencia),0)  FROM dbo.invExistenciaBodega WHERE IDProducto =@IDProducto
+
+SET @NewCostoProm = ((@ExistenciaActual * @CostoPromLoc) + (@Cantidad * @CostoUnt)) / (@ExistenciaActual + @Cantidad)
 
 
-CREATE   PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50),@Asiento NVARCHAR(20) OUTPUT
+GO
+
+CREATE    PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50),@Asiento NVARCHAR(20) OUTPUT
 
 AS 
 
@@ -2762,7 +2782,7 @@ DECLARE @IDProducto AS INT,@IDBodega AS INT,@IDLote AS INT,@Cantidad AS DECIMAL(
 @CostoPromDolar AS DECIMAL(28,4),@CostoPromLocal AS DECIMAL(28,4),@CostoUntLocal AS decimal(28,4),
 @PrecioUntLocal AS decimal(28,4),@CtaInventario AS BIGINT,@CtrInventario AS INT,
 @CtaSobranteInvFisico AS BIGINT, @CtrSobranteInvFisico AS INT,
-@CtaFaltanteInvFisico AS BIGINT, @CtrFaltantanteInvFisico AS INT,
+@CtaFaltanteInvFisico AS BIGINT, @CtrFaltanteInvFisico AS INT,
 @CtaVariacionCosto AS BIGINT, @CtrVariacionCosto AS INT,
 @CtaVencimiento AS BIGINT, @CtrVencimiento AS INT,
 @CtaCompra AS BIGINT,@CtrCompra AS INT,
@@ -2783,7 +2803,7 @@ BEGIN
 	@PrecioUntLocal = PrecioUntLocal,
 	@CtaInventario =CtaInventario, 	@CtrInventario=CtrInventario,
 	@CtaSobranteInvFisico = CtaSobranteInvFisico,@CtrSobranteInvFisico = CtrSobranteInvFisico,
-	@CtaFaltanteInvFisico = CtaFaltanteInvFisico, @CtrFaltantanteInvFisico =CtrFaltanteInvFisico,
+	@CtaFaltanteInvFisico = CtaFaltanteInvFisico, @CtrFaltanteInvFisico =CtrFaltanteInvFisico,
 	@CtaVariacionCosto = CtaVariacionCosto, @CtrVariacionCosto = CtrVariacionCosto,
 	@CtaVencimiento = CtaVencimiento, @CtrVencimiento = CtrVencimiento,
 	@CtaCompra = CtaCompra,@CtrCompra = CtrCompra,
@@ -2791,6 +2811,21 @@ BEGIN
 	@IDTipoTran = IDTipoTran
 	  FROM #tmpDocumento WHERE ID =@Rows
 
+	 -- Validacion de Datos
+	DECLARE @ValidacionDatos  AS BIGINT
+	SET @ValidacionDatos = @CtaInventario  + @CtrInventario + 
+											@CtaSobranteInvFisico + @CtrSobranteInvFisico + 
+											@CtaFaltanteInvFisico + @CtrFaltanteInvFisico +
+											@CtaVariacionCosto + @CtrVariacionCosto +
+											@CtaVencimiento + @CtrVencimiento +
+											@CtaCompra + @CtrCompra +
+											@CtaConsumo + @CtrConsumo 
+											
+	 IF (@ValidacionDatos IS NULL ) 
+	 BEGIN
+		RAISERROR ( 'El Asiento contable no se puede generar. Por favor verifique que la familia contable del producto, tenga la cuentas contables asociadas.', 16, 1) ;
+		RETURN
+	END
 
 	  --//Salida de inventario Fisico
 	  IF (@IDTipoTran =1)
@@ -2888,5 +2923,4 @@ DROP TABLE #tmpDocumento
 
 --ROLLBACK
 GO 
-
 

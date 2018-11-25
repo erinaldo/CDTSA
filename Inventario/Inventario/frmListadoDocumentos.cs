@@ -69,6 +69,13 @@ namespace CI
             //validar que el paquete este seleccionado
             if (this.slkupPaquete.EditValue != null)
             {
+                DataRowView dr = (DataRowView) this.slkupPaquete.GetSelectedDataRow();
+                if (dr["Transaccion"].ToString() == "VT")
+                {
+                    MessageBox.Show("No se puede crear un paquete de tipo venta desde el modulo de inventario");
+                    return;
+                }
+                
                 int IDPaquete = (int)this.slkupPaquete.EditValue;
                 frmDocumentoInv ofrmDocumento = new frmDocumentoInv(IDPaquete);
                 ofrmDocumento.ShowDialog();
@@ -96,7 +103,7 @@ namespace CI
                 EnlazarEventos();
 
                 //Cargar los paquetes
-                Util.Util.ConfigLookupEdit(this.slkupPaquete, clsPaqueteDAC.GetData(-1,"*","*",-1,"*",-1).Tables[0], "Descr", "IDPaquete");
+                Util.Util.ConfigLookupEdit(this.slkupPaquete, clsPaqueteDAC.GetData(-1, "*", "*", -1, "*", -1).Tables[0].DefaultView, "Descr", "IDPaquete");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupPaquete, "[{'ColumnCaption':'IDPaquete','ColumnField':'IDPaquete','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 this.dtpFechaInicial.EditValue = DateTime.Now.AddMonths(-1);
