@@ -1274,7 +1274,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConsultaArticulo";
             this.Ribbon = this.ribbonControl;
-            this.Text = "frmConsultaArticulo";
+            this.Text = "Consulta de Productos";
             this.Load += new System.EventHandler(this.frmConsultaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

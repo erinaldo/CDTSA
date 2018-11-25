@@ -758,6 +758,7 @@ namespace CI
             {
                 Util.Util.ConfigLookupEdit(this.slkupLote, clsLoteDAC.GetData(-1, Convert.ToInt32(slkupProducto.EditValue), "*", "*").Tables[0], "LoteProveedor", "IDLote",350);
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupLote, "[{'ColumnCaption':'IDLote','ColumnField':'IDLote','width':20},{'ColumnCaption':'Lote','ColumnField':'LoteProveedor','width':60},{'ColumnCaption':'F.V','ColumnField':'FechaVencimiento','width':20}]");
+                
                 this.slkupLote.Enabled = true;
             }
             else {
@@ -954,6 +955,8 @@ namespace CI
                         throw new Exception("Ha ocurrido un error");
 
                     MessageBox.Show("El documento se ha guardado correctamente");
+                    HabilitarControlesCabecera(false);
+                    HabilitarControlesDetalle(false);
                 }
                
                 catch (Exception ex)

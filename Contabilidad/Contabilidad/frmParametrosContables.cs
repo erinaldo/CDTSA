@@ -57,6 +57,7 @@ namespace CG
             _CurrentRow["UsaPredecesorCentro"]= this.chkUsaPredecesorCentro.EditValue;
             _CurrentRow["charPredecesorCentro"]= this.txtPredecesorCentro.EditValue;
             _CurrentRow["LongAsiento"]= this.txtLogitudAsiento.EditValue;
+            _CurrentRow["TipoCambio"] = this.slkupTipoCambio.EditValue;
         }
 
         private void BtnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -147,6 +148,7 @@ namespace CG
                 this.chkUsaPredecesorCentro.EditValue = Convert.ToBoolean(_CurrentRow["UsaPredecesorCentro"]);
                 this.txtPredecesorCentro.EditValue =_CurrentRow["charPredecesorCentro"].ToString();
                 this.txtLogitudAsiento.EditValue = Convert.ToInt32(_CurrentRow["LongAsiento"]);
+                this.slkupTipoCambio.EditValue = _CurrentRow["TipoCambio"];
             }catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -167,6 +169,9 @@ namespace CG
 
             Util.Util.ConfigLookupEdit(this.slkupCuentaUtilidadPeriodo, _lstCuentasContable, "Descr", "IDCuenta");
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaUtilidadPeriodo, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+
+            Util.Util.ConfigLookupEdit(this.slkupTipoCambio, TipoCambioDAC.GetData("*").Tables[0], "Descr", "IDTipoCambio");
+            Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoCambio, "[{'ColumnCaption':'ID','ColumnField':'IDTipoCambio','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
             this.slkupCuentaUtilidadAcumulada.Properties.ShowClearButton = true;
             this.slkupCuentaUtilidadPeriodo.Properties.ShowClearButton = true;

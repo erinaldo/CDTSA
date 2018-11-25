@@ -17,7 +17,7 @@ namespace CG
         {
             String getSQL = "SELECT TOP 1 ID,UsaSeparadorCta,SeparadorCta,UsaPredecesor,charPredecesor,CantCharNivel1,CantCharNivel2,CantCharNivel3, " +
                             "CantCharNivel4,CantCharNivel5,CantCharNivel6,IDCtaUtilidadPeriodo,IDCtaUtilidadAcumulada,MesInicioPeriodoFiscal, " +
-			                "MesFinalPeriodoFiscal,UsaSeparadorCentro,SeparadorCentro,UsaPredecesorCentro,charPredecesorCentro,LongAsiento " +
+			                "MesFinalPeriodoFiscal,UsaSeparadorCentro,SeparadorCentro,UsaPredecesorCentro,charPredecesorCentro,LongAsiento,TipoCambio " +
                             "FROM dbo.cntParametros";
             String InsertSQL = "[dbo].[cntUpdateParametrosContabilidad]";
             String UpdateSQL = "[dbo].[cntUpdateParametrosContabilidad]";
@@ -57,6 +57,7 @@ namespace CG
                 oAdaptador.InsertCommand.Parameters.Add("@UsaPredecesorCentro", SqlDbType.Int).SourceColumn = "UsaPredecesorCentro";
                 oAdaptador.InsertCommand.Parameters.Add("@charPredecesorCentro", SqlDbType.NVarChar).SourceColumn = "charPredecesorCentro";
                 oAdaptador.InsertCommand.Parameters.Add("@LongAsiento", SqlDbType.Int).SourceColumn = "LongAsiento";
+                oAdaptador.InsertCommand.Parameters.Add("@TipoCambio", SqlDbType.NVarChar).SourceColumn = "TipoCambio";
      
 
                 //Paremetros Delete 
@@ -82,6 +83,7 @@ namespace CG
                 oAdaptador.UpdateCommand.Parameters.Add("@UsaPredecesorCentro", SqlDbType.Int).SourceColumn = "UsaPredecesorCentro";
                 oAdaptador.UpdateCommand.Parameters.Add("@charPredecesorCentro", SqlDbType.NVarChar).SourceColumn = "charPredecesorCentro";
                 oAdaptador.UpdateCommand.Parameters.Add("@LongAsiento", SqlDbType.Int).SourceColumn = "LongAsiento";
+                oAdaptador.UpdateCommand.Parameters.Add("@TipoCambio", SqlDbType.NVarChar).SourceColumn = "TipoCambio";
 
 
                 return oAdaptador;

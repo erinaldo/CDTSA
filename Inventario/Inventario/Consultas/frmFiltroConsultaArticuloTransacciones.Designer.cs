@@ -288,7 +288,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFiltroConsultaArticuloTransacciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmFiltroConsultaArticuloTransacciones";
+            this.Text = "Filtro Transacciones";
             this.Load += new System.EventHandler(this.frmFiltroConsultaArticuloTransacciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.slkupBodega.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).EndInit();

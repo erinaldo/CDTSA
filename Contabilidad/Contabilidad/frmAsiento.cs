@@ -784,24 +784,26 @@ namespace CG
                     }
                 }
 
-                if (e.Row == null) return;
-                //Get the value of the first column
-                int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
-                //Get the value of the second column
-                long iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (long)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
-                //Validity criterion
+                // Validacion de Centros y Cuentas contables unicos.  (Lo quite por que inventario permite varias centro y lineas iguales)
 
-                DataView Dv = new DataView();
-                Dv.Table = ((DataView)view.DataSource).ToTable();
-                Dv.RowFilter = string.Format("IDCuenta={0} and IDCentro ={1}", iCuenta, iCentro);
+                //if (e.Row == null) return;
+                ////Get the value of the first column
+                //int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
+                ////Get the value of the second column
+                //long iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (long)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
+                ////Validity criterion
 
-                if (Dv.ToTable().Rows.Count > 1)
-                {
-                    e.Valid = false;
-                    //Set errors with specific descriptions for the columns
-                    view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
-                    view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
-                }
+                //DataView Dv = new DataView();
+                //Dv.Table = ((DataView)view.DataSource).ToTable();
+                //Dv.RowFilter = string.Format("IDCuenta={0} and IDCentro ={1}", iCuenta, iCentro);
+
+                //if (Dv.ToTable().Rows.Count > 1)
+                //{
+                //    e.Valid = false;
+                //    //Set errors with specific descriptions for the columns
+                //    view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
+                //    view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
+                //}
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);

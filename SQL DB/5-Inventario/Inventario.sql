@@ -2516,6 +2516,32 @@ END
 
 GO
 
+CREATE  FUNCTION dbo.invfCalculaCostoPromProd  (@IDProducto AS BIGINT,
+																							 @Cantidad AS DECIMAL(28,4),
+																							 @CostoUnt AS DECIMAL(28,4),
+																							 @Moneda AS NVARCHAR(1)  )
+RETURNS DECIMAL(28,4)																							 
+AS
+BEGIN
+		-- Moneda puede ser L o D
+		--SET @IDProducto =26003 
+		--SET @Cantidad=20
+		--SET @CostoUnt = 400
+
+		DECLARE @CostoPromLoc AS DECIMAL(28,4),@CostoPromDol AS DECIMAL(28,4),@ExistenciaActual AS DECIMAL(28,4),@NewCostoProm AS DECIMAL(28,4)
+
+		--//Obtener el costo del Producto Actual
+		SELECT @CostoPromLoc = ISNULL(CostoPromLocal,0) , @CostoPromDol = ISNULL(CostoPromDolar,0)
+		FROM dbo.invProducto WHERE IDProducto=@IDProducto
+
+		--//Inventario actual
+		SELECT @ExistenciaActual = ISNULL(SUM(Existencia),0)  FROM dbo.invExistenciaBodega WHERE IDProducto =@IDProducto
+
+		SET @NewCostoProm = ((@ExistenciaActual * CASE WHEN @Moneda = 'L' THEN @CostoPromLoc ELSE @CostoPromDol END) + (@Cantidad * @CostoUnt)) / (@ExistenciaActual + @Cantidad)
+		RETURN @NewCostoProm
+END
+
+GO
 
 CREATE PROCEDURE dbo.invAplicaTransaccion ( @IDTransaccion AS  BIGINT)
 AS 
@@ -2536,11 +2562,23 @@ BEGIN
 		return		
 END
 
+
+--Actualiza Costos Promedio de los producto  (solo a las transacciones de ajuste y compras)
+UPDATE P SET P.CostoPromLocal =  dbo.invfCalculaCostoPromProd(C.IDProducto,Cantidad,CostoUntLocal,'L') ,
+						   P.CostoPromDolar = dbo.invfCalculaCostoPromProd(C.IDProducto,Cantidad,CostoUntDolar, 'D') 
+FROM 
+(SELECT IDProducto, SUM(cantidad * CostoUntLocal)/SUM(Cantidad) CostoUntLocal,SUM(cantidad * CostoUntDolar)/SUM(Cantidad) CostoUntDolar, SUM(Cantidad) Cantidad   FROM dbo.invTransaccionLinea 
+WHERE IDTransaccion = @IDTransaccion AND IDTipoTran IN (6,7)
+GROUP BY IDProducto) C
+INNER JOIN dbo.invProducto P ON C.IDProducto = P.IDProducto
+
+
+
+
 --Actualizar las existencias
 UPDATE B SET B.Existencia = B.Existencia + (A.Cantidad * A.Factor) FROM dbo.invTransaccionLinea A
 INNER JOIN dbo.invExistenciaBodega B ON	A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
 WHERE IDTransaccion =@IDTransaccion 
-
 
 GO
 
@@ -2697,29 +2735,7 @@ DROP TABLE #tmpFactura
 
 go
 
-CREATE PROCEDURE dbo.invCalculaCostoPromProd  @IDProducto AS BIGINT,
-																							 @Cantidad AS DECIMAL(28,4),
-																							 @CostoUnt AS DECIMAL(28,4)  OUTPUT
-AS 
---SET @IDProducto =26003 
---SET @Cantidad=20
---SET @CostoUnt = 400
-
-DECLARE @CostoPromLoc AS DECIMAL(28,4),@CostoPromDol AS DECIMAL(28,4),@ExistenciaActual AS DECIMAL(28,4),@NewCostoProm AS DECIMAL(28,4)
-
---//Obtener el costo del Producto Actual
-SELECT @CostoPromLoc = ISNULL(CostoPromLocal,0) , @CostoPromDol = ISNULL(CostoPromDolar,0)
-FROM dbo.invProducto WHERE IDProducto=@IDProducto
-
---//Inventario actual
-SELECT @ExistenciaActual = ISNULL(SUM(Existencia),0)  FROM dbo.invExistenciaBodega WHERE IDProducto =@IDProducto
-
-SET @NewCostoProm = ((@ExistenciaActual * @CostoPromLoc) + (@Cantidad * @CostoUnt)) / (@ExistenciaActual + @Cantidad)
-
-
-GO
-
-CREATE    PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50),@Asiento NVARCHAR(20) OUTPUT
+CREATE   PROCEDURE  dbo.invGeneraAsientoTransaccion  @IDDocumento AS INT, @Usuario AS NVARCHAR(50),@Asiento NVARCHAR(20) OUTPUT
 
 AS 
 
@@ -2809,7 +2825,7 @@ BEGIN
 	@CtaCompra = CtaCompra,@CtrCompra = CtrCompra,
 	@CtaConsumo =  CtaConsumo,@CtrConsumo = CtrConsumo,
 	@IDTipoTran = IDTipoTran
-	  FROM #tmpDocumento WHERE ID =@Rows
+	  FROM #tmpDocumento WHERE ID =@i
 
 	 -- Validacion de Datos
 	DECLARE @ValidacionDatos  AS BIGINT
