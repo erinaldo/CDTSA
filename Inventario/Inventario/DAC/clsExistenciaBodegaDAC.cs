@@ -87,6 +87,50 @@ namespace CI.DAC
              return DS;
          }
 
+         public static DataSet KardexInventario(DateTime FechaInicio,DateTime FechaFin, int IDBodega, long IDProducto, int IDLote)
+         {
+             String strSQL = "dbo.invGetKardexInventario";
+
+             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+             oCmd.Parameters.Add(new SqlParameter("@FechaInicio", FechaInicio));
+             oCmd.Parameters.Add(new SqlParameter("@FechaFin", FechaFin));
+             oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+             oCmd.Parameters.Add(new SqlParameter("@IDLote", IDLote));
+             oCmd.Parameters.Add(new SqlParameter("@IDBodega", IDBodega));
+             
+
+             oCmd.CommandType = CommandType.StoredProcedure;
+
+             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+             DataSet DS = new DataSet();
+             oAdap.Fill(DS);
+             DS.Tables[0].TableName = "Corte";
+             return DS;
+         }
+
+                        
+         public static DataSet MovimientoInventario(DateTime FechaInicio, DateTime FechaFin, int IDBodega, long IDProducto, int IDLote)
+         {
+             String strSQL = "dbo.invMovimientoInventario";
+
+             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+             oCmd.Parameters.Add(new SqlParameter("@FechaInicio", FechaInicio));
+             oCmd.Parameters.Add(new SqlParameter("@FechaFin", FechaFin));
+             oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+             oCmd.Parameters.Add(new SqlParameter("@IDLote", IDLote));
+             oCmd.Parameters.Add(new SqlParameter("@IDBodega", IDBodega));
+
+
+             oCmd.CommandType = CommandType.StoredProcedure;
+
+             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+             DataSet DS = new DataSet();
+             oAdap.Fill(DS);
+             DS.Tables[0].TableName = "Corte";
+             return DS;
+         }
          
     }
 }
