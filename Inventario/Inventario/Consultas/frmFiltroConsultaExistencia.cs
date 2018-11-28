@@ -149,7 +149,7 @@ namespace CI
 
 
 
-            if (sOrigen == "Existencia")
+            if (sOrigen == "Existencia" || sOrigen == "SaldosInventario")
             {
                 this.Height = 430;
                 this.groupBoxDocumento.Visible = false;

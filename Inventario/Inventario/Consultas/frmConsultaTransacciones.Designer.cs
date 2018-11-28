@@ -171,6 +171,7 @@
             this.FechaRegistro});
             this.gridView1.GridControl = this.dtgDetalleTransacciones;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             // 
             // paquete

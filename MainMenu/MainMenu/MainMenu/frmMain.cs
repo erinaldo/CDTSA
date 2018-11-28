@@ -501,6 +501,9 @@ namespace MainMenu
                     nodeConsultaExistenciasBodega.Tag = "frmConsultaExistenciaBodega";
                     TreeListNode nodeConsultaTransacciones = tl.AppendNode(new object[] { "Transacciones" }, nodeConsultas.Id, 11, 11, 11);
                     nodeConsultaTransacciones.Tag = "frmConsultaTransacciones";
+                    TreeListNode nodeSaldosInventario = tl.AppendNode(new object[] { "Saldos" }, nodeConsultas.Id, 11, 11, 11);
+                    nodeSaldosInventario.Tag = "frmSaldosInventario";
+                    
                     TreeListNode nodeReportes = tl.AppendNode(new object[] { "Reportes" }, -1, 9, 10, 9);
                     
                     TreeListNode nodeProcesos = tl.AppendNode(new object[] { "Processos" }, -1, 9, 10, 9);
@@ -755,6 +758,13 @@ namespace MainMenu
                     ofrmBoleta.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmBoleta.Show();
+                    break;
+                case "frmSaldosInventario":
+                    CI.Consultas.frmSaldosInventario ofrmSaldos = new CI.Consultas.frmSaldosInventario();
+                    ofrmSaldos.MdiParent = this;
+                    ofrmSaldos.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmSaldos.Show();
                     break;
             }
 
