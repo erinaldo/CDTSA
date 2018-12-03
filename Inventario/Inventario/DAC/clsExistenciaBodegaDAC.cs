@@ -89,7 +89,7 @@ namespace CI.DAC
 
          public static DataSet KardexInventario(DateTime FechaInicio,DateTime FechaFin, int IDBodega, long IDProducto, int IDLote)
          {
-             String strSQL = "dbo.invGetKardexInventario";
+             String strSQL = "dbo.invGetKardex";
 
              SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
@@ -112,7 +112,7 @@ namespace CI.DAC
                         
          public static DataSet MovimientoInventario(DateTime FechaInicio, DateTime FechaFin, int IDBodega, long IDProducto, int IDLote)
          {
-             String strSQL = "dbo.invMovimientoInventario";
+             String strSQL = "dbo.invKardexConsolidado";
 
              SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
