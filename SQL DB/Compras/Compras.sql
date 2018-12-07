@@ -1,3 +1,4 @@
+
 CREATE TABLE dbo.cppProveedor(
 	IDProveedor INT NOT NULL,
 	Nombre NVARCHAR(250),
@@ -33,7 +34,7 @@ CONSTRAINT [pkinvEstadoOrdenCompra] PRIMARY KEY CLUSTERED
 
 GO
 
-CREATE TABLE dbo.ccpCondicionPago(
+CREATE TABLE dbo.cppCondicionPago(
 	IDCondicionPago INT NOT NULL,
 	Descr NVARCHAR(250),
 	Dias INT NOT NULL,
@@ -102,7 +103,7 @@ GO
 
 CREATE TABLE dbo.invSolicitudCompraDetalle (
 	IDSolicitud INT NOT NULL,
-	IDProducto INT NOT NULL,
+	IDProducto BIGINT NOT NULL,
 	Cantidad DECIMAL(28,4) DEFAULT  0,
 	Comentario NVARCHAR(20) ,
 CONSTRAINT [pkinvSolicitudCompraDetalle] PRIMARY KEY CLUSTERED 
@@ -161,7 +162,7 @@ CREATE TABLE [dbo].[invOrdenCompra](
 GO
 
 ALTER TABLE [dbo].[invOrdenCompra]  WITH CHECK ADD  CONSTRAINT [fkinvOrdenCompra_Proveedor] FOREIGN KEY([IDProveedor])
-REFERENCES [dbo].[ccpProveedor] ([IDProveedor])
+REFERENCES [dbo].[cppProveedor] ([IDProveedor])
 GO
 
 ALTER TABLE [dbo].[invOrdenCompra]  WITH CHECK ADD  CONSTRAINT [fkinvOrdenCompra_GlobalMoneda] FOREIGN KEY([IDMoneda])
@@ -186,7 +187,7 @@ GO
 
 CREATE TABLE dbo.invOrdenCompraDetalle (
 	IDOrdenCompra INT NOT NULL,
-	IDProducto INT NOT NULL,
+	IDProducto BIGINT NOT NULL,
 	Cantidad DECIMAL(28,4) DEFAULT  0,
 	CantidadAceptada DECIMAL(28,4) DEFAULT 0,
 	CantidadRechazada  DECIMAL(28,4) DEFAULT 0,
@@ -240,7 +241,7 @@ REFERENCES [dbo].invBodega (IDBodega)
 GO
 
 ALTER TABLE [dbo].[invEmbarque]  WITH CHECK ADD  CONSTRAINT [fkinvEmbarque_OrdenCompra] FOREIGN KEY(IDOrdenCompra)
-REFERENCES [dbo].OrdenCompra (IDOrdenCompra)
+REFERENCES [dbo].invOrdenCompra (IDOrdenCompra)
 GO
 
 
@@ -256,15 +257,15 @@ GO
 
 CREATE TABLE dbo.invEmbarqueDetalle (
 	IDEmbarque INT NOT NULL,
-	IDProducto INT NOT NULL,
+	IDProducto BIGINT NOT NULL,
 	IDLote int NOT NULL,
 	Cantidad DECIMAL(28,4) DEFAULT  0,
 	CantidadAceptada DECIMAL(28,4) DEFAULT 0,
 	CantidadRechazada  DECIMAL(28,4) DEFAULT 0,
 	Comentario NVARCHAR(20) ,
-CONSTRAINT [pkinvOrdenCompraDetalle] PRIMARY KEY CLUSTERED 
+CONSTRAINT [pkinvEmbarqueDetalle] PRIMARY KEY CLUSTERED 
 (
-	[IDOrdenCompra] ASC,
+	[IDEmbarque] ASC,
 	[IDProducto] ASC,
 	IDLote ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
@@ -276,14 +277,14 @@ ALTER TABLE [dbo].invEmbarqueDetalle  WITH CHECK ADD  CONSTRAINT [fkiinvEmbarque
 REFERENCES [dbo].invProducto (IDProducto)
 
 GO
-ALTER TABLE [dbo].invEmbarqueDetalle  WITH CHECK ADD  CONSTRAINT [fkiinvEmbarqueDetalle_Lote] FOREIGN KEY([IDProducto,IDLote])
-REFERENCES [dbo].invLote (IDProducto,IDLote)
+ALTER TABLE [dbo].invEmbarqueDetalle  WITH CHECK ADD  CONSTRAINT [fkinvEmbarqueDetalle_Lote] FOREIGN KEY(IDLote,IDProducto)
+REFERENCES [dbo].invLote (IDLote,IDProducto)
 
 
 GO
 
 CREATE TABLE dbo.invArticuloProveedor (
-	IDProducto int NOT NULL,
+	IDProducto BIGINT NOT NULL,
 	IDProveedor int NOT NULL,
 	IDPaisManofactura int,
 	LoteMinCompra decimal(28,4),
@@ -294,7 +295,7 @@ CREATE TABLE dbo.invArticuloProveedor (
 	UnidadAlmacenamiento decimal(28,4),
 	UnidadMedidaCompra decimal(28,4),
 	FactorConversion decimal(28,4), 
-	CONSTRAINT [pkinvOrdenCompraDetalle] PRIMARY KEY CLUSTERED 
+	CONSTRAINT [pkinvArticuloProveedor] PRIMARY KEY CLUSTERED 
 (
 	[IDProducto] ASC,
 	IDProveedor ASC
@@ -308,7 +309,7 @@ REFERENCES [dbo].invProducto (IDProducto)
 
 GO
 ALTER TABLE [dbo].invArticuloProveedor  WITH CHECK ADD  CONSTRAINT [fkinvArticuloProveedor_Proveedor] FOREIGN KEY(IDProveedor)
-REFERENCES [dbo].ccpProveedor (IDProveedor)
+REFERENCES [dbo].cppProveedor (IDProveedor)
 
 
 GO
@@ -339,3 +340,5 @@ CREATE TABLE dbo.invParametrosCompra(
 	IDParametro ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
+

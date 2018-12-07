@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAC\OrdenCompraDAC.cs" />
     <Compile Include="frmArticuloProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Security\Security\Security.csproj">
+      <Project>{fdbe1059-0197-4f16-a0cf-d9ecb8ef8aa6}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
