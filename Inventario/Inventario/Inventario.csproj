@@ -219,6 +219,12 @@
     <Compile Include="Consultas\frmFiltroConsultaExistencia.Designer.cs">
       <DependentUpon>frmFiltroConsultaExistencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fisico\frmAplicaBoletas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fisico\frmAplicaBoletas.Designer.cs">
+      <DependentUpon>frmAplicaBoletas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fisico\frmBoleta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas\frmSaldosInventario.resx">
       <DependentUpon>frmSaldosInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fisico\frmAplicaBoletas.resx">
+      <DependentUpon>frmAplicaBoletas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fisico\frmBoleta.resx">
       <DependentUpon>frmBoleta.cs</DependentUpon>

@@ -181,7 +181,8 @@ namespace CI.Fisico
 
         private void PopulateGrid()
         {
-            _dsBoleta = clsBoletaInvFisicoDAC.GetData(-1, -1, -1, Validada, Convert.ToDateTime("1981/08/21"));
+            int IDBodega = Convert.ToInt32(this.slkupBodega.EditValue == null ? -1 : this.slkupBodega.EditValue);
+            _dsBoleta = clsBoletaInvFisicoDAC.GetData(IDBodega, -1, -1, Validada,0,Convert.ToDateTime("1981/08/21"));
 
             _dtBoleta = _dsBoleta.Tables[0];
             this.dtgGrid.DataSource = null;
@@ -630,7 +631,11 @@ namespace CI.Fisico
         {
             if (MessageBox.Show("Las Boletas marcadas seran aplicadas al inventario", "Aplicación del Inventario", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
             {
-                 
+                int IDBodega = Convert.ToInt32(this.slkupBodega.EditValue == null ? -1 : this.slkupBodega.EditValue); 
+                long IDTransaccion =0;
+                //Obtener el paquete de un parametro
+                frmAplicaBoletas ofrmAplicar = new frmAplicaBoletas(IDBodega,IDTransaccion);
+                ofrmAplicar.ShowDialog();
             }
         }
 

@@ -34,6 +34,7 @@ namespace CI.DAC
                 oAdaptador.SelectCommand.Parameters.Add("@IDProducto", SqlDbType.BigInt).SourceColumn = "IDProducto";
                 oAdaptador.SelectCommand.Parameters.Add("@IDLote", SqlDbType.Int).SourceColumn = "IDLote";
                 oAdaptador.SelectCommand.Parameters.Add("@Validada", SqlDbType.Int).SourceColumn = "Validada";
+                oAdaptador.SelectCommand.Parameters.Add("@Aplicada", SqlDbType.Int).SourceColumn = "Aplicada";
                 oAdaptador.SelectCommand.Parameters.Add("@Fecha", SqlDbType.Date).SourceColumn = "Fecha";
 
 
@@ -97,19 +98,46 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDBodega, long IDProducto, int IdLote,int Validada, DateTime Fecha)
+        public static DataSet GetData(int IDBodega, long IDProducto, int IdLote,int Validada,int Aplicada, DateTime Fecha)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDBodega"].Value = IDBodega;
             oAdaptador.SelectCommand.Parameters["@IDProducto"].Value = IDProducto;
             oAdaptador.SelectCommand.Parameters["@IDLote"].Value = IdLote;
             oAdaptador.SelectCommand.Parameters["@Validada"].Value = Validada;
+            oAdaptador.SelectCommand.Parameters["@Aplicada"].Value = Validada;
             oAdaptador.SelectCommand.Parameters["@Fecha"].Value = Fecha;
 
             oAdaptador.Fill(DS.Tables["Data"]);
             return DS;
         }
 
+ 
+        public static long CreaDocumentoInv(int IDBodega,int IDPaquete,DateTime Fecha,
+                                            bool ProductoNoInventarioSetCero, string Usuario, SqlTransaction tran)
+        {
+            long result = -1;
+            String strSQL = "dbo.invCreaPaqueteInvFisico";
 
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDBodega", IDBodega));
+            oCmd.Parameters.Add(new SqlParameter("@IDPaquete", IDPaquete));
+            oCmd.Parameters.Add(new SqlParameter("@IDTransaccion", result));
+            oCmd.Parameters["@IDTransaccion"].Direction = ParameterDirection.Output;
+            oCmd.Parameters.Add(new SqlParameter("@Fecha", Fecha));
+            oCmd.Parameters.Add(new SqlParameter("@ProductoNoInvSetCero", ProductoNoInventarioSetCero));
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            oCmd.ExecuteNonQuery();
+            result = (long) oCmd.Parameters["@IDTransaccion"].Value;
+            
+            return result;
+
+        }
+
+        
     }
 }

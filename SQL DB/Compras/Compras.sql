@@ -353,11 +353,12 @@ CREATE TABLE dbo.invParametrosCompra(
 
 GO
 
-CREATE PROCEDURE dbo.invUpdateSolicitudCompra(@Operacion NVARCHAR(1), @IDSolicitud AS int, @Fecha date, @FechaRequerida  AS date, @IDEstado AS int ,@Comentario nvarchar(20),
+CREATE  PROCEDURE dbo.invUpdateSolicitudCompra(@Operacion NVARCHAR(1), @IDSolicitud AS INT OUTPUT, @Fecha date, @FechaRequerida  AS date, @IDEstado AS int ,@Comentario nvarchar(20),
 @IDOrdenCompra AS int, @UsuarioSolicitud nvarchar(50),@UsuarioCreaOC nvarchar(20),@FechaCreaOC datetime,@Usuario nvarchar(50),@CreatedDate datetime,@CreatedBy nvarchar(50),@RecordDate datetime,@UpdateBy nvarchar(50))
 AS 
 IF (@Operacion='I')  
 BEGIN
+	SET @IDSolicitud = (SELECT MAX(IDSolicitud)  FROM dbo.invSolicitudCompra) + 1
 	INSERT INTO dbo.invSolicitudCompra(IdSolicitud,Fecha,FechaRequerida,IDEstado,Comentario,UsuarioSolicitud,CreateDate,CreatedBy,RecordDate,UpdateBy)
 	VALUES (@IDSolicitud,@Fecha,@FechaRequerida,@IDEstado,@Comentario,@UsuarioSolicitud,@CreatedDate,@CreatedBy,@RecordDate,@UpdateBy)
 END
@@ -371,6 +372,18 @@ IF (@Operacion ='D')
 BEGIN
 	DELETE dbo.invSolicitudCompra WHERE IdSolicitud=@IDSolicitud
 END
+
+GO
+
+CREATE PROCEDURE dbo.invGetSolicitudCompra (@IDSolicitud AS INT, @FechaInicial AS DATETIME,@FechaFinal AS DATE,@IDEstado AS INT, @IDOrdenCompra AS INT)
+AS 
+SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario ,A.IDOrdenCompra, O.OrdenCompra ,UsuarioSolicitud ,UsuarioCreaOC ,
+				FechaCreaOC ,A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
+FROM dbo.invSolicitudCompra A
+INNER JOIN dbo.invEstadoSolicitud E ON A.IDEstado=E.IDEstado
+LEFT JOIN dbo.invOrdenCompra O ON A.IDOrdenCompra=O.IDOrdenCompra
+WHERE A.IDSolicitud =@IDSolicitud AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal  
+			AND (A.IDEstado =@IDEstado OR @IDEstado=-1) AND (A.IDOrdenCompra=@IDOrdenCompra OR @IDOrdenCompra=-1)
 
 GO
 
@@ -389,6 +402,14 @@ IF (@Operacion ='D')
 	DELETE FROM dbo.invSolicitudCompraDetalle WHERE  IdSolicitud=@IDSolicitud
 	
 GO 
+
+CREATE PROCEDURE dbo.invGetSolicitudCompraDetalle (@IDSolicitud AS INT)
+AS 
+SELECT IDSolicitud,A.IDProducto,P.Descr DescrProducto,A.Cantidad,A.Comentario
+FROM dbo.invSolicitudCompraDetalle A
+INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
+WHERE IDSolicitud =@IDSolicitud
+go 
 
 CREATE PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT,@OrdenCompra NVARCHAR(20),@Fecha DATETIME, 
 										@FechaRequerida DATE, @FechaEmision DATE,@FechaRequeridaEmbarque DATE,@FechaCotizacion DATE,
@@ -414,6 +435,15 @@ BEGIN
 	DELETE FROM dbo.invOrdenCompra WHERE IDOrdenCompra=@IDOrdenCompra
 END
 
+GO
+
+CREATE PROCEDURE dbo.invGetOrdenCompraDetalle(@IDOrdenCompra AS int	)
+AS 
+SELECT A.IDOrdenCompra,A.IDProducto,P.Descr DescrProducto,A.Estado,E.Descr DescrEstado,A.Cantidad,A.CantidadAceptada,A.CantidadRechazada,A.Impuesto,A.MontoDesc,A.PorcDesc,A.PrecioUnitario
+  FROM dbo.invOrdenCompraDetalle A
+INNER JOIN dbo.invProducto P ON		A.IDProducto = P.IDProducto
+INNER JOIN dbo.invEstadoOrdenCompra E ON A.Estado=E.IDEstadoOrden
+WHERE IDOrdenCompra=@IDOrdenCompra
 
 GO 
 
@@ -458,6 +488,19 @@ END
 IF (@Operacion ='D')
 	DELETE FROM dbo.invEmbarque WHERE IDEmbarque=@IDEmbarque
 
+GO
+
+CREATE PROCEDURE dbo.invGetEmbarque(@IDEmbarque AS INT,@FechaInicial AS DATE,@FechaFinal AS DATE,
+																	@IDProveedor AS INT,@IDSolicitud AS INT,@OrdenCompra AS NVARCHAR(20),@IDDocumentoCP AS INT)
+as
+SELECT A.IDEmbarque,A.Embarque,A.Fecha,A.FechaEmbarque,A.Asiento,A.IDBodega,B.Descr DescrBodega,A.IDProveedor,P.Nombre NombreProveedor,A.IDOrdenCompra,
+			O.OrdenCompra,A.IDSolicitud,A.IDDocumentoCP,A.TipoCambio,A.Usuario,A.CreateDate,A.CreatedBy,A.RecordDate,A.UpdateBy
+  FROM dbo.invEmbarque A
+LEFT JOIN dbo.invOrdenCompra O ON A.IDOrdenCompra=O.OrdenCompra
+INNER JOIN dbo.cppProveedor P ON A.IDProveedor=P.IDProveedor
+INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
+WHERE (A.IDEmbarque =@IDEmbarque OR @IDEmbarque=-1) AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal AND (A.IDProveedor =@IDProveedor OR @IDProveedor=-1)
+AND (A.IDSolicitud =@IDSolicitud OR @IDSolicitud=-1) AND (O.OrdenCompra =@OrdenCompra OR o.OrdenCompra LIKE '%'+ @OrdenCompra +'%') AND (A.IDDocumentoCP = @IDDocumentoCP OR @IDDocumentoCP=-1)
 
 GO 
 
@@ -479,6 +522,15 @@ BEGIN
 	DELETE FROM dbo.invEmbarqueDetalle WHERE IDEmbarque=@IDEmbarque AND( IDProducto=@IDProducto OR @IDProducto=-1) AND (IDLote=@IDLote OR @IDLote=-1)
 END
 
+GO
+
+CREATE PROCEDURE dbo.invGetEmbarqueDetalle(@IDEmbarque AS INT)
+AS 
+SELECT A.IDEmbarque,A.IDProducto,P.Descr DescrProducto,A.IDLote,L.LoteProveedor,L.FechaVencimiento,A.Cantidad,A.CantidadAceptada,A.CantidadRechazada 
+ FROM dbo.invEmbarqueDetalle A
+INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
+INNER JOIN dbo.invLote L ON a.IDProducto=L.IDProducto AND A.IDLote=L.IDLote
+WHERE A.IDEmbarque =@IDEmbarque
 
 GO
 

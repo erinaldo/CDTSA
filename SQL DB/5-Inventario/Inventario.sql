@@ -2090,6 +2090,7 @@ CREATE TABLE dbo.invBoletaInvFisico (
 	IDLote   INT NOT NULL,	 
 	Cantidad  decimal(28,4) DEFAULT 0,
 	Validada BIT DEFAULT 0,
+	Aplicada BIT DEFAULT 0,
 	Usuario  nvarchar(50) NOT NULL,
 	Fecha  date,
 	RecordDate  DATETIME,
@@ -2156,7 +2157,7 @@ END
 GO
  
 
-CREATE   PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT,@Validada INT	,@Fecha AS DATE
+CREATE    PROCEDURE dbo.invGetBoletaInvFisico @IDBodega AS INT, @IDProducto BIGINT, @IDLote INT,@Validada INT ,@Aplicada INT	,@Fecha AS DATE
 AS
 	SELECT A.IDBodega,B.Descr DescrBodega,A.IDProducto, P.Descr DescrProducto,A.IDLote, L.LoteProveedor,L.LoteInterno,
 				L.FechaVencimiento,A.Cantidad,A.Fecha,A.Usuario,A.Validada
@@ -2168,6 +2169,7 @@ AS
 	          AND (A.IDBodega = @IDBodega OR @IDBodega=-1) 
 	          AND (A.IDLote =@IDLote  OR @IDLote=-1) 
 	          AND (A.Validada =@Validada OR @Validada=-1)
+	          AND (A.Aplicada =@Aplicada OR @Aplicada=-1)
 	          AND (A.Fecha =@Fecha OR @Fecha='19810821')
 
 
@@ -2201,7 +2203,7 @@ BEGIN
 				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
 				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
-				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1) AND B.Aplicada=0
 	GROUP BY  B.IDBodega,BO.Descr ,B.IDProducto,P.Descr ,B.Cantidad,B.Fecha,B.Validada
 END
 ELSE 
@@ -2218,7 +2220,7 @@ BEGIN
 				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
 				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
-				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1) AND B.Aplicada=0
 END
 
 GO
@@ -2227,7 +2229,7 @@ GO
 
 --// Cuadre de Diferencias
 
-CREATE PROCEDURE dbo.invGetBoletasVrsInventario @IDBodega AS INT,@IDProducto AS INT,@Clasif1 AS INT,@Clasif2 AS INT,@Clasif3 AS INT,@Clasif4 AS INT,@Clasif5 AS INT, @Clasif6 AS INT,@ConsolidaByProducto AS BIT
+CREATE  PROCEDURE dbo.invGetBoletasVrsInventario @IDBodega AS INT,@IDProducto AS INT,@Clasif1 AS INT,@Clasif2 AS INT,@Clasif3 AS INT,@Clasif4 AS INT,@Clasif5 AS INT, @Clasif6 AS INT,@ConsolidaByProducto AS BIT
 AS
 /*
 SET @IDBodega=-1
@@ -2259,7 +2261,7 @@ BEGIN
 				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
 				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
-				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1) AND B.Aplicada=0
 	GROUP BY  B.IDBodega ,B.IDProducto 
 	
 	--//Cargar Inventario
@@ -2274,7 +2276,7 @@ BEGIN
 				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
 				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
-				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1) 
 	GROUP BY  B.IDBodega ,B.IDProducto 
 END
 ELSE 
@@ -2290,7 +2292,7 @@ BEGIN
 				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
 				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
-				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1) AND B.Aplicada=0
 				    
 	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
 	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Existencia
@@ -2303,7 +2305,7 @@ BEGIN
 				    (p.Clasif3 = @Clasif3 OR @Clasif3=-1) AND 
 				    (p.Clasif4=@Clasif4 OR @Clasif4=-1) AND 
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
-				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)				 
+				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)	 
 END
 
 SELECT DISTINCT   IDBodega ,
@@ -2356,12 +2358,12 @@ CREATE TABLE #Catalogo(IDBodega INT,IDProducto INT,IDLote INT)
 	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Cantidad
 	FROM dbo.invBoletaInvFisico B
 	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto 
-	--WHERE B.Validada=1
+	WHERE B.Validada=1 AND (B.IDBodega=@IDBodega OR @IDBodega=-1) AND B.Aplicada=0
 				    
 	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
 	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Existencia
 	FROM dbo.invExistenciaBodega B
-	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto 
 	WHERE (B.IDBodega =@IDBodega OR @IDBodega=-1)
 	
 	
@@ -2442,6 +2444,10 @@ CREATE TABLE #Catalogo(IDBodega INT,IDProducto INT,IDLote INT)
 		SET @i = @i+1
 	END
 
+	--//Actualizar las boletas a aplicadas
+	UPDATE A  SET Aplicada=1, Validada=0 FROM  dbo.invBoletaInvFisico A
+	INNER JOIN #Boletas B ON A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
+	
 	
 	DROP TABLE #Boletas
 	DROP TABLE #Inventario
@@ -2840,7 +2846,7 @@ BEGIN
 		RAISERROR ( 'El Asiento contable no se puede generar. Por favor verifique que la familia contable del producto, tenga la cuentas contables asociadas.', 16, 1) ;
 		RETURN
 	END
-
+SELECT *  FROM dbo.globalTipoTran
 	  --//Salida de inventario Fisico
 	  IF (@IDTipoTran =1)
 	  BEGIN

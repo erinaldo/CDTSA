@@ -62,7 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAC\OrdenCompraDAC.cs" />
+    <Compile Include="DAC\clsEmbarqueDAC.cs" />
+    <Compile Include="DAC\clsEmbarqueDetalleDAC.cs" />
+    <Compile Include="DAC\clsOrdenCompraDAC.cs" />
+    <Compile Include="DAC\clsDetalleSolicitudCompraDAC.cs" />
+    <Compile Include="DAC\clsOrdenCompraDetalleDAC.cs" />
+    <Compile Include="DAC\clsSolicitudCompraDAC.cs" />
     <Compile Include="frmArticuloProveedor.cs">
       <SubType>Form</SubType>
     </Compile>

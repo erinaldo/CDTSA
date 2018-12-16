@@ -159,11 +159,11 @@ namespace CG
             //_ModuloFuente = ModuloFuente;
             _currentRow = _dsAsiento.Tables[0].Rows[0];
             _Asiento = _currentRow["Asiento"].ToString();
-            _TipoCambio =(_currentRow["TipoCambio"].ToString() != "")? Convert.ToDouble(_currentRow["TipoCambio"]):0.0;
+            _TipoCambio = (_currentRow["TipoCambio"].ToString() != "") ? Convert.ToDouble(_currentRow["TipoCambio"]) : 0.0;
 
         }
 
-        public  frmAsiento(String Asiento, String Estado, bool DontCloseCuadre)
+        public frmAsiento(String Asiento, String Estado, bool DontCloseCuadre)
         {
             InitializeComponent();
             InicializarControles();
@@ -176,7 +176,7 @@ namespace CG
             _currentRow = _dsAsiento.Tables[0].Rows[0];
             _Asiento = _currentRow["Asiento"].ToString();
             _TipoCambio = (_currentRow["TipoCambio"].ToString() != "") ? Convert.ToDouble(_currentRow["TipoCambio"]) : 0.0;
-            
+
         }
 
         public frmAsiento(DataSet ds, DataRow dr)
@@ -280,7 +280,7 @@ namespace CG
             this.txtAsiento.EditValue = _currentRow["Asiento"].ToString();
             this.txtEjercicio.EditValue = _currentRow["IDEjercicio"].ToString();
             this.txtPeriodo.EditValue = _currentRow["Periodo"].ToString();
-            this.txtTipoCambio.Text = (_currentRow["TipoCambio"].ToString()!="") ? Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght): "0.00";
+            this.txtTipoCambio.Text = (_currentRow["TipoCambio"].ToString() != "") ? Convert.ToDecimal(_currentRow["TipoCambio"]).ToString("N" + Util.Util.DecimalLenght) : "0.00";
             this.txtModuloFuente.EditValue = _currentRow["ModuloFuente"].ToString();
             this.dtpFecha.EditValue = Convert.ToDateTime(_currentRow["Fecha"]);
             //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
@@ -375,11 +375,12 @@ namespace CG
                     //bExito = AsientoDAC.CuadreTemporal(_Asiento);
 
                     Double Diferencia = Debito - Creditos;
-                    if (Diferencia != 0 ) {
+                    if (Diferencia != 0)
+                    {
                         if (Debito < Creditos)
-                            _dsDetalle.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Debito"] = Convert.ToDouble(_dsAsiento.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Debito"]) + Diferencia;
+                            _dsDetalle.Tables[0].Rows[_dtDetalle.Rows.Count - 1]["Debito"] = Convert.ToDouble(_dsAsiento.Tables[0].Rows[_dtDetalle.Rows.Count - 1]["Debito"]) + Diferencia;
                         else
-                            _dsDetalle.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Creditos"] = Convert.ToDouble(_dsAsiento.Tables[0].Rows[_dtDetalle.Rows.Count-1]["Creditos"]) + Diferencia;
+                            _dsDetalle.Tables[0].Rows[_dtDetalle.Rows.Count - 1]["Creditos"] = Convert.ToDouble(_dsAsiento.Tables[0].Rows[_dtDetalle.Rows.Count - 1]["Creditos"]) + Diferencia;
                     }
                     _currentRow["CuadreTemporal"] = 1;
 
@@ -401,7 +402,8 @@ namespace CG
 
         private void BtnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (_dsAsiento.Tables[0].Rows.Count>0){
+            if (_dsAsiento.Tables[0].Rows.Count > 0)
+            {
                 if (Convert.ToBoolean(_dsAsiento.Tables[0].Rows[0]["Mayorizado"]) == true)
                 {
                     int IdEjercicio = (int)_dsAsiento.Tables[0].Rows[0]["IDEjercicio"];//(int)_dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"];
@@ -805,7 +807,8 @@ namespace CG
                 //    view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
                 //}
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
 
@@ -1262,7 +1265,7 @@ namespace CG
         private void dtpFecha_EditValueChanged(object sender, EventArgs e)
         {
             //Tomar el periodo y 
-            if (this.dtpFecha.EditValue != null  )
+            if (this.dtpFecha.EditValue != null)
             {
                 _dsEjercicioPeriodo = PeriodoContableDAC.GetPeriodoContableByFecha(Convert.ToDateTime(this.dtpFecha.EditValue));
                 _currentRow["IDEjercicio"] = _dsEjercicioPeriodo.Tables[0].Rows[0]["IDEjercicio"].ToString();
@@ -1281,8 +1284,9 @@ namespace CG
 
         private void frmAsiento_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_DonCloseCuadre == true) {
-                if (Convert.ToDecimal(this.txtDiferencia.EditValue) != 0 && _Estado!="stateOk")
+            if (_DonCloseCuadre == true)
+            {
+                if (Convert.ToDecimal(this.txtDiferencia.EditValue) != 0 && _Estado != "stateOk")
                 {
                     MessageBox.Show("Cuadre el asiento de diario y por favor guardelo");
                     e.Cancel = true;
@@ -1290,6 +1294,6 @@ namespace CG
             }
         }
 
-     
+
     }
 }
