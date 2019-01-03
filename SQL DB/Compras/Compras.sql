@@ -408,10 +408,10 @@ AS
 SELECT IDSolicitud,A.IDProducto,P.Descr DescrProducto,A.Cantidad,A.Comentario
 FROM dbo.invSolicitudCompraDetalle A
 INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
-WHERE IDSolicitud =@IDSolicitud
+WHERE (IDSolicitud =@IDSolicitud OR (@IDSolicitud=-1 AND 1=3))
 go 
 
-CREATE PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT,@OrdenCompra NVARCHAR(20),@Fecha DATETIME, 
+CREATE PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT OUTPUT,@OrdenCompra NVARCHAR(20) OUTPUT,@Fecha DATETIME, 
 										@FechaRequerida DATE, @FechaEmision DATE,@FechaRequeridaEmbarque DATE,@FechaCotizacion DATE,
 										@IDEstado AS INT, @IDBodega AS INT, @IDProveedor AS INT, @IDMoneda AS INT, @IDCondicionPago AS INT, 
 										@Descuento AS DECIMAL(28,4), @Flete AS DECIMAL(28,4),@Documentacion AS DECIMAL(28,4),@Anticipos AS DECIMAL(28,4),
@@ -422,6 +422,8 @@ CREATE PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra
 AS 
 IF (@Operacion ='I')
 BEGIN
+	SET @IDOrdenCompra = (SELECT MAX(IDOrdenCompra)  FROM dbo.invOrdenCompra ) + 1
+	
 	INSERT INTO dbo.invOrdenCompra(IDOrdenCompra,OrdenCompra,Fecha,FechaRequerida,FechaEmision,FechaRequeridaEmbarque,FechaCotizacion,IdEstado, IDBodega,IDProveedor,IDMoneda,IDCondicionPago,Descuento,Flete,Documentacion,Anticipos,IDTipoProrrateo,IDEmbarque,IDSolicitud,IdDocumentoCP,TipoCambio,Usuario,UsuarioCreaEmbarque,FechaCreaEmbarque,UsuarioAprobacion,FechaAprobacion,CreateDate,Createdby,RecordDate,UpdateBy)
 	VALUES (@IDOrdenCompra, @OrdenCompra, @Fecha,@FechaRequerida,@FechaEmision,@FechaRequeridaEmbarque,@FechaCotizacion,@IDEstado,@IDBodega,@IDProveedor,@IDMoneda,@IDCondicionPago,@Descuento,@Flete,@Documentacion,@Anticipos,@IDTipoProrrateo,@IDEmbarque,@IDSolicitud,@IDDocumentoCP,@TipoCambio,@Usuario,@UsuarioEmbarque,@FechaCreaEmbarque,@UsuarioAprobacion,@FechaAprobacion, @CreateDate,@CreatedBy,@RecordDate,@UpdatedBy)
 END										 
@@ -557,3 +559,14 @@ IF (@Operacion='D')
 
 
 GO
+
+
+INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(0,'INICIAL',1)
+GO
+INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(1,'APROBADA',1)
+GO
+INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(2,'RECHAZADA',1)
+GO	
+INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(3,'ASIGNADA',1)
+
+

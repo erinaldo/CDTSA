@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Compras
+namespace CO
 {
     public partial class frmOrdenCompra : DevExpress.XtraBars.Ribbon.RibbonForm
     {

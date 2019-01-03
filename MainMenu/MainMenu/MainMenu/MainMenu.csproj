@@ -240,6 +240,10 @@
     <Content Include="Solution4ULogo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Compras\Compras.csproj">
+      <Project>{efa857f9-b83a-48a7-a02c-61939ed96ce1}</Project>
+      <Name>Compras</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Contabilidad\Contabilidad\Contabilidad.csproj">
       <Project>{9aab66d4-cb76-4809-9a52-d50282a6968d}</Project>
       <Name>Contabilidad</Name>

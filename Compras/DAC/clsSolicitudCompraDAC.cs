@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Compras.DAC
+namespace CO.DAC
 {
     public static class clsSolicitudCompraDAC
     {
-       public static long InsertUpdate(string Operacion,int IDSolicitud,DateTime Fecha,DateTime FechaRequerida,int IDEstado, String Comentario,int IDOrdenCompra,
+       public static int InsertUpdate(string Operacion,int IDSolicitud,DateTime Fecha,DateTime FechaRequerida,int IDEstado, String Comentario,int IDOrdenCompra,
                                         String UsuarioSolicitud,String UsuarioCreaOC,DateTime FechaCreaOC, string Usuario,DateTime createdDate,String createdBy, DateTime recordDate, String updatedBy, SqlTransaction tran)
         {
-            long result = -1;
+            int result = -1;
             String strSQL = "dbo.invUpdateSolicitudCompra";
 
             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
@@ -39,7 +39,7 @@ namespace Compras.DAC
             oCmd.Transaction = tran;
             result = oCmd.ExecuteNonQuery();
            if (Operacion =="I")
-                result = (long) oCmd.Parameters["@IDSolicitud"].Value;
+                result = (int) oCmd.Parameters["@IDSolicitud"].Value;
 
             
             return result;
@@ -47,7 +47,7 @@ namespace Compras.DAC
         }
 
 
-        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado, ,int IDOrdenCompra)
+        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado, int IDOrdenCompra)
         {
             String strSQL = "dbo.invGetSolicitudCompra";
 
@@ -64,6 +64,23 @@ namespace Compras.DAC
             DataSet DS = new DataSet();
 
             oAdap.Fill(DS.Tables["Data"]);
+            return DS;
+        }
+
+        public static DataSet GetByID(int IDSolicitud)
+        {
+            String strSQL = "dbo.invGetSolicitudCompraByID";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+            
+
+            oAdap.Fill(DS,"Data");
             return DS;
         }
 

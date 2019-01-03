@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Compras.DAC
+namespace CO.DAC
 {
     public static class clsOrdenCompraDAC {
     
@@ -67,7 +67,7 @@ namespace Compras.DAC
         }
 
 
-        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado, ,int IDOrdenCompra)
+        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado,int IDOrdenCompra)
         {
             String strSQL = "dbo.invGetSolicitudCompra";
 

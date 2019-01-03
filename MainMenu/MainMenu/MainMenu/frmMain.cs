@@ -15,7 +15,7 @@ using Security;
 using CDTSA.Properties;
 using ControlBancario;
 using CI;
-
+using CO;
 
 namespace MainMenu
 {
@@ -31,6 +31,7 @@ namespace MainMenu
             CreateNodes(treeListContabilidad);
             CreateNodes(treeListAdministracion);
             CreateNodes(treeListControlBancario);
+            CreateNodes(treelstCompras);
             this.Load += frmMain_Load;
             ShowPagesRibbonMan(false);
         }
@@ -555,6 +556,11 @@ namespace MainMenu
                     
 
                     break;
+                case "treelstCompras":
+                    TreeListNode nodeSolicitudCompra = tl.AppendNode(new object[] { "Solicitud Compra" }, -1, 11, 11, 11);
+                    nodeSolicitudCompra.Tag = "frmSolicitudCompra";
+                    break;
+
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);
                     nodeCuentas.Tag = "frmListadoCuentaContable";
@@ -778,6 +784,25 @@ namespace MainMenu
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void treelstCompras_DoubleClick(object sender, EventArgs e)
+        {
+            
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList)sender).FocusedNode;
+            if (node.Tag == null)
+                return;
+            switch (node.Tag.ToString())
+            {
+                case "frmSolicitudCompra":
+                    frmSolicitudCompra ofrmSolicitud = new frmSolicitudCompra("New");
+                    ofrmSolicitud.MdiParent = this;
+                    ofrmSolicitud.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmSolicitud.Show();
+                    break;
+            }
         }
 
 

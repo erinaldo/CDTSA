@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Compras.DAC
+namespace CO.DAC
 {
     public static class clsDetalleSolicitudCompraDAC
     {
 
         
-        public static long InsertUpdate(string Operacion, int IDSolicitud, int IDProducto,decimal Cantidad,String Comentario, SqlTransaction tran)
+        public static long InsertUpdate(string Operacion, int IDSolicitud, long IDProducto,decimal Cantidad,String Comentario, SqlTransaction tran)
         {
             long result = -1;
             String strSQL = "dbo.invUpdateSolicitudCompra";

@@ -1,4 +1,4 @@
-﻿namespace Compras
+﻿namespace CO
 {
     partial class frmProveedor
     {
