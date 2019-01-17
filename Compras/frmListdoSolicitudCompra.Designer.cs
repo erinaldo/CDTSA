@@ -40,6 +40,7 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtIDSolicitud = new DevExpress.XtraEditors.TextEdit();
             this.cmbEstado = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnRefres = new DevExpress.XtraEditors.SimpleButton();
             this.dtpFechaFinal = new DevExpress.XtraEditors.DateEdit();
@@ -62,12 +63,13 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtIDSolicitud = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIDSolicitud.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEstado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).BeginInit();
@@ -85,9 +87,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIDSolicitud.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -199,6 +201,15 @@
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // txtIDSolicitud
+            // 
+            this.txtIDSolicitud.Location = new System.Drawing.Point(78, 69);
+            this.txtIDSolicitud.MenuManager = this.ribbonControl;
+            this.txtIDSolicitud.Name = "txtIDSolicitud";
+            this.txtIDSolicitud.Size = new System.Drawing.Size(159, 20);
+            this.txtIDSolicitud.StyleController = this.layoutControl1;
+            this.txtIDSolicitud.TabIndex = 12;
+            // 
             // cmbEstado
             // 
             this.cmbEstado.Location = new System.Drawing.Point(475, 69);
@@ -266,14 +277,15 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 117);
+            this.gridControl1.Location = new System.Drawing.Point(12, 136);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.ribbonControl;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(685, 251);
+            this.gridControl1.Size = new System.Drawing.Size(685, 232);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
             // 
             // gridView1
             // 
@@ -286,6 +298,7 @@
             this.colEstado});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colIDSolicitud
             // 
@@ -358,7 +371,8 @@
             this.emptySpaceItem3,
             this.layoutControlItem4,
             this.layoutControlItem8,
-            this.layoutControlItem6});
+            this.layoutControlItem6,
+            this.emptySpaceItem4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(709, 380);
@@ -367,9 +381,9 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.gridControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 105);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 124);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(689, 255);
+            this.layoutControlItem2.Size = new System.Drawing.Size(689, 236);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -448,15 +462,6 @@
             this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(63, 13);
             // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.cmbEstado;
-            this.layoutControlItem6.Location = new System.Drawing.Point(397, 57);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(197, 24);
-            this.layoutControlItem6.Text = "Estado:";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(63, 13);
-            // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtIDSolicitud;
@@ -466,14 +471,25 @@
             this.layoutControlItem8.Text = "ID Solicitud:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(63, 13);
             // 
-            // txtIDSolicitud
+            // layoutControlItem6
             // 
-            this.txtIDSolicitud.Location = new System.Drawing.Point(78, 69);
-            this.txtIDSolicitud.MenuManager = this.ribbonControl;
-            this.txtIDSolicitud.Name = "txtIDSolicitud";
-            this.txtIDSolicitud.Size = new System.Drawing.Size(159, 20);
-            this.txtIDSolicitud.StyleController = this.layoutControl1;
-            this.txtIDSolicitud.TabIndex = 12;
+            this.layoutControlItem6.Control = this.cmbEstado;
+            this.layoutControlItem6.Location = new System.Drawing.Point(397, 57);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(197, 24);
+            this.layoutControlItem6.Text = "Estado:";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(63, 13);
+            // 
+            // emptySpaceItem4
+            // 
+            this.emptySpaceItem4.AllowHotTrack = false;
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 105);
+            this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 19);
+            this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 19);
+            this.emptySpaceItem4.Name = "emptySpaceItem4";
+            this.emptySpaceItem4.Size = new System.Drawing.Size(689, 19);
+            this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // frmListdoSolicitudCompra
             // 
@@ -488,6 +504,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtIDSolicitud.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEstado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaFinal.Properties)).EndInit();
@@ -505,9 +522,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIDSolicitud.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,6 +568,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colEstado;
         private DevExpress.XtraEditors.TextEdit txtIDSolicitud;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
 
     }
 }

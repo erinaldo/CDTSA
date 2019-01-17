@@ -81,5 +81,26 @@ namespace CO.DAC
             return DS;
         }
 
+
+        public static DataSet GetSolicitudCompra_OrdenCompra(int IDSolicitud, int IDOrdenCompra, long IDProducto)
+        {
+            String strSQL = "dbo.invGetSolicitudCompra_OrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+            oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+            
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+
+            oAdap.Fill(DS, "Data");
+            return DS;
+        }
+
+
     }
 }

@@ -534,6 +534,80 @@
         RK5CYII=
 </value>
   </data>
+  <data name="btnRechazar.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAbdEVYdFRpdGxlAFBhZ2UgQnJlYWs7QnJlYWs7UGFnZe0K2ooAAAJ8SURBVDhPjZJdSJNRGMfF
+        zG1OnV9NMyUbFlZUEN2Z3nXXTV8mEXUhpWVBRHRRUBcGWeEHlplamXNTplna911JBZWsTaeXQlApmptz
+        bG6v7979e54zw1d30ws/3nM4z/M7z3POiQMQR9+aNpvrQ3vfONp6x9Da60KrbRQtPVHuW0fQbHXirsWB
+        pi4H6ju+DVFOgshdEiQ8sLlo+H9f3eNh3jVRLVh7z+JEJBKBHFaIMBbpH4XHhByGRIQVBbWtX1igVQsS
+        GzrtUEjwL9A/NSkSQswiIwt4g5rmTzECzZ2HX6EoERHkHh/Fq525cI+NICjJy4RkSCS41jjEAp26As2T
+        52OigllKer0rF4+KjBUvtmdjZtSJheAiQiRiZFlBs8XOgqQVLbzbk4+3u/PwhpKbNmcV3yxINzUUZBQ/
+        25KFaacDvZsMsG1MRfeGFFhz9TEtxJNRw2Wxud6UuXegyIhb+YaS2rzUkj5TGmpy9KW0pl+C4+LVFbBA
+        y8l1poySga1GTAw8RX9hBm6sTy69kq0vpLVkFUn8dtQCLff9ckcOBrcZMelwwOuX8Pu7nco24FKmbl83
+        lW3J1sG8TovOTE3MGehvt3+GRNflC0jw+IJwzwfhmV/AL7ud+tbj5/Aw5v0hBOhArze+Z0GquoLkqquD
+        4rRnvQuCP8xcQIynJn7QPCDmc74Qjl+wscCgFqRUXO6HPyiJIGaG8SwzTeNpd1RQXm1lQdoKwcmLfaJ8
+        DmA8gmgrbmpF/L3R+ZGqrpgKdGWVHUPHzveg/Fw3jlYTZ60oO2OhYAsOV3bhUKUZB0+bceCUGftPtHxc
+        /ZD4GvluDVyainQar4bX+T2Ia/wLWRtmzR4HHg0AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btnRechazar.LargeGlyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="btnRevertir.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAARdEVYdFRpdGxlAFJlc2V0O1VuZG87E4EW/wAAAOlJREFUOE9j+P//PwMlmMG3aQcy5gDyNwDx
+        fyD+B8T5aPLo6hmQBXiBivciac4ipBkkDzNACMg5iaQ5lRjNMAMkgYwrUM0gp2PDX4DiD4F4CxCDXMYH
+        swDkgn0ENGMz8AVQjy3MBXJAxg0yDAG5SgUWBuJAziWoIX+AdAKWMGAFihkC8WEky+YixwIoIE8hBWQ6
+        joBURDLgAXq8ggLnIJIhuTgMgYXLF4yEQUT0qSC54D4pBggDNToC8TEkA2YTYwCutPEZaJASuQY8AWq2
+        gqUDQoaAXPARiO8D8UYgBiVzTlhYUZSVQcUAAJqNET0biAUyAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnRevertir.LargeGlyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAARdEVYdFRpdGxlAFJlc2V0O1VuZG87E4EW/wAAAYJJREFUWEdj+P//P8NA4gG1HOTxUQeMhgBK
+        CPg27WDAgX2A4j+A+D8SrsejHpc5GCFOjANCgRb9RLO8gRzLQXrQszwhB8QANf1Bs7yJXMtJdUAaUMNf
+        NMtbKLGcFAfkARX/Q7O8jVLLiXVABZrFyAkPGxuUPt4B8V0g3gvEk4HYD4i5sDmYUBoAxS8hC4mVfw80
+        qw6IuZEdQsgBXVR0AMyhV4FmysEcQcgBoPzbSgNHXASayUFsGgA5AlTIoAd1FZ5EyAaUEwRiTSBOAuKj
+        WPQXk+IAkCMqSXQEcunHCNS7AE3/dVIdADKwlAJHSAP1opcjwsSkAfRyPB9oEHqZgC86kPU/Q/OALjkO
+        ABmYRaYjnqA5QI9cB+Cs3fAkTEmgHHo9IkYvB4AS4Rw0398hJxES43NmaBYUAdJ60Gx4GEviraaFA4gt
+        lm8BLecZKAfcB1qsCksr1E4D+ELgO9DSKUAsgJxQaeUAUJX8CohPQUvAaGi6wEhDeB0wEF200X7BaAgA
+        ANpfvQk0/PNlAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="btnExportar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

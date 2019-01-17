@@ -137,20 +137,25 @@ namespace CO
         private void PopulateGrid()
         {
 
-            FechaInicial = Convert.ToDateTime(this.dtpFechaInicial.EditValue);
-            FechaFinal = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
-            IDSolicitud = this.txtIDSolicitud.Text=="" ? -1: Convert.ToInt32(this.txtIDSolicitud.Text);
-            IDEstado = this.cmbEstado.SelectedIndex == 0 ? -1 : Convert.ToInt32(this.cmbEstado.SelectedItem) -1 ;
+            try
+            {
+                FechaInicial = Convert.ToDateTime(this.dtpFechaInicial.EditValue);
+                FechaFinal = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
+                IDSolicitud = this.txtIDSolicitud.Text == "" ? -1 : Convert.ToInt32(this.txtIDSolicitud.Text);
+                IDEstado = this.cmbEstado.SelectedIndex == 0 ? -1 : Convert.ToInt32(this.cmbEstado.SelectedItem) - 1;
 
 
 
-            _dsCompras = clsSolicitudCompraDAC.Get(IDSolicitud, FechaInicial, FechaFinal, -1);
+                _dsCompras = clsSolicitudCompraDAC.Get(IDSolicitud, FechaInicial, FechaFinal, -1);
 
-            _dtCompras = _dsCompras.Tables[0];
-            this.gridControl1.DataSource = null;
-            this.gridControl1.DataSource = _dtCompras;
+                _dtCompras = _dsCompras.Tables[0];
+                this.gridControl1.DataSource = null;
+                this.gridControl1.DataSource = _dtCompras;
 
-
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores: \n\r" + ex.Message);
+            }
         }
 
         private void ClearControls()
@@ -208,9 +213,16 @@ namespace CO
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            LoadSolicitud();
+        }
+
+        private void LoadSolicitud() {
             if (currentRow != null)
             {
-                frmSolicitudCompra ofrmSolicitud = new frmSolicitudCompra(Convert.ToInt32(currentRow["IDSolicitud"]),"Edit");
+                String Accion = (Convert.ToInt32(currentRow["IDEstado"]) == 0) ? "Edit" : "View";
+
+                frmSolicitudCompra ofrmSolicitud = new frmSolicitudCompra(Convert.ToInt32(currentRow["IDSolicitud"]), Accion);
+                ofrmSolicitud.FormClosed +=ofrmSolicitud_FormClosed;
                 ofrmSolicitud.ShowDialog();
             }
         }
@@ -240,6 +252,11 @@ namespace CO
         private void btnRefres_Click(object sender, EventArgs e)
         {
             PopulateGrid();
+        }
+
+        private void gridControl1_DoubleClick(object sender, EventArgs e)
+        {
+            LoadSolicitud();
         }
     
     }

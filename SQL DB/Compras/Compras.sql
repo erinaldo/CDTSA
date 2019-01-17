@@ -586,6 +586,13 @@ IF (@Operacion='D')
 
 GO
 
+CREATE  PROCEDURE dbo.invGetSolicitudCompra_OrdenCompra(@IDSolicitud AS INT,@IDOrdenCompra AS INT,@IDProducto AS BIGINT)
+AS 
+SELECT  IDSolicitud ,IDOrdenCompra ,IDProducto ,Cantidad ,Usuario ,Fecha  FROM dbo.invSolicitudOrdenCompra 
+WHERE IDSolicitud= @IDSolicitud AND (IDOrdenCompra = @IDOrdenCompra OR @IDOrdenCompra= -1) AND (IDProducto = @IDProducto OR  @IDProducto = -1) 
+
+GO
+
 
 INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(0,'INICIAL',1)
 GO

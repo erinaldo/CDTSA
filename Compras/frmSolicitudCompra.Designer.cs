@@ -77,6 +77,8 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.btnRechazar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRevertir = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupIDProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
@@ -187,7 +189,7 @@
             this.DescrProd.OptionsColumn.TabStop = false;
             this.DescrProd.Visible = true;
             this.DescrProd.VisibleIndex = 1;
-            this.DescrProd.Width = 550;
+            this.DescrProd.Width = 350;
             // 
             // slkupDescrProducto
             // 
@@ -259,7 +261,7 @@
             this.dtgDetalleSolicitud.UseEmbeddedNavigator = true;
             this.dtgDetalleSolicitud.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.dtgDetalleSolicitud.Click += new System.EventHandler(this.dtgDetalleSolicitud_Click);
+            
             // 
             // ribbonControl1
             // 
@@ -272,9 +274,11 @@
             this.btnCancelarSolicitud,
             this.btnEliminarSolicitud,
             this.btnAprobar,
-            this.btnImprimir});
+            this.btnImprimir,
+            this.btnRechazar,
+            this.btnRevertir});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 3;
+            this.ribbonControl1.MaxItemId = 5;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -372,6 +376,8 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminarSolicitud);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAprobar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnImprimir);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRechazar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnRevertir);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // txtComentarioDetalle
@@ -606,6 +612,24 @@
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // btnRechazar
+            // 
+            this.btnRechazar.Caption = "Rechazar";
+            this.btnRechazar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRechazar.Glyph")));
+            this.btnRechazar.Id = 3;
+            this.btnRechazar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRechazar.LargeGlyph")));
+            this.btnRechazar.Name = "btnRechazar";
+            this.btnRechazar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRechazar_ItemClick);
+            // 
+            // btnRevertir
+            // 
+            this.btnRevertir.Caption = "Revertir";
+            this.btnRevertir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRevertir.Glyph")));
+            this.btnRevertir.Id = 4;
+            this.btnRevertir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRevertir.LargeGlyph")));
+            this.btnRevertir.Name = "btnRevertir";
+            this.btnRevertir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRevertir_ItemClick);
+            // 
             // frmSolicitudCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,6 +639,7 @@
             this.Controls.Add(this.ribbonControl1);
             this.Name = "frmSolicitudCompra";
             this.Ribbon = this.ribbonControl1;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Solicitud de Compra";
             this.Load += new System.EventHandler(this.frmSolicitudCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -701,5 +726,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Descr2;
         private DevExpress.XtraBars.BarButtonItem btnAprobar;
         private DevExpress.XtraBars.BarButtonItem btnImprimir;
+        private DevExpress.XtraBars.BarButtonItem btnRechazar;
+        private DevExpress.XtraBars.BarButtonItem btnRevertir;
     }
 }

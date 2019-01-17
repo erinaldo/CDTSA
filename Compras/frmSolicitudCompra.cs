@@ -1,4 +1,5 @@
-﻿using DevExpress.DataAccess.ConnectionParameters;
+﻿using CO.DAC;
+using DevExpress.DataAccess.ConnectionParameters;
 using DevExpress.DataAccess.Sql;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
@@ -38,7 +39,7 @@ namespace CO
             
             InicializarNuevoElement();
         }
-
+                                                                   
         public frmSolicitudCompra(int IDSolicitud,String Accion)
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace CO
                 this.btnGuardarSolicitud.Enabled = true;
                 this.btnCancelarSolicitud.Enabled = true;
                 this.btnEliminarSolicitud.Enabled = false;
+               
             }
             else if (Accion == "View") {
                 this.btnAddSolicitud.Enabled = true;
@@ -85,13 +87,12 @@ namespace CO
         }
 
         private void HabilitarControles() {
-            this.txtIDSolicitud.Enabled = false;
+            this.txtIDSolicitud.ReadOnly = true;
             this.btnExportar.Enabled = true;
-            this.txtEstado.Enabled = false;
+            this.txtEstado.ReadOnly = true;
 
             if (Accion == "Add" || Accion == "Edit")
             {
-                this.dtgDetalleSolicitud.Enabled = true;
                 this.txtComentarios.ReadOnly = false;
                 this.dtpFechaRequerida.ReadOnly = false;
                 this.dtpFechaSolicitud.ReadOnly=false;
@@ -101,11 +102,9 @@ namespace CO
                 this.gridView1.OptionsBehavior.ReadOnly = false;
                 this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
                 this.gridView1.OptionsBehavior.AllowDeleteRows =  DevExpress.Utils.DefaultBoolean.True;
-                this.gridView1.OptionsBehavior.ReadOnly = false;
             }
             else
             {
-                this.dtgDetalleSolicitud.Enabled = false;
                 this.txtComentarios.ReadOnly = true;
                 this.dtpFechaRequerida.ReadOnly = true;
                 this.dtpFechaSolicitud.ReadOnly=true;
@@ -114,7 +113,6 @@ namespace CO
                 this.gridView1.OptionsBehavior.ReadOnly = true;
                 this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
                 this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-                this.gridView1.OptionsBehavior.ReadOnly = true;
             }
 
             
@@ -127,6 +125,7 @@ namespace CO
             this.dtpFechaRequerida.EditValue = Convert.ToDateTime(cabecera["FechaRequerida"]);
             this.txtEstado.EditValue = cabecera["DescrEstado"].ToString();
             this.txtEstado.Tag = cabecera["IDEstado"];
+            this.txtEstado.ForeColor = cabecera["IDEstado"].ToString() =="0" ? Color.Black : (cabecera["IDEstado"].ToString() =="1" ? Color.Green :  cabecera["IDEstado"].ToString() =="2" ? Color.Red : Color.Purple);
             this.txtComentarios.Text = cabecera["Comentario"].ToString();
         }
 
@@ -137,6 +136,33 @@ namespace CO
             this.dtgDetalleSolicitud.DataSource = dtDetalle;
             this.btnAprobar.Enabled = (Convert.ToInt32(this.txtEstado.Tag) == 0) ? true : false;
             
+        }
+
+        private void HabilitarComandosAccion() {
+            IDEstado = Convert.ToInt32(this.txtEstado.Tag);
+            if ( IDEstado == 0) {
+                this.btnAprobar.Enabled = true;
+                this.btnRechazar.Enabled = true;
+                this.btnRevertir.Enabled =false;
+                this.btnEliminarSolicitud.Enabled = (Accion == "View" && IDEstado == 0) ? true : false;
+                this.btnEditarSolicitud.Enabled = (Accion == "View" && IDEstado == 0) ? true : false;
+            }
+            else if (IDEstado == 1 || IDEstado==2)
+            {
+                this.btnAprobar.Enabled = false;
+                this.btnRechazar.Enabled = false;
+                this.btnRevertir.Enabled = true;
+                this.btnEliminarSolicitud.Enabled = false;
+                this.btnEditarSolicitud.Enabled = false;
+            }
+            else {
+                this.btnAprobar.Enabled = false;
+                this.btnRechazar.Enabled = false;
+                this.btnRevertir.Enabled = false;
+                this.btnEliminarSolicitud.Enabled = false;
+                this.btnEditarSolicitud.Enabled = false;
+            }
+
         }
 
         private void LoadData()
@@ -155,6 +181,9 @@ namespace CO
                 {
                     CargarSolicitud(this.IDSolicitud);
                 }
+
+                HabilitarComandosAccion();
+                
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -293,89 +322,8 @@ namespace CO
             }
         }
 
-        void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
-        {
-            //try
-            //{
-
-            //    ColumnView view = sender as ColumnView;
-            //    //if (e.Column.FieldName == "IDCentro")
-            //    //{
-            //    //    if (e.Value == null) return;
-            //    //    DataView dt = new DataView();
-            //    //    dt.Table = _dtCentros;
-            //    //    dt.RowFilter = "IDCentro=" + e.Value.ToString();
-
-            //    //    e.DisplayText = dt.ToTable().Rows[0]["Centro"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
-            //    //}
-            //    //else if (e.Column.FieldName == "IDCuenta")
-            //    //{
-            //    //    if (e.Value == null) return;
-            //    //    DataView dt = new DataView();
-            //    //    dt.Table = _dtCuentas;
-            //    //    dt.RowFilter = "IDCuenta=" + e.Value.ToString();
-
-            //    //    e.DisplayText = dt.ToTable().Rows[0]["Cuenta"].ToString() + "-" + dt.ToTable().Rows[0]["Descr"].ToString();
-            //    //}
-
-            //    if (e.Column.FieldName == "Debito" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-            //    {
-            //        if (e.Value == null || e.Value.ToString() == "") return;
-            //        decimal Value = Convert.ToDecimal(e.Value);
-
-
-            //        NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
-            //        nfi.CurrencySymbol = Util.Util.LocalSimbolCurrency;
-            //        // Use the ToString method to format the value as currency ("c").
-            //        e.DisplayText = ((decimal)e.Value).ToString("C" + Util.Util.DecimalLenght, nfi);
-
-
-            //    }
-            //    if (e.Column.FieldName == "Credito" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-            //    {
-            //        if (e.Value == null || e.Value.ToString() == "") return;
-            //        decimal Value = Convert.ToDecimal(e.Value);
-
-
-            //        NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
-            //        nfi.CurrencySymbol = Util.Util.LocalSimbolCurrency;
-            //        // Use the ToString method to format the value as currency ("c").
-            //        e.DisplayText = ((decimal)e.Value).ToString("C" + Util.Util.DecimalLenght, nfi);
-
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-        }
-
-        void gridView1_ShownEditor(object sender, EventArgs e)
-        {
-            //ColumnView view = (ColumnView)sender;
-            //if (view.FocusedColumn.FieldName == "IDCuenta")
-            //{
-            //    //LookUpEdit editor = (LookUpEdit)view.ActiveEditor;
-            //    SearchLookUpEdit editor = (SearchLookUpEdit)view.ActiveEditor;
-            //    string idCentro = Convert.ToString(view.GetFocusedRowCellValue("IDCentro"));
-            //    if (idCentro == "")
-            //        idCentro = "0";
-
-            //    editor.Properties.DataSource = CuentaContableDAC.GetCuentaByCentroCosto(Convert.ToInt32(idCentro)).Tables[0];
-            //}
-            //if (view.FocusedColumn.FieldName == "IDCentro")
-            //{
-            //    //LookUpEdit editor = (LookUpEdit)view.ActiveEditor;
-            //    SearchLookUpEdit editor = (SearchLookUpEdit)view.ActiveEditor;
-            //    string IdCuenta = Convert.ToString(view.GetFocusedRowCellValue("IDCuenta"));
-            //    if (IdCuenta == "")
-            //        IdCuenta = "-1";
-
-            //    editor.Properties.DataSource = CentroCostoDAC.GetCentroByCuenta(Convert.ToInt32(IdCuenta)).Tables[0];
-            //}
-        }
-
+       
+      
         void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
             //throw new NotImplementedException();
@@ -548,39 +496,63 @@ namespace CO
 
         private void btnEliminarSolicitud_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //TODO: pendiente
+            try
+            {
+                if (MessageBox.Show("Esta seguro que desea eliminar la solicitud seleccionada ? ", "Listado de Solicitudes", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (IDSolicitud >-1)
+                    {
+                        ConnectionManager.BeginTran();
+                        clsSolicitudCompraDAC.InsertUpdate("D", IDSolicitud, DateTime.Now, DateTime.Now, -1, "", "", "", DateTime.Now, "", DateTime.Now, "", ConnectionManager.Tran);
+                        clsDetalleSolicitudCompraDAC.InsertUpdate("D", IDSolicitud, -1, 0, "", ConnectionManager.Tran);
+                        ConnectionManager.CommitTran();
+                    }
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Han ocurrido los siguientes errores: \n\r" + ex.Message);
+                ConnectionManager.RollBackTran();
+            }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmSolicitudCompra_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtgDetalleSolicitud_Click(object sender, EventArgs e)
-        {
-
-        }
+       
+      
 
         private void btnAprobar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //Validar si se puede aprobar
-            if (Convert.ToInt32(this.txtEstado.Tag) == 0)
+            try
             {
-                if (MessageBox.Show("Esta  seguro que desea aprobar la Solicitud de Compra ?", "Solicitud de Compra", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                if (Convert.ToInt32(this.txtEstado.Tag) == 0)
                 {
-                    int Estado = 1;
-                    DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
-                    MessageBox.Show("La solicitud se ha aprobado correctamente");
+                    if (MessageBox.Show("Esta  seguro que desea aprobar la Solicitud de Compra ?", "Solicitud de Compra", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        int Estado = 1;
+                        FechaRequerida = Convert.ToDateTime(this.dtpFechaRequerida.EditValue);
+                        Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
+                        Comentarios = this.txtComentarios.Text.Trim();
+                        ConnectionManager.BeginTran();
+                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        ConnectionManager.CommitTran();
+                        this.txtEstado.Text = "APROBADO";
+                        this.txtEstado.Tag = 1;
+                        this.txtEstado.ForeColor = Color.Green;
+                        this.Accion = "View";
+                        HabilitarControles();
+                        HabilitarBotoneriaPrincipal();
+                        HabilitarComandosAccion();
+                        MessageBox.Show("La solicitud se ha aprobado correctamente");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El estado actual de la solicitud no permite aprobarla");
                 }
             }
-            else
-            {
-                MessageBox.Show("El estado actual de la solicitud no permite aprobarla");
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores: " + ex.Message);
             }
         }
 
@@ -604,6 +576,67 @@ namespace CO
             DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
 
             tool.ShowPreview();
+        }
+
+        private void btnRechazar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (Convert.ToInt32(this.txtEstado.Tag) == 0)
+                {
+                    if (MessageBox.Show("Esta  seguro que desea Rechazar la Solicitud de Compra ?", "Solicitud de Compra", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        int Estado = 2;
+                        FechaRequerida = Convert.ToDateTime(this.dtpFechaRequerida.EditValue);
+                        Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
+                        Comentarios = this.txtComentarios.Text.Trim();
+                        ConnectionManager.BeginTran();
+                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        ConnectionManager.CommitTran();
+                        this.txtEstado.Text = "RECHAZADA";
+                        this.txtEstado.Tag = 2;
+                        this.txtEstado.ForeColor = Color.Red;
+                        this.Accion = "View";
+                        HabilitarControles();
+                        HabilitarBotoneriaPrincipal();
+                        HabilitarComandosAccion();
+                        MessageBox.Show("La solicitud se ha rechazado correctamente");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El estado actual de la solicitud no permite aprobarla");
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores : \n\r" + ex.Message);
+            }
+        }
+
+        private void btnRevertir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Validar si la solicitud tiene ordenes asociadas
+            DataTable dt = DAC.clsSolicitudCompraDAC.GetSolicitudCompra_OrdenCompra(IDSolicitud, -1, -1).Tables[0];
+            if (dt.Rows.Count == 0)
+            {
+                int Estado = 0;
+                FechaRequerida = Convert.ToDateTime(this.dtpFechaRequerida.EditValue);
+                Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
+                Comentarios = this.txtComentarios.Text.Trim();
+                DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                this.txtEstado.Text = "INICIALIZADA";
+                this.txtEstado.Tag = 0;
+                this.txtEstado.ForeColor = Color.Black;
+                this.Accion = "Edit";
+                HabilitarControles();
+                HabilitarBotoneriaPrincipal();
+                HabilitarComandosAccion();
+                MessageBox.Show("La solicitud se ha revertido correctamente");
+            }
+            else {
+                MessageBox.Show("La solicitud no puede ser revertida, posee ordenes de compra asociadas");
+            }
+
         }
 
        
