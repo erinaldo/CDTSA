@@ -11,8 +11,8 @@ namespace CO.DAC
 {
     public static class clsSolicitudCompraDAC
     {
-       public static int InsertUpdate(string Operacion,int IDSolicitud,DateTime Fecha,DateTime FechaRequerida,int IDEstado, String Comentario,int IDOrdenCompra,
-                                        String UsuarioSolicitud,String UsuarioCreaOC,DateTime FechaCreaOC, string Usuario,DateTime createdDate,String createdBy, DateTime recordDate, String updatedBy, SqlTransaction tran)
+       public static int InsertUpdate(string Operacion,int IDSolicitud,DateTime Fecha,DateTime FechaRequerida,int IDEstado, String Comentario,
+                                        String UsuarioSolicitud, string Usuario,DateTime createdDate,String createdBy, DateTime recordDate, String updatedBy, SqlTransaction tran)
         {
             int result = -1;
             String strSQL = "dbo.invUpdateSolicitudCompra";
@@ -26,9 +26,7 @@ namespace CO.DAC
            oCmd.Parameters.Add(new SqlParameter("@FechaRequerida", FechaRequerida));
            oCmd.Parameters.Add(new SqlParameter("@IDEstado", IDEstado));
            oCmd.Parameters.Add(new SqlParameter("@Comentario", Comentario));
-           oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
            oCmd.Parameters.Add(new SqlParameter("@UsuarioSolicitud", UsuarioSolicitud));
-           oCmd.Parameters.Add(new SqlParameter("@UsuarioCreaOC",UsuarioCreaOC));
            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
            oCmd.Parameters.Add(new SqlParameter("@CreatedDate", createdDate));
            oCmd.Parameters.Add(new SqlParameter("@CreatedBy", createdBy));
@@ -47,7 +45,7 @@ namespace CO.DAC
         }
 
 
-        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado, int IDOrdenCompra)
+        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado)
         {
             String strSQL = "dbo.invGetSolicitudCompra";
 
@@ -57,13 +55,12 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
             oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
             oCmd.Parameters.Add(new SqlParameter("@IDEstado", IDEstado));
-            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
             oCmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
             DataSet DS = new DataSet();
 
-            oAdap.Fill(DS.Tables["Data"]);
+            oAdap.Fill(DS,"Data");
             return DS;
         }
 

@@ -15,7 +15,7 @@ namespace CO.DAC
         public static long InsertUpdate(string Operacion, int IDSolicitud, long IDProducto,decimal Cantidad,String Comentario, SqlTransaction tran)
         {
             long result = -1;
-            String strSQL = "dbo.invUpdateSolicitudCompra";
+            String strSQL = "dbo.invUpdateDetalleSolicitud";
 
             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
@@ -35,18 +35,19 @@ namespace CO.DAC
         
         public static DataSet Get(int IDSolicitud)
         {
-            String strSQL = "dbo.invGetSolicitudCompraDetalle";
+                String strSQL = "dbo.invGetSolicitudCompraDetalle";
 
-            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+                SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
-            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
-            oCmd.CommandType = CommandType.StoredProcedure;
+                oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
+                oCmd.CommandType = CommandType.StoredProcedure;
 
-            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
-            DataSet DS = new DataSet();
+                SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+                DataSet DS = new DataSet();
 
-            oAdap.Fill(DS.Tables["Data"]);
-            return DS;
+                oAdap.Fill(DS,"Data");
+                return DS;
+            
         }
     }
 }

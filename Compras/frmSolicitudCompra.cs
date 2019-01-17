@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.Sql;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
@@ -47,7 +49,7 @@ namespace CO
 
         private void InicializarNuevoElement()
         {
-            this.txtIDSolicitud.Text = "XXX";
+            this.txtIDSolicitud.Text = "--";
             this.dtpFechaSolicitud.EditValue = DateTime.Now;
             this.txtEstado.Text = "Inicial";
             this.txtEstado.Tag = 0;
@@ -57,6 +59,7 @@ namespace CO
         }
 
         private void HabilitarBotoneriaPrincipal() { 
+            
             if (Accion=="Add" || Accion=="Edit"){
                 this.btnAddSolicitud.Enabled = false;
                 this.btnEditarSolicitud.Enabled = false;
@@ -92,9 +95,7 @@ namespace CO
                 this.txtComentarios.ReadOnly = false;
                 this.dtpFechaRequerida.ReadOnly = false;
                 this.dtpFechaSolicitud.ReadOnly=false;
-                this.btnAgregar.Enabled = true;
-                this.btnEditar.Enabled = true;
-                this.btnGuardar.Enabled = true;
+                
                 this.btnImportar.Enabled = true;
 
                 this.gridView1.OptionsBehavior.ReadOnly = false;
@@ -108,9 +109,7 @@ namespace CO
                 this.txtComentarios.ReadOnly = true;
                 this.dtpFechaRequerida.ReadOnly = true;
                 this.dtpFechaSolicitud.ReadOnly=true;
-                this.btnAgregar.Enabled = false;
-                this.btnEditar.Enabled = false;
-                this.btnGuardar.Enabled = false;
+                
                 this.btnImportar.Enabled = false;
                 this.gridView1.OptionsBehavior.ReadOnly = true;
                 this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -133,24 +132,32 @@ namespace CO
 
         private void CargarSolicitud(int IDSolicitud) {
             DataTable dtSolicitud = DAC.clsSolicitudCompraDAC.GetByID(IDSolicitud).Tables[0];
-            DataTable dtDetalle = DAC.clsOrdenCompraDetalleDAC.Get(IDSolicitud).Tables[0];
+            DataTable dtDetalle = DAC.clsDetalleSolicitudCompraDAC.Get(IDSolicitud).Tables[0];
             UpdateControlsFromData(dtSolicitud);
             this.dtgDetalleSolicitud.DataSource = dtDetalle;
+            this.btnAprobar.Enabled = (Convert.ToInt32(this.txtEstado.Tag) == 0) ? true : false;
+            
         }
 
         private void LoadData()
         {
-            HabilitarControles();
-            HabilitarBotoneriaPrincipal();
-            if (Accion == "Add")
+            try
             {
-                this.dtpFechaSolicitud.Focus();
-                dtDetalleSolicitud = DAC.clsOrdenCompraDetalleDAC.Get(-1).Tables[0];
-                this.dtgDetalleSolicitud.DataSource = dtDetalleSolicitud;
+                HabilitarControles();
+                HabilitarBotoneriaPrincipal();
+                if (Accion == "Add")
+                {
+                    this.dtpFechaSolicitud.Focus();
+                    dtDetalleSolicitud = DAC.clsDetalleSolicitudCompraDAC.Get(-1).Tables[0];
+                    this.dtgDetalleSolicitud.DataSource = dtDetalleSolicitud;
+                }
+                else
+                {
+                    CargarSolicitud(this.IDSolicitud);
+                }
             }
-            else
-            {
-                CargarSolicitud(this.IDSolicitud);
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -182,8 +189,24 @@ namespace CO
             this.slkupIDProducto.NullText = " --- ---";
             this.slkupIDProducto.EditValueChanged += slkup_EditValueChanged;
             this.slkupIDProducto.Popup += slkup_Popup;
+            this.slkupIDProducto.PopulateViewColumns();
+                        
 
+
+                            
+            //Util.Util.ConfigLookupEdit(this.slkupIDProducto, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
+            //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupIDProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+            this.slkupDescrProducto.DataSource = dtProductos;
+            this.slkupDescrProducto.DisplayMember = "Descr";
+            this.slkupDescrProducto.ValueMember = "IDProducto";
+            this.slkupDescrProducto.NullText = " --- ---";
+            this.slkupDescrProducto.EditValueChanged += slkup_EditValueChanged;
+            this.slkupDescrProducto.Popup += slkup_Popup;
             
+
+
+            //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupDescrProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
             
 
@@ -194,6 +217,7 @@ namespace CO
         {
             DevExpress.Utils.Win.IPopupControl popupControl = sender as DevExpress.Utils.Win.IPopupControl;
             DevExpress.XtraLayout.LayoutControl layoutControl = popupControl.PopupWindow.Controls[2].Controls[0] as LayoutControl;
+            
             SimpleButton clearButton = ((DevExpress.XtraLayout.LayoutControlItem)layoutControl.Items.FindByName("lciClear")).Control as SimpleButton;
             SimpleButton findButton = ((DevExpress.XtraLayout.LayoutControlItem)layoutControl.Items.FindByName("lciButtonFind")).Control as SimpleButton;
 
@@ -452,9 +476,11 @@ namespace CO
                 sMensaje = sMensaje +  "    • Fecha Requerida \n\r";
             if (this.dtpFechaSolicitud.Text == "")
                 sMensaje = sMensaje + "   • Fecha Solicitud \n\r";
+            if (((DataTable)this.dtgDetalleSolicitud.DataSource).Rows.Count == 0)
+                sMensaje = sMensaje = "   • Por favor agrege al menos un elemento al detalle de la solicitud";
 
             if (sMensaje != "") {
-                MessageBox.Show("Han ocurrido los siguientes errores por favor verifique los campos: \n\r");
+                MessageBox.Show("Han ocurrido los siguientes errores por favor verifique los campos: \n\r " + sMensaje);
                 Resultado = false;
             }
             return Resultado;
@@ -472,11 +498,13 @@ namespace CO
                     DataTable dt = (DataTable)this.dtgDetalleSolicitud.DataSource;
 
                     ConnectionManager.BeginTran();
+                    
+
                     if (Accion == "Add")
                     {
                         //Ingresar la cabecera de la solicitud
-                        IDSolicitud = DAC.clsSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, -1, sUsuario, null, DateTime.MinValue, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, null);
-
+                        IDSolicitud = DAC.clsSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        this.txtIDSolicitud.Text = IDSolicitud.ToString();
                         foreach (DataRow row in dt.Rows)
                         {
                             DAC.clsDetalleSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, (long)row["IDProducto"], (decimal)row["Cantidad"], row["Comentario"].ToString(), ConnectionManager.Tran);
@@ -485,7 +513,7 @@ namespace CO
 
                     if (Accion == "Edit")
                     {
-                        IDSolicitud = DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, -1, sUsuario, null, DateTime.MinValue, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, null);
+                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         //Eliminamos el detalle y lo volvemos a insertar
                         DAC.clsDetalleSolicitudCompraDAC.InsertUpdate("D", IDSolicitud, -1, 0, "", ConnectionManager.Tran);
                         foreach (DataRow row in dt.Rows)
@@ -493,9 +521,17 @@ namespace CO
                             DAC.clsDetalleSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, (long)row["IDProducto"], (decimal)row["Cantidad"], row["Comentario"].ToString(), ConnectionManager.Tran);
                         }
                     }
+
+                    ConnectionManager.CommitTran();
+                    this.Accion = "Edit";
+                    HabilitarControles();
+                    HabilitarBotoneriaPrincipal();
+                    MessageBox.Show("La solicitud se ha guardado correctamente");
+                    
                 }
             } catch (Exception ex)
             {
+                ConnectionManager.RollBackTran();
                  MessageBox.Show("Han ocurrido los siguiente errores: " + ex.Message);
             }
 
@@ -524,6 +560,53 @@ namespace CO
         {
 
         }
+
+        private void dtgDetalleSolicitud_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAprobar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Validar si se puede aprobar
+            if (Convert.ToInt32(this.txtEstado.Tag) == 0)
+            {
+                if (MessageBox.Show("Esta  seguro que desea aprobar la Solicitud de Compra ?", "Solicitud de Compra", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    int Estado = 1;
+                    DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                    MessageBox.Show("La solicitud se ha aprobado correctamente");
+                }
+            }
+            else
+            {
+                MessageBox.Show("El estado actual de la solicitud no permite aprobarla");
+            }
+        }
+
+        private void btnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptSolicitudCompra.repx", true);
+
+
+            SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+            SqlDataSource ds = report.DataSource as SqlDataSource;
+            ds.ConnectionName = "DataSource";
+            String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+            ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+            // Obtain a parameter, and set its value.
+            report.Parameters["IDSolicitudCompra"].Value = Convert.ToInt32(this.txtIDSolicitud.Text.Trim());
+
+            // Show the report's print preview.
+            DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+            tool.ShowPreview();
+        }
+
+       
 
         
     }

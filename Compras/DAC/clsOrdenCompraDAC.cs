@@ -83,7 +83,7 @@ namespace CO.DAC
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
             DataSet DS = new DataSet();
 
-            oAdap.Fill(DS.Tables["Data"]);
+            oAdap.Fill(DS,"Data");
             return DS;
         }
     }

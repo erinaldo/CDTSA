@@ -796,11 +796,11 @@ namespace MainMenu
             switch (node.Tag.ToString())
             {
                 case "frmSolicitudCompra":
-                    frmSolicitudCompra ofrmSolicitud = new frmSolicitudCompra("New");
-                    ofrmSolicitud.MdiParent = this;
-                    ofrmSolicitud.WindowState = FormWindowState.Maximized;
+                    frmListdoSolicitudCompra ofrmLisatoSolicitud = new frmListdoSolicitudCompra();
+                    ofrmLisatoSolicitud.MdiParent = this;
+                    ofrmLisatoSolicitud.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
-                    ofrmSolicitud.Show();
+                    ofrmLisatoSolicitud.Show();
                     break;
             }
         }

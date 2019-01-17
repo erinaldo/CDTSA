@@ -79,10 +79,7 @@ CREATE TABLE dbo.invSolicitudCompra(
 	FechaRequerida date,
 	IDEstado int,
 	Comentario nvarCHAR(250),
-	IDOrdenCompra int,
 	UsuarioSolicitud nvarchar(50),
-	UsuarioCreaOC nvarchar(50),
-	FechaCreaOC datetime,
 	CreateDate datetime,
 	CreatedBy nvarchar(50),
 	RecordDate datetime,
@@ -97,6 +94,27 @@ GO
 
 ALTER TABLE [dbo].[invSolicitudCompra]  WITH CHECK ADD  CONSTRAINT [fkinvSolicitudCompra_EstadoSolicitud] FOREIGN KEY([IDEstado])
 REFERENCES [dbo].invEstadoSolicitud (IDEstado)
+
+GO
+
+CREATE TABLE dbo.invSolicitudOrdenCompra (
+	IDSolicitud INT NOT NULL,
+	IDOrdenCompra INT NOT NULL,
+	IDProducto BIGINT NOT NULL,
+	Cantidad DECIMAL(28,4) DEFAULT  0,
+	Usuario NVARCHAR(50) ,
+	Fecha DATETIME
+CONSTRAINT [pkinvSolicitudCompraOrdenCompra] PRIMARY KEY CLUSTERED 
+(
+	IDSolicitud ASC,
+	IDOrdenCompra ASC,
+	[IDProducto] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+ALTER TABLE [dbo].invSolicitudOrdenCompra  WITH CHECK ADD  CONSTRAINT [fkinvSolicitudOrdenCompra_Solicitud] FOREIGN KEY([IDSolicitud])
+REFERENCES [dbo].invSolicitudCompra (IDSolicitud)
 
 
 GO
@@ -141,7 +159,6 @@ CREATE TABLE [dbo].[invOrdenCompra](
 	Anticipos decimal(28,4),
 	IDTipoProrrateo INt,
 	IDEmbarque INT,
-	IDSolicitud INT,
 	IDDocumentoCP INT,
 	TipoCambio DECIMAL(28,4),
 	Usuario NVARCHAR(50) NOT NULL,
@@ -182,6 +199,12 @@ GO
 
 ALTER TABLE [dbo].[invOrdenCompra]  WITH CHECK ADD  CONSTRAINT [fkinvOrdenCompra_TipoProrrateo] FOREIGN KEY([IDTipoProrrateo])
 REFERENCES [dbo].invTipoProrrateoRubrosCompra (IDTipoProrrateo)
+
+GO
+
+ALTER TABLE [dbo].invSolicitudOrdenCompra  WITH CHECK ADD  CONSTRAINT [fkinvSolicitudOrdenCompra_OrdenCompra] FOREIGN KEY([IDOrdenCompra])
+REFERENCES [dbo].invOrdenCompra (IDOrdenCompra)
+
 GO
 
 
@@ -220,7 +243,6 @@ CREATE TABLE [dbo].[invEmbarque](
 	[IDBodega] INT,
 	[IDProveedor] INT,
 	[IDOrdenCompra] int,
-	IDSolicitud INT,
 	IDDocumentoCP INT,
 	TipoCambio DECIMAL(28,4),
 	Usuario NVARCHAR(50) NOT NULL,
@@ -244,10 +266,6 @@ ALTER TABLE [dbo].[invEmbarque]  WITH CHECK ADD  CONSTRAINT [fkinvEmbarque_Orden
 REFERENCES [dbo].invOrdenCompra (IDOrdenCompra)
 GO
 
-
-ALTER TABLE [dbo].[invEmbarque]  WITH CHECK ADD  CONSTRAINT [fkinvEmbarque_SolicitudCompra] FOREIGN KEY(IDSolicitud)
-REFERENCES [dbo].invSolicitudCompra (IDSolicitud)
-GO
 
 --// TODO Pendiente crear tabla de Cuentas por pagar
 --ALTER TABLE [dbo].[invEmbarque]  WITH CHECK ADD  CONSTRAINT [fkinvEmbarque_DocumentoCP] FOREIGN KEY(IDDocumentoCP)
@@ -353,19 +371,19 @@ CREATE TABLE dbo.invParametrosCompra(
 
 GO
 
-CREATE  PROCEDURE dbo.invUpdateSolicitudCompra(@Operacion NVARCHAR(1), @IDSolicitud AS INT OUTPUT, @Fecha date, @FechaRequerida  AS date, @IDEstado AS int ,@Comentario nvarchar(20),
-@IDOrdenCompra AS int, @UsuarioSolicitud nvarchar(50),@UsuarioCreaOC nvarchar(20),@FechaCreaOC datetime,@Usuario nvarchar(50),@CreatedDate datetime,@CreatedBy nvarchar(50),@RecordDate datetime,@UpdateBy nvarchar(50))
+CREATE   PROCEDURE dbo.invUpdateSolicitudCompra(@Operacion NVARCHAR(1), @IDSolicitud AS INT OUTPUT, @Fecha date, @FechaRequerida  AS date, @IDEstado AS int ,@Comentario nvarchar(20)
+, @UsuarioSolicitud nvarchar(50),@Usuario nvarchar(50),@CreatedDate datetime,@CreatedBy nvarchar(50),@RecordDate datetime,@UpdateBy nvarchar(50))
 AS 
 IF (@Operacion='I')  
 BEGIN
-	SET @IDSolicitud = (SELECT MAX(IDSolicitud)  FROM dbo.invSolicitudCompra) + 1
+	SET @IDSolicitud = (SELECT ISNULL(MAX(IDSolicitud),0)  FROM dbo.invSolicitudCompra) + 1
 	INSERT INTO dbo.invSolicitudCompra(IdSolicitud,Fecha,FechaRequerida,IDEstado,Comentario,UsuarioSolicitud,CreateDate,CreatedBy,RecordDate,UpdateBy)
 	VALUES (@IDSolicitud,@Fecha,@FechaRequerida,@IDEstado,@Comentario,@UsuarioSolicitud,@CreatedDate,@CreatedBy,@RecordDate,@UpdateBy)
 END
 IF (@Operacion='U')
 BEGIN
-	UPDATE dbo.invSolicitudCompra  SET FechaRequerida=@FechaRequerida,IDEstado =@IDEstado,IDOrdenCompra = @IDOrdenCompra,
-															UsuarioCreaOC = @UsuarioCreaOC,FechaCreaOC= @FechaCreaOC,RecordDate=@RecordDate,UpdateBy = @UpdateBy
+	UPDATE dbo.invSolicitudCompra  SET FechaRequerida=@FechaRequerida,IDEstado =@IDEstado,
+															RecordDate=@RecordDate,UpdateBy = @UpdateBy
 	WHERE IdSolicitud=@IDSolicitud
 END
 IF (@Operacion ='D')
@@ -375,16 +393,24 @@ END
 
 GO
 
-CREATE PROCEDURE dbo.invGetSolicitudCompra (@IDSolicitud AS INT, @FechaInicial AS DATETIME,@FechaFinal AS DATE,@IDEstado AS INT, @IDOrdenCompra AS INT)
+CREATE PROCEDURE [dbo].[invGetSolicitudCompraByID] (@IDSolicitud AS INT)
 AS 
-SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario ,A.IDOrdenCompra, O.OrdenCompra ,UsuarioSolicitud ,UsuarioCreaOC ,
-				FechaCreaOC ,A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
+SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario ,UsuarioSolicitud ,
+				A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
 FROM dbo.invSolicitudCompra A
 INNER JOIN dbo.invEstadoSolicitud E ON A.IDEstado=E.IDEstado
-LEFT JOIN dbo.invOrdenCompra O ON A.IDOrdenCompra=O.IDOrdenCompra
-WHERE A.IDSolicitud =@IDSolicitud AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal  
-			AND (A.IDEstado =@IDEstado OR @IDEstado=-1) AND (A.IDOrdenCompra=@IDOrdenCompra OR @IDOrdenCompra=-1)
+WHERE A.IDSolicitud =@IDSolicitud 
 
+GO
+
+CREATE PROCEDURE dbo.invGetSolicitudCompra (@IDSolicitud AS INT, @FechaInicial AS DATETIME,@FechaFinal AS DATE,@IDEstado AS INT)
+AS 
+SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario  ,UsuarioSolicitud ,
+				A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
+FROM dbo.invSolicitudCompra A
+INNER JOIN dbo.invEstadoSolicitud E ON A.IDEstado=E.IDEstado
+WHERE (A.IDSolicitud =@IDSolicitud OR @IDSolicitud=-1) AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal  
+			AND (A.IDEstado =@IDEstado OR @IDEstado=-1) 
 GO
 
 
@@ -415,7 +441,7 @@ CREATE PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra
 										@FechaRequerida DATE, @FechaEmision DATE,@FechaRequeridaEmbarque DATE,@FechaCotizacion DATE,
 										@IDEstado AS INT, @IDBodega AS INT, @IDProveedor AS INT, @IDMoneda AS INT, @IDCondicionPago AS INT, 
 										@Descuento AS DECIMAL(28,4), @Flete AS DECIMAL(28,4),@Documentacion AS DECIMAL(28,4),@Anticipos AS DECIMAL(28,4),
-										@IDTipoProrrateo AS INT, @IDEmbarque AS INT, @IDSolicitud AS INT, @IDDocumentoCP AS INT, @TipoCambio AS DECIMAL(28,4),
+										@IDTipoProrrateo AS INT, @IDEmbarque AS INT,  @IDDocumentoCP AS INT, @TipoCambio AS DECIMAL(28,4),
 										 @Usuario AS NVARCHAR(50),@UsuarioEmbarque AS NVARCHAR(50),@FechaCreaEmbarque AS DATETIME, 
 										 @UsuarioAprobacion AS NVARCHAR(50),@FechaAprobacion AS DATETIME, @CreateDate AS DATETIME, 
 										 @CreatedBy AS NVARCHAR(50), @RecordDate AS DATETIME, @UpdatedBy AS DATETIME)
@@ -424,12 +450,12 @@ IF (@Operacion ='I')
 BEGIN
 	SET @IDOrdenCompra = (SELECT MAX(IDOrdenCompra)  FROM dbo.invOrdenCompra ) + 1
 	
-	INSERT INTO dbo.invOrdenCompra(IDOrdenCompra,OrdenCompra,Fecha,FechaRequerida,FechaEmision,FechaRequeridaEmbarque,FechaCotizacion,IdEstado, IDBodega,IDProveedor,IDMoneda,IDCondicionPago,Descuento,Flete,Documentacion,Anticipos,IDTipoProrrateo,IDEmbarque,IDSolicitud,IdDocumentoCP,TipoCambio,Usuario,UsuarioCreaEmbarque,FechaCreaEmbarque,UsuarioAprobacion,FechaAprobacion,CreateDate,Createdby,RecordDate,UpdateBy)
-	VALUES (@IDOrdenCompra, @OrdenCompra, @Fecha,@FechaRequerida,@FechaEmision,@FechaRequeridaEmbarque,@FechaCotizacion,@IDEstado,@IDBodega,@IDProveedor,@IDMoneda,@IDCondicionPago,@Descuento,@Flete,@Documentacion,@Anticipos,@IDTipoProrrateo,@IDEmbarque,@IDSolicitud,@IDDocumentoCP,@TipoCambio,@Usuario,@UsuarioEmbarque,@FechaCreaEmbarque,@UsuarioAprobacion,@FechaAprobacion, @CreateDate,@CreatedBy,@RecordDate,@UpdatedBy)
+	INSERT INTO dbo.invOrdenCompra(IDOrdenCompra,OrdenCompra,Fecha,FechaRequerida,FechaEmision,FechaRequeridaEmbarque,FechaCotizacion,IdEstado, IDBodega,IDProveedor,IDMoneda,IDCondicionPago,Descuento,Flete,Documentacion,Anticipos,IDTipoProrrateo,IDEmbarque,IdDocumentoCP,TipoCambio,Usuario,UsuarioCreaEmbarque,FechaCreaEmbarque,UsuarioAprobacion,FechaAprobacion,CreateDate,Createdby,RecordDate,UpdateBy)
+	VALUES (@IDOrdenCompra, @OrdenCompra, @Fecha,@FechaRequerida,@FechaEmision,@FechaRequeridaEmbarque,@FechaCotizacion,@IDEstado,@IDBodega,@IDProveedor,@IDMoneda,@IDCondicionPago,@Descuento,@Flete,@Documentacion,@Anticipos,@IDTipoProrrateo,@IDEmbarque,@IDDocumentoCP,@TipoCambio,@Usuario,@UsuarioEmbarque,@FechaCreaEmbarque,@UsuarioAprobacion,@FechaAprobacion, @CreateDate,@CreatedBy,@RecordDate,@UpdatedBy)
 END										 
 IF (@Operacion='U')
 BEGIN
-	UPDATE dbo.invOrdenCompra SET FechaRequerida= @FechaRequerida ,FechaRequeridaEmbarque = @FechaRequeridaEmbarque, FechaCotizacion = @FechaCotizacion,IDEstado = @IDEstado,IDBodega=@IDBodega, IDCondicionPago = @IDCondicionPago, Descuento= @Descuento ,Flete=@Flete,Documentacion = @Documentacion,Anticipos= @Anticipos,IDTipoProrrateo = @IDTipoProrrateo,IDEmbarque = @IDEmbarque,IDSolicitud = @IDSolicitud,IDDocumentoCP = @IDDocumentoCP, 
+	UPDATE dbo.invOrdenCompra SET FechaRequerida= @FechaRequerida ,FechaRequeridaEmbarque = @FechaRequeridaEmbarque, FechaCotizacion = @FechaCotizacion,IDEstado = @IDEstado,IDBodega=@IDBodega, IDCondicionPago = @IDCondicionPago, Descuento= @Descuento ,Flete=@Flete,Documentacion = @Documentacion,Anticipos= @Anticipos,IDTipoProrrateo = @IDTipoProrrateo,IDEmbarque = @IDEmbarque,IDDocumentoCP = @IDDocumentoCP, 
 																																																																																																																						TipoCambio = @TipoCambio,UsuarioCreaEmbarque = @UsuarioEmbarque,UsuarioAprobacion =@UsuarioAprobacion, FechaAprobacion=@FechaAprobacion,RecordDate=@RecordDate,UpdateBy=@UpdatedBy
 END
 IF (@Operacion='D')
@@ -471,20 +497,20 @@ IF (@Operacion='D')
 GO
 
 
-CREATE PROCEDURE dbo.invUpdateEmbaque(@Operacion AS NVARCHAR(1),@IDEmbarque AS INT, @Embarque AS NVARCHAR(20),@Fecha AS DATE, 
-						@FechaEmbarque AS INT,@Asiento AS NVARCHAR(20),@IDBodega AS INT, @IDProveedor AS INT, @IDOrdenCompra AS INT, 
-						@IDSolicitud AS INT, @IDDocumentoCP AS INT, @TipoCambio AS DECIMAL(28,4), @Usuario AS NVARCHAR(50),@CreateDate AS DATETIME, 
+CREATE  PROCEDURE dbo.invUpdateEmbaque(@Operacion AS NVARCHAR(1),@IDEmbarque AS INT, @Embarque AS NVARCHAR(20),@Fecha AS DATE, 
+						@FechaEmbarque AS DATE,@Asiento AS NVARCHAR(20),@IDBodega AS INT, @IDProveedor AS INT, @IDOrdenCompra AS INT, 
+						@IDDocumentoCP AS INT, @TipoCambio AS DECIMAL(28,4), @Usuario AS NVARCHAR(50),@CreateDate AS DATETIME, 
 						@CreatedBy AS NVARCHAR(50),@RecordDate AS DATETIME,@UpdateBy AS NVARCHAR(50))
 AS 
 IF (@Operacion ='I')
 BEGIN
-	 INSERT INTO dbo.invEmbarque( IDEmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra ,IDSolicitud ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
-	 VALUES (@IDEmbarque,@Embarque,@Fecha,@FechaEmbarque,@Asiento,@IDBodega,@IDProveedor,@IDOrdenCompra,@IDSolicitud,@IDDocumentoCP,@TipoCambio,@Usuario,@CreateDate,@CreateDate,@RecordDate,@UpdateBy)
+	 INSERT INTO dbo.invEmbarque( IDEmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra  ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
+	 VALUES (@IDEmbarque,@Embarque,@Fecha,@FechaEmbarque,@Asiento,@IDBodega,@IDProveedor,@IDOrdenCompra,@IDDocumentoCP,@TipoCambio,@Usuario,@CreateDate,@CreatedBy,@RecordDate,@UpdateBy)
 END
 IF (@Operacion='U')
 BEGIN
 	UPDATE dbo.invEmbarque SET  FechaEmbarque=@FechaEmbarque, Asiento= @Asiento,IDBodega=@IDBodega,IDProveedor=@IDProveedor,
-			IDOrdenCompra=@IDOrdenCompra,IDSolicitud=@IDSolicitud,IDDocumentoCP=@IDDocumentoCP,RecordDate= @RecordDate,UpdateBy= @UpdateBy
+			IDOrdenCompra=@IDOrdenCompra,IDDocumentoCP=@IDDocumentoCP,RecordDate= @RecordDate,UpdateBy= @UpdateBy
 	  WHERE IDEmbarque=@IDEmbarque
 END
 IF (@Operacion ='D')
@@ -492,17 +518,17 @@ IF (@Operacion ='D')
 
 GO
 
-CREATE PROCEDURE dbo.invGetEmbarque(@IDEmbarque AS INT,@FechaInicial AS DATE,@FechaFinal AS DATE,
-																	@IDProveedor AS INT,@IDSolicitud AS INT,@OrdenCompra AS NVARCHAR(20),@IDDocumentoCP AS INT)
+CREATE  PROCEDURE dbo.invGetEmbarque(@IDEmbarque AS INT,@FechaInicial AS DATE,@FechaFinal AS DATE,
+																	@IDProveedor AS INT,@OrdenCompra AS NVARCHAR(20),@IDDocumentoCP AS INT)
 as
 SELECT A.IDEmbarque,A.Embarque,A.Fecha,A.FechaEmbarque,A.Asiento,A.IDBodega,B.Descr DescrBodega,A.IDProveedor,P.Nombre NombreProveedor,A.IDOrdenCompra,
-			O.OrdenCompra,A.IDSolicitud,A.IDDocumentoCP,A.TipoCambio,A.Usuario,A.CreateDate,A.CreatedBy,A.RecordDate,A.UpdateBy
+			O.OrdenCompra,A.IDDocumentoCP,A.TipoCambio,A.Usuario,A.CreateDate,A.CreatedBy,A.RecordDate,A.UpdateBy
   FROM dbo.invEmbarque A
 LEFT JOIN dbo.invOrdenCompra O ON A.IDOrdenCompra=O.OrdenCompra
 INNER JOIN dbo.cppProveedor P ON A.IDProveedor=P.IDProveedor
 INNER JOIN dbo.invBodega B ON A.IDBodega=B.IDBodega
 WHERE (A.IDEmbarque =@IDEmbarque OR @IDEmbarque=-1) AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal AND (A.IDProveedor =@IDProveedor OR @IDProveedor=-1)
-AND (A.IDSolicitud =@IDSolicitud OR @IDSolicitud=-1) AND (O.OrdenCompra =@OrdenCompra OR o.OrdenCompra LIKE '%'+ @OrdenCompra +'%') AND (A.IDDocumentoCP = @IDDocumentoCP OR @IDDocumentoCP=-1)
+ AND (O.OrdenCompra =@OrdenCompra OR o.OrdenCompra LIKE '%'+ @OrdenCompra +'%') AND (A.IDDocumentoCP = @IDDocumentoCP OR @IDDocumentoCP=-1)
 
 GO 
 

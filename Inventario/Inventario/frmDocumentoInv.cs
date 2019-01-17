@@ -1013,7 +1013,7 @@ namespace CI
                 SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
 
                 SqlDataSource ds = report.DataSource as SqlDataSource;
-                ds.ConnectionName = "sqlDataSource1";
+                ds.ConnectionName = "DataSource";
                 String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
                 System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
                 ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);

@@ -229,6 +229,51 @@ namespace Util
             lkupControl.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
         }
 
+        public static void ConfigRepositoryLookupEditSetViewColumns(RepositoryItemSearchLookUpEdit lkupControl, String Columns)
+        {
+            dynamic oColumns = JArray.Parse(Columns);
+            DevExpress.XtraGrid.Views.Grid.GridView lookupView = lkupControl.View; //new DevExpress.XtraGrid.Views.Grid.GridView();
+            bool AutoWidth = false;
+            int count = 0;
+            lookupView.Columns.Clear();
+            foreach (dynamic ele in oColumns)
+            {
+                DevExpress.XtraGrid.Columns.GridColumn col = new DevExpress.XtraGrid.Columns.GridColumn();
+                col.Caption = ele.ColumnCaption;
+                col.FieldName = ele.ColumnField;
+                col.MinWidth = 10;
+                col.Visible = true;
+                col.OptionsFilter.AutoFilterCondition = DevExpress.XtraGrid.Columns.AutoFilterCondition.Contains;
+                col.VisibleIndex = count;
+
+                if (ele.width != null)
+                    col.Width = Convert.ToInt32(((Convert.ToDouble(lkupControl.PopupFormSize.Width) - 27) * Convert.ToDouble(ele.width)) / 100);
+                else
+                    AutoWidth = true;
+
+                col.OptionsColumn.AllowSize = true;
+
+                lookupView.Columns.Add(col);
+
+                count++;
+            }
+
+            lookupView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            lookupView.OptionsLayout.StoreAllOptions = true;
+            lookupView.BestFitMaxRowCount = -1;
+            lookupView.OptionsFilter.ColumnFilterPopupRowCount = 10;
+            lookupView.OptionsFilter.DefaultFilterEditorView = DevExpress.XtraEditors.FilterEditorViewMode.VisualAndText;
+            lookupView.OptionsFind.FindDelay = 100;
+            lookupView.OptionsFind.SearchInPreview = true;
+            lookupView.OptionsView.ColumnAutoWidth = AutoWidth;
+            lookupView.OptionsFind.ShowClearButton = false;
+            lookupView.OptionsLayout.Columns.AddNewColumns = false;
+            lookupView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            lookupView.OptionsView.ShowGroupPanel = false;
+            lkupControl.View = lookupView;
+        }
+
+
         public static void ConfigLookupEditSetViewColumns(SearchLookUpEdit lkupControl, String Columns)
         {
             dynamic oColumns = JArray.Parse(Columns);
