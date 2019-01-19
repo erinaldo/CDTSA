@@ -7,7 +7,7 @@ using Security;
 
 namespace CI.DAC
 {
-    class clsBodegaDAC
+    public class clsBodegaDAC
     {
         public static SqlDataAdapter oAdaptador = InicializarAdaptador();
 

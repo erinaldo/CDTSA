@@ -11,7 +11,7 @@ namespace CO.DAC
 {
     public static class clsOrdenCompraDetalleDAC
     {
-        public static long InsertUpdate(string Operacion,int IDOrdenCompra,long IDProducto,decimal Cantidad,decimal CantidadAceptada,
+        public static long InsertUpdate(string Operacion,long IDOrdenCompra,long IDProducto,decimal Cantidad,decimal CantidadAceptada,
                         decimal CantidadRechazada,decimal PrecioUnitario,decimal Impuesto,decimal PorcDesc,decimal MontoDesc,
                         int IDEstado,String Comentario,SqlTransaction tran)
         {
@@ -43,7 +43,7 @@ namespace CO.DAC
         }
 
 
-        public static DataSet Get(int IDOrdenCompra)
+        public static DataSet Get(long IDOrdenCompra)
         {
             String strSQL = "dbo.invGetOrdenCompraDetalle";
 

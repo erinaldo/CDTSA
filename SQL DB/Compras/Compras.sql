@@ -405,6 +405,10 @@ GO
 
 CREATE PROCEDURE dbo.invGetSolicitudCompra (@IDSolicitud AS INT, @FechaInicial AS DATETIME,@FechaFinal AS DATE,@IDEstado AS INT)
 AS 
+
+set @FechaInicial = CONVERT(VARCHAR(25),@FechaInicial,101) 
+set @FechaFinal = CAST(SUBSTRING(CAST(@FechaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
+
 SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario  ,UsuarioSolicitud ,
 				A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
 FROM dbo.invSolicitudCompra A
@@ -436,6 +440,59 @@ FROM dbo.invSolicitudCompraDetalle A
 INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
 WHERE (IDSolicitud =@IDSolicitud OR (@IDSolicitud=-1 AND 1=3))
 go 
+
+CREATE  PROCEDURE dbo.invGetOrdenCompra( @IDOrdenCompra AS INT, @FechaInicial AS DATE,@FechaFinal AS DATE, @Proveedor AS NVARCHAR(1000),@Estado AS NVARCHAR(1000),@FechaRequeridaInicial AS DATE ,
+																			@FechaRequeridaFinal AS DATE)
+AS 
+DECLARE @Separador AS NVARCHAR(1)
+SET @Separador = '|'
+IF (@FechaInicial IS NULL) SET @FechaInicial = '19810821'
+IF (@FechaFinal IS NULL) SET @FechaFinal = DATEADD(YEAR,50,GETDATE())
+
+IF (@FechaRequeridaInicial IS NULL) SET @FechaRequeridaInicial = '19810821'
+IF (@FechaRequeridaFinal IS NULL) SET @FechaRequeridaFinal = DATEADD(YEAR,50,GETDATE())
+
+set @FechaRequeridaInicial = CONVERT(VARCHAR(25),@FechaRequeridaInicial,101) 
+set @FechaRequeridaFinal = CAST(SUBSTRING(CAST(@FechaRequeridaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
+
+set @FechaInicial = CONVERT(VARCHAR(25),@FechaInicial,101) 
+set @FechaFinal = CAST(SUBSTRING(CAST(@FechaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
+
+SELECT  A.IDOrdenCompra ,OrdenCompra ,A.Fecha ,FechaRequerida ,FechaEmision ,FechaRequeridaEmbarque ,FechaCotizacion ,IDEstado, B.Descr DescrEstado,A.IDBodega, C.Descr DescrBodega, 
+		A.IDProveedor ,C.Descr DescrProveedor,A.IDMoneda, E.Descr DescrMoneda,A.IDCondicionPago , F.Descr DescrCondicionPago,F.Dias DiasCondicionPago,
+        Descuento ,Flete ,Documentacion ,Anticipos ,A.IDTipoProrrateo, G.Descr DescrTipoProrrateo ,A.IDEmbarque, H.Embarque ,A.IDDocumentoCP ,A.TipoCambio ,A.Usuario ,UsuarioCreaEmbarque ,FechaCreaEmbarque ,UsuarioAprobacion ,
+        FechaAprobacion ,A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
+FROM dbo.invOrdenCompra A INNER JOIN dbo.invEstadoOrdenCompra B ON A.IDEstado = B.IDEstadoOrden
+INNER JOIN dbo.invBodega C ON A.IDBodega= C.IDBodega 
+INNER JOIN dbo.cppProveedor D ON A.IDProveedor = D.IDProveedor
+INNER JOIN dbo.globalMoneda E ON A.IDMoneda = E.IDMoneda
+INNER JOIN dbo.cppCondicionPago F ON A.IDCondicionPago = F.IDCondicionPago
+LEFT  JOIN dbo.invTipoProrrateoRubrosCompra G ON A.IDTipoProrrateo = G.IDTipoProrrateo
+LEFT JOIN dbo.invEmbarque H ON A.IDEmbarque = H.IDEmbarque
+WHERE (A.IDOrdenCompra = @IDOrdenCompra OR @IDOrdenCompra = -1) AND A.Fecha  BETWEEN @FechaInicial  AND @FechaFinal  AND FechaRequerida  BETWEEN @FechaRequeridaInicial AND @FechaRequeridaFinal
+AND (a.IDProveedor = (SELECT Value FROM [dbo].[ConvertListToTable](@Proveedor,@Separador)) OR @Proveedor = '*')  AND (A.IDEstado = (SELECT Value FROM [dbo].[ConvertListToTable](@Estado,@Separador) ) OR @Estado ='*' )
+
+
+go 
+
+
+CREATE  PROCEDURE dbo.invGetOrdenCompraByID( @IDOrdenCompra AS INT)
+AS 
+SELECT  A.IDOrdenCompra ,OrdenCompra ,A.Fecha ,FechaRequerida ,FechaEmision ,FechaRequeridaEmbarque ,FechaCotizacion ,IDEstado, B.Descr DescrEstado,A.IDBodega, C.Descr DescrBodega, 
+		A.IDProveedor ,C.Descr DescrProveedor,A.IDMoneda, E.Descr DescrMoneda,A.IDCondicionPago , F.Descr DescrCondicionPago,F.Dias DiasCondicionPago,
+        Descuento ,Flete ,Documentacion ,Anticipos ,A.IDTipoProrrateo, G.Descr DescrTipoProrrateo ,A.IDEmbarque, H.Embarque ,A.IDDocumentoCP ,A.TipoCambio ,A.Usuario ,UsuarioCreaEmbarque ,FechaCreaEmbarque ,UsuarioAprobacion ,
+        FechaAprobacion ,A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
+FROM dbo.invOrdenCompra A INNER JOIN dbo.invEstadoOrdenCompra B ON A.IDEstado = B.IDEstadoOrden
+INNER JOIN dbo.invBodega C ON A.IDBodega= C.IDBodega 
+INNER JOIN dbo.cppProveedor D ON A.IDProveedor = D.IDProveedor
+INNER JOIN dbo.globalMoneda E ON A.IDMoneda = E.IDMoneda
+INNER JOIN dbo.cppCondicionPago F ON A.IDCondicionPago = F.IDCondicionPago
+LEFT  JOIN dbo.invTipoProrrateoRubrosCompra G ON A.IDTipoProrrateo = G.IDTipoProrrateo
+LEFT JOIN dbo.invEmbarque H ON A.IDEmbarque = H.IDEmbarque
+WHERE (A.IDOrdenCompra = @IDOrdenCompra )
+
+
+GO
 
 CREATE PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT OUTPUT,@OrdenCompra NVARCHAR(20) OUTPUT,@Fecha DATETIME, 
 										@FechaRequerida DATE, @FechaEmision DATE,@FechaRequeridaEmbarque DATE,@FechaCotizacion DATE,
@@ -520,7 +577,10 @@ GO
 
 CREATE  PROCEDURE dbo.invGetEmbarque(@IDEmbarque AS INT,@FechaInicial AS DATE,@FechaFinal AS DATE,
 																	@IDProveedor AS INT,@OrdenCompra AS NVARCHAR(20),@IDDocumentoCP AS INT)
-as
+AS
+set @FechaInicial = CONVERT(VARCHAR(25),@FechaInicial,101) 
+set @FechaFinal = CAST(SUBSTRING(CAST(@FechaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
+
 SELECT A.IDEmbarque,A.Embarque,A.Fecha,A.FechaEmbarque,A.Asiento,A.IDBodega,B.Descr DescrBodega,A.IDProveedor,P.Nombre NombreProveedor,A.IDOrdenCompra,
 			O.OrdenCompra,A.IDDocumentoCP,A.TipoCambio,A.Usuario,A.CreateDate,A.CreatedBy,A.RecordDate,A.UpdateBy
   FROM dbo.invEmbarque A
@@ -603,3 +663,47 @@ GO
 INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(3,'ASIGNADA',1)
 
 
+GO 
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (0,'INICIAL',1)
+
+GO 
+
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (1,'APROBADO',1)
+
+go 
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (2,'CONFIRMADA',1)
+
+GO 
+
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (3,'BACKORDER',1)
+
+go
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (4,'CANCELADA',1)
+
+go
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (5,'RECIBIDA',1)
+
+GO
+
+
+
+CREATE PROCEDURE dbo.invGetProveedor(@IDProveedor AS INT)
+AS	
+SELECT  IDProveedor ,
+        Nombre ,
+        IDRuc ,
+        Activo  FROM dbo.cppProveedor WHERE (IDProveedor = @IDProveedor OR @IDProveedor=-1)
+        
+        

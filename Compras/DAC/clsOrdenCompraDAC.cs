@@ -11,9 +11,9 @@ namespace CO.DAC
 {
     public static class clsOrdenCompraDAC {
     
-        public static long InsertUpdate(string Operacion,int IDOrdenCompra,String OrdenCompra,DateTime Fecha,DateTime FechaRequerida,DateTime FechaEmision,DateTime FechaRequeridaEmbarque,DateTime FechaCotizacion,
-                        int IDEstado, int IDBodega,int IDProveedor,int IDMoneda, int IDCondicionPago,decimal Descuento, Decimal Flete, decimal Documentacion, decimal Anticipos,
-                        int IDTipoProrrateo,int  IDEmbarque ,int IDSolicitud, int IDDocumentoCP,decimal TipoCambio, string Usuario,string UsuarioEmbarque,DateTime FechaCreaEmbarque,
+        public static long InsertUpdate(string Operacion,long IDOrdenCompra,ref String OrdenCompra,DateTime Fecha,DateTime FechaRequerida,DateTime FechaEmision,DateTime FechaRequeridaEmbarque,DateTime FechaCotizacion,
+                        int IDEstado, int IDBodega,int IDProveedor,int IDMoneda, int IDCondicionPago,Decimal Descuento, Decimal Flete, Decimal Documentacion, Decimal Anticipos,
+                        int IDTipoProrrateo,int  IDEmbarque , int IDDocumentoCP,Decimal TipoCambio, string Usuario,string UsuarioEmbarque,DateTime FechaCreaEmbarque,
                         String UsuarioAprobacion,DateTime FechaAprobacion,DateTime createdDate,String createdBy, DateTime recordDate, String updatedBy, SqlTransaction tran)
         {
             long result = -1;
@@ -25,6 +25,7 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
             oCmd.Parameters.Add(new SqlParameter("@OrdenCompra", OrdenCompra));
             oCmd.Parameters["@IDOrdenCompra"].Direction= ParameterDirection.InputOutput;
+            oCmd.Parameters["@OrdenCompra"].Direction = ParameterDirection.InputOutput;
             oCmd.Parameters.Add(new SqlParameter("@Fecha", Fecha));
                oCmd.Parameters.Add(new SqlParameter("@FechaRequerida", FechaRequerida));
                oCmd.Parameters.Add(new SqlParameter("@FechaRequeridaEmbarque", FechaRequeridaEmbarque));
@@ -40,7 +41,6 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@Anticipos", Anticipos));
             oCmd.Parameters.Add(new SqlParameter("@IDTipoProrrateo", IDTipoProrrateo));
             oCmd.Parameters.Add(new SqlParameter("@IDEmbarque", IDEmbarque));
-            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
             oCmd.Parameters.Add(new SqlParameter("@IDDocumentoCP", IDDocumentoCP));
             oCmd.Parameters.Add(new SqlParameter("@TipoCambio", TipoCambio));
             oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
@@ -58,8 +58,11 @@ namespace CO.DAC
             oCmd.CommandType = CommandType.StoredProcedure;
             oCmd.Transaction = tran;
             result = oCmd.ExecuteNonQuery();
-           if (Operacion =="I")
+           if (Operacion =="I")                       
+           {
+                OrdenCompra = oCmd.Parameters["@IDSolicitud"].Value.ToString();
                 result = (long) oCmd.Parameters["@IDSolicitud"].Value;
+           }
 
             
             return result;
@@ -67,23 +70,45 @@ namespace CO.DAC
         }
 
 
-        public static DataSet Get(int IDSolicitud, DateTime FechaInicial, DateTime FechaFinal, int IDEstado,int IDOrdenCompra)
+        public static DataSet Get(int IDOrdenCompra, DateTime FechaInicial, DateTime FechaFinal,String Proveedor, String Estado,DateTime FechaRequeridaInicial, DateTime FechaRequeridaFinal )
         {
-            String strSQL = "dbo.invGetSolicitudCompra";
-
+            String strSQL = "dbo.invGetOrdenCompra";
+                                 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
 
-            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
             oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
             oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
-            oCmd.Parameters.Add(new SqlParameter("@IDEstado", IDEstado));
-            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+            oCmd.Parameters.Add(new SqlParameter("@Proveedor", Proveedor));
+            oCmd.Parameters.Add(new SqlParameter("@Estado", Estado));
+            oCmd.Parameters.Add(new SqlParameter("@FechaRequeridaInicial", FechaRequeridaInicial));
+            oCmd.Parameters.Add(new SqlParameter("@FechaRequeridaFinal", FechaRequeridaFinal));
+            
             oCmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
             DataSet DS = new DataSet();
 
             oAdap.Fill(DS,"Data");
+            return DS;
+        }
+
+
+        public static DataSet GetByID(long IDOrdenCompra)
+        {
+            String strSQL = "dbo.invGetOrdenCompraByID";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+            
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+
+            oAdap.Fill(DS, "Data");
             return DS;
         }
     }

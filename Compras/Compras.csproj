@@ -88,12 +88,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAC\clsCondicionPagoDAC.cs" />
     <Compile Include="DAC\clsEmbarqueDAC.cs" />
     <Compile Include="DAC\clsEmbarqueDetalleDAC.cs" />
+    <Compile Include="DAC\clsEstadoOrdenCompra.cs" />
     <Compile Include="DAC\clsEstadoSolicitudCompraDAC.cs" />
     <Compile Include="DAC\clsOrdenCompraDAC.cs" />
     <Compile Include="DAC\clsDetalleSolicitudCompraDAC.cs" />
     <Compile Include="DAC\clsOrdenCompraDetalleDAC.cs" />
+    <Compile Include="DAC\clsProveedorDAC.cs" />
     <Compile Include="DAC\clsSolicitudCompraDAC.cs" />
     <Compile Include="frmArticuloProveedor.cs">
       <SubType>Form</SubType>
@@ -112,6 +115,12 @@
     </Compile>
     <Compile Include="frmEmbarque.Designer.cs">
       <DependentUpon>frmEmbarque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoOrdenCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoOrdenCompra.Designer.cs">
+      <DependentUpon>frmListadoOrdenCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListdoSolicitudCompra.cs">
       <SubType>Form</SubType>
@@ -160,6 +169,9 @@
     <EmbeddedResource Include="frmEmbarque.resx">
       <DependentUpon>frmEmbarque.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoOrdenCompra.resx">
+      <DependentUpon>frmListadoOrdenCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListdoSolicitudCompra.resx">
       <DependentUpon>frmListdoSolicitudCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +218,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ControlBancario\ControlBancario.csproj">
+      <Project>{574dcf6a-79a5-4bd7-bddf-d5d2ac2ccd8e}</Project>
+      <Name>ControlBancario</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventario\Inventario\Inventario.csproj">
       <Project>{4c93329e-8656-4dd9-aebd-6a806e8b70d4}</Project>
       <Name>Inventario</Name>

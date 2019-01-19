@@ -140,6 +140,11 @@
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
+            this.tabAuditoria = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Feca = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -191,11 +196,6 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem13 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.tabAuditoria = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Feca = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -255,6 +255,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabAuditoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Feca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -306,11 +311,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabAuditoria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Feca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
@@ -1411,14 +1411,68 @@
             // 
             this.tabbedControlGroup1.Location = new System.Drawing.Point(0, 50);
             this.tabbedControlGroup1.Name = "tabbedControlGroup1";
-            this.tabbedControlGroup1.SelectedTabPage = this.tabAuditoria;
-            this.tabbedControlGroup1.SelectedTabPageIndex = 3;
+            this.tabbedControlGroup1.SelectedTabPage = this.layoutControlGroup4;
+            this.tabbedControlGroup1.SelectedTabPageIndex = 1;
             this.tabbedControlGroup1.Size = new System.Drawing.Size(701, 369);
             this.tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup2,
             this.layoutControlGroup4,
             this.layoutControlGroup3,
             this.tabAuditoria});
+            // 
+            // tabAuditoria
+            // 
+            this.tabAuditoria.AppearanceTabPage.Header.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabAuditoria.AppearanceTabPage.Header.Options.UseFont = true;
+            this.tabAuditoria.AppearanceTabPage.HeaderActive.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.tabAuditoria.AppearanceTabPage.HeaderActive.Options.UseForeColor = true;
+            this.tabAuditoria.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabAuditoria.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+            this.tabAuditoria.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem22,
+            this.layoutControlItem23,
+            this.layoutControlItem24,
+            this.Feca});
+            this.tabAuditoria.Location = new System.Drawing.Point(0, 0);
+            this.tabAuditoria.Name = "tabAuditoria";
+            this.tabAuditoria.Size = new System.Drawing.Size(677, 322);
+            this.tabAuditoria.Text = "Auditoria";
+            // 
+            // layoutControlItem22
+            // 
+            this.layoutControlItem22.Control = this.txtUsuarioCreacion;
+            this.layoutControlItem22.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem22.Name = "layoutControlItem22";
+            this.layoutControlItem22.Size = new System.Drawing.Size(677, 24);
+            this.layoutControlItem22.Text = "Usuario de Creación:";
+            this.layoutControlItem22.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // layoutControlItem23
+            // 
+            this.layoutControlItem23.Control = this.txtFechaCreacion;
+            this.layoutControlItem23.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem23.Name = "layoutControlItem23";
+            this.layoutControlItem23.Size = new System.Drawing.Size(677, 24);
+            this.layoutControlItem23.Text = "Fecha Creacion:";
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.txtUsuarioModificacion;
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(677, 24);
+            this.layoutControlItem24.Text = "Usuario Modificación:";
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // Feca
+            // 
+            this.Feca.Control = this.txtFechaModificacion;
+            this.Feca.Location = new System.Drawing.Point(0, 72);
+            this.Feca.Name = "Feca";
+            this.Feca.Size = new System.Drawing.Size(677, 250);
+            this.Feca.Text = "Fecha Modificación:";
+            this.Feca.TextSize = new System.Drawing.Size(145, 13);
             // 
             // layoutControlGroup2
             // 
@@ -2003,60 +2057,6 @@
             this.emptySpaceItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem13.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // tabAuditoria
-            // 
-            this.tabAuditoria.AppearanceTabPage.Header.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabAuditoria.AppearanceTabPage.Header.Options.UseFont = true;
-            this.tabAuditoria.AppearanceTabPage.HeaderActive.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.tabAuditoria.AppearanceTabPage.HeaderActive.Options.UseForeColor = true;
-            this.tabAuditoria.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabAuditoria.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
-            this.tabAuditoria.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem22,
-            this.layoutControlItem23,
-            this.layoutControlItem24,
-            this.Feca});
-            this.tabAuditoria.Location = new System.Drawing.Point(0, 0);
-            this.tabAuditoria.Name = "tabAuditoria";
-            this.tabAuditoria.Size = new System.Drawing.Size(677, 322);
-            this.tabAuditoria.Text = "Auditoria";
-            // 
-            // layoutControlItem22
-            // 
-            this.layoutControlItem22.Control = this.txtUsuarioCreacion;
-            this.layoutControlItem22.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(677, 24);
-            this.layoutControlItem22.Text = "Usuario de Creación:";
-            this.layoutControlItem22.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // layoutControlItem23
-            // 
-            this.layoutControlItem23.Control = this.txtFechaCreacion;
-            this.layoutControlItem23.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(677, 24);
-            this.layoutControlItem23.Text = "Fecha Creacion:";
-            this.layoutControlItem23.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // layoutControlItem24
-            // 
-            this.layoutControlItem24.Control = this.txtUsuarioModificacion;
-            this.layoutControlItem24.Location = new System.Drawing.Point(0, 48);
-            this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(677, 24);
-            this.layoutControlItem24.Text = "Usuario Modificación:";
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // Feca
-            // 
-            this.Feca.Control = this.txtFechaModificacion;
-            this.Feca.Location = new System.Drawing.Point(0, 72);
-            this.Feca.Name = "Feca";
-            this.Feca.Size = new System.Drawing.Size(677, 250);
-            this.Feca.Text = "Fecha Modificación:";
-            this.Feca.TextSize = new System.Drawing.Size(145, 13);
-            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.txtIDProducto;
@@ -2215,6 +2215,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tabAuditoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Feca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
@@ -2266,11 +2271,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabAuditoria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Feca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();

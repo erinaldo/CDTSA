@@ -557,9 +557,12 @@ namespace MainMenu
 
                     break;
                 case "treelstCompras":
-                    TreeListNode nodeSolicitudCompra = tl.AppendNode(new object[] { "Solicitud Compra" }, -1, 11, 11, 11);
+                    TreeListNode nodeSolicitudCompra = tl.AppendNode(new object[] { "Solicitudes de Compra" }, -1, 11, 11, 11);
                     nodeSolicitudCompra.Tag = "frmSolicitudCompra";
+                    TreeListNode nodeListdoOrdenCompra = tl.AppendNode(new object[] { "Ordenes de Compra" }, -1, 11, 11, 11);
+                    nodeListdoOrdenCompra.Tag = "frmListadoOrdenesCompra";
                     break;
+
 
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);
@@ -801,6 +804,14 @@ namespace MainMenu
                     ofrmLisatoSolicitud.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmLisatoSolicitud.Show();
+                    break;
+
+                case "frmListadoOrdenesCompra":
+                    frmListadoOrdenCompra ofrmListadoOrdenCompra = new frmListadoOrdenCompra();
+                    ofrmListadoOrdenCompra.MdiParent = this;
+                    ofrmListadoOrdenCompra.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoOrdenCompra.Show();
                     break;
             }
         }
