@@ -12,12 +12,12 @@ namespace CO.DAC
     public static class clsOrdenCompraDAC {
     
         public static long InsertUpdate(string Operacion,long IDOrdenCompra,ref String OrdenCompra,DateTime Fecha,DateTime FechaRequerida,DateTime FechaEmision,DateTime FechaRequeridaEmbarque,DateTime FechaCotizacion,
-                        int IDEstado, int IDBodega,int IDProveedor,int IDMoneda, int IDCondicionPago,Decimal Descuento, Decimal Flete, Decimal Documentacion, Decimal Anticipos,
+                        int IDEstado, int IDBodega,int IDProveedor,int IDMoneda, int IDCondicionPago,Decimal Descuento, Decimal Flete,Decimal Seguro, Decimal Documentacion, Decimal Anticipos,
                         int IDTipoProrrateo,int  IDEmbarque , int IDDocumentoCP,Decimal TipoCambio, string Usuario,string UsuarioEmbarque,DateTime FechaCreaEmbarque,
                         String UsuarioAprobacion,DateTime FechaAprobacion,DateTime createdDate,String createdBy, DateTime recordDate, String updatedBy, SqlTransaction tran)
         {
             long result = -1;
-            String strSQL = "dbo.invUpdateSolicitudCompra";
+            String strSQL = "dbo.invUpdateOrdenCompra";
 
             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
@@ -26,8 +26,10 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@OrdenCompra", OrdenCompra));
             oCmd.Parameters["@IDOrdenCompra"].Direction= ParameterDirection.InputOutput;
             oCmd.Parameters["@OrdenCompra"].Direction = ParameterDirection.InputOutput;
+            oCmd.Parameters["@Ordencompra"].Size = 20;
             oCmd.Parameters.Add(new SqlParameter("@Fecha", Fecha));
                oCmd.Parameters.Add(new SqlParameter("@FechaRequerida", FechaRequerida));
+               oCmd.Parameters.Add(new SqlParameter("@FechaEmision", FechaEmision));
                oCmd.Parameters.Add(new SqlParameter("@FechaRequeridaEmbarque", FechaRequeridaEmbarque));
                oCmd.Parameters.Add(new SqlParameter("@FechaCotizacion", FechaCotizacion));
                oCmd.Parameters.Add(new SqlParameter("@IDEstado", IDEstado));
@@ -37,6 +39,7 @@ namespace CO.DAC
                oCmd.Parameters.Add(new SqlParameter("@IDCondicionPago", IDCondicionPago));
                oCmd.Parameters.Add(new SqlParameter("@Descuento", Descuento));
                oCmd.Parameters.Add(new SqlParameter("@Flete", Flete));
+               oCmd.Parameters.Add(new SqlParameter("@Seguro", Seguro));
                oCmd.Parameters.Add(new SqlParameter("@Documentacion", Documentacion));
             oCmd.Parameters.Add(new SqlParameter("@Anticipos", Anticipos));
             oCmd.Parameters.Add(new SqlParameter("@IDTipoProrrateo", IDTipoProrrateo));
@@ -51,7 +54,7 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@CreateDate", createdDate));
             oCmd.Parameters.Add(new SqlParameter("@CreatedBy", createdBy));
             oCmd.Parameters.Add(new SqlParameter("@RecordDate", recordDate));
-            oCmd.Parameters.Add(new SqlParameter("@UpdateBy", updatedBy));
+            oCmd.Parameters.Add(new SqlParameter("@UpdatedBy", updatedBy));
             
 
 
@@ -60,8 +63,8 @@ namespace CO.DAC
             result = oCmd.ExecuteNonQuery();
            if (Operacion =="I")                       
            {
-                OrdenCompra = oCmd.Parameters["@IDSolicitud"].Value.ToString();
-                result = (long) oCmd.Parameters["@IDSolicitud"].Value;
+                OrdenCompra = oCmd.Parameters["@OrdenCompra"].Value.ToString();
+                result = (long) oCmd.Parameters["@IDOrdenCompra"].Value;
            }
 
             

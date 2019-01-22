@@ -51,7 +51,7 @@
             this.txtIDOrdenCompra = new DevExpress.XtraEditors.TextEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colIDSolicitud = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIDOrdenCompra = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecha = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaRequerida = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colComentario = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -75,6 +75,7 @@
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colOrdenCompra = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -340,11 +341,13 @@
             this.gridControl1.TabIndex = 8;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
             // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colIDSolicitud,
+            this.colIDOrdenCompra,
+            this.colOrdenCompra,
             this.colFecha,
             this.colFechaRequerida,
             this.colComentario,
@@ -354,14 +357,14 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // colIDSolicitud
+            // colIDOrdenCompra
             // 
-            this.colIDSolicitud.Caption = "ID Solicitud";
-            this.colIDSolicitud.FieldName = "IDSolicitud";
-            this.colIDSolicitud.Name = "colIDSolicitud";
-            this.colIDSolicitud.OptionsColumn.FixedWidth = true;
-            this.colIDSolicitud.Visible = true;
-            this.colIDSolicitud.VisibleIndex = 0;
+            this.colIDOrdenCompra.Caption = "ID OrdenCompra";
+            this.colIDOrdenCompra.FieldName = "IDOrdenCompra";
+            this.colIDOrdenCompra.Name = "colIDOrdenCompra";
+            this.colIDOrdenCompra.OptionsColumn.FixedWidth = true;
+            this.colIDOrdenCompra.Visible = true;
+            this.colIDOrdenCompra.VisibleIndex = 0;
             // 
             // colFecha
             // 
@@ -394,7 +397,7 @@
             // Usuario
             // 
             this.Usuario.Caption = "Usuario";
-            this.Usuario.FieldName = "UsuarioSolicitud";
+            this.Usuario.FieldName = "Usuario";
             this.Usuario.Name = "Usuario";
             this.Usuario.OptionsColumn.FixedWidth = true;
             this.Usuario.Visible = true;
@@ -616,6 +619,14 @@
             this.layoutControlItem4.Text = "Fecha Inicial:";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(115, 13);
             // 
+            // colOrdenCompra
+            // 
+            this.colOrdenCompra.Caption = "Orden Compra";
+            this.colOrdenCompra.FieldName = "OrdenCompra";
+            this.colOrdenCompra.Name = "colOrdenCompra";
+            this.colOrdenCompra.Visible = true;
+            this.colOrdenCompra.VisibleIndex = 6;
+            // 
             // frmListadoOrdenCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -686,7 +697,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colIDSolicitud;
+        private DevExpress.XtraGrid.Columns.GridColumn colIDOrdenCompra;
         private DevExpress.XtraGrid.Columns.GridColumn colFecha;
         private DevExpress.XtraGrid.Columns.GridColumn colFechaRequerida;
         private DevExpress.XtraGrid.Columns.GridColumn colComentario;
@@ -716,5 +727,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
+        private DevExpress.XtraGrid.Columns.GridColumn colOrdenCompra;
     }
 }

@@ -316,11 +316,11 @@ namespace CO
         private void LoadSolicitud() {
             if (currentRow != null)
             {
-                String Accion = (Convert.ToInt32(currentRow["IDEstadoOrden"]) == 0) ? "Edit" : "View";
-
-                frmSolicitudCompra ofrmSolicitud = new frmSolicitudCompra(Convert.ToInt32(currentRow["IDSolicitud"]), Accion);
-                ofrmSolicitud.FormClosed +=ofrmSolicitud_FormClosed;
-                ofrmSolicitud.ShowDialog();
+                //String Accion = (Convert.ToInt32(currentRow["IDEstadoOrden"]) == 0) ? "Edit" : "View";
+                String Accion = "View";
+                frmOrdenCompra ofrmOrden = new frmOrdenCompra(Convert.ToInt32(currentRow["IDOrdenCompra"]), Accion);
+                ofrmOrden.FormClosed += ofrmSolicitud_FormClosed;
+                ofrmOrden.ShowDialog();
             }
         }
 

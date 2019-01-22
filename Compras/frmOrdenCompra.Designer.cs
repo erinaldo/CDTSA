@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrdenCompra));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation9 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation10 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -404,12 +404,12 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation9.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation9.Group = null;
-            reduceOperation9.ItemLinkIndex = 0;
-            reduceOperation9.ItemLinksCount = 0;
-            reduceOperation9.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation9);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation1.Group = null;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -574,6 +574,8 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowHorizontalLines = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
+            this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
             // 
             // colIDProducto
             // 
@@ -693,6 +695,8 @@
             // colDesc
             // 
             this.colDesc.Caption = "Descuento";
+            this.colDesc.DisplayFormat.FormatString = "$ 00.00";
+            this.colDesc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colDesc.FieldName = "MontoDesc";
             this.colDesc.Name = "colDesc";
             this.colDesc.Visible = true;
@@ -702,6 +706,8 @@
             // colPorcDesc
             // 
             this.colPorcDesc.Caption = "Porc Desc";
+            this.colPorcDesc.DisplayFormat.FormatString = "0.00 \\%";
+            this.colPorcDesc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colPorcDesc.FieldName = "PorcDesc";
             this.colPorcDesc.Name = "colPorcDesc";
             this.colPorcDesc.Visible = true;
@@ -798,12 +804,12 @@
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup2});
             this.ribbonPage2.Name = "ribbonPage2";
-            reduceOperation10.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation10.Group = null;
-            reduceOperation10.ItemLinkIndex = 0;
-            reduceOperation10.ItemLinksCount = 0;
-            reduceOperation10.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage2.ReduceOperations.Add(reduceOperation10);
+            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation2.Group = null;
+            reduceOperation2.ItemLinkIndex = 0;
+            reduceOperation2.ItemLinksCount = 0;
+            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage2.ReduceOperations.Add(reduceOperation2);
             this.ribbonPage2.Text = "Opciones Generales";
             // 
             // ribbonPageGroup2
@@ -967,6 +973,8 @@
             this.cmbTipoProrrateo.Name = "cmbTipoProrrateo";
             this.cmbTipoProrrateo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbTipoProrrateo.Properties.Items.AddRange(new object[] {
+            "Precio"});
             this.cmbTipoProrrateo.Size = new System.Drawing.Size(339, 20);
             this.cmbTipoProrrateo.StyleController = this.layoutControl4;
             this.cmbTipoProrrateo.TabIndex = 19;
@@ -1305,6 +1313,7 @@
             // 
             this.tabFactura.Controls.Add(this.layoutControl3);
             this.tabFactura.Name = "tabFactura";
+            this.tabFactura.PageEnabled = false;
             this.tabFactura.Size = new System.Drawing.Size(919, 319);
             this.tabFactura.Text = "Factura";
             // 
