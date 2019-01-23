@@ -13,7 +13,7 @@ namespace CO.DAC
     {
         
         public static long InsertUpdate(string Operacion,long IDProducto,int IDProveedor,int IDPaisManoFactura,
-                                decimal LoteMinmoCompra,decimal PesoMinimoCompra, DateTime Fecha,String Usuario ,SqlTransaction tran)
+                                decimal LoteMinmoCompra,decimal PesoMinimoCompra,String Notas, DateTime Fecha,String Usuario ,SqlTransaction tran)
         {
             long result = -1;
             String strSQL = "dbo.invUpdateArticuloProveedor";
@@ -27,6 +27,7 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@IDPaisManoFactura", IDPaisManoFactura));
             oCmd.Parameters.Add(new SqlParameter("@LoteMinCompra", LoteMinmoCompra));
             oCmd.Parameters.Add(new SqlParameter("@PesoMinimoCompra", PesoMinimoCompra));
+            oCmd.Parameters.Add(new SqlParameter("@Notas", Notas));
             oCmd.Parameters.Add(new SqlParameter("@Fecha", Fecha));
             oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
 

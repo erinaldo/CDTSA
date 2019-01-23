@@ -111,7 +111,7 @@ namespace CO
             String FileName = System.IO.Path.Combine(tempPath, "Listado de Articulo Proveedor.xlsx");
             DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
             {
-                SheetName = "Articulo Proveedor "
+                SheetName = "Artículo Proveedor "
             };
 
 
@@ -234,10 +234,9 @@ namespace CO
                 if (MessageBox.Show("Esta seguro que desea eliminar la relación del producto seleccionado del proveeor ? " ,"Listado de Articulo Proveedores", MessageBoxButtons.YesNo)== System.Windows.Forms.DialogResult.Yes) {
                     if (currentRow != null)
                     {
-                        //ConnectionManager.BeginTran();
-                        //clsSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]), DateTime.Now, DateTime.Now, -1, "",  "", "", DateTime.Now, "", DateTime.Now, "",  ConnectionManager.Tran);
-                        //clsDetalleSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]), -1, 0, "", ConnectionManager.Tran);
-                        //ConnectionManager.CommitTran();
+                        ConnectionManager.BeginTran();
+                        clsArticuloProveedorDAC.InsertUpdate("D", Convert.ToInt64(currentRow["IDProducto"]), Convert.ToInt32(currentRow["IDProveedor"]), -1, 0, 0,"", DateTime.Now, "", ConnectionManager.Tran);
+                        ConnectionManager.CommitTran();
                     }
                     PopulateGrid();
                 }
@@ -256,6 +255,11 @@ namespace CO
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
             LoadRelactionArticuloProveedor();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            this.slkupProveedor.EditValue = null;
         }
 
 

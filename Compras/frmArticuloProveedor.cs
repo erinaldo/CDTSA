@@ -52,6 +52,7 @@ namespace CO
 
         private void InicializarNuevoElement()
         {
+            this.slkupProducto.EditValue = null;
             this.slkupPaisManofactura.EditValue = null;
             this.txtLoteMinimoCompra.EditValue = null;
             this.txtNotas.EditValue = "";
@@ -96,9 +97,9 @@ namespace CO
 
         private void UpdateControlsFromData(DataTable dt) {
             DataRow dtProductos = dt.Rows[0];
-            this.slkupProducto.EditValue = dtProductos["IDProducto"].ToString();
+            this.slkupProducto.EditValue = Convert.ToInt64(dtProductos["IDProducto"]);
             this.slkupPaisManofactura.EditValue = Convert.ToInt32(dtProductos["IDPaisManofactura"]);
-            this.txtLoteMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["LoteMinimoCompra"]);
+            this.txtLoteMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["LoteMinCompra"]);
             this.txtPesoMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["PesoMinimoCompra"]);
             this.txtNotas.EditValue = dtProductos["Notas"].ToString(); ;
             
@@ -137,7 +138,7 @@ namespace CO
         private void frmArticuloProveedor_Load(object sender, EventArgs e)
         {
             
-            dtProductos = CI.DAC.clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0];
+            dtProductos = CO.DAC.clsArticuloProveedorDAC.GetProductosSinAsociar(this.IDProveedor,-1,-1,-1,-1,-1,-1).Tables[0];
 
             this.slkupProducto.Properties.DataSource = dtProductos;
             this.slkupProducto.Properties.DisplayMember = "Descr";
@@ -213,23 +214,22 @@ namespace CO
                 if (ValidarDatos())
                 {
                     IDArticulo = Convert.ToInt32(this.slkupProducto.EditValue);
+                    IDPaisManoFactura = Convert.ToInt32(this.slkupPaisManofactura.EditValue);
                     LoteMinCompra = Convert.ToDecimal(this.txtLoteMinimoCompra.EditValue);
                     PesoMinCompra = Convert.ToDecimal(this.txtPesoMinimoCompra.EditValue);
                     Notas = this.txtNotas.EditValue.ToString();
 
                     ConnectionManager.BeginTran();
 
-
                     if (Accion == "Add")
                     {
                         //Ingresar la cabecera de la solicitud
-                        DAC.clsArticuloProveedorDAC.InsertUpdate("I", IDArticulo, IDProveedor, IDPaisManoFactura, LoteMinCompra, PesoMinCompra, DateTime.Now, sUsuario, ConnectionManager.Tran);
-
+                        DAC.clsArticuloProveedorDAC.InsertUpdate("I", IDArticulo, IDProveedor, IDPaisManoFactura, LoteMinCompra, PesoMinCompra,Notas, DateTime.Now, sUsuario, ConnectionManager.Tran);
                     }
 
                     if (Accion == "Edit")
                     {
-                        DAC.clsArticuloProveedorDAC.InsertUpdate("U", IDArticulo, IDProveedor, IDPaisManoFactura, LoteMinCompra, PesoMinCompra, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        DAC.clsArticuloProveedorDAC.InsertUpdate("U", IDArticulo, IDProveedor, IDPaisManoFactura, LoteMinCompra, PesoMinCompra,Notas, DateTime.Now, sUsuario, ConnectionManager.Tran);
                     }
 
                     ConnectionManager.CommitTran();
@@ -237,6 +237,7 @@ namespace CO
                     HabilitarControles();
                     HabilitarBotoneriaPrincipal();
                     MessageBox.Show("El producto se ha asociado correctamente al proveedor");
+                    this.Close();
 
                 }
             }

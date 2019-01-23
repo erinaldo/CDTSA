@@ -315,12 +315,13 @@ CONSTRAINT [pkglobalPais] PRIMARY KEY CLUSTERED
 GO
 
 
-CREATE    TABLE dbo.invArticuloProveedor (
+CREATE   TABLE dbo.invArticuloProveedor (
 	IDProducto BIGINT NOT NULL,
 	IDProveedor int NOT NULL,
 	IDPaisManofactura int,
 	LoteMinCompra decimal(28,4),
 	PesoMinimoCompra decimal(28,4),
+	Notas NVARCHAR(256),
 	CreateDate datetime,
 	CreatedBy nvarchar(50),
 	UpdatedDate datetime,
@@ -638,7 +639,8 @@ SELECT  A.IDProducto ,P.Descr DescrProducto,
         A.IDProveedor ,PR.Nombre NombreProveedor,
         A.IDPaisManofactura ,C.Descr DescrPais,
         A.LoteMinCompra ,
-        A.PesoMinimoCompra 
+        A.PesoMinimoCompra,
+        A.Notas
          FROM dbo.invArticuloProveedor A
 INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
 INNER JOIN dbo.cppProveedor PR ON A.IDProveedor=PR.IDProveedor
@@ -648,18 +650,18 @@ WHERE (A.IDProducto = @IDProducto OR @IDProducto =-1) AND (A.IDProveedor=@IDProv
 
 go
 
-CREATE  PROCEDURE dbo.invUpdateArticuloProveedor (@Operacion AS NVARCHAR(1),@IDProducto AS BIGINT,@IDProveedor AS INT, 
-				@IDPaisManoFactura AS INT,@LoteMinCompra AS DECIMAL(28,4),@PesoMinimoCompra AS DECIMAL(28,4),@Usuario AS NVARCHAR(50), @Fecha AS DATETIME)
+CREATE PROCEDURE dbo.invUpdateArticuloProveedor (@Operacion AS NVARCHAR(1),@IDProducto AS BIGINT,@IDProveedor AS INT, 
+				@IDPaisManoFactura AS INT,@LoteMinCompra AS DECIMAL(28,4),@PesoMinimoCompra AS DECIMAL(28,4),@Notas NVARCHAR(256),@Usuario AS NVARCHAR(50), @Fecha AS DATETIME)
 AS 
 IF (@Operacion='I')
 BEGIN
-	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProveedor ,IDPaisManofactura ,LoteMinCompra ,PesoMinimoCompra,CreateDate,CreatedBy)
-	VALUES (@IDProducto,@IDProveedor,@IDPaisManoFactura,@LoteMinCompra,@PesoMinimoCompra,@Fecha,@Usuario)
+	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProveedor ,IDPaisManofactura ,LoteMinCompra ,PesoMinimoCompra,Notas,CreateDate,CreatedBy)
+	VALUES (@IDProducto,@IDProveedor,@IDPaisManoFactura,@LoteMinCompra,@PesoMinimoCompra,@Notas,@Fecha,@Usuario)
 END			
 IF (@Operacion='U')
 BEGIN
 	UPDATE dbo.invArticuloProveedor SET  IDPaisManofactura=@IDPaisManoFactura,
-				LoteMinCompra=@LoteMinCompra, PesoMinimoCompra = @PesoMinimoCompra, UpdatedBy = @Usuario, UpdatedDate= @Fecha
+				LoteMinCompra=@LoteMinCompra, PesoMinimoCompra = @PesoMinimoCompra, Notas=@Notas,UpdatedBy = @Usuario, UpdatedDate= @Fecha
 	WHERE IDProducto=@IDProducto AND IDProveedor= @IDProveedor
 END
 IF (@Operacion='D')
@@ -667,7 +669,7 @@ IF (@Operacion='D')
 
 GO
 
-CREATE PROCEDURE dbo.invGetProductosSinAsociarProveedor(@IDProveedor AS INT,@IDClasificacion1 AS INT,@IDClasificacion2 AS INT,
+CREATE  PROCEDURE dbo.invGetProductosSinAsociarProveedor(@IDProveedor AS INT,@IDClasificacion1 AS INT,@IDClasificacion2 AS INT,
 		@IDClasificacion3 AS INT,@IDClasificacion4  AS INT,@IDClasificacion5  AS INT,@IDClasificacion6 AS INT)
 AS
 SELECT  IDProducto ,A.Descr ,Alias ,Clasif1 ,C.Descr DescrClasif1,Clasif2,D.Descr DescrClasif2 ,Clasif3 ,E.Descr DescrClasif3,
@@ -679,7 +681,7 @@ LEFT  JOIN dbo.invClasificacion e ON A.Clasif3= e.IDClasificacion AND e.IDGrupo=
 LEFT  JOIN dbo.invClasificacion f ON A.Clasif4= f.IDClasificacion AND f.IDGrupo=4
 LEFT  JOIN dbo.invClasificacion g ON A.Clasif5= g.IDClasificacion AND g.IDGrupo=5
 LEFT  JOIN dbo.invClasificacion h ON A.Clasif6= h.IDClasificacion AND h.IDGrupo=6
-WHERE IDProducto  NOT IN (SELECT IDProveedor  FROM dbo.invArticuloProveedor WHERE IDProveedor=@IDProveedor) AND A.Activo=1
+WHERE IDProducto  NOT IN (SELECT IDProducto  FROM dbo.invArticuloProveedor WHERE IDProveedor=@IDProveedor) AND A.Activo=1
 AND (A.Clasif1 = @IDClasificacion1 OR @IDClasificacion1=-1) AND (A.Clasif2 = @IDClasificacion2  OR @IDClasificacion2 = -1) AND 
 (A.Clasif3=@IDClasificacion3 OR @IDClasificacion3=-1) AND (A.Clasif4 = @IDClasificacion4 OR @IDClasificacion4=-1) AND 
 (A.Clasif5 = @IDClasificacion5 OR @IDClasificacion5=-1)  AND (A.Clasif6=@IDClasificacion6 OR @IDClasificacion6=-1)
