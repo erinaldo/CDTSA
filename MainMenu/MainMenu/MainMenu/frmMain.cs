@@ -561,6 +561,8 @@ namespace MainMenu
                     nodeSolicitudCompra.Tag = "frmSolicitudCompra";
                     TreeListNode nodeListdoOrdenCompra = tl.AppendNode(new object[] { "Ordenes de Compra" }, -1, 11, 11, 11);
                     nodeListdoOrdenCompra.Tag = "frmListadoOrdenesCompra";
+                    TreeListNode nodeArticuloProveedor = tl.AppendNode(new object[] { "Articulo-Proveedor" }, -1, 11, 11, 11);
+                    nodeArticuloProveedor.Tag = "frmListadoArticuloProveedor";
                     break;
 
 
@@ -812,6 +814,13 @@ namespace MainMenu
                     ofrmListadoOrdenCompra.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmListadoOrdenCompra.Show();
+                    break;
+                case "frmListadoArticuloProveedor":
+                    frmListadoArticuloProveedor ofrmListadoArtProv = new frmListadoArticuloProveedor();
+                    ofrmListadoArtProv.MdiParent = this;
+                    ofrmListadoArtProv.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmListadoArtProv.Show();
                     break;
             }
         }

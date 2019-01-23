@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 using Newtonsoft.Json.Linq;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Util
 {
@@ -67,7 +68,8 @@ namespace Util
 
         }
 
-        public static void SetFormatDateTextEdit(TextEdit Caja) {
+        public static void SetFormatDateTextEdit(TextEdit Caja)
+        {
             Caja.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             Caja.Properties.Mask.EditMask = "([012]?[1-9]|[123]0|31)/(0?[1-9]|1[012])/([123][0-9])?[0-9][0-9]";
         }
@@ -84,7 +86,7 @@ namespace Util
                     break;
                 case FormatType.MonedaExtrangera:
 
-                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency.Trim() +  " ";
+                    ci.NumberFormat.CurrencySymbol = ForeingSimbolCurrency.Trim() + " ";
                     texto.Mask.Culture = ci;
                     texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     texto.Mask.EditMask = "c" + DecimalLenght;
@@ -92,7 +94,7 @@ namespace Util
                     break;
                 case FormatType.MonedaLocal:
 
-                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency.Trim() +  " ";
+                    ci.NumberFormat.CurrencySymbol = LocalSimbolCurrency.Trim() + " ";
                     texto.Mask.Culture = ci;
                     texto.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
                     texto.Mask.EditMask = "c" + DecimalLenght;//string.Format("#,###,###,##0.00", Config.LocalSimbolCurrency);
@@ -334,9 +336,9 @@ namespace Util
 
         public static void SetDefaultBehaviorControls(DevExpress.XtraGrid.Views.Grid.GridView pGridView, bool pEditable,
                                                             DevExpress.XtraGrid.GridControl pGrid,
-                                                                     //DevExpress.XtraBars.Bar pBar,
-                                                  // DevExpress.XtraEditors.LabelControl plblTitulo,
-                                                 //DevExpress.XtraEditors.PanelControl pPanelTitulo,
+            //DevExpress.XtraBars.Bar pBar,
+            // DevExpress.XtraEditors.LabelControl plblTitulo,
+            //DevExpress.XtraEditors.PanelControl pPanelTitulo,
                                                                             String _tituloVentana,
                                                                    System.Windows.Forms.Form pForm)
         {
@@ -375,8 +377,69 @@ namespace Util
 
             ////Titulo e Icono de la ventana
             pForm.Text = _tituloVentana;
-           // pForm.Icon = Properties.Resources.Icon1;
+            // pForm.Icon = Properties.Resources.Icon1;
 
+
+        }
+
+
+        private static bool CharAllowed(char sChar)
+        {
+            Char[] wordCharsAllowed = "-/$%#<>{}".ToCharArray();
+            bool lbOk = false;
+            int i = 0;
+            while (i < wordCharsAllowed.Length && !lbOk)
+            {
+                lbOk = (sChar == wordCharsAllowed[i]) ? true : false;
+                i++;
+            }
+            return lbOk;
+        }
+
+
+        private static bool IsAphaNumeric(char strInputText)
+        {
+            bool IsAlpha = false;
+            if (Regex.IsMatch(strInputText.ToString(), "^[a-zA-Z0-9]+$") || CharAllowed(strInputText))
+                IsAlpha = true;
+            else
+                IsAlpha = false;
+            return IsAlpha;
+        }
+
+
+
+        public static bool ValidarMaskConsecutivo(String smask, String sConsecutivo)
+        {
+            Char[] wordChars = sConsecutivo.ToCharArray();
+            Char[] maskChars = smask.ToCharArray();
+            bool lbOk = true;
+
+            if (wordChars.Length != maskChars.Length)
+            {
+                MessageBox.Show("La longitud de la Máscara: " + smask + " no es igual a la longitud del valor del Consecutivo ...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lbOk = false;
+                return lbOk;
+            }
+            int i = 0;
+            while (i < wordChars.Length && i < maskChars.Length && lbOk)
+            {
+
+                if (maskChars[i] == 'A' && !IsAphaNumeric(wordChars[i]))
+                {
+                    MessageBox.Show("Error en el valor Alfanumérico permitido  ... " + sConsecutivo + " posición " + (i + 1).ToString() + " valor " + wordChars[i].ToString() + " Debe ser Alfanumérico permitido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lbOk = false;
+                }
+
+                if (maskChars[i] == 'N' && !Char.IsNumber(wordChars[i]))
+                {
+                    MessageBox.Show("Error en el valor Numérico  ... " + sConsecutivo + " posición " + (i + 1).ToString() + " valor " + wordChars[i].ToString() + " Debe ser Numérico solamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lbOk = false;
+                }
+                i = i + 1;
+            }
+
+            return lbOk;
 
         }
     }

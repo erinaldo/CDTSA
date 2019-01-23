@@ -302,18 +302,29 @@ REFERENCES [dbo].invLote (IDLote,IDProducto)
 
 GO
 
-CREATE TABLE dbo.invArticuloProveedor (
+CREATE TABLE	dbo.globalPais(
+		IDPais int	NOT NULL,
+		Descr  nvarchar(50),
+		Activo  bit
+CONSTRAINT [pkglobalPais] PRIMARY KEY CLUSTERED 
+(
+	IDPais ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+CREATE    TABLE dbo.invArticuloProveedor (
 	IDProducto BIGINT NOT NULL,
 	IDProveedor int NOT NULL,
 	IDPaisManofactura int,
 	LoteMinCompra decimal(28,4),
-	CantEconomicaCompra decimal(28,4),
-	LoteEstandardCompra decimal(28,4),
 	PesoMinimoCompra decimal(28,4),
-	MultiploCompra decimal(28,4),
-	UnidadAlmacenamiento INT,
-	UnidadMedidaCompra INT,
-	FactorConversion decimal(28,4), 
+	CreateDate datetime,
+	CreatedBy nvarchar(50),
+	UpdatedDate datetime,
+	UpdatedBy nvarchar(50)
 	CONSTRAINT [pkinvArticuloProveedor] PRIMARY KEY CLUSTERED 
 (
 	[IDProducto] ASC,
@@ -332,15 +343,13 @@ REFERENCES [dbo].cppProveedor (IDProveedor)
 
 GO
 
-ALTER TABLE dbo.invArticuloProveedor WITH CHECK ADD CONSTRAINT fkinvArticuloProveedorUnAlmacenamiento_UnidadMedida FOREIGN KEY(UnidadAlmacenamiento)
-REFERENCES dbo.invUnidadMedida(IDUnidad)
+
+ALTER TABLE [dbo].invArticuloProveedor  WITH CHECK ADD  CONSTRAINT [fkinvArticuloProveedor_Pais] FOREIGN KEY(IDPaisManofactura)
+REFERENCES [dbo].globalPais (IDPais)
 
 GO
 
-ALTER TABLE dbo.invArticuloProveedor WITH CHECK ADD CONSTRAINT fkinvArticuloProveedorUnCompra_UnidadMedida FOREIGN KEY(UnidadMedidaCompra)
-REFERENCES dbo.invUnidadMedida(IDUnidad)
 
-GO
 
 
 CREATE TABLE dbo.invParametrosCompra(
@@ -623,26 +632,57 @@ WHERE A.IDEmbarque =@IDEmbarque
 
 GO
 
+CREATE  PROCEDURE dbo.invGetArticuloProveedor(@IDProducto AS BIGINT,@IDProveedor AS INT)
+AS	
+SELECT  A.IDProducto ,P.Descr DescrProducto,
+        A.IDProveedor ,PR.Nombre NombreProveedor,
+        A.IDPaisManofactura ,C.Descr DescrPais,
+        A.LoteMinCompra ,
+        A.PesoMinimoCompra 
+         FROM dbo.invArticuloProveedor A
+INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
+INNER JOIN dbo.cppProveedor PR ON A.IDProveedor=PR.IDProveedor
+LEFT JOIN dbo.globalPais C ON A.IDPaisManofactura = C.IDPais
+WHERE (A.IDProducto = @IDProducto OR @IDProducto =-1) AND (A.IDProveedor=@IDProveedor OR @IDProveedor=-1)
 
-CREATE PROCEDURE dbo.invUpdateArticuloProveedor (@Operacion AS NVARCHAR(1),@IDProducto AS BIGINT,@IDProveedor AS INT, 
-				@IDPaisManoFactura AS INT,@LoteMinCompra AS DECIMAL(28,4),@CantEconomicaCompra AS DECIMAL(28,4), @LoteEstandardCompra AS DECIMAL(28,4),
-				@PesoMinimoCompra AS DECIMAL(28,4),@MultiploCompra AS DECIMAL(28,4),@IDUnidadAlmacenamiento AS int, @IDUnidadMedidaCompra AS INT, 
-				@FactorConversion AS DECIMAL(28,4))
+
+go
+
+CREATE  PROCEDURE dbo.invUpdateArticuloProveedor (@Operacion AS NVARCHAR(1),@IDProducto AS BIGINT,@IDProveedor AS INT, 
+				@IDPaisManoFactura AS INT,@LoteMinCompra AS DECIMAL(28,4),@PesoMinimoCompra AS DECIMAL(28,4),@Usuario AS NVARCHAR(50), @Fecha AS DATETIME)
 AS 
 IF (@Operacion='I')
 BEGIN
-	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProveedor ,IDPaisManofactura ,LoteMinCompra ,CantEconomicaCompra ,LoteEstandardCompra ,PesoMinimoCompra ,MultiploCompra ,UnidadAlmacenamiento ,UnidadMedidaCompra ,FactorConversion)
-	VALUES (@IDProducto,@IDProveedor,@IDPaisManoFactura,@LoteMinCompra,@CantEconomicaCompra,@LoteEstandardCompra,@PesoMinimoCompra,@MultiploCompra,@IDUnidadAlmacenamiento,@IDUnidadMedidaCompra,@FactorConversion)
+	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProveedor ,IDPaisManofactura ,LoteMinCompra ,PesoMinimoCompra,CreateDate,CreatedBy)
+	VALUES (@IDProducto,@IDProveedor,@IDPaisManoFactura,@LoteMinCompra,@PesoMinimoCompra,@Fecha,@Usuario)
 END			
 IF (@Operacion='U')
 BEGIN
-	UPDATE dbo.invArticuloProveedor SET  IDPaisManofactura=@IDPaisManoFactura,CantEconomicaCompra=@CantEconomicaCompra,
-				LoteEstandardCompra=@LoteEstandardCompra,UnidadAlmacenamiento=@IDUnidadAlmacenamiento,UnidadMedidaCompra=@IDUnidadMedidaCompra,
-				FactorConversion=@FactorConversion 
+	UPDATE dbo.invArticuloProveedor SET  IDPaisManofactura=@IDPaisManoFactura,
+				LoteMinCompra=@LoteMinCompra, PesoMinimoCompra = @PesoMinimoCompra, UpdatedBy = @Usuario, UpdatedDate= @Fecha
 	WHERE IDProducto=@IDProducto AND IDProveedor= @IDProveedor
 END
 IF (@Operacion='D')
 	DELETE FROM dbo.invArticuloProveedor WHERE IDProducto=@IDProducto AND IDProveedor=@IDProveedor
+
+GO
+
+CREATE PROCEDURE dbo.invGetProductosSinAsociarProveedor(@IDProveedor AS INT,@IDClasificacion1 AS INT,@IDClasificacion2 AS INT,
+		@IDClasificacion3 AS INT,@IDClasificacion4  AS INT,@IDClasificacion5  AS INT,@IDClasificacion6 AS INT)
+AS
+SELECT  IDProducto ,A.Descr ,Alias ,Clasif1 ,C.Descr DescrClasif1,Clasif2,D.Descr DescrClasif2 ,Clasif3 ,E.Descr DescrClasif3,
+				Clasif4, F.Descr DescrClasif4 ,Clasif5,G.Descr DescrClasif5 ,Clasif6, H.Descr DescrClasif6
+FROM dbo.invProducto A
+LEFT  JOIN dbo.invClasificacion c ON A.Clasif1= C.IDClasificacion AND IDGrupo=1
+LEFT  JOIN dbo.invClasificacion d ON A.Clasif2= d.IDClasificacion AND D.IDGrupo=2
+LEFT  JOIN dbo.invClasificacion e ON A.Clasif3= e.IDClasificacion AND e.IDGrupo=3
+LEFT  JOIN dbo.invClasificacion f ON A.Clasif4= f.IDClasificacion AND f.IDGrupo=4
+LEFT  JOIN dbo.invClasificacion g ON A.Clasif5= g.IDClasificacion AND g.IDGrupo=5
+LEFT  JOIN dbo.invClasificacion h ON A.Clasif6= h.IDClasificacion AND h.IDGrupo=6
+WHERE IDProducto  NOT IN (SELECT IDProveedor  FROM dbo.invArticuloProveedor WHERE IDProveedor=@IDProveedor) AND A.Activo=1
+AND (A.Clasif1 = @IDClasificacion1 OR @IDClasificacion1=-1) AND (A.Clasif2 = @IDClasificacion2  OR @IDClasificacion2 = -1) AND 
+(A.Clasif3=@IDClasificacion3 OR @IDClasificacion3=-1) AND (A.Clasif4 = @IDClasificacion4 OR @IDClasificacion4=-1) AND 
+(A.Clasif5 = @IDClasificacion5 OR @IDClasificacion5=-1)  AND (A.Clasif6=@IDClasificacion6 OR @IDClasificacion6=-1)
 
 
 GO
@@ -654,6 +694,12 @@ WHERE IDSolicitud= @IDSolicitud AND (IDOrdenCompra = @IDOrdenCompra OR @IDOrdenC
 
 GO
 
+CREATE PROCEDURE dbo.invGetGlobalPais(@IDPais AS INT)
+AS 
+SELECT IDPais,Descr,Activo  FROM dbo.globalPais
+WHERE (IDPais = @IDPais OR @IDPais = -1) AND Activo=1
+
+GO
 
 INSERT INTO dbo.invEstadoSolicitud( IDEstado, Descr, Activo ) VALUES(0,'INICIAL',1)
 GO
@@ -698,8 +744,6 @@ VALUES  (5,'RECIBIDA',1)
 
 GO
 
-
-
 CREATE PROCEDURE dbo.invGetProveedor(@IDProveedor AS INT)
 AS	
 SELECT  IDProveedor ,
@@ -707,4 +751,6 @@ SELECT  IDProveedor ,
         IDRuc ,
         Activo  FROM dbo.cppProveedor WHERE (IDProveedor = @IDProveedor OR @IDProveedor=-1)
         
-        
+GO
+
+

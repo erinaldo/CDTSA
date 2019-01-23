@@ -140,7 +140,7 @@ namespace CO
                 this.txtSeguro.ReadOnly = false;
                 this.txtDocumentacion.ReadOnly = false;
                 this.txtAnticipos.ReadOnly = false;
-                this.cmbTipoProrrateo.ReadOnly = false;
+                //this.cmbTipoProrrateo.ReadOnly = false;
                 this.txtFactura.ReadOnly = false;
                 this.slkupSubTipo.ReadOnly = false;
                 this.dtpFechaFactura.ReadOnly = false;
@@ -172,7 +172,7 @@ namespace CO
                 this.txtSeguro.ReadOnly = true;
                 this.txtDocumentacion.ReadOnly = true;
                 this.txtAnticipos.ReadOnly = true;
-                this.cmbTipoProrrateo.ReadOnly = true;
+                //this.cmbTipoProrrateo.ReadOnly = true;
                 this.txtFactura.ReadOnly = true;
                 this.slkupSubTipo.ReadOnly = true;
                 this.dtpFechaFactura.ReadOnly = true;
@@ -209,7 +209,7 @@ namespace CO
             this.txtSeguro.EditValue = Convert.ToDecimal((cabecera["Seguro"] == System.DBNull.Value) ? 0 : cabecera["Seguro"]);
             this.txtDocumentacion.EditValue = Convert.ToDecimal((cabecera["Documentacion"] == System.DBNull.Value) ? 0 : cabecera["Documentacion"]);
             this.txtAnticipos.EditValue = Convert.ToDecimal((cabecera["Anticipos"] == System.DBNull.Value) ? 0 : cabecera["Anticipos"]);
-            this.cmbTipoProrrateo.EditValue = Convert.ToInt32(cabecera["IDTipoProrrateo"]);
+           // this.cmbTipoProrrateo.EditValue = Convert.ToInt32(cabecera["IDTipoProrrateo"]);
             this.txtEstado.EditValue = cabecera["DescrEstado"].ToString();
             this.txtEstado.Tag = Convert.ToInt32(cabecera["IDEstado"]);
             
@@ -599,8 +599,8 @@ namespace CO
                 sMensaje = "   • Fecha Requerida de Embarque \r\n";
             if (this.dtpFechaCotizacion.EditValue.ToString() == "" || this.dtpFechaCotizacion.EditValue == null)
                 sMensaje = "   • Fecha de Cotizacion \r\n";
-            if (this.cmbTipoProrrateo.EditValue == null || this.cmbTipoProrrateo.EditValue.ToString() == "")
-                sMensaje = "   • Tipo Prorrateo \r\n";
+            //if (this.cmbTipoProrrateo.EditValue == null || this.cmbTipoProrrateo.EditValue.ToString() == "")
+            //    sMensaje = "   • Tipo Prorrateo \r\n";
             
 
             if (((DataTable)this.dtgDetalle.DataSource).Rows.Count == 0)
@@ -633,7 +633,7 @@ namespace CO
                     Seguro = (this.txtSeguro.EditValue != null && this.txtSeguro.EditValue.ToString() !="") ? Convert.ToDecimal(this.txtSeguro.EditValue) : 0;
                     Documentacion = (this.txtDocumentacion.EditValue != null && this.txtDocumentacion.EditValue.ToString() != "") ? Convert.ToDecimal(this.txtDocumentacion.EditValue) : 0;
                     Anticipos = (this.txtAnticipos.EditValue != null && this.txtAnticipos.EditValue.ToString() != "") ? Convert.ToDecimal(this.txtAnticipos.EditValue) : 0;
-                    IDTipoProrrateo = Convert.ToInt32(this.cmbTipoProrrateo.SelectedIndex);
+                    //IDTipoProrrateo = Convert.ToInt32(this.cmbTipoProrrateo.SelectedIndex);
                     IDEstado = Convert.ToInt32(this.txtEstado.Tag);
 
                     DataTable dt = (DataTable)this.dtgDetalle.DataSource;
@@ -649,7 +649,7 @@ namespace CO
                         IDOrdenCompra = DAC.clsOrdenCompraDAC.InsertUpdate("I", IDOrdenCompra,ref OrdenCompra,FechaOrden, FechaRequerida,FechaEmision,
                                                                         FechaRequeridaEmbarque,FechaCotizacion,IDEstado,IDBodega,
                                                                         IDProveedor,IDMoneda,IDCondicionPago,Descuento,Flete,Seguro,
-                                                                        Documentacion, Anticipos, IDTipoProrrateo, -1, -1, 33, sUsuario, "", Convert.ToDateTime("1981/08/21"), "", Convert.ToDateTime("1981/08/21"), DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                                                                        Documentacion, Anticipos, -1, -1, 33, sUsuario, "", Convert.ToDateTime("1981/08/21"), "", Convert.ToDateTime("1981/08/21"), DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         this.txtOrdenCompra.Text = OrdenCompra;
                         foreach (DataRow row in dt.Rows)
                         {
@@ -664,7 +664,7 @@ namespace CO
                         DAC.clsOrdenCompraDAC.InsertUpdate("U", IDOrdenCompra, ref OrdenCompra, FechaOrden, FechaRequerida, FechaEmision,
                                                                         FechaRequeridaEmbarque, FechaCotizacion, IDEstado, IDBodega,
                                                                         IDProveedor, IDMoneda, IDCondicionPago, Descuento, Flete,  Seguro,
-                                                                        Documentacion, Anticipos, IDTipoProrrateo, -1, -1, 33, sUsuario, "", Convert.ToDateTime("1981/08/21"), "", Convert.ToDateTime("1981/08/21"), DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                                                                        Documentacion, Anticipos, -1, -1, 33, sUsuario, "", Convert.ToDateTime("1981/08/21"), "", Convert.ToDateTime("1981/08/21"), DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         //Eliminamos el detalle y lo volvemos a insertar
                         DAC.clsOrdenCompraDetalleDAC.InsertUpdate("D", IDOrdenCompra, -1, 0, 0, 0,0, 0, 0,
                                                         0, 0, "", ConnectionManager.Tran);
@@ -709,7 +709,7 @@ namespace CO
                     if (IDOrdenCompra >-1)
                     {
                         ConnectionManager.BeginTran();
-                        clsOrdenCompraDAC.InsertUpdate("D", IDOrdenCompra,ref OrdenCompra,DateTime.Now,DateTime.Now,DateTime.Now,DateTime.Now,DateTime.Now,-1,-1,-1,-1,-1,0,0,0,0,0,-1,-1,-1,0,"","",DateTime.Now,"",DateTime.Now,DateTime.Now,"",DateTime.Now,"", ConnectionManager.Tran);
+                        clsOrdenCompraDAC.InsertUpdate("D", IDOrdenCompra,ref OrdenCompra,DateTime.Now,DateTime.Now,DateTime.Now,DateTime.Now,DateTime.Now,-1,-1,-1,-1,-1,0,0,0,0,0,-1,-1,0,"","",DateTime.Now,"",DateTime.Now,DateTime.Now,"",DateTime.Now,"", ConnectionManager.Tran);
                         clsOrdenCompraDetalleDAC.InsertUpdate("D", IDOrdenCompra, -1, 0, 0, 0, 0, 0, 0,
                                                         0, 0, "", ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
@@ -927,23 +927,9 @@ namespace CO
                 bEditMontoDesc = false;
                 bEditPorcDesc = false;
             }
-            //GridView view = (GridView)sender;
-            //if (view == null) return;
-            //if (e.Column.FieldName == "PorcDesc") {
-            //    decimal cellValue = (e.Value.ToString() == "") ? 0 : Convert.ToDecimal(e.Value);
-            //    MessageBox.Show(cellValue.ToString());
-            //}
+
 
         }
-
-
-        
-
-
-       
-
- 
-
-        
+   
     }
 }
