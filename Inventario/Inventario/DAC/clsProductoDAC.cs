@@ -240,7 +240,7 @@ namespace CI.DAC
         }
 
 
-        public static DataSet GetProductoByID(int IDProducto,string Descr)
+        public static DataSet GetProductoByID(long IDProducto,string Descr)
         {
             String strSQL = "dbo.invGetProductoByID";
 

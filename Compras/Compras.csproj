@@ -49,6 +49,7 @@
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="C1.C1DataExtender.2, Version=2.0.20101.72, Culture=neutral, PublicKeyToken=7c4b5683f80b910e, processorArchitecture=MSIL" />
+    <Reference Include="C1.Data.2, Version=2.0.20101.236, Culture=neutral, PublicKeyToken=900b028620cd3a1b, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -76,8 +77,10 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -117,6 +120,12 @@
     </Compile>
     <Compile Include="frmEmbarque.Designer.cs">
       <DependentUpon>frmEmbarque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmImportarSolicitudCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportarSolicitudCompra.Designer.cs">
+      <DependentUpon>frmImportarSolicitudCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoArticuloProveedor.cs">
       <SubType>Form</SubType>
@@ -176,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmbarque.resx">
       <DependentUpon>frmEmbarque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImportarSolicitudCompra.resx">
+      <DependentUpon>frmImportarSolicitudCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoArticuloProveedor.resx">
       <DependentUpon>frmListadoArticuloProveedor.cs</DependentUpon>

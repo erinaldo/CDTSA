@@ -97,7 +97,7 @@ namespace CO
 
         private void UpdateControlsFromData(DataTable dt) {
             DataRow dtProductos = dt.Rows[0];
-            this.slkupProducto.EditValue = Convert.ToInt64(dtProductos["IDProducto"]);
+                    this.slkupProducto.EditValue = Convert.ToInt64(dtProductos["IDProducto"]);
             this.slkupPaisManofactura.EditValue = Convert.ToInt32(dtProductos["IDPaisManofactura"]);
             this.txtLoteMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["LoteMinCompra"]);
             this.txtPesoMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["PesoMinimoCompra"]);
@@ -137,8 +137,10 @@ namespace CO
 
         private void frmArticuloProveedor_Load(object sender, EventArgs e)
         {
-            
-            dtProductos = CO.DAC.clsArticuloProveedorDAC.GetProductosSinAsociar(this.IDProveedor,-1,-1,-1,-1,-1,-1).Tables[0];
+            if (Accion=="Edit" || Accion=="View")             
+                dtProductos = CI.DAC.clsProductoDAC.GetProductoByID(this.IDArticulo,"*").Tables[0];
+            else
+                dtProductos = CO.DAC.clsArticuloProveedorDAC.GetProductosSinAsociar(this.IDProveedor, -1, -1, -1, -1, -1, -1).Tables[0];
 
             this.slkupProducto.Properties.DataSource = dtProductos;
             this.slkupProducto.Properties.DisplayMember = "Descr";

@@ -54,6 +54,8 @@
             this.colPesoMinCompra = new DevExpress.XtraGrid.Columns.GridColumn();
             this.slkupProveedor = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colIDProveedor2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNombre2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -65,8 +67,6 @@
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.colIDProveedor2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNombre2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -332,6 +332,22 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // colIDProveedor2
+            // 
+            this.colIDProveedor2.Caption = "ID Proveedor";
+            this.colIDProveedor2.FieldName = "IDProveedor";
+            this.colIDProveedor2.Name = "colIDProveedor2";
+            this.colIDProveedor2.Visible = true;
+            this.colIDProveedor2.VisibleIndex = 0;
+            // 
+            // colNombre2
+            // 
+            this.colNombre2.Caption = "Nombre";
+            this.colNombre2.FieldName = "Nombre";
+            this.colNombre2.Name = "colNombre2";
+            this.colNombre2.Visible = true;
+            this.colNombre2.VisibleIndex = 1;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -450,22 +466,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(582, 17);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // colIDProveedor2
-            // 
-            this.colIDProveedor2.Caption = "ID Proveedor";
-            this.colIDProveedor2.FieldName = "IDProveedor";
-            this.colIDProveedor2.Name = "colIDProveedor2";
-            this.colIDProveedor2.Visible = true;
-            this.colIDProveedor2.VisibleIndex = 0;
-            // 
-            // colNombre2
-            // 
-            this.colNombre2.Caption = "Nombre";
-            this.colNombre2.FieldName = "Nombre";
-            this.colNombre2.Name = "colNombre2";
-            this.colNombre2.Visible = true;
-            this.colNombre2.VisibleIndex = 1;
             // 
             // frmListadoArticuloProveedor
             // 

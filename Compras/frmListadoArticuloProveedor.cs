@@ -220,7 +220,7 @@ namespace CO
             {
                 //String Accion = (Convert.ToInt32(currentRow["IDEstado"]) == 0) ? "Edit" : "View";
                 
-                frmArticuloProveedor ofrmArticuloProveedor = new frmArticuloProveedor(Convert.ToInt32(currentRow["IDProveedor"]),Convert.ToInt64(currentRow["IDProducto"]),"View");
+                frmArticuloProveedor ofrmArticuloProveedor = new frmArticuloProveedor(Convert.ToInt32(currentRow["IDProveedor"]),Convert.ToInt64(currentRow["IDProducto"]),"Edit");
                 ofrmArticuloProveedor.FormClosed += ofrmSolicitud_FormClosed;
                 ofrmArticuloProveedor.ShowDialog();
             }
@@ -261,6 +261,8 @@ namespace CO
         {
             this.slkupProveedor.EditValue = null;
         }
+
+  
 
 
     
