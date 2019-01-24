@@ -101,6 +101,38 @@ namespace CO.DAC
             return DS;
         }
 
+        public static DataSet GetSolicitudCompraByProveedor(int IDProveedor, int IDSolicitudDesde,int IDSolicitudHasta,
+                        DateTime FechaSolicitudDesde,DateTime FechaSolicitudHasta,DateTime FechaRequeridaDesde,
+                        DateTime FechaRequeridaHasta,int IDClas1,int IDClas2,int IDClas3,int IDClas4, int IDClas5, int IDClas6,long IDProducto)
+        {
+            String strSQL = "dbo.invGetSolicitudCompra_OrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDProveedor", IDProveedor));
+            oCmd.Parameters.Add(new SqlParameter("@IDSolicitudDesde", IDSolicitudDesde));
+            oCmd.Parameters.Add(new SqlParameter("@IDSolicitudHasta", IDSolicitudHasta));
+            oCmd.Parameters.Add(new SqlParameter("@FechaSolicitudDesde", FechaSolicitudDesde));
+            oCmd.Parameters.Add(new SqlParameter("@FechaSolicitudHasta", FechaSolicitudHasta));
+            oCmd.Parameters.Add(new SqlParameter("@FechaRequeridaDesde", FechaRequeridaDesde));
+            oCmd.Parameters.Add(new SqlParameter("@FechaRequeridaHasta", FechaRequeridaHasta));
+            oCmd.Parameters.Add(new SqlParameter("@IDClasif1", IDClas1));
+            oCmd.Parameters.Add(new SqlParameter("@IDClasif2", IDClas2));
+            oCmd.Parameters.Add(new SqlParameter("@IDClasif3", IDClas3));
+            oCmd.Parameters.Add(new SqlParameter("@IDClasif4", IDClas4));
+            oCmd.Parameters.Add(new SqlParameter("@IDClasif5", IDClas5));
+            oCmd.Parameters.Add(new SqlParameter("@IDClasif6", IDClas6));
+            oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+
+            oAdap.Fill(DS, "Data");
+            return DS;
+        }
+
 
     }
 }

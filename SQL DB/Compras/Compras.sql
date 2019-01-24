@@ -756,3 +756,19 @@ SELECT  IDProveedor ,
 GO
 
 
+CREATE PROCEDURE dbo.invGetImportacionSolicitudesByProveedor (@IDProveedor AS int	, @IDSolicitudDesde AS INT,@IDSolicitudHasta AS INT, @FechaSolicitudDesde AS DATETIME, @FechaSolicitudHasta AS DATETIME, 
+				@FechaRequeridaDesde AS DATETIME, @FechaRequeridaHasta AS DATETIME,@IDClasif1 AS INT,@IDClasif2 AS INT,@IDClasif3 AS INT,
+				@IDClasif4 AS INT,@IDClasif5 AS INT,@IDClasif6 AS INT,@IDProducto AS BIGINT)
+AS
+SELECT A.IDSolicitud,B.IDProducto,P.Descr DescrProducto,B.Cantidad,B.Cantidad CantOrdenada,B.Comentario
+ FROM dbo.invSolicitudCompra A
+INNER JOIN dbo.invSolicitudCompraDetalle B ON A.IDSolicitud = B.IDSolicitud
+INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
+INNER JOIN dbo.invArticuloProveedor D ON P.IDProducto = D.IDProducto
+WHERE (A.IDSolicitud BETWEEN @IDSolicitudDesde AND @IDSolicitudHasta) AND (FechaRequerida  BETWEEN @FechaRequeridaDesde AND @FechaRequeridaHasta)
+AND (P.Clasif1 = @IDClasif1 OR @IDClasif1=-1) AND  (P.Clasif2 = @IDClasif2 OR @IDClasif2=-1) AND  (P.Clasif3 = @IDClasif3 OR @IDClasif3=-1) 
+AND  (P.Clasif4 = @IDClasif4 OR @IDClasif4=-1) AND  (P.Clasif5 = @IDClasif5 OR @IDClasif5=-1) AND  (P.Clasif6 = @IDClasif6 OR @IDClasif6=-1) AND (B.IDProducto = @IDProducto OR @IDProducto=-1)
+AND D.IDProveedor = @IDProveedor 
+
+
+
