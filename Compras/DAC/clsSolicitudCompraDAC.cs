@@ -105,7 +105,7 @@ namespace CO.DAC
                         DateTime FechaSolicitudDesde,DateTime FechaSolicitudHasta,DateTime FechaRequeridaDesde,
                         DateTime FechaRequeridaHasta,int IDClas1,int IDClas2,int IDClas3,int IDClas4, int IDClas5, int IDClas6,long IDProducto)
         {
-            String strSQL = "dbo.invGetSolicitudCompra_OrdenCompra";
+            String strSQL = "dbo.invGetSolicitudesByProveedor";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
 

@@ -35,6 +35,9 @@ namespace CO
         private string Accion = "Add";
         bool bEditPorcDesc, bEditMontoDesc;
 
+        DataTable _dtImportacionDetallada = new DataTable();
+        DataTable _dtImportacionConsolidada = new DataTable();
+
 
         public frmOrdenCompra(string pAccion)
         {
@@ -448,10 +451,11 @@ namespace CO
         private void CalcularMontosOrden()
         {
             //Actualizar los totales
-           
 
+
+            decimal MontoDesc = Convert.ToDecimal((dtDetalleOrden.Compute("Sum(MontoDesc)", "[MontoDesc] IS NOT NULL") != DBNull.Value) ? dtDetalleOrden.Compute("Sum(MontoDesc)", "[MontoDesc] IS NOT NULL") :0 );
             
-            decimal dTotalMercaderia = dtDetalleOrden.AsEnumerable().Sum(r => r.Field<decimal>("Cantidad") * r.Field<decimal>("PrecioUnitario")) -  dtDetalleOrden.AsEnumerable().Sum(r => r.Field<decimal>("MontoDesc"));
+            decimal dTotalMercaderia = dtDetalleOrden.AsEnumerable().Sum(r => r.Field<decimal>("Cantidad") * r.Field<decimal>("PrecioUnitario")) - MontoDesc;
             decimal dDescuento = (this.txtPorcDescuento.EditValue ==null || this.txtPorcDescuento.EditValue.ToString() =="") ? 0 : Convert.ToDecimal(this.txtPorcDescuento.EditValue) * dTotalMercaderia;
             decimal dFlete = (this.txtFlete.EditValue == null ||  this.txtFlete.EditValue.ToString() =="") ? 0 : Convert.ToDecimal(this.txtFlete.EditValue);
             decimal dSeguro = (this.txtSeguro.EditValue==null || this.txtSeguro.EditValue.ToString() =="") ? 0 : Convert.ToDecimal(this.txtSeguro.EditValue);
@@ -858,7 +862,7 @@ namespace CO
             if (view == null) return;
             if (e.Column.FieldName == "Cantidad" )
             {
-                if (view.GetRowCellValue(e.RowHandle, view.Columns[3]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString() == "") return;
+                if (view.GetRowCellValue(e.RowHandle, view.Columns[3]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[5]).ToString() == "") return;
                 if (Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns[6]))>0)  {
                 decimal cellValue = (e.Value.ToString() == "") ? 0 : Convert.ToDecimal(e.Value);
 
@@ -869,7 +873,7 @@ namespace CO
                 }
             } else if (e.Column.FieldName == "PrecioUnitario" )
             {
-                if (view.GetRowCellValue(e.RowHandle, view.Columns[2]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString() =="") return;
+                if (view.GetRowCellValue(e.RowHandle, view.Columns[2]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[5]).ToString() == "") return;
                 if (Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, view.Columns[6]))>0)  {
                 decimal cellValue = (e.Value.ToString() == "") ? 0 : Convert.ToDecimal(e.Value);
 
@@ -879,7 +883,7 @@ namespace CO
                 view.SetRowCellValue(e.RowHandle, "MontoDesc", MontoDesc);
                 }
             }
-            if (e.Column.FieldName == "PorcDesc" && bEditPorcDesc)
+            if (e.Column.FieldName == "PorcDesc" && bEditPorcDesc || view.GetRowCellValue(e.RowHandle, view.Columns[5]).ToString() == "")
             {
 
                 if (view.GetRowCellValue(e.RowHandle, view.Columns[3]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[2]).ToString() == "") return;
@@ -893,7 +897,7 @@ namespace CO
            
                
             }
-            if (e.Column.FieldName == "MontoDesc" && bEditMontoDesc )
+            if (e.Column.FieldName == "MontoDesc" && bEditMontoDesc || view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString() == "")
             {
                 if (view.GetRowCellValue(e.RowHandle, view.Columns[3]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[2]).ToString() == "") return;
                 decimal cellValue = (e.Value.ToString() == "") ? 0 : Convert.ToDecimal(e.Value);
@@ -929,6 +933,118 @@ namespace CO
             }
 
 
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            if (this.slkupProveedor.EditValue != null)
+            {
+                frmImportarSolicitudCompra ofrmImportarSolicitud = new frmImportarSolicitudCompra(Convert.ToInt32(this.slkupProveedor.EditValue));
+                ofrmImportarSolicitud.FormClosed += ofrmImportarSolicitud_FormClosed;
+                ofrmImportarSolicitud.ShowDialog();
+            }
+        }
+
+
+        
+        void ofrmImportarSolicitud_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //consolidar las lineas de productos.
+            frmImportarSolicitudCompra ofrmImport = (frmImportarSolicitudCompra)sender;
+            if (ofrmImport.DialogResult == System.Windows.Forms.DialogResult.OK) {
+                _dtImportacionDetallada = ofrmImport.GetSolicitudesSeleccionadas().AsEnumerable().Where(a=> Convert.ToDecimal(a["CantOrdenada"])>0).CopyToDataTable();
+
+                _dtImportacionConsolidada = _dtImportacionDetallada.AsEnumerable().
+                         Where(a=> Convert.ToDecimal(a["CantOrdenada"])>0).
+                         GroupBy(r => new { IDProdcuto = r["IDProducto"], DescrProducto = r["DescrProducto"] }).
+                         Select(g =>
+                            {
+                                var row = _dtImportacionDetallada.NewRow();
+                                row["Cantidad"] = g.Sum(r => Convert.ToDecimal(r["CantOrdenada"]));
+                                row["IDProducto"] = g.Key.IDProdcuto;
+                                row["DescrProducto"] = g.Key.DescrProducto;
+
+                                return row;  
+                            }
+                         ).CopyToDataTable();
+
+                foreach (DataRow fila in _dtImportacionConsolidada.Rows)
+                {
+                    DataRow nuevaFila = this.dtDetalleOrden.NewRow();
+                    nuevaFila["IDProducto"] = fila["IDProducto"];
+                    nuevaFila["DescrProducto"] = fila["DescrProducto"];
+                    nuevaFila["Cantidad"] = fila["Cantidad"];
+                    this.dtDetalleOrden.Rows.InsertAt(nuevaFila, 0);
+                    //this.dtDetalleOrden.Rows.Add(fila);
+                }
+            }
+            
+        }
+
+        private void gridView1_ValidateRow_1(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                GridColumn Cantidad = view.Columns["Cantidad"];
+                GridColumn PrecioUnitario = view.Columns["PrecioUnitario"];
+                GridColumn IDProducto = view.Columns["IDProducto"];
+                
+
+                object vIdProducto = (object)(view.GetRowCellValue(e.RowHandle, IDProducto));
+                object vCantidad = (object)(view.GetRowCellValue(e.RowHandle, Cantidad));
+                object vPrecioUnitario = (object)(view.GetRowCellValue(e.RowHandle, PrecioUnitario));
+
+                if (Convert.IsDBNull(vIdProducto))
+                {
+                    e.Valid = false;
+                    view.SetColumnError(IDProducto, "El campo no deberia ser vacio");
+                    return;
+                }
+
+                if (Convert.IsDBNull(vCantidad))
+                {
+                    e.Valid = false;
+                    view.SetColumnError(Cantidad, "El campo no deberia ser vacio");
+                    return;
+                }
+
+                if (Convert.IsDBNull(vPrecioUnitario))
+                {
+                    if (Convert.IsDBNull(vPrecioUnitario))
+                    {
+                        e.Valid = false;
+                        view.SetColumnError(PrecioUnitario, "El campo no deberia ser vacio");
+                        return;
+                    }
+                   
+                }
+
+                // Validacion de Centros y Cuentas contables unicos.  (Lo quite por que inventario permite varias centro y lineas iguales)
+
+                //if (e.Row == null) return;
+                ////Get the value of the first column
+                //int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
+                ////Get the value of the second column
+                //long iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (long)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
+                ////Validity criterion
+
+                //DataView Dv = new DataView();
+                //Dv.Table = ((DataView)view.DataSource).ToTable();
+                //Dv.RowFilter = string.Format("IDCuenta={0} and IDCentro ={1}", iCuenta, iCentro);
+
+                //if (Dv.ToTable().Rows.Count > 1)
+                //{
+                //    e.Valid = false;
+                //    //Set errors with specific descriptions for the columns
+                //    view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
+                //    view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
    
     }

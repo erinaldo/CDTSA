@@ -574,6 +574,7 @@
             this.gridView1.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
+            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow_1);
             // 
             // colIDProducto
             // 
@@ -860,6 +861,7 @@
             this.simpleButton1.StyleController = this.layoutControl2;
             this.simpleButton1.TabIndex = 17;
             this.simpleButton1.Text = "Importar Solicitudes";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // layoutControlGroup2
             // 

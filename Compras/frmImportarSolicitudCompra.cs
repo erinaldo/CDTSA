@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraLayout;
 using Security;
 using System;
@@ -29,9 +31,10 @@ namespace CO
         
 
 
-        public frmImportarSolicitudCompra()
+        public frmImportarSolicitudCompra(int IDProveedor)
         {
             InitializeComponent();
+            this.IDProveedor = IDProveedor;
         }
 
 
@@ -40,27 +43,28 @@ namespace CO
             this.btnImportar.Click += btnImportar_Click;
             this.btnCancelar.Click += btnCancelar_Click;
             this.btnRefrescar.Click += btnRefrescar_Click;
-            this.gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
         }
 
         void btnRefrescar_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            PopulateGrid();
         }
 
-        void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            throw new NotImplementedException();
+
+        public DataTable GetSolicitudesSeleccionadas() {
+            return _dtSolicitudes;
         }
+ 
 
         void btnCancelar_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.Close();
         }
 
         void btnImportar_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.DialogResult= System.Windows.Forms.DialogResult.OK;
+            this.Close();
         }
 
 
@@ -69,12 +73,12 @@ namespace CO
 
             try
             {
-                IDSolicitudDesde = (this.txtIDSolicitudDesde.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.txtIDSolicitudDesde.EditValue);
-                IDSolicitudHasta = (this.txtSolicitudHasta.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.txtSolicitudHasta.EditValue);
-                FechaSolicitudDesde = (this.dtpFechaSolicitudDesde.EditValue.ToString() == "") ? Convert.ToDateTime("1981/08/21") : Convert.ToDateTime(this.dtpFechaSolicitudDesde.EditValue);
-                FechaSolicitudHasta = (this.dtpFechaSolicitudHasta.EditValue.ToString() == "") ? DateTime.Now.AddYears(50) : Convert.ToDateTime(this.dtpFechaSolicitudHasta.EditValue);
-                FechaRequeridaDesde = (this.dtpFechaRequeridaDesde.EditValue.ToString() == "") ? Convert.ToDateTime("1981/08/21") : Convert.ToDateTime(this.dtpFechaRequeridaDesde.EditValue);
-                FechaRequeridaHasta = (this.dtpFechaRequeridaHasta.EditValue.ToString() == "") ? DateTime.Now.AddYears(50) : Convert.ToDateTime(this.dtpFechaRequeridaHasta.EditValue);
+                IDSolicitudDesde = (this.txtIDSolicitudDesde.EditValue==null || this.txtIDSolicitudDesde.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.txtIDSolicitudDesde.EditValue);
+                IDSolicitudHasta = (this.txtSolicitudHasta.EditValue == null || this.txtSolicitudHasta.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.txtSolicitudHasta.EditValue);
+                FechaSolicitudDesde = (this.dtpFechaSolicitudDesde.EditValue==null || this.dtpFechaSolicitudDesde.EditValue.ToString() == "") ? Convert.ToDateTime("1981/08/21") : Convert.ToDateTime(this.dtpFechaSolicitudDesde.EditValue);
+                FechaSolicitudHasta = (this.dtpFechaSolicitudHasta.EditValue==null || this.dtpFechaSolicitudHasta.EditValue.ToString() == "") ? DateTime.Now.AddYears(50) : Convert.ToDateTime(this.dtpFechaSolicitudHasta.EditValue);
+                FechaRequeridaDesde = (this.dtpFechaRequeridaDesde.EditValue==null || this.dtpFechaRequeridaDesde.EditValue.ToString() == "") ? Convert.ToDateTime("1981/08/21") : Convert.ToDateTime(this.dtpFechaRequeridaDesde.EditValue);
+                FechaRequeridaHasta = (this.dtpFechaRequeridaHasta.EditValue==null || this.dtpFechaRequeridaHasta.EditValue.ToString() == "") ? DateTime.Now.AddYears(50) : Convert.ToDateTime(this.dtpFechaRequeridaHasta.EditValue);
                 IDClasif1 = (this.slkupClas1.EditValue == null || this.slkupClas1.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.slkupClas1.EditValue);
                 IDClasif2 = (this.slkupClas2.EditValue == null || this.slkupClas2.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.slkupClas2.EditValue);
                 IDClasif3 = (this.slkupClas3.EditValue == null || this.slkupClas3.EditValue.ToString() == "") ? -1 : Convert.ToInt32(this.slkupClas3.EditValue);
@@ -174,7 +178,7 @@ namespace CO
                 this.slkupProducto.Properties.PopulateViewColumns();
 
 
-                Util.Util.SetDefaultBehaviorControls(this.gridView1, false, this.dtgDetalle, _tituloVentana, this);
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, this.dtgDetalle, _tituloVentana, this);
                 EnlazarEventos();
 
                 PopulateGrid();
@@ -206,6 +210,60 @@ namespace CO
             SendKeys.Send("{TAB}");
         }
 
+        private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                GridColumn CantOrdenada = view.Columns["CantOrdenada"];
+                GridColumn CantPedida = view.Columns["Cantidad"];
     
+
+                decimal vCantOrdenada = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, CantOrdenada));
+                decimal vCantPedida = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, CantPedida));
+
+
+                if (vCantOrdenada > vCantPedida) {
+                    e.Valid = false;
+                    view.SetColumnError(CantOrdenada, "La cantidad Pedida no puede se mayor a la cantidad ordenada");
+                    return; 
+                }
+                
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            GridView view = (GridView)sender;
+            if (view == null) return;
+            if (e.Column.FieldName == "CantOrdenada")
+            {
+                view.ClearColumnErrors();
+                decimal cellValue = (e.Value.ToString() == "") ? 0 : Convert.ToDecimal(e.Value);
+                decimal CantPedida = Convert.ToDecimal(view.GetRowCellValue(e.RowHandle, "Cantidad"));
+
+                if (cellValue > CantPedida)
+                    view.SetColumnError(e.Column, "La cantidad Pedida no puede se mayor a la cantidad ordenada");
+                
+                //view.SetRowCellValue(e.RowHandle, view.Columns["IDCentro"], _dtTemp.Rows[0]["IDCentro"].ToString());
+            }
+        }
+
+
+
+        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            //e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.Ignore;
+            XtraMessageBox.Show("Por favor ingrese un valor correcto", "Importar Solicitud", MessageBoxButtons.OK);
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+        }
+
+   
     }
 }
