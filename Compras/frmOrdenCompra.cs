@@ -26,7 +26,7 @@ namespace CO
    
         long IDOrdenCompra;
         DateTime FechaOrden, FechaRequerida,FechaRequeridaEmbarque,FechaCotizacion,FechaEmision,FechaFactura;
-        int IDEstado,IDProveedor,IDBodega,IDCondicionPago, IDMoneda,IDTipoProrrateo;
+        int IDEstado, IDProveedor, IDBodega, IDCondicionPago, IDMoneda;
         Decimal Descuento, Flete, Seguro, Documentacion, Anticipos,ImpuestoVenta,ImpuestoConsumo,MontoFactura;
         String NumFactura,Notas, OrdenCompra;
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
@@ -198,6 +198,7 @@ namespace CO
             DataRow cabecera =  dt.Rows[0];
             IDOrdenCompra = Convert.ToInt32(cabecera["IDOrdenCompra"]);
             this.txtOrdenCompra.EditValue = cabecera["OrdenCompra"].ToString();
+            OrdenCompra = cabecera["OrdenCompra"].ToString(); 
             this.dtpFechaOrden.EditValue = Convert.ToDateTime(cabecera["Fecha"]);
             this.slkupProveedor.EditValue = Convert.ToInt32(cabecera["IDProveedor"]);
             this.slkupMoneda.EditValue = Convert.ToInt32(cabecera["IDMoneda"]);
@@ -235,6 +236,18 @@ namespace CO
             this.dtDetalleOrden = DAC.clsOrdenCompraDetalleDAC.Get(IDOrdenCompra).Tables[0];
             UpdateControlsFromData(dtOrdenCompra);
             this.dtgDetalle.DataSource = dtDetalleOrden;
+            _dtImportacionDetallada = clsSolicitudCompra_OrdenCompra.Get(IDOrdenCompra, -1, -1).Tables[0];
+            _dtImportacionConsolidada = _dtImportacionDetallada.AsEnumerable().
+                     GroupBy(r => new { IDProdcuto = r["IDProducto"]}).
+                     Select(g =>
+                     {
+                         var row = _dtImportacionDetallada.NewRow();
+                         row["CantOrdenada"] = g.Sum(r => Convert.ToDecimal(r["CantOrdenada"]));
+                         row["IDProducto"] = g.Key.IDProdcuto;
+                         return row;
+                     }
+                     ).CopyToDataTable();
+        
             CalcularMontosOrden();
             //this.btnAprobar.Enabled = (Convert.ToInt32(this.txtEstado.Tag) == 0) ? true : false;
             
@@ -305,7 +318,7 @@ namespace CO
                 this.gridView1.InvalidRowException += gridView1_InvalidRowException;
                 this.gridView1.RowUpdated += gridView1_RowUpdated;
                 //this.gridView1.ShownEditor += gridView1_ShownEditor;
-                this.dtgDetalle.ProcessGridKey += dtgDetalleSolicitud_ProcessGridKey;
+                //this.dtgDetalle.ProcessGridKey += dtgDetalleSolicitud_ProcessGridKey;
                 //this.gridView1.ValidatingEditor += gridView1_ValidatingEditor;
 
 
@@ -508,11 +521,12 @@ namespace CO
                 GridView view = sender as GridView;
                 GridColumn IDProducto = view.Columns["IDProducto"];
                 GridColumn Cantidad = view.Columns["Cantidad"];
+                GridColumn PrecioUnitario = view.Columns["PrecioUnitario"];
                 
                 object vIDProducto = (object)(view.GetRowCellValue(e.RowHandle, IDProducto));
                 object vCantidad = (object)(view.GetRowCellValue(e.RowHandle, Cantidad));
-                
-            
+                object vPrecioUnitario = (object)(view.GetRowCellValue(e.RowHandle, PrecioUnitario));
+
                 if (Convert.IsDBNull(vIDProducto))
                 {
                     view.SetColumnError(IDProducto, "El campo no deberia ser vacio");
@@ -527,6 +541,18 @@ namespace CO
                     
                     return;
                 }
+
+                if (Convert.IsDBNull(vPrecioUnitario))
+                {
+                    if (Convert.IsDBNull(vPrecioUnitario))
+                    {
+                        e.Valid = false;
+                        view.SetColumnError(PrecioUnitario, "El campo no deberia ser vacio");
+                        return;
+                    }
+
+                }
+            
 
             
                 // Validacion de Productos Unicos en la lista
@@ -608,8 +634,16 @@ namespace CO
             
 
             if (((DataTable)this.dtgDetalle.DataSource).Rows.Count == 0)
-                sMensaje = sMensaje = "   • Por favor agrege al menos un elemento al detalle de la solicitud";
-
+                sMensaje = sMensaje = "   • Por favor agrege al menos un elemento al detalle de la solicitud \r\n";
+            foreach (DataRow fila in ((DataTable)this.dtgDetalle.DataSource).Rows) {
+                if (fila.RowState != DataRowState.Deleted)
+                {
+                    if (fila["PrecioUnitario"] == DBNull.Value || Convert.ToDecimal(fila["PrecioUnitario"]) == 0)
+                        sMensaje = "  • El producto " + fila["DescrProducto"].ToString() + " debe de tener un precio unitario \r\n";
+                    if (fila["Cantidad"] == DBNull.Value || Convert.ToDecimal(fila["Cantidad"]) == 0)
+                        sMensaje = "  • El producto " + fila["DescrProducto"].ToString() + " debe de tener una cantidad a ordenar \r\n";
+                }
+            }
             if (sMensaje != "") {
                 MessageBox.Show("Han ocurrido los siguientes errores por favor verifique los campos: \n\r " + sMensaje);
                 Resultado = false;
@@ -657,13 +691,26 @@ namespace CO
                         this.txtOrdenCompra.Text = OrdenCompra;
                         foreach (DataRow row in dt.Rows)
                         {
-                            DAC.clsOrdenCompraDetalleDAC.InsertUpdate("I", IDOrdenCompra, (long)row["IDProducto"], (decimal)row["Cantidad"], 0, 0,
-                                (decimal)row["PrecioUnitario"], (row["Impuesto"].ToString() == "") ? 0 : (decimal)row["Impuesto"], (row["PorcDesc"].ToString() == "") ? 0 : (decimal)row["PorcDesc"],
-                                (row["MontoDesc"].ToString() == "") ? 0 : (decimal)row["MontoDesc"], 0, row["Comentario"].ToString(), ConnectionManager.Tran);
+                            if (row.RowState != DataRowState.Deleted)
+                            {
+                                DAC.clsOrdenCompraDetalleDAC.InsertUpdate("I", IDOrdenCompra, (long)row["IDProducto"], (decimal)row["Cantidad"], 0, 0,
+                                    (decimal)row["PrecioUnitario"], (row["Impuesto"].ToString() == "") ? 0 : (decimal)row["Impuesto"], (row["PorcDesc"].ToString() == "") ? 0 : (decimal)row["PorcDesc"],
+                                    (row["MontoDesc"].ToString() == "") ? 0 : (decimal)row["MontoDesc"], 0, row["Comentario"].ToString(), ConnectionManager.Tran);
+                            }
+                        }
+
+                        foreach (DataRow row in this._dtImportacionDetallada.Rows)
+                        {
+                            if (row.RowState != DataRowState.Deleted)
+                            {
+                                DAC.clsSolicitudCompra_OrdenCompra.InsertUpdate("I", Convert.ToInt32(row["IDSolicitud"]), IDOrdenCompra,
+                                                Convert.ToInt64(row["IDProducto"]), Convert.ToDecimal(row["CantOrdenada"]), sUsuario, DateTime.Now,
+                                                ConnectionManager.Tran);
+                            }
                         }
                     }
 
-                    if (Accion == "Edit")
+                     if (Accion == "Edit")
                     {
                         DAC.clsOrdenCompraDAC.InsertUpdate("U", IDOrdenCompra, ref OrdenCompra, FechaOrden, FechaRequerida, FechaEmision,
                                                                         FechaRequeridaEmbarque, FechaCotizacion, IDEstado, IDBodega,
@@ -674,9 +721,23 @@ namespace CO
                                                         0, 0, "", ConnectionManager.Tran);
                         foreach (DataRow row in dt.Rows)
                         {
-                            DAC.clsOrdenCompraDetalleDAC.InsertUpdate("I", IDOrdenCompra, (long)row["IDProducto"], (decimal)row["Cantidad"], 0, 0,
-                                (decimal)row["PrecioUnitario"], (row["Impuesto"].ToString() == "") ? 0 : (decimal)row["Impuesto"], (row["PorcDesc"].ToString() == "") ? 0 : (decimal)row["PorcDesc"],
-                                (row["MontoDesc"].ToString() == "") ? 0 : (decimal)row["MontoDesc"], 0, row["Comentario"].ToString(), ConnectionManager.Tran);
+                            if (row.RowState != DataRowState.Deleted)
+                            {
+                                DAC.clsOrdenCompraDetalleDAC.InsertUpdate("I", IDOrdenCompra, (long)row["IDProducto"], (decimal)row["Cantidad"], 0, 0,
+                                    (decimal)row["PrecioUnitario"], (row["Impuesto"].ToString() == "") ? 0 : (decimal)row["Impuesto"], (row["PorcDesc"].ToString() == "") ? 0 : (decimal)row["PorcDesc"],
+                                    (row["MontoDesc"].ToString() == "") ? 0 : (decimal)row["MontoDesc"], 0, row["Comentario"].ToString(), ConnectionManager.Tran);
+                            }
+                        }
+
+                        DAC.clsSolicitudCompra_OrdenCompra.InsertUpdate("D", -1, IDOrdenCompra, -1, 0, "", DateTime.Now, ConnectionManager.Tran);
+                        foreach (DataRow row in this._dtImportacionDetallada.Rows)
+                        {
+                            if (row.RowState != DataRowState.Deleted)
+                            {
+                                DAC.clsSolicitudCompra_OrdenCompra.InsertUpdate("I", Convert.ToInt32(row["IDSolicitud"]), IDOrdenCompra,
+                                                Convert.ToInt64(row["IDProducto"]), Convert.ToDecimal(row["CantOrdenada"]), sUsuario, DateTime.Now,
+                                                ConnectionManager.Tran);
+                            }
                         }
                     }
 
@@ -974,6 +1035,7 @@ namespace CO
                     nuevaFila["IDProducto"] = fila["IDProducto"];
                     nuevaFila["DescrProducto"] = fila["DescrProducto"];
                     nuevaFila["Cantidad"] = fila["Cantidad"];
+                    nuevaFila["IsLoadFromSolicitud"] = 1;
                     this.dtDetalleOrden.Rows.InsertAt(nuevaFila, 0);
                     //this.dtDetalleOrden.Rows.Add(fila);
                 }
@@ -981,69 +1043,32 @@ namespace CO
             
         }
 
-        private void gridView1_ValidateRow_1(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+
+
+        private void btnEliminarLinea_Click(object sender, EventArgs e)
         {
-            try
+          
+            
+        }
+
+        private void dtgDetalle_ProcessGridKey(object sender, KeyEventArgs e)
+        {
+            var grid = sender as GridControl;
+            var view = grid.FocusedView as GridView;                       
+            if (e.KeyData == Keys.Delete)
             {
-                GridView view = sender as GridView;
-                GridColumn Cantidad = view.Columns["Cantidad"];
-                GridColumn PrecioUnitario = view.Columns["PrecioUnitario"];
-                GridColumn IDProducto = view.Columns["IDProducto"];
-                
-
-                object vIdProducto = (object)(view.GetRowCellValue(e.RowHandle, IDProducto));
-                object vCantidad = (object)(view.GetRowCellValue(e.RowHandle, Cantidad));
-                object vPrecioUnitario = (object)(view.GetRowCellValue(e.RowHandle, PrecioUnitario));
-
-                if (Convert.IsDBNull(vIdProducto))
+                if (MessageBox.Show("Esta seguro que desea eliminar el elemento seleccionado?", "Asiento de Diario", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    e.Valid = false;
-                    view.SetColumnError(IDProducto, "El campo no deberia ser vacio");
-                    return;
-                }
-
-                if (Convert.IsDBNull(vCantidad))
-                {
-                    e.Valid = false;
-                    view.SetColumnError(Cantidad, "El campo no deberia ser vacio");
-                    return;
-                }
-
-                if (Convert.IsDBNull(vPrecioUnitario))
-                {
-                    if (Convert.IsDBNull(vPrecioUnitario))
-                    {
-                        e.Valid = false;
-                        view.SetColumnError(PrecioUnitario, "El campo no deberia ser vacio");
-                        return;
+                    DataRow dr = view.GetDataRow(view.GetSelectedRows().First());
+                    if (Convert.ToBoolean(dr["IsLoadFromSolicitud"])) {
+                        _dtImportacionDetallada.AsEnumerable().Where(a => a.Field<long>("IDProducto") == Convert.ToInt64(dr["IDProducto"])).LastOrDefault().Delete();
+                        _dtImportacionConsolidada.AsEnumerable().Where(a => a.Field<long>("IDProducto") == Convert.ToInt64(dr["IDProducto"])).ToList().ForEach(a=>a.Delete());
                     }
-                   
+                    view.DeleteSelectedRows();
+                    e.Handled = true;
                 }
-
-                // Validacion de Centros y Cuentas contables unicos.  (Lo quite por que inventario permite varias centro y lineas iguales)
-
-                //if (e.Row == null) return;
-                ////Get the value of the first column
-                //int iCentro = (view.GetRowCellValue(e.RowHandle, CentroCol) != null) ? (int)view.GetRowCellValue(e.RowHandle, CentroCol) : -1;
-                ////Get the value of the second column
-                //long iCuenta = (view.GetRowCellValue(e.RowHandle, CuentaCol) != null) ? (long)view.GetRowCellValue(e.RowHandle, CuentaCol) : -1;
-                ////Validity criterion
-
-                //DataView Dv = new DataView();
-                //Dv.Table = ((DataView)view.DataSource).ToTable();
-                //Dv.RowFilter = string.Format("IDCuenta={0} and IDCentro ={1}", iCuenta, iCentro);
-
-                //if (Dv.ToTable().Rows.Count > 1)
-                //{
-                //    e.Valid = false;
-                //    //Set errors with specific descriptions for the columns
-                //    view.SetColumnError(CentroCol, "El centro de costo con la cuenta contable debe de ser únicos");
-                //    view.SetColumnError(CuentaCol, "La cuenta contable con el centro de costo deben de ser únicos");
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                else
+                    e.Handled = false;
             }
         }
    

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Security;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +11,7 @@ namespace CO.DAC
 {
     public static class clsSolicitudCompra_OrdenCompra
     {
-        public static long InsertUpdate(string Operacion, int IDSolicitud,int IDOrdenCompra, long IDProducto, decimal Cantidad, String Usuario,DateTime Fecha, SqlTransaction tran)
+        public static long InsertUpdate(string Operacion, int IDSolicitud,long IDOrdenCompra, long IDProducto, decimal Cantidad, String Usuario,DateTime Fecha, SqlTransaction tran)
         {
             long result = -1;
             String strSQL = "dbo.invUpdateSolicitudCompra_OrdenCompra";
@@ -31,6 +32,25 @@ namespace CO.DAC
 
             return result;
 
+        }
+
+
+        public static DataSet Get(long IDOrdenCompra, int IDSolicitud,long IDProducto)
+        {
+            String strSQL = "dbo.invGetSolicitudCompra_OrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+            oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+
+            oAdap.Fill(DS, "Data");
+            return DS;
         }
     }
 }

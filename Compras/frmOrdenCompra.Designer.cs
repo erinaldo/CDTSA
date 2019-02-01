@@ -83,7 +83,7 @@
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnEliminarLinea = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -526,7 +526,7 @@
             // 
             this.layoutControl2.Controls.Add(this.dtgDetalle);
             this.layoutControl2.Controls.Add(this.simpleButton2);
-            this.layoutControl2.Controls.Add(this.simpleButton3);
+            this.layoutControl2.Controls.Add(this.btnEliminarLinea);
             this.layoutControl2.Controls.Add(this.simpleButton4);
             this.layoutControl2.Controls.Add(this.simpleButton1);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -550,6 +550,7 @@
             this.dtgDetalle.TabIndex = 13;
             this.dtgDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.dtgDetalle.ProcessGridKey += new System.Windows.Forms.KeyEventHandler(this.dtgDetalle_ProcessGridKey);
             // 
             // gridView1
             // 
@@ -574,7 +575,6 @@
             this.gridView1.OptionsView.ShowVerticalLines = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
-            this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow_1);
             // 
             // colIDProducto
             // 
@@ -832,15 +832,16 @@
             this.simpleButton2.TabIndex = 15;
             this.simpleButton2.Text = "Agregar";
             // 
-            // simpleButton3
+            // btnEliminarLinea
             // 
-            this.simpleButton3.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(91, 12);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(72, 22);
-            this.simpleButton3.StyleController = this.layoutControl2;
-            this.simpleButton3.TabIndex = 16;
-            this.simpleButton3.Text = "Eliminar";
+            this.btnEliminarLinea.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarLinea.Image")));
+            this.btnEliminarLinea.Location = new System.Drawing.Point(91, 12);
+            this.btnEliminarLinea.Name = "btnEliminarLinea";
+            this.btnEliminarLinea.Size = new System.Drawing.Size(72, 22);
+            this.btnEliminarLinea.StyleController = this.layoutControl2;
+            this.btnEliminarLinea.TabIndex = 16;
+            this.btnEliminarLinea.Text = "Eliminar";
+            this.btnEliminarLinea.Click += new System.EventHandler(this.btnEliminarLinea_Click);
             // 
             // simpleButton4
             // 
@@ -918,7 +919,7 @@
             // 
             // layoutControlItem13
             // 
-            this.layoutControlItem13.Control = this.simpleButton3;
+            this.layoutControlItem13.Control = this.btnEliminarLinea;
             this.layoutControlItem13.Location = new System.Drawing.Point(79, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(76, 26);
@@ -1946,7 +1947,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton btnEliminarLinea;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraBars.BarButtonItem btnConfirmar;

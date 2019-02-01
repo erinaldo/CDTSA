@@ -30,10 +30,10 @@ namespace CG
             try
             {
                 //HabilitarControles(false);
-                _dtEjericio = EjercicioDAC.GetEjercicioActivo().Tables[0];
+                _dtEjericio = EjercicioDAC.GetData(-1).Tables[0];
                 this.gridView.FocusedRowChanged += GridView_FocusedRowChanged;
-                Util.Util.ConfigLookupEdit(this.slkupEjercicio,_dtEjericio, "DescrEjercicio", "IDEjercicio");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupEjercicio, "[{'ColumnCaption':'ID','ColumnField':'IDEjercicio','width':30},{'ColumnCaption':'Descripción','ColumnField':'DescrEjercicio','width':70}]");
+                Util.Util.ConfigLookupEdit(this.slkupEjercicio, _dtEjericio, "Descr", "IDEjercicio");
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupEjercicio, "[{'ColumnCaption':'ID','ColumnField':'IDEjercicio','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
                 if (_dtEjericio.Rows.Count>0)
                     this.slkupEjercicio.EditValue = _dtEjericio.Rows[_dtEjericio.Rows.Count-1]["IDEjercicio"];
