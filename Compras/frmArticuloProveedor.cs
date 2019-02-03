@@ -25,6 +25,7 @@ namespace CO
         String sUsuario = (UsuarioDAC._DS.Tables.Count > 0) ? UsuarioDAC._DS.Tables[0].Rows[0]["Usuario"].ToString() : "azepeda";
         DataTable dtProductos = new DataTable();
         DataTable dtPais = new DataTable();
+        bool NotClosing = false;
         
         private string Accion = "Add";
 
@@ -40,13 +41,14 @@ namespace CO
             InicializarNuevoElement();
         }
 
-        public frmArticuloProveedor(int IDProveedor,long IDArticulo, String Accion)
+        public frmArticuloProveedor(int IDProveedor,long IDArticulo, String Accion,bool NotClosing =false)
         {
             InitializeComponent();
             
             this.IDProveedor = IDProveedor;
             this.IDArticulo = IDArticulo;
             this.Accion = Accion;
+            this.NotClosing = NotClosing;
         }
 
 
@@ -97,7 +99,7 @@ namespace CO
 
         private void UpdateControlsFromData(DataTable dt) {
             DataRow dtProductos = dt.Rows[0];
-                    this.slkupProducto.EditValue = Convert.ToInt64(dtProductos["IDProducto"]);
+            this.slkupProducto.EditValue = Convert.ToInt64(dtProductos["IDProducto"]);
             this.slkupPaisManofactura.EditValue = Convert.ToInt32(dtProductos["IDPaisManofactura"]);
             this.txtLoteMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["LoteMinCompra"]);
             this.txtPesoMinimoCompra.EditValue = Convert.ToDecimal(dtProductos["PesoMinimoCompra"]);
@@ -118,9 +120,14 @@ namespace CO
             {
                 HabilitarControles();
                 HabilitarBotoneriaPrincipal();
+                if (this.NotClosing)
+                    this.btnCancelar.Enabled = false;
                 if (Accion == "Add")
                 {
                     this.slkupPaisManofactura.Focus();
+                    if (this.IDArticulo != -1 && this.IDArticulo.ToString() != "") {
+                        this.slkupProducto.EditValue = this.IDArticulo;
+                    }
                 }
                 else                              
                 {
@@ -239,6 +246,7 @@ namespace CO
                     HabilitarControles();
                     HabilitarBotoneriaPrincipal();
                     MessageBox.Show("El producto se ha asociado correctamente al proveedor");
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                     this.Close();
 
                 }
@@ -249,6 +257,13 @@ namespace CO
                 MessageBox.Show("Han ocurrido los siguiente errores: " + ex.Message);
             }
 
+        }
+
+        private void frmArticuloProveedor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.NotClosing &&  this.DialogResult!= System.Windows.Forms.DialogResult.OK) {
+                e.Cancel = true;
+            } 
         }
 
         

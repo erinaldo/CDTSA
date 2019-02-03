@@ -237,16 +237,19 @@ namespace CO
             UpdateControlsFromData(dtOrdenCompra);
             this.dtgDetalle.DataSource = dtDetalleOrden;
             _dtImportacionDetallada = clsSolicitudCompra_OrdenCompra.Get(IDOrdenCompra, -1, -1).Tables[0];
-            _dtImportacionConsolidada = _dtImportacionDetallada.AsEnumerable().
-                     GroupBy(r => new { IDProdcuto = r["IDProducto"]}).
-                     Select(g =>
-                     {
-                         var row = _dtImportacionDetallada.NewRow();
-                         row["CantOrdenada"] = g.Sum(r => Convert.ToDecimal(r["CantOrdenada"]));
-                         row["IDProducto"] = g.Key.IDProdcuto;
-                         return row;
-                     }
-                     ).CopyToDataTable();
+            if (_dtImportacionDetallada.Rows.Count > 0)
+            {
+                _dtImportacionConsolidada = _dtImportacionDetallada.AsEnumerable().
+                         GroupBy(r => new { IDProdcuto = r["IDProducto"] }).
+                         Select(g =>
+                         {
+                             var row = _dtImportacionDetallada.NewRow();
+                             row["CantOrdenada"] = g.Sum(r => Convert.ToDecimal(r["CantOrdenada"]));
+                             row["IDProducto"] = g.Key.IDProdcuto;
+                             return row;
+                         }
+                         ).CopyToDataTable();
+            }
         
             CalcularMontosOrden();
             //this.btnAprobar.Enabled = (Convert.ToInt32(this.txtEstado.Tag) == 0) ? true : false;
@@ -339,10 +342,7 @@ namespace CO
                 this.slkupIDProducto.Popup += slkup_Popup;
                 this.slkupIDProducto.PopulateViewColumns();
 
-                
-                
-
-
+   
                 //Util.Util.ConfigLookupEdit(this.slkupIDProducto, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
                 //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupIDProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
@@ -365,10 +365,6 @@ namespace CO
 
                 Util.Util.ConfigLookupEdit(this.slkupCondicionPago, clsCondicionPagoDAC.Get().Tables[0], "Descr", "IDCondicionPago");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupCondicionPago, "[{'ColumnCaption':'ID Condición','ColumnField':'IDCondicionPago','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
-
-
-
-
 
 
                 LoadData();
@@ -442,22 +438,19 @@ namespace CO
 
         void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-            //try
-            //{
-            //    if (view == null) return;
-            //    //int count = (dtDetalleSolicitud.Rows.Count > 0) ? dtDetalleSolicitud.AsEnumerable().Max(a => a.Field<int>("Linea")) + 1 : 1;
+                DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            try
+            {
+                if (view == null) return;
+                DataRow fila = view.GetDataRow(e.RowHandle);
+                fila["IsLoadFromSolicitud"] = false;
 
-            //    view.SetRowCellValue(e.RowHandle, view.Columns["IDOrdenCompra"], IDSolicitud);
-            //    //view.SetRowCellValue(e.RowHandle, view.Columns["Linea"], count);
-
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -489,13 +482,9 @@ namespace CO
             this.txtImpuestoVenta.EditValue = dImpuestoVenta.ToString("N" +Util.Util.DecimalLenght);
             this.txtSubtotal.EditValue = dSubTotal.ToString("N" + Util.Util.DecimalLenght);
             this.txtSaldo.EditValue = dSaldo.ToString("N" + Util.Util.DecimalLenght);
-            
-
-            
+  
         }
 
-       
-      
         void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
             try
@@ -510,8 +499,6 @@ namespace CO
         void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
-
-
         }
 
         void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
@@ -522,10 +509,14 @@ namespace CO
                 GridColumn IDProducto = view.Columns["IDProducto"];
                 GridColumn Cantidad = view.Columns["Cantidad"];
                 GridColumn PrecioUnitario = view.Columns["PrecioUnitario"];
+                GridColumn PorcDesc = view.Columns["PorcDesc"];
+                GridColumn MontoDesc = view.Columns["MontoDesc"];
                 
                 object vIDProducto = (object)(view.GetRowCellValue(e.RowHandle, IDProducto));
                 object vCantidad = (object)(view.GetRowCellValue(e.RowHandle, Cantidad));
                 object vPrecioUnitario = (object)(view.GetRowCellValue(e.RowHandle, PrecioUnitario));
+                object vPorcDesc = (object)(view.GetRowCellValue(e.RowHandle, PorcDesc));
+                object vMontoDesc = (object)(view.GetRowCellValue(e.RowHandle, MontoDesc));
 
                 if (Convert.IsDBNull(vIDProducto))
                 {
@@ -552,6 +543,36 @@ namespace CO
                     }
 
                 }
+
+                if (!Convert.IsDBNull(vPorcDesc))
+                {
+                    decimal Porc = Convert.ToDecimal(vPorcDesc);
+
+                    if (Porc > 100)
+                    {
+                        view.SetColumnError(PorcDesc, "El porcentaje no puede ser mayor a 100%");
+                        e.Valid = false;
+                        return;
+                    }
+                   
+                }
+
+
+                if (!Convert.IsDBNull(vMontoDesc))
+                {
+                    decimal montoDesc = Convert.ToDecimal(vMontoDesc);
+                    decimal cant = Convert.ToDecimal(vCantidad);
+                    decimal precio = Convert.ToDecimal(vPrecioUnitario);
+
+                    if ((cant * precio) < montoDesc)
+                    {
+                        view.SetColumnError(PorcDesc, "El monto puede ser mayor a 100% del producto");
+                        e.Valid = false;
+                        return;
+                    }
+                    
+                }
+
             
 
             
@@ -590,8 +611,6 @@ namespace CO
                 ctrl.Text = "Cancelar";
         }
 
-    
-
         private void btnAddSolicitud_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Accion = "Add";
@@ -605,8 +624,6 @@ namespace CO
             HabilitarControles();
             HabilitarBotoneriaPrincipal();
         }
-
-         
 
         private bool ValidarDatos() { 
             String sMensaje = "";
@@ -921,6 +938,24 @@ namespace CO
         {
             GridView view = (GridView)sender;
             if (view == null) return;
+            if (this.slkupProveedor.EditValue == null) {
+                MessageBox.Show("Antes de asociar productos por favor, seleccione el proveedor de la orden");
+                view.CancelUpdateCurrentRow();
+                return;
+            }
+            if (e.Column.FieldName == "IDProducto") {
+                long IDProducto = Convert.ToInt64(view.GetRowCellValue(e.RowHandle,view.Columns[0]));
+                int IDProveedor = Convert.ToInt32(this.slkupProveedor.EditValue);
+
+                DataTable dt = clsArticuloProveedorDAC.Get(IDProducto, IDProveedor).Tables[0];
+
+                if (dt.Rows.Count == 0) { 
+                    //mostrar el mensaje de asocicion
+                    frmArticuloProveedor ofrmArticuloProveedor = new frmArticuloProveedor(IDProveedor, IDProducto, "Add", true);
+                    ofrmArticuloProveedor.ShowDialog();
+                }
+                //validar si el producto 
+            }
             if (e.Column.FieldName == "Cantidad" )
             {
                 if (view.GetRowCellValue(e.RowHandle, view.Columns[3]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[6]).ToString() == "" || view.GetRowCellValue(e.RowHandle, view.Columns[5]).ToString() == "") return;
@@ -1055,7 +1090,7 @@ namespace CO
         {
             var grid = sender as GridControl;
             var view = grid.FocusedView as GridView;                       
-            if (e.KeyData == Keys.Delete)
+            if (e.KeyData == Keys.Delete && Accion!="View" && Accion!="ReadOnly" )
             {
                 if (MessageBox.Show("Esta seguro que desea eliminar el elemento seleccionado?", "Asiento de Diario", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -1065,6 +1100,7 @@ namespace CO
                         _dtImportacionConsolidada.AsEnumerable().Where(a => a.Field<long>("IDProducto") == Convert.ToInt64(dr["IDProducto"])).ToList().ForEach(a=>a.Delete());
                     }
                     view.DeleteSelectedRows();
+                    //dtDetalleOrden.AcceptChanges();
                     e.Handled = true;
                 }
                 else

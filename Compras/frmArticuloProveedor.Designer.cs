@@ -449,6 +449,7 @@
             this.Name = "frmArticuloProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Articulo-Proveedor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmArticuloProveedor_FormClosing);
             this.Load += new System.EventHandler(this.frmArticuloProveedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
