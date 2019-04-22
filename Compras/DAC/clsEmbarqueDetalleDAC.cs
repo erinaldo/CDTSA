@@ -10,7 +10,7 @@ namespace CO.DAC
 {
     public static class clsEmbarqueDetalleDAC
     {
-        public static long InsertUpdate(string Operacion, int IDEmbarque, int IDProducto , int IDLote,decimal Cantidad,
+        public static long InsertUpdate(string Operacion, long IDEmbarque, long IDProducto , int IDLote,decimal Cantidad,
             decimal CantidadAceptada,decimal CantidadRechazada,String Comentario,SqlTransaction tran)
         {
             long result = -1;
@@ -19,7 +19,6 @@ namespace CO.DAC
             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
 
             oCmd.Parameters.Add(new SqlParameter("@Operacion", Operacion));
-            oCmd.Parameters.Add(new SqlParameter("@IDEmbarque", IDEmbarque));
             oCmd.Parameters.Add(new SqlParameter("@IDEmbarque", IDEmbarque));
             oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
             oCmd.Parameters.Add(new SqlParameter("@IDLote", IDLote));
@@ -32,15 +31,14 @@ namespace CO.DAC
             oCmd.CommandType = CommandType.StoredProcedure;
             oCmd.Transaction = tran;
             result = oCmd.ExecuteNonQuery();
-            if (Operacion == "I")
-                result = (long)oCmd.Parameters["@IDEmbarque"].Value;
+            
 
 
             return result;
 
         }
 
-        public static DataSet Get(int IDEmbarque)
+        public static DataSet Get(long IDEmbarque)
         {
             String strSQL = "dbo.invGetEmbarqueDetalle";
 

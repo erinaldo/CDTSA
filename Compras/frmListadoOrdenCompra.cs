@@ -59,7 +59,7 @@ namespace CO
                 this.dtpFechaRequeridaFinal.EditValue = FechaRequeridaFinal;
 
 
-                DTProveedores = clsProveedorDAC.Get(-1).Tables[0];
+                DTProveedores = clsProveedorDAC.Get(-1,"*").Tables[0];
                 Util.Util.ConfigLookupEdit(this.slkupProveedor, DTProveedores, "Nombre", "IDProveedor", 350);
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupProveedor, "[{'ColumnCaption':'IDProveedor','ColumnField':'IDProveedor','width':20},{'ColumnCaption':'Nombre','ColumnField':'Nombre','width':90}]");
                 this.slkupProveedor.Properties.View.OptionsSelection.MultiSelect = true;
@@ -205,10 +205,10 @@ namespace CO
 
             try
             {
-                FechaInicial = Convert.ToDateTime(this.dtpFechaInicial.EditValue);
-                FechaFinal = Convert.ToDateTime(this.dtpFechaFinal.EditValue);
-                FechaRequeridaInicial = Convert.ToDateTime(this.dtpFechaRequeridaInicial.EditValue);
-                FechaRequeridaFinal = Convert.ToDateTime(this.dtpFechaRequeridaFinal.EditValue);
+                FechaInicial = (this.dtpFechaInicial.EditValue == null) ? Convert.ToDateTime("1981/10/21") : Convert.ToDateTime(this.dtpFechaInicial.EditValue);
+                FechaFinal = (this.dtpFechaInicial.EditValue == null) ? DateTime.Now.AddYears(10): Convert.ToDateTime(this.dtpFechaFinal.EditValue);
+                FechaRequeridaInicial = this.dtpFechaRequeridaInicial.EditValue == null ? Convert.ToDateTime("1981/10/21") : Convert.ToDateTime(this.dtpFechaRequeridaInicial.EditValue);
+                FechaRequeridaFinal = this.dtpFechaRequeridaFinal.EditValue == null ? DateTime.Now.AddYears(10) : Convert.ToDateTime(this.dtpFechaRequeridaFinal.EditValue);
 
                 IDOrdenCompra = this.txtIDOrdenCompra.Text == "" ? -1 : Convert.ToInt32(this.txtIDOrdenCompra.Text);
 

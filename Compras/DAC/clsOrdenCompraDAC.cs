@@ -73,6 +73,58 @@ namespace CO.DAC
         }
 
 
+        public static long ConfirmarOrdenCompra(long IDOrdenCompra, SqlTransaction tran)
+        {
+            long result = -1;
+            String strSQL = "dbo.invConfirmarOrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+            
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            result = oCmd.ExecuteNonQuery();
+            
+            return result;
+
+        }
+
+        public static long DesConfirmarOrdenCompra(long IDOrdenCompra, SqlTransaction tran)
+        {
+            long result = -1;
+            String strSQL = "dbo.invDesConfirmarOrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            result = oCmd.ExecuteNonQuery();
+
+            return result;
+
+        }
+
+
+        public static long CancelarOrdenCompra(long IDOrdenCompra, SqlTransaction tran)
+        {
+            long result = -1;
+            String strSQL = "dbo.invCancelarOrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            result = oCmd.ExecuteNonQuery();
+
+            return result;
+
+        }
+
         public static DataSet Get(int IDOrdenCompra, DateTime FechaInicial, DateTime FechaFinal,String Proveedor, String Estado,DateTime FechaRequeridaInicial, DateTime FechaRequeridaFinal )
         {
             String strSQL = "dbo.invGetOrdenCompra";

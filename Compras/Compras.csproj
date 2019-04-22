@@ -89,6 +89,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAC\clsCategoriaProveedorDAC.cs" />
+    <Compile Include="DAC\clsGlobalImpuestoDAC.cs" />
     <Compile Include="DAC\clsSolicitudCompra_OrdenCompra.cs" />
     <Compile Include="DAC\clsArticuloProveedorDAC.cs" />
     <Compile Include="DAC\clsCondicionPagoDAC.cs" />
@@ -137,6 +139,12 @@
     </Compile>
     <Compile Include="frmListadoOrdenCompra.Designer.cs">
       <DependentUpon>frmListadoOrdenCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListadoProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListadoProveedores.Designer.cs">
+      <DependentUpon>frmListadoProveedores.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListdoSolicitudCompra.cs">
       <SubType>Form</SubType>
@@ -194,6 +202,9 @@
     <EmbeddedResource Include="frmListadoOrdenCompra.resx">
       <DependentUpon>frmListadoOrdenCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmListadoProveedores.resx">
+      <DependentUpon>frmListadoProveedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListdoSolicitudCompra.resx">
       <DependentUpon>frmListdoSolicitudCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,6 +251,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contabilidad\Contabilidad\Contabilidad.csproj">
+      <Project>{9aab66d4-cb76-4809-9a52-d50282a6968d}</Project>
+      <Name>Contabilidad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControlBancario\ControlBancario.csproj">
       <Project>{574dcf6a-79a5-4bd7-bddf-d5d2ac2ccd8e}</Project>
       <Name>ControlBancario</Name>

@@ -95,7 +95,7 @@ namespace CI.DAC
             return DS;
         }
 
-        public static DataSet GetData(int IDLote, int  IDProducto, String LoteInterno,String LoteProveedor)
+        public static DataSet GetData(int IDLote, long  IDProducto, String LoteInterno,String LoteProveedor)
         {
             DataSet DS = CreateDataSet();
             oAdaptador.SelectCommand.Parameters["@IDLote"].Value = IDLote;

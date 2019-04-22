@@ -42,7 +42,7 @@ namespace CO
                
                 HabilitarControles(false);
 
-                _dtProveedor = CO.DAC.clsProveedorDAC.Get(-1).Tables[0];
+                _dtProveedor = CO.DAC.clsProveedorDAC.Get(-1,"*").Tables[0];
 
                 this.slkupProveedor.Properties.DataSource = _dtProveedor;
                 this.slkupProveedor.Properties.DisplayMember = "Nombre";

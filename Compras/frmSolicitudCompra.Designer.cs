@@ -53,6 +53,8 @@
             this.btnEliminarSolicitud = new DevExpress.XtraBars.BarButtonItem();
             this.btnAprobar = new DevExpress.XtraBars.BarButtonItem();
             this.btnImprimir = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRechazar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRevertir = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.txtComentarioDetalle = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -77,8 +79,6 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnRechazar = new DevExpress.XtraBars.BarButtonItem();
-            this.btnRevertir = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupIDProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
@@ -261,7 +261,6 @@
             this.dtgDetalleSolicitud.UseEmbeddedNavigator = true;
             this.dtgDetalleSolicitud.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            
             // 
             // ribbonControl1
             // 
@@ -348,6 +347,24 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImprimir_ItemClick);
             // 
+            // btnRechazar
+            // 
+            this.btnRechazar.Caption = "Rechazar";
+            this.btnRechazar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRechazar.Glyph")));
+            this.btnRechazar.Id = 3;
+            this.btnRechazar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRechazar.LargeGlyph")));
+            this.btnRechazar.Name = "btnRechazar";
+            this.btnRechazar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRechazar_ItemClick);
+            // 
+            // btnRevertir
+            // 
+            this.btnRevertir.Caption = "Revertir";
+            this.btnRevertir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRevertir.Glyph")));
+            this.btnRevertir.Id = 4;
+            this.btnRevertir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRevertir.LargeGlyph")));
+            this.btnRevertir.Name = "btnRevertir";
+            this.btnRevertir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRevertir_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -412,6 +429,7 @@
             this.btnExportar.StyleController = this.layoutControl1;
             this.btnExportar.TabIndex = 14;
             this.btnExportar.Text = "Exportar";
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnImportar
             // 
@@ -611,24 +629,6 @@
             this.emptySpaceItem5.Size = new System.Drawing.Size(812, 33);
             this.emptySpaceItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // btnRechazar
-            // 
-            this.btnRechazar.Caption = "Rechazar";
-            this.btnRechazar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRechazar.Glyph")));
-            this.btnRechazar.Id = 3;
-            this.btnRechazar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRechazar.LargeGlyph")));
-            this.btnRechazar.Name = "btnRechazar";
-            this.btnRechazar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRechazar_ItemClick);
-            // 
-            // btnRevertir
-            // 
-            this.btnRevertir.Caption = "Revertir";
-            this.btnRevertir.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRevertir.Glyph")));
-            this.btnRevertir.Id = 4;
-            this.btnRevertir.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRevertir.LargeGlyph")));
-            this.btnRevertir.Name = "btnRevertir";
-            this.btnRevertir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRevertir_ItemClick);
             // 
             // frmSolicitudCompra
             // 

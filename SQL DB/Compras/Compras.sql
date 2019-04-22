@@ -1,17 +1,24 @@
 
-CREATE TABLE dbo.cppProveedor(
+CREATE  TABLE dbo.cppProveedor(
 	IDProveedor INT NOT NULL,
 	Nombre NVARCHAR(250),
 	Alias NVARCHAR(250),
 	Contacto NVARCHAR(250),
 	IDRuc INT,
-	Telefonos NVARCHAR(50),
+	Telefono NVARCHAR(50),
 	IDImpuesto INT,
 	IDCategoria INT,
+	IDPais INT,
+	IDMoneda INT,
+	IDCondicionPago INT,
 	FechaIngreso DATETIME,
+	PorcDesc DECIMAL(28,4),
+	PorcInteresMora DECIMAL(28,4),
+	Email NVARCHAR(50),
+	Direccion NVARCHAR(255),
 	Activo BIT DEFAULT 1,
 	MultiMoneda BIT DEFAULT 0,
-	PagosCongelador BIT DEFAULT 0,
+	PagosCongelados BIT DEFAULT 0,
 	IsLocal BIT DEFAULT 0,
 	TipoContribuyente INT
 CONSTRAINT [pkcppProveedor] PRIMARY KEY CLUSTERED 
@@ -21,6 +28,37 @@ CONSTRAINT [pkcppProveedor] PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
+
+CREATE TABLE dbo.cppCategoriaProveedor(
+	IDCategoria INT NOT NULL,
+	Descr NVARCHAR(250),
+	Ctr_CXP int,
+	Cta_CXP bigint,
+	Ctr_Letra_CXP int,
+	Cta_Letra_CXP bigint,
+	Ctr_ProntoPago_CXP int,
+	Cta_ProntoPago_CXP bigint,
+	Ctr_Comision_CXP int,
+	Cta_Comision_CXP bigint,
+	Ctr_Anticipos_CXP int,
+	Cta_Anticipos_CXP bigint,
+	Ctr_CierreDebitos_CXP int,
+	Cta_CierreDebitos_CXP bigint,
+	Ctr_Impuestos_CXP int,
+	Cta_Impuestos_CxP bigint,
+	Activo BIT DEFAULT 1
+CONSTRAINT [pkcppCategoriaProveedor] PRIMARY KEY CLUSTERED 
+(
+	IDCategoria ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[cppProveedor]  WITH CHECK ADD  CONSTRAINT [fkcppProveedor_Categoria] FOREIGN KEY([IDCategoria])
+REFERENCES [dbo].cppCategoriaProveedor (IDCategoria)
+
+go	
 
 CREATE TABLE dbo.invEstadoOrdenCompra(
 	IDEstadoOrden INT NOT NULL,
@@ -292,6 +330,11 @@ CONSTRAINT [pkinvEmbarqueDetalle] PRIMARY KEY CLUSTERED
 
 GO
 
+ALTER TABLE [dbo].invEmbarqueDetalle  WITH CHECK ADD  CONSTRAINT [fkiinvEmbarque_EmbarqueDetalle] FOREIGN KEY(IDEmbarque)
+REFERENCES [dbo].invEmbarque (IDEmbarque)
+
+GO
+
 ALTER TABLE [dbo].invEmbarqueDetalle  WITH CHECK ADD  CONSTRAINT [fkiinvEmbarqueDetalle_Producto] FOREIGN KEY([IDProducto])
 REFERENCES [dbo].invProducto (IDProducto)
 
@@ -505,7 +548,7 @@ WHERE (A.IDOrdenCompra = @IDOrdenCompra )
 
 GO
 
-CREATE   PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT OUTPUT,@OrdenCompra NVARCHAR(20) OUTPUT,@Fecha DATETIME, 
+CREATE  PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT OUTPUT,@OrdenCompra NVARCHAR(20) OUTPUT,@Fecha DATETIME, 
 										@FechaRequerida DATE, @FechaEmision DATE,@FechaRequeridaEmbarque DATE,@FechaCotizacion DATE,
 										@IDEstado AS INT, @IDBodega AS INT, @IDProveedor AS INT, @IDMoneda AS INT, @IDCondicionPago AS INT, 
 										@Descuento AS DECIMAL(28,4), @Flete AS DECIMAL(28,4),@Seguro AS DECIMAL(28,4),@Documentacion AS DECIMAL(28,4),@Anticipos AS DECIMAL(28,4),
@@ -517,6 +560,8 @@ AS
 IF (@Operacion ='I')
 BEGIN
 	SET @IDOrdenCompra = (SELECT ISNULL(MAX(IDOrdenCompra),0)  FROM dbo.invOrdenCompra ) + 1
+	SET @OrdenCompra = (SELECT dbo.getNextConsecMask ('CO'))
+	UPDATE  dbo.globalConsecMask SET consecutivo = @OrdenCompra WHERE Codigo='CO'
 	
 	INSERT INTO dbo.invOrdenCompra(IDOrdenCompra,OrdenCompra,Fecha,FechaRequerida,FechaEmision,FechaRequeridaEmbarque,FechaCotizacion,IdEstado, IDBodega,IDProveedor,IDMoneda,IDCondicionPago,Descuento,Flete,Seguro,Documentacion,Anticipos,IDEmbarque,IdDocumentoCP,TipoCambio,Usuario,UsuarioCreaEmbarque,FechaCreaEmbarque,UsuarioAprobacion,FechaAprobacion,CreateDate,Createdby,RecordDate,UpdateBy)
 	VALUES (@IDOrdenCompra, @OrdenCompra, @Fecha,@FechaRequerida,@FechaEmision,@FechaRequeridaEmbarque,@FechaCotizacion,@IDEstado,@IDBodega,@IDProveedor,@IDMoneda,@IDCondicionPago,@Descuento,@Flete,@Seguro,@Documentacion,@Anticipos,@IDEmbarque,@IDDocumentoCP,@TipoCambio,@Usuario,@UsuarioEmbarque,@FechaCreaEmbarque,@UsuarioAprobacion,@FechaAprobacion, @CreateDate,@CreatedBy,@RecordDate,@UpdatedBy)
@@ -566,15 +611,23 @@ IF (@Operacion='D')
 GO
 
 
-CREATE  PROCEDURE dbo.invUpdateEmbaque(@Operacion AS NVARCHAR(1),@IDEmbarque AS INT, @Embarque AS NVARCHAR(20),@Fecha AS DATE, 
+CREATE ALTER  PROCEDURE dbo.invUpdateEmbaque(@Operacion AS NVARCHAR(1),@IDEmbarque AS INT OUTPUT, @Embarque AS NVARCHAR(20) OUTPUT,@Fecha AS DATE, 
 						@FechaEmbarque AS DATE,@Asiento AS NVARCHAR(20),@IDBodega AS INT, @IDProveedor AS INT, @IDOrdenCompra AS INT, 
 						@IDDocumentoCP AS INT, @TipoCambio AS DECIMAL(28,4), @Usuario AS NVARCHAR(50),@CreateDate AS DATETIME, 
 						@CreatedBy AS NVARCHAR(50),@RecordDate AS DATETIME,@UpdateBy AS NVARCHAR(50))
 AS 
 IF (@Operacion ='I')
 BEGIN
+	SET @IDEmbarque = 	(SELECT ISNULL(MAX(IDEmbarque),0) +1  FROM dbo.invEmbarque )
+	SET @Embarque = (SELECT  dbo.getNextConsecMask('EM'))
+	
 	 INSERT INTO dbo.invEmbarque( IDEmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra  ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
 	 VALUES (@IDEmbarque,@Embarque,@Fecha,@FechaEmbarque,@Asiento,@IDBodega,@IDProveedor,@IDOrdenCompra,@IDDocumentoCP,@TipoCambio,@Usuario,@CreateDate,@CreatedBy,@RecordDate,@UpdateBy)
+	 
+	 UPDATE dbo.invOrdenCompra SET IDEmbarque=@IDEmbarque WHERE IDOrdenCompra =@IDOrdenCompra
+	 
+	 UPDATE dbo.globalConsecMask SET  Consecutivo=@Embarque WHERE Codigo='EM'
+	 
 END
 IF (@Operacion='U')
 BEGIN
@@ -624,13 +677,13 @@ END
 
 GO
 
-CREATE PROCEDURE dbo.invGetEmbarqueDetalle(@IDEmbarque AS INT)
+CREATE  PROCEDURE dbo.invGetEmbarqueDetalle(@IDEmbarque AS INT)
 AS 
 SELECT A.IDEmbarque,A.IDProducto,P.Descr DescrProducto,A.IDLote,L.LoteProveedor,L.FechaVencimiento,A.Cantidad,A.CantidadAceptada,A.CantidadRechazada 
  FROM dbo.invEmbarqueDetalle A
 INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
 INNER JOIN dbo.invLote L ON a.IDProducto=L.IDProducto AND A.IDLote=L.IDLote
-WHERE A.IDEmbarque =@IDEmbarque
+WHERE (A.IDEmbarque =@IDEmbarque AND @IDEmbarque =-1)
 
 GO
 
@@ -656,7 +709,7 @@ CREATE PROCEDURE dbo.invUpdateArticuloProveedor (@Operacion AS NVARCHAR(1),@IDPr
 AS 
 IF (@Operacion='I')
 BEGIN
-	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProveedor ,IDPaisManofactura ,LoteMinCompra ,PesoMinimoCompra,Notas,CreateDate,CreatedBy)
+	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProv eedor ,IDPaisManofactura ,LoteMinCompra ,PesoMinimoCompra,Notas,CreateDate,CreatedBy)
 	VALUES (@IDProducto,@IDProveedor,@IDPaisManoFactura,@LoteMinCompra,@PesoMinimoCompra,@Notas,@Fecha,@Usuario)
 END			
 IF (@Operacion='U')
@@ -747,17 +800,23 @@ VALUES  (5,'RECIBIDA',1)
 
 GO
 
-CREATE PROCEDURE dbo.invGetProveedor(@IDProveedor AS INT)
+
+INSERT INTO dbo.invEstadoOrdenCompra( IDEstadoOrden, Descr, Activo )
+VALUES  (5,'RECIBIDA',1)
+
+GO
+
+CREATE  PROCEDURE dbo.invGetProveedor(@IDProveedor AS INT,@Nombre NVARCHAR(250))
 AS	
 SELECT  IDProveedor ,
         Nombre ,
         IDRuc ,
-        Activo  FROM dbo.cppProveedor WHERE (IDProveedor = @IDProveedor OR @IDProveedor=-1)
+        Activo  FROM dbo.cppProveedor WHERE (IDProveedor = @IDProveedor OR @IDProveedor=-1) AND (Nombre LIKE '%' + @Nombre + '%' OR @Nombre ='*')
         
 GO
 
 
-CREATE  PROCEDURE dbo.invGetSolicitudesByProveedor (@IDProveedor AS int	, @IDSolicitudDesde AS INT,@IDSolicitudHasta AS INT, @FechaSolicitudDesde AS DATETIME, @FechaSolicitudHasta AS DATETIME, 
+CREATE   PROCEDURE dbo.invGetSolicitudesByProveedor (@IDProveedor AS int	, @IDSolicitudDesde AS INT,@IDSolicitudHasta AS INT, @FechaSolicitudDesde AS DATETIME, @FechaSolicitudHasta AS DATETIME, 
 				@FechaRequeridaDesde AS DATETIME, @FechaRequeridaHasta AS DATETIME,@IDClasif1 AS INT,@IDClasif2 AS INT,@IDClasif3 AS INT,
 				@IDClasif4 AS INT,@IDClasif5 AS INT,@IDClasif6 AS INT,@IDProducto AS BIGINT)
 AS
@@ -778,8 +837,9 @@ LEFT JOIN dbo.invSolicitudOrdenCompra OS ON B.IDProducto=OS.IDProducto AND B.IDS
 WHERE (A.IDSolicitud BETWEEN @IDSolicitudDesde AND @IDSolicitudHasta) AND (FechaRequerida  BETWEEN @FechaRequeridaDesde AND @FechaRequeridaHasta)
 AND (P.Clasif1 = @IDClasif1 OR @IDClasif1=-1) AND  (P.Clasif2 = @IDClasif2 OR @IDClasif2=-1) AND  (P.Clasif3 = @IDClasif3 OR @IDClasif3=-1) 
 AND  (P.Clasif4 = @IDClasif4 OR @IDClasif4=-1) AND  (P.Clasif5 = @IDClasif5 OR @IDClasif5=-1) AND  (P.Clasif6 = @IDClasif6 OR @IDClasif6=-1) AND (B.IDProducto = @IDProducto OR @IDProducto=-1)
-AND D.IDProveedor = @IDProveedor 
+AND D.IDProveedor = @IDProveedor  AND A.IDEstado  IN (1) 
 GROUP BY A.IDSolicitud,A.Fecha,A.FechaRequerida,B.IDProducto,P.Descr,B.Comentario
+HAVING  ISNULL(SUM(B.Cantidad),0) - isnull(SUM(OS.Cantidad),0) >0
 
 
 GO
@@ -796,3 +856,203 @@ BEGIN
 END
 IF (@Operacion='D')
 	DELETE FROM dbo.invSolicitudOrdenCompra WHERE (IDProducto=@IDProducto OR @IDProducto=-1) AND (IDSolicitud=@IDSolicitud OR @IDSolicitud=-1) AND IDOrdenCompra =@IDOrdenCompra
+
+
+GO
+
+SELECT * FROM dbo.invEstadoOrdenCompra
+GO
+
+CREATE PROCEDURE dbo.invConfirmarOrdenCompra @IDOrdenCompra  AS INT
+AS
+
+UPDATE dbo.invOrdenCompra SET IDEstado=2
+WHERE IDOrdenCompra = @IDOrdenCompra
+
+SELECT IDProducto,IDBodega,Cantidad INTO #tmpProducto FROM dbo.invOrdenCompra A
+INNER JOIN dbo.invOrdenCompraDetalle B ON A.IDOrdenCompra = B.IDOrdenCompra
+WHERE A.IDOrdenCompra=@IDOrdenCompra
+
+INSERT INTO dbo.invExistenciaBodega( IDBodega ,IDProducto ,IDLote ,Existencia ,Reservada ,Transito)
+SELECT A.IDBodega,A.IDProducto,0,0,0,0  FROM #tmpProducto A
+LEFT JOIN dbo.invExistenciaBodega B ON A.IDBodega = B.IDBodega AND A.IDProducto = B.IDProducto
+WHERE B.IDProducto IS NULL
+
+
+UPDATE  B SET B.Transito = B.Transito + A.Cantidad  FROM #tmpProducto A
+INNER JOIN dbo.invExistenciaBodega B ON A.IDBodega = B.IDBodega AND A.IDProducto = B.IDProducto
+
+
+DROP TABLE #tmpProducto
+
+
+GO
+
+CREATE PROCEDURE dbo.invDesConfirmarOrdenCompra @IDOrdenCompra  AS INT
+AS
+
+UPDATE dbo.invOrdenCompra SET IDEstado=1
+WHERE IDOrdenCompra = @IDOrdenCompra
+
+SELECT IDProducto,IDBodega,Cantidad INTO #tmpProducto FROM dbo.invOrdenCompra A
+INNER JOIN dbo.invOrdenCompraDetalle B ON A.IDOrdenCompra = B.IDOrdenCompra
+WHERE A.IDOrdenCompra=@IDOrdenCompra
+
+
+UPDATE  B SET B.Transito = B.Transito - A.Cantidad  FROM #tmpProducto A
+INNER JOIN dbo.invExistenciaBodega B ON A.IDBodega = B.IDBodega AND A.IDProducto = B.IDProducto
+
+DROP TABLE #tmpProducto
+
+
+GO
+
+
+CREATE PROCEDURE dbo.invCancelarOrdenCompra @IDOrdenCompra  AS INT
+AS
+
+UPDATE dbo.invOrdenCompra SET IDEstado=4
+WHERE IDOrdenCompra = @IDOrdenCompra
+
+SELECT IDProducto,IDBodega,Cantidad INTO #tmpProducto FROM dbo.invOrdenCompra A
+INNER JOIN dbo.invOrdenCompraDetalle B ON A.IDOrdenCompra = B.IDOrdenCompra
+WHERE A.IDOrdenCompra=@IDOrdenCompra
+
+
+UPDATE  B SET B.Transito = B.Transito - A.Cantidad  FROM #tmpProducto A
+INNER JOIN dbo.invExistenciaBodega B ON A.IDBodega = B.IDBodega AND A.IDProducto = B.IDProducto
+
+DROP TABLE #tmpProducto
+
+
+GO
+
+
+--CREATE PROCEDURE dbo.invCreateEmbarqueFromOrdenCompra( @IDOrdenCompra AS INT,@Usuario AS NVARCHAR(50))
+--AS 
+
+--DECLARE @IDEmbarque AS INT
+
+--SET @IDEmbarque = (SELECT ISNULL(MAX(IDEmbarque),0) FROM dbo.invEmbarque)
+
+--INSERT INTO dbo.invEmbarque( IDEmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
+--SELECT  @IDEmbarque,'--',GETDATE(),GETDATE() ,null,IDBodega ,IDProveedor ,IDOrdenCompra,-1 ,0 TC, ,Usuario ,UsuarioCreaEmbarque ,FechaCreaEmbarque , Usuario,GETDATE(),Usuario,GETDATE(),Usuario 
+--FROM dbo.invOrdenCompra
+--WHERE IDOrdenCompra=@IDOrdenCompra
+
+--INSERT INTO dbo.invEmbarqueDetalle( IDEmbarque ,IDProducto ,IDLote ,Cantidad ,CantidadAceptada ,CantidadRechazada ,Comentario)
+
+--SELECT  @IDEmbarque ,IDProducto ,Cantidad ,CantidadAceptada ,CantidadRechazada ,PrecioUnitario ,Impuesto ,PorcDesc ,MontoDesc ,Estado ,Comentario  
+--FROM dbo.invOrdenCompraDetalle WHERE IDOrdenCompra=@IDOrdenCompra
+
+CREATE   PROCEDURE dbo.invGetEmbarqueByID(@IDEmbarque AS INT,@IDOrdenCompra AS INT)
+AS 
+IF (@IDEmbarque =-1)
+BEGIN
+SELECT  -1 IDEmbarque ,'--' Embarque ,GETDATE() Fecha ,B.FechaRequerida FechaEmbarque ,NULL Asiento ,B.IDBodega ,D.Descr DescrBodega,B.IDProveedor ,C.Nombre NombreProveedor,B.IDOrdenCompra,B.OrdenCompra ,-1 IDDocumentoCP ,
+			0 TipoCambio 
+	FROM dbo.invEmbarque A
+	RIGHT  JOIN dbo.invOrdenCompra B ON A.IDOrdenCompra = B.IDOrdenCompra
+	LEFT  JOIN dbo.cppProveedor C ON B.IDProveedor=C.IDProveedor
+	LEFT  JOIN dbo.invBodega D ON A.IDBodega=D.IDBodega
+	
+END 
+ELSE	
+BEGIN	
+	SELECT  A.IDEmbarque ,A.Embarque ,A.Fecha ,A.FechaEmbarque ,A.Asiento ,A.IDBodega ,D.Descr DescrBodega,B.IDProveedor ,C.Nombre NombreProveedor,A.IDOrdenCompra,B.OrdenCompra ,A.IDDocumentoCP ,
+			A.TipoCambio ,A.Usuario ,A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
+	FROM dbo.invEmbarque A
+	LEFT  JOIN dbo.invOrdenCompra B ON A.IDOrdenCompra = B.IDOrdenCompra
+	LEFT  JOIN dbo.cppProveedor C ON B.IDProveedor=C.IDProveedor
+	LEFT  JOIN dbo.invBodega D ON A.IDBodega=D.IDBodega
+	WHERE (A.IDEmbarque =@IDEmbarque OR @IDEmbarque=-1) AND (a.IDOrdenCompra=@IDOrdenCompra or @IDOrdenCompra=-1)
+END
+
+GO
+
+
+CREATE   PROCEDURE dbo.invUpdateProveedor(@Operacion AS  nvarchar(1), @IDProveedor AS int	 OUTPUT,@Nombre AS nvarchar(250),@IDRuc AS int	,
+@Activo AS bit	,@Alias nvarchar(50), @IDPais AS int,@IDMoneda AS int,@FechaIngreso AS datetime,@Contacto AS nvarchar(50), @Telefono nvarchar(50), 
+@IDImpuesto AS int,@IDCategoria AS int	,@IDCondicionPago AS int	,@PorcDescuento AS decimal(28,4), @PorcInteresMora AS decimal(28,4),
+@Email AS nvarchar(50),@Direccion AS nvarchar(500),@MultiMoneda bit ,@PagosCongelados bit ,@IsLocal bit ,@TipoContribuyente int )
+AS 
+IF (@Operacion ='I') 
+BEGIN
+	SET @IDProveedor = (SELECT  ISNULL(MAX(IDProveedor),0) + 1 FROM dbo.cppProveedor )
+	INSERT INTO dbo.cppProveedor(IDProveedor, Nombre ,IDRuc ,Activo ,Alias ,IDPais ,IDMoneda ,FechaIngreso ,Contacto ,Telefono ,IDImpuesto ,IDCategoria ,IDCondicionPago ,
+	          PorcDesc ,PorcInteresMora ,email ,Direccion,MultiMoneda,PagosCongelados,IsLocal,TipoContribuyente)
+	VALUES  (@IDProveedor, @Nombre ,@IDRuc,@Activo,@Alias,@IDPais,@IDMoneda,@FechaIngreso,@Contacto,@Telefono,@IDImpuesto,@IDCategoria,@IDCondicionPago,@PorcDescuento,@PorcInteresMora,@Email, @Direccion,@MultiMoneda,@PagosCongelados,@IsLocal,@TipoContribuyente)
+
+END
+IF (@Operacion='U')
+BEGIN
+	UPDATE dbo.cppProveedor SET Nombre = @Nombre ,Alias = @Alias, IDPais = @IDPais, IDMoneda= @IDMoneda,FechaIngreso=@FechaIngreso,
+				Contacto =@Contacto,Telefono = @Telefono, IDImpuesto = @IDImpuesto, IDCategoria = @IDCategoria,IDCondicionPago =@IDCondicionPago,
+				PorcDesc = @PorcDescuento, PorcInteresMora = @PorcInteresMora, email = @Email, Direccion = @Direccion, MultiMoneda = @MultiMoneda, 
+				PagosCongelados = @PagosCongelados, IsLocal = @IsLocal,TipoContribuyente =@TipoContribuyente
+	WHERE IDProveedor = @IDProveedor
+END
+IF (@Operacion='D') 
+BEGIN
+	DELETE FROM dbo.cppProveedor WHERE IDProveedor =@IDProveedor
+END
+
+
+GO
+
+CREATE PROCEDURE dbo.cppGetProveedor(@IDProveedor AS INT,@Nombre AS NVARCHAR(20), @IDCategoria AS INT)
+AS 
+SELECT  IDProveedor ,Nombre ,IDRuc ,Activo ,Alias ,IDPais ,IDMoneda ,FechaIngreso ,Contacto ,Telefono ,IDImpuesto ,IDCategoria ,IDCondicionPago ,
+        PorcDescuento ,PorcInteresMora ,email ,Direccion  
+FROM dbo.cppProveedor
+WHERE (IDProveedor = @IDProveedor OR @IDProveedor = -1) AND (Nombre LIKE '%'+@Nombre+'%' OR @Nombre='*') AND (IDCategoria = @IDCategoria OR @IDCategoria=-1)
+
+GO
+
+CREATE PROCEDURE  dbo.cppUpdateCategoriaPoveedor  @Operacion AS NVARCHAR(1), @IDCategoria AS INT OUTPUT, @Descr AS NVARCHAR(255), @Ctr_CXP AS INT, @Cta_CXP BIGINT,
+	@Ctr_Letra_CXP INT, @Cta_Letra_CXP BIGINT,@Ctr_ProntoPago_CXP INT, @Cta_ProntoPago_CXP BIGINT,@Ctr_Comision_CXP INT, @Cta_Comision_CxP BIGINT,
+	@Ctr_Anticipos_CXP INT, @Cta_Anticipos_CXP BIGINT, @Ctr_CierreDebitos_CXP INT, @Cta_CierreDebitos_CXP BIGINT, @Ctr_Impuestos_CXP INT, @Cta_Impuestos_CXP BIGINT,
+	@Activo AS INT
+AS
+IF (@Operacion='I')
+BEGIN	
+	SET @IDCategoria = (SELECT isnull(MAX(IDCategoria),0) + 1  FROM dbo.cppCategoriaProveedor)
+	INSERT INTO dbo.cppCategoriaProveedor(IDCategoria,Descr,Ctr_CXP,Cta_CXP,Ctr_Letra_CXP,Cta_Letra_CXP,Ctr_ProntoPago_CXP,Cta_ProntoPago_CXP,
+						Ctr_Comision_CXP,Cta_Comision_CXP,Ctr_Anticipos_CXP,Cta_Anticipos_CXP,Ctr_CierreDebitos_CXP,Cta_CierreDebitos_CXP,Ctr_Impuestos_CXP,
+						Cta_Impuestos_CXP, Activo)
+	VALUES (@IDCategoria,@Descr,@Ctr_CXP,@Cta_CXP,@Ctr_Letra_CXP,@Cta_Letra_CXP,@Ctr_ProntoPago_CXP,@Cta_ProntoPago_CXP,
+						@Ctr_Comision_CXP,@Cta_Comision_CXP,@Ctr_Anticipos_CXP,@Cta_Anticipos_CXP,@Ctr_CierreDebitos_CXP,@Cta_CierreDebitos_CXP,@Ctr_Impuestos_CXP,
+						@Cta_Impuestos_CXP, @Activo)
+END	
+IF (@Operacion='U') 
+BEGIN
+	UPDATE dbo.cppCategoriaProveedor SET Descr = @Descr,Ctr_CXP = @Ctr_CXP,Cta_CXP = @Cta_CXP,Ctr_Letra_CXP= @Ctr_Letra_CXP,Cta_Letra_CXP= @Cta_Letra_CXP,
+						Ctr_ProntoPago_CXP = @Ctr_ProntoPago_CXP,Cta_ProntoPago_CXP = @Cta_ProntoPago_CXP,Ctr_Comision_CXP =	@Ctr_Comision_CXP, Cta_Comision_CXP = @Cta_Comision_CXP,
+						Ctr_Anticipos_CXP = @Ctr_Anticipos_CXP,Cta_Anticipos_CXP = @Cta_Anticipos_CXP,Ctr_CierreDebitos_CXP = @Ctr_CierreDebitos_CXP, Cta_CierreDebitos_CXP =@Cta_CierreDebitos_CXP,
+						Ctr_Impuestos_CXP =@Ctr_Impuestos_CXP,Cta_Impuestos_CXP=	@Cta_Impuestos_CXP, Activo =@Activo
+	WHERE IDCategoria = @IDCategoria					
+END	
+IF (@Operacion='D')
+BEGIN	
+	DELETE FROM dbo.ccpCatgoriaProveedor WHERE IDCategoria= @IDCategoria
+END	
+
+GO
+
+CREATE   PROCEDURE dbo.cppGetCategoriaProveedor(@IDCategoria INT, @Descripcion AS NVARCHAR(250))
+AS 
+SELECT  IDCategoria ,Descr ,Ctr_CXP ,Cta_CXP ,  Ctr_Letra_CXP ,Cta_Letra_CXP ,Ctr_ProntoPago_CXP ,Cta_ProntoPago_CXP ,Ctr_Comision_CXP ,
+        Cta_Comision_CXP ,Ctr_Anticipos_CXP ,Cta_Anticipos_CXP ,Ctr_CierreDebitos_CXP ,Cta_CierreDebitos_CXP ,Ctr_Impuestos_CXP ,Cta_Impuestos_CxP ,
+        Activo  FROM dbo.cppCategoriaProveedor
+WHERE ( IDCategoria=@IDCategoria OR @IDCategoria =-1) AND (Descr LIKE '%' + @Descripcion+ '%' OR @Descripcion ='*')
+
+GO
+
+CREATE PROCEDURE dbo.globalTipoImpuesto(@IDImpuesto AS int) 
+AS 
+SELECT  IDImpuesto ,
+        Descr ,
+        Porc ,
+        Activo  FROM dbo.globalImpuesto
+WHERE (IDImpuesto = @IDImpuesto OR @IDImpuesto=-1)
+

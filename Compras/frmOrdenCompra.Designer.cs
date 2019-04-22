@@ -85,7 +85,7 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.btnEliminarLinea = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnImportarSolicitudes = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -366,6 +366,7 @@
             this.btnConfirmar.Id = 1;
             this.btnConfirmar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnConfirmar.LargeGlyph")));
             this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnConfirmar_ItemClick);
             // 
             // btnAnular
             // 
@@ -374,6 +375,7 @@
             this.btnAnular.Id = 2;
             this.btnAnular.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAnular.LargeGlyph")));
             this.btnAnular.Name = "btnAnular";
+            this.btnAnular.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAnular_ItemClick);
             // 
             // btnEmbarque
             // 
@@ -381,6 +383,7 @@
             this.btnEmbarque.Id = 3;
             this.btnEmbarque.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEmbarque.LargeGlyph")));
             this.btnEmbarque.Name = "btnEmbarque";
+            this.btnEmbarque.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmbarque_ItemClick);
             // 
             // btnSolicitudes
             // 
@@ -389,6 +392,7 @@
             this.btnSolicitudes.Id = 4;
             this.btnSolicitudes.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnSolicitudes.LargeGlyph")));
             this.btnSolicitudes.Name = "btnSolicitudes";
+            this.btnSolicitudes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSolicitudes_ItemClick);
             // 
             // btnDesconfirmar
             // 
@@ -396,6 +400,7 @@
             this.btnDesconfirmar.Id = 5;
             this.btnDesconfirmar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnDesconfirmar.LargeGlyph")));
             this.btnDesconfirmar.Name = "btnDesconfirmar";
+            this.btnDesconfirmar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDesconfirmar_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -528,7 +533,7 @@
             this.layoutControl2.Controls.Add(this.simpleButton2);
             this.layoutControl2.Controls.Add(this.btnEliminarLinea);
             this.layoutControl2.Controls.Add(this.simpleButton4);
-            this.layoutControl2.Controls.Add(this.simpleButton1);
+            this.layoutControl2.Controls.Add(this.btnImportarSolicitudes);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
@@ -853,16 +858,16 @@
             this.simpleButton4.TabIndex = 18;
             this.simpleButton4.Text = "Importar desde Excel";
             // 
-            // simpleButton1
+            // btnImportarSolicitudes
             // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(167, 12);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(137, 22);
-            this.simpleButton1.StyleController = this.layoutControl2;
-            this.simpleButton1.TabIndex = 17;
-            this.simpleButton1.Text = "Importar Solicitudes";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.btnImportarSolicitudes.Image = ((System.Drawing.Image)(resources.GetObject("btnImportarSolicitudes.Image")));
+            this.btnImportarSolicitudes.Location = new System.Drawing.Point(167, 12);
+            this.btnImportarSolicitudes.Name = "btnImportarSolicitudes";
+            this.btnImportarSolicitudes.Size = new System.Drawing.Size(137, 22);
+            this.btnImportarSolicitudes.StyleController = this.layoutControl2;
+            this.btnImportarSolicitudes.TabIndex = 17;
+            this.btnImportarSolicitudes.Text = "Importar Solicitudes";
+            this.btnImportarSolicitudes.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // layoutControlGroup2
             // 
@@ -901,7 +906,7 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.simpleButton1;
+            this.layoutControlItem11.Control = this.btnImportarSolicitudes;
             this.layoutControlItem11.Location = new System.Drawing.Point(155, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(141, 26);
@@ -1953,7 +1958,7 @@
         private DevExpress.XtraBars.BarButtonItem btnConfirmar;
         private DevExpress.XtraBars.BarButtonItem btnAnular;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnImportarSolicitudes;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage tabGeneral;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;

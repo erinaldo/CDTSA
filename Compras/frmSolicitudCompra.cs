@@ -129,21 +129,21 @@ namespace CO
             this.txtComentarios.Text = cabecera["Comentario"].ToString();
         }
 
+        
         private void CargarSolicitud(int IDSolicitud) {
             DataTable dtSolicitud = DAC.clsSolicitudCompraDAC.GetByID(IDSolicitud).Tables[0];
             DataTable dtDetalle = DAC.clsDetalleSolicitudCompraDAC.Get(IDSolicitud).Tables[0];
             UpdateControlsFromData(dtSolicitud);
             this.dtgDetalleSolicitud.DataSource = dtDetalle;
-            this.btnAprobar.Enabled = (Convert.ToInt32(this.txtEstado.Tag) == 0) ? true : false;
-            
+            HabilitarComandosAccion();
         }
 
         private void HabilitarComandosAccion() {
             IDEstado = Convert.ToInt32(this.txtEstado.Tag);
             if ( IDEstado == 0) {
-                this.btnAprobar.Enabled = true;
-                this.btnRechazar.Enabled = true;
-                this.btnRevertir.Enabled =false;
+                this.btnAprobar.Enabled = (this.txtIDSolicitud.Text != "--") ? true : false;
+                this.btnRevertir.Enabled = false;
+                this.btnRechazar.Enabled = (this.txtIDSolicitud.Text != "--") ? true : false;
                 this.btnEliminarSolicitud.Enabled = (Accion == "View" && IDEstado == 0) ? true : false;
                 this.btnEditarSolicitud.Enabled = (Accion == "View" && IDEstado == 0) ? true : false;
             }
@@ -176,6 +176,7 @@ namespace CO
                     this.dtpFechaSolicitud.Focus();
                     dtDetalleSolicitud = DAC.clsDetalleSolicitudCompraDAC.Get(-1).Tables[0];
                     this.dtgDetalleSolicitud.DataSource = dtDetalleSolicitud;
+ 
                 }
                 else
                 {
@@ -290,6 +291,8 @@ namespace CO
         {
             var grid = sender as GridControl;
             var view = grid.FocusedView as GridView;
+            if (Convert.ToInt32(this.txtEstado.Tag) >= 1) return;
+                return;
             if (e.KeyData == Keys.Delete)
             {
                 if (MessageBox.Show("Esta seguro que desea eliminar el elemento seleccionado?", "Asiento de Diario", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
@@ -453,10 +456,12 @@ namespace CO
                         //Ingresar la cabecera de la solicitud
                         IDSolicitud = DAC.clsSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         this.txtIDSolicitud.Text = IDSolicitud.ToString();
+                        
                         foreach (DataRow row in dt.Rows)
                         {
                             DAC.clsDetalleSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, (long)row["IDProducto"], (decimal)row["Cantidad"], row["Comentario"].ToString(), ConnectionManager.Tran);
                         }
+
                     }
 
                     if (Accion == "Edit")
@@ -474,6 +479,7 @@ namespace CO
                     this.Accion = "Edit";
                     HabilitarControles();
                     HabilitarBotoneriaPrincipal();
+                    HabilitarComandosAccion();
                     MessageBox.Show("La solicitud se ha guardado correctamente");
                     
                 }
@@ -637,6 +643,24 @@ namespace CO
                 MessageBox.Show("La solicitud no puede ser revertida, posee ordenes de compra asociadas");
             }
 
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            string tempPath = System.IO.Path.GetTempPath();
+            String FileName = System.IO.Path.Combine(tempPath, "Productos de Solicitud de Compra.xlsx");
+            DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
+            {
+                SheetName = "Solicitud de Compra"
+            };
+
+
+            this.gridView1.ExportToXlsx(FileName, options);
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = FileName;
+            process.StartInfo.Verb = "Open";
+            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            process.Start();
         }
 
        

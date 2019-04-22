@@ -63,8 +63,14 @@ namespace CO
 
         void btnImportar_Click(object sender, EventArgs e)
         {
-            this.DialogResult= System.Windows.Forms.DialogResult.OK;
-            this.Close();
+            if (_dtSolicitudes.AsEnumerable().Where(a => Convert.ToDecimal(a["CantOrdenada"]) > 0).Count() > 0)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+            else { 
+                    MessageBox.Show("Si desea importar los productos al menos debe indicar la cantidad a ordenar");
+            }
         }
 
 
