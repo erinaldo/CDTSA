@@ -141,7 +141,7 @@ namespace CO
             this.btnEliminar.Enabled = false;
             this.btnGuardar.Enabled = true;
             this.btnCancelar.Enabled = true;
-            this.txtNombreProveedor.Focus();
+            this.txtNombreProveedor.Select();
         }
 
         private void btnAgregar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -203,7 +203,8 @@ namespace CO
             this.IDPais = Convert.ToInt32(this.slkupPais.EditValue);
             this.IDMoneda = Convert.ToInt32(this.slkupMoneda.EditValue);
             this.IDCondicionPago = Convert.ToInt32(this.slkupCondicionPago.EditValue);
-            this.IDTipoContribuyente = Convert.ToInt32(this.rgpTipoContribuyente.EditValue);
+            this.IDTipoContribuyente = Convert.ToInt32(this.rgpTipoContribuyente.SelectedIndex);
+            this.IDImpuesto = Convert.ToInt32(this.slkupImpuesto.EditValue);
             this.FechaIngreso = Convert.ToDateTime(this.dtpFechaIngreso.EditValue);
             this.NombreProveedor = Convert.ToString(this.txtNombreProveedor.EditValue);
             this.Alias = (this.txtAlias.EditValue == null) ? "" : this.txtAlias.EditValue.ToString();
@@ -294,28 +295,30 @@ namespace CO
         }
 
         private void CargarDatos() {
-            DataTable dt = DAC.clsProveedorDAC.Get(this.IDProveedor, "*").Tables[0];
-
+            DataTable dt = DAC.clsProveedorDAC.Get(this.IDProveedor, "*",-1).Tables[0];
+           
             this.txtIDProveedor.EditValue = dt.Rows[0]["IDProveedor"].ToString();
-            this.txtNombreProveedor.EditValue = dt.Rows[0]["NombreProveedor"].ToString();
+            this.txtNombreProveedor.EditValue = dt.Rows[0]["Nombre"].ToString();
             this.dtpFechaIngreso.EditValue = Convert.ToDateTime(dt.Rows[0]["FechaIngreso"]);
             this.txtAlias.EditValue = dt.Rows[0]["Alias"].ToString();
             this.txtContacto.EditValue = dt.Rows[0]["Contacto"].ToString();
-            this.slkupNIT.EditValue = Convert.ToInt32(dt.Rows[0]["Contribuyente"]);
+            this.slkupNIT.EditValue = Convert.ToInt32(dt.Rows[0]["IDRuc"]);
             this.txtTelefono.EditValue = dt.Rows[0]["Telefono"].ToString();
+            this.slkupImpuesto.EditValue = Convert.ToInt32(dt.Rows[0]["IDImpuesto"]);
             this.slkupCategoria.EditValue = Convert.ToInt32(dt.Rows[0]["IDCategoria"]);
             this.chkActivo.EditValue = Convert.ToBoolean(dt.Rows[0]["Activo"]);
             this.chkMultimoneda.EditValue = Convert.ToBoolean(dt.Rows[0]["Multimoneda"]);
             this.chkPagosCongelados.EditValue = Convert.ToBoolean(dt.Rows[0]["PagosCongelados"]);
-            this.rdgOrigen.EditValue = Convert.ToInt32(dt.Rows[0]["IsLocal"])==0 ? true:false;
-            this.rgpTipoContribuyente.EditValue = dt.Rows[0]["TipoContribuyente"].ToString();
-            this.slkupPais.EditValue = Convert.ToInt32(dt.Rows[0]["Pais"]);
-            this.slkupMoneda.EditValue = Convert.ToInt32(dt.Rows[0]["Monega"]);
-            this.slkupCondicionPago.EditValue = Convert.ToInt32(dt.Rows[0]["CondicionPago"]);
-            this.txtDescuento.EditValue = Convert.ToDecimal(dt.Rows[0]["Descuento"]);
-            this.txtInteresMora.EditValue = Convert.ToDecimal(dt.Rows[0]["InteresMora"]);
-            this.txtEmail.EditValue = Convert.ToDecimal(dt.Rows[0]["email"]);
+            this.rdgOrigen.SelectedIndex = Convert.ToBoolean(dt.Rows[0]["IsLocal"])==true ? 0:1;
+            this.rgpTipoContribuyente.SelectedIndex = Convert.ToInt32(dt.Rows[0]["TipoContribuyente"]);
+            this.slkupPais.EditValue = Convert.ToInt32(dt.Rows[0]["IDPais"]);
+            this.slkupMoneda.EditValue = Convert.ToInt32(dt.Rows[0]["IDMoneda"]);
+            this.slkupCondicionPago.EditValue = Convert.ToInt32(dt.Rows[0]["IDCondicionPago"]);
+            this.txtDescuento.EditValue = Convert.ToDecimal(dt.Rows[0]["PorcDesc"]);
+            this.txtInteresMora.EditValue = Convert.ToDecimal(dt.Rows[0]["PorcInteresMora"]);
+            this.txtEmail.EditValue = dt.Rows[0]["Email"].ToString();
             this.txtDireccion.EditValue = dt.Rows[0]["Direccion"].ToString();
+            
 
         }
 

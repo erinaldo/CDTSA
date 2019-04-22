@@ -411,7 +411,7 @@ namespace CO
                 this.slkupDescrProducto.EditValueChanged += slkup_EditValueChanged;
                 this.slkupDescrProducto.Popup += slkup_Popup;
 
-                Util.Util.ConfigLookupEdit(this.slkupProveedor, clsProveedorDAC.Get(-1,"*").Tables[0], "Nombre", "IDProveedor");
+                Util.Util.ConfigLookupEdit(this.slkupProveedor, clsProveedorDAC.Get(-1,"*",-1).Tables[0], "Nombre", "IDProveedor");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupProveedor, "[{'ColumnCaption':'ID','ColumnField':'IDProveedor','width':30},{'ColumnCaption':'Nombre','ColumnField':'Nombre','width':70}]");
 
 

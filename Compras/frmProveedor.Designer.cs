@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedor));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -285,12 +285,12 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.Group = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation3.Group = null;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -370,7 +370,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Extrangero")});
             this.rdgOrigen.Size = new System.Drawing.Size(167, 25);
             this.rdgOrigen.StyleController = this.layoutControl2;
-            this.rdgOrigen.TabIndex = 15;
+            this.rdgOrigen.TabIndex = 11;
             // 
             // rgpTipoContribuyente
             // 
@@ -383,7 +383,7 @@
             new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(3)), "Gasto Menor")});
             this.rgpTipoContribuyente.Size = new System.Drawing.Size(167, 57);
             this.rgpTipoContribuyente.StyleController = this.layoutControl2;
-            this.rgpTipoContribuyente.TabIndex = 14;
+            this.rgpTipoContribuyente.TabIndex = 12;
             // 
             // chkMultimoneda
             // 
@@ -393,7 +393,7 @@
             this.chkMultimoneda.Properties.Caption = "Multi Moneda";
             this.chkMultimoneda.Size = new System.Drawing.Size(167, 19);
             this.chkMultimoneda.StyleController = this.layoutControl2;
-            this.chkMultimoneda.TabIndex = 13;
+            this.chkMultimoneda.TabIndex = 9;
             // 
             // chkActivo
             // 
@@ -403,7 +403,7 @@
             this.chkActivo.Properties.Caption = "Inactivo";
             this.chkActivo.Size = new System.Drawing.Size(167, 19);
             this.chkActivo.StyleController = this.layoutControl2;
-            this.chkActivo.TabIndex = 12;
+            this.chkActivo.TabIndex = 8;
             // 
             // chkPagosCongelados
             // 
@@ -413,7 +413,7 @@
             this.chkPagosCongelados.Properties.Caption = "Pagos Congelados";
             this.chkPagosCongelados.Size = new System.Drawing.Size(167, 19);
             this.chkPagosCongelados.StyleController = this.layoutControl2;
-            this.chkPagosCongelados.TabIndex = 11;
+            this.chkPagosCongelados.TabIndex = 10;
             // 
             // txtTelefono
             // 
@@ -422,7 +422,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(417, 20);
             this.txtTelefono.StyleController = this.layoutControl2;
-            this.txtTelefono.TabIndex = 8;
+            this.txtTelefono.TabIndex = 5;
             // 
             // txtContacto
             // 
@@ -431,7 +431,7 @@
             this.txtContacto.Name = "txtContacto";
             this.txtContacto.Size = new System.Drawing.Size(417, 20);
             this.txtContacto.StyleController = this.layoutControl2;
-            this.txtContacto.TabIndex = 6;
+            this.txtContacto.TabIndex = 3;
             // 
             // txtAlias
             // 
@@ -440,7 +440,7 @@
             this.txtAlias.Name = "txtAlias";
             this.txtAlias.Size = new System.Drawing.Size(417, 20);
             this.txtAlias.StyleController = this.layoutControl2;
-            this.txtAlias.TabIndex = 5;
+            this.txtAlias.TabIndex = 2;
             // 
             // dtpFechaIngreso
             // 
@@ -454,7 +454,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtpFechaIngreso.Size = new System.Drawing.Size(417, 20);
             this.dtpFechaIngreso.StyleController = this.layoutControl2;
-            this.dtpFechaIngreso.TabIndex = 4;
+            this.dtpFechaIngreso.TabIndex = 1;
             // 
             // slkupNIT
             // 
@@ -466,7 +466,7 @@
             this.slkupNIT.Properties.View = this.gridView2;
             this.slkupNIT.Size = new System.Drawing.Size(417, 20);
             this.slkupNIT.StyleController = this.layoutControl2;
-            this.slkupNIT.TabIndex = 7;
+            this.slkupNIT.TabIndex = 4;
             // 
             // gridView2
             // 
@@ -485,7 +485,7 @@
             this.slkupImpuesto.Properties.View = this.gridView3;
             this.slkupImpuesto.Size = new System.Drawing.Size(417, 20);
             this.slkupImpuesto.StyleController = this.layoutControl2;
-            this.slkupImpuesto.TabIndex = 9;
+            this.slkupImpuesto.TabIndex = 6;
             // 
             // gridView3
             // 
@@ -504,7 +504,7 @@
             this.slkupCategoria.Properties.View = this.gridView4;
             this.slkupCategoria.Size = new System.Drawing.Size(417, 20);
             this.slkupCategoria.StyleController = this.layoutControl2;
-            this.slkupCategoria.TabIndex = 10;
+            this.slkupCategoria.TabIndex = 7;
             // 
             // gridView4
             // 
@@ -735,7 +735,7 @@
             this.txtInteresMora.Name = "txtInteresMora";
             this.txtInteresMora.Size = new System.Drawing.Size(219, 20);
             this.txtInteresMora.StyleController = this.layoutControl3;
-            this.txtInteresMora.TabIndex = 7;
+            this.txtInteresMora.TabIndex = 17;
             // 
             // txtDescuento
             // 
@@ -744,7 +744,7 @@
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(219, 20);
             this.txtDescuento.StyleController = this.layoutControl3;
-            this.txtDescuento.TabIndex = 6;
+            this.txtDescuento.TabIndex = 16;
             // 
             // slkupPais
             // 
@@ -761,7 +761,7 @@
             this.slkupPais.Properties.View = this.searchLookUpEdit1View;
             this.slkupPais.Size = new System.Drawing.Size(561, 20);
             this.slkupPais.StyleController = this.layoutControl3;
-            this.slkupPais.TabIndex = 4;
+            this.slkupPais.TabIndex = 13;
             // 
             // searchLookUpEdit1View
             // 
@@ -780,7 +780,7 @@
             this.slkupMoneda.Properties.View = this.gridView5;
             this.slkupMoneda.Size = new System.Drawing.Size(561, 20);
             this.slkupMoneda.StyleController = this.layoutControl3;
-            this.slkupMoneda.TabIndex = 8;
+            this.slkupMoneda.TabIndex = 14;
             // 
             // gridView5
             // 
@@ -799,7 +799,7 @@
             this.slkupCondicionPago.Properties.View = this.gridView6;
             this.slkupCondicionPago.Size = new System.Drawing.Size(537, 20);
             this.slkupCondicionPago.StyleController = this.layoutControl3;
-            this.slkupCondicionPago.TabIndex = 5;
+            this.slkupCondicionPago.TabIndex = 15;
             // 
             // gridView6
             // 
@@ -979,7 +979,7 @@
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(655, 198);
             this.txtDireccion.StyleController = this.layoutControl4;
-            this.txtDireccion.TabIndex = 5;
+            this.txtDireccion.TabIndex = 19;
             // 
             // txtEmail
             // 
@@ -988,7 +988,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(300, 20);
             this.txtEmail.StyleController = this.layoutControl4;
-            this.txtEmail.TabIndex = 4;
+            this.txtEmail.TabIndex = 18;
             // 
             // layoutControlGroup8
             // 
@@ -1111,7 +1111,7 @@
             this.txtNombreProveedor.Name = "txtNombreProveedor";
             this.txtNombreProveedor.Size = new System.Drawing.Size(480, 20);
             this.txtNombreProveedor.StyleController = this.layoutControl1;
-            this.txtNombreProveedor.TabIndex = 5;
+            this.txtNombreProveedor.TabIndex = 0;
             // 
             // txtIDProveedor
             // 
@@ -1121,7 +1121,7 @@
             this.txtIDProveedor.Properties.ReadOnly = true;
             this.txtIDProveedor.Size = new System.Drawing.Size(194, 20);
             this.txtIDProveedor.StyleController = this.layoutControl1;
-            this.txtIDProveedor.TabIndex = 4;
+            this.txtIDProveedor.TabIndex = 9999999;
             // 
             // layoutControlGroup1
             // 

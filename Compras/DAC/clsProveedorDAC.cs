@@ -11,14 +11,15 @@ namespace CO.DAC
 {
     public static class clsProveedorDAC
     {
-        public static DataSet Get(long IDProveedor,String Nombre)
+        public static DataSet Get(long IDProveedor,String Nombre,int IDCategoria)
         {
-            String strSQL = "dbo.invGetProveedor";
+            String strSQL = "dbo.cppGetProveedor";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
 
             oCmd.Parameters.Add(new SqlParameter("@IDProveedor", IDProveedor));
             oCmd.Parameters.Add(new SqlParameter("@Nombre", Nombre));
+            oCmd.Parameters.Add(new SqlParameter("@IDCategoria", IDCategoria));
             oCmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);

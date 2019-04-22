@@ -59,7 +59,7 @@ namespace CO
                 this.dtpFechaRequeridaFinal.EditValue = FechaRequeridaFinal;
 
 
-                DTProveedores = clsProveedorDAC.Get(-1,"*").Tables[0];
+                DTProveedores = clsProveedorDAC.Get(-1,"*",-1).Tables[0];
                 Util.Util.ConfigLookupEdit(this.slkupProveedor, DTProveedores, "Nombre", "IDProveedor", 350);
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupProveedor, "[{'ColumnCaption':'IDProveedor','ColumnField':'IDProveedor','width':20},{'ColumnCaption':'Nombre','ColumnField':'Nombre','width':90}]");
                 this.slkupProveedor.Properties.View.OptionsSelection.MultiSelect = true;

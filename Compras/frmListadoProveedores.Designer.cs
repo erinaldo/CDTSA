@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoProveedores));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation4 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -53,6 +53,13 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.colIDProveedor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNombre = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAlias = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRuc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCategoria = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMoneda = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColCondicionPago = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -143,18 +150,18 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation1.Group = null;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.Group = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation3.Group = null;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            reduceOperation4.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation4.Group = null;
+            reduceOperation4.ItemLinkIndex = 0;
+            reduceOperation4.ItemLinksCount = 0;
+            reduceOperation4.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation4);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -191,9 +198,18 @@
             this.dtgListadoProveedores.TabIndex = 7;
             this.dtgListadoProveedores.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.dtgListadoProveedores.DoubleClick += new System.EventHandler(this.dtgListadoProveedores_DoubleClick);
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIDProveedor,
+            this.colNombre,
+            this.colAlias,
+            this.colRuc,
+            this.colCategoria,
+            this.colMoneda,
+            this.ColCondicionPago});
             this.gridView1.GridControl = this.dtgListadoProveedores;
             this.gridView1.Name = "gridView1";
             // 
@@ -296,6 +312,62 @@
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // colIDProveedor
+            // 
+            this.colIDProveedor.Caption = "IDProveedor";
+            this.colIDProveedor.FieldName = "IDProveedor";
+            this.colIDProveedor.Name = "colIDProveedor";
+            this.colIDProveedor.Visible = true;
+            this.colIDProveedor.VisibleIndex = 0;
+            // 
+            // colNombre
+            // 
+            this.colNombre.Caption = "Nombre";
+            this.colNombre.FieldName = "Nombre";
+            this.colNombre.Name = "colNombre";
+            this.colNombre.Visible = true;
+            this.colNombre.VisibleIndex = 1;
+            // 
+            // colAlias
+            // 
+            this.colAlias.Caption = "Alias";
+            this.colAlias.FieldName = "Alias";
+            this.colAlias.Name = "colAlias";
+            this.colAlias.Visible = true;
+            this.colAlias.VisibleIndex = 2;
+            // 
+            // colRuc
+            // 
+            this.colRuc.Caption = "Ruc";
+            this.colRuc.FieldName = "RUC";
+            this.colRuc.Name = "colRuc";
+            this.colRuc.Visible = true;
+            this.colRuc.VisibleIndex = 3;
+            // 
+            // colCategoria
+            // 
+            this.colCategoria.Caption = "Categoria";
+            this.colCategoria.FieldName = "DescrCategoria";
+            this.colCategoria.Name = "colCategoria";
+            this.colCategoria.Visible = true;
+            this.colCategoria.VisibleIndex = 4;
+            // 
+            // colMoneda
+            // 
+            this.colMoneda.Caption = "Moneda";
+            this.colMoneda.FieldName = "Moneda";
+            this.colMoneda.Name = "colMoneda";
+            this.colMoneda.Visible = true;
+            this.colMoneda.VisibleIndex = 5;
+            // 
+            // ColCondicionPago
+            // 
+            this.ColCondicionPago.Caption = "Condicion Pago";
+            this.ColCondicionPago.FieldName = "DescrCondicionPago";
+            this.ColCondicionPago.Name = "ColCondicionPago";
+            this.ColCondicionPago.Visible = true;
+            this.ColCondicionPago.VisibleIndex = 6;
+            // 
             // frmListadoProveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,5 +423,12 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraBars.BarButtonItem btnRefrescar;
+        private DevExpress.XtraGrid.Columns.GridColumn colIDProveedor;
+        private DevExpress.XtraGrid.Columns.GridColumn colNombre;
+        private DevExpress.XtraGrid.Columns.GridColumn colAlias;
+        private DevExpress.XtraGrid.Columns.GridColumn colRuc;
+        private DevExpress.XtraGrid.Columns.GridColumn colCategoria;
+        private DevExpress.XtraGrid.Columns.GridColumn colMoneda;
+        private DevExpress.XtraGrid.Columns.GridColumn ColCondicionPago;
     }
 }

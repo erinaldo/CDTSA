@@ -69,7 +69,7 @@ namespace CO
                 NombreProveedor = this.txtNombreProveedor.Text == "" ? "*" : this.txtNombreProveedor.Text.Trim();
 
                 
-                _dsProveedores = clsProveedorDAC.Get(IDProveedor,NombreProveedor);
+                _dsProveedores = clsProveedorDAC.Get(IDProveedor,NombreProveedor,-1);
 
                 dtProveedor = _dsProveedores.Tables[0];
                 this.dtgListadoProveedores.DataSource = null;
@@ -201,6 +201,15 @@ namespace CO
         private void btnEditar_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (_currentRow != null) {
+                frmProveedor ofrmProveedor = new frmProveedor("Edit", Convert.ToInt64(_currentRow["IDProveedor"]));
+                ofrmProveedor.ShowDialog();
+            }
+        }
+
+        private void dtgListadoProveedores_DoubleClick(object sender, EventArgs e)
+        {
+            if (_currentRow != null)
+            {
                 frmProveedor ofrmProveedor = new frmProveedor("Edit", Convert.ToInt64(_currentRow["IDProveedor"]));
                 ofrmProveedor.ShowDialog();
             }

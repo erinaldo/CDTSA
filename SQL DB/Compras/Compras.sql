@@ -1000,12 +1000,19 @@ END
 
 GO
 
-CREATE PROCEDURE dbo.cppGetProveedor(@IDProveedor AS INT,@Nombre AS NVARCHAR(20), @IDCategoria AS INT)
+CREATE   PROCEDURE dbo.cppGetProveedor(@IDProveedor AS INT,@Nombre AS NVARCHAR(20), @IDCategoria AS INT)
 AS 
-SELECT  IDProveedor ,Nombre ,IDRuc ,Activo ,Alias ,IDPais ,IDMoneda ,FechaIngreso ,Contacto ,Telefono ,IDImpuesto ,IDCategoria ,IDCondicionPago ,
-        PorcDescuento ,PorcInteresMora ,email ,Direccion  
-FROM dbo.cppProveedor
-WHERE (IDProveedor = @IDProveedor OR @IDProveedor = -1) AND (Nombre LIKE '%'+@Nombre+'%' OR @Nombre='*') AND (IDCategoria = @IDCategoria OR @IDCategoria=-1)
+SELECT    IDProveedor ,A.Nombre ,A.Alias ,Contacto ,A.IDRuc ,B.RUC,Telefono ,A.IDImpuesto, C.Descr DescrImpuesto ,a.IDCategoria ,D.Descr DescrCategoria,A.IDPais ,E.Descr Pais,a.IDMoneda ,F.Descr Moneda,A.IDCondicionPago ,G.Descr DescrCondicionPago,
+        FechaIngreso ,PorcDesc ,PorcInteresMora ,Email ,Direccion ,A.Activo ,MultiMoneda ,PagosCongelados ,IsLocal ,TipoContribuyente
+FROM dbo.cppProveedor A
+LEFT JOIN dbo.cbRUC B ON A.IDRuc=B.IDRuc
+LEFT JOIN dbo.globalImpuesto C ON A.IDImpuesto = C.IDImpuesto
+LEFT JOIN dbo.cppCategoriaProveedor D ON A.IDCategoria = D.IDCategoria
+LEFT JOIN dbo.globalPais E ON A.IDPais = E.IDPais
+LEFT JOIN dbo.globalMoneda F ON F.IDMoneda = A.IDMoneda
+LEFT JOIN dbo.cppCondicionPago G ON A.IDCondicionPago=G.IDCondicionPago
+WHERE (IDProveedor = @IDProveedor OR @IDProveedor = -1) AND (A.Nombre LIKE '%'+@Nombre+'%' OR @Nombre='*') AND (a.IDCategoria = @IDCategoria OR @IDCategoria=-1)
+
 
 GO
 
