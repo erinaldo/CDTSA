@@ -412,7 +412,7 @@ CREATE TABLE dbo.invParametrosCompra(
 	CtaTransitoLocal bigInt,
 	CtrTransitoLocal int,
 	CtaTransitoExterior bigint,
-	CtrTransifoExterior int,
+	CtrTransitoExterior int,
 	AplicaAutomaticamenteAsiento bit DEFAULT 0,
 	CanEditAsiento bit DEFAULT 1,
 	CanViewAsiento bit DEFAULT 1,
@@ -1063,3 +1063,41 @@ SELECT  IDImpuesto ,
         Activo  FROM dbo.globalImpuesto
 WHERE (IDImpuesto = @IDImpuesto OR @IDImpuesto=-1)
 
+GO
+
+CREATE PROCEDURE dbo.invGetParametrosCompra
+AS 
+SELECT  IDParametro ,
+        IDConsecSolicitud ,
+        IDConsecOrdenCompra ,
+        IDConsecEmbarque ,
+        IDConsecDevolucion ,
+        CantLineasOrdenCompra ,
+        IDBodegaDefault ,
+        IDTipoCambio ,
+        CantDecimalesPrecio ,
+        CantDecimalesCantidad ,
+        IDTipoAsientoContable ,
+        IDPaquete ,
+        CtaTransitoLocal ,
+        CtrTransitoLocal ,
+        CtaTransitoExterior ,
+        CtrTransitoExterior ,
+        AplicaAutomaticamenteAsiento ,
+        CanEditAsiento ,
+        CanViewAsiento  FROM dbo.invParametrosCompra
+        
+        
+        GO
+        
+        
+ CREATE PROCEDURE dbo.invUpdateParametrosCompra ( @IDConsecSolicitud INT, @IDConsecOrdeCompra INT, @IDConsecEmbarque INT, @IDConsecDevolucion INT, @CantLineasOrdenCompra INT, @IDBodegaDefault int,
+	@IDTipoCambio int, @CantDecimalesPrecio int, @CantDecimalesCantidad int, @IDTipoAsientoContable int, @IDPaquete INT, @CtaTransitoLocal bigint, @CtrTransitoLocal bigint, @CtaTransitoExterior bigint, @CtrTransitoExterior bigint,
+	@AplicaAutomaticamenteAsiento bit, @CanEditAsiento bit, @CanViewAsiento bit )
+AS 
+UPDATE dbo.invParametrosCompra SET IDConsecSolicitud = @IDConsecSolicitud,  IDConsecEmbarque=@IDConsecEmbarque,IDConsecDevolucion= @IDConsecDevolucion,CantLineasOrdenCompra = @CantLineasOrdenCompra, 
+	IDBodegaDefault  = @IDBodegaDefault, IDTipoCambio= @IDTipoCambio, CantDecimalesPrecio= @CantDecimalesPrecio, IDTipoAsientoContable = @IDTipoAsientoContable, IDPaquete = @IDPaquete,  CtaTransitoLocal = @CtaTransitoLocal,
+	CtrTransitoLocal  = @CtrTransitoLocal, CtaTransitoExterior = @CtaTransitoExterior, AplicaAutomaticamenteAsiento =@AplicaAutomaticamenteAsiento, CanEditAsiento = @CanEditAsiento, CanViewAsiento=@CanViewAsiento
+	WHERE IDParametro=1
+	
+GO

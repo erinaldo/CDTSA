@@ -143,7 +143,25 @@ namespace CO
 
         private void btnEliminar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            throw new NotImplementedException();
+            if (_currentRow != null)
+            {
+                if (MessageBox.Show("Esta seguro que desea eliminar el Proveedor", "Listado de Proveedores", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+
+                    try
+                    {
+                        ConnectionManager.BeginTran();
+                        DAC.clsProveedorDAC.UpdateProveedor("D", Convert.ToInt64(_currentRow["IDProveedor"]), "", -1, false, "", -1, -1, DateTime.Now, "", "", -1, -1, -1, 0, 0, "", "", false, false, false, -1, ConnectionManager.Tran);
+                        ConnectionManager.CommitTran();
+                        PopulateGrid();
+                    }
+
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
         }
 
         private void btnEditar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -202,6 +220,7 @@ namespace CO
         {
             if (_currentRow != null) {
                 frmProveedor ofrmProveedor = new frmProveedor("Edit", Convert.ToInt64(_currentRow["IDProveedor"]));
+                ofrmProveedor.FormClosed+=ofrmProveedor_FormClosed;
                 ofrmProveedor.ShowDialog();
             }
         }
@@ -211,6 +230,7 @@ namespace CO
             if (_currentRow != null)
             {
                 frmProveedor ofrmProveedor = new frmProveedor("Edit", Convert.ToInt64(_currentRow["IDProveedor"]));
+                ofrmProveedor.FormClosed += ofrmProveedor_FormClosed;
                 ofrmProveedor.ShowDialog();
             }
         }

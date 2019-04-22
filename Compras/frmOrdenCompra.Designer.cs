@@ -40,7 +40,6 @@
             this.btnConfirmar = new DevExpress.XtraBars.BarButtonItem();
             this.btnAnular = new DevExpress.XtraBars.BarButtonItem();
             this.btnEmbarque = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSolicitudes = new DevExpress.XtraBars.BarButtonItem();
             this.btnDesconfirmar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -304,7 +303,6 @@
             this.btnConfirmar,
             this.btnAnular,
             this.btnEmbarque,
-            this.btnSolicitudes,
             this.btnDesconfirmar});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.MaxItemId = 6;
@@ -385,15 +383,6 @@
             this.btnEmbarque.Name = "btnEmbarque";
             this.btnEmbarque.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEmbarque_ItemClick);
             // 
-            // btnSolicitudes
-            // 
-            this.btnSolicitudes.Caption = "Solicitudes";
-            this.btnSolicitudes.Glyph = ((System.Drawing.Image)(resources.GetObject("btnSolicitudes.Glyph")));
-            this.btnSolicitudes.Id = 4;
-            this.btnSolicitudes.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnSolicitudes.LargeGlyph")));
-            this.btnSolicitudes.Name = "btnSolicitudes";
-            this.btnSolicitudes.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSolicitudes_ItemClick);
-            // 
             // btnDesconfirmar
             // 
             this.btnDesconfirmar.Caption = "Desconfirmar";
@@ -426,7 +415,6 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnDesconfirmar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnAnular);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEmbarque);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnSolicitudes);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // layoutControl1
@@ -2036,7 +2024,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem39;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem40;
         private DevExpress.XtraBars.BarButtonItem btnEmbarque;
-        private DevExpress.XtraBars.BarButtonItem btnSolicitudes;
         private DevExpress.XtraBars.BarButtonItem btnDesconfirmar;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;

@@ -1263,11 +1263,7 @@ namespace CO
             }
         }
 
-        private void btnSolicitudes_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //Cargar Solicitudes
-
-        }
+      
 
     }
 }
