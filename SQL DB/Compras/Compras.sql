@@ -1091,13 +1091,23 @@ SELECT  IDParametro ,
         GO
         
         
- CREATE PROCEDURE dbo.invUpdateParametrosCompra ( @IDConsecSolicitud INT, @IDConsecOrdeCompra INT, @IDConsecEmbarque INT, @IDConsecDevolucion INT, @CantLineasOrdenCompra INT, @IDBodegaDefault int,
+ CREATE  PROCEDURE dbo.invUpdateParametrosCompra ( @IDConsecSolicitud INT, @IDConsecOrdeCompra INT, @IDConsecEmbarque INT, @IDConsecDevolucion INT, @CantLineasOrdenCompra INT, @IDBodegaDefault int,
 	@IDTipoCambio int, @CantDecimalesPrecio int, @CantDecimalesCantidad int, @IDTipoAsientoContable int, @IDPaquete INT, @CtaTransitoLocal bigint, @CtrTransitoLocal bigint, @CtaTransitoExterior bigint, @CtrTransitoExterior bigint,
 	@AplicaAutomaticamenteAsiento bit, @CanEditAsiento bit, @CanViewAsiento bit )
 AS 
 UPDATE dbo.invParametrosCompra SET IDConsecSolicitud = @IDConsecSolicitud,  IDConsecEmbarque=@IDConsecEmbarque,IDConsecDevolucion= @IDConsecDevolucion,CantLineasOrdenCompra = @CantLineasOrdenCompra, 
-	IDBodegaDefault  = @IDBodegaDefault, IDTipoCambio= @IDTipoCambio, CantDecimalesPrecio= @CantDecimalesPrecio, IDTipoAsientoContable = @IDTipoAsientoContable, IDPaquete = @IDPaquete,  CtaTransitoLocal = @CtaTransitoLocal,
+	IDBodegaDefault  = @IDBodegaDefault, IDTipoCambio= @IDTipoCambio, CantDecimalesPrecio= @CantDecimalesPrecio,CantDecimalesCantidad= @CantDecimalesCantidad, IDTipoAsientoContable = @IDTipoAsientoContable, IDPaquete = @IDPaquete,  CtaTransitoLocal = @CtaTransitoLocal,
 	CtrTransitoLocal  = @CtrTransitoLocal, CtaTransitoExterior = @CtaTransitoExterior, AplicaAutomaticamenteAsiento =@AplicaAutomaticamenteAsiento, CanEditAsiento = @CanEditAsiento, CanViewAsiento=@CanViewAsiento
 	WHERE IDParametro=1
 	
 GO
+
+
+CREATE PROCEDURE dbo.globalGetConsecutivos(@IDConsecutivo INT, @Prefijo AS NVARCHAR(3))
+AS 
+SELECT  IDConsecutivo ,Descr ,Prefijo ,Consecutivo ,Documento ,Activo  
+FROM dbo.globalconsecutivos
+WHERE (IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1) AND (Prefijo = @Prefijo OR @Prefijo = '*')
+
+GO 
+

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\clsCategoriaProveedorDAC.cs" />
+    <Compile Include="DAC\clsGlobalConsecutivosDAC.cs" />
     <Compile Include="DAC\clsGlobalImpuestoDAC.cs" />
     <Compile Include="DAC\clsParametrosDAC.cs" />
     <Compile Include="DAC\clsSolicitudCompra_OrdenCompra.cs" />

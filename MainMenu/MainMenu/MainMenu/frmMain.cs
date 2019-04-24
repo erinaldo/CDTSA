@@ -567,7 +567,9 @@ namespace MainMenu
                     nodeEmbarques.Tag = "frmEmbarque";
                     TreeListNode nodeProveedores = tl.AppendNode(new object[] { "Proveedores" }, -1, 11, 11, 11);
                     nodeProveedores.Tag = "frmListadoProveedores";
-                    
+                    TreeListNode nodeParametrosCompra = tl.AppendNode(new object[] { "Parametros Compra" }, -1, 11, 11, 11);
+                    nodeParametrosCompra.Tag = "frmParametrosCompra";
+                                                                  
                     break;
 
 
@@ -841,7 +843,15 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmListadoProveedor.Show();
                     break;
+                case "frmParametrosCompra":
+                    frmParametros ofrmParametros = new frmParametros();
+                    ofrmParametros.MdiParent = this;
+                    ofrmParametros.WindowState = FormWindowState.Normal;
+                    ShowPagesRibbonMan(false);
+                    ofrmParametros.Show();
+                    break;
             }
+
         }
 
 

@@ -233,14 +233,14 @@ namespace CO
                 this.btnEmbarque.Enabled = true;
             }
 
-            DataTable dtOrden_Solicitud = DAC.clsSolicitudCompra_OrdenCompra.Get(Convert.ToInt64(cabecera["IDOrdenCompra"]), -1, -1).Tables[0];
-            if (dtOrden_Solicitud.Rows.Count > 0)
-            {
-                this.btnSolicitudes.Enabled = true;
-            }
-            else {
-                this.btnSolicitudes.Enabled = false;
-            }
+            //DataTable dtOrden_Solicitud = DAC.clsSolicitudCompra_OrdenCompra.Get(Convert.ToInt64(cabecera["IDOrdenCompra"]), -1, -1).Tables[0];
+            //if (dtOrden_Solicitud.Rows.Count > 0)
+            //{
+            //    this.btnSolicitudes.Enabled = true;
+            //}
+            //else {
+            //    this.btnSolicitudes.Enabled = false;
+            //}
 
         }
 
