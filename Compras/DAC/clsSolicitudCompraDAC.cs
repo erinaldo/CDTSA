@@ -9,12 +9,18 @@ using System.Threading.Tasks;
 
 namespace CO.DAC
 {
+    public class resultInsert {
+         public int IDSolicitud {get;set;}
+         public String Consecutivo { get; set; }
+    }
+
     public static class clsSolicitudCompraDAC
     {
-       public static int InsertUpdate(string Operacion,int IDSolicitud,DateTime Fecha,DateTime FechaRequerida,int IDEstado, String Comentario,
+      
+       public static resultInsert InsertUpdate(string Operacion,int IDSolicitud,string Consecutivo,DateTime Fecha,DateTime FechaRequerida,int IDEstado, String Comentario,
                                         String UsuarioSolicitud, string Usuario,DateTime createdDate,String createdBy, DateTime recordDate, String updatedBy, SqlTransaction tran)
         {
-            int result = -1;
+            resultInsert result = new resultInsert();
             String strSQL = "dbo.invUpdateSolicitudCompra";
 
             SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
@@ -22,6 +28,8 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@Operacion", Operacion));
             oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
             oCmd.Parameters["@IDSolicitud"].Direction = ParameterDirection.InputOutput;
+            oCmd.Parameters.Add(new SqlParameter("@Consecutivo", Consecutivo));
+            oCmd.Parameters["@Consecutivo"].Direction = ParameterDirection.InputOutput;
             oCmd.Parameters.Add(new SqlParameter("@Fecha", Fecha));
            oCmd.Parameters.Add(new SqlParameter("@FechaRequerida", FechaRequerida));
            oCmd.Parameters.Add(new SqlParameter("@IDEstado", IDEstado));
@@ -35,9 +43,15 @@ namespace CO.DAC
 
             oCmd.CommandType = CommandType.StoredProcedure;
             oCmd.Transaction = tran;
-            result = oCmd.ExecuteNonQuery();
-           if (Operacion =="I")
-                result = (int) oCmd.Parameters["@IDSolicitud"].Value;
+            oCmd.ExecuteNonQuery();
+            if (Operacion == "I")
+            {
+                result = new resultInsert()
+                {
+                    IDSolicitud = (int)oCmd.Parameters["@IDSolicitud"].Value,
+                    Consecutivo = (String)oCmd.Parameters["@Consecutivo"].Value
+                };
+            }
 
             
             return result;
@@ -64,6 +78,7 @@ namespace CO.DAC
             return DS;
         }
 
+        
         public static DataSet GetByID(int IDSolicitud)
         {
             String strSQL = "dbo.invGetSolicitudCompraByID";

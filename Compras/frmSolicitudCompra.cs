@@ -67,6 +67,9 @@ namespace CO
                 this.btnGuardarSolicitud.Enabled = true;
                 this.btnCancelarSolicitud.Enabled = true;
                 this.btnEliminarSolicitud.Enabled = false;
+                this.btnImportar.Enabled = true;
+                this.btnImprimir.Enabled = false;
+                this.btnExportar.Enabled = true;
                
             }
             else if (Accion == "View") {
@@ -75,6 +78,9 @@ namespace CO
                 this.btnGuardarSolicitud.Enabled = false;
                 this.btnCancelarSolicitud.Enabled = false;
                 this.btnEliminarSolicitud.Enabled = true;
+                this.btnImprimir.Enabled = true;
+                this.btnImportar.Enabled = false;
+                this.btnExportar.Enabled = true;
             }
             else if (Accion == "ReadOnly")
             {
@@ -83,6 +89,9 @@ namespace CO
                 this.btnGuardarSolicitud.Enabled = false;
                 this.btnCancelarSolicitud.Enabled = false;
                 this.btnEliminarSolicitud.Enabled = false;
+                this.btnImprimir.Enabled = true;
+                this.btnImportar.Enabled = false;
+                this.btnExportar.Enabled = true;
             }
         }
 
@@ -120,7 +129,8 @@ namespace CO
 
         private void UpdateControlsFromData(DataTable dt) { 
             DataRow cabecera =  dt.Rows[0];
-            this.txtIDSolicitud.EditValue = cabecera["IDSolicitud"].ToString();
+            this.txtIDSolicitud.Tag = cabecera["IDSolicitud"].ToString();
+            this.txtIDSolicitud.EditValue = cabecera["Consecutivo"].ToString();
             this.dtpFechaSolicitud.EditValue = Convert.ToDateTime(cabecera["Fecha"]);
             this.dtpFechaRequerida.EditValue = Convert.ToDateTime(cabecera["FechaRequerida"]);
             this.txtEstado.EditValue = cabecera["DescrEstado"].ToString();
@@ -193,54 +203,68 @@ namespace CO
 
         private void frmSolicitudCompra_Load(object sender, EventArgs e)
         {
-            this.gridView1.EditFormPrepared += gridView1_EditFormPrepared;
-            this.gridView1.NewItemRowText = Util.Util.constNewItemTextGrid;
-            //this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
-            this.gridView1.ValidateRow += gridView1_ValidateRow;
-            this.gridView1.InvalidRowException += gridView1_InvalidRowException;
-            //this.gridView1.RowUpdated += gridView1_RowUpdated;
-            //this.gridView1.ShownEditor += gridView1_ShownEditor;
-            this.dtgDetalleSolicitud.ProcessGridKey += dtgDetalleSolicitud_ProcessGridKey;
-            //this.gridView1.ValidatingEditor += gridView1_ValidatingEditor;
-            
-            
+            try
+            {
+                //Validar que el consecutivo de Solicitud de Compra este asociado 
+                String Consec = clsUtilDAC.GetParametroCompra("IDConsecSolicitud").Tables[0].Rows[0][0].ToString();
+                if (Consec == null || Consec.Trim() == "")
+                {
+                    MessageBox.Show("Por favor establezca el consecutivo a utilizar en la solicitud de Compra");
+                    this.Close();
+                }
 
-            this.gridView1.InitNewRow += gridView1_InitNewRow;
-            //this.gridView1.CustomColumnDisplayText += gridView1_CustomColumnDisplayText;
-
-            Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, "Solicitud Compra", this);
-            //slkupIDProducto
-
-            dtProductos = CI.DAC.clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0];
-
-            this.slkupIDProducto.DataSource = dtProductos;
-            this.slkupIDProducto.DisplayMember = "IDProducto";
-            this.slkupIDProducto.ValueMember = "IDProducto";
-            this.slkupIDProducto.NullText = " --- ---";
-            this.slkupIDProducto.EditValueChanged += slkup_EditValueChanged;
-            this.slkupIDProducto.Popup += slkup_Popup;
-            this.slkupIDProducto.PopulateViewColumns();
-                        
+                this.gridView1.EditFormPrepared += gridView1_EditFormPrepared;
+                this.gridView1.NewItemRowText = Util.Util.constNewItemTextGrid;
+                //this.gridView1.ValidatingEditor += GridView1_ValidatingEditor;
+                this.gridView1.ValidateRow += gridView1_ValidateRow;
+                this.gridView1.InvalidRowException += gridView1_InvalidRowException;
+                //this.gridView1.RowUpdated += gridView1_RowUpdated;
+                //this.gridView1.ShownEditor += gridView1_ShownEditor;
+                this.dtgDetalleSolicitud.ProcessGridKey += dtgDetalleSolicitud_ProcessGridKey;
+                //this.gridView1.ValidatingEditor += gridView1_ValidatingEditor;
 
 
-                            
-            //Util.Util.ConfigLookupEdit(this.slkupIDProducto, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
-            //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupIDProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-            this.slkupDescrProducto.DataSource = dtProductos;
-            this.slkupDescrProducto.DisplayMember = "Descr";
-            this.slkupDescrProducto.ValueMember = "IDProducto";
-            this.slkupDescrProducto.NullText = " --- ---";
-            this.slkupDescrProducto.EditValueChanged += slkup_EditValueChanged;
-            this.slkupDescrProducto.Popup += slkup_Popup;
-            
+                this.gridView1.InitNewRow += gridView1_InitNewRow;
+                //this.gridView1.CustomColumnDisplayText += gridView1_CustomColumnDisplayText;
+
+                Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, "Solicitud Compra", this);
+                //slkupIDProducto
+
+                dtProductos = CI.DAC.clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0];
+
+                this.slkupIDProducto.DataSource = dtProductos;
+                this.slkupIDProducto.DisplayMember = "IDProducto";
+                this.slkupIDProducto.ValueMember = "IDProducto";
+                this.slkupIDProducto.NullText = " --- ---";
+                this.slkupIDProducto.EditValueChanged += slkup_EditValueChanged;
+                this.slkupIDProducto.Popup += slkup_Popup;
+                this.slkupIDProducto.PopulateViewColumns();
 
 
-            //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupDescrProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
-            
 
-            LoadData();
+                //Util.Util.ConfigLookupEdit(this.slkupIDProducto, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
+                //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupIDProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+                this.slkupDescrProducto.DataSource = dtProductos;
+                this.slkupDescrProducto.DisplayMember = "Descr";
+                this.slkupDescrProducto.ValueMember = "IDProducto";
+                this.slkupDescrProducto.NullText = " --- ---";
+                this.slkupDescrProducto.EditValueChanged += slkup_EditValueChanged;
+                this.slkupDescrProducto.Popup += slkup_Popup;
+
+
+
+                //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupDescrProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
+
+
+
+                LoadData();
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores: " + ex.Message);
+            }
         }
 
         private void slkup_Popup(object sender, EventArgs e)
@@ -447,6 +471,7 @@ namespace CO
                     Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
                     Comentarios = this.txtComentarios.Text.Trim();
                     DataTable dt = (DataTable)this.dtgDetalleSolicitud.DataSource;
+                    string Documento = "";
 
                     ConnectionManager.BeginTran();
                     
@@ -454,8 +479,9 @@ namespace CO
                     if (Accion == "Add")
                     {
                         //Ingresar la cabecera de la solicitud
-                        IDSolicitud = DAC.clsSolicitudCompraDAC.InsertUpdate("I", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
-                        this.txtIDSolicitud.Text = IDSolicitud.ToString();
+                        resultInsert result = DAC.clsSolicitudCompraDAC.InsertUpdate("I", IDSolicitud,Documento, Fecha, FechaRequerida, 0, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        this.txtIDSolicitud.Tag = result.IDSolicitud;
+                        this.txtIDSolicitud.EditValue = result.Consecutivo;
                         
                         foreach (DataRow row in dt.Rows)
                         {
@@ -466,7 +492,7 @@ namespace CO
 
                     if (Accion == "Edit")
                     {
-                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, 0, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud,this.txtIDSolicitud.EditValue.ToString() ,Fecha, FechaRequerida, 0, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         //Eliminamos el detalle y lo volvemos a insertar
                         DAC.clsDetalleSolicitudCompraDAC.InsertUpdate("D", IDSolicitud, -1, 0, "", ConnectionManager.Tran);
                         foreach (DataRow row in dt.Rows)
@@ -509,7 +535,7 @@ namespace CO
                     if (IDSolicitud >-1)
                     {
                         ConnectionManager.BeginTran();
-                        clsSolicitudCompraDAC.InsertUpdate("D", IDSolicitud, DateTime.Now, DateTime.Now, -1, "", "", "", DateTime.Now, "", DateTime.Now, "", ConnectionManager.Tran);
+                        clsSolicitudCompraDAC.InsertUpdate("D", IDSolicitud,"", DateTime.Now, DateTime.Now, -1, "", "", "", DateTime.Now, "", DateTime.Now, "", ConnectionManager.Tran);
                         clsDetalleSolicitudCompraDAC.InsertUpdate("D", IDSolicitud, -1, 0, "", ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
                     }
@@ -540,7 +566,7 @@ namespace CO
                         Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
                         Comentarios = this.txtComentarios.Text.Trim();
                         ConnectionManager.BeginTran();
-                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud,"", Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
                         this.txtEstado.Text = "APROBADO";
                         this.txtEstado.Tag = 1;
@@ -597,7 +623,7 @@ namespace CO
                         Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
                         Comentarios = this.txtComentarios.Text.Trim();
                         ConnectionManager.BeginTran();
-                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                        DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud,"", Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
                         this.txtEstado.Text = "RECHAZADA";
                         this.txtEstado.Tag = 2;
@@ -629,7 +655,7 @@ namespace CO
                 FechaRequerida = Convert.ToDateTime(this.dtpFechaRequerida.EditValue);
                 Fecha = Convert.ToDateTime(this.dtpFechaSolicitud.EditValue);
                 Comentarios = this.txtComentarios.Text.Trim();
-                DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud, Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
+                DAC.clsSolicitudCompraDAC.InsertUpdate("U", IDSolicitud,"", Fecha, FechaRequerida, Estado, Comentarios, sUsuario, sUsuario, DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                 this.txtEstado.Text = "INICIALIZADA";
                 this.txtEstado.Tag = 0;
                 this.txtEstado.ForeColor = Color.Black;
@@ -647,24 +673,25 @@ namespace CO
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            string tempPath = System.IO.Path.GetTempPath();
-            String FileName = System.IO.Path.Combine(tempPath, "Productos de Solicitud de Compra.xlsx");
-            DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
+            if (((DataTable)this.dtgDetalleSolicitud.DataSource).Rows.Count > 0)
             {
-                SheetName = "Solicitud de Compra"
-            };
+                string tempPath = System.IO.Path.GetTempPath();
+                String FileName = System.IO.Path.Combine(tempPath, "Productos de Solicitud de Compra.xlsx");
+                DevExpress.XtraPrinting.XlsxExportOptions options = new DevExpress.XtraPrinting.XlsxExportOptions()
+                {
+                    SheetName = "Solicitud de Compra"
+                };
 
-
-            this.gridView1.ExportToXlsx(FileName, options);
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-            process.StartInfo.FileName = FileName;
-            process.StartInfo.Verb = "Open";
-            process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-            process.Start();
+                this.gridView1.ExportToXlsx(FileName, options);
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = FileName;
+                process.StartInfo.Verb = "Open";
+                process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                process.Start();
+            }
         }
 
-       
-
+   
         
     }
 }

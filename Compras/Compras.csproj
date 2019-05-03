@@ -106,6 +106,7 @@
     <Compile Include="DAC\clsOrdenCompraDetalleDAC.cs" />
     <Compile Include="DAC\clsProveedorDAC.cs" />
     <Compile Include="DAC\clsSolicitudCompraDAC.cs" />
+    <Compile Include="DAC\clsUtilDAC.cs" />
     <Compile Include="frmArticuloProveedor.cs">
       <SubType>Form</SubType>
     </Compile>

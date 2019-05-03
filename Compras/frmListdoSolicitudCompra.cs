@@ -236,7 +236,7 @@ namespace CO
                     if (currentRow != null)
                     {
                         ConnectionManager.BeginTran();
-                        clsSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]), DateTime.Now, DateTime.Now, -1, "",  "", "", DateTime.Now, "", DateTime.Now, "",  ConnectionManager.Tran);
+                        clsSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]),"", DateTime.Now, DateTime.Now, -1, "", "", "", DateTime.Now, "", DateTime.Now, "",  ConnectionManager.Tran);
                         clsDetalleSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]), -1, 0, "", ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
                     }

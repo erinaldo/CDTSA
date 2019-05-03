@@ -371,6 +371,13 @@ namespace CO
         {
             try
             {
+                //Validar que el consecutivo de Solicitud de Compra este asociado 
+                String Consec = clsUtilDAC.GetParametroCompra("IDConsecOrdenCompra").Tables[0].Rows[0][0].ToString();
+                if (Consec == null || Consec.Trim() == "")
+                {
+                    MessageBox.Show("Por favor establezca el consecutivo a utilizar en la Orden de Compra");
+                    this.Close();
+                }
 
                 this.gridView1.EditFormPrepared += gridView1_EditFormPrepared;
                 this.gridView1.NewItemRowText = Util.Util.constNewItemTextGrid;
@@ -1263,6 +1270,7 @@ namespace CO
             }
         }
 
+      
       
 
     }

@@ -81,16 +81,12 @@
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.btnEliminarLinea = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.btnImportarSolicitudes = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.tabMontos = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
@@ -195,10 +191,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             this.tabMontos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
@@ -518,8 +512,6 @@
             // layoutControl2
             // 
             this.layoutControl2.Controls.Add(this.dtgDetalle);
-            this.layoutControl2.Controls.Add(this.simpleButton2);
-            this.layoutControl2.Controls.Add(this.btnEliminarLinea);
             this.layoutControl2.Controls.Add(this.simpleButton4);
             this.layoutControl2.Controls.Add(this.btnImportarSolicitudes);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -815,43 +807,23 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem14);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(12, 12);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 22);
-            this.simpleButton2.StyleController = this.layoutControl2;
-            this.simpleButton2.TabIndex = 15;
-            this.simpleButton2.Text = "Agregar";
-            // 
-            // btnEliminarLinea
-            // 
-            this.btnEliminarLinea.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarLinea.Image")));
-            this.btnEliminarLinea.Location = new System.Drawing.Point(91, 12);
-            this.btnEliminarLinea.Name = "btnEliminarLinea";
-            this.btnEliminarLinea.Size = new System.Drawing.Size(72, 22);
-            this.btnEliminarLinea.StyleController = this.layoutControl2;
-            this.btnEliminarLinea.TabIndex = 16;
-            this.btnEliminarLinea.Text = "Eliminar";
-            this.btnEliminarLinea.Click += new System.EventHandler(this.btnEliminarLinea_Click);
-            // 
             // simpleButton4
             // 
             this.simpleButton4.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.Image")));
-            this.simpleButton4.Location = new System.Drawing.Point(308, 12);
+            this.simpleButton4.Location = new System.Drawing.Point(139, 12);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(145, 22);
+            this.simpleButton4.Size = new System.Drawing.Size(133, 22);
             this.simpleButton4.StyleController = this.layoutControl2;
             this.simpleButton4.TabIndex = 18;
             this.simpleButton4.Text = "Importar desde Excel";
+
             // 
             // btnImportarSolicitudes
             // 
             this.btnImportarSolicitudes.Image = ((System.Drawing.Image)(resources.GetObject("btnImportarSolicitudes.Image")));
-            this.btnImportarSolicitudes.Location = new System.Drawing.Point(167, 12);
+            this.btnImportarSolicitudes.Location = new System.Drawing.Point(12, 12);
             this.btnImportarSolicitudes.Name = "btnImportarSolicitudes";
-            this.btnImportarSolicitudes.Size = new System.Drawing.Size(137, 22);
+            this.btnImportarSolicitudes.Size = new System.Drawing.Size(123, 22);
             this.btnImportarSolicitudes.StyleController = this.layoutControl2;
             this.btnImportarSolicitudes.TabIndex = 17;
             this.btnImportarSolicitudes.Text = "Importar Solicitudes";
@@ -863,10 +835,8 @@
             this.layoutControlGroup2.GroupBordersVisible = false;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem10,
-            this.layoutControlItem12,
             this.layoutControlItem11,
             this.layoutControlItem14,
-            this.layoutControlItem13,
             this.emptySpaceItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
@@ -883,48 +853,30 @@
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.simpleButton2;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(79, 26);
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
-            // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnImportarSolicitudes;
-            this.layoutControlItem11.Location = new System.Drawing.Point(155, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(141, 26);
+            this.layoutControlItem11.Size = new System.Drawing.Size(127, 26);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.simpleButton4;
-            this.layoutControlItem14.Location = new System.Drawing.Point(296, 0);
+            this.layoutControlItem14.Location = new System.Drawing.Point(127, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(149, 26);
+            this.layoutControlItem14.Size = new System.Drawing.Size(137, 26);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.btnEliminarLinea;
-            this.layoutControlItem13.Location = new System.Drawing.Point(79, 0);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(76, 26);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(445, 0);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(264, 0);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(454, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(635, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // tabMontos
@@ -1813,10 +1765,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             this.tabMontos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
@@ -1940,8 +1890,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraEditors.SimpleButton btnEliminarLinea;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraBars.BarButtonItem btnConfirmar;
         private DevExpress.XtraBars.BarButtonItem btnAnular;
@@ -1966,10 +1914,8 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControl layoutControl3;
         private DevExpress.XtraEditors.MemoEdit txtNotas;
         private DevExpress.XtraEditors.TextEdit txtMontoFactura;

@@ -111,8 +111,10 @@ CONSTRAINT pkinvEstadoSolicitud PRIMARY KEY CLUSTERED
 
 GO
 
+
 CREATE TABLE dbo.invSolicitudCompra(
 	IDSolicitud int NOT NULL,
+	Consecutivo NVARCHAR(20),
 	Fecha date,
 	FechaRequerida date,
 	IDEstado int,
@@ -425,14 +427,23 @@ CREATE TABLE dbo.invParametrosCompra(
 
 GO
 
-CREATE   PROCEDURE dbo.invUpdateSolicitudCompra(@Operacion NVARCHAR(1), @IDSolicitud AS INT OUTPUT, @Fecha date, @FechaRequerida  AS date, @IDEstado AS int ,@Comentario nvarchar(20)
+CREATE   PROCEDURE dbo.invUpdateSolicitudCompra(@Operacion NVARCHAR(1), @IDSolicitud AS INT OUTPUT,@Consecutivo NVARCHAR(20) OUTPUT, @Fecha date, @FechaRequerida  AS date, @IDEstado AS int ,@Comentario nvarchar(20)
 , @UsuarioSolicitud nvarchar(50),@Usuario nvarchar(50),@CreatedDate datetime,@CreatedBy nvarchar(50),@RecordDate datetime,@UpdateBy nvarchar(50))
 AS 
 IF (@Operacion='I')  
 BEGIN
+	DECLARE @IDConsecutivo  AS INT
+	DECLARE @CodigoConsecutivo AS NVARCHAR(4)
+	DECLARE @Documento AS NVARCHAR(20)
+	
+	SET @IDConsecutivo = (SELECT IDConsecSolicitud  FROM dbo.invParametrosCompra WHERE IDParametro=1)
+	
+	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Documento OUTPUT
+	SET @Consecutivo = @Documento
+	
 	SET @IDSolicitud = (SELECT ISNULL(MAX(IDSolicitud),0)  FROM dbo.invSolicitudCompra) + 1
-	INSERT INTO dbo.invSolicitudCompra(IdSolicitud,Fecha,FechaRequerida,IDEstado,Comentario,UsuarioSolicitud,CreateDate,CreatedBy,RecordDate,UpdateBy)
-	VALUES (@IDSolicitud,@Fecha,@FechaRequerida,@IDEstado,@Comentario,@UsuarioSolicitud,@CreatedDate,@CreatedBy,@RecordDate,@UpdateBy)
+	INSERT INTO dbo.invSolicitudCompra(IdSolicitud,Consecutivo,Fecha,FechaRequerida,IDEstado,Comentario,UsuarioSolicitud,CreateDate,CreatedBy,RecordDate,UpdateBy)
+	VALUES (@IDSolicitud,@Documento,@Fecha,@FechaRequerida,@IDEstado,@Comentario,@UsuarioSolicitud,@CreatedDate,@CreatedBy,@RecordDate,@UpdateBy)
 END
 IF (@Operacion='U')
 BEGIN
@@ -449,7 +460,7 @@ GO
 
 CREATE PROCEDURE [dbo].[invGetSolicitudCompraByID] (@IDSolicitud AS INT)
 AS 
-SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario ,UsuarioSolicitud ,
+SELECT  A.IDSolicitud,A.Consecutivo ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario ,UsuarioSolicitud ,
 				A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
 FROM dbo.invSolicitudCompra A
 INNER JOIN dbo.invEstadoSolicitud E ON A.IDEstado=E.IDEstado
@@ -457,13 +468,13 @@ WHERE A.IDSolicitud =@IDSolicitud
 
 GO
 
-CREATE PROCEDURE dbo.invGetSolicitudCompra (@IDSolicitud AS INT, @FechaInicial AS DATETIME,@FechaFinal AS DATE,@IDEstado AS INT)
+CREATE  PROCEDURE dbo.invGetSolicitudCompra (@IDSolicitud AS INT, @FechaInicial AS DATETIME,@FechaFinal AS DATE,@IDEstado AS INT)
 AS 
 
 set @FechaInicial = CONVERT(VARCHAR(25),@FechaInicial,101) 
 set @FechaFinal = CAST(SUBSTRING(CAST(@FechaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
 
-SELECT  A.IDSolicitud ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario  ,UsuarioSolicitud ,
+SELECT  A.IDSolicitud, Consecutivo ,A.Fecha ,A.FechaRequerida ,A.IDEstado , E.Descr DescrEstado,Comentario  ,UsuarioSolicitud ,
 				A.CreateDate ,A.CreatedBy ,A.RecordDate ,A.UpdateBy  
 FROM dbo.invSolicitudCompra A
 INNER JOIN dbo.invEstadoSolicitud E ON A.IDEstado=E.IDEstado
@@ -548,7 +559,7 @@ WHERE (A.IDOrdenCompra = @IDOrdenCompra )
 
 GO
 
-CREATE  PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT OUTPUT,@OrdenCompra NVARCHAR(20) OUTPUT,@Fecha DATETIME, 
+CREATE ALTER  PROCEDURE dbo.invUpdateOrdenCompra (@Operacion nvarchar(1),@IDOrdenCompra INT OUTPUT,@OrdenCompra NVARCHAR(20) OUTPUT,@Fecha DATETIME, 
 										@FechaRequerida DATE, @FechaEmision DATE,@FechaRequeridaEmbarque DATE,@FechaCotizacion DATE,
 										@IDEstado AS INT, @IDBodega AS INT, @IDProveedor AS INT, @IDMoneda AS INT, @IDCondicionPago AS INT, 
 										@Descuento AS DECIMAL(28,4), @Flete AS DECIMAL(28,4),@Seguro AS DECIMAL(28,4),@Documentacion AS DECIMAL(28,4),@Anticipos AS DECIMAL(28,4),
@@ -560,8 +571,15 @@ AS
 IF (@Operacion ='I')
 BEGIN
 	SET @IDOrdenCompra = (SELECT ISNULL(MAX(IDOrdenCompra),0)  FROM dbo.invOrdenCompra ) + 1
-	SET @OrdenCompra = (SELECT dbo.getNextConsecMask ('CO'))
-	UPDATE  dbo.globalConsecMask SET consecutivo = @OrdenCompra WHERE Codigo='CO'
+	
+	DECLARE @IDConsecutivo  AS INT
+	DECLARE @CodigoConsecutivo AS NVARCHAR(4)
+	DECLARE @Documento AS NVARCHAR(20)
+	
+	SET @IDConsecutivo = (SELECT IDConsecOrdenCompra  FROM dbo.invParametrosCompra WHERE IDParametro=1)
+	
+	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Documento OUTPUT
+	SET @OrdenCompra = @Documento
 	
 	INSERT INTO dbo.invOrdenCompra(IDOrdenCompra,OrdenCompra,Fecha,FechaRequerida,FechaEmision,FechaRequeridaEmbarque,FechaCotizacion,IdEstado, IDBodega,IDProveedor,IDMoneda,IDCondicionPago,Descuento,Flete,Seguro,Documentacion,Anticipos,IDEmbarque,IdDocumentoCP,TipoCambio,Usuario,UsuarioCreaEmbarque,FechaCreaEmbarque,UsuarioAprobacion,FechaAprobacion,CreateDate,Createdby,RecordDate,UpdateBy)
 	VALUES (@IDOrdenCompra, @OrdenCompra, @Fecha,@FechaRequerida,@FechaEmision,@FechaRequeridaEmbarque,@FechaCotizacion,@IDEstado,@IDBodega,@IDProveedor,@IDMoneda,@IDCondicionPago,@Descuento,@Flete,@Seguro,@Documentacion,@Anticipos,@IDEmbarque,@IDDocumentoCP,@TipoCambio,@Usuario,@UsuarioEmbarque,@FechaCreaEmbarque,@UsuarioAprobacion,@FechaAprobacion, @CreateDate,@CreatedBy,@RecordDate,@UpdatedBy)
@@ -611,7 +629,7 @@ IF (@Operacion='D')
 GO
 
 
-CREATE ALTER  PROCEDURE dbo.invUpdateEmbaque(@Operacion AS NVARCHAR(1),@IDEmbarque AS INT OUTPUT, @Embarque AS NVARCHAR(20) OUTPUT,@Fecha AS DATE, 
+CREATE   PROCEDURE dbo.invUpdateEmbaque(@Operacion AS NVARCHAR(1),@IDEmbarque AS INT OUTPUT, @Embarque AS NVARCHAR(20) OUTPUT,@Fecha AS DATE, 
 						@FechaEmbarque AS DATE,@Asiento AS NVARCHAR(20),@IDBodega AS INT, @IDProveedor AS INT, @IDOrdenCompra AS INT, 
 						@IDDocumentoCP AS INT, @TipoCambio AS DECIMAL(28,4), @Usuario AS NVARCHAR(50),@CreateDate AS DATETIME, 
 						@CreatedBy AS NVARCHAR(50),@RecordDate AS DATETIME,@UpdateBy AS NVARCHAR(50))
@@ -619,7 +637,12 @@ AS
 IF (@Operacion ='I')
 BEGIN
 	SET @IDEmbarque = 	(SELECT ISNULL(MAX(IDEmbarque),0) +1  FROM dbo.invEmbarque )
-	SET @Embarque = (SELECT  dbo.getNextConsecMask('EM'))
+	
+	DECLARE @IDConsecutivo  AS INT
+	DECLARE @CodigoConsecutivo AS NVARCHAR(4)
+	
+	SET @IDConsecutivo = (SELECT IDConsecOrdenCompra  FROM dbo.invParametrosCompra WHERE IDParametro=1)
+	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Embarque OUTPUT
 	
 	 INSERT INTO dbo.invEmbarque( IDEmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra  ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
 	 VALUES (@IDEmbarque,@Embarque,@Fecha,@FechaEmbarque,@Asiento,@IDBodega,@IDProveedor,@IDOrdenCompra,@IDDocumentoCP,@TipoCambio,@Usuario,@CreateDate,@CreatedBy,@RecordDate,@UpdateBy)
@@ -1091,11 +1114,11 @@ SELECT  IDParametro ,
         GO
         
         
- CREATE  PROCEDURE dbo.invUpdateParametrosCompra ( @IDConsecSolicitud INT, @IDConsecOrdeCompra INT, @IDConsecEmbarque INT, @IDConsecDevolucion INT, @CantLineasOrdenCompra INT, @IDBodegaDefault int,
+ CREATE   PROCEDURE dbo.invUpdateParametrosCompra ( @IDConsecSolicitud INT, @IDConsecOrdeCompra INT, @IDConsecEmbarque INT, @IDConsecDevolucion INT, @CantLineasOrdenCompra INT, @IDBodegaDefault int,
 	@IDTipoCambio int, @CantDecimalesPrecio int, @CantDecimalesCantidad int, @IDTipoAsientoContable int, @IDPaquete INT, @CtaTransitoLocal bigint, @CtrTransitoLocal bigint, @CtaTransitoExterior bigint, @CtrTransitoExterior bigint,
 	@AplicaAutomaticamenteAsiento bit, @CanEditAsiento bit, @CanViewAsiento bit )
 AS 
-UPDATE dbo.invParametrosCompra SET IDConsecSolicitud = @IDConsecSolicitud,  IDConsecEmbarque=@IDConsecEmbarque,IDConsecDevolucion= @IDConsecDevolucion,CantLineasOrdenCompra = @CantLineasOrdenCompra, 
+UPDATE dbo.invParametrosCompra SET IDConsecSolicitud = @IDConsecSolicitud,IDConsecOrdenCompra=@IDConsecOrdeCompra , IDConsecEmbarque=@IDConsecEmbarque,IDConsecDevolucion= @IDConsecDevolucion,CantLineasOrdenCompra = @CantLineasOrdenCompra, 
 	IDBodegaDefault  = @IDBodegaDefault, IDTipoCambio= @IDTipoCambio, CantDecimalesPrecio= @CantDecimalesPrecio,CantDecimalesCantidad= @CantDecimalesCantidad, IDTipoAsientoContable = @IDTipoAsientoContable, IDPaquete = @IDPaquete,  CtaTransitoLocal = @CtaTransitoLocal,
 	CtrTransitoLocal  = @CtrTransitoLocal, CtaTransitoExterior = @CtaTransitoExterior, AplicaAutomaticamenteAsiento =@AplicaAutomaticamenteAsiento, CanEditAsiento = @CanEditAsiento, CanViewAsiento=@CanViewAsiento
 	WHERE IDParametro=1
@@ -1111,3 +1134,11 @@ WHERE (IDConsecutivo = @IDConsecutivo OR @IDConsecutivo =-1) AND (Prefijo = @Pre
 
 GO 
 
+
+CREATE  PROCEDURE dbo.invGetParametroCompra(@Parametro AS NVARCHAR(200)) 
+AS 
+--SET @Paremetro='IDConsecSolicitud'
+DECLARE @SQL AS NVARCHAR(1000) 
+SET @SQL=  'SELECT '+ @Parametro +' FROM dbo.invParametrosCompra WHERE IDParametro=1'
+
+EXEC (@SQL)

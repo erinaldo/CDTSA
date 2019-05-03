@@ -1,4 +1,5 @@
-﻿using DevExpress.DataAccess.ConnectionParameters;
+﻿using CO.DAC;
+using DevExpress.DataAccess.ConnectionParameters;
 using DevExpress.DataAccess.Sql;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
@@ -245,6 +246,14 @@ namespace CO
                 ////Util.Util.SetDefaultBehaviorControls(this.gridView1, true, null, "Embarque", this);
                 ////Util.Util.SetDefaultBehaviorControls(this.gridView2, true, null, "Embarque", this);
                 ////slkupIDProducto
+
+                //Validar que el consecutivo de Solicitud de Compra este asociado 
+                String Consec = clsUtilDAC.GetParametroCompra("IDConsecEmbarque").Tables[0].Rows[0][0].ToString();
+                if (Consec == null || Consec.Trim() == "")
+                {
+                    MessageBox.Show("Por favor establezca el consecutivo a utilizar en la Orden de Compra");
+                    this.Close();
+                }
 
                 dtProductos = CI.DAC.clsProductoDAC.GetData(-1, "*", "*", -1, -1, -1, -1, -1, -1, "*", -1, -1, -1).Tables[0];
                 dtLotes = CI.DAC.clsLoteDAC.GetData(-1, -1, "*", "*").Tables[0];
