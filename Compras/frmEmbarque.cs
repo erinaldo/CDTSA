@@ -34,6 +34,7 @@ namespace CO
         DataTable dtProductos = new DataTable();
         DataTable dtLotes = new DataTable();
         DataTable dtOrdenCompra = new DataTable();
+        double TipoCambio;
 
         private string Accion = "Add";
 
@@ -153,6 +154,12 @@ namespace CO
             this.txtBodega.Tag = cabecera["IDBodega"].ToString();
             this.txtProveedor.Text = cabecera["NombreProveedor"].ToString();
             this.txtProveedor.Tag = cabecera["IDProveedor"].ToString();
+            if (this.linkAsiento.Text != "")
+            {
+                this.btnAplicar.Enabled = false;
+            }
+            else
+                this.btnAplicar.Enabled = true;
         }
 
         private void CargarEmbarque(long IDOrdenCompra,long IDEmbarque) {
@@ -172,43 +179,36 @@ namespace CO
                     fila["IDEmbarque"] = 0;
                     fila["IDProducto"] = row["IDProducto"];
                     fila["DescrProducto"] = row["DescrProducto"];
+                    //fila["Cantidad"] = row["Cantidad"];
                     this.dtDetalleEmbarque.Rows.Add(fila);
 
                 }
+                dtDetalleEmbarque.AcceptChanges();
                 this.dtgLineasEmbarque.DataSource = dtDetalleEmbarque;
             }
             else
                 this.dtgLineasEmbarque.DataSource = dtDetalleEmbarque;
-
+                                                               
             this.dtgLineasOrden.DataSource = dtDetalleOrden;
         }
-
+                                                                                
         private void LoadData()
         {
             try
             {
+
+                TipoCambio = CG.TipoCambioDetalleDAC.GetLastTipoCambioFecha(DateTime.Now);
                 HabilitarControles();
                 HabilitarBotoneriaPrincipal();
                 if (Accion == "Add")
                 {
-
+                    
                     this.dtpFecha.Focus();
                     IDEmbarque = -1;
                     CargarEmbarque(IDOrdenCompra, IDEmbarque);
-                    
-                    foreach (DataRow fila in dtDetalleOrden.Rows)
-                    {
-                        DataRow dr = dtDetalleEmbarque.NewRow();
-                        dr["IDEmbarque"] = -1;
-                        dr["IDProducto"] = fila["IDProducto"];
-                        dr["DescrProducto"] = fila["DescrProducto"];
-                        dr["Cantidad"] = fila["Cantidad"];
-                        dtDetalleEmbarque.Rows.Add(dr);
-                    }                      
-             
-                    dtDetalleEmbarque.AcceptChanges();
-                    
-                    
+
+                 
+                  
                     this.dtgLineasOrden.DataSource = dtDetalleOrden;
                     this.dtgLineasEmbarque.DataSource =dtDetalleEmbarque;
                 }
@@ -572,13 +572,15 @@ namespace CO
                         OrdenCompra = "--";
                         
                         //Ingresar la cabecera de la solicitud
-                        IDEmbarque = DAC.clsEmbarqueDAC.InsertUpdate("I", IDEmbarque,ref Embarque,Fecha,FechaEmbarque,null,IDBodega,IDProveedor,IDOrdenCompra,-1,0, sUsuario, DateTime.Now,sUsuario,DateTime.Now,sUsuario, ConnectionManager.Tran);
+                        IDEmbarque = DAC.clsEmbarqueDAC.InsertUpdate("I", IDEmbarque,ref Embarque,Fecha,FechaEmbarque,null,IDBodega,IDProveedor,IDOrdenCompra,-1,Convert.ToDecimal(TipoCambio), sUsuario, DateTime.Now,sUsuario,DateTime.Now,sUsuario, ConnectionManager.Tran);
                         this.txtEmbarque.Tag = IDEmbarque;
+                        this.txtEmbarque.Text = Embarque;
                         foreach (DataRow row in dt.Rows)
                         {
                             if (row.RowState != DataRowState.Deleted)
                             {
                                 DAC.clsEmbarqueDetalleDAC.InsertUpdate("I", IDEmbarque, (long)row["IDProducto"], (int)row["IDLote"], (decimal)row["Cantidad"], 0, 0, "", ConnectionManager.Tran);
+                                DAC.clsOrdenCompraDetalleDAC.UpdateCantidadRecibida(IDOrdenCompra, (long)row["IDProducto"], (decimal)row["Cantidad"],ConnectionManager.Tran);
                             }
                         }
 
@@ -590,6 +592,7 @@ namespace CO
                         
                          //Eliminamos el detalle y lo volvemos a insertar
                         DAC.clsEmbarqueDetalleDAC.InsertUpdate("D", IDEmbarque,-1,-1,0,0,0,"", ConnectionManager.Tran);
+                        DAC.clsOrdenCompraDetalleDAC.UpdateCantidadRecibida(IDOrdenCompra, -1,0, ConnectionManager.Tran);
                         foreach (DataRow row in dt.Rows)
                         {
                             if (row.RowState != DataRowState.Deleted)
@@ -618,11 +621,8 @@ namespace CO
 
         private void btnCancelarSolicitud_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (this.Accion == "Add")
-                this.Accion = "Add";
-            else
-                this.Accion = "View";
-            LoadData();
+            this.Close();
+           // LoadData();
         }
 
         private void btnEliminarSolicitud_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -672,6 +672,33 @@ namespace CO
 
             tool.ShowPreview();
         }
+
+        private void btnAplicar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                long IDTan = -1;
+                String Asiento = "";
+                ConnectionManager.BeginTran();
+                DAC.clsEmbarqueDAC.CrearPaqueteInventario("CO", Convert.ToInt64(this.txtEmbarque.Tag), sUsuario, ref IDTan, ConnectionManager.Tran);
+                DAC.clsEmbarqueDAC.GeneraAsientoContable("CO", Convert.ToInt64(this.txtEmbarque.Tag), sUsuario, ref Asiento, ConnectionManager.Tran);
+                ConnectionManager.CommitTran();
+                MessageBox.Show("El documento se ha aplicado correctamente ");
+                this.linkAsiento.Text = Asiento;
+                this.btnAplicar.Enabled = false;
+            }
+            catch (Exception Ex) {
+                MessageBox.Show("Han ocurrido los siguientes errores : " + Ex.Message);
+            }
+        }
+
+        private void linkAsiento_Click(object sender, EventArgs e)
+        {
+            CG.frmAsiento ofrmAsiento = new CG.frmAsiento(this.linkAsiento.Text);
+            ofrmAsiento.ShowDialog();
+        }
+
+       
 
     }
 }

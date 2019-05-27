@@ -816,7 +816,6 @@
             this.simpleButton4.StyleController = this.layoutControl2;
             this.simpleButton4.TabIndex = 18;
             this.simpleButton4.Text = "Importar desde Excel";
-
             // 
             // btnImportarSolicitudes
             // 

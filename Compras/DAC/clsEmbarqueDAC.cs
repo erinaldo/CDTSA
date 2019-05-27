@@ -56,8 +56,64 @@ namespace CO.DAC
 
         }
 
+
+        public static long CrearPaqueteInventario(string Modulo, long IDDocumento, String Usuario,ref long IDTransaccion , SqlTransaction tran)
+        {
+            long result = -1;
+            String strSQL = "dbo.invCreaPaqueteEmbarque";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@Modulo", Modulo));
+            oCmd.Parameters.Add(new SqlParameter("@IDDocumento", IDDocumento));
+            oCmd.Parameters.Add(new SqlParameter("@IDTransaccion", IDTransaccion));
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+            oCmd.Parameters["@IDTransaccion"].Direction = ParameterDirection.InputOutput;
+            oCmd.Parameters["@IDTransaccion"].Size = 20;
+            
+            
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            result = oCmd.ExecuteNonQuery();
+
+            IDTransaccion = (long)oCmd.Parameters["@IDTransaccion"].Value;
+
+            return result;
+
+        }
+
+
+        public static long GeneraAsientoContable(string Modulo, long IDDocumento, String Usuario, ref string Asiento, SqlTransaction tran)
+        {
+            long result = -1;
+            String strSQL = "dbo.invGeneraAsientoContableEmbarque";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@Modulo", Modulo));
+            oCmd.Parameters.Add(new SqlParameter("@IDDocumento", IDDocumento));
+            oCmd.Parameters.Add(new SqlParameter("@Asiento", Asiento));
+            oCmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+            oCmd.Parameters["@Asiento"].Direction = ParameterDirection.InputOutput;
+            oCmd.Parameters["@Asiento"].Size = 20;
+            
+
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            result = oCmd.ExecuteNonQuery();
+
+            Asiento = oCmd.Parameters["@Asiento"].Value.ToString();
+
+            return result;
+
+        }
+
+
+
         public static DataSet Get(int IDEmbarque, DateTime FechaInicial, DateTime FechaFinal, int IDProveedor,
-                                int IDSolicitud, string OrdenCompra, int IDDocumentoCP)
+                                int IDSolicitud, string OrdenCompra,string Embarque ,int IDDocumentoCP)
         {
             String strSQL = "dbo.invGetEmbarque";
 
@@ -67,8 +123,9 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@FechaInicial", FechaInicial));
             oCmd.Parameters.Add(new SqlParameter("@FechaFinal", FechaFinal));
             oCmd.Parameters.Add(new SqlParameter("@IDProveedor", IDProveedor));
-            oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
             oCmd.Parameters.Add(new SqlParameter("@OrdenCompra", OrdenCompra));
+            oCmd.Parameters.Add(new SqlParameter("@IDDocumentoCP", IDDocumentoCP));
+            oCmd.Parameters.Add(new SqlParameter("@Embarque", Embarque));
             oCmd.CommandType = CommandType.StoredProcedure;
 
             SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);

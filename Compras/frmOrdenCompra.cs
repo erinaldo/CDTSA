@@ -1247,10 +1247,11 @@ namespace CO
 
         private void btnEmbarque_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (dtOrdenCompra.Rows[0]["IDEmbarque"] != null || dtOrdenCompra.Rows[0]["IDEmbarque"].ToString() != "")
+            if (dtOrdenCompra.Rows[0]["IDEmbarque"].ToString() != "-1")
             {
                 long IDEmbarque = Convert.ToInt64(dtOrdenCompra.Rows[0]["IDEmbarque"]);
                 frmEmbarque ofrmEmbarque = new frmEmbarque(IDOrdenCompra, IDEmbarque, "View");
+                ofrmEmbarque.FormClosed += ofrmEmbarque_FormClosed;
                 ofrmEmbarque.ShowDialog();
             }
             else
@@ -1258,6 +1259,14 @@ namespace CO
                 frmEmbarque ofrmEmarque = new frmEmbarque(IDOrdenCompra);
                 ofrmEmarque.FormClosed += ofrmEmarque_FormClosed;
                 ofrmEmarque.ShowDialog();
+            }
+        }
+
+        void ofrmEmbarque_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmEmbarque ofrm = (frmEmbarque)sender;
+            if (ofrm.IDEmbarque != -1) {
+                dtOrdenCompra.Rows[0]["IDEmbarque"] = ofrm.IDEmbarque;
             }
         }
 

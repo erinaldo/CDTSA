@@ -52,41 +52,140 @@ namespace CO
             //Cargar los valores de las listas
             Util.Util.ConfigLookupEdit(this.slkupSolicitud, DAC.clsGlobalConsecutivosDAC.Get(-1, "*").Tables[0], "Descr", "IDConsecutivo", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupSolicitud, "[{'ColumnCaption':'IDConsecutivo','ColumnField':'IDConsecutivo','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupSolicitud.EditValueChanged += slkupSolicitud_EditValueChanged;
 
             Util.Util.ConfigLookupEdit(this.slkupEmbarque, DAC.clsGlobalConsecutivosDAC.Get(-1, "*").Tables[0], "Descr", "IDConsecutivo", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupEmbarque, "[{'ColumnCaption':'IDConsecutivo','ColumnField':'IDConsecutivo','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupEmbarque.EditValueChanged += slkupEmbarque_EditValueChanged;
 
             Util.Util.ConfigLookupEdit(this.slkupOrdenCompra, DAC.clsGlobalConsecutivosDAC.Get(-1, "*").Tables[0], "Descr", "IDConsecutivo", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupOrdenCompra, "[{'ColumnCaption':'IDConsecutivo','ColumnField':'IDConsecutivo','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupOrdenCompra.EditValueChanged += slkupOrdenCompra_EditValueChanged;
 
             Util.Util.ConfigLookupEdit(this.slkupDevolucion, DAC.clsGlobalConsecutivosDAC.Get(-1, "*").Tables[0], "Descr", "IDConsecutivo", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupDevolucion, "[{'ColumnCaption':'IDConsecutivo','ColumnField':'IDConsecutivo','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupDevolucion.EditValueChanged += slkupDevolucion_EditValueChanged;
 
             Util.Util.ConfigLookupEdit(this.slkupBodegaDefault, CI.DAC.clsBodegaDAC.GetData(-1,"*",-1).Tables[0], "Descr", "IDBodega", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupBodegaDefault, "[{'ColumnCaption':'IDBodega','ColumnField':'IDBodega','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupBodegaDefault.EditValueChanged += slkupBodegaDefault_EditValueChanged;
 
             Util.Util.ConfigLookupEdit(this.slkupTipoCambio, CG.TipoCambioDAC.GetData("*").Tables[0], "Descr", "IDTipoCambio", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoCambio, "[{'ColumnCaption':'IDTipoCambio','ColumnField':'IDTipoCambio','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
 
             Util.Util.ConfigLookupEdit(this.slkupTipoAsientoContable, CG.TipoAsientoDAC.GetData().Tables[0], "Descr", "Tipo", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoAsientoContable, "[{'ColumnCaption':'Tipo','ColumnField':'Tipo','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupTipoAsientoContable.EditValueChanged += slkupTipoAsientoContable_EditValueChanged;
 
-            Util.Util.ConfigLookupEdit(this.slkupPaquete, CI.DAC.clsPaqueteDAC.GetData(-1,"*","*",-1,"*",1).Tables[0], "Descr", "PAQUETE", 350);
+            Util.Util.ConfigLookupEdit(this.slkupPaquete, CI.DAC.clsPaqueteDAC.GetData(-1,"*","*",-1,"*",1).Tables[0], "Descr", "IDPaquete", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupPaquete, "[{'ColumnCaption':'Paquete','ColumnField':'PAQUETE','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupPaquete.EditValueChanged += slkupPaquete_EditValueChanged;
 
-            Util.Util.ConfigLookupEdit(this.slkupCuentaTransExt, CG.CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*","*",-1,-1,-1,1,-1,1).Tables[0], "Descr", "Cuenta", 350);
+            Util.Util.ConfigLookupEdit(this.slkupCuentaTransExt, CG.CuentaContableDAC.GetData(-1,-1,-1,"*","*","*","*","*","*","*",-1,-1,-1,1,-1,1).Tables[0], "Cuenta", "IDCuenta", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaTransExt, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupCuentaTransExt.EditValueChanged += slkupCuentaTransExt_EditValueChanged;
 
-            Util.Util.ConfigLookupEdit(this.slkupCuentaTransLoc, CG.CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, 1).Tables[0], "Descr", "Cuenta", 350);
+            Util.Util.ConfigLookupEdit(this.slkupCuentaTransLoc, CG.CuentaContableDAC.GetData(-1, -1, -1, "*", "*", "*", "*", "*", "*", "*", -1, -1, -1, 1, -1, 1).Tables[0], "Cuenta", "IDCuenta", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCuentaTransLoc, "[{'ColumnCaption':'Cuenta','ColumnField':'Cuenta','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupCuentaTransLoc.EditValueChanged += slkupCuentaTransLoc_EditValueChanged;
 
-            Util.Util.ConfigLookupEdit(this.slkupCentroTransitoExt, CG.CentroCostoDAC.GetData(-1,"*","*","*","*",0).Tables[0], "Descr", "IDCuenta", 350);
+            Util.Util.ConfigLookupEdit(this.slkupCentroTransitoExt, CG.CentroCostoDAC.GetData(-1,"*","*","*","*",0).Tables[0], "Centro", "IDCentro", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroTransitoExt, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupCentroTransitoExt.EditValueChanged += slkupCentroTransitoExt_EditValueChanged;
 
-            Util.Util.ConfigLookupEdit(this.slkupCentroTransitoLoc, CG.CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0], "Descr", "IDCentro", 350);
+            Util.Util.ConfigLookupEdit(this.slkupCentroTransitoLoc, CG.CentroCostoDAC.GetData(-1, "*", "*", "*", "*", 0).Tables[0], "Centro", "IDCentro", 350);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupCentroTransitoLoc, "[{'ColumnCaption':'Centro','ColumnField':'Centro','width':20},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':90}]");
+            this.slkupCentroTransitoLoc.EditValueChanged += slkupCentroTransitoLoc_EditValueChanged;
 
             CargarParametros();
+        }
+
+        void slkupCentroTransitoLoc_EditValueChanged(object sender, EventArgs e)
+        {
+             DataTable dt = (DataTable)this.slkupCentroTransitoLoc.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDCentro='" + this.slkupCentroTransitoLoc.EditValue + "'";
+            this.txtDescrCentroTranLoc.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupCentroTransitoExt_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupCentroTransitoExt.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDCentro='" + this.slkupCentroTransitoExt.EditValue + "'";
+            this.txtDescrCentroTranExt.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupCuentaTransLoc_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupCuentaTransLoc.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDCuenta='" + this.slkupCuentaTransLoc.EditValue + "'";
+            this.txtDescrCuentaTransLoc.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupCuentaTransExt_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupCuentaTransExt.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDCuenta='" + this.slkupCuentaTransExt.EditValue + "'";
+            this.txtDescrCuentaTransExt.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupDevolucion_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupDevolucion.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDConsecutivo='" + this.slkupDevolucion.EditValue + "'";
+            this.txtConsecutivoDev.Text = dv.ToTable().Rows[0]["Consecutivo"].ToString();
+        }
+
+        void slkupOrdenCompra_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupOrdenCompra.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDConsecutivo='" + this.slkupOrdenCompra.EditValue + "'";
+            this.txtConsecutivoOC.Text = dv.ToTable().Rows[0]["Consecutivo"].ToString();
+        }
+
+        void slkupEmbarque_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupEmbarque.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDConsecutivo='" + this.slkupEmbarque.EditValue + "'";
+            this.txtConsecutivoEmbarque.Text = dv.ToTable().Rows[0]["Consecutivo"].ToString();
+        }
+
+        void slkupPaquete_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupPaquete.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDPaquete='" + this.slkupPaquete.EditValue + "'";
+            this.txtDescrPaquete.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupTipoAsientoContable_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupTipoAsientoContable.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "Tipo='" + this.slkupTipoAsientoContable.EditValue + "'";
+            this.txtDescrTipoAsientoContable.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupBodegaDefault_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupBodegaDefault.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDBodega='" + this.slkupBodegaDefault.EditValue + "'";
+            this.txtDescrBodegaDefault.Text = dv.ToTable().Rows[0]["Descr"].ToString();
+        }
+
+        void slkupSolicitud_EditValueChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)this.slkupSolicitud.Properties.DataSource;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "IDConsecutivo='" + this.slkupSolicitud.EditValue + "'";
+            this.txtConsecutivoSol.Text = dv.ToTable().Rows[0]["Consecutivo"].ToString();
         }
 
 
@@ -94,9 +193,10 @@ namespace CO
 
         private void btnGuardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            int? IDSolicitud, IdOrdenCompra, IDEmbarque, IDDevolucion, IDBodegaDefault, IDTipoCambio, IDTipoAsientoContable, IDPaquete;
+            int? IDSolicitud, IdOrdenCompra, IDEmbarque, IDDevolucion, IDBodegaDefault,IDPaquete;
             int CantLineasOrdenCompra,CantDecimalesPrecio, CantDecimalesCantidad;
             long? CtaTransitoLocal, CtaTransitoDol, CtrTransitoLocal, CtrTransitoDol;
+            String IDTipoCambio, IDTipoAsientoContable;
             bool AplicaAutomaticamenteAsiento, CanEditAsiento, CanViewAsiento;
 
             try
@@ -107,15 +207,15 @@ namespace CO
                 IDEmbarque = (int?)this.slkupEmbarque.EditValue;
                 CantLineasOrdenCompra = Convert.ToInt32(this.txtNumMaxLineasOrden.EditValue);
                 IDBodegaDefault = (int?)this.slkupBodegaDefault.EditValue;
-                IDTipoCambio = (int?)this.slkupTipoCambio.EditValue;
+                IDTipoCambio = this.slkupTipoCambio.EditValue.ToString();
                 CantDecimalesPrecio = Convert.ToInt32(this.txtCantDecimalesPrecio.EditValue);
                 CantDecimalesCantidad = Convert.ToInt32(this.txtCantDecimalesCantidad.EditValue);
-                IDTipoAsientoContable = (int?)this.slkupTipoAsientoContable.EditValue;
+                IDTipoAsientoContable = this.slkupTipoAsientoContable.EditValue.ToString();
                 IDPaquete = (int?)this.slkupPaquete.EditValue;
-                CtaTransitoLocal = (long?)this.slkupCuentaTransLoc.EditValue;
-                CtrTransitoLocal = (long?)this.slkupCentroTransitoLoc.EditValue;
-                CtaTransitoDol = (long?)this.slkupCuentaTransExt.EditValue;
-                CtrTransitoDol = (long?)this.slkupCentroTransitoExt.EditValue;
+                CtaTransitoLocal = (this.slkupCuentaTransLoc.EditValue == null ? -1 : Convert.ToInt64(this.slkupCuentaTransLoc.EditValue));
+                CtrTransitoLocal = (this.slkupCentroTransitoLoc.EditValue == null ? -1 : Convert.ToInt64(this.slkupCentroTransitoLoc.EditValue));
+                CtaTransitoDol = (this.slkupCuentaTransExt.EditValue == null ? -1 : Convert.ToInt64(this.slkupCuentaTransExt.EditValue));
+                CtrTransitoDol = (this.slkupCentroTransitoExt.EditValue == null ? -1 : Convert.ToInt64( this.slkupCentroTransitoExt.EditValue));
                 AplicaAutomaticamenteAsiento = Convert.ToBoolean(this.chkAplicaAutomatico.EditValue);
                 CanEditAsiento = Convert.ToBoolean(this.chkModificar.EditValue);
                 CanViewAsiento = Convert.ToBoolean(this.chkVisualizar.EditValue);
@@ -128,5 +228,7 @@ namespace CO
                 MessageBox.Show("Han ocurrido los siguientes errores, por favor revisar: "+ ex.Message);
             }
         }
+
+       
     }
 }

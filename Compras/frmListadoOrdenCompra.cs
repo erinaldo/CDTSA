@@ -329,13 +329,13 @@ namespace CO
         {
             try
             {
-                if (MessageBox.Show("Esta seguro que desea eliminar la solicitud seleccionada ? " ,"Listado de Solicitudes", MessageBoxButtons.YesNo)== System.Windows.Forms.DialogResult.Yes) {
+                if (MessageBox.Show("Esta seguro que desea eliminar la Orden de Compra seleccionada ? " ,"Listado de Ordenes de Compra", MessageBoxButtons.YesNo)== System.Windows.Forms.DialogResult.Yes) {
                     if (currentRow != null)
                     {
-                        //ConnectionManager.BeginTran();
-                        //clsSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDOrdenCompra"]), DateTime.Now, DateTime.Now, -1, "",  "", "", DateTime.Now, "", DateTime.Now, "",  ConnectionManager.Tran);
-                        //clsDetalleSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]), -1, 0, "", ConnectionManager.Tran);
-                        //ConnectionManager.CommitTran();
+                        ConnectionManager.BeginTran();
+                        clsSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDOrdenCompra"]),"", DateTime.Now, DateTime.Now, -1, "", "", "", DateTime.Now, "", DateTime.Now, "", ConnectionManager.Tran);
+                        clsDetalleSolicitudCompraDAC.InsertUpdate("D", Convert.ToInt32(currentRow["IDSolicitud"]), -1, 0, "", ConnectionManager.Tran);
+                        ConnectionManager.CommitTran();
                     }
                     PopulateGrid();
                 }
