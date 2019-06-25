@@ -812,6 +812,8 @@
             this.slkupBodegaDestino.Size = new System.Drawing.Size(266, 20);
             this.slkupBodegaDestino.StyleController = this.layoutControl3;
             this.slkupBodegaDestino.TabIndex = 5;
+            this.slkupBodegaDestino.EditValueChanged += new System.EventHandler(this.slkupBodegaDestino_EditValueChanged);
+
             this.slkupBodegaDestino.KeyDown += new System.Windows.Forms.KeyEventHandler(this.slkupcontrol_KeyDown);
             // 
             // gridView3

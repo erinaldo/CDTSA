@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmbarque));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation4 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
             this.btnCancelar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEliminar = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAplicar = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -153,9 +154,10 @@
             this.btnEditar,
             this.btnGuardar,
             this.btnCancelar,
-            this.btnEliminar});
+            this.btnEliminar,
+            this.btnAplicar});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 1;
+            this.ribbonControl1.MaxItemId = 2;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -198,23 +200,32 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEliminarSolicitud_ItemClick);
             // 
+            // btnAplicar
+            // 
+            this.btnAplicar.Caption = "Aplicar al Inventario";
+            this.btnAplicar.Glyph = ((System.Drawing.Image)(resources.GetObject("btnAplicar.Glyph")));
+            this.btnAplicar.Id = 1;
+            this.btnAplicar.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnAplicar.LargeGlyph")));
+            this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAplicar_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation1.Group = null;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.Group = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation3.Group = null;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            reduceOperation4.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation4.Group = null;
+            reduceOperation4.ItemLinkIndex = 0;
+            reduceOperation4.ItemLinksCount = 0;
+            reduceOperation4.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation4);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -223,6 +234,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnGuardar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnCancelar);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnEliminar);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnAplicar);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // layoutControl1
@@ -262,6 +274,7 @@
             this.linkAsiento.StyleController = this.layoutControl1;
             this.linkAsiento.TabIndex = 11;
             this.linkAsiento.Text = "hyperlinkLabelControl2";
+            this.linkAsiento.Click += new System.EventHandler(this.linkAsiento_Click);
             // 
             // dtpFechaEmbarque
             // 
@@ -336,6 +349,7 @@
             this.colIDProducto.Caption = "ID Producto";
             this.colIDProducto.FieldName = "IDProducto";
             this.colIDProducto.Name = "colIDProducto";
+            this.colIDProducto.OptionsColumn.ReadOnly = true;
             this.colIDProducto.Visible = true;
             this.colIDProducto.VisibleIndex = 0;
             // 
@@ -344,14 +358,16 @@
             this.DescrProd.Caption = "DescrProd";
             this.DescrProd.FieldName = "DescrProducto";
             this.DescrProd.Name = "DescrProd";
+            this.DescrProd.OptionsColumn.ReadOnly = true;
             this.DescrProd.Visible = true;
             this.DescrProd.VisibleIndex = 1;
             // 
             // Cantidad
             // 
             this.Cantidad.Caption = "Cantidad";
-            this.Cantidad.FieldName = "CantidadAceptada";
+            this.Cantidad.FieldName = "Cantidad";
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.OptionsColumn.ReadOnly = true;
             this.Cantidad.Visible = true;
             this.Cantidad.VisibleIndex = 2;
             // 
@@ -764,8 +780,11 @@
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(368, 0);
+            this.emptySpaceItem4.MaxSize = new System.Drawing.Size(0, 17);
+            this.emptySpaceItem4.MinSize = new System.Drawing.Size(10, 17);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(339, 17);
+            this.emptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem4.Text = "Asiento Contable :";
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(84, 0);
             this.emptySpaceItem4.TextVisible = true;
@@ -796,6 +815,7 @@
             this.Controls.Add(this.ribbonControl1);
             this.Name = "frmEmbarque";
             this.Ribbon = this.ribbonControl1;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmEmbarque";
             this.Load += new System.EventHandler(this.frmEmbarque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
@@ -917,6 +937,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
+        private DevExpress.XtraBars.BarButtonItem btnAplicar;
 
     }
 }

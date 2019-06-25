@@ -1167,6 +1167,26 @@ namespace CI
                 control.ShowPopup();
             }
         }
+
+     
+
+       
+
+        private void slkupBodegaDestino_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.slkupTransaccion.EditValue != null && this.slkupBodegaDestino.EditValue != null)
+            {
+                DataRowView dr = (DataRowView)slkupTransaccion.Properties.GetRowByKeyValue(slkupTransaccion.EditValue);
+                if (Convert.ToBoolean(dr["EsTraslado"]))
+                {
+                    if (this.slkupBodegaOrigen.EditValue.ToString() == this.slkupBodegaDestino.EditValue.ToString())
+                    {
+                        MessageBox.Show("La Bodega origen no puede ser igual a la bodega destino, por favor  verifique la transacción");
+                        this.slkupBodegaDestino.EditValue = null;
+                    }
+                }
+            }
+        }
     
 
     

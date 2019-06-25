@@ -47,7 +47,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gridListadoDocumento = new DevExpress.XtraGrid.GridControl();
             this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridIdTransaccion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridIdTransacción = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDocumento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colReferencia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecha = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -293,7 +293,7 @@
             this.gridView.AppearancePrint.FilterPanel.BackColor = System.Drawing.Color.White;
             this.gridView.AppearancePrint.FilterPanel.Options.UseBackColor = true;
             this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridIdTransaccion,
+            this.gridIdTransacción,
             this.colDocumento,
             this.colReferencia,
             this.colFecha,
@@ -304,17 +304,17 @@
             this.gridView.OptionsView.ShowAutoFilterRow = true;
             this.gridView.OptionsView.ShowGroupPanel = false;
             // 
-            // gridIdTransaccion
+            // gridIdTransacción
             // 
-            this.gridIdTransaccion.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.gridIdTransaccion.AppearanceHeader.Options.UseFont = true;
-            this.gridIdTransaccion.Caption = "IDTransaccion";
-            this.gridIdTransaccion.FieldName = "IDTransaccion";
-            this.gridIdTransaccion.Name = "gridIdTransaccion";
-            this.gridIdTransaccion.OptionsColumn.FixedWidth = true;
-            this.gridIdTransaccion.Visible = true;
-            this.gridIdTransaccion.VisibleIndex = 0;
-            this.gridIdTransaccion.Width = 95;
+            this.gridIdTransacción.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gridIdTransacción.AppearanceHeader.Options.UseFont = true;
+            this.gridIdTransacción.Caption = "IDTransaccion";
+            this.gridIdTransacción.FieldName = "IDTransaccion";
+            this.gridIdTransacción.Name = "gridIdTransacción";
+            this.gridIdTransacción.OptionsColumn.FixedWidth = true;
+            this.gridIdTransacción.Visible = true;
+            this.gridIdTransacción.VisibleIndex = 0;
+            this.gridIdTransacción.Width = 95;
             // 
             // colDocumento
             // 
@@ -575,7 +575,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraGrid.GridControl gridListadoDocumento;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView;
-        private DevExpress.XtraGrid.Columns.GridColumn gridIdTransaccion;
+        private DevExpress.XtraGrid.Columns.GridColumn gridIdTransacción;
         private DevExpress.XtraGrid.Columns.GridColumn colDocumento;
         private DevExpress.XtraGrid.Columns.GridColumn colReferencia;
         private DevExpress.XtraGrid.Columns.GridColumn colFecha;

@@ -120,8 +120,10 @@ namespace CI
             _currentRow["UserInsert"] = sUsuario;
             _currentRow["UserUpdate"] = DateTime.Now;
             _currentRow["UpdateDate"] = DateTime.Now;
-
-
+            _currentRow["CostoUltLocal"]= 0;
+            _currentRow["CostoUltDolar"] = 0;
+            _currentRow["CostoPromLocal"] = 0;
+            _currentRow["CostoPromDolar"] = 0;
         }
 
         public void cargarProducto(int Codigo) {
@@ -156,10 +158,10 @@ namespace CI
             this.txtPorcDescAlzaProveedor.EditValue = ((Decimal)_currentRow["PorcDescuentoAlzaProveedor"]).ToString("N" + Util.Util.DecimalLenght); 
 
             //TODO Actualizar los Costos
-            this.txtCostoPromDolar.EditValue = 0;
-            this.txtCostoPromLocal.EditValue = 0;
-            this.txtUltimoCostoDolar.EditValue = 0;
-            this.txtUltimoCostoLocal.EditValue = 0;
+            this.txtCostoPromDolar.EditValue = ((Decimal)_currentRow["CostoPromDolar"]).ToString("N" + Util.Util.DecimalLenght);
+            this.txtCostoPromLocal.EditValue = ((Decimal)_currentRow["CostoPromLocal"]).ToString("N" + Util.Util.DecimalLenght);
+            this.txtUltimoCostoDolar.EditValue = ((Decimal)_currentRow["CostoUltDolar"]).ToString("N" + Util.Util.DecimalLenght);
+            this.txtUltimoCostoLocal.EditValue = ((Decimal)_currentRow["CostoUltLocal"]).ToString("N" + Util.Util.DecimalLenght); 
 
 
             this.slkupClasif1.EditValue = _currentRow["Clasif1"];

@@ -12,8 +12,8 @@ namespace CO.DAC
     public static class clsParametrosDAC
     {
         public static long InsertUpdate(int? IDConsecSolicitud,int? IDConsecOrdenCompra, int? IDConsecEmbarque,
-                        int? IDConsecDevolucion, int CantLineasOrdenCompra, int? IDBodegaDefault, int? IDTipoCambio, 
-                        int CantDecimalesPrecio, int CantDecimalesCantidad, int? IDTipoAsientoContable, int? IDPaquete,
+                        int? IDConsecDevolucion, int CantLineasOrdenCompra, int? IDBodegaDefault, string IDTipoCambio, 
+                        int CantDecimalesPrecio, int CantDecimalesCantidad, String IDTipoAsientoContable, int? IDPaquete,
                         long? CtaTransitoLocal, long? CtrTransitoLocal, long? CtaTransitoExterior, 
                         long? CtrTransitoExterior, bool AplicaAutomaticamenteAsiento, bool CanEditASiento, 
                         bool CanViewAsiento , SqlTransaction tran)
@@ -35,10 +35,10 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@CantDecimalesCantidad", CantDecimalesCantidad));
             oCmd.Parameters.Add(new SqlParameter("@IDTipoAsientoContable", IDTipoAsientoContable == null ? DBNull.Value : (Object)IDTipoAsientoContable));
             oCmd.Parameters.Add(new SqlParameter("@IDPaquete", IDPaquete==null ? DBNull.Value : (Object) IDPaquete));
-            oCmd.Parameters.Add(new SqlParameter("@CtaTransitoLocal", CtaTransitoLocal ==null ? DBNull.Value : (Object) CtaTransitoLocal));
-            oCmd.Parameters.Add(new SqlParameter("@CtrTransitoLocal", CtrTransitoLocal==null ? DBNull.Value : (Object) CtrTransitoLocal));
-            oCmd.Parameters.Add(new SqlParameter("@CtaTransitoExterior", CtaTransitoExterior == null ? DBNull.Value : (Object) CtaTransitoExterior));
-            oCmd.Parameters.Add(new SqlParameter("@CtrTransitoExterior", CtrTransitoExterior == null ? DBNull.Value : (Object) CtrTransitoExterior));
+            oCmd.Parameters.Add(new SqlParameter("@CtaTransitoLocal", CtaTransitoLocal ==-1 ? DBNull.Value : (Object) CtaTransitoLocal));
+            oCmd.Parameters.Add(new SqlParameter("@CtrTransitoLocal", CtrTransitoLocal==-1 ? DBNull.Value : (Object) CtrTransitoLocal));
+            oCmd.Parameters.Add(new SqlParameter("@CtaTransitoExterior", CtaTransitoExterior == -1 ? DBNull.Value : (Object) CtaTransitoExterior));
+            oCmd.Parameters.Add(new SqlParameter("@CtrTransitoExterior", CtrTransitoExterior == -1 ? DBNull.Value : (Object) CtrTransitoExterior));
             oCmd.Parameters.Add(new SqlParameter("@AplicaAutomaticamenteAsiento", AplicaAutomaticamenteAsiento));
             oCmd.Parameters.Add(new SqlParameter("@CanEditAsiento", CanViewAsiento));
             oCmd.Parameters.Add(new SqlParameter("@CanViewAsiento", CanViewAsiento));

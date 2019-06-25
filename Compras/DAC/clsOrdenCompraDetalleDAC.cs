@@ -43,6 +43,27 @@ namespace CO.DAC
         }
 
 
+        public static bool UpdateCantidadRecibida(long IDOrdenCompra, long IDProducto, decimal Cantidad, SqlTransaction tran)
+        {
+            bool result = false ;
+            String strSQL = "dbo.invUpdateCantRecibidaOrdenCompra";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, Security.ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDOrdenCompra", IDOrdenCompra));
+            oCmd.Parameters.Add(new SqlParameter("@IDProducto", IDProducto));
+            oCmd.Parameters.Add(new SqlParameter("@Cantidad", Cantidad));
+
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+            oCmd.Transaction = tran;
+            oCmd.ExecuteNonQuery();
+            result = true;
+            return result;
+
+        }
+
+
         public static DataSet Get(long IDOrdenCompra)
         {
             String strSQL = "dbo.invGetOrdenCompraDetalle";

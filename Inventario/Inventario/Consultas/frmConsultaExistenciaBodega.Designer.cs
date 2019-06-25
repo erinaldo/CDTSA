@@ -217,7 +217,7 @@
             this.DescrProducto.Name = "DescrProducto";
             this.DescrProducto.Visible = true;
             this.DescrProducto.VisibleIndex = 3;
-            this.DescrProducto.Width = 51;
+            this.DescrProducto.Width = 186;
             // 
             // IDLote
             // 
@@ -236,7 +236,7 @@
             this.LoteInterno.Name = "LoteInterno";
             this.LoteInterno.Visible = true;
             this.LoteInterno.VisibleIndex = 5;
-            this.LoteInterno.Width = 48;
+            this.LoteInterno.Width = 81;
             // 
             // LoteProveedor
             // 
@@ -245,7 +245,7 @@
             this.LoteProveedor.Name = "LoteProveedor";
             this.LoteProveedor.Visible = true;
             this.LoteProveedor.VisibleIndex = 6;
-            this.LoteProveedor.Width = 36;
+            this.LoteProveedor.Width = 107;
             // 
             // FechaVence
             // 

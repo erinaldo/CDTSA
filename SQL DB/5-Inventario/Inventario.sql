@@ -1195,6 +1195,7 @@ CREATE  PROCEDURE [dbo].[invGetProducto] @IDProducto BIgint	,@Descr AS NVARCHAR(
 AS 
 	SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra,IDCuentaContable ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
 	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
+	          CostoUltLocal,CostoUltDolar,CostoPromLocal,CostoPromDolar,
 	          Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate FROM dbo.invProducto 
 	          WHERE (IDProducto=@IDProducto OR  @IDProducto=-1)
 	          AND (Clasif1 =@Clasif1 OR @Clasif1=-1) AND (Clasif2 =@Clasif2 OR @Clasif2=-1) AND (Clasif3 =@Clasif3 OR @Clasif3=-1)
@@ -3356,7 +3357,7 @@ WHERE Naturaleza='S'
 
 IF (@IDLote = -1)
 BEGIN
-	SELECT @FechaInicial Fecha,' Saldo Inicial: ' + CAST(A.Saldo  AS NVARCHAR(20)) Documento,'Entradas:  ' + CAST(@Entradas AS NVARCHAR(20))  Referencia,'Salidas:  ' + CAST(@Salidas AS NVARCHAR(20)) Asiento, 'Saldo Final: ' + CAST(B.Saldo AS NVARCHAR(20))  Transaccion,' ' Paquete,' ' IDProducto,' ' DescrProducto,' ' DescrUM,0 FactorEmpaque,0 Cantidad,0 Vol
+	SELECT @FechaInicial Fecha,' Saldo Inicial: ' + CAST(ISNULL(A.Saldo,0.00)  AS NVARCHAR(20)) Documento,'Entradas:  ' + CAST(ISNULL(@Entradas,0.0) AS NVARCHAR(20))  Referencia,'Salidas:  ' + CAST(ISNULL(@Salidas,0) AS NVARCHAR(20)) Asiento, 'Saldo Final: ' + CAST(B.Saldo AS NVARCHAR(20))  Transaccion,' ' Paquete,' ' IDProducto,' ' DescrProducto,' ' DescrUM,0 FactorEmpaque,0 Cantidad,0 Vol
 	FROM @ResultSaldoInicial A
 	INNER JOIN @ResultSaldoFinal B ON A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
 	UNION ALL
@@ -3369,10 +3370,11 @@ BEGIN
 	INNER JOIN dbo.invProducto Pr ON B.IDProducto=Pr.IDProducto
 	INNER JOIN dbo.invUnidadMedida U ON pr.IDUnidad=U.IDUnidad
 	WHERE Fecha  BETWEEN @FechaInicial AND @FechaFinal
+	AND A.IDProducto= @IDProducto AND (a.IDBodega = @IDBodega  OR @IDBodega=-1)
 END
 ELSE
 BEGIN
-	SELECT @FechaInicial Fecha,' Saldo Inicial: ' + CAST(A.Saldo  AS NVARCHAR(20)) Documento,'Entradas:  ' + CAST(@Entradas AS NVARCHAR(20))  Referencia,'Salidas:  ' + CAST(@Salidas AS NVARCHAR(20)) Asiento, 'Saldo Final: ' + CAST(B.Saldo AS NVARCHAR(20))  Transaccion,' ' Paquete,' ' IDProducto,' ' DescrProducto, ' ' LoteProveedor, ' ' FechaVencimiento,' ' DescrUM,0 FactorEmpaque,0 Cantidad,0 Vol  
+	SELECT @FechaInicial Fecha,' Saldo Inicial: ' + CAST(ISNULL(A.Saldo,0)  AS NVARCHAR(20)) Documento,'Entradas:  ' + CAST(ISNULL(@Entradas,0) AS NVARCHAR(20))  Referencia,'Salidas:  ' + CAST(ISNULL(@Salidas,0) AS NVARCHAR(20)) Asiento, 'Saldo Final: ' + CAST(B.Saldo AS NVARCHAR(20))  Transaccion,' ' Paquete,' ' IDProducto,' ' DescrProducto, ' ' LoteProveedor, ' ' FechaVencimiento,' ' DescrUM,0 FactorEmpaque,0 Cantidad,0 Vol  
 	FROM @ResultSaldoInicial A
 	INNER JOIN @ResultSaldoFinal B ON A.IDBodega = B.IDBodega AND A.IDLote = B.IDLote AND A.IDProducto = B.IDProducto
 	UNION ALL
@@ -3386,6 +3388,7 @@ BEGIN
 	INNER JOIN dbo.invLote L ON B.IDProducto=l.IDProducto AND B.IDLote =L.IDLote
 	INNER JOIN dbo.invUnidadMedida U ON pr.IDUnidad=U.IDUnidad
 	WHERE Fecha  BETWEEN @FechaInicial AND @FechaFinal
+	AND A.IDProducto= @IDProducto AND (a.IDBodega = @IDBodega  OR @IDBodega=-1)
 END
 
 DROP TABLE  #Movimientos

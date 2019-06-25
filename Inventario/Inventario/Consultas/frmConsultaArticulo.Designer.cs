@@ -275,6 +275,7 @@
             // chkEtico
             // 
             this.chkEtico.AutoSize = true;
+            this.chkEtico.Enabled = false;
             this.chkEtico.Location = new System.Drawing.Point(16, 72);
             this.chkEtico.Name = "chkEtico";
             this.chkEtico.Size = new System.Drawing.Size(49, 17);
@@ -285,6 +286,7 @@
             // chkMuestra
             // 
             this.chkMuestra.AutoSize = true;
+            this.chkMuestra.Enabled = false;
             this.chkMuestra.Location = new System.Drawing.Point(16, 49);
             this.chkMuestra.Name = "chkMuestra";
             this.chkMuestra.Size = new System.Drawing.Size(65, 17);
@@ -295,6 +297,7 @@
             // chkControlado
             // 
             this.chkControlado.AutoSize = true;
+            this.chkControlado.Enabled = false;
             this.chkControlado.Location = new System.Drawing.Point(16, 25);
             this.chkControlado.Name = "chkControlado";
             this.chkControlado.Size = new System.Drawing.Size(79, 17);
@@ -306,6 +309,7 @@
             // 
             this.txtFactorEmpaque.Location = new System.Drawing.Point(472, 65);
             this.txtFactorEmpaque.Name = "txtFactorEmpaque";
+            this.txtFactorEmpaque.ReadOnly = true;
             this.txtFactorEmpaque.Size = new System.Drawing.Size(221, 20);
             this.txtFactorEmpaque.TabIndex = 8;
             // 
@@ -313,6 +317,7 @@
             // 
             this.txtUnidadMedida.Location = new System.Drawing.Point(98, 65);
             this.txtUnidadMedida.Name = "txtUnidadMedida";
+            this.txtUnidadMedida.ReadOnly = true;
             this.txtUnidadMedida.Size = new System.Drawing.Size(164, 20);
             this.txtUnidadMedida.TabIndex = 7;
             // 
@@ -320,6 +325,7 @@
             // 
             this.txtCodigoBarra.Location = new System.Drawing.Point(472, 39);
             this.txtCodigoBarra.Name = "txtCodigoBarra";
+            this.txtCodigoBarra.ReadOnly = true;
             this.txtCodigoBarra.Size = new System.Drawing.Size(221, 20);
             this.txtCodigoBarra.TabIndex = 6;
             // 
@@ -327,6 +333,7 @@
             // 
             this.txtTipoImpuesto.Location = new System.Drawing.Point(98, 39);
             this.txtTipoImpuesto.Name = "txtTipoImpuesto";
+            this.txtTipoImpuesto.ReadOnly = true;
             this.txtTipoImpuesto.Size = new System.Drawing.Size(164, 20);
             this.txtTipoImpuesto.TabIndex = 5;
             // 
@@ -334,6 +341,7 @@
             // 
             this.txtAlias.Location = new System.Drawing.Point(98, 13);
             this.txtAlias.Name = "txtAlias";
+            this.txtAlias.ReadOnly = true;
             this.txtAlias.Size = new System.Drawing.Size(595, 20);
             this.txtAlias.TabIndex = 4;
             // 
@@ -464,6 +472,7 @@
             // 
             this.txtClasificacion6.Location = new System.Drawing.Point(87, 143);
             this.txtClasificacion6.Name = "txtClasificacion6";
+            this.txtClasificacion6.ReadOnly = true;
             this.txtClasificacion6.Size = new System.Drawing.Size(606, 20);
             this.txtClasificacion6.TabIndex = 9;
             // 
@@ -471,6 +480,7 @@
             // 
             this.txtClasificacion5.Location = new System.Drawing.Point(87, 117);
             this.txtClasificacion5.Name = "txtClasificacion5";
+            this.txtClasificacion5.ReadOnly = true;
             this.txtClasificacion5.Size = new System.Drawing.Size(606, 20);
             this.txtClasificacion5.TabIndex = 8;
             // 
@@ -478,6 +488,7 @@
             // 
             this.txtClasificacion4.Location = new System.Drawing.Point(87, 91);
             this.txtClasificacion4.Name = "txtClasificacion4";
+            this.txtClasificacion4.ReadOnly = true;
             this.txtClasificacion4.Size = new System.Drawing.Size(606, 20);
             this.txtClasificacion4.TabIndex = 7;
             // 
@@ -485,6 +496,7 @@
             // 
             this.txtClasificacion3.Location = new System.Drawing.Point(87, 65);
             this.txtClasificacion3.Name = "txtClasificacion3";
+            this.txtClasificacion3.ReadOnly = true;
             this.txtClasificacion3.Size = new System.Drawing.Size(606, 20);
             this.txtClasificacion3.TabIndex = 6;
             // 
@@ -492,6 +504,7 @@
             // 
             this.txtClasificacion2.Location = new System.Drawing.Point(87, 39);
             this.txtClasificacion2.Name = "txtClasificacion2";
+            this.txtClasificacion2.ReadOnly = true;
             this.txtClasificacion2.Size = new System.Drawing.Size(606, 20);
             this.txtClasificacion2.TabIndex = 5;
             // 
@@ -499,6 +512,7 @@
             // 
             this.txtClasificacion1.Location = new System.Drawing.Point(87, 13);
             this.txtClasificacion1.Name = "txtClasificacion1";
+            this.txtClasificacion1.ReadOnly = true;
             this.txtClasificacion1.Size = new System.Drawing.Size(606, 20);
             this.txtClasificacion1.TabIndex = 4;
             // 
@@ -604,6 +618,7 @@
             // 
             this.txtCostoPromDolar.Location = new System.Drawing.Point(375, 64);
             this.txtCostoPromDolar.Name = "txtCostoPromDolar";
+            this.txtCostoPromDolar.ReadOnly = true;
             this.txtCostoPromDolar.Size = new System.Drawing.Size(242, 20);
             this.txtCostoPromDolar.TabIndex = 7;
             // 
@@ -611,6 +626,7 @@
             // 
             this.txtCostoUltimoDolar.Location = new System.Drawing.Point(375, 38);
             this.txtCostoUltimoDolar.Name = "txtCostoUltimoDolar";
+            this.txtCostoUltimoDolar.ReadOnly = true;
             this.txtCostoUltimoDolar.Size = new System.Drawing.Size(242, 20);
             this.txtCostoUltimoDolar.TabIndex = 6;
             // 
@@ -618,6 +634,7 @@
             // 
             this.txtCostoPromedioLocal.Location = new System.Drawing.Point(91, 64);
             this.txtCostoPromedioLocal.Name = "txtCostoPromedioLocal";
+            this.txtCostoPromedioLocal.ReadOnly = true;
             this.txtCostoPromedioLocal.Size = new System.Drawing.Size(278, 20);
             this.txtCostoPromedioLocal.TabIndex = 5;
             // 
@@ -625,6 +642,7 @@
             // 
             this.txtCostoUltLocal.Location = new System.Drawing.Point(91, 38);
             this.txtCostoUltLocal.Name = "txtCostoUltLocal";
+            this.txtCostoUltLocal.Properties.ReadOnly = true;
             this.txtCostoUltLocal.Size = new System.Drawing.Size(278, 20);
             this.txtCostoUltLocal.StyleController = this.layoutControl4;
             this.txtCostoUltLocal.TabIndex = 4;
@@ -781,6 +799,7 @@
             // 
             this.gridView1.GridControl = this.dtgExistencias;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             // 
             // tabTransacciones
@@ -926,6 +945,7 @@
             this.Usuario});
             this.gridView2.GridControl = this.dtgTransacciones;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.ReadOnly = true;
             this.gridView2.OptionsView.ColumnAutoWidth = false;
             this.gridView2.OptionsView.ShowAutoFilterRow = true;
             // 

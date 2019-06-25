@@ -466,7 +466,7 @@
             // 
             this.colArticulo.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.colArticulo.AppearanceHeader.Options.UseFont = true;
-            this.colArticulo.Caption = "Articulo";
+            this.colArticulo.Caption = "Artículo";
             this.colArticulo.FieldName = "IDProducto";
             this.colArticulo.Name = "colArticulo";
             this.colArticulo.Visible = true;
