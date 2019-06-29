@@ -132,7 +132,7 @@ namespace CI.Consultas
                 else
                     return;
             }
-            //Limpiar las columnas
+            //Limpiar las colu mnas
             this.gridView1.Columns.Clear();
             this.dtgSaldos.DataSource = DTExistencias;
 

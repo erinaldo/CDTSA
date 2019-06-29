@@ -44,32 +44,22 @@
             this.txtOrdenCompra = new DevExpress.XtraEditors.TextEdit();
             this.dtgEmbarques = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-<<<<<<< HEAD
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-=======
-            this.colIDEmbarque = new DevExpress.XtraGrid.Columns.GridColumn();
+            
             this.colEmbarque = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecha = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAsiento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-<<<<<<< HEAD
             this.colIDEmbarque = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEmbarque = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFecha = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAsiento = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
+            
+            
+
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -83,10 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
+
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
@@ -251,8 +238,6 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-<<<<<<< HEAD
-=======
             // colIDEmbarque
             // 
             this.colIDEmbarque.Caption = "ID Embarque";
@@ -298,17 +283,12 @@
             this.colUsuario.VisibleIndex = 4;
             this.colUsuario.Width = 63;
             // 
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem1,
-<<<<<<< HEAD
-            this.emptySpaceItem2,
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem4,
@@ -326,33 +306,19 @@
             this.emptySpaceItem1.AppearanceItemCaption.Options.UseFont = true;
             this.emptySpaceItem1.AppearanceItemCaption.Options.UseTextOptions = true;
             this.emptySpaceItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-<<<<<<< HEAD
             this.emptySpaceItem1.Location = new System.Drawing.Point(151, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(468, 27);
-=======
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 0);
             this.emptySpaceItem1.MaxSize = new System.Drawing.Size(0, 27);
             this.emptySpaceItem1.MinSize = new System.Drawing.Size(10, 27);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(619, 27);
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             this.emptySpaceItem1.Text = "Listado de Embarques";
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(74, 0);
             this.emptySpaceItem1.TextVisible = true;
             // 
-<<<<<<< HEAD
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(151, 27);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.dtgEmbarques;
@@ -398,7 +364,6 @@
             this.layoutControlItem3.Text = "Embarque:";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(74, 13);
             // 
-<<<<<<< HEAD
             // colIDEmbarque
             // 
             this.colIDEmbarque.Caption = "ID Embarque";
@@ -439,8 +404,6 @@
             this.colUsuario.Visible = true;
             this.colUsuario.VisibleIndex = 4;
             // 
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             // frmListadoEmbarque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,10 +428,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
@@ -494,10 +453,8 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-<<<<<<< HEAD
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-=======
->>>>>>> 58a60bc8e0756db20d0494f6e22f8c075e6aae3b
+
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.TextEdit txtOrdenCompra;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
