@@ -16,10 +16,17 @@ namespace CI.Fisico
 {
     public partial class frmPrintBoletasInv : Form
     {
+        public enum typAccion {
+            PrintBoletas,
+            PrintDifBoletas
+        }
 
-        public frmPrintBoletasInv()
+        private typAccion Accion;
+
+        public frmPrintBoletasInv(typAccion pAccion)
         {
             InitializeComponent();
+            this.Accion = pAccion;
         }
 
         private void frmPrintBoletasInv_Load(object sender, EventArgs e)
@@ -67,10 +74,9 @@ namespace CI.Fisico
 
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void ImprimirBoletasdeInventario()
         {
             DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptBoletasInv.repx", true);
-
 
             SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
 
@@ -90,12 +96,52 @@ namespace CI.Fisico
             report.Parameters["Clasif5"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif5));
             report.Parameters["Clasif6"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif6));
             report.Parameters["ConsolidaByProducto"].Value = Convert.ToBoolean(swichtAgrupa.EditValue);
-            
+
 
             // Show the report's print preview.
             DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
 
             tool.ShowPreview();
+        }
+
+
+        private void ImprimirDiferenciasBoletasdeInventario()
+        {
+            DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptDiferenciasBoletasInv.repx", true);
+
+            SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
+
+            SqlDataSource ds = report.DataSource as SqlDataSource;
+            ds.ConnectionName = "sqlDataSource1";
+            String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
+            System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(System.Configuration.ConfigurationManager.ConnectionStrings[sNameConexion].ConnectionString);
+            ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
+
+            // Obtain a parameter, and set its value.
+            report.Parameters["IDBodega"].Value = Convert.ToInt32(GetDefaultValue(this.slkupBodega));
+            report.Parameters["IDProducto"].Value = Convert.ToInt32(GetDefaultValue(this.slkupProducto));
+            report.Parameters["Clasif1"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif1));
+            report.Parameters["Clasif2"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif2));
+            report.Parameters["Clasif3"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif3));
+            report.Parameters["Clasif4"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif4));
+            report.Parameters["Clasif5"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif5));
+            report.Parameters["Clasif6"].Value = Convert.ToInt32(GetDefaultValue(this.slkupClasif6));
+            report.Parameters["ConsolidaByProducto"].Value = Convert.ToBoolean(swichtAgrupa.EditValue);
+
+
+            // Show the report's print preview.
+            DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
+
+            tool.ShowPreview();
+        }
+
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Accion == typAccion.PrintBoletas)
+                ImprimirBoletasdeInventario();
+            else
+                ImprimirDiferenciasBoletasdeInventario();
         }
 
         private int GetDefaultValue(SearchLookUpEdit crt) { 

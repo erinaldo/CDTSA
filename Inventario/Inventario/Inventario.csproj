@@ -323,6 +323,12 @@
     <Compile Include="Reportes\rptBoletasInv.Designer.cs">
       <DependentUpon>rptBoletasInv.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\rptDiferenciasBoletasInv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\rptDiferenciasBoletasInv.Designer.cs">
+      <DependentUpon>rptDiferenciasBoletasInv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\rptDocumentoInv.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -415,6 +421,9 @@
     <EmbeddedResource Include="Reportes\rptBoletasInv.resx">
       <DependentUpon>rptBoletasInv.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptDiferenciasBoletasInv.resx">
+      <DependentUpon>rptDiferenciasBoletasInv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptDocumentoInv.resx">
       <DependentUpon>rptDocumentoInv.cs</DependentUpon>
     </EmbeddedResource>
@@ -432,6 +441,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Reportes\rptBoletasInv.repx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reportes\rptDiferenciasBoletasInv.repx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Reportes\rptDocumentoInv.repx">

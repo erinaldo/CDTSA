@@ -623,7 +623,7 @@ namespace CI.Fisico
 
         private void btnImprimirBoletas_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmPrintBoletasInv ofrmPrint = new frmPrintBoletasInv();
+            frmPrintBoletasInv ofrmPrint = new frmPrintBoletasInv(frmPrintBoletasInv.typAccion.PrintBoletas);
             ofrmPrint.ShowDialog();
         }
 
@@ -642,6 +642,12 @@ namespace CI.Fisico
         private void gridView1_CellValueChanging(object sender, CellValueChangedEventArgs e)
         {
 
+        }
+
+        private void btnImprimirDiferencias_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmPrintBoletasInv ofrmPrint = new frmPrintBoletasInv(frmPrintBoletasInv.typAccion.PrintDifBoletas);
+            ofrmPrint.ShowDialog();
         }
     }
 }

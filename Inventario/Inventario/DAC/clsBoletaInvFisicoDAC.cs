@@ -105,7 +105,7 @@ namespace CI.DAC
             oAdaptador.SelectCommand.Parameters["@IDProducto"].Value = IDProducto;
             oAdaptador.SelectCommand.Parameters["@IDLote"].Value = IdLote;
             oAdaptador.SelectCommand.Parameters["@Validada"].Value = Validada;
-            oAdaptador.SelectCommand.Parameters["@Aplicada"].Value = Validada;
+            oAdaptador.SelectCommand.Parameters["@Aplicada"].Value = Aplicada;
             oAdaptador.SelectCommand.Parameters["@Fecha"].Value = Fecha;
 
             oAdaptador.Fill(DS.Tables["Data"]);

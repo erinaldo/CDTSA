@@ -2243,15 +2243,15 @@ SET @Clasif5=-1
 SET @Clasif6=-1
 SET @ConsolidaByProducto=0
 */
-CREATE TABLE  #Boletas (IDBodega int,IDProducto INT,IDLote INT,Cantidad DECIMAL(28,4))
+DECLARE @Boletas AS TABLE (IDBodega int,IDProducto BIGINT,IDLote BIGINT,Cantidad DECIMAL(28,4))
 
-CREATE TABLE  #Inventario (IDBodega int,IDProducto INT,IDLote INT,Cantidad DECIMAL(28,4))
+DECLARE @Inventario AS TABLE (IDBodega int,IDProducto BIGINT,IDLote BIGINT,Cantidad DECIMAL(28,4))
 
 
 IF (@ConsolidaByProducto=1)
 BEGIN
 	--//Cargar Boletas
-	INSERT INTO #Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	INSERT INTO @Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
 	SELECT B.IDBodega,B.IDProducto,-1 IDLote,SUM(B.Cantidad )
 	FROM dbo.invBoletaInvFisico B
 	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
@@ -2266,7 +2266,7 @@ BEGIN
 	GROUP BY  B.IDBodega ,B.IDProducto 
 	
 	--//Cargar Inventario
-	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	INSERT INTO @Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
 	SELECT B.IDBodega,B.IDProducto,-1 IDLote,SUM(B.Existencia)
 	FROM dbo.invExistenciaBodega B
 	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
@@ -2282,7 +2282,7 @@ BEGIN
 END
 ELSE 
 BEGIN
-	INSERT INTO #Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	INSERT INTO @Boletas( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
 	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Cantidad
 	FROM dbo.invBoletaInvFisico B
 	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
@@ -2295,7 +2295,7 @@ BEGIN
 				    (p.Clasif5=@Clasif5 OR @Clasif5=-1) AND 
 				    (p.Clasif6=@Clasif6 OR @Clasif6=-1) AND B.Aplicada=0
 				    
-	INSERT INTO #Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
+	INSERT INTO @Inventario( IDBodega  ,IDProducto  ,IDLote  ,Cantidad )
 	SELECT B.IDBodega,B.IDProducto,B.IDLote, B.Existencia
 	FROM dbo.invExistenciaBodega B
 	INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
@@ -2309,28 +2309,27 @@ BEGIN
 				    (p.Clasif6=@Clasif6 OR @Clasif6=-1)	 
 END
 
+DECLARE @Catalogo AS TABLE(IDBodega  Int, IDProducto  BIGINT, IDLote  BIGINT)
+
+INSERT INTO  @Catalogo(IDBodega,IDProducto,IDLote)
 SELECT DISTINCT   IDBodega ,
         IDProducto ,
-        IDLote  INTO #Catalogo FROM 
+        IDLote   FROM 
 (
-SELECT IDBodega,IDProducto,IDLote  FROM #Boletas
+SELECT IDBodega,IDProducto,IDLote  FROM @Boletas
 UNION 
-SELECT IDBodega,IDProducto,IDLote  FROM #Inventario
+SELECT IDBodega,IDProducto,IDLote  FROM @Inventario
 ) A
 
 
-SELECT A.IDBodega,BO.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote,L.LoteProveedor,L.FechaVencimiento,ISNULL(B.Cantidad,0) Boleta,ISNULL(C.Cantidad,0) Inventario,ISNULL(B.Cantidad,0) - ISNULL(C.Cantidad,0)  Diferencia FROM #Catalogo A
-LEFT  JOIN #Boletas B ON A.IDBodega = B.IDBodega AND a.IDLote=B.IDLote AND A.IDProducto = B.IDProducto
-LEFT  JOIN #Inventario C ON A.IDBodega = C.IDBodega AND A.IDLote = C.IDLote AND A.IDProducto = C.IDProducto
+SELECT A.IDBodega,BO.Descr DescrBodega,A.IDProducto,P.Descr DescrProducto,A.IDLote,L.LoteProveedor,L.FechaVencimiento,ISNULL(B.Cantidad,0) Boleta,ISNULL(C.Cantidad,0) Inventario,ISNULL(B.Cantidad,0) - ISNULL(C.Cantidad,0)  Diferencia FROM @Catalogo A
+LEFT  JOIN @Boletas B ON A.IDBodega = B.IDBodega AND a.IDLote=B.IDLote AND A.IDProducto = B.IDProducto
+LEFT  JOIN @inventario C ON A.IDBodega = C.IDBodega AND A.IDLote = C.IDLote AND A.IDProducto = C.IDProducto
 LEFT  JOIN dbo.invBodega BO ON A.IDBodega=BO.IDBodega
 LEFT JOIN dbo.invLote L ON A.IDLote = L.IDLote AND A.IDProducto=L.IDProducto
 LEFT  JOIN dbo.invProducto P ON A.IDProducto=P.IDProducto
 WHERE ISNULL(B.Cantidad,0)<> ISNULL(C.Cantidad,0)
 
-
-DROP TABLE #Boletas
-DROP TABLE #Inventario
-DROP TABLE #Catalogo
 
 
 

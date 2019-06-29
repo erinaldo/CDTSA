@@ -229,6 +229,7 @@
             this.btnImprimirDiferencias.Id = 10;
             this.btnImprimirDiferencias.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImprimirDiferencias.LargeGlyph")));
             this.btnImprimirDiferencias.Name = "btnImprimirDiferencias";
+            this.btnImprimirDiferencias.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImprimirDiferencias_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -392,7 +393,7 @@
             // colDescProd
             // 
             this.colDescProd.Caption = "Descr Prod";
-            this.colDescProd.FieldName = "DescrProd";
+            this.colDescProd.FieldName = "DescrProducto";
             this.colDescProd.Name = "colDescProd";
             this.colDescProd.OptionsColumn.ReadOnly = true;
             this.colDescProd.Visible = true;
