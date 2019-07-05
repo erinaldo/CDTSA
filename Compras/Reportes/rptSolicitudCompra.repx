@@ -1,124 +1,124 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XtraReportsLayoutSerializer SerializerVersion="15.2.7.0" Ref="0" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="rptSolicitudCompra" ReportUnit="TenthsOfAMillimeter" Margins="254, 254, 508, 254" PageWidth="2159" PageHeight="2794" Version="15.2" DataMember="invGetSolicitudCompraDetalle" Dpi="254">
+<XtraReportsLayoutSerializer SerializerVersion="15.2.7.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="rptSolicitudCompra" ReportUnit="TenthsOfAMillimeter" Margins="254, 254, 508, 254" PageWidth="2159" PageHeight="2794" Version="15.2" DataMember="invGetSolicitudCompraDetalle" DataSource="#Ref-0" Dpi="254">
   <Parameters>
-    <Item1 Ref="2" Visible="false" ValueInfo="6" Name="IDSolicitudCompra" Type="#Ref-1" />
+    <Item1 Ref="3" Visible="false" ValueInfo="2" Name="IDSolicitudCompra" Type="#Ref-2" />
   </Parameters>
   <CalculatedFields>
-    <Item1 Ref="3" Name="calculatedField1" DisplayName="Usuario" Expression="'Usuario: ' + [UsuarioSolicitud]" DataMember="invGetSolicitudCompraByID" />
+    <Item1 Ref="4" Name="calculatedField1" DisplayName="Usuario" Expression="'Usuario: ' + [UsuarioSolicitud]" DataMember="invGetSolicitudCompraByID" />
   </CalculatedFields>
   <Bands>
-    <Item1 Ref="4" ControlType="DetailBand" Name="Detail" HeightF="61.27743" KeepTogether="true" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
+    <Item1 Ref="5" ControlType="DetailBand" Name="Detail" HeightF="61.27743" KeepTogether="true" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
       <Controls>
-        <Item1 Ref="5" ControlType="XRLabel" Name="xrLabel11" Multiline="true" Text="xrLabel11" SizeF="469.3705,58.42" LocationFloat="902.2292, 0" Dpi="254" Padding="5,5,0,0,254">
+        <Item1 Ref="6" ControlType="XRLabel" Name="xrLabel11" Multiline="true" Text="xrLabel11" SizeF="469.3705,58.42" LocationFloat="902.2292, 0" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="6" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.Comentario" />
+            <Item1 Ref="7" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.Comentario" />
           </DataBindings>
         </Item1>
-        <Item2 Ref="7" ControlType="XRLabel" Name="xrLabel10" Text="xrLabel10" SizeF="224.8959,58.42" LocationFloat="1400.704, 0" Dpi="254" Padding="5,5,0,0,254">
+        <Item2 Ref="8" ControlType="XRLabel" Name="xrLabel10" Text="xrLabel10" SizeF="224.8959,58.42" LocationFloat="1400.704, 0" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="8" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.Cantidad" />
+            <Item1 Ref="9" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.Cantidad" />
           </DataBindings>
         </Item2>
-        <Item3 Ref="9" ControlType="XRLabel" Name="xrLabel9" Text="xrLabel9" SizeF="621.7708,58.42" LocationFloat="254, 0" Dpi="254" Padding="5,5,0,0,254">
+        <Item3 Ref="10" ControlType="XRLabel" Name="xrLabel9" Text="xrLabel9" SizeF="621.7708,58.42" LocationFloat="254, 0" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="10" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.DescrProducto" />
+            <Item1 Ref="11" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.DescrProducto" />
           </DataBindings>
         </Item3>
-        <Item4 Ref="11" ControlType="XRLabel" Name="xrLabel8" Text="xrLabel8" SizeF="254,58.42" LocationFloat="8.074442E-05, 0" Dpi="254" Padding="5,5,0,0,254">
+        <Item4 Ref="12" ControlType="XRLabel" Name="xrLabel8" Text="xrLabel8" SizeF="254,58.42" LocationFloat="8.074442E-05, 0" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="12" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.IDProducto" />
+            <Item1 Ref="13" PropertyName="Text" DataMember="invGetSolicitudCompraDetalle.IDProducto" />
           </DataBindings>
         </Item4>
       </Controls>
     </Item1>
-    <Item2 Ref="13" ControlType="TopMarginBand" Name="TopMargin" HeightF="508.0417" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
+    <Item2 Ref="14" ControlType="TopMarginBand" Name="TopMargin" HeightF="508.0417" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
       <Controls>
-        <Item1 Ref="14" ControlType="XRLabel" Name="xrLabel21" Text="Solicitud de Compra" TextAlignment="TopCenter" SizeF="1601,58.42" LocationFloat="24.59976, 74.70168" Dpi="254" Font="Times New Roman, 12pt, style=Bold" Padding="5,5,0,0,254">
-          <StylePriority Ref="15" UseFont="false" UseTextAlignment="false" />
+        <Item1 Ref="15" ControlType="XRLabel" Name="xrLabel21" Text="Solicitud de Compra" TextAlignment="TopCenter" SizeF="1601,58.42" LocationFloat="24.59976, 74.70168" Dpi="254" Font="Times New Roman, 12pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="16" UseFont="false" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="16" ControlType="XRLabel" Name="xrLabel20" Text="Comentarios:" SizeF="201.0833,45.19078" LocationFloat="5.291667, 326.4793" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
-          <StylePriority Ref="17" UseFont="false" />
+        <Item2 Ref="17" ControlType="XRLabel" Name="xrLabel20" Text="Comentarios:" SizeF="201.0833,45.19078" LocationFloat="5.291667, 326.4793" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="18" UseFont="false" />
         </Item2>
-        <Item3 Ref="18" ControlType="XRLabel" Name="xrLabel16" Text="Estado:" SizeF="259.2916,58.42001" LocationFloat="1112.309, 196.41" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
-          <StylePriority Ref="19" UseFont="false" />
+        <Item3 Ref="19" ControlType="XRLabel" Name="xrLabel16" Text="Estado:" SizeF="259.2916,58.42001" LocationFloat="1112.309, 196.41" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="20" UseFont="false" />
         </Item3>
-        <Item4 Ref="20" ControlType="XRLabel" Name="xrLabel15" Text="Fecha Requerida:" SizeF="259.2916,58.41998" LocationFloat="1112.308, 280.23" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
-          <StylePriority Ref="21" UseFont="false" />
+        <Item4 Ref="21" ControlType="XRLabel" Name="xrLabel15" Text="Fecha Requerida:" SizeF="259.2916,58.41998" LocationFloat="1112.308, 280.23" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="22" UseFont="false" />
         </Item4>
-        <Item5 Ref="22" ControlType="XRLabel" Name="xrLabel13" Text="Fecha:" SizeF="201.0833,58.42" LocationFloat="0, 254.83" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
-          <StylePriority Ref="23" UseFont="false" />
+        <Item5 Ref="23" ControlType="XRLabel" Name="xrLabel13" Text="Fecha:" SizeF="201.0833,58.42" LocationFloat="0, 254.83" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="24" UseFont="false" />
         </Item5>
-        <Item6 Ref="24" ControlType="XRLabel" Name="xrLabel12" Text="ID Solicitud:" SizeF="201.0833,58.42001" LocationFloat="0, 196.41" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
-          <StylePriority Ref="25" UseFont="false" />
+        <Item6 Ref="25" ControlType="XRLabel" Name="xrLabel12" Text="ID Solicitud:" SizeF="201.0833,58.42001" LocationFloat="0, 196.41" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="26" UseFont="false" />
         </Item6>
-        <Item7 Ref="26" ControlType="XRLabel" Name="xrLabel6" Text="xrLabel6" SizeF="254,58.42001" LocationFloat="201.0833, 196.41" Dpi="254" Padding="5,5,0,0,254">
+        <Item7 Ref="27" ControlType="XRLabel" Name="xrLabel6" Text="xrLabel6" SizeF="254,58.42001" LocationFloat="201.0833, 196.41" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="27" PropertyName="Text" DataMember="invGetSolicitudCompraByID.IDSolicitud" />
+            <Item1 Ref="28" PropertyName="Text" DataMember="invGetSolicitudCompraByID.IDSolicitud" />
           </DataBindings>
         </Item7>
-        <Item8 Ref="28" ControlType="XRLabel" Name="xrLabel4" Text="xrLabel4" SizeF="254,58.42001" LocationFloat="1371.6, 196.41" Dpi="254" Padding="5,5,0,0,254">
+        <Item8 Ref="29" ControlType="XRLabel" Name="xrLabel4" Text="xrLabel4" SizeF="254,58.42001" LocationFloat="1371.6, 196.41" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="29" PropertyName="Text" DataMember="invGetSolicitudCompraByID.DescrEstado" />
+            <Item1 Ref="30" PropertyName="Text" DataMember="invGetSolicitudCompraByID.DescrEstado" />
           </DataBindings>
         </Item8>
-        <Item9 Ref="30" ControlType="XRLabel" Name="xrLabel3" Text="xrLabel3" SizeF="254,58.41998" LocationFloat="1371.6, 280.23" Dpi="254" Padding="5,5,0,0,254">
+        <Item9 Ref="31" ControlType="XRLabel" Name="xrLabel3" Text="xrLabel3" SizeF="254,58.41998" LocationFloat="1371.6, 280.23" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="31" PropertyName="Text" DataMember="invGetSolicitudCompraByID.FechaRequerida" />
+            <Item1 Ref="32" PropertyName="Text" DataMember="invGetSolicitudCompraByID.FechaRequerida" />
           </DataBindings>
         </Item9>
-        <Item10 Ref="32" ControlType="XRLabel" Name="xrLabel2" Text="xrLabel2" SizeF="1625.6,121.0733" LocationFloat="0, 371.67" Dpi="254" Padding="5,5,0,0,254">
+        <Item10 Ref="33" ControlType="XRLabel" Name="xrLabel2" Text="xrLabel2" SizeF="1625.6,121.0733" LocationFloat="0, 371.67" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="33" PropertyName="Text" DataMember="invGetSolicitudCompraByID.Comentario" />
+            <Item1 Ref="34" PropertyName="Text" DataMember="invGetSolicitudCompraByID.Comentario" />
           </DataBindings>
         </Item10>
-        <Item11 Ref="34" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="254,58.42" LocationFloat="201.0833, 254.83" Dpi="254" Padding="5,5,0,0,254">
+        <Item11 Ref="35" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="254,58.42" LocationFloat="201.0833, 254.83" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="35" FormatString="{0:dd/MM/yyyy}" PropertyName="Text" DataMember="invGetSolicitudCompraByID.Fecha" />
+            <Item1 Ref="36" FormatString="{0:dd/MM/yyyy}" PropertyName="Text" DataMember="invGetSolicitudCompraByID.Fecha" />
           </DataBindings>
         </Item11>
       </Controls>
     </Item2>
-    <Item3 Ref="36" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="254" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
+    <Item3 Ref="37" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="254" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
       <Controls>
-        <Item1 Ref="37" ControlType="XRLabel" Name="xrLabel7" Text="xrLabel7" TextAlignment="TopRight" SizeF="410.1042,58.42001" LocationFloat="1226.079, 112.16" Dpi="254" Padding="5,5,0,0,254">
+        <Item1 Ref="38" ControlType="XRLabel" Name="xrLabel7" Text="xrLabel7" TextAlignment="TopRight" SizeF="410.1042,58.42001" LocationFloat="1226.079, 112.16" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="38" PropertyName="Text" DataMember="invGetSolicitudCompraByID.calculatedField1" />
+            <Item1 Ref="39" PropertyName="Text" DataMember="invGetSolicitudCompraByID.calculatedField1" />
           </DataBindings>
-          <StylePriority Ref="39" UseTextAlignment="false" />
+          <StylePriority Ref="40" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="40" ControlType="XRLabel" Name="xrLabel23" Text="Fecha:" SizeF="120.1202,42.545" LocationFloat="1158.875, 170.58" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
-          <StylePriority Ref="41" UseFont="false" />
+        <Item2 Ref="41" ControlType="XRLabel" Name="xrLabel23" Text="Fecha:" SizeF="120.1202,42.545" LocationFloat="1158.875, 170.58" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
+          <StylePriority Ref="42" UseFont="false" />
         </Item2>
-        <Item3 Ref="42" ControlType="XRLabel" Name="xrLabel5" Text="xrLabel5" SizeF="372.0046,58.42" LocationFloat="1278.995, 170.58" Dpi="254" Padding="5,5,0,0,254">
+        <Item3 Ref="43" ControlType="XRLabel" Name="xrLabel5" Text="xrLabel5" SizeF="372.0046,58.42" LocationFloat="1278.995, 170.58" Dpi="254" Padding="5,5,0,0,254">
           <DataBindings>
-            <Item1 Ref="43" PropertyName="Text" DataMember="invGetSolicitudCompraByID.CreateDate" />
+            <Item1 Ref="44" PropertyName="Text" DataMember="invGetSolicitudCompraByID.CreateDate" />
           </DataBindings>
         </Item3>
       </Controls>
     </Item3>
-    <Item4 Ref="44" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="66.14584" Dpi="254">
+    <Item4 Ref="45" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="66.14584" Dpi="254">
       <Controls>
-        <Item1 Ref="45" ControlType="XRLine" Name="xrLine1" LineWidth="3" SizeF="1651,15.875" LocationFloat="8.074442E-05, 41.99921" Dpi="254" />
-        <Item2 Ref="46" ControlType="XRLabel" Name="xrLabel17" Text="Descripción Producto" SizeF="529.1667,42.54501" LocationFloat="254.0001, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
-          <StylePriority Ref="47" UseFont="false" />
+        <Item1 Ref="46" ControlType="XRLine" Name="xrLine1" LineWidth="3" SizeF="1651,15.875" LocationFloat="8.074442E-05, 41.99921" Dpi="254" />
+        <Item2 Ref="47" ControlType="XRLabel" Name="xrLabel17" Text="Descripción Producto" SizeF="529.1667,42.54501" LocationFloat="254.0001, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
+          <StylePriority Ref="48" UseFont="false" />
         </Item2>
-        <Item3 Ref="48" ControlType="XRLabel" Name="xrLabel18" Text="Comentarios" SizeF="469.3704,42.54501" LocationFloat="902.2292, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
-          <StylePriority Ref="49" UseFont="false" />
+        <Item3 Ref="49" ControlType="XRLabel" Name="xrLabel18" Text="Comentarios" SizeF="469.3704,42.54501" LocationFloat="902.2292, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
+          <StylePriority Ref="50" UseFont="false" />
         </Item3>
-        <Item4 Ref="50" ControlType="XRLabel" Name="xrLabel19" Text="Cantidad" SizeF="224.8958,42.54501" LocationFloat="1400.704, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
-          <StylePriority Ref="51" UseFont="false" />
+        <Item4 Ref="51" ControlType="XRLabel" Name="xrLabel19" Text="Cantidad" SizeF="224.8958,42.54501" LocationFloat="1400.704, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
+          <StylePriority Ref="52" UseFont="false" />
         </Item4>
-        <Item5 Ref="52" ControlType="XRLabel" Name="xrLabel14" Text="ID Producto" SizeF="201.0833,42.54501" LocationFloat="5.291748, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
-          <StylePriority Ref="53" UseFont="false" />
+        <Item5 Ref="53" ControlType="XRLabel" Name="xrLabel14" Text="ID Producto" SizeF="201.0833,42.54501" LocationFloat="5.291748, 0" Dpi="254" Font="Times New Roman, 9.75pt, style=Bold, charSet=0" Padding="5,5,0,0,254">
+          <StylePriority Ref="54" UseFont="false" />
         </Item5>
       </Controls>
     </Item4>
-    <Item5 Ref="54" ControlType="GroupFooterBand" Name="GroupFooter1" HeightF="47.625" Dpi="254" />
+    <Item5 Ref="55" ControlType="GroupFooterBand" Name="GroupFooter1" HeightF="47.625" Dpi="254" />
   </Bands>
   <ComponentStorage>
-    <Item1 Ref="55" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v15.2" Name="DataSource" Base64="PFNxbERhdGFTb3VyY2U+PE5hbWU+RGF0YVNvdXJjZTwvTmFtZT48Q29ubmVjdGlvbiBOYW1lPSIuX0N1cnJlbnRfQ29ubmVjdGlvbiIgRnJvbUFwcENvbmZpZz0idHJ1ZSIgLz48UXVlcnkgVHlwZT0iU3RvcmVkUHJvY1F1ZXJ5IiBOYW1lPSJpbnZHZXRTb2xpY2l0dWRDb21wcmFCeUlEIj48UGFyYW1ldGVyIE5hbWU9IkBJRFNvbGljaXR1ZCIgVHlwZT0iRGV2RXhwcmVzcy5EYXRhQWNjZXNzLkV4cHJlc3Npb24iPihTeXN0ZW0uSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSkoW1BhcmFtZXRlcnMuSURTb2xpY2l0dWRDb21wcmFdKTwvUGFyYW1ldGVyPjxQcm9jTmFtZT5pbnZHZXRTb2xpY2l0dWRDb21wcmFCeUlEPC9Qcm9jTmFtZT48L1F1ZXJ5PjxRdWVyeSBUeXBlPSJTdG9yZWRQcm9jUXVlcnkiIE5hbWU9ImludkdldFNvbGljaXR1ZENvbXByYURldGFsbGUiPjxQYXJhbWV0ZXIgTmFtZT0iQElEU29saWNpdHVkIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQ2NCwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5JRFNvbGljaXR1ZENvbXByYV0pPC9QYXJhbWV0ZXI+PFByb2NOYW1lPmludkdldFNvbGljaXR1ZENvbXByYURldGFsbGU8L1Byb2NOYW1lPjwvUXVlcnk+PFJlc3VsdFNjaGVtYT48RGF0YVNldCBOYW1lPSJEYXRhU291cmNlIj48VmlldyBOYW1lPSJpbnZHZXRTb2xpY2l0dWRDb21wcmFCeUlEIj48RmllbGQgTmFtZT0iSURTb2xpY2l0dWQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJGZWNoYSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IkZlY2hhUmVxdWVyaWRhIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iSURFc3RhZG8iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJEZXNjckVzdGFkbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDb21lbnRhcmlvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IklET3JkZW5Db21wcmEiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJPcmRlbkNvbXByYSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJVc3VhcmlvU29saWNpdHVkIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlVzdWFyaW9DcmVhT0MiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRmVjaGFDcmVhT0MiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJDcmVhdGVEYXRlIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iQ3JlYXRlZEJ5IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlJlY29yZERhdGUiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJVcGRhdGVCeSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48VmlldyBOYW1lPSJpbnZHZXRTb2xpY2l0dWRDb21wcmFEZXRhbGxlIj48RmllbGQgTmFtZT0iSURTb2xpY2l0dWQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJJRFByb2R1Y3RvIiBUeXBlPSJJbnQ2NCIgLz48RmllbGQgTmFtZT0iRGVzY3JQcm9kdWN0byIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDYW50aWRhZCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iQ29tZW50YXJpbyIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+PC9SZXN1bHRTY2hlbWE+PC9TcWxEYXRhU291cmNlPg==" />
+    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v15.2" Name="DataSource" Base64="PFNxbERhdGFTb3VyY2U+PE5hbWU+RGF0YVNvdXJjZTwvTmFtZT48Q29ubmVjdGlvbiBOYW1lPSIuX0N1cnJlbnRfQ29ubmVjdGlvbiIgRnJvbUFwcENvbmZpZz0idHJ1ZSIgLz48UXVlcnkgVHlwZT0iU3RvcmVkUHJvY1F1ZXJ5IiBOYW1lPSJpbnZHZXRTb2xpY2l0dWRDb21wcmFCeUlEIj48UGFyYW1ldGVyIE5hbWU9IkBJRFNvbGljaXR1ZCIgVHlwZT0iRGV2RXhwcmVzcy5EYXRhQWNjZXNzLkV4cHJlc3Npb24iPihTeXN0ZW0uSW50MzIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSkoW1BhcmFtZXRlcnMuSURTb2xpY2l0dWRDb21wcmFdKTwvUGFyYW1ldGVyPjxQcm9jTmFtZT5pbnZHZXRTb2xpY2l0dWRDb21wcmFCeUlEPC9Qcm9jTmFtZT48L1F1ZXJ5PjxRdWVyeSBUeXBlPSJTdG9yZWRQcm9jUXVlcnkiIE5hbWU9ImludkdldFNvbGljaXR1ZENvbXByYURldGFsbGUiPjxQYXJhbWV0ZXIgTmFtZT0iQElEU29saWNpdHVkIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQ2NCwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5JRFNvbGljaXR1ZENvbXByYV0pPC9QYXJhbWV0ZXI+PFByb2NOYW1lPmludkdldFNvbGljaXR1ZENvbXByYURldGFsbGU8L1Byb2NOYW1lPjwvUXVlcnk+PFJlc3VsdFNjaGVtYT48RGF0YVNldCBOYW1lPSJEYXRhU291cmNlIj48VmlldyBOYW1lPSJpbnZHZXRTb2xpY2l0dWRDb21wcmFCeUlEIj48RmllbGQgTmFtZT0iSURTb2xpY2l0dWQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJDb25zZWN1dGl2byIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJGZWNoYSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IkZlY2hhUmVxdWVyaWRhIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iSURFc3RhZG8iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJEZXNjckVzdGFkbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJDb21lbnRhcmlvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlVzdWFyaW9Tb2xpY2l0dWQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ3JlYXRlRGF0ZSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IkNyZWF0ZWRCeSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJSZWNvcmREYXRlIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iVXBkYXRlQnkiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iaW52R2V0U29saWNpdHVkQ29tcHJhRGV0YWxsZSI+PEZpZWxkIE5hbWU9IklEU29saWNpdHVkIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSURQcm9kdWN0byIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9IkRlc2NyUHJvZHVjdG8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iQ2FudGlkYWQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkNvbWVudGFyaW8iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PC9EYXRhU2V0PjwvUmVzdWx0U2NoZW1hPjwvU3FsRGF0YVNvdXJjZT4=" />
   </ComponentStorage>
   <ObjectStorage>
-    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v15.2" Ref="1" Content="System.Int64" Type="System.Type" />
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v15.2" Ref="2" Content="System.Int64" Type="System.Type" />
   </ObjectStorage>
 </XtraReportsLayoutSerializer>

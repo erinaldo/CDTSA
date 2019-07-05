@@ -583,6 +583,22 @@
         RNuGhCtyPP8LKGqqAE4MWqUAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnOpenTemplate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAhdEVYdFRpdGxlAFRlbXBsYXRlO1BhZ2U7QXJ0aWNsZTtQYXBlcg2sLJcAAAIySURBVDhPdZT9
+        T9NAGMeJRnTAfEH/PX8Cp4mRRBOQQTBqFOMMipkOEyKmjumEAGvnRCDM4QvBGFo3Ued/oDIZ6yasXduv
+        z3Od2rnY5NPnrnnuc3fPXdoCoIWevZGYlrkXz2EsnnV5nEXk0XvBXSbGaLgzqWH0wdpLGtMqxtYF+zjR
+        +zjUcejl0OtvdGBT57a0zrP6vILWcFQV41OZL/8hT9/zsCwHI/ffsaC9QTAqqeBZn77IC5K/Y/ozkmnu
+        u9G0bITG15oE+0cm3oqlKpSk0CDBsotcJ7H8CUbNxvDYKgs6vCs4EBpngYPKTk1Q3rEEesVC6WcN2wIT
+        VdPG5fArFvi9At9wZFUUaHbxI7EhIg+a4fbCBmbq7Bo2hm6usOBgg+Bi+LUQTFPi9HMmh2LZFFEw/4HI
+        obJrIXgjzYJDXkHbhVsZ2LaDqWc5wZNUDoWSKdpxJpUVlGl7vdeXmgTtwVAaFgl+6IZgc9vAd0EV35hi
+        FV+JEtXh7NVFFhz2rqCj99oSanTGk4qGGMHxT1tW3b6soVgx0XNpngVHvAL/uSsLJLApSUWUSWiEGx9S
+        FMyp2NJNnB5KsaCzQXCGrCadsURJnCjNrUOaJTh6+oWSgVMDSRYcbRCwlS+JTkXS6fh4r8VKDVtlg2Y1
+        UKCZN6kWXJdAv9y0Al9X39TKycEkAoMKAgMKuvsVnAjKLudldBHdfQnB8Z7om39v4h760MZny8Wp08n7
+        5KV6OFZv+/kXwFv4BV/Wt9XvCqTsAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="barButtonItem8.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1005,7 +1021,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="simpleButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnImportFromExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAfdEVYdFRpdGxlAEV4cG9ydDtYc2x0O0V4cG9ydFRvWHNsdDsT1nubAAACbElEQVQ4T12TzU8T

@@ -26,7 +26,7 @@
   <Bands>
     <Item1 Ref="19" ControlType="DetailBand" Name="Detail" HeightF="0" TextAlignment="TopLeft" Padding="0,0,0,0,100">
       <SubBands>
-        <Item1 Ref="20" ControlType="SubBand" Name="Productos" HeightF="26.041666">
+        <Item1 Ref="20" ControlType="SubBand" Name="Productos" HeightF="26.04167">
           <FormattingRuleLinks>
             <Item1 Ref="21" Value="#Ref-4" />
           </FormattingRuleLinks>
@@ -36,7 +36,7 @@
                 <Item1 Ref="23" PropertyName="Text" DataMember="invGetBoletasVrsInventario.Producto" />
               </DataBindings>
             </Item1>
-            <Item2 Ref="24" ControlType="XRLabel" Name="xrLabel4" Text="xrLabel4" TextAlignment="TopRight" SizeF="98.958374,23" LocationFloat="479.124969, 0" Padding="2,2,0,0,100">
+            <Item2 Ref="24" ControlType="XRLabel" Name="xrLabel4" Text="xrLabel4" TextAlignment="TopRight" SizeF="98.95837,23" LocationFloat="479.125, 0" Padding="2,2,0,0,100">
               <DataBindings>
                 <Item1 Ref="25" FormatString="{0:#.00}" PropertyName="Text" DataMember="invGetBoletasVrsInventario.Boleta" />
               </DataBindings>
@@ -56,22 +56,22 @@
             </Item4>
           </Controls>
         </Item1>
-        <Item2 Ref="33" ControlType="SubBand" Name="Lotes" HeightF="23.958334">
+        <Item2 Ref="33" ControlType="SubBand" Name="Lotes" HeightF="23.95833">
           <FormattingRuleLinks>
             <Item1 Ref="34" Value="#Ref-2" />
           </FormattingRuleLinks>
           <Controls>
-            <Item1 Ref="35" ControlType="XRLabel" Name="xrLabel15" Text="xrLabel15" SizeF="124.999969,23" LocationFloat="354.124969, 0" Padding="2,2,0,0,96">
+            <Item1 Ref="35" ControlType="XRLabel" Name="xrLabel15" Text="xrLabel15" SizeF="125,23" LocationFloat="354.125, 0" Padding="2,2,0,0,96">
               <DataBindings>
                 <Item1 Ref="36" PropertyName="Text" DataMember="invGetBoletasVrsInventario.LoteProd" />
               </DataBindings>
             </Item1>
-            <Item2 Ref="37" ControlType="XRLabel" Name="xrLabel11" Text="xrLabel6" SizeF="354.124969,23" LocationFloat="0, 0" Padding="2,2,0,0,100">
+            <Item2 Ref="37" ControlType="XRLabel" Name="xrLabel11" Text="xrLabel6" SizeF="354.125,23" LocationFloat="0, 0" Padding="2,2,0,0,100">
               <DataBindings>
                 <Item1 Ref="38" PropertyName="Text" DataMember="invGetBoletasVrsInventario.Producto" />
               </DataBindings>
             </Item2>
-            <Item3 Ref="39" ControlType="XRLabel" Name="xrLabel12" Text="xrLabel4" TextAlignment="TopRight" SizeF="98.958374,23" LocationFloat="479.124969, 0" Padding="2,2,0,0,100">
+            <Item3 Ref="39" ControlType="XRLabel" Name="xrLabel12" Text="xrLabel4" TextAlignment="TopRight" SizeF="98.95837,23" LocationFloat="479.125, 0" Padding="2,2,0,0,100">
               <DataBindings>
                 <Item1 Ref="40" FormatString="{0:#.00}" PropertyName="Text" DataMember="invGetBoletasVrsInventario.Boleta" />
               </DataBindings>
@@ -95,15 +95,15 @@
     </Item1>
     <Item2 Ref="48" ControlType="TopMarginBand" Name="TopMargin" HeightF="100" TextAlignment="TopLeft" Padding="0,0,0,0,100">
       <Controls>
-        <Item1 Ref="49" ControlType="XRLabel" Name="xrLabel17" Text="Reporte de Diferencias de Boletas" TextAlignment="TopCenter" SizeF="570.833435,23.0000019" LocationFloat="154.874954, 30.5833454" Font="Verdana, 14pt" Padding="2,2,0,0,100">
+        <Item1 Ref="49" ControlType="XRLabel" Name="xrLabel17" Text="Reporte de Diferencias de Boletas" TextAlignment="TopCenter" SizeF="570.8334,23" LocationFloat="154.875, 30.58335" Font="Verdana, 14pt" Padding="2,2,0,0,100">
           <StylePriority Ref="50" UseFont="false" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="51" ControlType="XRPictureBox" Name="xrPictureBox1" SizeF="100,82.41669" LocationFloat="50.2915955, 8.791664">
+        <Item2 Ref="51" ControlType="XRPictureBox" Name="xrPictureBox1" SizeF="100,82.41669" LocationFloat="50.2916, 8.791664">
           <DataBindings>
             <Item1 Ref="52" PropertyName="Image" DataMember="Generales.Logo" />
           </DataBindings>
         </Item2>
-        <Item3 Ref="53" ControlType="XRLabel" Name="xrLabel18" Text="xrLabel17" TextAlignment="TopCenter" SizeF="570.833435,23.0000076" LocationFloat="154.874954, 58.3658371" Padding="2,2,0,0,100">
+        <Item3 Ref="53" ControlType="XRLabel" Name="xrLabel18" Text="xrLabel17" TextAlignment="TopCenter" SizeF="570.8334,23.00001" LocationFloat="154.875, 58.36584" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="54" PropertyName="Text" DataMember="Generales.Nombre" />
           </DataBindings>
@@ -112,18 +112,18 @@
       </Controls>
     </Item2>
     <Item3 Ref="56" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="100" TextAlignment="TopLeft" Padding="0,0,0,0,100" />
-    <Item4 Ref="57" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="45.9999847">
+    <Item4 Ref="57" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="45.99998">
       <GroupFields>
         <Item1 Ref="58" FieldName="DescrBodega" />
       </GroupFields>
       <Controls>
-        <Item1 Ref="59" ControlType="XRLabel" Name="xrLabel16" Text="Lote" TextAlignment="TopLeft" SizeF="87.50003,23" LocationFloat="354.124969, 22.9999866" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item1 Ref="59" ControlType="XRLabel" Name="xrLabel16" Text="Lote" TextAlignment="TopLeft" SizeF="87.50003,23" LocationFloat="354.125, 22.99999" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <FormattingRuleLinks>
             <Item1 Ref="60" Value="#Ref-2" />
           </FormattingRuleLinks>
           <StylePriority Ref="61" UseFont="false" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="62" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="122.916664,23" LocationFloat="59.375, 0" Font="Times New Roman, 11pt, style=Bold" Padding="2,2,0,0,100">
+        <Item2 Ref="62" ControlType="XRLabel" Name="xrLabel1" Text="xrLabel1" SizeF="122.9167,23" LocationFloat="59.375, 0" Font="Times New Roman, 11pt, style=Bold" Padding="2,2,0,0,100">
           <DataBindings>
             <Item1 Ref="63" PropertyName="Text" DataMember="invGetBoletasVrsInventario.DescrBodega" />
           </DataBindings>
@@ -132,16 +132,16 @@
         <Item3 Ref="65" ControlType="XRLabel" Name="xrLabel2" Text="Bodega:" SizeF="59.375,23" LocationFloat="0, 0" Font="Times New Roman, 11pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="66" UseFont="false" />
         </Item3>
-        <Item4 Ref="67" ControlType="XRLabel" Name="xrLabel7" Text="Producto" SizeF="311.458344,22.9999981" LocationFloat="0, 22.9999866" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item4 Ref="67" ControlType="XRLabel" Name="xrLabel7" Text="Producto" SizeF="311.4583,23" LocationFloat="0, 22.99999" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="68" UseFont="false" />
         </Item4>
-        <Item5 Ref="69" ControlType="XRLabel" Name="xrLabel9" Text="Cant Inventario" TextAlignment="TopCenter" SizeF="97.916626,23" LocationFloat="578.083435, 22.9999866" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item5 Ref="69" ControlType="XRLabel" Name="xrLabel9" Text="Cant Inventario" TextAlignment="TopCenter" SizeF="97.91663,23" LocationFloat="578.0834, 22.99999" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="70" UseFont="false" UseTextAlignment="false" />
         </Item5>
-        <Item6 Ref="71" ControlType="XRLabel" Name="xrLabel8" Text="Cant Boleta" TextAlignment="TopCenter" SizeF="87.50003,23" LocationFloat="490.583344, 22.9999866" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item6 Ref="71" ControlType="XRLabel" Name="xrLabel8" Text="Cant Boleta" TextAlignment="TopCenter" SizeF="87.50003,23" LocationFloat="490.5833, 22.99999" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="72" UseFont="false" UseTextAlignment="false" />
         </Item6>
-        <Item7 Ref="73" ControlType="XRLabel" Name="xrLabel10" Text="Diferencia" TextAlignment="TopCenter" SizeF="87.50003,23" LocationFloat="686.375, 22.9999866" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item7 Ref="73" ControlType="XRLabel" Name="xrLabel10" Text="Diferencia" TextAlignment="TopCenter" SizeF="87.50003,23" LocationFloat="686.375, 22.99999" Font="Times New Roman, 9.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="74" UseFont="false" UseTextAlignment="false" />
         </Item7>
       </Controls>

@@ -606,6 +606,19 @@ INNER JOIN dbo.invEstadoOrdenCompra E ON A.Estado=E.IDEstadoOrden
 LEFT  JOIN (SELECT DISTINCT  IDOrdenCompra,IDProducto  FROM dbo.invSolicitudOrdenCompra) F ON A.IDOrdenCompra=F.IDOrdenCompra AND A.IDProducto=F.IDProducto
 WHERE A.IDOrdenCompra=@IDOrdenCompra
 
+GO
+
+
+CREATE   PROCEDURE dbo.invGetOrdenCompraDetalleEmptyExcel
+AS 
+SELECT A.IDOrdenCompra,A.IDProducto,P.Descr DescrProducto,A.Estado,E.Descr DescrEstado,A.Cantidad,A.CantidadAceptada,A.CantidadRechazada,A.Impuesto,A.MontoDesc,A.PorcDesc,A.PrecioUnitario,A.Comentario,CASE WHEN (F.IDOrdenCompra IS NOT NULL ) THEN 1 ELSE 0 END IsLoadFromSolicitud,A.Estado Status,P.Descr DescrStatus
+  FROM dbo.invOrdenCompraDetalle A
+INNER JOIN dbo.invProducto P ON		A.IDProducto = P.IDProducto
+INNER JOIN dbo.invEstadoOrdenCompra E ON A.Estado=E.IDEstadoOrden
+LEFT  JOIN (SELECT DISTINCT  IDOrdenCompra,IDProducto  FROM dbo.invSolicitudOrdenCompra) F ON A.IDOrdenCompra=F.IDOrdenCompra AND A.IDProducto=F.IDProducto
+WHERE 1=2
+
+
 GO 
 
 CREATE PROCEDURE dbo.invUpdateOrdenCompraDetalle(@Operacion AS NVARCHAR(1),@IDOrdenCompra AS INT,@IDProducto AS BIGINT,@Cantidad AS DECIMAL(28,4),@CantidadAceptada AS DECIMAL(28,4),

@@ -18,6 +18,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
+using System.IO;
 
 namespace CO
 {
@@ -1136,6 +1139,9 @@ namespace CO
                 ofrmImportarSolicitud.FormClosed += ofrmImportarSolicitud_FormClosed;
                 ofrmImportarSolicitud.ShowDialog();
             }
+            else {
+                MessageBox.Show("Por favor seleccione el proveedor para poder importar una solicitud de Compra");
+            }
         }
 
 
@@ -1175,7 +1181,7 @@ namespace CO
                         this.dtDetalleOrden.Rows.InsertAt(nuevaFila, 0);
                         //this.dtDetalleOrden.Rows.Add(fila);
                     }
-                
+                    CalcularMontosOrden();
                
             }
 
@@ -1279,8 +1285,57 @@ namespace CO
             }
         }
 
-      
-      
+        private void btnImportFromExcel_Click(object sender, EventArgs e)
+        {
+            if (this.slkupProveedor.EditValue != null)
+            {
+                frmImportFromExcel ofrmImport = new frmImportFromExcel(Convert.ToInt32(this.slkupProveedor.EditValue));
+                ofrmImport.FormClosed += ofrmImport_FormClosed;
+                ofrmImport.Show();
+            }
+            else {
+                MessageBox.Show("Por favor seleccione el proveedor para poder importar desde Excel");
+            }
+        }
+
+        void ofrmImport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmImportFromExcel ofrm = (frmImportFromExcel)sender;
+            if (ofrm.IsResult == true) {
+                foreach (DataRow fila in ofrm.dtDetalleOrden.Rows)
+                {
+                    DataRow nuevaFila = this.dtDetalleOrden.NewRow();
+                    nuevaFila["IDProducto"] = fila["IDProducto"];
+                    nuevaFila["DescrProducto"] = fila["DescrProducto"];
+                    nuevaFila["Cantidad"] = fila["Cantidad"];
+                    nuevaFila["PrecioUnitario"] = fila["PrecioUnitario"];
+                    nuevaFila["MontoDesc"] = fila["MontoDesc"];
+                    if (Convert.ToDecimal(fila["PorcDesc"]) > 0) {
+                        decimal Cantidad = Convert.ToDecimal(fila["Cantidad"]);
+                        decimal Precio = Convert.ToDecimal(fila["PrecioUnitario"]);
+                        decimal Porc = Convert.ToDecimal(fila["PorcDesc"]);
+                        nuevaFila["MontoDesc"] = (Cantidad * Precio) * (Porc / 100);
+                    }
+                    nuevaFila["PorcDesc"] = fila["PorcDesc"];
+                    nuevaFila["Comentario"] = fila["Comentario"];
+                    nuevaFila["Impuesto"] = fila["Impuesto"];
+                    nuevaFila["IsLoadFromSolicitud"] = 0;
+                    this.dtDetalleOrden.Rows.InsertAt(nuevaFila, 0);
+                    
+                }
+
+                CalcularMontosOrden();
+            }
+        }
+
+        private void btnOpenTemplate_Click(object sender, EventArgs e)
+        {
+            String Ruta = Path.Combine(Directory.GetCurrentDirectory(), "FilesTemplate/import_Orden.xlsx"); 
+            System.Diagnostics.Process.Start(@Ruta);
+        }                                       
+
 
     }
+
+  
 }

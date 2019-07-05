@@ -592,9 +592,6 @@ namespace CO
         {
             DevExpress.XtraReports.UI.XtraReport report = DevExpress.XtraReports.UI.XtraReport.FromFile("./Reportes/rptSolicitudCompra.repx", true);
 
-
-            SqlDataSource sqlDataSource = report.DataSource as SqlDataSource;
-
             SqlDataSource ds = report.DataSource as SqlDataSource;
             ds.ConnectionName = "DataSource";
             String sNameConexion = (Security.Esquema.Compania == "CEDETSA") ? "StringConCedetsa" : "StringConDasa";
@@ -602,12 +599,14 @@ namespace CO
             ds.ConnectionParameters = new DevExpress.DataAccess.ConnectionParameters.MsSqlConnectionParameters(builder.DataSource, builder.InitialCatalog, builder.UserID, builder.Password, MsSqlAuthorizationType.SqlServer);
 
             // Obtain a parameter, and set its value.
-            report.Parameters["IDSolicitudCompra"].Value = Convert.ToInt32(this.txtIDSolicitud.Text.Trim());
+            report.Parameters["IDSolicitudCompra"].Value = Convert.ToInt32(this.txtIDSolicitud.Tag.ToString().Trim());
 
             // Show the report's print preview.
             DevExpress.XtraReports.UI.ReportPrintTool tool = new DevExpress.XtraReports.UI.ReportPrintTool(report);
 
             tool.ShowPreview();
+
+
         }
 
         private void btnRechazar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

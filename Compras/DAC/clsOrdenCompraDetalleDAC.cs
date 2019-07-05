@@ -80,5 +80,22 @@ namespace CO.DAC
             oAdap.Fill(DS,"Data");
             return DS;
         }
+
+
+        public static DataSet GetEmptyImportExcel()
+        {
+            String strSQL = "dbo.invGetOrdenCompraDetalleEmptyExcel";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+
+            oAdap.Fill(DS, "Data");
+            return DS;
+        }
     }
 }

@@ -51,6 +51,7 @@
     <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -107,6 +108,12 @@
     <Compile Include="DAC\clsProveedorDAC.cs" />
     <Compile Include="DAC\clsSolicitudCompraDAC.cs" />
     <Compile Include="DAC\clsUtilDAC.cs" />
+    <Compile Include="frmImportFromExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImportFromExcel.Designer.cs">
+      <DependentUpon>frmImportFromExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmArticuloProveedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +200,9 @@
     <Compile Include="Reportes\rptSolicitudCompra.Designer.cs">
       <DependentUpon>rptSolicitudCompra.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmImportFromExcel.resx">
+      <DependentUpon>frmImportFromExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmArticuloProveedor.resx">
       <DependentUpon>frmArticuloProveedor.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +256,9 @@
     <EmbeddedResource Include="Reportes\rptSolicitudCompra.resx">
       <DependentUpon>rptSolicitudCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="FilesTemplate\import_Orden.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -300,6 +313,35 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

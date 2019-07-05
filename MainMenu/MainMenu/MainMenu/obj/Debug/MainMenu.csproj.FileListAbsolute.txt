@@ -134,3 +134,4 @@ C:\Users\Public\Documents\S4U\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA
 C:\Users\Public\Documents\S4U\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.exe.manifest
 C:\Users\Public\Documents\S4U\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.application
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Reportes\rptDiferenciasBoletasInv.repx
+C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\FilesTemplate\import_Orden.xlsx
