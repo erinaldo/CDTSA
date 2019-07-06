@@ -29,6 +29,8 @@ namespace CO.DAC
             oCmd.Parameters.Add(new SqlParameter("@IDSolicitud", IDSolicitud));
             oCmd.Parameters["@IDSolicitud"].Direction = ParameterDirection.InputOutput;
             oCmd.Parameters.Add(new SqlParameter("@Consecutivo", Consecutivo));
+            oCmd.Parameters["@Consecutivo"].Size = 20;
+            oCmd.Parameters["@Consecutivo"].SqlDbType = SqlDbType.Char;
             oCmd.Parameters["@Consecutivo"].Direction = ParameterDirection.InputOutput;
             oCmd.Parameters.Add(new SqlParameter("@Fecha", Fecha));
            oCmd.Parameters.Add(new SqlParameter("@FechaRequerida", FechaRequerida));

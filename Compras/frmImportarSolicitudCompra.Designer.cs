@@ -604,7 +604,6 @@
             this.btnImportar.StyleController = this.layoutControl1;
             this.btnImportar.TabIndex = 18;
             this.btnImportar.Text = "Importar";
-
             // 
             // btnCancelar
             // 
@@ -643,7 +642,6 @@
             this.gridView1.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
-            
             this.gridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.gridView1_InvalidRowException);
             this.gridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridView1_ValidateRow);
             // 
@@ -713,6 +711,8 @@
             // 
             // colCantOrdenada
             // 
+            this.colCantOrdenada.AppearanceCell.BackColor = System.Drawing.Color.PaleGreen;
+            this.colCantOrdenada.AppearanceCell.Options.UseBackColor = true;
             this.colCantOrdenada.Caption = "Cantidad Ordenada";
             this.colCantOrdenada.FieldName = "CantOrdenada";
             this.colCantOrdenada.Name = "colCantOrdenada";

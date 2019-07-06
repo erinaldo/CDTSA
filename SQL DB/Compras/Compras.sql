@@ -659,7 +659,7 @@ BEGIN
 	SET @IDConsecutivo = (SELECT IDConsecEmbarque  FROM dbo.invParametrosCompra WHERE IDParametro=1)
 	EXEC [dbo].[invGetNextGlobalConsecutivo] @IDConsecutivo,@Embarque OUTPUT
 	
-	 INSERT INTO dbo.invEmbarque( IDEmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra  ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
+	 INSERT INTO dbo.invEmbarque( IDEfmbarque ,Embarque ,Fecha ,FechaEmbarque ,Asiento ,IDBodega ,IDProveedor ,IDOrdenCompra  ,IDDocumentoCP ,TipoCambio ,Usuario ,CreateDate ,CreatedBy ,RecordDate ,UpdateBy)
 	 VALUES (@IDEmbarque,@Embarque,@Fecha,@FechaEmbarque,@Asiento,@IDBodega,@IDProveedor,@IDOrdenCompra,@IDDocumentoCP,@TipoCambio,@Usuario,@CreateDate,@CreatedBy,@RecordDate,@UpdateBy)
 	 
 	 UPDATE dbo.invOrdenCompra SET IDEmbarque=@IDEmbarque WHERE IDOrdenCompra =@IDOrdenCompra
@@ -897,7 +897,7 @@ BEGIN
 	INSERT INTO dbo.invSolicitudOrdenCompra( IDSolicitud ,IDOrdenCompra ,IDProducto ,Cantidad ,Usuario ,Fecha)
 	VALUES (@IDSolicitud,@IDOrdenCompra,@IDProducto,@Cantidad,@Usuario,@Fecha)		
 END
-IF (@Operacion='D')
+IF (@Operacion='D')x
 	DELETE FROM dbo.invSolicitudOrdenCompra WHERE (IDProducto=@IDProducto OR @IDProducto=-1) AND (IDSolicitud=@IDSolicitud OR @IDSolicitud=-1) AND IDOrdenCompra =@IDOrdenCompra
 
 
@@ -988,7 +988,7 @@ GO
 --SELECT  @IDEmbarque ,IDProducto ,Cantidad ,CantidadAceptada ,CantidadRechazada ,PrecioUnitario ,Impuesto ,PorcDesc ,MontoDesc ,Estado ,Comentario  
 --FROM dbo.invOrdenCompraDetalle WHERE IDOrdenCompra=@IDOrdenCompra
 
-CREATE   PROCEDURE dbo.invGetEmbarqueByID(@IDEmbarque AS INT,@IDOrdenCompra AS INT)
+CREATE    PROCEDURE dbo.invGetEmbarqueByID(@IDEmbarque AS INT,@IDOrdenCompra AS INT)
 AS 
 IF (@IDEmbarque =-1)
 BEGIN
@@ -998,6 +998,7 @@ SELECT  -1 IDEmbarque ,'--' Embarque ,GETDATE() Fecha ,B.FechaRequerida FechaEmb
 	RIGHT  JOIN dbo.invOrdenCompra B ON A.IDOrdenCompra = B.IDOrdenCompra
 	LEFT  JOIN dbo.cppProveedor C ON B.IDProveedor=C.IDProveedor
 	LEFT  JOIN dbo.invBodega D ON B.IDBodega=D.IDBodega
+	WHERE B.IDOrdenCompra = @IDOrdenCompra
 	
 END 
 ELSE	

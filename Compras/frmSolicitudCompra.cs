@@ -111,6 +111,7 @@ namespace CO
                 this.gridView1.OptionsBehavior.ReadOnly = false;
                 this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
                 this.gridView1.OptionsBehavior.AllowDeleteRows =  DevExpress.Utils.DefaultBoolean.True;
+                
             }
             else
             {
@@ -241,12 +242,6 @@ namespace CO
                 this.slkupIDProducto.Popup += slkup_Popup;
                 this.slkupIDProducto.PopulateViewColumns();
 
-
-
-
-                //Util.Util.ConfigLookupEdit(this.slkupIDProducto, clsGlobalTipoTransaccionDAC.Get(-1, "*", "*", _dtPaquete.Rows[0]["Transaccion"].ToString()).Tables[0], "Descr", "IDTipoTran");
-                //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupIDProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
                 this.slkupDescrProducto.DataSource = dtProductos;
                 this.slkupDescrProducto.DisplayMember = "Descr";
                 this.slkupDescrProducto.ValueMember = "IDProducto";
@@ -255,12 +250,11 @@ namespace CO
                 this.slkupDescrProducto.Popup += slkup_Popup;
 
 
-
-                //Util.Util.ConfigRepositoryLookupEditSetViewColumns(this.slkupDescrProducto, "[{'ColumnCaption':'IDProducto','ColumnField':'IDProducto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
-
-
-
                 LoadData();
+
+                if (Accion == "Add" || Accion=="Edit") {
+                    this.dtpFechaSolicitud.Focus();
+                }
             }
             catch (Exception ex) {
                 MessageBox.Show("Han ocurrido los siguientes errores: " + ex.Message);
@@ -481,7 +475,8 @@ namespace CO
                         //Ingresar la cabecera de la solicitud
                         resultInsert result = DAC.clsSolicitudCompraDAC.InsertUpdate("I", IDSolicitud,Documento, Fecha, FechaRequerida, 0, Comentarios, sUsuario,sUsuario,DateTime.Now, sUsuario, DateTime.Now, sUsuario, ConnectionManager.Tran);
                         this.txtIDSolicitud.Tag = result.IDSolicitud;
-                        this.txtIDSolicitud.EditValue = result.Consecutivo;
+                        this.IDSolicitud = result.IDSolicitud;
+                        this.txtIDSolicitud.EditValue = result.Consecutivo.Trim();
                         
                         foreach (DataRow row in dt.Rows)
                         {

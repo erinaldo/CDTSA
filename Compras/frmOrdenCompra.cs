@@ -1263,7 +1263,7 @@ namespace CO
             else
             {
                 frmEmbarque ofrmEmarque = new frmEmbarque(IDOrdenCompra);
-                ofrmEmarque.FormClosed += ofrmEmarque_FormClosed;
+                ofrmEmarque.FormClosed += ofrmEmbarque_FormClosed;
                 ofrmEmarque.ShowDialog();
             }
         }
@@ -1276,15 +1276,7 @@ namespace CO
             }
         }
 
-        void ofrmEmarque_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            frmEmbarque ofrm = (frmEmbarque)sender;
-            if (ofrm.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
-                dtOrdenCompra.Rows[0]["IDEmbarque"] = ofrm.ID_Embarque.ToString();
-            }
-        }
-
+      
         private void btnImportFromExcel_Click(object sender, EventArgs e)
         {
             if (this.slkupProveedor.EditValue != null)
@@ -1315,6 +1307,12 @@ namespace CO
                         decimal Precio = Convert.ToDecimal(fila["PrecioUnitario"]);
                         decimal Porc = Convert.ToDecimal(fila["PorcDesc"]);
                         nuevaFila["MontoDesc"] = (Cantidad * Precio) * (Porc / 100);
+                    }
+                    if (Convert.ToDecimal(fila["MontoDesc"]) > 0 && Convert.ToDecimal(fila["PorcDesc"]) == 0) {
+                        decimal Cantidad = Convert.ToDecimal(fila["Cantidad"]);
+                        decimal Precio = Convert.ToDecimal(fila["PrecioUnitario"]);
+                        decimal MontoDesc = Convert.ToDecimal(fila["MontoDesc"]);
+                        nuevaFila["PorcDesc"] = ((Cantidad * Precio) / MontoDesc) * 100;
                     }
                     nuevaFila["PorcDesc"] = fila["PorcDesc"];
                     nuevaFila["Comentario"] = fila["Comentario"];
