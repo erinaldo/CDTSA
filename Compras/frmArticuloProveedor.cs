@@ -145,7 +145,7 @@ namespace CO
         private void frmArticuloProveedor_Load(object sender, EventArgs e)
         {
             if (Accion=="Edit" || Accion=="View")             
-                dtProductos = CI.DAC.clsProductoDAC.GetProductoByID(this.IDArticulo,"*").Tables[0];
+                        dtProductos = CI.DAC.clsProductoDAC.GetProductoByID(this.IDArticulo,"*").Tables[0];
             else
                 dtProductos = CO.DAC.clsArticuloProveedorDAC.GetProductosSinAsociar(this.IDProveedor, -1, -1, -1, -1, -1, -1).Tables[0];
 

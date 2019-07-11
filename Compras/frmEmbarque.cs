@@ -89,6 +89,7 @@ namespace CO
                 this.btnEditar.Enabled = true;
                 this.btnGuardar.Enabled = false;
                 this.btnCancelar.Enabled = false;
+                
                 this.btnEliminar.Enabled = true;
             }
             else if (Accion == "ReadOnly")
@@ -96,7 +97,7 @@ namespace CO
                 this.btnEditar.Enabled = false;
                 this.btnGuardar.Enabled = false;
                 this.btnCancelar.Enabled = false;
-                this.btnCancelar.Enabled = false;
+                this.btnEliminar.Enabled = false;
             }
         }
 
@@ -157,9 +158,14 @@ namespace CO
             if (this.linkAsiento.Text != "")
             {
                 this.btnAplicar.Enabled = false;
+                this.btnEliminar.Enabled = false;
+                this.btnEditar.Enabled = false; 
             }
             else
+            {
                 this.btnAplicar.Enabled = true;
+                this.btnEliminar.Enabled = true;
+            }
         }
 
         private void CargarEmbarque(long IDOrdenCompra,long IDEmbarque) {
