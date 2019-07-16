@@ -2831,1744 +2831,7 @@ go
 --Select dbo.invGetNoFactura('CH00', '1')
 
 
--- =============================================
--- Author:		Carlos Mejia
--- Create date: 22 de Abril de 2010
--- Description: Obtiene un recibo de la sucursal dicha
--- =============================================
-ALTER PROCEDURE [fnica].[cppRECIBOSObtenerRecibo]
-	-- Add the parameters for the stored procedure here	
-	@codSucursal AS NVARCHAR (4), 
-	@NUMERORECIBO AS NVARCHAR (10)
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-	
-	if  exists(select * FROM  dbo.cppDocumentosCP	ccR WHERE  ccR.CODSUCURSAL = @codSucursal  AND ccR.DOCUMENTO = @NUMERORECIBO 
-		   AND ccR.IDClase='R/C' and ccR.TipoDocumento='C')   
-	BEGIN	   
 
-			SELECT ccR.CODSUCURSAL,
-		   ccR.DOCUMENTO NUMERORECIBO,
-		   ccR.FECHA FECHAINGRESO,
-		   ccR.IDProveedor,
-		   B.NombresCliente+' '+ApellidosCliente CLIENTE,
-		   ISNULL (ccR.RECIBIMOSDE, '') AS RECIBIMOSDE,
-		   ISNULL (ccR.MONTOORIGINAL, 0) AS VALOR ,
-		   ISNULL ((ccR.MONTOORIGINAL/(SELECT dbo.globalGetUltTasadeCambio (FECHA))) , 0) AS VALORDOLAR,
-		   ISNULL (ccR.CONCEPTOUSUARIO, '') AS CONCEPTO, 
-		   ISNULL (ccR.ANULADO, 0) AS ANULADA,
-		   '' AS USUARIO,
-		   ccR.FECHA FECHAREGISTRO,
-		   '' USUARIO1,
-		   ccR.FECHA FECHAUPDATE,
-		   --(SELECT dbo.globalGetUltTasadeCambio(FECHA)) TIPOCAMBIO  ,  
-		   (SELECT dbo.globalGetUltTasadeCompra(FECHA)) TIPOCAMBIO  ,  
-		   b.APELLIDOSCLIENTE, 
-		   b.NOMBRESCLIENTE,
-		   ccr.recibimosde,
-		   --dbo.zNumberToLetters(MONTOORIGINAL) AS NumToLetras 
-		   dbo.zNumberToLetters(MONTOORIGINAL/ dbo.globalGetUltTasadeCambio(FECHA)) AS NumToLetras 
-	FROM  dbo.cppDocumentosCP AS ccR	inner join dbo.cppProveedores b on ccR.IDProveedor=b.IDProveedor
-	WHERE  ccR.CODSUCURSAL = @codSucursal  AND ccR.DOCUMENTO = @NUMERORECIBO 
-		   AND ccR.IDClase='R/C' and ccR.TipoDocumento='C'
-
-END
-ELSE
-	begin
-
-		SELECT ccR.CODSUCURSAL,
-			   ccR.NUMERORECIBO,
-			   ccR.FECHAINGRESO,
-			   ccR.IDProveedor,
-			   ISNULL (ccR.CLIENTE, '') AS CLIENTE,
-			   ISNULL (ccR.RECIBIMOSDE, '') AS RECIBIMOSDE,
-			   ISNULL (ccR.VALOR, 0) AS VALOR ,
-			   ISNULL (ccR.VALORDOLAR, 0) AS VALORDOLAR,
-			   ISNULL (ccR.CONCEPTO, '') AS CONCEPTO, 
-			   ISNULL (ccR.ANULADA, 0) AS ANULADA,
-			   ISNULL (ccR.USUARIO, '') AS USUARIO,
-			   ccR.FECHAREGISTRO,
-			   ccR.USUARIO1,
-			   ccR.FECHAUPDATE,
-			--ISNULL (ccR.TIPOCAMBIO, 0) AS TIPOCAMBIO,
-			ISNULL (dbo.globalGetUltTasadeCambio( ccR.FECHAINGRESO), 0) AS TIPOCAMBIO,
-			 --dbo.globalGetUltTasadeCambio(FECHAINGRESO)
-				b.APELLIDOSCLIENTE, 
-				b.NOMBRESCLIENTE,
-				ccr.recibimosde,
-				--dbo.zNumberToLetters(valor) AS NumToLetras 
-				dbo.zNumberToLetters(valor/ dbo.globalGetUltTasadeCambio(ccR.FECHAINGRESO)) AS NumToLetras 
-		FROM dbo.cppRECIBOS AS ccR	inner join dbo.cppProveedores b on ccR.IDProveedor=b.IDProveedor
-		WHERE  ccR.CODSUCURSAL = @codSucursal  AND ccR.NUMERORECIBO = @NUMERORECIBO
-	end  
-
-
---SELECT ccR.CODSUCURSAL,
---		   ccR.DOCUMENTO NUMERORECIBO,
---		   ccR.FECHA FECHAINGRESO,
---		   ccR.IDProveedor,
---		   B.NombresCliente+' '+ApellidosCliente CLIENTE,
---		   ISNULL (ccR.RECIBIMOSDE, '') AS RECIBIMOSDE,
---		   ISNULL (ccR.MONTOORIGINAL, 0) AS VALOR ,
---		   ISNULL ((ccR.MONTOORIGINAL/(SELECT dbo.globalGetUltTasadeCambio (FECHA))) , 0) AS VALORDOLAR,
---		   ISNULL (ccR.CONCEPTOUSUARIO, '') AS CONCEPTO, 
---		   ISNULL (ccR.ANULADO, 0) AS ANULADA,
---		   '' AS USUARIO,
---		   ccR.FECHA FECHAREGISTRO,
---		   '' USUARIO1,
---		   ccR.FECHA FECHAUPDATE,
---		   (SELECT dbo.globalGetUltTasadeCambio(FECHA)) TIPOCAMBIO  ,  
---		   b.APELLIDOSCLIENTE, 
---		   b.NOMBRESCLIENTE,
---		   ccr.recibimosde,
---		   dbo.zNumberToLetters(MONTOORIGINAL) AS NumToLetras 
---	FROM  dbo.cppDocumentosCP AS ccR	inner join dbo.cppProveedores b on ccR.IDProveedor=b.IDProveedor
---	WHERE  ccR.CODSUCURSAL = @codSucursal  AND ccR.DOCUMENTO = @NUMERORECIBO 
---		   AND ccR.IDClase='R/C' and ccR.TipoDocumento='C'
-
-
---	SELECT ccR.CODSUCURSAL,
---		   ccR.NUMERORECIBO,
---		   ccR.FECHAINGRESO,
---		   ccR.IDProveedor,
---		   ISNULL (ccR.CLIENTE, '') AS CLIENTE,
---		   ISNULL (ccR.RECIBIMOSDE, '') AS RECIBIMOSDE,
---		   ISNULL (ccR.VALOR, 0) AS VALOR ,
---		   ISNULL (ccR.VALORDOLAR, 0) AS VALORDOLAR,
---		   ISNULL (ccR.CONCEPTO, '') AS CONCEPTO, 
---		   ISNULL (ccR.ANULADA, 0) AS ANULADA,
---		   ISNULL (ccR.USUARIO, '') AS USUARIO,
---		   ccR.FECHAREGISTRO,
---		   ccR.USUARIO1,
---		   ccR.FECHAUPDATE,
---		ISNULL (ccR.TIPOCAMBIO, 0) AS TIPOCAMBIO,
---		    b.APELLIDOSCLIENTE, 
---			b.NOMBRESCLIENTE,
---			ccr.recibimosde,
---			dbo.zNumberToLetters(valor) AS NumToLetras 
---	FROM dbo.cppRECIBOS AS ccR	inner join dbo.cppProveedores b on ccR.IDProveedor=b.IDProveedor
---	WHERE  ccR.CODSUCURSAL = @codSucursal  AND ccR.NUMERORECIBO = @NUMERORECIBO
-
-	--SELECT * from dbo.cppDocumentosCP
-
-	--select top 10 * FROM dbo.cppProveedores 
-
-END
-	
-
-go 
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-
- 
--- exec [fnica].[fafClienteObtenerCliente] 'MT01095', '*', '20150202'
--- =============================================
--- Author:		Carlos Mejia
--- Create date: 30 de Marzo de 2010
--- Description:	Obtiene un listado de todos los vendedores
--- =============================================
-ALTER PROCEDURE [fnica].[fafClienteObtenerCliente]
-	-- Add the parameters for the stored procedure here	
-	@IDProveedor AS NVARCHAR (10),
-	@CODSUCURSAL AS NVARCHAR (10),
-	@FechaCorte as datetime 
-AS
-BEGIN
-
-	SET NOCOUNT ON;
-
-declare @SaldoNominal decimal(28,4) , @Intereses decimal(28,4) , 
-@Deslizamiento decimal(28,4) , @Total decimal(28,4) ,@TIPOCAMBIO DECIMAL (18,4)
- 
-exec dbo.cppGetSaldoDeCliente @CODSUCURSAL, @IDProveedor, @FechaCorte,
-@SaldoNominal output, @Intereses output,@Deslizamiento output,  @Total output
-
-SELECT @TIPOCAMBIO=dbo.globalGetUltTasadeCambio(@FechaCorte)
-
---select @SaldoNominal SaldoNominal, @Intereses Intereses,@Deslizamiento Deslizamiento,  @Total Total
-
-	SELECT IDProveedor,
-		   APELLIDOSCLIENTE,
-		   NOMBRESCLIENTE,
-		   FECHAINGRESO,
-		   DIRECCION,
-		   ISNULL(TELEFONO1,'') AS TELEFONO1,
-		   ISNULL(FAX1, '') AS FAX1 ,
-		   CODSUCURSAL,
-		   CODVENDEDOR,
-		   MOROSO,
-		   (@Total/@TIPOCAMBIO) SALDO,
-		   0 NOVENCIDO,
-		   0 VENCIDO,
-		   (@Intereses/@TIPOCAMBIO) INTERESES,
-		   FECHATOPE,
-		   PLAZODIAS,
-		   TECHOCREDITO,
-		   CULTIVO,
-		   TIPOGARANTIA,
-		   ISNULL(TELEFONOCASA, '') AS TELEFONOCASA,
-		   ISNULL(CELULAR1, '') AS CELULAR1,  
-		   ISNULL(EMAIL,'') AS EMAIL,
-		   ISNULL(CEDULA,'') AS CEDULA,
-		   ISNULL(TIPOPERSONA, '') AS TIPOPERSONA,
-		   EXONERADO,
-		   ISNULL(ESTATUS, '') AS ESTATUS,
-		   MAXIMODIAS,
-		   ISNULL(CALIFICACION,'') AS CALIFICACION,
-		   NIVELPRECIO,
-		   ISNULL(CORPORATIVO, '') AS CORPORATIVO,
-		   ISNULL (CORPORATIVOP,0) AS CORPORATIVOP,
-		   ISNULL(NOMBRECONTACTO1,'') AS NOMBRECONTACTO1,
-		   ISNULL(TELEFONOCONTACTO1, '') AS TELEFONOCONTACTO1,
-		   isnull(CELULARCONTACTO1, '') AS CELULARCONTACTO1,
-		   ISNULL(NOMBRECONTACTO2, '') AS NOMBRECONTACTO2,
-		   ISNULL(TELEFONOCONTACTO2, '') AS TELEFONOCONTACTO2,
-		   ISNULL(CELULARCONTACTO2, '') AS CELULARCONTACTO2, 
-		   USUARIO,
-		   FECHAREGISTRO,
-		   USUARIO1,
-		   FECHAUPDATE ,
-		   ( NOMBRESCLIENTE + ' ' + APELLIDOSCLIENTE )AS  NOMBRECOMPLETO,
-			CodtipoCliente,
-			@Total SALDOLOCAL,  
-			@Intereses INTERESESLOCAL,
-			@Deslizamiento DESLIZAMIENTOLOCAL,
-			PorcInteres,
-			IDCategoria 
-		   FROM dbo.cppProveedores
-	WHERE 	
-		IDProveedor = @IDProveedor AND 
-		
-		(CODSUCURSAL = @CODSUCURSAL OR @CODSUCURSAL='*')
-END
-
-go 
-
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-ALTER PROCEDURE [fnica].[cppGetAllParametrosGenerales]
-@codSucursal as nvarchar(10)
-
-AS
-declare @FechaFacturable as datetime,@TCFechaFacturable as decimal(18,8),
-@NextConsecutivo as nvarchar (20),@FormatoRecibo as nvarchar(50)
-
-set @FechaFacturable = dbo.fafFechaProximaFacturable(@codSucursal) 
-set @TCFechaFacturable = dbo.globalGetUltTasadeCambio(@FechaFacturable)
-set @FormatoRecibo=(select FormatoRecibo from dbo.globalsucursales where codsucursal=@codSucursal)
-set @NextConsecutivo =(select dbo.cppGetNextConsecRecibo(@codSucursal))
-
---Cambios por new SISCOBRO
---set @NextConsecutivo = (select dbo.cppProximoNumerorecibo(@codSucursal))
-
-SELECT *, @FechaFacturable FechaFacturable,@TCFechaFacturable TCFechaFacturable,@NextConsecutivo NextConsecutivo,@FormatoRecibo FormatoRecibo
-FROM dbo.cppParametrosGenerales
-
-go 
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-GO
-/****** Object:  StoredProcedure [fnica].[fafInsertarNuevaFactura]    Script Date: 01/27/2015 12:02:50 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER  PROCEDURE [fnica].[fafInsertarNuevaFactura]
-      -- Add the parameters for the stored procedure here
-      @CODSUCURSAL AS nvarchar ( 4 ) ,
-      @TIPO AS nvarchar ( 1 ) ,
-      @TIPOFORMATO AS nvarchar ( 1 ) ,
-      @FACTURA AS nvarchar ( 10 ) ,
-      @FECHAFACTURA AS SMALLDATETIME ,
-      @IDProveedor AS nvarchar ( 10 ) ,
-      @CLIENTE AS nvarchar ( 100 ) ,
-      @FECHAVENCIMIENTO AS SMALLDATETIME  ,
-      @CODVENDEDOR AS nvarchar ( 4 ) ,
-      @REMISION AS nvarchar ( 10 ) ,
-      @TIPOPAGO AS nvarchar ( 50 ) ,
-      @SUBTOTAL AS numeric ( 12, 4 ) ,
-      @DESCUENTO AS NUMERIC (23, 13) ,
-      @IVA AS NUMERIC (12 , 4) ,
-      @TOTALFACTURA AS NUMERIC  (12, 4),
-      @IMPRESA AS SMALLINT  ,
-      @ANULADA AS SMALLINT  ,
-      @EXONERADA AS SMALLINT ,
-      @PENDIENTEENVIO AS SMALLINT ,
-      @FACTURASINEXISTENCIA AS SMALLINT ,
-      @STATUSFACTURA AS nvarchar ( 1 ) ,
-      @STATUSMONTO AS NUMERIC (12, 4) ,
-      @USUARIO AS nvarchar ( 20 ) ,
-      @FECHAREGISTRO AS DATETIME  ,
-      @USUARIO1 AS nvarchar ( 20 ) ,
-      @FECHAUPDATE AS DATETIME   ,
-      @TIPOCAMBIO AS numeric ( 13, 4 ) ,
-      @ENESPERA AS SMALLINT  ,
-      @PROFORMA AS nvarchar ( 10 ) ,
-      @ASIENTOCG AS nvarchar ( 10 ) ,
-      @ASIENTOCC AS nvarchar ( 10 ),
-	  @PORCINTERES as decimal (28,4) 
-AS
-BEGIN
-      -- SET NOCOUNT ON added to prevent extra result sets from
-      -- interfering with SELECT statements.
-      SET NOCOUNT ON;
-    -- Insert statements for procedure here
-      INSERT INTO dbo.fafFACTURA
-([CODSUCURSAL]
-           ,[TIPO]
-           ,[TIPOFORMATO]
-           ,[FACTURA]
-           ,[FECHAFACTURA]
-           ,[IDProveedor]
-           ,[CLIENTE]
-           ,[FECHAVENCIMIENTO]
-           ,[CODVENDEDOR]
-           ,[REMISION]
-           ,[TIPOPAGO]
-           ,[SUBTOTAL]
-           ,[DESCUENTO]
-           ,[IVA]
-           ,[TOTALFACTURA]
-           ,[IMPRESA]
-           ,[ANULADA]
-           ,[EXONERADA]
-           ,[PENDIENTEENVIO]
-           ,[FACTURASINEXISTENCIA]
-           ,[STATUSFACTURA]
-           ,[STATUSMONTO]
-           ,[USUARIO]
-           ,[FECHAREGISTRO]
-           ,[USUARIO1]
-           ,[FECHAUPDATE]
-           ,[TIPOCAMBIO]
-           ,[ENESPERA]
-           ,[PROFORMA]
-           ,[ASIENTOCG]
-           ,[ASIENTOCC]
-		  
-                         ) 
-      VALUES( 
-            @CODSUCURSAL ,
-            @TIPO ,
-            @TIPOFORMATO ,
-            @FACTURA ,
-            @FECHAFACTURA ,
-            @IDProveedor ,
-            @CLIENTE ,
-            @FECHAVENCIMIENTO ,
-            @CODVENDEDOR ,
-            @REMISION ,
-            @TIPOPAGO ,
-            @SUBTOTAL ,
-            @DESCUENTO ,
-            @IVA ,
-            @TOTALFACTURA ,
-            0 ,
-            @ANULADA ,
-            @EXONERADA ,
-            @PENDIENTEENVIO ,
-            @FACTURASINEXISTENCIA ,
-            @STATUSFACTURA ,
-            @STATUSMONTO ,
-            @USUARIO ,
-            @FECHAREGISTRO ,
-            @USUARIO1 ,
-            @FECHAUPDATE ,
-            @TIPOCAMBIO ,
-            @ENESPERA ,
-            @PROFORMA ,
-            @ASIENTOCG ,
-            @ASIENTOCC
-      ) 
-END
-
-/* Ingresar la cabecera de la factura a la tabla tmp para imprimir */
-INSERT INTO dbo.tmpImpresionfafFACTURA(CODSUCURSAL, TIPO, TIPOFORMATO, FACTURA,
-            FECHAFACTURA, IDProveedor, CLIENTE, FECHAVENCIMIENTO, CODVENDEDOR,
-            REMISION, TIPOPAGO, SUBTOTAL, DESCUENTO, IVA, TOTALFACTURA, IMPRESA,
-            ANULADA, EXONERADA, PENDIENTEENVIO, FACTURASINEXISTENCIA,
-            STATUSFACTURA, STATUSMONTO, USUARIO, FECHAREGISTRO, USUARIO1,
-            FECHAUPDATE, TIPOCAMBIO, ENESPERA, PROFORMA, ASIENTOCG, ASIENTOCC)
-SELECT CODSUCURSAL, TIPO, TIPOFORMATO, FACTURA,
-            FECHAFACTURA, IDProveedor, CLIENTE, FECHAVENCIMIENTO, CODVENDEDOR,
-            REMISION, TIPOPAGO, SUBTOTAL, DESCUENTO, IVA, TOTALFACTURA, IMPRESA,
-            ANULADA, EXONERADA, PENDIENTEENVIO, FACTURASINEXISTENCIA,
-            STATUSFACTURA, STATUSMONTO, USUARIO, FECHAREGISTRO, USUARIO1,
-            FECHAUPDATE, TIPOCAMBIO, ENESPERA, PROFORMA, ASIENTOCG, ASIENTOCC
- FROM dbo.fafFACTURA WHERE CODSUCURSAL=@CODSUCURSAL AND FACTURA=@FACTURA
-
---Cambios por New SISCOBRO
-IF @TIPO=2
-BEGIN 
-	declare @IDDocumentosCC int,@dias as int
-	set @dias=datediff(day,@FECHAFACTURA,@FECHAVENCIMIENTO)
-	
-	exec dbo.cppUpdatecppDocumentosCP 'I',  @IDDocumentosCC Output, 
-	@IDProveedor ,@CODSUCURSAL  ,'D' , 'FAC', 
-	1 , @FACTURA , @FECHAFACTURA ,@dias, @TOTALFACTURA, @PORCINTERES,
-	'FACTURA DE CREDITO','FACTURA DE CREDITO', @CLIENTE,
-	@USUARIO, @TIPOCAMBIO
-END 
-
-go 
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-CREATE PROCEDURE [fnica].[cppUpdatecodigoAnulado]
-		@CodSucursal NVARCHAR(4), 
-		@NUMERORECIBO NVARCHAR(15),
-		@CodigoAutorizado NVARCHAR(20),
-		@MontoDolarFactura as decimal(18,8),
-		@IDProveedor as NVARCHAR(10),
-		@USUARIO as NVARCHAR(10)
-AS
---Marcamos el codigo de autorizado como usado en la tabla de codigos.
-
-UPDATE dbo.genCODIGOSDEAUTORIZACION 	
-SET ARTICULO = 'AnulaRC:'+@NUMERORECIBO ,USADO=1,USUARIO=@USUARIO,FECHAUPDATE = getdate()	
-WHERE 	CODIGOAUTORIZADO = @CodigoAutorizado and codsucursal=@CodSucursal
-
-
-go 
-
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-CREATE PROCEDURE [fnica].[cppGetNOTASDEBITOCREDITObyID2]
-	@IDProveedor nvarchar(20), 
-	@CodSucursal nvarchar(20),
-	@Documento nvarchar(20),
-	@IDClase  nvarchar(20)
-	
-AS
-
-SELECT 
-	a.IDProveedor,
-	a.CODSUCURSAL,
-	a.TipoDocumento,
-	a.IDclase,
-	a.IDSubTipo,
-	a.Documento,
-	a.FECHA,
-	a.VENCIMIENTO,
-	a.MONTOORIGINAL,
-	a.CONCEPTOUSUARIO,
-	a.USUARIO,
-	a.CREATEDATE,
-	a.TIPOCAMBIO,
-	b.NombresCliente+' '+b.ApellidosCliente Nombrescliente,
-	dbo.zNumberToLetters(MONTOORIGINAL) montoletras,
-	c.Descr DescrClase ,
-	d.Descr DescrSubTipo,
-	e.sucursal
-FROM dbo.cppDocumentosCP a 
-inner  join dbo.cppProveedores b on a.IDProveedor=b.IDProveedor
-inner join dbo.cppClaseDocumento c on a.IDClase = c.IDClase
-inner join dbo.cppSubTipoDocumento d on a.IDSubTipo = d.IDSubTipo
-inner join dbo.globalsucursales e on a.CODSUCURSAL = e.CODSUCURSAL
-
-WHERE
-(a.IDProveedor = @IDProveedor ) AND 
-(a.CODSUCURSAL = @CodSucursal OR @CodSucursal='*') AND 
-(a.Documento=@Documento) AND
-(a.IDClase=@IDClase)
-
-go
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-CREATE PROCEDURE [fnica].[cppGetAllParametrosSISCOBRO]
-
-AS
-
-declare 
-@UltDiaCerrado as datetime,
-@FechaServidor as smalldatetime
-
-Select @UltDiaCerrado = UltDiaCerrado from dbo.cppParametrosGenerales
-set @FechaServidor =  CAST(FLOOR( CAST( GETDATE() AS FLOAT ) )
-AS DATETIME
-)
---convert(datetime, convert(varchar(10), getdate(), 103))  
-
-
-SELECT @UltDiaCerrado UltDiaCerrado,@FechaServidor FechaServidor
-FROM dbo.cppParametrosGenerales
-
-
-go 
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-
-
-ALTER PROCEDURE [fnica].[cppInsertUpdatecppProveedores]
-	@IDProveedor nvarchar(10),
-		@APELLIDOSCLIENTE nvarchar(150),
-		@NOMBRESCLIENTE nvarchar(150),
-		@FECHAINGRESO datetime,
-		@DIRECCION nvarchar(250),
-		@TELEFONO1 nvarchar(10),
-		@FAX1 nvarchar(10),
-		@CODSUCURSAL nvarchar(4),
-		@CODVENDEDOR nvarchar(50),
-		@MOROSO smallint,
-		@SALDO numeric,
-		@NOVENCIDO numeric,
-		@VENCIDO numeric,
-		@INTERESES numeric,
-		@DESLIZAMIENTO numeric,
-		@FECHATOPE datetime,
-		@PLAZODIAS int,
-		@TECHOCREDITO numeric,
-		@CULTIVO nvarchar(50),
-		@TIPOGARANTIA nvarchar(50),
-		@CODGARANTIA smallint,
-		@TELEFONOCASA nvarchar(10),
-		@CELULAR1 nvarchar(10),
-		@EMAIL nvarchar(50),
-		@CEDULA nvarchar(14),
-		@TIPOPERSONA nvarchar(1),
-		@EXONERADO smallint,
-		@ESTATUS nvarchar(20),
-		@MAXIMODIAS int,
-		@CALIFICACION nvarchar(50),
-		@NIVELPRECIO nvarchar(30),
-		@CORPORATIVO nvarchar(10),
-		@CORPORATIVOP smallint,
-		@NOMBRECONTACTO1 nvarchar(100),
-		@TELEFONOCONTACTO1 nvarchar(10),
-		@CELULARCONTACTO1 nvarchar(10),
-		@NOMBRECONTACTO2 nvarchar(100),
-		@TELEFONOCONTACTO2 nvarchar(50),
-		@CELULARCONTACTO2 nvarchar(10),
-		@USUARIO nvarchar(20),
-		@FECHAREGISTRO datetime,
-		@USUARIO1 nvarchar(20),
-		@FECHAUPDATE datetime,
-		@TransunionOk smallint,
-		@SaldoAFavorLocal decimal,
-		@SaldoAFavorDolar decimal,
-		@FechaSaldoAFavor datetime,
-		@SALDOULTIMOCORTE numeric,
-		@NOVENCIDOULTIMOCORTE numeric,
-		@VENCIDOULTIMOCORTE numeric,
-		@INTERESESULTIMOCORTE numeric,
-		@DESLIZAMIENTOULTIMOCORTE numeric,
-		@FECHAULTIMOCORTEcpp datetime,
-		@TCAMBIOULTIMOCORTEcpp numeric,
-		@Agroservicio smallint,
-		@FechaNacimiento datetime,
-		@TieneFinca smallint,
-		@CodSegmento nvarchar(10),
-		@CodMotivoCompra smallint,
-		@MecanismoCompra nvarchar(250),
-		@RUC nvarchar(20),
-		@NombreComercial nvarchar(100),
-		@CodTipoCliente smallint,
-		@EstadoCaptacion smallint,
-		@FechaInsercionSuc datetime,
-		@UltFechaActualizacionSuc datetime,
-		@CodDepartamento int,
-		@CodMunicipio int,
-		@CodComunidad int,
-		@CodTipoClienteCredito int,
-		@IDCategoria nvarchar(20),
-		@PorcInteres as decimal (4,2)
-AS
-Declare @ReturnValue int
-
-IF(EXISTS(SELECT * FROM dbo.cppProveedores WHERE 	IDProveedor = @IDProveedor 	))
-		Execute @ReturnValue = [fnica].[cppUpdatecppProveedores]
-			 @IDProveedor
-			  ,@APELLIDOSCLIENTE
-			  ,@NOMBRESCLIENTE
-			  ,@FECHAINGRESO
-			  ,@DIRECCION
-			  ,@TELEFONO1
-			  ,@FAX1
-			  ,@CODSUCURSAL
-			  ,@CODVENDEDOR
-			  ,@MOROSO
-			  ,@SALDO
-			  ,@NOVENCIDO
-			  ,@VENCIDO
-			  ,@INTERESES
-			  ,@DESLIZAMIENTO
-			  ,@FECHATOPE
-			  ,@PLAZODIAS
-			  ,@TECHOCREDITO
-			  ,@CULTIVO
-			  ,@TIPOGARANTIA
-			  ,@CODGARANTIA
-			  ,@TELEFONOCASA
-			  ,@CELULAR1
-			  ,@EMAIL
-			  ,@CEDULA
-			  ,@TIPOPERSONA
-			  ,@EXONERADO
-			  ,@ESTATUS
-			  ,@MAXIMODIAS
-			  ,@CALIFICACION
-			  ,@NIVELPRECIO
-			  ,@CORPORATIVO
-			  ,@CORPORATIVOP
-			  ,@NOMBRECONTACTO1
-			  ,@TELEFONOCONTACTO1
-			  ,@CELULARCONTACTO1
-			  ,@NOMBRECONTACTO2
-			  ,@TELEFONOCONTACTO2
-			  ,@CELULARCONTACTO2
-			  ,@USUARIO
-			  ,@FECHAREGISTRO
-			  ,@USUARIO1
-			  ,@FECHAUPDATE
-			  ,@TransunionOk
-			  ,@SaldoAFavorLocal
-			  ,@SaldoAFavorDolar
-			  ,@FechaSaldoAFavor
-			  ,@SALDOULTIMOCORTE
-			  ,@NOVENCIDOULTIMOCORTE
-			  ,@VENCIDOULTIMOCORTE
-			  ,@INTERESESULTIMOCORTE
-			  ,@DESLIZAMIENTOULTIMOCORTE
-			  ,@FECHAULTIMOCORTEcpp
-			  ,@TCAMBIOULTIMOCORTEcpp
-			  ,@Agroservicio
-			  ,@FechaNacimiento
-			  ,@TieneFinca
-			  ,@CodSegmento
-			  ,@CodMotivoCompra
-			  ,@MecanismoCompra
-			  ,@RUC
-			  ,@NombreComercial
-			  ,@CodTipoCliente
-			  ,@EstadoCaptacion
-			  ,@FechaInsercionSuc
-			  ,@UltFechaActualizacionSuc
-			  ,@CodDepartamento
-			  ,@CodMunicipio
-			  ,@CodComunidad
-		      ,@CodTipoClienteCredito
-			  ,@IDCategoria
-			  ,@PorcInteres	
-	ELSE
-	begin
-
-			Execute @ReturnValue = [fnica].[cppInsertcppProveedores] 
-			   @IDProveedor
-			  ,@APELLIDOSCLIENTE
-			  ,@NOMBRESCLIENTE
-			  ,@FECHAINGRESO
-			  ,@DIRECCION
-			  ,@TELEFONO1
-			  ,@FAX1
-			  ,@CODSUCURSAL
-			  ,@CODVENDEDOR
-			  ,@MOROSO
-			  ,@SALDO
-			  ,@NOVENCIDO
-			  ,@VENCIDO
-			  ,@INTERESES
-			  ,@DESLIZAMIENTO
-			  ,@FECHATOPE
-			  ,@PLAZODIAS
-			  ,@TECHOCREDITO
-			  ,@CULTIVO
-			  ,@TIPOGARANTIA
-			  ,@CODGARANTIA
-			  ,@TELEFONOCASA
-			  ,@CELULAR1
-			  ,@EMAIL
-			  ,@CEDULA
-			  ,@TIPOPERSONA
-			  ,@EXONERADO
-			  ,@ESTATUS
-			  ,@MAXIMODIAS
-			  ,@CALIFICACION
-			  ,@NIVELPRECIO
-			  ,@CORPORATIVO
-			  ,@CORPORATIVOP
-			  ,@NOMBRECONTACTO1
-			  ,@TELEFONOCONTACTO1
-			  ,@CELULARCONTACTO1
-			  ,@NOMBRECONTACTO2
-			  ,@TELEFONOCONTACTO2
-			  ,@CELULARCONTACTO2
-			  ,@USUARIO
-			  ,@FECHAREGISTRO
-			  ,@USUARIO1
-			  ,@FECHAUPDATE
-			  ,@TransunionOk
-			  ,@SaldoAFavorLocal
-			  ,@SaldoAFavorDolar
-			  ,@FechaSaldoAFavor
-			  ,@SALDOULTIMOCORTE
-			  ,@NOVENCIDOULTIMOCORTE
-			  ,@VENCIDOULTIMOCORTE
-			  ,@INTERESESULTIMOCORTE
-			  ,@DESLIZAMIENTOULTIMOCORTE
-			  ,@FECHAULTIMOCORTEcpp
-			  ,@TCAMBIOULTIMOCORTEcpp
-			  ,@Agroservicio
-			  ,@FechaNacimiento
-			  ,@TieneFinca
-			  ,@CodSegmento
-			  ,@CodMotivoCompra
-			  ,@MecanismoCompra
-			  ,@RUC
-			  ,@NombreComercial
-			  ,@CodTipoCliente
-			  ,@EstadoCaptacion
-			  ,@FechaInsercionSuc
-			  ,@UltFechaActualizacionSuc
-			  ,@CodDepartamento
-			  ,@CodMunicipio
-			  ,@CodComunidad
-			  ,@CodTipoClienteCredito
-			  ,@IDCategoria
-			  ,@PorcInteres	
-	end
-RETURN @ReturnValue
-
-go 
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-ALTER PROCEDURE [fnica].[cppInsertcppProveedores]
-		@IDProveedor nvarchar(10),
-		@APELLIDOSCLIENTE nvarchar(150),
-		@NOMBRESCLIENTE nvarchar(150),
-		@FECHAINGRESO datetime,
-		@DIRECCION nvarchar(250),
-		@TELEFONO1 nvarchar(10),
-		@FAX1 nvarchar(10),
-		@CODSUCURSAL nvarchar(4),
-		@CODVENDEDOR nvarchar(50),
-		@MOROSO smallint,
-		@SALDO numeric,
-		@NOVENCIDO numeric,
-		@VENCIDO numeric,
-		@INTERESES numeric,
-		@DESLIZAMIENTO numeric,
-		@FECHATOPE datetime,
-		@PLAZODIAS int,
-		@TECHOCREDITO numeric,
-		@CULTIVO nvarchar(50),
-		@TIPOGARANTIA nvarchar(50),
-		@CODGARANTIA smallint,
-		@TELEFONOCASA nvarchar(10),
-		@CELULAR1 nvarchar(10),
-		@EMAIL nvarchar(50),
-		@CEDULA nvarchar(14),
-		@TIPOPERSONA nvarchar(1),
-		@EXONERADO smallint,
-		@ESTATUS nvarchar(20),
-		@MAXIMODIAS int,
-		@CALIFICACION nvarchar(50),
-		@NIVELPRECIO nvarchar(30),
-		@CORPORATIVO nvarchar(10),
-		@CORPORATIVOP smallint,
-		@NOMBRECONTACTO1 nvarchar(100),
-		@TELEFONOCONTACTO1 nvarchar(10),
-		@CELULARCONTACTO1 nvarchar(10),
-		@NOMBRECONTACTO2 nvarchar(100),
-		@TELEFONOCONTACTO2 nvarchar(50),
-		@CELULARCONTACTO2 nvarchar(10),
-		@USUARIO nvarchar(20),
-		@FECHAREGISTRO datetime,
-		@USUARIO1 nvarchar(20),
-		@FECHAUPDATE datetime,
-		@TransunionOk smallint,
-		@SaldoAFavorLocal decimal,
-		@SaldoAFavorDolar decimal,
-		@FechaSaldoAFavor datetime,
-		@SALDOULTIMOCORTE numeric,
-		@NOVENCIDOULTIMOCORTE numeric,
-		@VENCIDOULTIMOCORTE numeric,
-		@INTERESESULTIMOCORTE numeric,
-		@DESLIZAMIENTOULTIMOCORTE numeric,
-		@FECHAULTIMOCORTEcpp datetime,
-		@TCAMBIOULTIMOCORTEcpp numeric,
-		@Agroservicio smallint,
-		@FechaNacimiento datetime,
-		@TieneFinca smallint,
-		@CodSegmento nvarchar(10),
-		@CodMotivoCompra smallint,
-		@MecanismoCompra nvarchar(250),
-		@RUC nvarchar(20),
-		@NombreComercial nvarchar(100),
-		@CodTipoCliente smallint,
-		@EstadoCaptacion smallint,
-		@FechaInsercionSuc datetime,
-		@UltFechaActualizacionSuc datetime,
-		@CodDepartamento int,
-		@CodMunicipio int,
-		@CodComunidad int,
-		@CodTipoClienteCredito int,
-		@IDCategoria nvarchar(20),
-		@PorcInteres as decimal (4,2)
-AS
-
-INSERT INTO [fnica].[cppProveedores]
-(
-	IDProveedor,
-	APELLIDOSCLIENTE,
-	NOMBRESCLIENTE,
-	FECHAINGRESO,
-	DIRECCION,
-	TELEFONO1,
-	FAX1,
-	CODSUCURSAL,
-	CODVENDEDOR,
-	MOROSO,
-	SALDO,
-	NOVENCIDO,
-	VENCIDO,
-	INTERESES,
-	DESLIZAMIENTO,
-	FECHATOPE,
-	PLAZODIAS,
-	TECHOCREDITO,
-	CULTIVO,
-	TIPOGARANTIA,
-	CODGARANTIA,
-	TELEFONOCASA,
-	CELULAR1,
-	EMAIL,
-	CEDULA,
-	TIPOPERSONA,
-	EXONERADO,
-	ESTATUS,
-	MAXIMODIAS,
-	CALIFICACION,
-	NIVELPRECIO,
-	CORPORATIVO,
-	CORPORATIVOP,
-	NOMBRECONTACTO1,
-	TELEFONOCONTACTO1,
-	CELULARCONTACTO1,
-	NOMBRECONTACTO2,
-	TELEFONOCONTACTO2,
-	CELULARCONTACTO2,
-	USUARIO,
-	FECHAREGISTRO,
-	USUARIO1,
-	FECHAUPDATE,
-	TransunionOk,
-	SaldoAFavorLocal,
-	SaldoAFavorDolar,
-	FechaSaldoAFavor,
-	SALDOULTIMOCORTE,
-	NOVENCIDOULTIMOCORTE,
-	VENCIDOULTIMOCORTE,
-	INTERESESULTIMOCORTE,
-	DESLIZAMIENTOULTIMOCORTE,
-	FECHAULTIMOCORTEcpp,
-	TCAMBIOULTIMOCORTEcpp,
-	Agroservicio,
-	FechaNacimiento,
-	TieneFinca,
-	CodSegmento,
-	CodMotivoCompra,
-	MecanismoCompra,
-	RUC,
-	NombreComercial,
-	CodTipoCliente,
-	EstadoCaptacion,
-	FechaInsercionSuc,
-	UltFechaActualizacionSuc,
-	CodDepartamento,
-	CodMunicipio,
-	CodComunidad,
-	CodTipoClienteCredito,
-	IDCategoria,
-	PorcInteres
-)
-Values
-(
-	@IDProveedor,
-	@APELLIDOSCLIENTE,
-	@NOMBRESCLIENTE,
-	@FECHAINGRESO,
-	@DIRECCION,
-	@TELEFONO1,
-	@FAX1,
-	@CODSUCURSAL,
-	@CODVENDEDOR,
-	@MOROSO,
-	@SALDO,
-	@NOVENCIDO,
-	@VENCIDO,
-	@INTERESES,
-	@DESLIZAMIENTO,
-	@FECHATOPE,
-	@PLAZODIAS,
-	@TECHOCREDITO,
-	@CULTIVO,
-	@TIPOGARANTIA,
-	@CODGARANTIA,
-	@TELEFONOCASA,
-	@CELULAR1,
-	@EMAIL,
-	@CEDULA,
-	@TIPOPERSONA,
-	@EXONERADO,
-	@ESTATUS,
-	@MAXIMODIAS,
-	@CALIFICACION,
-	@NIVELPRECIO,
-	@CORPORATIVO,
-	@CORPORATIVOP,
-	@NOMBRECONTACTO1,
-	@TELEFONOCONTACTO1,
-	@CELULARCONTACTO1,
-	@NOMBRECONTACTO2,
-	@TELEFONOCONTACTO2,
-	@CELULARCONTACTO2,
-	@USUARIO,
-	@FECHAREGISTRO,
-	@USUARIO1,
-	@FECHAUPDATE,
-	@TransunionOk,
-	@SaldoAFavorLocal,
-	@SaldoAFavorDolar,
-	@FechaSaldoAFavor,
-	@SALDOULTIMOCORTE,
-	@NOVENCIDOULTIMOCORTE,
-	@VENCIDOULTIMOCORTE,
-	@INTERESESULTIMOCORTE,
-	@DESLIZAMIENTOULTIMOCORTE,
-	@FECHAULTIMOCORTEcpp,
-	@TCAMBIOULTIMOCORTEcpp,
-	@Agroservicio,
-	@FechaNacimiento,
-	@TieneFinca,
-	@CodSegmento,
-	@CodMotivoCompra,
-	@MecanismoCompra,
-	@RUC,
-	@NombreComercial,
-	@CodTipoCliente,
-	@EstadoCaptacion,
-	@FechaInsercionSuc,
-	@UltFechaActualizacionSuc,
-	@CodDepartamento,
-	@CodMunicipio,
-	@CodComunidad,
-	@CodTipoClienteCredito,
-	@IDCategoria,
-	@PorcInteres
-)
-
-INSERT INTO [fnica].[cppProveedoresBitacoraCambiosDatosCredito]
-(	[IDProveedor]
-	,[FechaBitacora]
-	,[FECHATOPE]
-	,[PLAZODIAS]
-	,[TECHOCREDITO]
-	,[NIVELPRECIO]
-	,[CodTipoClienteCredito]
-	,[CodTipoCliente]
-	,[FECHAREGISTRO]
-	,[USUARIO]
-	,PorcInteres
-)
-Values
-	(
-		@IDProveedor,
-		getdate(),	
-		@FECHATOPE,
-		@PLAZODIAS,
-		@TECHOCREDITO,
-		@NIVELPRECIO,
-		@CodTipoClienteCredito,
-		@CodTipoCliente,
-		@FECHAREGISTRO,		
-		@USUARIO,
-		@PorcInteres
-		)
-	
-RETURN -1
-
-go
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-
-ALTER PROCEDURE [fnica].[cppUpdatecppProveedores]
-		@IDProveedor nvarchar(10),
-		@APELLIDOSCLIENTE nvarchar(150),
-		@NOMBRESCLIENTE nvarchar(150),
-		@FECHAINGRESO datetime,
-		@DIRECCION nvarchar(250),
-		@TELEFONO1 nvarchar(10),
-		@FAX1 nvarchar(10),
-		@CODSUCURSAL nvarchar(4),
-		@CODVENDEDOR nvarchar(50),
-		@MOROSO smallint,
-		@SALDO numeric,
-		@NOVENCIDO numeric,
-		@VENCIDO numeric,
-		@INTERESES numeric,
-		@DESLIZAMIENTO numeric,
-		@FECHATOPE datetime,
-		@PLAZODIAS int,
-		@TECHOCREDITO numeric (18,4),
-		@CULTIVO nvarchar(50),
-		@TIPOGARANTIA nvarchar(50),
-		@CODGARANTIA smallint,
-		@TELEFONOCASA nvarchar(10),
-		@CELULAR1 nvarchar(10),
-		@EMAIL nvarchar(50),
-		@CEDULA nvarchar(14),
-		@TIPOPERSONA nvarchar(1),
-		@EXONERADO smallint,
-		@ESTATUS nvarchar(20),
-		@MAXIMODIAS int,
-		@CALIFICACION nvarchar(50),
-		@NIVELPRECIO nvarchar(30),
-		@CORPORATIVO nvarchar(10),
-		@CORPORATIVOP smallint,
-		@NOMBRECONTACTO1 nvarchar(100),
-		@TELEFONOCONTACTO1 nvarchar(10),
-		@CELULARCONTACTO1 nvarchar(10),
-		@NOMBRECONTACTO2 nvarchar(100),
-		@TELEFONOCONTACTO2 nvarchar(50),
-		@CELULARCONTACTO2 nvarchar(10),
-		@USUARIO nvarchar(20),
-		@FECHAREGISTRO datetime,
-		@USUARIO1 nvarchar(20),
-		@FECHAUPDATE datetime,
-		@TransunionOk smallint,
-		@SaldoAFavorLocal decimal,
-		@SaldoAFavorDolar decimal,
-		@FechaSaldoAFavor datetime,
-		@SALDOULTIMOCORTE numeric,
-		@NOVENCIDOULTIMOCORTE numeric,
-		@VENCIDOULTIMOCORTE numeric,
-		@INTERESESULTIMOCORTE numeric,
-		@DESLIZAMIENTOULTIMOCORTE numeric,
-		@FECHAULTIMOCORTEcpp datetime,
-		@TCAMBIOULTIMOCORTEcpp numeric,
-		@Agroservicio smallint,
-		@FechaNacimiento datetime,
-		@TieneFinca smallint,
-		@CodSegmento nvarchar(10),
-		@CodMotivoCompra smallint,
-		@MecanismoCompra nvarchar(250),
-		@RUC nvarchar(20),
-		@NombreComercial nvarchar(100),
-		@CodTipoCliente smallint,
-		@EstadoCaptacion smallint,
-		@FechaInsercionSuc datetime,
-		@UltFechaActualizacionSuc datetime,
-		@CodDepartamento int,
-		@CodMunicipio int,
-		@CodComunidad int,
-		@CodTipoClienteCredito int,
-		@IDCategoria nvarchar(20),
-		@PorcInteres as decimal (4,2)
-AS
-
-declare @InsertaBitacora as smallint
-set @InsertaBitacora=0
-
-select @InsertaBitacora=count(*) from dbo.cppProveedores 
-where ( 
-			[FECHATOPE]<>@FECHATOPE 
-		or [PLAZODIAS] <>@PLAZODIAS 
-		or [TECHOCREDITO]<>@TECHOCREDITO
-		or [NIVELPRECIO]<>@NIVELPRECIO 
-		or isnull([CodTipoClienteCredito],0)<>@CodTipoClienteCredito
-		or [CodTipoCliente]<>@CodTipoCliente 
-		or  PorcInteres <>@PorcInteres
-		) 
-		and IDProveedor = @IDProveedor 
-
-if @InsertaBitacora=1
-	begin
-	INSERT INTO [fnica].[cppProveedoresBitacoraCambiosDatosCredito]
-	(	[IDProveedor]
-		,[FechaBitacora]
-		,[FECHATOPE]
-		,[PLAZODIAS]
-		,[TECHOCREDITO]
-		,[NIVELPRECIO]
-		,[CodTipoClienteCredito]
-		,[CodTipoCliente]
-		,[FECHAREGISTRO]
-		,[USUARIO]
-		,PorcInteres
-	)
-	Values
-	(
-		@IDProveedor,
-		getdate(),	
-		@FECHATOPE,
-		@PLAZODIAS,
-		@TECHOCREDITO,
-		@NIVELPRECIO,
-		@CodTipoClienteCredito,
-		@CodTipoCliente,
-		@FECHAREGISTRO,		
-		@USUARIO,
-		@PorcInteres
-		)
-	end
-
-UPDATE dbo.cppProveedores
-SET
-	APELLIDOSCLIENTE = @APELLIDOSCLIENTE,
-	NOMBRESCLIENTE = @NOMBRESCLIENTE,
-	DIRECCION = @DIRECCION,
-	TELEFONO1 = @TELEFONO1,
-	FAX1 = @FAX1,
-	CODVENDEDOR = @CODVENDEDOR,
-	MOROSO = @MOROSO,
-	FECHATOPE = @FECHATOPE,
-	PLAZODIAS = @PLAZODIAS,
-	TECHOCREDITO = @TECHOCREDITO,
-	CULTIVO = @CULTIVO,
-	TIPOGARANTIA = @TIPOGARANTIA,
-	CODGARANTIA = @CODGARANTIA,
-	TELEFONOCASA = @TELEFONOCASA,
-	CELULAR1 = @CELULAR1,
-	EMAIL = @EMAIL,
-	CEDULA = @CEDULA,
-	TIPOPERSONA = @TIPOPERSONA,
-	EXONERADO = @EXONERADO,
-	CALIFICACION = @CALIFICACION,
-	NIVELPRECIO = @NIVELPRECIO,
-	CORPORATIVO = @CORPORATIVO,
-	CORPORATIVOP = @CORPORATIVOP,
-	NOMBRECONTACTO1 = @NOMBRECONTACTO1,
-	TELEFONOCONTACTO1 = @TELEFONOCONTACTO1,
-	CELULARCONTACTO1 = @CELULARCONTACTO1,
-	NOMBRECONTACTO2 = @NOMBRECONTACTO2,
-	TELEFONOCONTACTO2 = @TELEFONOCONTACTO2,
-	CELULARCONTACTO2 = @CELULARCONTACTO2,	
-	USUARIO1 = @USUARIO1,
-	FECHAUPDATE = @FECHAUPDATE,
-	TransunionOk = @TransunionOk,	
-	CodTipoCliente = @CodTipoCliente,	
-	CodDepartamento = @CodDepartamento,
-	CodMunicipio = @CodMunicipio,
-	CodComunidad = @CodComunidad,
-	CodTipoClienteCredito=@CodTipoClienteCredito,
-	IDCategoria=@IDCategoria,
-	PorcInteres=@PorcInteres
-WHERE
-	IDProveedor = @IDProveedor 
-
-
-
-RETURN -1
-
-go
-
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-
-ALTER PROCEDURE [fnica].[cppGetProveedoresBitacoraDatosCredito]
-	@IDProveedor nvarchar(10)
-AS
-
-select a.FechaBitacora,a.Fechatope,a.PlazoDias,a.TechoCredito,PORCINTERES,c.Descr TipoClienteCredito,b.descr TipoCliente,NivelPrecio,FechaRegistro,Usuario
-from dbo.cppProveedoresBitacoraCambiosDatosCredito a
-inner join dbo.sucTipoCliente b on a.codtipocliente=b.codtipocliente
-inner join dbo.sucTipoClienteCredito c on a.codtipoclientecredito=c.codtipoclientecredito
-WHERE IDProveedor = @IDProveedor
-order by a.FechaBitacora desc
-
-go 
-
-set ANSI_NULLS ON
-set QUOTED_IDENTIFIER ON
-go
-
-ALTER PROCEDURE [fnica].[cppGetcppProveedores]
-	@IDProveedor nvarchar(10)
-AS
-
-SELECT [IDProveedor]
-      ,[APELLIDOSCLIENTE]
-      ,[NOMBRESCLIENTE]
-      ,[FECHAINGRESO]
-      ,[DIRECCION]
-      ,[TELEFONO1]
-      ,[FAX1]
-      ,[CODSUCURSAL]
-      ,[CODVENDEDOR]
-      ,[MOROSO]
-      ,[SALDO]
-      ,[NOVENCIDO]
-      ,[VENCIDO]
-      ,[INTERESES]
-      ,[DESLIZAMIENTO]
-      ,[FECHATOPE]
-      ,[PLAZODIAS]
-      ,[TECHOCREDITO]
-      ,[CULTIVO]
-      ,[TIPOGARANTIA]
-      ,[CODGARANTIA]
-      ,[TELEFONOCASA]
-      ,[CELULAR1]
-      ,[EMAIL]
-      ,[CEDULA]
-      ,[TIPOPERSONA]
-      ,[EXONERADO]
-      ,[ESTATUS]
-      ,[MAXIMODIAS]
-      ,[CALIFICACION]
-      ,[NIVELPRECIO]
-      ,[CORPORATIVO]
-      ,[CORPORATIVOP]
-      ,[NOMBRECONTACTO1]
-      ,[TELEFONOCONTACTO1]
-      ,[CELULARCONTACTO1]
-      ,[NOMBRECONTACTO2]
-      ,[TELEFONOCONTACTO2]
-      ,[CELULARCONTACTO2]
-      ,[USUARIO]
-      ,[FECHAREGISTRO]
-      ,[USUARIO1]
-      ,[FECHAUPDATE]
-      ,[TransunionOk]
-      ,[SaldoAFavorLocal]
-      ,[SaldoAFavorDolar]
-      ,[FechaSaldoAFavor]
-      ,[SALDOULTIMOCORTE]
-      ,[NOVENCIDOULTIMOCORTE]
-      ,[VENCIDOULTIMOCORTE]
-      ,[INTERESESULTIMOCORTE]
-      ,[DESLIZAMIENTOULTIMOCORTE]
-      ,[FECHAULTIMOCORTEcpp]
-      ,[TCAMBIOULTIMOCORTEcpp]
-      ,[Agroservicio]
-      ,[FechaNacimiento]
-      ,[TieneFinca]
-      ,[CodSegmento]
-      ,[CodMotivoCompra]
-      ,[MecanismoCompra]
-      ,[RUC]
-      ,[NombreComercial]
-      ,[CodTipoCliente]
-      ,[EstadoCaptacion]
-      ,[FechaInsercionSuc]
-      ,[UltFechaActualizacionSuc]
-      ,a.CodDepartamento
-      ,a.CodMunicipio
-      ,a.CodComunidad
-	  ,b.descr descrDepartamento
-	  ,c.descr descrMunicipio
-	  ,d.descr descrComunidad
-	   ,a.PORCINTERES
-      ,isnull(CodTipoClienteCredito,0) CodTipoClienteCredito
-	 ,IDCategoria
-FROM dbo.cppProveedores a
-left join dbo.sucDepartamento b on a.CodDepartamento=b.CodDepartamento
-left join dbo.sucMunicipio    c on a.CodMunicipio=c.CodMunicipio and a.CodDepartamento=c.CodDepartamento
-left join dbo.sucComunidad    d on a.CodComunidad=d.CodComunidad and a.CodDepartamento=d.CodDepartamento and a.CodMunicipio=d.CodMunicipio
-	WHERE
-			(IDProveedor = @IDProveedor OR @IDProveedor='*') 
-
-select * from dbo.sucMunicipio
-select * from dbo.sucComunidad
-
-go
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [fnica].[cppUpdatecodigoAnulado]
-		@CodSucursal NVARCHAR(4), 
-		@NUMERODOCUMENTO NVARCHAR(15),
-		@CodigoAutorizado NVARCHAR(20),
-		@MontoDolarFactura as decimal(18,8),
-		@IDProveedor as NVARCHAR(10),
-		@USUARIO as NVARCHAR(10)
-AS
---Marcamos el codigo de autorizado como usado en la tabla de codigos.
-
-UPDATE dbo.genCODIGOSDEAUTORIZACION 	
-SET ARTICULO = @NUMERODOCUMENTO ,USADO=1,USUARIO=@USUARIO,FECHAUPDATE = getdate()	
-WHERE 	CODIGOAUTORIZADO = @CodigoAutorizado and codsucursal=@CodSucursal
-
-go
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [fnica].[fafAnularFactura]
-		@CODSUCURSAL NVARCHAR(4), 
-		@FACTURA NVARCHAR(15),
-		@CodigoAutorizado NVARCHAR(20),
-		@MontoDolarFactura as decimal(18,8),
-		@TIPO NVARCHAR(1),
-		@IDProveedor as NVARCHAR(10),
-		@USUARIO as NVARCHAR(10)
-AS
-
-
---disminuimos el monto(Total) de la factura para disminuir el saldo del cliente.
-if @TIPO='2'
-	EXEC [fnica].[fafActualizaSaldoClienteFactura]	@IDProveedor,@MontoDolarFactura,0
-
---anulamos la factura segun el criterio.
-update dbo.faffactura set anulada=1 where codsucursal=@CodSucursal and factura=@Factura
---Marcamos el codigo de autorizado como usado en la tabla de codigos.
-UPDATE dbo.genCODIGOSDEAUTORIZACION 	
-SET ARTICULO = 'AnulaFAC'+@Factura ,USADO=1,USUARIO=@USUARIO,FECHAUPDATE = getdate()	
-WHERE 	CODIGOAUTORIZADO = @CodigoAutorizado and codsucursal=@CodSucursal
---Borramos del impresor factura 
-delete dbo.tmpImpresionfafFACTURA where codsucursal=@CodSucursal and factura=@Factura
-delete dbo.tmpImpresionfafFACTURADETALLE where codsucursal=@CodSucursal and factura=@Factura
---Borramos de inventariotmplote
-DELETE  FROM dbo.invTmpFacturaLote WHERE BODEGA=@CODSUCURSAL AND Factura=@FACTURA 
-
-
-go 
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [fnica].[cppGetRecibosByCriterio2]
-            @CODSUCURSAL as nvarchar(10),
-            @FECHADESDE as datetime,
-            @FECHAHASTA as datetime,
-            @IDProveedor as nvarchar(10),
-            @CLIENTE as nvarchar(100),
-            @RECIBIMOSDE as nvarchar(100),
-            @NUMERORECIBO  as nvarchar(10)
-
-AS
-
-set @FECHADESDE = CAST(SUBSTRING(CAST(@FECHADESDE AS CHAR),1,11) + ' 00:00:00.000' AS DATETIME)
-set @FECHAHASTA = CAST(SUBSTRING(CAST(@FECHAHASTA AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
-
-if @FECHADESDE<'20150101'
-begin 
-	SELECT    NUMERORECIBO DOCUMENTO, CODSUCURSAL, FECHAINGRESO,IDProveedor,CLIENTE,RECIBIMOSDE,
-	 VALOR, VALORDOLAR, ANULADA,TIPOCAMBIO,isnull(Asiento,'') Asiento             
-	FROM         dbo.cpprecibos
-	WHERE (CODSUCURSAL=@CODSUCURSAL OR @CODSUCURSAL='*') 
-	AND (FECHAINGRESO BETWEEN @FECHADESDE AND @FECHAHASTA)
-	AND (IDProveedor=@IDProveedor OR @IDProveedor='*')
-	AND (CLIENTE LIKE @CLIENTE OR @CLIENTE='*')
-	AND (RECIBIMOSDE LIKE @RECIBIMOSDE OR @RECIBIMOSDE='*')
-	AND (NUMERORECIBO LIKE @NUMERORECIBO OR @NUMERORECIBO='*')
-end 
-else
-begin
-	SELECT    a.DOCUMENTO, a.CODSUCURSAL,FECHA FECHAINGRESO,a.IDProveedor,b.NOMBRESCLIENTE+' '+b.APELLIDOSCLIENTE  CLIENTE,a.RECIBIMOSDE,
-	 a.MontoOriginal ,  a.MontoOriginal/a.TipoCambio  VALORDOLAR, a.Anulado  ANULADA,a.TIPOCAMBIO,isnull(a.Asiento,'') Asiento  ,isnull(a.AsientoReversion,'') AsientoReversion                 
-	FROM         dbo.cppDocumentosCP a inner join dbo.cppProveedores b on a.IDProveedor=b.IDProveedor
-	WHERE (a.CODSUCURSAL=@CODSUCURSAL OR @CODSUCURSAL='*') 
-	AND (a.FECHA BETWEEN @FECHADESDE AND @FECHAHASTA)
-	AND (a.IDProveedor=@IDProveedor OR @IDProveedor='*')
-	AND ((b.NOMBRESCLIENTE+' '+b.APELLIDOSCLIENTE) LIKE @CLIENTE OR @CLIENTE='*')
-	AND (a.RECIBIMOSDE LIKE @RECIBIMOSDE OR @RECIBIMOSDE='*')
-	AND (a.DOCUMENTO LIKE @NUMERORECIBO OR @NUMERORECIBO='*')
-	AND IDClase ='R/C'
-end
-
-go
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROCEDURE [fnica].[cppGetAllParametrosGenerales]
-@codSucursal as nvarchar(10)
-
-AS
-declare @FechaFacturable as datetime,@TCFechaFacturable as decimal(18,8),
-@NextConsecutivo as nvarchar (20),@FormatoRecibo as nvarchar(50)
-
-set @FechaFacturable = dbo.fafFechaProximaFacturable(@codSucursal) 
-set @TCFechaFacturable = dbo.globalGetUltTasadeCambio(@FechaFacturable)
-set @FormatoRecibo=(select FormatoRecibo from dbo.globalsucursales where codsucursal=@codSucursal)
-set @NextConsecutivo =(select dbo.cppGetNextConsecRecibo(@codSucursal))
-
---Cambios por new SISCOBRO
---set @NextConsecutivo = (select dbo.cppProximoNumerorecibo(@codSucursal))
-
-SELECT *, @FechaFacturable FechaFacturable,@TCFechaFacturable TCFechaFacturable,@NextConsecutivo NextConsecutivo,@FormatoRecibo FormatoRecibo,
-IDSubTipoRCCteEspVarios,IDSubTipoRCAutomatico
-FROM dbo.cppParametrosGenerales
-
-GO
-
-
-
-ALTER procedure [fnica].[fafGetCuadraturaFacturasRecibos] @FechaInicial datetime, @FechaFinal datetime, @CodSucursal nvarchar(4)
-as
-
-
-Declare @SumaRCFC as decimal(18,4)
-
-Select @SumaRCFC=isnull(round(sum(totalfactura),2),0)
-from dbo.faffactura where fechafactura between @FechaInicial and @FechaFinal 
-and tipo=1 and anulada=0 and codsucursal=@CodSucursal
-
-/* antes 
-Select @SumaRCFC=@SumaRCFC+isnull(round(sum (valor),2),0)
-from dbo.cpprecibos where fechaingreso between @FechaInicial and @FechaFinal 
-and anulada=0 and codsucursal=@CodSucursal
-*/ 
-
-Select @SumaRCFC=@SumaRCFC+isnull(round(sum ( MontoOriginal ),2),0)
-from dbo.cppDocumentosCP where IDClase  = 'R/C' AND  fecha between @FechaInicial and @FechaFinal 
-and Anulado =0 and codsucursal=@CodSucursal
-
-Select @SumaRCFC as SumaRCFC
-GO
-
-
-
-create PROCEDURE [fnica].[cppGetNotasByCriterio]
-            @CODSUCURSAL as nvarchar(10),
-            @FECHADESDE as datetime,
-            @FECHAHASTA as datetime,
-            @IDProveedor as nvarchar(10),
-            @CLIENTE as nvarchar(100),
-            @RECIBIMOSDE as nvarchar(100),
-            @NUMERORECIBO  as nvarchar(10),
-            @IDClase AS nvarchar(3) 
-
-AS
-
-set @FECHADESDE = CAST(SUBSTRING(CAST(@FECHADESDE AS CHAR),1,11) + ' 00:00:00.000' AS DATETIME)
-set @FECHAHASTA = CAST(SUBSTRING(CAST(@FECHAHASTA AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
-
- 
-	SELECT    a.DOCUMENTO, a.CODSUCURSAL,FECHA FECHAINGRESO,a.IDProveedor,b.NOMBRESCLIENTE+' '+b.APELLIDOSCLIENTE  CLIENTE,a.RECIBIMOSDE,
-	 a.MontoOriginal ,  a.MontoOriginal/a.TipoCambio  VALORDOLAR, a.Anulado  ANULADA,a.TIPOCAMBIO,isnull(a.Asiento,'') Asiento, AsientoReversion ,IDClase     
-	FROM         dbo.cppDocumentosCP a inner join dbo.cppProveedores b on a.IDProveedor=b.IDProveedor
-	WHERE (a.CODSUCURSAL=@CODSUCURSAL OR @CODSUCURSAL='*') 
-	AND (a.FECHA BETWEEN @FECHADESDE AND @FECHAHASTA)
-	AND (a.IDProveedor=@IDProveedor OR @IDProveedor='*')
-	AND ((b.NOMBRESCLIENTE+' '+b.APELLIDOSCLIENTE) LIKE @CLIENTE OR @CLIENTE='*')
-	AND (a.RECIBIMOSDE LIKE @RECIBIMOSDE OR @RECIBIMOSDE='*')
-	AND (a.DOCUMENTO LIKE @NUMERORECIBO OR @NUMERORECIBO='*')
-	AND IDClase =@IDClase
-GO
-
-ALTER Procedure [fnica].[uspSIGgetIndiceRecuperacionbySucursal]
-@CodSucursal nvarchar(20), @FechaInicio datetime,  @FechaFinal datetime
-as
-set nocount on 
-	-- Valor Recuperado
-Select CodSucursal,sum(ValorCS) ValorCS,sum(ValorUS) ValorRecuperacion 
-into #Recuperacion
-from 
-(
-		SELECT     S.CodSucursal, SUM(valor) AS ValorCS, SUM(valordolar) AS ValorUS
-		FROM dbo.cpprecibos R inner join dbo.cppProveedores S 
-		on R.IDProveedor = S.IDProveedor 
-		WHERE  R.Fechaingreso between @fechaInicio and  @fechaFinal and anulada=0 and R.IDProveedor not in ('MG999','MG100')
-		and (S.CodSucursal = @CodSucursal or @CodSucursal = '*')
-		GROUP BY S.CodSucursal
-		union all
-			
-		SELECT b.CodSucursal, SUM(valor) AS ValorCS, SUM(valordolar) AS ValorUS
-		FROM dbo.cppnotasdebitocredito a inner join dbo.cppProveedores b on a.IDProveedor=b.IDProveedor
-		WHERE a.FechaIngreso between @fechaInicio and @fechaFinal and anulada=0
-		and (b.CodSucursal = @CodSucursal or @CodSucursal = '*')
-		and a.CodCta in (select CodNota from dbo.cppTIPOSDENOTAS where recupera=1 ) 	
-		GROUP BY b.CodSucursal
-		
-		union all 
-		Select b.CODSUCURSAL, SUM( R.MontoOriginal) ValorCS, SUM( case when R.TipoCAmbio <> 0 then R.MontoOriginal / R.TipoCambio else 0 end ) ValorCS
-		From dbo.cppDocumentosCP R inner join dbo.cppProveedores b on R.IDProveedor=b.IDProveedor
-		where IDClase = 'R/C' AND Anulado = 0 AND R.IDProveedor not in ('MG999','MG100')
-		AND R.Fecha  between @fechaInicio and  @fechaFinal
-		GROUP BY B.CODSUCURSAL 
-
-		union all 
-		Select b.CODSUCURSAL, SUM( R.MontoOriginal) ValorCS, SUM( case when R.TipoCAmbio <> 0 then R.MontoOriginal / R.TipoCambio else 0 end ) ValorCS
-		From dbo.cppDocumentosCP R inner join dbo.cppProveedores b on R.IDProveedor=b.IDProveedor 
-		INNER JOIN dbo.cppSubTipoDocumento S ON R.IDClase = S.IDClase AND R.IDSubTipo = S.IDSubTipo 
-		where R.IDClase = 'N/C' AND S.EsRecuperacion = 1 AND Anulado = 0 AND R.IDProveedor not in ('MG999','MG100')
-		AND R.Fecha  between @fechaInicio and  @fechaFinal
-		GROUP BY B.CODSUCURSAL 
-
-)x group by CodSucursal
-
-	-- Valor Venta
-	Select t1.CodSucursal, t1.VentaTotalDolar
-	into #Ventas
-	From 
-	(
-		Select D.CodSucursal, 
-		sum(Cantidad) Cantidad, 
-		sum(CostoDolar*Cantidad) CostoTotalDolar, sum((PrecioUnitarioDolar*Cantidad)+IVADOLAR ) VentaTotalDolar,
-		Sum ((PrecioUnitarioDolar*Cantidad)+IVADOLAR - (Cantidad * CostoDOLAR)) MargenTotalDolar,
-		case when sum ((PrecioUnitarioDolar*Cantidad)+IVADOLAR ) > 0 
-		then cast(( Sum (( (PrecioUnitarioDolar*Cantidad)+IVADOLAR ) - (Cantidad * CostoDOLAR)) / sum((PrecioUnitarioDolar*Cantidad)+IVADOLAR ))*100  as decimal (28,2)) 
-		else 0 end  PorcMargenTotalDolar
-
-		From ( 
-				Select CodSucursal, Tipo, TipoFormato, Factura, FechaFactura, IDProveedor,
-				Articulo, Cantidad, PrecioUnitario, PrecioUnitarioDolar, IVA, IVADolar, CostoLocal, CostoDolar
-				From Exactus.dbo.vsucVentaDetalleCredito a
-				where (a.CodSucursal = @CodSucursal or @CodSucursal = '*') and a.FECHAFACTURA BETWEEN @FechaInicio AND @FechaFinal 
-				) D 
-		group by D.CodSucursal
-	) T1
-
-Create table #Resultados ( CodSucursal nvarchar(20), Descr nvarchar(250),
-Ventas decimal(28,8) default 0, Recuperacion decimal(28,8) default 0,
-IndiceRecuperacion decimal(8,2) default 0
-)
-
-insert #Resultados ( CodSucursal, Ventas )
-select CodSucursal, VentaTotalDolar
-From #Ventas
-
-update R set Recuperacion = P.ValorRecuperacion
-from #Resultados R inner join #Recuperacion P
-on R.CodSucursal = P.CodSucursal
--- los que tienen recuperacion y no ventas
-insert #Resultados ( CodSucursal, Ventas, Recuperacion)
-Select P.CodSucursal, 0, P.ValorRecuperacion
-From #Resultados R right join #Recuperacion P
-on R.CodSucursal = P.CodSucursal
-where R.CodSucursal is null
-
-Update R set Descr = s.Sucursal, IndiceRecuperacion = case when Ventas = 0 then 1 else Recuperacion / Ventas end 
-from #Resultados R inner join dbo.globalsucursales s
-on R.codsucursal = s.codsucursal
-
-Declare @Ventas decimal(28,8), @Recuperacion decimal(28,8)
-Select @Ventas = isnull(sum(Ventas),0) , @Recuperacion = isnull(sum(Recuperacion), 0 )
-From #Resultados
-
-Select '*' CodSucursal, 'Nivel Nacional : ' +convert(varchar, @FechaInicio, 103) + ' al ' + convert(varchar, @FechaFinal, 103) Descr, 
-@Ventas Ventas,@Recuperacion Recuperacion, case when @Ventas = 0 then 0 else (@Recuperacion / @Ventas) end  IndiceRecuperacion
-union all
-Select CodSucursal, Descr, Ventas, Recuperacion, IndiceRecuperacion
-From #Resultados
-order by Recuperacion desc
-
-drop table #Ventas
-drop table #Recuperacion
-Drop table #Resultados
-
-GO
-
--- exec [fnica].[uspSIGgetIndiceRecuperacionRealPeriodobySucursal] '*', '20150201', '20150228'
-ALTER Procedure [fnica].[uspSIGgetIndiceRecuperacionRealPeriodobySucursal] @CodSucursal nvarchar(20), @FechaInicio datetime,  @FechaFinal datetime
-as
-set nocount on 
-DECLARE @CantidadDias int
-SELECT @CantidadDias =  DATEDIFF( DAY, @FechaInicio, @FechaFinal)
-	-- Valor Venta
-	Select t1.CodSucursal, t1.IDProveedor, t1.Factura, t1.VentaTotalDolar
-	into #Ventas
-	From 
-	(
-		Select D.CodSucursal, D.IDProveedor, D.Factura,
-		sum(Cantidad) Cantidad, 
-		sum(CostoDolar*Cantidad) CostoTotalDolar, sum((PrecioUnitarioDolar*Cantidad)+IVADOLAR ) VentaTotalDolar,
-		Sum (((PrecioUnitarioDolar*Cantidad)+IVADOLAR) - (Cantidad * CostoDOLAR)) MargenTotalDolar,
-		case when sum (((PrecioUnitarioDolar*Cantidad)+IVADOLAR)) > 0 
-		then cast(( Sum (((PrecioUnitarioDolar*Cantidad)+IVADOLAR) - (Cantidad * CostoDOLAR)) / sum((PrecioUnitarioDolar*Cantidad)+IVADOLAR))*100  as decimal (28,2)) 
-		else 0 end  PorcMargenTotalDolar
-
-		From ( 
-				Select S.CodSucursal, Tipo, TipoFormato, Factura, FechaFactura, a.IDProveedor,
-				Articulo, Cantidad, PrecioUnitario, PrecioUnitarioDolar, IVA, IVADolar, CostoLocal, CostoDolar
-				From Exactus.dbo.vsucVentaDetalleCredito a inner join dbo.cppProveedores S 
-				on a.IDProveedor = S.IDProveedor 
-				where (a.CodSucursal = @CodSucursal or @CodSucursal = '*') and a.FECHAFACTURA BETWEEN @FechaInicio AND @FechaFinal 
-				) D 
-		group by D.CodSucursal, D.IDProveedor, D.Factura
-	) T1
-
--- Pagos de Facturas en el mismo Rango
-
-Select CodSucursal, IDProveedor, Factura, sum(ValorPago ) ValorPago
-into #Pagos
-from (
-
-
-	Select  P.CodSucursal, P.IDProveedor,V.Factura, sum(case when y.Monto > 0 then P.ValorRecibo/y.monto else 0 end ) ValorPago
-	From dbo.cppDESGLOSEDEPAGOS P inner join #Ventas V
-	on V.CodSucursal = P.CodSucursal and V.IDProveedor = P.IDProveedor and P.Factura = V.Factura
-	inner join (SELECT DISTINCT YEAR(Fecha) ANIO,MONTH(Fecha) MES , DAY(Fecha) DIA, MAX(MONTO ) MONTO
-					FROM  dbo.TIPO_CAMBIO_HIST
-					GROUP BY YEAR(Fecha) , MONTH(Fecha)  , DAY(Fecha) ) y 
-		on YEAR(P.FECHARECIBO)=y.ANIO AND MONTH(P.FECHARECIBO)= y.mes and day(P.FECHARECIBO) = y.dia
-	where P.Recupera = 1 and P.FECHARECIBO BETWEEN @FechaInicio AND @FechaFinal
-	group by  P.CodSucursal, P.IDProveedor,V.Factura
-	union all
-
-	select X.CodSucursal, X.IDProveedor, X.Factura, case when D.TipoCambio >0 then  X.MontoCredito / D.TipoCambio  else 0 end ValorPago 
-	from (	
-	SELECT A.IDDocCredito , F.CodSucursal, F.IDProveedor, F.Documento Factura, A.FechaCredito, A.MontoCredito 
-	FROM (
-		select IDDocumentoCP,  D.codsucursal, d.documento, d.IDProveedor, d.IDSubTipo 
-		from dbo.cppDocumentosCP D inner join #Ventas V
-		on D.CodSucursal = V.CodSucursal and D.Documento = V.Factura 
-		where IDClase ='FAC' AND Anulado = 0
-		AND Fecha BETWEEN @FechaInicio and @FechaFinal 
-	) F inner JOIN dbo.cppAplicaciones A
-	ON F.IDDocumentoCP = A.IDDebito   
-	WHERE A.FechaCredito between @FechaInicio and @FechaFinal 
-	) X inner join dbo.cppDocumentosCP D
-	on X.IDDocCredito = D.IDDocumentoCP 
-	where d.IDSubTipo in (Select IDSubTipo from dbo.cppSubTipoDocumento where EsRecuperacion = 1)
-) Y 
-group by  CodSucursal, IDProveedor, Factura
-
-
-
-/* ANTES
-SELECT *
-INTO #Pagos
-FROM (
-Select  P.CodSucursal, P.IDProveedor,V.Factura, sum(case when y.Monto > 0 then P.ValorRecibo/y.monto else 0 end ) ValorPago
-From dbo.cppDESGLOSEDEPAGOS P inner join #Ventas V
-on V.CodSucursal = P.CodSucursal and V.IDProveedor = P.IDProveedor and P.Factura = V.Factura
-inner join (SELECT DISTINCT YEAR(Fecha) ANIO,MONTH(Fecha) MES , DAY(Fecha) DIA, MAX(MONTO ) MONTO
-				FROM  dbo.TIPO_CAMBIO_HIST
-				GROUP BY YEAR(Fecha) , MONTH(Fecha)  , DAY(Fecha) ) y 
-	on YEAR(P.FECHARECIBO)=y.ANIO AND MONTH(P.FECHARECIBO)= y.mes and day(P.FECHARECIBO) = y.dia
-where P.Recupera = 1 and P.FECHARECIBO BETWEEN @FechaInicio AND @FechaFinal
-group by  P.CodSucursal, P.IDProveedor,V.Factura
-union all
-select D.CodSucursal, D.IDProveedor, A.DocDebito, sum(case when y.Monto > 0 then A.MontoCredito /y.monto else 0 end ) ValorPago
-from dbo.cppAplicaciones A inner join dbo.cppDocumentosCP D
-on A.IDDebito  = D.IDDocumentoCP 
-inner join (SELECT DISTINCT YEAR(Fecha) ANIO,MONTH(Fecha) MES , DAY(Fecha) DIA, MAX(MONTO ) MONTO
-				FROM  dbo.TIPO_CAMBIO_HIST
-				GROUP BY YEAR(Fecha) , MONTH(Fecha)  , DAY(Fecha) ) y 
-	on YEAR(A.FechaCredito )=y.ANIO AND MONTH(A.FechaCredito)= y.mes and day(A.FechaCredito) = y.dia
-where D.IDSubTipo in (Select IDSubTipo from dbo.cppSubTipoDocumento where EsRecuperacion = 1)
-and a.FechaCredito BETWEEN @FechaInicio AND @FechaFinal
-group by   D.CodSucursal, D.IDProveedor, A.DocDebito
-) T
-
-
-Select  P.CodSucursal, P.IDProveedor,V.Factura, sum(case when y.Monto > 0 then P.ValorRecibo/y.monto else 0 end ) ValorPago
-From dbo.cppAplicaciones P inner join #Ventas V
-on V.CodSucursal = P.CodSucursal and V.IDProveedor = P.IDProveedor and P.Factura = V.Factura
-inner join (SELECT DISTINCT YEAR(Fecha) ANIO,MONTH(Fecha) MES , DAY(Fecha) DIA, MAX(MONTO ) MONTO
-				FROM  dbo.TIPO_CAMBIO_HIST
-				GROUP BY YEAR(Fecha) , MONTH(Fecha)  , DAY(Fecha) ) y 
-	on YEAR(P.FECHARECIBO)=y.ANIO AND MONTH(P.FECHARECIBO)= y.mes and day(P.FECHARECIBO) = y.dia
-where P.Recupera = 1 and P.FECHARECIBO BETWEEN @FechaInicio AND @FechaFinal
-group by  P.CodSucursal, P.IDProveedor,V.Factura
-*/
-
--- Pagos QUE DEJARON UN SALDO A FAVOR ( NO MATO A NINGUNA FACTURA DICHO SALDO )
-/*
-SELECT *
-INTO #PagosAdelantados
-FROM 
-(
-	Select  P.CodSucursal, P.IDProveedor, p.NumeroRecibo, sum(case when y.Monto > 0 then P.ValorRecibo/y.monto else 0 end ) ValorPago
-
-	From dbo.cppDESGLOSEDEPAGOS P 
-	inner join (SELECT DISTINCT YEAR(Fecha) ANIO,MONTH(Fecha) MES , DAY(Fecha) DIA, MAX(MONTO ) MONTO
-					FROM  dbo.TIPO_CAMBIO_HIST
-					GROUP BY YEAR(Fecha) , MONTH(Fecha)  , DAY(Fecha) ) y 
-		on YEAR(P.FECHARECIBO)=y.ANIO AND MONTH(P.FECHARECIBO)= y.mes and day(P.FECHARECIBO) = y.dia
-	where (p.CodSucursal = @CodSucursal or @CodSucursal = '*') and P.Recupera = 1 and P.FECHARECIBO BETWEEN @FechaInicio AND @FechaFinal and FACTURA = 'NODEF' AND P.IDProveedor NOT IN ('MG999', 'MG100')
-	group by   P.CodSucursal, P.IDProveedor, p.NumeroRecibo
-	UNION ALL
-	-- HAY QUE ENCONTRAR LOS RECIBOS QUE CALLERON EN EL PERIODO Y NO MATARON NINGUNA FACTURA
-	Select  R.CodSucursal, R.IDProveedor, R.NumeroRecibo, sum(R.ValorDolar ) ValorPago
-	--INTO #PagosAdelantados 
-	From (  select c.CodSucursal, R.IDProveedor, R.NumeroRecibo , ValorDolar
-			from dbo.cppRecibos R inner join dbo.cppProveedores c on R.IDProveedor = c.IDProveedor 
-			where (c.CodSucursal = @CodSucursal or @CodSucursal = '*') and R.FECHAINGRESO BETWEEN @FechaInicio AND @FechaFinal AND Anulada = 0 and R.IDProveedor NOT IN ('MG999', 'MG100')) R left join dbo.cppDESGLOSEDEPAGOS P 
-	on R.IDProveedor = P.IDProveedor AND R.CODSUCURSAL = P.CODSUCURSAL AND R.NUMERORECIBO = P.NUMERORECIBO
-
-	where P.IDProveedor IS NULL AND P.CODSUCURSAL IS NULL AND P.NUMERORECIBO IS NULL
-	group by   R.CodSucursal, R.IDProveedor, R.NumeroRecibo
-) XX
-
-*/
-Create table #Resultados ( CodSucursal nvarchar(20), Descr nvarchar(250),
-Ventas decimal(28,8) default 0, Recuperacion decimal(28,8) default 0, Adelantos decimal(28,8) default 0,
-IndiceRecuperacion decimal(28,8) default 0
-)
-
-insert #Resultados ( CodSucursal, Ventas )
-select CodSucursal, sum(VentaTotalDolar) VentaTotalDolar
-From #Ventas
-group by CodSucursal
-
--- valor Recuperacion
-update R set Recuperacion = P.ValorRecuperacion
-from #Resultados R inner join ( Select CodSucursal, sum(ValorPago) ValorRecuperacion from #Pagos group by CodSucursal ) P
-on R.CodSucursal = P.CodSucursal
-
----- valor Adelantos
---update R set Adelantos = P.ValorRecuperacion
---from #Resultados R inner join ( Select CodSucursal, sum(ValorPago) ValorRecuperacion from #PagosAdelantados group by CodSucursal ) P
---on R.CodSucursal = P.CodSucursal
-
-
-Update R set Descr = s.Sucursal, IndiceRecuperacion = case when Ventas = 0 then 1 else Recuperacion / Ventas end 
-from #Resultados R inner join dbo.globalsucursales s
-on R.codsucursal = s.codsucursal
-
-Declare @Ventas decimal(28,8), @Recuperacion decimal(28,8), @Adelantos decimal(28,8)
-Select @Ventas = isnull(sum(Ventas),0) , @Recuperacion = isnull(sum(Recuperacion), 0 )
-, @Adelantos = isnull(sum(Adelantos), 0 )
-From #Resultados
-
-Select '*' CodSucursal, 'Nivel Nacional : ' +convert(varchar, @FechaInicio, 103) + ' al ' + convert(varchar, @FechaFinal, 103) + ' (Dias '+ cast(@CantidadDias as nvarchar(20) )  + ')' Descr, 
-@Ventas Ventas,@Recuperacion Recuperacion,  case when @Ventas = 0 then 0 else (@Recuperacion / @Ventas) end*100  IndiceRecuperacion
-union all
-Select CodSucursal, Descr, Ventas, Recuperacion,  (IndiceRecuperacion *100) IndiceRecuperacion
-From #Resultados
-order by Recuperacion desc
-
-drop table #Resultados
-drop table #Ventas
-drop table #Pagos
-go
 
 update dbo.cppSubtipodocumento set CtaDebito = '4-02-01-010-000',CtaCredito='1-01-03-001-010',NaturalezaCta ='D',SubTipoGeneraAsiento =1,EsRecuperacion =0 where IDSubtipo = 15
 update dbo.cppSubtipodocumento set CtaDebito = '4-02-01-002-000',CtaCredito='1-01-03-001-010',NaturalezaCta ='D',SubTipoGeneraAsiento =1,EsRecuperacion =0 where IDSubtipo = 16
@@ -4660,12 +2923,12 @@ update dbo.cppSubtipodocumento set CtaDebito = '1-01-03-001-010',CtaCredito='9-0
 
 
 --Agregados (Julio)
-CREATE Procedure [fnica].[cppGetAntiguedadSaldosDolar] @CodSucursal nvarchar(20), @IDProveedor nvarchar(20), @FechaCorte DATETIME,
+CREATE Procedure dbo.[cppGetAntiguedadSaldosDolar]  @IDProveedor nvarchar(20), @FechaCorte DATETIME,
 @InclyeInteresAlNominal bit, @InclyeDeslizamientoAlNominal bit
 as
 
 set nocount on 
-Create Table #Resultados( IDSaldo int, IDDocumentoCP int, IDProveedor nvarchar(20), CodSucursal nvarchar(10),
+Create Table #Resultados( IDSaldo int, IDDocumentoCP int, IDProveedor nvarchar(20), 
 TipoDocumento nvarchar(1), IDClase nvarchar(10), IDSubtipo int, Documento nvarchar(20), 
 Fecha datetime, FechaDocVar datetime, Vencimiento datetime, VencimientoVar datetime, Plazo decimal(8,2),
 MontoOriginal decimal(28,4), FechaUltCredito datetime, SaldoActual decimal(28,4), 
@@ -4674,18 +2937,18 @@ Deslizamiento decimal(28,4) , TotalaPagar decimal(28,4), EsInteres bit, EsDesliz
 )
 
 declare @TipoCambio as decimal(18,4)
-select @TipoCambio=( SELECT [fnica].[globalGetUltTasadeCambio] (@FechaCorte))
+select @TipoCambio=( SELECT dbo.[globalGetUltTasadeCambio] (@FechaCorte))
 
 
-Insert #Resultados (IDSaldo, IDDocumentoCP, IDProveedor, CodSucursal, TipoDocumento, IDClase, IDSubtipo, 
+Insert #Resultados (IDSaldo, IDDocumentoCP, IDProveedor, TipoDocumento, IDClase, IDSubtipo, 
 Documento, Fecha, FechaDocVar, Vencimiento, VencimientoVar, Plazo,	MontoOriginal, FechaUltCredito, SaldoActual, 
 FechaSaldo, Saldo,DiasVencidos,  SaldoNominal,  Intereses, Deslizamiento, TotalaPagar, EsInteres, EsDeslizamiento)
-exec dbo.cppGetDocumentosxCobrar @CodSucursal, @IDProveedor, @FechaCorte
+exec dbo.cppGetDocumentosxCobrar  @IDProveedor, @FechaCorte
 
 Delete From #Resultados
 Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 and @InclyeInteresAlNominal = 0)
 
-	SELECT CODSUCURSAL, IDProveedor,NOMBRE, SUM(ISNULL(NominalNovencido,0)) NominalNovencido,
+	SELECT IDProveedor,NOMBRE, SUM(ISNULL(NominalNovencido,0)) NominalNovencido,
 	SUM(ISNULL(Nominala30,0)) Nominala30,
 	SUM(ISNULL(Nominal31a60,0)) Nominal31a60,
 	SUM(ISNULL(Nominal61a90,0)) Nominal61a90,  
@@ -4697,7 +2960,7 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 	ISNULL(Nominal91a120,0)+ISNULL(Nominal21a180,0)+ISNULL(Nominal81a600,0)+ISNULL(Nominalmas600,0)) TotalCliente
 
 	FROM (
-		SELECT CODSUCURSAL, IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Nominal) ELSE 0 end NominalNovencido,
+		SELECT  IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Nominal) ELSE 0 end NominalNovencido,
 		case when rango = '1-30' then SUM(Nominal) ELSE 0 end Nominala30,
 		case when rango = '31-60' then SUM(Nominal) ELSE 0 end Nominal31a60,
 		case when rango = '61-90' then SUM(Nominal) ELSE 0 end Nominal61a90,
@@ -4707,7 +2970,7 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 		case when rango = '+600' then SUM(Nominal) ELSE 0 end Nominalmas600    
 		FROM 
 		(
-				SELECT b.codsucursal, a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.DiasVencidos,  
+				SELECT  a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.DiasVencidos,  
 		CASE WHEN a.DiasVencidos BETWEEN 1 AND 30 THEN '1-30' ELSE
 			CASE WHEN a.DiasVencidos BETWEEN 31 AND 60 THEN '31-60' ELSE
 				CASE WHEN a.DiasVencidos BETWEEN 61 AND 90 THEN '61-90' ELSE
@@ -4729,9 +2992,9 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 
 
 		) T1
-		GROUP BY CODSUCURSAL, IDProveedor, NOMBRE, RANGO
+		GROUP BY  IDProveedor, NOMBRE, RANGO
 	) T2
-	GROUP BY CODSUCURSAL, IDProveedor, NOMBRE
+	GROUP BY  IDProveedor, NOMBRE
 	HAVING SUM(ISNULL(NominalNovencido,0)+ ISNULL(Nominala30,0)+ ISNULL(Nominal31a60,0)+ ISNULL(Nominal61a90,0)+
 	ISNULL(Nominal91a120,0)+ISNULL(Nominal21a180,0)+ISNULL(Nominal81a600,0)+ISNULL(Nominalmas600,0)) > 0
 
@@ -4739,7 +3002,7 @@ drop table #Resultados
 GO
 
 
-CREATE PROCEDURE [fnica].[cppGetSaldosCartera]  @FechaCorte datetime ,@Sucursal nvarchar(10), @TipoSaldo int
+CREATE PROCEDURE dbo.[cppGetSaldosCartera]  @FechaCorte datetime , @TipoSaldo int
 --, @UltimoCortecpp int
 AS 
 
@@ -4751,7 +3014,6 @@ CREATE TABLE #tmpResultado
 	IDSaldo int ,
 	IDDocumentoCP int ,
 	IDProveedor nvarchar(10) ,
-	CodSucursal nvarchar(4) ,
 	TipoDocumento nvarchar(1) ,
 	IDClase nvarchar(10) ,
 	IDSubtipo int ,
@@ -4775,43 +3037,41 @@ CREATE TABLE #tmpResultado
 	EsDeslizamiento bit
 )
 
-set @Sucursal=isnull(@Sucursal,'*')
 
 insert into #tmpresultado
 EXECUTE dbo.cppGetDocumentosxCobrar 
-   @Sucursal
-  ,'*'
+  '*'
   ,@FechaCorte
 
 
 --Saldos de Cartera Detalleado x cliente/Factura
 if @TipoSaldo=1 
-	select r.CodSucursal,r.IDProveedor, c.NOMBRESCLIENTE + ' ' + c.APELLIDOSCLIENTE AS Cliente,TipoDocumento,Documento,Fecha,Vencimiento,DiasVencidos,SaldoNominal,r.Deslizamiento,r.Intereses,TotalaPagar
+	select r.IDProveedor, c.NOMBRESCLIENTE + ' ' + c.APELLIDOSCLIENTE AS Cliente,TipoDocumento,Documento,Fecha,Vencimiento,DiasVencidos,SaldoNominal,r.Deslizamiento,r.Intereses,TotalaPagar
 	,(SaldoNominal+r.Deslizamiento)/@TipoCambio SaldoDolar,r.Intereses/@TipoCambio InteresesDolar,TotalaPagar/@TipoCambio TotalaPagarDolar,
 	CASE WHEN c.MOROSO=0 THEN 'ACTIVO' ELSE 'INACTIVO' END ACTIVO ,	c.FECHATOPE, c.PLAZODIAS, c.CEDULA, c.FECHAINGRESO,c.TIPOGARANTIA
 	from #tmpresultado r inner join dbo.cppProveedores c on r.IDProveedor=c.IDProveedor
 
 --Saldos de Cartera Detalleado x cliente
 if @TipoSaldo=2 
-	Select  r.Sucursal,r.IDProveedor, c.NOMBRESCLIENTE + ' ' + c.APELLIDOSCLIENTE AS Cliente,r.SaldoNominal,r.Deslizamiento,r.Intereses,r.TotalaPagar,
+	Select  r.IDProveedor, c.NOMBRESCLIENTE + ' ' + c.APELLIDOSCLIENTE AS Cliente,r.SaldoNominal,r.Deslizamiento,r.Intereses,r.TotalaPagar,
 	r.SaldoDolar,r.InteresesDolar,r.TotalaPagarDolar,CASE WHEN c.MOROSO=0 THEN 'ACTIVO' ELSE 'INACTIVO' END ACTIVO ,	c.FECHATOPE, c.PLAZODIAS, c.CEDULA, c.FECHAINGRESO,c.TIPOGARANTIA
 	from 
 	(
-		select CodSucursal Sucursal ,IDProveedor,sum(SaldoNominal) SaldoNominal,sum(Deslizamiento) Deslizamiento,sum(Intereses) Intereses,sum(TotalaPagar) TotalaPagar
+		select IDProveedor,sum(SaldoNominal) SaldoNominal,sum(Deslizamiento) Deslizamiento,sum(Intereses) Intereses,sum(TotalaPagar) TotalaPagar
 
 
 		,sum(SaldoNominal+Deslizamiento)/@TipoCambio SaldoDolar,sum(Intereses/@TipoCambio) InteresesDolar,sum(TotalaPagar/@TipoCambio) TotalaPagarDolar
 		from #tmpresultado
-		group by CodSucursal,IDProveedor
+		group by IDProveedor
 	)r inner join dbo.cppProveedores c on r.IDProveedor=c.IDProveedor
 
 --Saldos de Cartera Detalleado x Sucursal x Cliente
 if @TipoSaldo=3 
 
-	select CodSucursal Sucursal ,sum(SaldoNominal) SaldoNominal,sum(Deslizamiento) Deslizamiento,sum(Intereses) Intereses,sum(TotalaPagar) TotalaPagar
+	select sum(SaldoNominal) SaldoNominal,sum(Deslizamiento) Deslizamiento,sum(Intereses) Intereses,sum(TotalaPagar) TotalaPagar
 	,sum(SaldoNominal+Deslizamiento)/@TipoCambio SaldoDolar,sum(Intereses/@TipoCambio) InteresesDolar,sum(TotalaPagar/@TipoCambio) TotalaPagarDolar
 	from #tmpresultado
-	group by CodSucursal
+
 
 
 
@@ -4887,7 +3147,7 @@ if @TipoSaldo=3
 
 GO
 
-CREATE PROCEDURE [fnica].[uspcppGetAntiguedadSaldosDolar] @CodSucursal NVARCHAR(4) , @FechaCorte datetime , @IDProveedor as nvarchar(25)=null
+CREATE PROCEDURE dbo.[uspcppGetAntiguedadSaldosDolar] @FechaCorte datetime , @IDProveedor as nvarchar(25)=null
 AS 
 
 declare @TipoCambio as decimal(18,4)
@@ -4904,7 +3164,7 @@ set @tmpFechaSistema = cast(  cast(year(getdate()) as nvarchar(4))+ '/'+ cast(mo
 
 if @tmpFechaCorte=@tmpFechaSistema
 begin
-	SELECT CODSUCURSAL, IDProveedor,NOMBRE, SUM(ISNULL(PrincipalNovencido,0)) PrincipalNovencido,
+	SELECT  IDProveedor,NOMBRE, SUM(ISNULL(PrincipalNovencido,0)) PrincipalNovencido,
 	SUM(ISNULL(Principal1a30,0)) Principal1a30,
 	SUM(ISNULL(Principal31a60,0)) Principal31a60,
 	SUM(ISNULL(Principal61a90,0)) Principal61a90,  
@@ -4916,7 +3176,7 @@ begin
 	ISNULL(Principal91a120,0)+ISNULL(Principal121a180,0)+ISNULL(Principal181a600,0)+ISNULL(Principalmas600,0)) TotalCliente
 
 	FROM (
-		SELECT CODSUCURSAL, IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Principal/@TipoCambio) ELSE 0 end PrincipalNovencido,
+		SELECT  IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Principal/@TipoCambio) ELSE 0 end PrincipalNovencido,
 		case when rango = '1-30' then SUM(Principal/@TipoCambio) ELSE 0 end Principal1a30,
 		case when rango = '31-60' then SUM(Principal/@TipoCambio) ELSE 0 end Principal31a60,
 		case when rango = '61-90' then SUM(Principal/@TipoCambio) ELSE 0 end Principal61a90,
@@ -4926,7 +3186,7 @@ begin
 		case when rango = '+600' then SUM(Principal/@TipoCambio) ELSE 0 end Principalmas600    
 		FROM 
 		(
-		SELECT b.codsucursal, a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.Vencido, a.NoVencido, 
+		SELECT  a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.Vencido, a.NoVencido, 
 		CASE WHEN a.vencido BETWEEN 1 AND 30 THEN '1-30' ELSE
 			CASE WHEN a.vencido BETWEEN 31 AND 60 THEN '31-60' ELSE
 				CASE WHEN a.vencido BETWEEN 61 AND 90 THEN '61-90' ELSE
@@ -4946,17 +3206,17 @@ begin
 		FROM dbo.fafanexoglobal a INNER JOIN dbo.cppProveedores b
 		ON a.IDProveedor = b.IDProveedor
 		WHERE year(a.FechaCorte) = YEAR(@FechaCorte) AND month(a.FechaCorte) = month(@FechaCorte) AND day(a.FechaCorte) = day(@FechaCorte)
-			AND (b.CodSucursal = @CodSucursal OR @CodSucursal = '*' ) and a.cancelada=0 and (a.IDProveedor=@IDProveedor or @IDProveedor='*')
+			 and a.cancelada=0 and (a.IDProveedor=@IDProveedor or @IDProveedor='*')
 		) T1
-		GROUP BY CODSUCURSAL, IDProveedor, NOMBRE, RANGO
+		GROUP BY  IDProveedor, NOMBRE, RANGO
 	) T2
-	GROUP BY CODSUCURSAL, IDProveedor, NOMBRE
+	GROUP BY  IDProveedor, NOMBRE
 	HAVING SUM(ISNULL(PrincipalNovencido,0)+ ISNULL(Principal1a30,0)+ ISNULL(Principal31a60,0)+ ISNULL(Principal61a90,0)+
 	ISNULL(Principal91a120,0)+ISNULL(Principal121a180,0)+ISNULL(Principal181a600,0)+ISNULL(Principalmas600,0)) > 0
 end
 else
 begin
- 	SELECT CODSUCURSAL, IDProveedor,NOMBRE, SUM(ISNULL(PrincipalNovencido,0)) PrincipalNovencido,
+ 	SELECT IDProveedor,NOMBRE, SUM(ISNULL(PrincipalNovencido,0)) PrincipalNovencido,
 	SUM(ISNULL(Principal1a30,0)) Principal1a30,
 	SUM(ISNULL(Principal31a60,0)) Principal31a60,
 	SUM(ISNULL(Principal61a90,0)) Principal61a90,  
@@ -4968,7 +3228,7 @@ begin
 	ISNULL(Principal91a120,0)+ISNULL(Principal121a180,0)+ISNULL(Principal181a600,0)+ISNULL(Principalmas600,0)) TotalCliente
 
 	FROM (
-		SELECT CODSUCURSAL, IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Principal/@TipoCambio) ELSE 0 end PrincipalNovencido,
+		SELECT IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Principal/@TipoCambio) ELSE 0 end PrincipalNovencido,
 		case when rango = '1-30' then SUM(Principal/@TipoCambio) ELSE 0 end Principal1a30,
 		case when rango = '31-60' then SUM(Principal/@TipoCambio) ELSE 0 end Principal31a60,
 		case when rango = '61-90' then SUM(Principal/@TipoCambio) ELSE 0 end Principal61a90,
@@ -4978,7 +3238,7 @@ begin
 		case when rango = '+600' then SUM(Principal/@TipoCambio) ELSE 0 end Principalmas600    
 		FROM 
 		(
-		SELECT b.codsucursal, a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.Vencido, a.NoVencido, 
+		SELECT a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.Vencido, a.NoVencido, 
 		CASE WHEN a.vencido BETWEEN 1 AND 30 THEN '1-30' ELSE
 			CASE WHEN a.vencido BETWEEN 31 AND 60 THEN '31-60' ELSE
 				CASE WHEN a.vencido BETWEEN 61 AND 90 THEN '61-90' ELSE
@@ -4998,11 +3258,11 @@ begin
 		FROM dbo.fafAnexoGlobalUltimoCortecpp a INNER JOIN dbo.cppProveedores b
 		ON a.IDProveedor = b.IDProveedor
 		WHERE year(a.FechaCorte) = YEAR(@FechaCorte) AND month(a.FechaCorte) = month(@FechaCorte) AND day(a.FechaCorte) = day(@FechaCorte)
-			AND (b.CodSucursal = @CodSucursal OR @CodSucursal = '*' ) and a.cancelada=0 and (a.IDProveedor=@IDProveedor or @IDProveedor='*')
+			and a.cancelada=0 and (a.IDProveedor=@IDProveedor or @IDProveedor='*')
 		) T1
-		GROUP BY CODSUCURSAL, IDProveedor, NOMBRE, RANGO
+		GROUP BY  IDProveedor, NOMBRE, RANGO
 	) T2
-	GROUP BY CODSUCURSAL, IDProveedor, NOMBRE
+	GROUP BY  IDProveedor, NOMBRE
 	HAVING SUM(ISNULL(PrincipalNovencido,0)+ ISNULL(Principal1a30,0)+ ISNULL(Principal31a60,0)+ ISNULL(Principal61a90,0)+
 	ISNULL(Principal91a120,0)+ISNULL(Principal121a180,0)+ISNULL(Principal181a600,0)+ISNULL(Principalmas600,0)) > 0
 END
@@ -5010,7 +3270,7 @@ END
 GO
 
 
-CREATE PROCEDURE [fnica].[uspcppGetMovimientosCxCProveedores] @CodSucursal NVARCHAR(4) , @fechainicial datetime ,@fechafinal datetime
+CREATE PROCEDURE dbo.[uspcppGetMovimientosCxCProveedores]  @fechainicial datetime ,@fechafinal datetime
 
 AS 
 
@@ -5026,7 +3286,7 @@ select w.*, isnull(d.NotaCredito,0) NotaCredito, isnull(d.NotaCreditoDolar,0) No
 			from dbo.cppProveedores x left join 
 			(
 			Select IDProveedor,sum(totalfactura) Facturas,sum(totalfactura/tipocambio) FacturasDolar from dbo.faffactura 
-			where fechafactura between @fechainicial and @fechafinal and anulada=0 and Tipo='2' and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+			where fechafactura between @fechainicial and @fechafinal and anulada=0 and Tipo='2' 
 			group by IDProveedor
 			)a on x.IDProveedor =a.IDProveedor
 		)z Left join --***Recibos
@@ -5034,11 +3294,11 @@ select w.*, isnull(d.NotaCredito,0) NotaCredito, isnull(d.NotaCreditoDolar,0) No
 				Select  IDProveedor, SUM(Recibos) Recibos,SUM(RecibosDolar) RecibosDolar from 
 				(	
 					Select IDProveedor,sum(valor) Recibos,sum(Valordolar) RecibosDolar from dbo.cpprecibos
-					where fechaingreso between @fechainicial and @fechafinal and anulada=0 and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+					where fechaingreso between @fechainicial and @fechafinal and anulada=0 
 					group by IDProveedor 
 					union all --****For New SISCOBRO
 					Select IDProveedor,SUM(MontoOriginal)Recibos,sum(MontoOriginal/TipoCambio) RecibosDolar from dbo.cppDocumentosCP 
-					where fecha between @fechainicial and @fechafinal and anulado=0 and IDClase ='R/C' and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+					where fecha between @fechainicial and @fechafinal and anulado=0 and IDClase ='R/C' 
 					group by IDProveedor
 				)rc group by IDProveedor
 			)b on z.IDProveedor =b.IDProveedor
@@ -5048,11 +3308,11 @@ select w.*, isnull(d.NotaCredito,0) NotaCredito, isnull(d.NotaCreditoDolar,0) No
 			Select  IDProveedor, SUM(NotaDebito) NotaDebito,SUM(NotaDebitoDolar) NotaDebitoDolar from 
 				(
 				Select IDProveedor,sum(valor) NotaDebito,sum(Valordolar) NotaDebitoDolar from dbo.cppnotasdebitocredito
-				where fechaingreso between @fechainicial and @fechafinal and tipoNota='ND' and anulada=0 and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+				where fechaingreso between @fechainicial and @fechafinal and tipoNota='ND' and anulada=0 
 				group by IDProveedor
 				union all --****For New SISCOBRO
 				Select IDProveedor,SUM(MontoOriginal)Recibos,sum(MontoOriginal/TipoCambio) RecibosDolar from dbo.cppDocumentosCP 
-				where fecha between @fechainicial and @fechafinal and anulado=0 and IDClase ='N/D' and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+				where fecha between @fechainicial and @fechafinal and anulado=0 and IDClase ='N/D' 
 				group by IDProveedor
 			)nd group by IDProveedor
 
@@ -5062,11 +3322,11 @@ select w.*, isnull(d.NotaCredito,0) NotaCredito, isnull(d.NotaCreditoDolar,0) No
 		Select  IDProveedor, SUM(NotaCredito) NotaCredito,SUM(NotaCreditoDolar) NotaCreditoDolar from 
 			(
 				Select IDProveedor,sum(valor) NotaCredito,sum(Valordolar) NotaCreditoDolar from dbo.cppnotasdebitocredito
-				where fechaingreso between @fechainicial and @fechafinal and tipoNota='NC' and anulada=0 and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+				where fechaingreso between @fechainicial and @fechafinal and tipoNota='NC' and anulada=0 
 				group by IDProveedor
 				union all --****For New SISCOBRO
 				Select IDProveedor,SUM(MontoOriginal)Recibos,sum(MontoOriginal/TipoCambio) RecibosDolar from dbo.cppDocumentosCP 
-				where fecha between @fechainicial and @fechafinal and anulado=0 and IDClase ='N/C' and (CODSUCURSAL=@CodSucursal or @CodSucursal='*')
+				where fecha between @fechainicial and @fechafinal and anulado=0 and IDClase ='N/C' 
 				group by IDProveedor
 			)nc group by IDProveedor
 	)d on w.IDProveedor =d.IDProveedor
@@ -5077,58 +3337,3 @@ Select *  from #tmpResultado
 where IDProveedor not in ('MG999','MG100')
 order by IDProveedor 
 
-
---declare @fechainicio as smalldatetime, @fechafin as smalldatetime
---set @fechainicio='20100401'
---set @fechafin='20120331'
-
---	create table #MovimientosTmp
---	(
---	Facturas decimal(18,8),
---	Recibos decimal(18,8),
---	NotasDebito decimal(18,8),
---	NotasCredito decimal(18,8),
---	IDProveedor nvarchar(10),
---	)
---
---	select x.IDProveedor,x.Monto,x.MontoDolar,x.TipoDocumento into #Montos 
---	from 
---	(
---	select IDProveedor,sum(totalfactura) as Monto,sum(totalfactura/tipocambio) MontoDolar,'Facturas' TipoDocumento
---	from dbo.faffactura 
---	where fechafactura between @fechainicio and @fechafin  and anulada=0 and tipo='2'
---	group by IDProveedor
---	union 
---	select IDProveedor,sum(valor) as Monto,sum(Valordolar) MontoDolar,'Recibos' TipoDocumento
---	 from dbo.cpprecibos 
---	where fechaingreso between @fechainicio and @fechafin  and anulada=0
---	group by IDProveedor
---	union 
---	select IDProveedor,sum(valor) as Monto,sum(Valordolar) MontoDolar,'NotasCredito' TipoDocumento
---	 from dbo.cppnotasdebitocredito 
---	where fechaingreso between @fechainicio and @fechafin  and anulada=0 and tiponota='NC'
---	group by IDProveedor
---	union 
---	select IDProveedor,sum(valor) as Monto,sum(Valordolar) MontoDolar,'NotasDebito' TipoDocumento
---	 from dbo.cppnotasdebitocredito 
---	where fechaingreso between @fechainicio and @fechafin  and anulada=0 and tiponota='ND'
---	group by IDProveedor
---	)x  
---
---	--insert into #MovimientosTmp (Facturas,NotasCredito,NotasDebito,Recibos,IDProveedor)
---	EXEC	dbo.PivotTable
---			@TABLA = '#Montos',
---			@PIVOT = 'TipoDocumento',
---			@AGRUPACION = 'IDProveedor',
---			@CAMPO = 'Monto',
---			@CALCULO = 'Sum'
---	select * from #MovimientosTmp
---	
-----	select z.IDProveedor,z.NombresCliente+' '+z.apellidosCliente as Nombres,
-----	isnull(Facturas,0) Facturas,isnull(Recibos,0) Recibos,isnull(NotasDebito,0) NotasDebito,isnull(NotasCredito,0) NotasCredito
-----	from  #MovimientosTmp x inner join dbo.cppProveedores z on x.IDProveedor=z.IDProveedor
---
---	drop table #Montos
---	drop table #MovimientosTmp
-
-GO
