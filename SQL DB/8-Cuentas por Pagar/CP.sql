@@ -55,7 +55,7 @@ GO
 -- update dbo.cppSubTipoDocumento set ContraCtaEnSubTipo = 0
 Create Table dbo.cppSubTipoDocumento (IDSubTipo int identity(1,1) not null, TipoDocumento nvarchar(1) not null, IDClase nvarchar(10) not null,
 Descr nvarchar(200), Descripcion nvarchar(200), Consecutivo int default 0, DistribAutom bit default 0, EsRecuperacion bit default 0, SubTipoGeneraAsiento bit default 0, NaturalezaCta nvarchar(1), CtaDebito varchar(25), CtaCredito varchar(25),
-Especial bit default 0, ContraCtaEnSubTipo bit default 0 )
+Especial bit default 0, ContraCtaEnSubTipo bit default 0,esInteres BIT DEFAULT 0, esDeslizamiento BIT DEFAULT 0 )
 -- ContraCtaEnSubTipo : 1 El Asiento tomara la cta contable de la contracuenta en el subTipoDocumento 0 : Toma la CxC de la sucursal
 -- ESPECIAL QUIERE DECIR QUE EL SUBTIPO NO DISTRIBUYE AUTOMATICAMENTE NI MANUALMENTE, NO APLICA NINGUN DOCUMENTO, NO ES RECUPERACION
 --, Orden int default 0, DistribAutom bit default 0, EsInteres bit default 0, EsDeslizamiento bit default 0 )
@@ -366,10 +366,10 @@ go
 
 -- drop procedure dbo.cppUpdatecppDocumentosCP
 create Procedure dbo.cppUpdatecppDocumentosCP @Operation nvarchar(1),  @IDDocumentosCP int Output, 
-@IDProveedor nvarchar(10) ,@CodSucursal nvarchar(4) ,@TipoDocumento nvarchar(1) , @IDClase nvarchar(10), 
+@IDProveedor nvarchar(10) ,@TipoDocumento nvarchar(1) , @IDClase nvarchar(10), 
 @IDSubTipo	int , @Documento nvarchar(20) , @Fecha datetime , @Plazo INT ,  @MontoOriginal decimal(28,4) ,
 @PorcInteres decimal(8,2),@ConceptoSistema nvarchar(500),@ConceptoUsuario nvarchar(500), @RecibimosDe nvarchar(250),
-@Usuario nvarchar(20), @TipoCambio decimal(28,4)  
+@IDMoneda INT,@Usuario nvarchar(20), @TipoCambio decimal(28,4)  
 -- @Operation = I Nuevo, D Eliminar, F Modifica Fecha Credito
 as
 set nocount on
@@ -383,14 +383,14 @@ begin
 	SET @SaldoActual = @MontoOriginal
 	set @Anulado = 0
 	set @Cancelado = 0
-	insert dbo.cppDocumentosCP ( IDProveedor, CodSucursal, TipoDocumento, IDClase, IDSubTipo,Documento,Fecha,
+	insert dbo.cppDocumentosCP ( IDProveedor, TipoDocumento, IDClase, IDSubTipo,Documento,Fecha,
 	Vencimiento, Plazo, VencimientoVar, FechaDocVar, MontoOriginal, FechaUltCredito, SaldoActual, 
-	Cancelado, PorcInteres, Anulado, ConceptoSistema, ConceptoUsuario, RecibimosDe,Usuario, TipoCambio
+	Cancelado, PorcInteres, Anulado, ConceptoSistema, ConceptoUsuario, RecibimosDe,Usuario, TipoCambio,IDMoneda
 	)
 	values (
-	@IDProveedor,@CodSucursal,@TipoDocumento, @IDClase, @IDSubTipo,@Documento,@Fecha,@Vencimiento,@Plazo,@VencimientoVar,@Fecha,
+	@IDProveedor,@TipoDocumento, @IDClase, @IDSubTipo,@Documento,@Fecha,@Vencimiento,@Plazo,@VencimientoVar,@Fecha,
 	@MontoOriginal,	@FechaUltCredito, @SaldoActual, @Cancelado, @PorcInteres, @Anulado, @ConceptoSistema, @ConceptoUsuario,
-	@RecibimosDe, @Usuario, @TipoCambio
+	@RecibimosDe, @Usuario, @TipoCambio,@IDMoneda
 	)
 	Set @IDDocumentosCP = (SELECT SCOPE_IDENTITY())
 end
@@ -518,12 +518,12 @@ ON dbo.cppDocumentosCP
 AFTER INSERT 
 as
 Declare @IDDocumentoCP int, @Tipo nvarchar(1), @IDSubtipo int, 
-@DistribAutom bit, @IDProveedor nvarchar(10) , @CodSucursal nvarchar(4) ,@Documento nvarchar(20),
+@DistribAutom bit, @IDProveedor nvarchar(10) , @Documento nvarchar(20),
 @Fecha datetime, @MontoOriginal decimal(28,4)
 
 Select @IDDocumentoCP = IDDocumentoCP,  @Tipo = i.TipoDocumento, 
 @IDSubtipo = i.IDSubtipo,  
-@IDProveedor = i.IDProveedor, @CodSucursal= i.CodSucursal, 
+@IDProveedor = i.IDProveedor,
 @Documento = i.Documento, @Fecha = i.Fecha, @MontoOriginal = i.MontoOriginal
 From inserted i 
 
@@ -818,8 +818,8 @@ begin
     Return
 end
 
-Declare @Asiento nvarchar(20), @Documento nvarchar(20), @CodSucursal nvarchar(4), @IDProveedor nvarchar(10), @IDClase nvarchar(10)
-Select @Asiento = Asiento, @Documento = Documento, @CodSucursal = CodSucursal, @IDProveedor = IDProveedor, @IDClase = IDClase 
+Declare @Asiento nvarchar(20), @Documento nvarchar(20), @IDProveedor nvarchar(10), @IDClase nvarchar(10)
+Select @Asiento = Asiento, @Documento = Documento,  @IDProveedor = IDProveedor, @IDClase = IDClase 
 From dbo.cppDocumentosCP D
 where IDDocumentoCP= @IDDocumentoCP
  
@@ -831,17 +831,6 @@ From dbo.cppDocumentosCP D
 where IDDocumentoCP= @IDDocumentoCP
 -- este es un script que extrajimos del proceso de edjamit en la facturacion, esto es solamente para las fact de Credito
 --anulamos la factura segun el criterio.
-if @IDClase = 'FAC'
-BEGIN
-update dbo.faffactura set anulada=1 where codsucursal=@CodSucursal and factura=@Documento and IDProveedor = @IDProveedor
---Borramos del impresor factura 
-delete dbo.tmpImpresionfafFACTURA where codsucursal=@CodSucursal and factura=@Documento and IDProveedor = @IDProveedor
-delete dbo.tmpImpresionfafFACTURADETALLE where codsucursal=@CodSucursal and factura=@Documento and IDProveedor = @IDProveedor
-delete dbo.fafFacturasGeneraAsiento where codsucursal=@CodSucursal and factura=@Documento
---Borramos de inventariotmplote
-DELETE  FROM dbo.invTmpFacturaLote WHERE BODEGA=@CODSUCURSAL AND Factura=@Documento
-END
--- OJO tratamiento de la contabilizacion ESTA PENDIENTE esto lo hicimos en el revierte asiento que aplica para dias cerrados
 
 
 end try
@@ -865,7 +854,7 @@ go
 
 --exec dbo.cppGetAntiguedadSaldos 'MT01', 'MT260', '20130830', 0,0 select * from dbo.cppAplicaciones Select * From dbo.cppSaldoDocumentoCP
 -- DROP  PROCEDURE dbo.cppGetAntiguedadSaldos
-create Procedure [fnica].[cppGetAntiguedadSaldos] @CodSucursal nvarchar(20), @IDProveedor nvarchar(20), @FechaCorte DATETIME,
+create Procedure dbo.[cppGetAntiguedadSaldos] @IDProveedor nvarchar(20), @FechaCorte DATETIME,
 @InclyeInteresAlNominal bit, @InclyeDeslizamientoAlNominal bit, @ConsolidaSucursal bit = null, @EnDolar bit = null
 as
 declare @TipoCambio as decimal(18,4)
@@ -877,10 +866,10 @@ if @EnDolar is null
 	set @EnDolar = 0
 
 if @EnDolar = 1
-	select @TipoCambio=( SELECT [fnica].[globalGetUltTasadeCambio] (@FechaCorte))	
+	select @TipoCambio=( SELECT dbo.[globalGetUltTasadeCambio] (@FechaCorte))	
 else
 	set @TipoCambio = 0
-Create Table #Resultados( IDSaldo int, IDDocumentoCP int, IDProveedor nvarchar(20), CodSucursal nvarchar(10),
+Create Table #Resultados( IDSaldo int, IDDocumentoCP int, IDProveedor nvarchar(20), 
 TipoDocumento nvarchar(1), IDClase nvarchar(10), IDSubtipo int, Documento nvarchar(20), 
 Fecha datetime, FechaDocVar datetime, Vencimiento datetime, VencimientoVar datetime, Plazo decimal(8,2),
 MontoOriginal decimal(28,4), FechaUltCredito datetime, SaldoActual decimal(28,4), 
@@ -888,10 +877,10 @@ FechaSaldo datetime, Saldo decimal(28,4) ,DiasVencidos int,  SaldoNominal decima
 Deslizamiento decimal(28,4) , TotalaPagar decimal(28,4), EsInteres bit, EsDeslizamiento bit 
 )
 	
-Insert #Resultados (IDSaldo, IDDocumentoCP, IDProveedor, CodSucursal, TipoDocumento, IDClase, IDSubtipo, 
+Insert #Resultados (IDSaldo, IDDocumentoCP, IDProveedor, TipoDocumento, IDClase, IDSubtipo, 
 Documento, Fecha, FechaDocVar, Vencimiento, VencimientoVar, Plazo,	MontoOriginal, FechaUltCredito, SaldoActual, 
 FechaSaldo, Saldo,DiasVencidos,  SaldoNominal, Deslizamiento,Intereses, TotalaPagar, EsInteres, EsDeslizamiento)
-exec dbo.cppGetDocumentosxCobrar @CodSucursal, @IDProveedor, @FechaCorte
+exec dbo.cppGetDocumentosxCobrar  @IDProveedor, @FechaCorte
 
 if @EnDolar = 1
 	Update #Resultados set MontoOriginal = case when @TipoCambio > 0 then  MontoOriginal / @TipoCambio  else MontoOriginal end,
@@ -919,7 +908,7 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 	ISNULL(Nominal91a120,0)+ISNULL(Nominal21a180,0)+ISNULL(Nominal81a600,0)+ISNULL(Nominalmas600,0)) TotalCliente
 	into #ResultadoDetallado
 	FROM (
-		SELECT CODSUCURSAL, IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Nominal) ELSE 0 end NominalNovencido,
+		SELECT  IDProveedor,NOMBRE, RANGO, case when rango = 'NO-VENC' then SUM(Nominal) ELSE 0 end NominalNovencido,
 		case when rango = '1-30' then SUM(Nominal) ELSE 0 end Nominala30,
 		case when rango = '31-60' then SUM(Nominal) ELSE 0 end Nominal31a60,
 		case when rango = '61-90' then SUM(Nominal) ELSE 0 end Nominal61a90,
@@ -929,7 +918,7 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 		case when rango = '+600' then SUM(Nominal) ELSE 0 end Nominalmas600    
 		FROM 
 		(
-				SELECT b.codsucursal, a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.DiasVencidos,  
+				SELECT  a.IDProveedor, b.NombresCliente + ' '+ b.apellidoscliente Nombre, a.DiasVencidos,  
 		CASE WHEN a.DiasVencidos BETWEEN 1 AND 30 THEN '1-30' ELSE
 			CASE WHEN a.DiasVencidos BETWEEN 31 AND 60 THEN '31-60' ELSE
 				CASE WHEN a.DiasVencidos BETWEEN 61 AND 90 THEN '61-90' ELSE
@@ -951,9 +940,9 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 
 
 		) T1
-		GROUP BY CODSUCURSAL, IDProveedor, NOMBRE, RANGO
+		GROUP BY  IDProveedor, NOMBRE, RANGO
 	) T2
-	GROUP BY CODSUCURSAL, IDProveedor, NOMBRE
+	GROUP BY  IDProveedor, NOMBRE
 	HAVING SUM(ISNULL(NominalNovencido,0)+ ISNULL(Nominala30,0)+ ISNULL(Nominal31a60,0)+ ISNULL(Nominal61a90,0)+
 	ISNULL(Nominal91a120,0)+ISNULL(Nominal21a180,0)+ISNULL(Nominal81a600,0)+ISNULL(Nominalmas600,0)) > 0
 	
@@ -961,18 +950,18 @@ Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 a
 
 if @ConsolidaSucursal = 0
 begin
-	Select CODSUCURSAL, IDProveedor,NOMBRE, NominalNovencido, Nominala30, Nominal31a60, Nominal61a90, Nominal91a120, Nominal21a180, Nominal81a600,
+	Select  IDProveedor,NOMBRE, NominalNovencido, Nominala30, Nominal31a60, Nominal61a90, Nominal91a120, Nominal21a180, Nominal81a600,
 	Nominalmas600, TotalCliente
 	From #ResultadoDetallado
 end
 
 if @ConsolidaSucursal = 1
 begin
-	Select CODSUCURSAL, sum( NominalNovencido) NominalNovencido, sum(Nominala30) Nominala30, sum(Nominal31a60) Nominal31a60, 
+	Select  sum( NominalNovencido) NominalNovencido, sum(Nominala30) Nominala30, sum(Nominal31a60) Nominal31a60, 
 	sum(Nominal61a90) Nominal61a90, sum(Nominal91a120) Nominal91a120, sum(Nominal21a180) Nominal21a180, sum(Nominal81a600) Nominal81a600 ,
 	sum(Nominalmas600) Nominalmas600, sum(TotalCliente) TotalCliente
 	From #ResultadoDetallado
-	Group by CODSUCURSAL
+
 end
 
 drop table #Resultados
@@ -981,6 +970,12 @@ drop table #ResultadoDetallado
 go
 
 
+
+-- Para Anular un Documento
+
+
+
+GO
 
 --Drop procedure dbo.cppAplicaUndoCredito select * from dbo.cppDocumentosCP
 -- exec dbo.cppAplicaUndoCredito  817 
@@ -1042,7 +1037,7 @@ begin try
 		SELECT @IDDoc = IDDocumentoCP From #IntDesl where ID = @i
 		Delete From dbo.cppSaldoDocumentoCP where IDDocumentoCP = @IDDoc  
 		Delete From dbo.cppAplicaciones where IDDocumentoCP = @IDDoc
-		exec dbo.cppAnularDocumentoCC @IDDoc
+		exec dbo.cppAnularDocumentoCP @IDDoc
 		set @i = @i + 1
 	end	
 	-- Para los Debitos No Interes y Deslizam
@@ -1076,7 +1071,7 @@ begin try
 
 		Delete From dbo.cppSaldoDocumentoCP where IDDocumentoCP = @IDDocCredito 
 		Delete From dbo.cppAplicaciones where IDDocumentoCP = @IDDocCredito
-		exec dbo.cppAnularDocumentoCC @IDDocCredito
+		exec dbo.cppAnularDocumentoCP @IDDocCredito
 
 -- para actualizar los debitos que no fueron tocados a ellos mismos como documentos pero si generaron interes o deslizamiento
 	if @flgInteres = 1 or @flgDeslizam = 1	
@@ -1138,7 +1133,7 @@ declare @Next int
 
 	set @Next = (SELECT ISNULL( MAX ( CONVERT ( INTEGER , Documento ) ) , 0 )+ 1 
 		FROM dbo.cppDocumentosCP (NOLOCK)
-		WHERE CODSUCURSAL = @CODSUCURSAL and TipoDocumento = 'C' AND IDCLASE = 'R/C'
+		WHERE TipoDocumento = 'C' AND IDCLASE = 'R/C'
 	--		convert (varchar , FECHAINGRESO, 112 ) >= '20100525'
 	)
 	if @Next is null
@@ -1150,7 +1145,7 @@ go
 
 --select dbo.cppGetNextConsecutivo('C', 'R/C', '*')
 
-Create Function dbo.cppGetNextConsecutivo(  @TipoDocumento nvarchar(1), @IDClaseDoc nvarchar(20), @CODSUCURSAL AS NVARCHAR (10)='*' )
+Create Function dbo.cppGetNextConsecutivo(  @TipoDocumento nvarchar(1), @IDClaseDoc nvarchar(20))
 -- Devuelve el Consecutivo de un documento pasando su tipo, clase y para todas las sucursales o no
 returns int
 AS
@@ -1159,7 +1154,7 @@ declare @Next int
 
 	set @Next = (SELECT ISNULL( MAX ( CONVERT ( INTEGER , Documento ) ) , 0 )+ 1 
 		FROM dbo.cppDocumentosCP (NOLOCK)
-		WHERE (@CODSUCURSAL = '*' or CODSUCURSAL = @CODSUCURSAL ) and TipoDocumento = @TipoDocumento AND IDCLASE = @IDClaseDoc
+		WHERE TipoDocumento = @TipoDocumento AND IDCLASE = @IDClaseDoc
 	--		convert (varchar , FECHAINGRESO, 112 ) >= '20100525'
 	)
 	if @Next is null
@@ -1169,108 +1164,9 @@ declare @Next int
 END
 go
 
---exec dbo.fafGetDocumentosbyConsec '20130101', '20131231', 'MT01', 'R/C'
---select * from dbo.cppDocumentosCP
-
---DROP PROCEDURE dbo.fafGetDocumentosbyConsec
-Create Procedure dbo.fafGetDocumentosbyConsec @FechaInicial datetime, @FechaFinal datetime, @CodSucursal nvarchar(4), @IDClase nvarchar(20)
-as
-Declare @MinNumber INT, @MaxNumber INT
-set nocount on
-Select CAST (DOCUMENTO AS INT ) DOCUMENTO, 'Existe' Estado, Fecha, MontoOriginal ValorCO, 
-case when  (not (TipoCambio is null) and TipoCambio <> 0) then MontoOriginal/TipoCambio else 0 end ValorDL, ConceptoUsuario, IDProveedor
-INTO #Resultado
-from dbo.cppDocumentosCP 
-where fecha BETWEEN @FechaInicial AND @FechaFinal and CodSucursal = @CodSucursal AND TipoDocumento= 'C' and IDClase = @IDClase
-
-Select @MinNumber = min(Documento) ,  @MaxNumber = max(Documento)  From #Resultado where Fecha between @FechaInicial and @FechaFinal
-
-
-WITH CTE (Documento, Estado, Fecha,  ValorCO, ValorDL, ConceptoUsuario, IDProveedor)
-AS 
-(
-    SELECT @MinNumber DOCUMENTO, 'Falta' Estado,'19800101' Fecha, 0 ValorCO, 0 ValorDL, '' ConceptoUsuario, '' IDProveedor
-    UNION ALL
-    SELECT DOCUMENTO+1,  'Falta' Estado, '19800101' fecha, 0 ValorCO, 0 ValorDL, '' ConceptoUsuario, '' IDProveedor
-    FROM CTE 
-    WHERE DOCUMENTO+1 <= @MaxNumber
-)
-SELECT A.DOCUMENTO, A.Estado, A.Fecha, A.ValorCO, A.ValorDL, A.ConceptoUsuario, A.IDProveedor
-into #Faltan
-FROM CTE A
-LEFT JOIN #Resultado B
-ON A.DOCUMENTO = B.DOCUMENTO
-WHERE B.DOCUMENTO IS NULL
-OPTION(MAXRECURSION 0)
--- select * from dbo.cppProveedores
-
-SELECT DOCUMENTO, Fecha , isnull(X.IDProveedor+'-'+ rtrim(NombresCliente) + ' ' + rtrim(ApellidosCliente),'Documento No Grabado') Nombre, ValorCO, ValorDL,
- isnull(ConceptoUsuario,'') ConceptoUsuario
- into #ResultadoFinal
-FROM 
-(
-Select Documento, Estado, Fecha,  ValorCO, ValorDL, ConceptoUsuario, IDProveedor
-From #Resultado
-union all
-Select Documento, Estado, Fecha,  ValorCO, ValorDL, ConceptoUsuario, IDProveedor
-From #Faltan
-) X left join dbo.cppProveedores C on X.IDProveedor = C.IDProveedor
-ORDER BY DOCUMENTO
-
-
-if exists(
-	Select Documento
-	From dbo.cppDocumentosCP 
-	where CodSucursal = @CodSucursal AND TipoDocumento= 'C' and IDClase = @IDClase and ( cast( Documento as int ) = (@MinNumber - 1)
-	or (@MinNumber - 1) <= 0 )
-) 
-begin
-	select Documento, Fecha, Nombre, ValorCO, ValorDL, ConceptoUsuario
-	From #ResultadoFinal
-end 
-else
-begin
-	Select (@MinNumber - 1) Documento, '19800101' Fecha, 'Consecutivo Anterior No Grabado' Nombre,0 ValorCO,0 ValorDL, '' ConceptoUsuario
-	union all
-	select Documento, Fecha, Nombre, ValorCO, ValorDL, ConceptoUsuario
-	From #ResultadoFinal	
-end
-drop table #Faltan
-drop table #Resultado
-drop table #ResultadoFinal
-go
-
-
-Create Procedure dbo.cppgetComportamientoCliente @Cliente nvarchar(20)
-as
-set nocount on 
-Declare @Ciclo int, @FecInic datetime, @FecFin datetime
-
-
-select Top 1 @Ciclo = Ciclo From dbo.globalcicloagricola Where getdate() between Fecha_Inicial and Fecha_Final
-
-select @FecInic = Fecha_Inicial from dbo.globalcicloagricola where Ciclo = @Ciclo-1
-select @FecFin = Fecha_Final from dbo.globalcicloagricola where Ciclo = @Ciclo
-
-SELECT  cast(Anio as nvarchar(4)) +'-'+ cast( Mes as nvarchar(2)) Lable, SUM(DEBITO) DEBITO, SUM(CREDITO) CREDITO
-FROM 
-(
-	Select D.TipoDocumento,year(D.Fecha) Anio, month(D.Fecha) Mes , case when D.TipoDocumento = 'D' then sum(MontoOriginal) else 0 end Debito,
-	 case when D.TipoDocumento = 'C' then sum(MontoOriginal) else 0 end Credito
-	From dbo.cppDocumentosCP D inner join dbo.cppSubTipoDocumento S
-	on D.TipoDocumento = S.TipoDocumento and D.IDSubTipo = S.IDSubTipo and D.IDClase = S.IDClase
-	where (D.Fecha between @FecInic and @FecFin ) and IDProveedor = @Cliente and D.Anulado = 0
-	and (( D.TipoDocumento = 'D') or (D.TipoDocumento = 'C' and S.EsRecuperacion=1))
-	Group by D.TipoDocumento, year(D.Fecha), month(D.Fecha)
-	--order by year(D.Fecha), month(D.Fecha)
-) X
-GROUP BY Anio, Mes
-ORDER BY Anio, Mes
-go
 
 -- SEGUNDA PARTE
-
-CREATE PROCEDURE [fnica].[cppUpdatecppAplicaciones] 
+CREATE PROCEDURE dbo.[cppUpdatecppAplicaciones] 
 -- 'I' insertar  'S' Actualizar Saldos de Debitos y Creditos en Aplicaciones
 @Operation nvarchar(1), @IDDocDebito int, @IDDocCredito int, @SaldoRecibo decimal(28,4)  OUTPUT, 
 @AplicaInteresAutom bit =1, @AplicaDeslizamAutom bit =1, @ConceptoSistema nvarchar(500),@ConceptoUsuario nvarchar(500), 
@@ -1324,7 +1220,7 @@ set @FechaCredito = @Hoy
 set @MontoCreditoAct = @SaldoRecibo
 set @MontoCredito = @SaldoRecibo
 	
-	Select @IDProveedor = IDProveedor  , @CodSucursal = CodSucursal, @TipoDocumento = TipoDocumento, @IDClase = IDClase,
+	Select @IDProveedor = IDProveedor  ,  @TipoDocumento = TipoDocumento, @IDClase = IDClase,
 	@Documento = Documento, @Fecha= Fecha, @Vencimiento= Vencimiento,
 	@Plazo = Plazo, @VencimientoVar=VencimientoVar, @FechaDocVar = FechaDocVar,
 	@PorcInteres = PorcInteres , @SaldoActual = SaldoActual, @FechaUltCredito = FechaUltCredito 
@@ -1354,7 +1250,7 @@ set @MontoCredito = @SaldoRecibo
 			set @ValorInteres = @SaldoRecibo -- se pone el valor de interes real a cobrar y no el total de interes
 			-- creo el doc interes 
 			exec dbo.cppUpdatecppDocumentosCP 'I',  @IDDocumentoCP Output, 
-			@IDProveedor  ,@CodSucursal  ,'D' , @IDClaseInteres,
+			@IDProveedor   ,'D' , @IDClaseInteres,
 			@IDSubTipo	 , @NoDocInteres , @Hoy , @Plazo , @SaldoRecibo , @PorcInteres, 
 			@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio
 
@@ -1409,7 +1305,7 @@ set @MontoCredito = @SaldoRecibo
 			set @SaldoActualCredito = @SaldoAnteriorCredito - @ValorInteres
 						
 				exec dbo.cppUpdatecppDocumentosCP 'I',  @IDDocumentoCP Output, 
-				@IDProveedor  ,@CodSucursal  ,'D' , @IDClaseInteres,
+				@IDProveedor    ,'D' , @IDClaseInteres,
 				@IDSubTipo	 , @NoDocInteres , @Hoy , @Plazo  , @ValorInteres ,@PorcInteres, 
 				@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio
 
@@ -1457,7 +1353,7 @@ set @MontoCredito = @SaldoRecibo
 				--				left ('0' + cast(month(@Hoy) as nvarchar(2)),2) + cast(year(@Hoy) as nvarchar(4))		
 				
 				exec dbo.cppUpdatecppDocumentosCP 'I',  @IDDocumentoCP Output, 
-				@IDProveedor  ,@CodSucursal  ,'D' ,  @IDClaseDeslizamiento,
+				@IDProveedor    ,'D' ,  @IDClaseDeslizamiento,
 				@IDSubtipoDesliz	 , @NoDocDeslizamiento , @Hoy , @Plazo , @SaldoRecibo ,@PorcInteres,
 				@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio	
 				-- Aplico el DESLIZAMIENTO 
@@ -1517,7 +1413,7 @@ set @MontoCredito = @SaldoRecibo
 					--				left ('0' + cast(month(@Hoy) as nvarchar(2)),2) + cast(year(@Hoy) as nvarchar(4))		
 					
 					exec dbo.cppUpdatecppDocumentosCP 'I',  @IDDocumentoCP Output, 
-					@IDProveedor  ,@CodSucursal  ,'D' ,  @IDClaseDeslizamiento,
+					@IDProveedor    ,'D' ,  @IDClaseDeslizamiento,
 					@IDSubtipoDesliz	 , @NoDocDeslizamiento , @Hoy , @Plazo , @ValorDesliz ,@PorcInteres ,
 					@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio	
 					-- Aplico el DESLIZAMIENTO 
@@ -1654,6 +1550,8 @@ END
 return 
 GO
 
+
+
 CREATE procedure dbo.cppGetDeslizInteresVirtualU @FechaCorte datetime,@IDDocDebito int,   @SaldoRecibo decimal(28,4)
 -- Devuelve el deslizamiento e interes virtual de una factura 
 as
@@ -1688,7 +1586,7 @@ set @FechaCredito = @Hoy
 set @MontoCreditoAct = @SaldoRecibo
 set @MontoCredito = @SaldoRecibo
 	
-	Select @IDProveedor = IDProveedor  , @CodSucursal = CodSucursal, @TipoDocumento = TipoDocumento,
+	Select @IDProveedor = IDProveedor  ,  @TipoDocumento = TipoDocumento,
 	@Documento = Documento, @Fecha= Fecha, @Vencimiento= Vencimiento,
 	@Plazo = Plazo, @VencimientoVar=VencimientoVar, @FechaDocVar = FechaDocVar, @IDClase = IDClase ,
 	@PorcInteres = PorcInteres , @SaldoActual = SaldoActual 
@@ -1714,7 +1612,7 @@ Select @FechaCredito FechaCorte, @IDDocDebito IDDocDebito, @Documento Documento,
 
 go
 
-CREATE Function dbo.cppGetExisteCreditoAnterior (  @IDProveedor nvarchar(20), @CodSucursal nvarchar(20), @FechaCorte datetime ) 
+CREATE Function dbo.cppGetExisteCreditoAnterior (  @IDProveedor nvarchar(20),  @FechaCorte datetime ) 
 returns bit
 begin
 declare @Result bit, @Fecha datetime
@@ -1722,7 +1620,7 @@ set @Result = 0
 set @Fecha = (
 		Select max(Fecha)
 		From dbo.cppDocumentosCP (NOLOCK)
-		where (@CodSucursal = '*' or CodSucursal = @CodSucursal ) and IDProveedor = @IDProveedor and TipoDocumento = 'C' 
+		where IDProveedor = @IDProveedor and TipoDocumento = 'C' 
 		AND Fecha > @FechaCorte and anulado = 0
 		)
 if @Fecha is null
@@ -1734,88 +1632,7 @@ return @Result
 end
 go
 
-
-CREATE procedure dbo.cppGetDeslizInteresVirtualA  @IDProveedor nvarchar(20), @CodSucursal nvarchar(20), @FechaCorte datetime, @Pago decimal(28,4),
- @Diferencia decimal(28,4) OUTPUT
--- Devuelve el deslizamiento e interes virtual de una factura 
-as
-set nocount on
-
-Declare @ID int ,	@IDDocumentoCP int, @SaldoNominal decimal(28,4), @iRwCnt int, @i int, @SaldoActual decimal(28,4),
-		@FechaDocVar datetime, @FechaVencimiento datetime, @VencimientoVar datetime, @Documento nvarchar(20), 
-		@TotalSaldo decimal(28,4)
-IF dbo.cppGetExisteCreditoAnterior (  @IDProveedor , @CodSucursal , @FechaCorte  )	=1
-BEGIN
-	RAISERROR (' No es permitido consultar virtuales con fecha menor al último crédito', 16, 10);
-	return
-END			
-
-Create Table #Resultado (
-		FechaCorte datetime,
-		IDDocDebito int,
-		Documento nvarchar(20),
-		FechaDocVar datetime,
-		SaldoNominal decimal(28,4),
-		FVencimiento datetime,
-		DiasVencidos int,
-		ValorDesliz decimal(28,4),
-		ValorInteres decimal(28,4),		
-		SaldoTotal decimal(28,4),
-		IDClase nvarchar(20)
-)
-
-
-Create Table #Fuente (
-		ID int identity(1,1),
-		IDDocDebito int,
-		SaldoNominal decimal(28,4),
-		FechaDocVar datetime,
-		FechaVencimiento datetime,
-		VencimientoVar datetime,
-		Documento nvarchar(20)
-)
-
-
-
-insert #Fuente (IDDocDebito, SaldoNominal, FechaDocVar, VencimientoVar, Documento)
-Select IDDocumentoCP, SaldoActual, FechaDocVar, VencimientoVar, Documento
-From dbo.cppDocumentosCP
-where (@CodSucursal = '*' or CodSucursal = @CodSucursal ) and IDProveedor = @IDProveedor and TipoDocumento = 'D' and SaldoActual >0
-AND FechaDocVAr <= @FechaCorte and anulado = 0
--- order by 
-
-set @iRwCnt = @@ROWCOUNT 
- 
-create clustered index idx_tmp on #Fuente(ID) WITH FILLFACTOR = 100
-
-SET @i = 1
-while @i <= @iRwCnt
-begin
-	Select @IDDocumentoCP = IDDocDebito, @SaldoActual = SaldoNominal,  @FechaDocVar= FechaDocVar, 
-	@VencimientoVar = VencimientoVar, @Documento=Documento
-	From #Fuente
-	where ID = @i
-	
-	Insert #Resultado (		FechaCorte ,IDDocDebito ,Documento ,FechaDocVar , SaldoNominal ,FVencimiento ,
-		DiasVencidos ,ValorDesliz ,ValorInteres , SaldoTotal, IDClase )
-		exec dbo.cppGetDeslizInteresVirtualU @FechaCorte , @IDDocumentoCP,  @Pago
-	set @i = @i + 1
-end
-set @TotalSaldo = ISNULL((SELECT SUM(SALDOTOTAL) FROM #Resultado),0)
-SET @Diferencia = @Pago -  @TotalSaldo
-
-
-select R.FechaCorte ,R.IDDocDebito ,R.Documento ,R.FechaDocVar , R.SaldoNominal ,R.FVencimiento ,
-		R.DiasVencidos ,ValorDesliz ,ValorInteres , SaldoTotal, @Pago PagoTotal, round(@TotalSaldo,4) TotalSaldo, round(@Diferencia,4) TotalSobrante , R.IDClase	
-from #Resultado R inner join dbo.cppDocumentosCP D
-on R.IDDocDebito = D.IDDocumentoCP
-order by D.Vencimiento asc
-
-drop table #Resultado
-drop table #Fuente
-GO
-
-create procedure dbo.cppAplicaFacturasPendientes  @IDProveedor nvarchar(20), @CodSucursal nvarchar(20), @IDDocCredito int, @Pago decimal(28,4) ,
+create procedure dbo.cppAplicaFacturasPendientes  @IDProveedor nvarchar(20),  @IDDocCredito int, @Pago decimal(28,4) ,
 @ConceptoSistema nvarchar(500),@ConceptoUsuario nvarchar(500), @RecibimosDe nvarchar(250),
 @Usuario nvarchar(20), @TipoCambio decimal(28,4), @CalcInteres bit=1, @CalcDesliz bit=1
 -- Esto es un proceso automatico... distribuye el Credito en los débitos más vencidos
@@ -1924,6 +1741,8 @@ SELECT
 	
 end catch
 
+
+ 
 GO
 
 CREATE FUNCTION dbo.parseJSON( @JSON NVARCHAR(MAX))
@@ -2256,6 +2075,9 @@ SELECT
 IF OBJECT_ID('tempdb..#Debitos') IS NOT NULL DROP TABLE #Debitos 	
 end catch
 
+  
+
+
 go
 
 
@@ -2304,7 +2126,8 @@ drop table #Resultados
 drop table #Resultado2
 go
 
-
+#Julio
+$Revisado hasta aca
 
 CREATE PROCEDURE [fnica].[uspcppGeneraAsientoAplicacion] @Paquete nvarchar(20),
 @tipo_asiento nvarchar(20), @IDDocumento int, @CreditoAplicado bit output, @AsientoOutput nvarchar(10) output
