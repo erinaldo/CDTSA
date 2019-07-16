@@ -111,15 +111,16 @@ go
 -- delete from  dbo.cppSubTipoDocumento where idsubtipo > 82 order by idSubtipo where TipoDocumento = 'C' and Especial = 1 and DistribAutom=0 and EsRecuperacion = 0
 
 --UPDATE dbo.cppSubTipoDocumento SET NATURALEZACTA ='C' WHERE TIPODOCUMENTO = 'D' delete FROM dbo.cppSubTipoDocumento ORDER BY TIPODOCUMENTO
+select * from  dbo.cppSubTipoDocumento 
 
 Insert dbo.cppSubTipoDocumento ( TipoDocumento,  IDClase, Descr, Descripcion, Consecutivo, DistribAutom, SubTipoGeneraAsiento, NaturalezaCta, CtaDebito, CtaCredito, Especial  )	
 Values ('C',	 'FAC',	'FACTURAS',	'FACTURA',	1,0, 0, 'C', NULL,NULL, 0	)
 GO
 Insert dbo.cppSubTipoDocumento ( TipoDocumento, IDClase, Descr, Descripcion, Consecutivo, DistribAutom , EsRecuperacion,  SubTipoGeneraAsiento, NaturalezaCta, CtaDebito, CtaCredito, Especial)	
-Values ('D',	 'TEF',	'TRANSFERENCIAS','TRANSFERENCIAS',	1,1,1, 0, 'D', NULL, NULL,0		)
+Values ('D',	 'TEF',	'TRANSFERENCIAS','TRANSFERENCIAS',	1,0,0, 0, 'D', NULL, NULL,0		)
 GO
 Insert dbo.cppSubTipoDocumento ( TipoDocumento, IDClase, Descr, Descripcion, Consecutivo, DistribAutom , EsRecuperacion,  SubTipoGeneraAsiento, NaturalezaCta, CtaDebito, CtaCredito, Especial)	
-Values ('D',	 'TEF',	'TRANSFERENCIAS','ANTICIPOS',	1,1,1, 0, 'D', NULL, NULL,0		)
+Values ('D',	 'TEF',	'TRANSFERENCIAS','ANTICIPOS',	1,0,0, 0, 'D', NULL, NULL,0		)
 GO
 Insert dbo.cppSubTipoDocumento ( TipoDocumento, IDClase, Descr, Descripcion, Consecutivo, DistribAutom, SubTipoGeneraAsiento, NaturalezaCta, CtaDebito, CtaCredito, Especial ) 
 Values ('D',  'N/D' , 'NOTAS DE DEBITO', 'NOTA DE DEBITO', 1,0,1, 'D', 'FALTACTA', 'FALTACTA',1  )
@@ -166,16 +167,38 @@ GO
 update dbo.cppSubTipoDocumento  set CtaCredito = null, CtaDebito = null where CtaCredito = 'ND' OR CtaDebito = 'ND'
 GO
 
-alter table dbo.cppParametrosGenerales add CobraInteresMora bit default 0, CobraDeslizamiento bit default 0, IDSubTipoRCCteEspVarios int default 0, IDSubTipoRCAutomatico int default 0
-go
-update dbo.cppParametrosGenerales set CobraInteresMora = 1, CobraDeslizamiento = 1, IDSubTipoRCCteEspVarios =3, IDSubTipoRCAutomatico=2
-go
+CREATE TABLE dbo.[cppParametrosGenerales](
+	[CobraInteresMora] [bit] NULL,
+	[CobraDeslizamiento] [bit] NULL,
+	[IDSubTipoRCCteEspVarios] [int] NULL,
+	[IDSubTipoRCAutomatico] [int] NULL,
+	[DiasVencidosInactivaCte] [int] NULL
+) ON [PRIMARY]
+
+GO
+
+
+
+ALTER TABLE dbo.[cppParametrosGenerales] ADD  DEFAULT ((0)) FOR [CobraInteresMora]
+GO
+
+ALTER TABLE dbo.[cppParametrosGenerales] ADD  DEFAULT ((0)) FOR [CobraDeslizamiento]
+GO
+
+ALTER TABLE dbo.[cppParametrosGenerales] ADD  DEFAULT ((0)) FOR [IDSubTipoRCCteEspVarios]
+GO
+
+ALTER TABLE dbo.[cppParametrosGenerales] ADD  DEFAULT ((0)) FOR [IDSubTipoRCAutomatico]
+GO
+
+
+
 
 -- alter table dbo.cppDocumentosCP add FechaOrigVencMigracion datetime datetime
 
 Create Table dbo.cppDocumentosCP ( 
 IDDocumentoCP int  identity(1,1) not null ,
-IDProveedor nvarchar(10) not null,
+IDProveedor int not null,
 TipoDocumento nvarchar(1) not null,
 IDClase nvarchar(10) not null,
 IDSubTipo	int not null, 
@@ -204,23 +227,23 @@ Impuesto decimal(28,4) DEFAULT 0
 go
 alter table dbo.cppDocumentosCP add constraint pkcppDocumentosCP primary key (IDDocumentoCP)
 go
-alter table dbo.cppDocumentosCP add constraint fkcppDocumentosCppProveedor foreign key (IDProveedor) references dbo.cppProveedores (IDProveedor)
+alter table dbo.cppDocumentosCP add constraint fkcppDocumentosCppProveedor foreign key (IDProveedor) references dbo.cppProveedor (IDProveedor)
 go
 
 
 alter table dbo.cppDocumentosCP add constraint fkcppSubTipoDocument foreign key  (TipoDocumento, IDClase, IDSubTipo ) references dbo.cppSubTipoDocumento ( TipoDocumento, IDClase, IDSubTipo)
 go
 -- alter table dbo.cppDocumentosCP drop constraint ukcppDocumentosCP
-alter table dbo.cppDocumentosCP add constraint ukcppDocumentosCP UNIQUE ( CodSucursal, IDClase, Documento)
+alter table dbo.cppDocumentosCP add constraint ukcppDocumentosCP UNIQUE ( IDClase, Documento)
 go -- select * from dbo.cppDocumentosCP order by idclase
 
 ALTER TABLE dbo.cppDocumentosCP ADD  DEFAULT (getdate()) FOR CreateDate
 GO
-Create nonclustered index indcppDocumentosCP on dbo.cppDocumentosCP (CodSucursal, IDProveedor, TipoDocumento, IDClase, Fecha, Documento )
+Create nonclustered index indcppDocumentosCP on dbo.cppDocumentosCP ( IDProveedor, TipoDocumento, IDClase, Fecha, Documento )
 go
 
 
-CREATE NONCLUSTERED INDEX [i_cppDocumentosCP] ON [fnica].[cppDocumentosCP] ([IDProveedor], [IDClase], [TipoDocumento])
+CREATE NONCLUSTERED INDEX [i_cppDocumentosCP] ON dbo.[cppDocumentosCP] ([IDProveedor], [IDClase], [TipoDocumento])
 
 
 --drop table dbo.cppAplicaciones SELECT * FROM dbo.cppSubTipoDocumento  alter table dbo.cppAplicaciones  add Asiento nvarchar(20)
@@ -298,7 +321,7 @@ go
 
 
 
-CREATE NONCLUSTERED INDEX [i_cppSaldoDocumentoCP] ON [fnica].[cppSaldoDocumentoCP] ([IDDocumentoCP])
+CREATE NONCLUSTERED INDEX [i_cppSaldoDocumentoCP] ON dbo.[cppSaldoDocumentoCP] ([IDDocumentoCP])
 
 GO
 
@@ -323,7 +346,7 @@ go
 --drop function [fnica].[cppGetSaldoDocumentoCC] select * from dbo.cppDocumentosCP
 -- select [fnica].[cppGetIDDocumentoCP] ('MT01', 'FA0000002', 'FAC')
 
-CREATE FUNCTION [fnica].[cppGetIDDocumentoCP] (@CodSucursal nvarchar(4), @Documento nvarchar(20), @IDClase nvarchar(10) )
+CREATE FUNCTION dbo.[cppGetIDDocumentoCP] ( @Documento nvarchar(20), @IDClase nvarchar(10) )
 -- this function returns the ID of any kind of Document CC
 RETURNS int AS  
 BEGIN 
@@ -331,8 +354,8 @@ declare @IDDocumentoCP int
  
 Set @IDDocumentoCP = (SELECT top 1 IDDocumentoCP
 				FROM dbo.cppDocumentosCP (NOLOCK)
-				where CodSucursal = @CodSucursal and Documento = @Documento and IDClase = @IDClase
-				ORDER BY CodSucursal, Documento desc
+				where  Documento = @Documento and IDClase = @IDClase
+				ORDER BY  Documento desc
 			)
 
 if @IDDocumentoCP is null
@@ -344,7 +367,7 @@ go
 
 
 
-CREATE FUNCTION [fnica].[cppGetSaldoDocumentoCP] (@IDDocumentoCP int, @Fecha datetime)
+CREATE FUNCTION dbo.[cppGetSaldoDocumentoCP] (@IDDocumentoCP int, @Fecha datetime)
 -- this function returns the client amount Due (Saldo en C$ ) to a given Document in a Date
 RETURNS decimal(28,4) AS  
 BEGIN 
@@ -460,7 +483,7 @@ end
 go
 
 -- drop function [fnica].[cppGetSaldoActualDocumentoCC] 
-CREATE FUNCTION [fnica].[cppGetSaldoActualDocumentoCP] (@IDDocumentoCP int)
+CREATE FUNCTION dbo.[cppGetSaldoActualDocumentoCP] (@IDDocumentoCP int)
 -- this function returns the client amount Due (Saldo en C$ ) to a given Document 
 RETURNS decimal(28,4) AS  
 BEGIN 
@@ -896,7 +919,7 @@ Delete From #Resultados
 Where ( EsInteres = 1 and @InclyeInteresAlNominal = 0) or (EsDeslizamiento = 1 and @InclyeInteresAlNominal = 0)
 
 
-	SELECT CODSUCURSAL, IDProveedor,NOMBRE, SUM(ISNULL(NominalNovencido,0)) NominalNovencido,
+	SELECT  IDProveedor,NOMBRE, SUM(ISNULL(NominalNovencido,0)) NominalNovencido,
 	SUM(ISNULL(Nominala30,0)) Nominala30,
 	SUM(ISNULL(Nominal31a60,0)) Nominal31a60,
 	SUM(ISNULL(Nominal61a90,0)) Nominal61a90,  
@@ -1267,7 +1290,7 @@ set @MontoCredito = @SaldoRecibo
 			set @SaldoActualCredito = @SaldoAnteriorCredito - @ValorInteres
 					
 			-- Aplico el INTERES y su Aplicacion
-			INSERT [fnica].[cppAplicaciones] (
+			INSERT dbo.[cppAplicaciones] (
 				  [IDDocumentoCP]    ,[IDDocCredito]   ,[DocDebito]  ,[DocCredito]
 				  ,[Fecha]   ,[FechaCredito]   ,[MontoCredito]   ,[MontoDebitoAnt]  ,[MontoDebitoAct],
 				  [MontoCreditoAnt]  ,[MontoCreditoAct],  FechaDocVarOrig , VencimientoVarOrig, FechaUltCreditoAnt, IDDebito, FecDocPostApp, FecVencPostApp 
@@ -1309,10 +1332,10 @@ set @MontoCredito = @SaldoRecibo
 				@IDSubTipo	 , @NoDocInteres , @Hoy , @Plazo  , @ValorInteres ,@PorcInteres, 
 				@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio
 
-				set @SaldoAnterior = [fnica].[cppGetSaldoActualDocumentoCC] (@IDDocumentoCP )
+				set @SaldoAnterior = dbo.[cppGetSaldoActualDocumentoCC] (@IDDocumentoCP )
 				-- Aplico el INTERES 
 
-				INSERT [fnica].[cppAplicaciones] (
+				INSERT dbo.[cppAplicaciones] (
 					  [IDDocumentoCP]    ,[IDDocCredito]   ,[DocDebito]  ,[DocCredito]
 					  ,[Fecha]   ,[FechaCredito]   ,[MontoCredito]   ,[MontoDebitoAnt]  ,[MontoDebitoAct], 
 					  [MontoCreditoAnt]  ,[MontoCreditoAct],FechaDocVarOrig , VencimientoVarOrig, FechaUltCreditoAnt, IDDebito
@@ -1331,7 +1354,7 @@ set @MontoCredito = @SaldoRecibo
 				where IDDocumentoCP = @IDDocDebito	
 
 				set @SaldoRecibo = @SaldoRecibo - @ValorInteres
-				set @SaldoAnterior = [fnica].[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
+				set @SaldoAnterior = dbo.[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
 				exec dbo.cppUpdatecppSaldoDocumentoCP 'I',@IDSaldo OUTPUT, @IDDocCredito , 
 					@FechaCredito , @SaldoActualCredito , @SaldoAnteriorCredito,  @IDAplicacion -- @SaldoRecibo , @SaldoAnterior
 				-- Saldo del Debito
@@ -1359,7 +1382,7 @@ set @MontoCredito = @SaldoRecibo
 				-- Aplico el DESLIZAMIENTO 
 
 				
-				INSERT [fnica].[cppAplicaciones] (
+				INSERT dbo.[cppAplicaciones] (
 					  [IDDocumentoCP]    ,[IDDocCredito]   ,[DocDebito]  ,[DocCredito]
 					  ,[Fecha]   ,[FechaCredito]   ,[MontoCredito]   ,[MontoDebitoAnt]  ,[MontoDebitoAct],
 					  [MontoCreditoAnt]  ,[MontoCreditoAct],FechaDocVarOrig , VencimientoVarOrig, FechaUltCreditoAnt, IDDebito
@@ -1418,7 +1441,7 @@ set @MontoCredito = @SaldoRecibo
 					@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio	
 					-- Aplico el DESLIZAMIENTO 
 
-					INSERT [fnica].[cppAplicaciones] (
+					INSERT dbo.[cppAplicaciones] (
 						  [IDDocumentoCP]    ,[IDDocCredito]   ,[DocDebito]  ,[DocCredito]
 						  ,[Fecha]   ,[FechaCredito]   ,[MontoCredito]   ,[MontoDebitoAnt]  ,[MontoDebitoAct],
 						  [MontoCreditoAnt]  ,[MontoCreditoAct],FechaDocVarOrig , VencimientoVarOrig, FechaUltCreditoAnt, IDDebito
@@ -1441,7 +1464,7 @@ set @MontoCredito = @SaldoRecibo
 
 					set @SaldoAnterior = (@SaldoRecibo + @ValorDesliz)
 					-- Saldo del Credito
-					set @SaldoAnterior = [fnica].[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
+					set @SaldoAnterior = dbo.[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
 				
 					exec dbo.cppUpdatecppSaldoDocumentoCP 'I',@IDSaldo OUTPUT, @IDDocCredito , 
 						@FechaCredito , @SaldoActualCredito , @SaldoAnteriorCredito, @IDAplicacion --@SaldoRecibo , @SaldoAnterior
@@ -1456,13 +1479,13 @@ set @MontoCredito = @SaldoRecibo
 				if (@SaldoRecibo <= @SaldoActual and @SaldoRecibo <>0 ) -- el saldo del recibo es menor que saldo de la factura, la abona
 				begin
 
-				set @SaldoAnteriorCredito =  [fnica].[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
+				set @SaldoAnteriorCredito =  dbo.[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
 				set @SaldoAnteriorDebito = @SaldoActual 
 				set @SaldoActualDebito = @SaldoActual - @SaldoRecibo 			
 				set @SaldoActualCredito = @SaldoAnteriorCredito - @SaldoRecibo  --0 -- Zepeda1410 estaba fijo con valor cero lo quiero cambiar a @SaldoAnteriorCredito - @SaldoRecibo
 					-- Aplico la Factura
 					
-					INSERT [fnica].[cppAplicaciones] (
+					INSERT dbo.[cppAplicaciones] (
 						  [IDDocumentoCP]    ,[IDDocCredito]   ,[DocDebito]  ,[DocCredito]
 						  ,[Fecha]   ,[FechaCredito]   ,[MontoCredito]   ,[MontoDebitoAnt]  ,[MontoDebitoAct],
 						  [MontoCreditoAnt]  ,[MontoCreditoAct],FechaDocVarOrig , VencimientoVarOrig, FechaUltCreditoAnt, IDDebito
@@ -1494,15 +1517,15 @@ set @MontoCredito = @SaldoRecibo
 					-- Aplico la Factura
 					if (@SaldoRecibo > @SaldoActual  )
 					begin
-				set @SaldoAnteriorDebito = [fnica].[cppGetSaldoActualDocumentoCC] (@IDDocDebito )
+				set @SaldoAnteriorDebito = dbo.[cppGetSaldoActualDocumentoCC] (@IDDocDebito )
 				set @SaldoActualDebito = 0
-				set @SaldoAnteriorCredito =  [fnica].[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
+				set @SaldoAnteriorCredito =  dbo.[cppGetSaldoActualDocumentoCC] (@IDDocCredito )
 				set @SaldoActualCredito = @SaldoAnteriorCredito - @SaldoAnteriorDebito						
 
 						SET @Vencimiento = DATEADD(day, @Plazo, @Fecha )
 						SET @VencimientoVar = @Vencimiento	
 								
-						INSERT [fnica].[cppAplicaciones] (
+						INSERT dbo.[cppAplicaciones] (
 							  [IDDocumentoCP]    ,[IDDocCredito]   ,[DocDebito]  ,[DocCredito]
 							  ,[Fecha]   ,[FechaCredito]   ,[MontoCredito]   ,[MontoDebitoAnt]  ,[MontoDebitoAct],
 							  [MontoCreditoAnt]  ,[MontoCreditoAct],FechaDocVarOrig , VencimientoVarOrig, FechaUltCreditoAnt, IDDebito
@@ -1965,7 +1988,7 @@ INSERT INTO @hierarchy (NAME, SequenceNo, parent_ID, StringValue, Object_ID, Val
 END
 GO
 
-create procedure dbo.cppCreaCreditoAplica @ModalidadCredito nvarchar(1), @IDProveedor nvarchar(10) ,@CodSucursal nvarchar(4) ,@TipoDocumento nvarchar(1)  ,@IDClase nvarchar(10) 
+create procedure dbo.cppCreaCreditoAplica @ModalidadCredito nvarchar(1), @IDProveedor nvarchar(10) ,@TipoDocumento nvarchar(1)  ,@IDClase nvarchar(10) 
            ,@IDSubTipo int ,@Documento nvarchar(20) ,@Fecha datetime  
            ,@Plazo int ,@MontoOriginal decimal(28,4) ,@PorcInteres decimal(8,2) 
             ,@ConceptoUsuario nvarchar(500), @DebitosJason nvarchar(max) = null, @CalcInteres bit=0, @CalcDesliz bit=0,
@@ -1983,13 +2006,13 @@ begin try
 
 
 			exec dbo.cppUpdatecppDocumentosCP 'I',  @IDDocumentoCP Output, 
-			@IDProveedor  ,@CodSucursal  ,'C' , @IDClase,
+			@IDProveedor   ,'C' , @IDClase,
 			@IDSubTipo	 , @Documento , @Fecha , @Plazo , @MontoOriginal , @PorcInteres, 
 			@ConceptoSistema, @ConceptoUsuario, @RecibimosDe, @Usuario, @TipoCambio
 			set @IDDocCredito = @IDDocumentoCP
 if @ModalidadCredito = 'A' -- EL CREDITO SE DISTRIBUYE AUTOMATICAMENTE
 BEGIN
-	exec dbo.cppAplicaFacturasPendientes @IDProveedor, @CodSucursal,  @IDDocCredito,  @MontoOriginal,
+	exec dbo.cppAplicaFacturasPendientes @IDProveedor,  @IDDocCredito,  @MontoOriginal,
 			@ConceptoSistema ,@ConceptoUsuario , @RecibimosDe ,@Usuario, @TipoCambio,  @CalcInteres , @CalcDesliz
 END
 if @ModalidadCredito = 'M' -- EL CREDITO SE DISTRIBUYE Manualmente, es decir que el usuario selecciona los documentos a cancelar con sus montos
@@ -2082,12 +2105,12 @@ go
 
 
 -- exec dbo.cppGetSaldoDeCliente '*', 'MT295', '20150202'
-Create Procedure dbo.cppGetSaldoDeCliente @CodSucursal nvarchar(20), @IDProveedor nvarchar(20), @FechaCorte DATETIME,
+Create Procedure dbo.cppGetSaldoProveedor  @IDProveedor nvarchar(20), @FechaCorte DATETIME,
  @SaldoNominal decimal(28,4) output, @Intereses decimal(28,4) output, 
  @Deslizamiento decimal(28,4) output, @Total decimal(28,4) output
 as
 set nocount on 
-Create Table #Resultados( IDSaldo int, IDDocumentoCP int, IDProveedor nvarchar(20), CodSucursal nvarchar(10),
+Create Table #Resultados( IDSaldo int, IDDocumentoCP int, IDProveedor nvarchar(20),  
 TipoDocumento nvarchar(1), IDClase nvarchar(10), IDSubtipo int, Documento nvarchar(20), 
 Fecha datetime, FechaDocVar datetime, Vencimiento datetime, VencimientoVar datetime, Plazo decimal(8,2),
 MontoOriginal decimal(28,4), FechaUltCredito datetime, SaldoActual decimal(28,4), 
@@ -2096,10 +2119,10 @@ Deslizamiento decimal(28,4) , TotalaPagar decimal(28,4), EsInteres bit, EsDesliz
 )
 
 	
-Insert #Resultados (IDSaldo, IDDocumentoCP, IDProveedor, CodSucursal, TipoDocumento, IDClase, IDSubtipo, 
+Insert #Resultados (IDSaldo, IDDocumentoCP, IDProveedor, TipoDocumento, IDClase, IDSubtipo, 
 Documento, Fecha, FechaDocVar, Vencimiento, VencimientoVar, Plazo,	MontoOriginal, FechaUltCredito, SaldoActual, 
 FechaSaldo, Saldo,DiasVencidos,  SaldoNominal,  Intereses, Deslizamiento, TotalaPagar, EsInteres, EsDeslizamiento)
-exec dbo.cppGetDocumentosxCobrar @CodSucursal, @IDProveedor, @FechaCorte
+exec dbo.cppGetDocumentosxCobrar  @IDProveedor, @FechaCorte
 
 Select IDProveedor, sum(SaldoNominal) SaldoNominal, sum(Deslizamiento) Deslizamiento, 
 sum(Intereses) Intereses, sum(SaldoNominal+Deslizamiento+Intereses) Total
