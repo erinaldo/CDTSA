@@ -3303,7 +3303,7 @@ select w.*, isnull(d.NotaCredito,0) NotaCredito, isnull(d.NotaCreditoDolar,0) No
 				)rc group by IDProveedor
 			)b on z.IDProveedor =b.IDProveedor
 
-	)y left join  --***Notas de Debito
+	)y left join  --***Not*as de Debito
 		(
 			Select  IDProveedor, SUM(NotaDebito) NotaDebito,SUM(NotaDebitoDolar) NotaDebitoDolar from 
 				(
@@ -3336,4 +3336,44 @@ where q.Facturas+q.Recibos+q.NotaDebito+NotaCredito<>0
 Select *  from #tmpResultado 
 where IDProveedor not in ('MG999','MG100')
 order by IDProveedor 
+
+
+GO
+
+
+--	ACTUALIZACION DE LAS PANTALLAS
+
+CREATE PROCEDURE dbo.cppGetClaseDocumento(@TipoDocumento nvarchar(1), @IDClase nvarchar(10),@Descr nvarchar(250))
+as 
+
+select TipoDocumento,IDClase,Descr,Orden,Activo from dbo.cppClaseDocumento
+where (TipoDocumento = @IDTipoDocumento  or  @IDTipoDocumento ='*')  and (IDClase = @IDClase or @IDClase='*')
+and (Descr like '%'+@Descr+'%' or @Descr ='*')
+
+GO
+
+create procedure dbo.ccpUpdateClaseDocumento(@Operacion nvarchar(1), @TipoDocumento nvarchar,@IDClase nvarchar(10),@Descr nvarchar(250), @Orden int, @Activo bit, @DistribAutom bit)
+as 
+
+if (@Operacion='I')
+begin
+	if Exists(select * from dbo.cppClaseDocumento where TipoDocumento=@TipoDocumento and IDClase=@IDClase) 
+	begin
+		raisError('La clase documento que desea agregar ya se encuentra registrada',16,1);
+		return
+	end	
+	insert into dbo.cppClaseDocumento(TipoDocumento,IDClase,Descr,Orden,Activo,DistribAutom)
+	values (@TipoDocumento,@IDClase,@Descr,@Orden,@Activo,@DistribAutom)	
+end	
+IF (@Operacion ='U')
+begin
+	update dbo.cppClaseDocumento set Descr =@Descr,Orden = @Orden,Activo = @Activo,DistribAutom = @DistribAutom where TipoDocumento=@TipoDocumento and IDClase=@IDClase
+end	
+
+if (@Operacion = 'D')
+	delete dbo.cppClaseDocumento where IDClase=@IDClase  and TipoDocumento =@TipoDocumento
+
+
+GO
+
 

@@ -107,7 +107,14 @@
             this.dtgDetalleRetenciones = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabEmbarque = new System.Windows.Forms.TabPage();
+            this.btnAplicarEmbarque = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancelarEmbarque = new DevExpress.XtraEditors.SimpleButton();
+            this.btnEliminarEmbarque = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAgregarEmbarque = new DevExpress.XtraEditors.SimpleButton();
+            this.dtgDetalleEmbarque = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabNotas = new System.Windows.Forms.TabPage();
+            this.txtNotas = new DevExpress.XtraEditors.MemoEdit();
             this.txtSaldo = new DevExpress.XtraEditors.TextEdit();
             this.txtDescrProveedor = new DevExpress.XtraEditors.TextEdit();
             this.txtIdProveedor = new DevExpress.XtraEditors.TextEdit();
@@ -117,13 +124,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnAplicarEmbarque = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCancelarEmbarque = new DevExpress.XtraEditors.SimpleButton();
-            this.btnEliminarEmbarque = new DevExpress.XtraEditors.SimpleButton();
-            this.btnAgregarEmbarque = new DevExpress.XtraEditors.SimpleButton();
-            this.dtgDetalleEmbarque = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtNotas = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -172,7 +172,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleRetenciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tabEmbarque.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEmbarque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.tabNotas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNotas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSaldo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrProveedor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdProveedor.Properties)).BeginInit();
@@ -182,9 +185,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEmbarque)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNotas.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -927,6 +927,58 @@
             this.tabEmbarque.Text = "Embarque";
             this.tabEmbarque.UseVisualStyleBackColor = true;
             // 
+            // btnAplicarEmbarque
+            // 
+            this.btnAplicarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnAplicarEmbarque.Image")));
+            this.btnAplicarEmbarque.Location = new System.Drawing.Point(234, 14);
+            this.btnAplicarEmbarque.Name = "btnAplicarEmbarque";
+            this.btnAplicarEmbarque.Size = new System.Drawing.Size(71, 23);
+            this.btnAplicarEmbarque.TabIndex = 3;
+            this.btnAplicarEmbarque.Text = "Aplicar";
+            // 
+            // btnCancelarEmbarque
+            // 
+            this.btnCancelarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarEmbarque.Image")));
+            this.btnCancelarEmbarque.Location = new System.Drawing.Point(157, 14);
+            this.btnCancelarEmbarque.Name = "btnCancelarEmbarque";
+            this.btnCancelarEmbarque.Size = new System.Drawing.Size(71, 23);
+            this.btnCancelarEmbarque.TabIndex = 4;
+            this.btnCancelarEmbarque.Text = "Cancelar";
+            // 
+            // btnEliminarEmbarque
+            // 
+            this.btnEliminarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarEmbarque.Image")));
+            this.btnEliminarEmbarque.Location = new System.Drawing.Point(80, 14);
+            this.btnEliminarEmbarque.Name = "btnEliminarEmbarque";
+            this.btnEliminarEmbarque.Size = new System.Drawing.Size(71, 23);
+            this.btnEliminarEmbarque.TabIndex = 5;
+            this.btnEliminarEmbarque.Text = "Eliminar";
+            // 
+            // btnAgregarEmbarque
+            // 
+            this.btnAgregarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarEmbarque.Image")));
+            this.btnAgregarEmbarque.Location = new System.Drawing.Point(3, 14);
+            this.btnAgregarEmbarque.Name = "btnAgregarEmbarque";
+            this.btnAgregarEmbarque.Size = new System.Drawing.Size(71, 23);
+            this.btnAgregarEmbarque.TabIndex = 6;
+            this.btnAgregarEmbarque.Text = "Agregar";
+            // 
+            // dtgDetalleEmbarque
+            // 
+            this.dtgDetalleEmbarque.Location = new System.Drawing.Point(3, 52);
+            this.dtgDetalleEmbarque.MainView = this.gridView2;
+            this.dtgDetalleEmbarque.MenuManager = this.ribbonControl1;
+            this.dtgDetalleEmbarque.Name = "dtgDetalleEmbarque";
+            this.dtgDetalleEmbarque.Size = new System.Drawing.Size(776, 334);
+            this.dtgDetalleEmbarque.TabIndex = 2;
+            this.dtgDetalleEmbarque.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.dtgDetalleEmbarque;
+            this.gridView2.Name = "gridView2";
+            // 
             // tabNotas
             // 
             this.tabNotas.Controls.Add(this.txtNotas);
@@ -936,6 +988,14 @@
             this.tabNotas.TabIndex = 6;
             this.tabNotas.Text = "Notas";
             this.tabNotas.UseVisualStyleBackColor = true;
+            // 
+            // txtNotas
+            // 
+            this.txtNotas.Location = new System.Drawing.Point(3, 3);
+            this.txtNotas.MenuManager = this.ribbonControl1;
+            this.txtNotas.Name = "txtNotas";
+            this.txtNotas.Size = new System.Drawing.Size(765, 355);
+            this.txtNotas.TabIndex = 0;
             // 
             // txtSaldo
             // 
@@ -1026,66 +1086,6 @@
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnAplicarEmbarque
-            // 
-            this.btnAplicarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnAplicarEmbarque.Image")));
-            this.btnAplicarEmbarque.Location = new System.Drawing.Point(234, 14);
-            this.btnAplicarEmbarque.Name = "btnAplicarEmbarque";
-            this.btnAplicarEmbarque.Size = new System.Drawing.Size(71, 23);
-            this.btnAplicarEmbarque.TabIndex = 3;
-            this.btnAplicarEmbarque.Text = "Aplicar";
-            // 
-            // btnCancelarEmbarque
-            // 
-            this.btnCancelarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarEmbarque.Image")));
-            this.btnCancelarEmbarque.Location = new System.Drawing.Point(157, 14);
-            this.btnCancelarEmbarque.Name = "btnCancelarEmbarque";
-            this.btnCancelarEmbarque.Size = new System.Drawing.Size(71, 23);
-            this.btnCancelarEmbarque.TabIndex = 4;
-            this.btnCancelarEmbarque.Text = "Cancelar";
-            // 
-            // btnEliminarEmbarque
-            // 
-            this.btnEliminarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarEmbarque.Image")));
-            this.btnEliminarEmbarque.Location = new System.Drawing.Point(80, 14);
-            this.btnEliminarEmbarque.Name = "btnEliminarEmbarque";
-            this.btnEliminarEmbarque.Size = new System.Drawing.Size(71, 23);
-            this.btnEliminarEmbarque.TabIndex = 5;
-            this.btnEliminarEmbarque.Text = "Eliminar";
-            // 
-            // btnAgregarEmbarque
-            // 
-            this.btnAgregarEmbarque.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarEmbarque.Image")));
-            this.btnAgregarEmbarque.Location = new System.Drawing.Point(3, 14);
-            this.btnAgregarEmbarque.Name = "btnAgregarEmbarque";
-            this.btnAgregarEmbarque.Size = new System.Drawing.Size(71, 23);
-            this.btnAgregarEmbarque.TabIndex = 6;
-            this.btnAgregarEmbarque.Text = "Agregar";
-            // 
-            // dtgDetalleEmbarque
-            // 
-            this.dtgDetalleEmbarque.Location = new System.Drawing.Point(3, 52);
-            this.dtgDetalleEmbarque.MainView = this.gridView2;
-            this.dtgDetalleEmbarque.MenuManager = this.ribbonControl1;
-            this.dtgDetalleEmbarque.Name = "dtgDetalleEmbarque";
-            this.dtgDetalleEmbarque.Size = new System.Drawing.Size(776, 334);
-            this.dtgDetalleEmbarque.TabIndex = 2;
-            this.dtgDetalleEmbarque.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView2
-            // 
-            this.gridView2.GridControl = this.dtgDetalleEmbarque;
-            this.gridView2.Name = "gridView2";
-            // 
-            // txtNotas
-            // 
-            this.txtNotas.Location = new System.Drawing.Point(3, 3);
-            this.txtNotas.MenuManager = this.ribbonControl1;
-            this.txtNotas.Name = "txtNotas";
-            this.txtNotas.Size = new System.Drawing.Size(765, 355);
-            this.txtNotas.TabIndex = 0;
-            // 
             // frmDocumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1148,7 +1148,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleRetenciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tabEmbarque.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEmbarque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.tabNotas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtNotas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSaldo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescrProveedor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdProveedor.Properties)).EndInit();
@@ -1158,9 +1161,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgDetalleEmbarque)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNotas.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
