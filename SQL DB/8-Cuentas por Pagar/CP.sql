@@ -3377,3 +3377,47 @@ if (@Operacion = 'D')
 GO
 
 
+CREATE PROCEDURE dbo.cppGetClaseDocumento(@TipoDocumento nvarchar(1), @IDClase nvarchar(10),@Descr nvarchar(250))
+as 
+
+select TipoDocumento,IDClase,Descr,Orden,Activo from dbo.cppClaseDocumento
+where (TipoDocumento = @IDTipoDocumento  or  @IDTipoDocumento ='*')  and (IDClase = @IDClase or @IDClase='*')
+and (Descr like '%'+@Descr+'%' or @Descr ='*')
+
+GO
+
+CREATE PROCEDURE dbo.cppGetSubTipoDocumento(@IDSubTipo int, @TipoDocumento nvarchar(1), @Descr nvarchar(250))
+as 
+select IDSubTipo,TipoDocumento,IDClase,Descr,Descripcion,Consecutivo,DistribAutom,EsRecuperacion,SubTipoGeneraAsiento,NaturalezaCta,CtaDebito,CtaCredito,Especial,ContraCtaEnSubTipo,esInteres,esDeslizamiento 
+from dbo.cppSubTipoDocumento
+where (IDSubTipo=@IDSubTipo or @IDSubTipo =-1) and (TipoDocumento=@TipoDocumento or @TipoDocumento='*')
+and (Descr like '%'+ @Descr +'%' or @Descr='*')
+
+GO
+
+create procedure dbo.ccpUpdateSubTipoDocumento(@Operacion nvarchar(1),@IDSubTipo int, @TipoDocumento nvarchar(1),@IDClase nvarchar(10),@Descr nvarchar(200),@Descripcion nvarchar(200), 
+	@Consecutivo int, @DistribucionAutom bit, @EsRecuperacion bit, @SubTipoGeneraAsiento bit, @NaturalezaCta nvarchar(1) ,@CtaDebito varchar(25), @CtaCredito varchar(25), @Especial bit, @ContraCtaEnSubTipo bit, @EsInteres bit, @esDeslizamiento bit)
+as 
+
+if (@Operacion='I')
+begin
+	if Exists(select * from dbo.ccpSubTipoDocumento where TipoDocumento=@TipoDocumento and IDClase=@IDClase and IdSubtipo = @IdSubTipo) 
+	begin
+		raisError('El SubTipo de Documento que desea agregar ya se encuentra registrada',16,1);
+		return
+	end	
+	insert into dbo.ccpSubTipoDocumento(IDSubTipo,TipoDocumento,IDClase,Descr,Descripcion,Consecutivo,DistribAutom,EsRecuperacion,SubTipoGeneraAsiento,NaturalezaCta,CtaDebito,CtaCredito,Especial,ContaCtaEnSubTipo,esInteres,esDeslizamiento)
+	values (@IDSubTipo,@TipoDocumento,@IDClase,@Descr,@Descripcion,@Consecutivo,@DistribucionAutom,@EsRecuperacion,@SubTipoGeneraAsiento,@NaturalezaCta,@CtaDebito,@CtaCredito,@Especial,@ContraCtaEnSubTipo,@EsInteres,@esDeslizamiento)	
+end	
+IF (@Operacion ='U')
+begin
+	update dbo.ccpSubTipoDocumento set Descr =@Descr,Descripcion = @Descripcion, Consecutivo=@Consecutivo,DistribAutom = @DistribucionAutom, EsRecuperacion = @EsRecuperacion, SubTipoGeneraASiento=@SubTipoGeneraAsiento,NaturalezaCta=@NaturalezaCta,
+	CtaDebito=@CtaDebito, CtaCredito=@CtaCredito,Especial =@Especial, ContraCtaEnSubTipo=@ContraCtaEnSubTipo,esInteres = @esInteres, esDeslizamiento = @esDeslizamiento
+	 where TipoDocumento=@TipoDocumento and IDClase=@IDClase and IdSubtipo = @IdSubTipo
+end	
+
+if (@Operacion = 'D')
+	delete dbo.ccpSubTipoDocumento where IDClase=@IDClase  and TipoDocumento =@TipoDocumento and IdSubtipo = @IdSubTipo
+
+
+GO

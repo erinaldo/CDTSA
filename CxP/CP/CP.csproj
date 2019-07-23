@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\clsClaseDocumentoDAC.cs" />
+    <Compile Include="DAC\clsSubTipoDocumento.cs" />
     <Compile Include="Documentos.cs">
       <SubType>Form</SubType>
     </Compile>

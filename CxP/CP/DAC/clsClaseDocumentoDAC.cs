@@ -30,7 +30,7 @@ namespace CP.DAC
         }
 
 
-        public static long UpdateProveedor(String Operacion, String TipoDocumento, String IDClase, String Descr, int Orden, bool Activo,bool DistribAutom, SqlTransaction oTran)
+        public static long Update(String Operacion, String TipoDocumento, String IDClase, String Descr, int Orden, bool Activo,bool DistribAutom, SqlTransaction oTran)
         {
             long result = -1;
             String strSQL = "dbo.ccpUpdateClaseDocumento";
@@ -38,7 +38,8 @@ namespace CP.DAC
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
 
             oCmd.Parameters.Add(new SqlParameter("@Operacion", Operacion));
-            oCmd.Parameters.Add(new SqlParameter("@IDProveedor", TipoDocumento));
+
+            oCmd.Parameters.Add(new SqlParameter("@TipoDocumento", TipoDocumento));
             oCmd.Parameters.Add(new SqlParameter("@IDClase", IDClase));
             oCmd.Parameters.Add(new SqlParameter("@Descr", Descr));
             oCmd.Parameters.Add(new SqlParameter("@Activo", Activo));
