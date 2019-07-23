@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CP.DAC
 {
-    public static class clsSubTipoDocumento
+    public static class clsSubTipoDocumentoDAC
     {
         public static DataSet Get(String TipoDocumento, String IDClase, String Descr)
         {

@@ -3386,11 +3386,11 @@ and (Descr like '%'+@Descr+'%' or @Descr ='*')
 
 GO
 
-CREATE PROCEDURE dbo.cppGetSubTipoDocumento(@IDSubTipo int, @TipoDocumento nvarchar(1), @Descr nvarchar(250))
+CREATE PROCEDURE dbo.cppGetSubTipoDocumento(@IDSubTipo int, @TipoDocumento nvarchar(1),@IDClase nvarchar(10),  @Descr nvarchar(250))
 as 
 select IDSubTipo,TipoDocumento,IDClase,Descr,Descripcion,Consecutivo,DistribAutom,EsRecuperacion,SubTipoGeneraAsiento,NaturalezaCta,CtaDebito,CtaCredito,Especial,ContraCtaEnSubTipo,esInteres,esDeslizamiento 
 from dbo.cppSubTipoDocumento
-where (IDSubTipo=@IDSubTipo or @IDSubTipo =-1) and (TipoDocumento=@TipoDocumento or @TipoDocumento='*')
+where (IDSubTipo=@IDSubTipo or @IDSubTipo =-1) and (TipoDocumento=@TipoDocumento or @TipoDocumento='*') and (IDClase = @IDClase or @IDClase='*')
 and (Descr like '%'+ @Descr +'%' or @Descr='*')
 
 GO
@@ -3421,3 +3421,35 @@ if (@Operacion = 'D')
 
 
 GO
+
+
+--Condicion de pago
+
+create procedure dbo.cppGetCondicionPago(@IDCondicionPago int , @Descr nvarchar(250))
+as 
+select IDCondicionPago,Descr,Dias,DescuentoContado,PagosParciales,Activo
+ from dbo.cppCondicionPago where (IDCondicionPago = @IDCondicionPago or @IDCondicionPago=-1)
+
+go
+
+create procedure dbo.cppUpdateCondicionPago(@Operacion nvarchar(1), @IDCondicionPago int output, @Descr nvarchar(250), @Dias int, @DescuentoContado decimal(28,4), @PagosParciales bit, @Activo bit)
+as 
+
+if (@Operacion='I')
+begin
+	if Exists(select * from dbo.cppCondicionPago where IDCondicionPago=@IDCondicionPago) 
+	begin
+		raisError('La condicion de pago ya se encuentra registrada',16,1);
+		return
+	end	
+	insert into dbo.cppCondicionPago(IDCondicionPago,Descr,Dias,DescuentoContado,PagosParciales,Activo)
+	values (@IDCondicionPago,@Descr,@Dias,@DescuentoContado,@PagosParciales,@Activo)	
+end	
+IF (@Operacion ='U')
+begin
+	update dbo.cppCondicionPago set Descr =@Descr,Dias = @Dias, DescuentoContado=@DescuentoContado,PagosParciales=@PagosParciales, Activo=@Activo
+	 where IDCondicionPago=@IDCondicionPago
+end	
+
+if (@Operacion = 'D')
+	delete dbo.cppCondicionPago where IDCondicionPago=@IDCondicionPago
