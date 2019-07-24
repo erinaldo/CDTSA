@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\clsClaseDocumentoDAC.cs" />
-    <Compile Include="DAC\clsSubTipoDocumento.cs" />
+    <Compile Include="DAC\clsCondicionPagoDAC.cs" />
+    <Compile Include="DAC\clsDocumentocpDAC.cs" />
+    <Compile Include="DAC\clsSubTipoDocumentoDAC.cs" />
     <Compile Include="Documentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,9 +101,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contabilidad\Contabilidad\Contabilidad.csproj">
+      <Project>{9aab66d4-cb76-4809-9a52-d50282a6968d}</Project>
+      <Name>Contabilidad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Security\Security\Security.csproj">
       <Project>{fdbe1059-0197-4f16-a0cf-d9ecb8ef8aa6}</Project>
       <Name>Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Util\Util\Util.csproj">
+      <Project>{0b0488ef-45c5-4594-aecc-b6aec89fbbd5}</Project>
+      <Name>Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

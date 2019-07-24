@@ -136,3 +136,12 @@ C:\Users\Public\Documents\S4U\CEDETSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\Reportes\rptDiferenciasBoletasInv.repx
 C:\Users\DESARROLLO\Documents\SF4\CEDETSA\MainMenu\MainMenu\MainMenu\bin\Debug\FilesTemplate\import_Orden.xlsx
 C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\bin\Debug\CDTSA.exe.config
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csprojResolveAssemblyReference.cache
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.frmDesigner.resources
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.frmLogin.resources
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.frmMain.resources
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.frmParametrosGenerales.resources
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.Properties.Resources.resources
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.splash.resources
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\MainMenu.csproj.GenerateResource.Cache
+C:\Users\jespinoza\Documents\repositorios\CDTSA\MainMenu\MainMenu\MainMenu\obj\Debug\CDTSA.exe.licenses

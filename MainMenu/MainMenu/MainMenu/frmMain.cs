@@ -32,6 +32,7 @@ namespace MainMenu
             CreateNodes(treeListAdministracion);
             CreateNodes(treeListControlBancario);
             CreateNodes(treelstCompras);
+            CreateNodes(treelstCuentasPorPagar);
             this.Load += frmMain_Load;
             ShowPagesRibbonMan(false);
         }
@@ -572,6 +573,13 @@ namespace MainMenu
                                                                   
                     break;
 
+                case "treelstCuentasPorPagar":
+                    TreeListNode nodeDocumentosCP = tl.AppendNode(new object[] { "Documentos" }, -1, 11, 11, 11);
+                    nodeDocumentosCP.Tag = "frmDocumento";
+                   
+                    break;
+
+
 
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);
@@ -850,6 +858,27 @@ namespace MainMenu
                     ShowPagesRibbonMan(false);
                     ofrmParametros.Show();
                     break;
+            }
+
+        }
+
+        private void treelstCuentasPorPagar_DoubleClick(object sender, EventArgs e)
+        {
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList)sender).FocusedNode;
+            if (node.Tag == null)
+                return;
+            switch (node.Tag.ToString())
+            {
+                case "frmDocumento":
+                    CP.frmDocumento ofrmDoc = new CP.frmDocumento();
+                    ofrmDoc.MdiParent = this;
+                    ofrmDoc.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmDoc.Show();
+                    break;
+
+               
             }
 
         }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumento));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation4 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
@@ -43,6 +43,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDebito = new System.Windows.Forms.TabPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.slkupSubTipoDocumentoDebito = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.slkupSubTipoClaseDebito = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.dtpFechaVencimientoDebito = new DevExpress.XtraEditors.DateEdit();
             this.dtpFechaDocumentoDebito = new DevExpress.XtraEditors.DateEdit();
             this.txtMontoDebito = new DevExpress.XtraEditors.TextEdit();
@@ -51,15 +55,11 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbSubTipoClaseDebito = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbSubTipoDocumentoDebito = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cmbMonedaDebito = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cmbTipoDocumentoDebito = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtConceptoDebito = new DevExpress.XtraEditors.MemoEdit();
             this.tabCredito = new System.Windows.Forms.TabPage();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
@@ -76,15 +76,11 @@
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbClaseCredito = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbSubTipoDocumentoCredito = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.cmbMonedaCredito = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cmbTipoDocumentoCredito = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.txtConceptoCredito = new DevExpress.XtraEditors.MemoEdit();
             this.tabDetalle = new System.Windows.Forms.TabPage();
             this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
@@ -124,6 +120,10 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.slkupClaseCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.slkupSubTipoDocumentoCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -131,16 +131,17 @@
             this.tabDebito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoDebito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoClaseDebito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoDebito.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoDebito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoDebito.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoDebito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMontoDebito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocumentoDebito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSubTipoClaseDebito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSubTipoDocumentoDebito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonedaDebito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoDocumentoDebito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConceptoDebito.Properties)).BeginInit();
             this.tabCredito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
@@ -156,10 +157,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoCredito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMontoCredito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocumentoCredito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbClaseCredito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSubTipoDocumentoCredito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonedaCredito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoDocumentoCredito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConceptoCredito.Properties)).BeginInit();
             this.tabDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMontoTotalaPagar.Properties)).BeginInit();
@@ -185,6 +183,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupClaseCredito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoCredito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -250,18 +252,18 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation1.Group = null;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.Group = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation3.Group = null;
+            reduceOperation3.ItemLinkIndex = 0;
+            reduceOperation3.ItemLinksCount = 0;
+            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            reduceOperation4.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation4.Group = null;
+            reduceOperation4.ItemLinkIndex = 0;
+            reduceOperation4.ItemLinksCount = 0;
+            reduceOperation4.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation4);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -315,6 +317,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.slkupSubTipoDocumentoDebito);
+            this.groupControl1.Controls.Add(this.slkupSubTipoClaseDebito);
             this.groupControl1.Controls.Add(this.dtpFechaVencimientoDebito);
             this.groupControl1.Controls.Add(this.dtpFechaDocumentoDebito);
             this.groupControl1.Controls.Add(this.txtMontoDebito);
@@ -323,21 +327,52 @@
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.labelControl8);
-            this.groupControl1.Controls.Add(this.cmbSubTipoClaseDebito);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.labelControl3);
-            this.groupControl1.Controls.Add(this.cmbSubTipoDocumentoDebito);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.cmbMonedaDebito);
-            this.groupControl1.Controls.Add(this.cmbTipoDocumentoDebito);
-            this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.txtConceptoDebito);
             this.groupControl1.Location = new System.Drawing.Point(15, 17);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(745, 249);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Datos Generales";
+            // 
+            // slkupSubTipoDocumentoDebito
+            // 
+            this.slkupSubTipoDocumentoDebito.Location = new System.Drawing.Point(123, 60);
+            this.slkupSubTipoDocumentoDebito.Name = "slkupSubTipoDocumentoDebito";
+            this.slkupSubTipoDocumentoDebito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupSubTipoDocumentoDebito.Properties.View = this.gridView4;
+            this.slkupSubTipoDocumentoDebito.Size = new System.Drawing.Size(135, 20);
+            this.slkupSubTipoDocumentoDebito.TabIndex = 4;
+            // 
+            // gridView4
+            // 
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            // 
+            // slkupSubTipoClaseDebito
+            // 
+            this.slkupSubTipoClaseDebito.Location = new System.Drawing.Point(123, 34);
+            this.slkupSubTipoClaseDebito.MenuManager = this.ribbonControl1;
+            this.slkupSubTipoClaseDebito.Name = "slkupSubTipoClaseDebito";
+            this.slkupSubTipoClaseDebito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupSubTipoClaseDebito.Properties.View = this.gridView3;
+            this.slkupSubTipoClaseDebito.Size = new System.Drawing.Size(135, 20);
+            this.slkupSubTipoClaseDebito.TabIndex = 4;
+            // 
+            // gridView3
+            // 
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
             // 
             // dtpFechaVencimientoDebito
             // 
@@ -366,14 +401,14 @@
             // 
             // txtMontoDebito
             // 
-            this.txtMontoDebito.Location = new System.Drawing.Point(123, 135);
+            this.txtMontoDebito.Location = new System.Drawing.Point(123, 113);
             this.txtMontoDebito.Name = "txtMontoDebito";
             this.txtMontoDebito.Size = new System.Drawing.Size(135, 20);
             this.txtMontoDebito.TabIndex = 2;
             // 
             // txtDocumentoDebito
             // 
-            this.txtDocumentoDebito.Location = new System.Drawing.Point(123, 109);
+            this.txtDocumentoDebito.Location = new System.Drawing.Point(123, 87);
             this.txtDocumentoDebito.MenuManager = this.ribbonControl1;
             this.txtDocumentoDebito.Name = "txtDocumentoDebito";
             this.txtDocumentoDebito.Size = new System.Drawing.Size(135, 20);
@@ -381,7 +416,7 @@
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(526, 112);
+            this.labelControl9.Location = new System.Drawing.Point(526, 90);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(42, 13);
             this.labelControl9.TabIndex = 0;
@@ -411,18 +446,9 @@
             this.labelControl8.TabIndex = 0;
             this.labelControl8.Text = "Concepto:";
             // 
-            // cmbSubTipoClaseDebito
-            // 
-            this.cmbSubTipoClaseDebito.Location = new System.Drawing.Point(123, 82);
-            this.cmbSubTipoClaseDebito.Name = "cmbSubTipoClaseDebito";
-            this.cmbSubTipoClaseDebito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbSubTipoClaseDebito.Size = new System.Drawing.Size(135, 20);
-            this.cmbSubTipoClaseDebito.TabIndex = 1;
-            // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(16, 138);
+            this.labelControl7.Location = new System.Drawing.Point(16, 116);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(34, 13);
             this.labelControl7.TabIndex = 0;
@@ -430,7 +456,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(16, 112);
+            this.labelControl4.Location = new System.Drawing.Point(16, 90);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(58, 13);
             this.labelControl4.TabIndex = 0;
@@ -438,24 +464,15 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(16, 85);
+            this.labelControl3.Location = new System.Drawing.Point(16, 36);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(30, 13);
             this.labelControl3.TabIndex = 0;
             this.labelControl3.Text = "Clase:";
             // 
-            // cmbSubTipoDocumentoDebito
-            // 
-            this.cmbSubTipoDocumentoDebito.Location = new System.Drawing.Point(123, 56);
-            this.cmbSubTipoDocumentoDebito.Name = "cmbSubTipoDocumentoDebito";
-            this.cmbSubTipoDocumentoDebito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbSubTipoDocumentoDebito.Size = new System.Drawing.Size(135, 20);
-            this.cmbSubTipoDocumentoDebito.TabIndex = 1;
-            // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(16, 59);
+            this.labelControl2.Location = new System.Drawing.Point(16, 63);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(102, 13);
             this.labelControl2.TabIndex = 0;
@@ -463,30 +480,12 @@
             // 
             // cmbMonedaDebito
             // 
-            this.cmbMonedaDebito.Location = new System.Drawing.Point(574, 109);
+            this.cmbMonedaDebito.Location = new System.Drawing.Point(574, 87);
             this.cmbMonedaDebito.Name = "cmbMonedaDebito";
             this.cmbMonedaDebito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMonedaDebito.Size = new System.Drawing.Size(135, 20);
             this.cmbMonedaDebito.TabIndex = 1;
-            // 
-            // cmbTipoDocumentoDebito
-            // 
-            this.cmbTipoDocumentoDebito.Location = new System.Drawing.Point(123, 30);
-            this.cmbTipoDocumentoDebito.MenuManager = this.ribbonControl1;
-            this.cmbTipoDocumentoDebito.Name = "cmbTipoDocumentoDebito";
-            this.cmbTipoDocumentoDebito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbTipoDocumentoDebito.Size = new System.Drawing.Size(135, 20);
-            this.cmbTipoDocumentoDebito.TabIndex = 1;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(16, 33);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(81, 13);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Tipo Documento:";
             // 
             // txtConceptoDebito
             // 
@@ -554,6 +553,8 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.slkupSubTipoDocumentoCredito);
+            this.groupControl2.Controls.Add(this.slkupClaseCredito);
             this.groupControl2.Controls.Add(this.dtpFechaVencimientoCredito);
             this.groupControl2.Controls.Add(this.dtpFechaDocumentoCredito);
             this.groupControl2.Controls.Add(this.txtMontoCredito);
@@ -562,15 +563,11 @@
             this.groupControl2.Controls.Add(this.labelControl11);
             this.groupControl2.Controls.Add(this.labelControl12);
             this.groupControl2.Controls.Add(this.labelControl13);
-            this.groupControl2.Controls.Add(this.cmbClaseCredito);
             this.groupControl2.Controls.Add(this.labelControl14);
             this.groupControl2.Controls.Add(this.labelControl15);
             this.groupControl2.Controls.Add(this.labelControl16);
-            this.groupControl2.Controls.Add(this.cmbSubTipoDocumentoCredito);
             this.groupControl2.Controls.Add(this.labelControl17);
             this.groupControl2.Controls.Add(this.cmbMonedaCredito);
-            this.groupControl2.Controls.Add(this.cmbTipoDocumentoCredito);
-            this.groupControl2.Controls.Add(this.labelControl18);
             this.groupControl2.Controls.Add(this.txtConceptoCredito);
             this.groupControl2.Location = new System.Drawing.Point(17, 15);
             this.groupControl2.Name = "groupControl2";
@@ -605,14 +602,14 @@
             // 
             // txtMontoCredito
             // 
-            this.txtMontoCredito.Location = new System.Drawing.Point(123, 135);
+            this.txtMontoCredito.Location = new System.Drawing.Point(123, 110);
             this.txtMontoCredito.Name = "txtMontoCredito";
             this.txtMontoCredito.Size = new System.Drawing.Size(135, 20);
             this.txtMontoCredito.TabIndex = 2;
             // 
             // txtDocumentoCredito
             // 
-            this.txtDocumentoCredito.Location = new System.Drawing.Point(123, 109);
+            this.txtDocumentoCredito.Location = new System.Drawing.Point(123, 84);
             this.txtDocumentoCredito.MenuManager = this.ribbonControl1;
             this.txtDocumentoCredito.Name = "txtDocumentoCredito";
             this.txtDocumentoCredito.Size = new System.Drawing.Size(135, 20);
@@ -620,7 +617,7 @@
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(526, 112);
+            this.labelControl10.Location = new System.Drawing.Point(526, 87);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(42, 13);
             this.labelControl10.TabIndex = 0;
@@ -650,18 +647,9 @@
             this.labelControl13.TabIndex = 0;
             this.labelControl13.Text = "Concepto:";
             // 
-            // cmbClaseCredito
-            // 
-            this.cmbClaseCredito.Location = new System.Drawing.Point(123, 82);
-            this.cmbClaseCredito.Name = "cmbClaseCredito";
-            this.cmbClaseCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbClaseCredito.Size = new System.Drawing.Size(135, 20);
-            this.cmbClaseCredito.TabIndex = 1;
-            // 
             // labelControl14
             // 
-            this.labelControl14.Location = new System.Drawing.Point(16, 138);
+            this.labelControl14.Location = new System.Drawing.Point(16, 113);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(34, 13);
             this.labelControl14.TabIndex = 0;
@@ -669,7 +657,7 @@
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(16, 112);
+            this.labelControl15.Location = new System.Drawing.Point(16, 87);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(58, 13);
             this.labelControl15.TabIndex = 0;
@@ -677,20 +665,11 @@
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(16, 85);
+            this.labelControl16.Location = new System.Drawing.Point(14, 33);
             this.labelControl16.Name = "labelControl16";
             this.labelControl16.Size = new System.Drawing.Size(30, 13);
             this.labelControl16.TabIndex = 0;
             this.labelControl16.Text = "Clase:";
-            // 
-            // cmbSubTipoDocumentoCredito
-            // 
-            this.cmbSubTipoDocumentoCredito.Location = new System.Drawing.Point(123, 56);
-            this.cmbSubTipoDocumentoCredito.Name = "cmbSubTipoDocumentoCredito";
-            this.cmbSubTipoDocumentoCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbSubTipoDocumentoCredito.Size = new System.Drawing.Size(135, 20);
-            this.cmbSubTipoDocumentoCredito.TabIndex = 1;
             // 
             // labelControl17
             // 
@@ -702,30 +681,12 @@
             // 
             // cmbMonedaCredito
             // 
-            this.cmbMonedaCredito.Location = new System.Drawing.Point(574, 109);
+            this.cmbMonedaCredito.Location = new System.Drawing.Point(574, 84);
             this.cmbMonedaCredito.Name = "cmbMonedaCredito";
             this.cmbMonedaCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbMonedaCredito.Size = new System.Drawing.Size(135, 20);
             this.cmbMonedaCredito.TabIndex = 1;
-            // 
-            // cmbTipoDocumentoCredito
-            // 
-            this.cmbTipoDocumentoCredito.Location = new System.Drawing.Point(123, 30);
-            this.cmbTipoDocumentoCredito.MenuManager = this.ribbonControl1;
-            this.cmbTipoDocumentoCredito.Name = "cmbTipoDocumentoCredito";
-            this.cmbTipoDocumentoCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbTipoDocumentoCredito.Size = new System.Drawing.Size(135, 20);
-            this.cmbTipoDocumentoCredito.TabIndex = 1;
-            // 
-            // labelControl18
-            // 
-            this.labelControl18.Location = new System.Drawing.Point(16, 33);
-            this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(81, 13);
-            this.labelControl18.TabIndex = 0;
-            this.labelControl18.Text = "Tipo Documento:";
             // 
             // txtConceptoCredito
             // 
@@ -1086,6 +1047,42 @@
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // slkupClaseCredito
+            // 
+            this.slkupClaseCredito.Location = new System.Drawing.Point(123, 23);
+            this.slkupClaseCredito.MenuManager = this.ribbonControl1;
+            this.slkupClaseCredito.Name = "slkupClaseCredito";
+            this.slkupClaseCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupClaseCredito.Properties.View = this.gridView5;
+            this.slkupClaseCredito.Size = new System.Drawing.Size(135, 20);
+            this.slkupClaseCredito.TabIndex = 4;
+            this.slkupClaseCredito.EditValueChanged += new System.EventHandler(this.slkupClaseCredito_EditValueChanged);
+            // 
+            // gridView5
+            // 
+            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            // 
+            // slkupSubTipoDocumentoCredito
+            // 
+            this.slkupSubTipoDocumentoCredito.Location = new System.Drawing.Point(123, 54);
+            this.slkupSubTipoDocumentoCredito.Name = "slkupSubTipoDocumentoCredito";
+            this.slkupSubTipoDocumentoCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupSubTipoDocumentoCredito.Properties.View = this.gridView6;
+            this.slkupSubTipoDocumentoCredito.Size = new System.Drawing.Size(135, 20);
+            this.slkupSubTipoDocumentoCredito.TabIndex = 4;
+            // 
+            // gridView6
+            // 
+            this.gridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView6.OptionsView.ShowGroupPanel = false;
+            // 
             // frmDocumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1104,16 +1101,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoDebito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoClaseDebito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoDebito.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoDebito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoDebito.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoDebito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMontoDebito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocumentoDebito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSubTipoClaseDebito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSubTipoDocumentoDebito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonedaDebito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoDocumentoDebito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConceptoDebito.Properties)).EndInit();
             this.tabCredito.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
@@ -1131,10 +1129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoCredito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMontoCredito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDocumentoCredito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbClaseCredito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSubTipoDocumentoCredito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbMonedaCredito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbTipoDocumentoCredito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConceptoCredito.Properties)).EndInit();
             this.tabDetalle.ResumeLayout(false);
             this.tabDetalle.PerformLayout();
@@ -1161,6 +1156,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupClaseCredito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoCredito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1201,14 +1200,10 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbSubTipoClaseDebito;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbSubTipoDocumentoDebito;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbTipoDocumentoDebito;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.MemoEdit txtConceptoDebito;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.ComboBoxEdit cmbMonedaDebito;
@@ -1226,15 +1221,11 @@
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbClaseCredito;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.LabelControl labelControl16;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbSubTipoDocumentoCredito;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.ComboBoxEdit cmbMonedaCredito;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbTipoDocumentoCredito;
-        private DevExpress.XtraEditors.LabelControl labelControl18;
         private DevExpress.XtraEditors.MemoEdit txtConceptoCredito;
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.LabelControl labelControl22;
@@ -1261,5 +1252,13 @@
         private DevExpress.XtraGrid.GridControl dtgDetalleEmbarque;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.MemoEdit txtNotas;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupSubTipoDocumentoDebito;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupSubTipoClaseDebito;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupSubTipoDocumentoCredito;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraEditors.SearchLookUpEdit slkupClaseCredito;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
     }
 }

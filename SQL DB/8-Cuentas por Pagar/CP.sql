@@ -3453,3 +3453,42 @@ end
 
 if (@Operacion = 'D')
 	delete dbo.cppCondicionPago where IDCondicionPago=@IDCondicionPago
+	
+	
+go
+
+
+--Documento CP
+
+create  procedure dbo.cppGetDocumentoCP (@IDDocumentoCP as int, @IDProveedor as int, @TipoDocumento nvarchar(1), @IDClase nvarchar(10), @IDSubTipo int, 
+		@Documento nvarchar(20),@FechaInicial datetime, @FechaFinal datetime, @Anulado int, @Asiento nvarchar(20),@Contabilizado int , @IDMoneda int)
+as 
+
+set @FechaInicial = CAST(SUBSTRING(CAST(@FechaInicial AS CHAR),1,11) + ' 00:00:00.000' AS DATETIME)
+set @FechaFinal = CAST(SUBSTRING(CAST(@FechaFinal AS CHAR),1,11) + ' 23:59:59.998' AS DATETIME)
+
+
+select A.IDDocumentoCP,A.IDProveedor , P.Nombre NombreProveedor,A.TipoDocumento,A.IDClase,A.IDSubTipo,A.Documento,A.Fecha,A.Vencimiento,A.Plazo,A.VencimientoVar,
+A.FechaDocVar,A.MontoOriginal,A.FechaUltCredito,A.SaldoActual,A.Cancelado,A.PorcInteres,A.Anulado,A.ConceptoSistema,A.ConceptoUsuario,A.Asiento,A.AsientoReversion,A.RecibimosDe,
+A.Usuario,A.CreateDate,A.TipoCambio,A.Contabilizado,A.IDMoneda,A.Impuesto from dbo.cppDocumentosCP A
+inner join dbo.cppProveedor P on A.IDProveedor=P.IDProveedor
+where (A.IDDocumentoCP = @IDDocumentoCP or @IDDocumentoCP=-1) and (A.IDProveedor=@IDProveedor or @IDProveedor=-1) and (TipoDocumento = @TipoDocumento or @TipoDocumento ='*')
+and (a.IDClase =@IDClase or @IDClase='*') and (a.IDSubTipo =@IDSubTipo or @IDSubTipo=-1) and (a.Documento  like '%' + @Documento + '%' or @Documento='*') and A.Fecha between @FechaInicial and @FechaFinal
+and (a.Anulado = @Anulado or @Anulado=-1) and (A.Asiento like '%' + @Asiento + '%' and @Asiento='*') and (A.Contabilizado = @Contabilizado or @Contabilizado=-1) and (a.IDMoneda=@IDMoneda or @IDMoneda=-1)
+
+
+GO
+
+
+
+create  procedure dbo.cppGetEmptyDocumentoCP 
+as 
+
+select A.IDDocumentoCP,A.IDProveedor , P.Nombre NombreProveedor,A.TipoDocumento,A.IDClase,A.IDSubTipo,A.Documento,A.Fecha,A.Vencimiento,A.Plazo,A.VencimientoVar,
+A.FechaDocVar,A.MontoOriginal,A.FechaUltCredito,A.SaldoActual,A.Cancelado,A.PorcInteres,A.Anulado,A.ConceptoSistema,A.ConceptoUsuario,A.Asiento,A.AsientoReversion,A.RecibimosDe,
+A.Usuario,A.CreateDate,A.TipoCambio,A.Contabilizado,A.IDMoneda,A.Impuesto from dbo.cppDocumentosCP A
+inner join dbo.cppProveedor P on A.IDProveedor=P.IDProveedor
+where 1=2
+
+GO
+
