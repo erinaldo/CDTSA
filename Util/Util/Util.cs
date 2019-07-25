@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 
 namespace Util
 {
+
     public static class Util
     {
         //constantes

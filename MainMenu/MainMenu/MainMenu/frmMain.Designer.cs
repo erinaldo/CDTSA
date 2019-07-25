@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.lblUsuario = new DevExpress.XtraBars.BarStaticItem();
@@ -37,13 +38,13 @@
             this.ribbonHelp = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection();
-            this.navbarImageCollection = new DevExpress.Utils.ImageCollection();
+            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
+            this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
             this.navBarControl = new DevExpress.XtraNavBar.NavBarControl();
-            this.navGroupCompras = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.treelstCompras = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.navGroupCuentasxPagar = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.treelstCuentasPorPagar = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn6 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.NavBarGroupControlContainer1 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.treeListInventario = new DevExpress.XtraTreeList.TreeList();
             this.TreeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -56,24 +57,24 @@
             this.navBarGroupControlContainer4 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
             this.treeListControlBancario = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.navBarGroupControlContainer5 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
+            this.treelstCompras = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.navGroupInventario = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupFacturación = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupTeleVenta = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupControlBancario = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navGroupCuentasxPagar = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupCuentasXCobrar = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navGroupCompras = new DevExpress.XtraNavBar.NavBarGroup();
             this.navGroupAdministracion = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroupControlContainer6 = new DevExpress.XtraNavBar.NavBarGroupControlContainer();
-            this.treelstCuentasPorPagar = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn6 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl)).BeginInit();
             this.navBarControl.SuspendLayout();
-            this.navBarGroupControlContainer5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treelstCompras)).BeginInit();
+            this.navBarGroupControlContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treelstCuentasPorPagar)).BeginInit();
             this.NavBarGroupControlContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListInventario)).BeginInit();
             this.NavBarGroupControlContainer2.SuspendLayout();
@@ -82,8 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeListAdministracion)).BeginInit();
             this.navBarGroupControlContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListControlBancario)).BeginInit();
-            this.navBarGroupControlContainer6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treelstCuentasPorPagar)).BeginInit();
+            this.navBarGroupControlContainer5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treelstCompras)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -228,58 +229,59 @@
             this.navBarControl.Text = "navBarControl1";
             this.navBarControl.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             // 
-            // navGroupCompras
+            // navGroupCuentasxPagar
             // 
-            this.navGroupCompras.Caption = "Compras";
-            this.navGroupCompras.ControlContainer = this.navBarGroupControlContainer5;
-            this.navGroupCompras.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
-            this.navGroupCompras.GroupClientHeight = 260;
-            this.navGroupCompras.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navGroupCompras.LargeImageIndex = 7;
-            this.navGroupCompras.Name = "navGroupCompras";
-            this.navGroupCompras.SmallImageIndex = 7;
+            this.navGroupCuentasxPagar.Caption = "Cuentas por Pagar";
+            this.navGroupCuentasxPagar.ControlContainer = this.navBarGroupControlContainer6;
+            this.navGroupCuentasxPagar.Expanded = true;
+            this.navGroupCuentasxPagar.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
+            this.navGroupCuentasxPagar.GroupClientHeight = 214;
+            this.navGroupCuentasxPagar.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navGroupCuentasxPagar.LargeImageIndex = 5;
+            this.navGroupCuentasxPagar.Name = "navGroupCuentasxPagar";
+            this.navGroupCuentasxPagar.SmallImageIndex = 5;
             // 
-            // navBarGroupControlContainer5
+            // navBarGroupControlContainer6
             // 
-            this.navBarGroupControlContainer5.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer5.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer5.Controls.Add(this.treelstCompras);
-            this.navBarGroupControlContainer5.Name = "navBarGroupControlContainer5";
-            this.navBarGroupControlContainer5.Size = new System.Drawing.Size(198, 260);
-            this.navBarGroupControlContainer5.TabIndex = 4;
+            this.navBarGroupControlContainer6.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer6.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer6.Controls.Add(this.treelstCuentasPorPagar);
+            this.navBarGroupControlContainer6.Name = "navBarGroupControlContainer6";
+            this.navBarGroupControlContainer6.Size = new System.Drawing.Size(198, 214);
+            this.navBarGroupControlContainer6.TabIndex = 5;
             // 
-            // treelstCompras
+            // treelstCuentasPorPagar
             // 
-            this.treelstCompras.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn5});
-            this.treelstCompras.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treelstCompras.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treelstCompras.Location = new System.Drawing.Point(0, 0);
-            this.treelstCompras.Name = "treelstCompras";
-            this.treelstCompras.OptionsBehavior.Editable = false;
-            this.treelstCompras.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.False;
-            this.treelstCompras.OptionsLayout.AddNewColumns = false;
-            this.treelstCompras.OptionsView.ShowColumns = false;
-            this.treelstCompras.OptionsView.ShowFilterPanelMode = DevExpress.XtraTreeList.ShowFilterPanelMode.Never;
-            this.treelstCompras.OptionsView.ShowHorzLines = false;
-            this.treelstCompras.OptionsView.ShowIndentAsRowStyle = true;
-            this.treelstCompras.OptionsView.ShowIndicator = false;
-            this.treelstCompras.OptionsView.ShowVertLines = false;
-            this.treelstCompras.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.Default;
-            this.treelstCompras.Size = new System.Drawing.Size(198, 260);
-            this.treelstCompras.StateImageList = this.navbarImageCollection;
-            this.treelstCompras.TabIndex = 2;
-            this.treelstCompras.DoubleClick += new System.EventHandler(this.treelstCompras_DoubleClick);
+            this.treelstCuentasPorPagar.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn6});
+            this.treelstCuentasPorPagar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treelstCuentasPorPagar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treelstCuentasPorPagar.Location = new System.Drawing.Point(0, 0);
+            this.treelstCuentasPorPagar.Name = "treelstCuentasPorPagar";
+            this.treelstCuentasPorPagar.OptionsBehavior.Editable = false;
+            this.treelstCuentasPorPagar.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.False;
+            this.treelstCuentasPorPagar.OptionsLayout.AddNewColumns = false;
+            this.treelstCuentasPorPagar.OptionsView.ShowColumns = false;
+            this.treelstCuentasPorPagar.OptionsView.ShowFilterPanelMode = DevExpress.XtraTreeList.ShowFilterPanelMode.Never;
+            this.treelstCuentasPorPagar.OptionsView.ShowHorzLines = false;
+            this.treelstCuentasPorPagar.OptionsView.ShowIndentAsRowStyle = true;
+            this.treelstCuentasPorPagar.OptionsView.ShowIndicator = false;
+            this.treelstCuentasPorPagar.OptionsView.ShowVertLines = false;
+            this.treelstCuentasPorPagar.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.Default;
+            this.treelstCuentasPorPagar.Size = new System.Drawing.Size(198, 214);
+            this.treelstCuentasPorPagar.StateImageList = this.navbarImageCollection;
+            this.treelstCuentasPorPagar.TabIndex = 3;
+            this.treelstCuentasPorPagar.DoubleClick += new System.EventHandler(this.treelstCuentasPorPagar_DoubleClick);
             // 
-            // treeListColumn5
+            // treeListColumn6
             // 
-            this.treeListColumn5.Caption = "TreeListColumn2";
-            this.treeListColumn5.FieldName = "TreeListColumn2";
-            this.treeListColumn5.MinWidth = 87;
-            this.treeListColumn5.Name = "treeListColumn5";
-            this.treeListColumn5.Visible = true;
-            this.treeListColumn5.VisibleIndex = 0;
-            this.treeListColumn5.Width = 87;
+            this.treeListColumn6.Caption = "TreeListColumn2";
+            this.treeListColumn6.FieldName = "TreeListColumn2";
+            this.treeListColumn6.MinWidth = 87;
+            this.treeListColumn6.Name = "treeListColumn6";
+            this.treeListColumn6.Visible = true;
+            this.treeListColumn6.VisibleIndex = 0;
+            this.treeListColumn6.Width = 87;
             // 
             // NavBarGroupControlContainer1
             // 
@@ -441,6 +443,48 @@
             this.treeListColumn4.VisibleIndex = 0;
             this.treeListColumn4.Width = 87;
             // 
+            // navBarGroupControlContainer5
+            // 
+            this.navBarGroupControlContainer5.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.navBarGroupControlContainer5.Appearance.Options.UseBackColor = true;
+            this.navBarGroupControlContainer5.Controls.Add(this.treelstCompras);
+            this.navBarGroupControlContainer5.Name = "navBarGroupControlContainer5";
+            this.navBarGroupControlContainer5.Size = new System.Drawing.Size(198, 260);
+            this.navBarGroupControlContainer5.TabIndex = 4;
+            // 
+            // treelstCompras
+            // 
+            this.treelstCompras.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn5});
+            this.treelstCompras.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treelstCompras.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treelstCompras.Location = new System.Drawing.Point(0, 0);
+            this.treelstCompras.Name = "treelstCompras";
+            this.treelstCompras.OptionsBehavior.Editable = false;
+            this.treelstCompras.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.False;
+            this.treelstCompras.OptionsLayout.AddNewColumns = false;
+            this.treelstCompras.OptionsView.ShowColumns = false;
+            this.treelstCompras.OptionsView.ShowFilterPanelMode = DevExpress.XtraTreeList.ShowFilterPanelMode.Never;
+            this.treelstCompras.OptionsView.ShowHorzLines = false;
+            this.treelstCompras.OptionsView.ShowIndentAsRowStyle = true;
+            this.treelstCompras.OptionsView.ShowIndicator = false;
+            this.treelstCompras.OptionsView.ShowVertLines = false;
+            this.treelstCompras.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.Default;
+            this.treelstCompras.Size = new System.Drawing.Size(198, 260);
+            this.treelstCompras.StateImageList = this.navbarImageCollection;
+            this.treelstCompras.TabIndex = 2;
+            this.treelstCompras.DoubleClick += new System.EventHandler(this.treelstCompras_DoubleClick);
+            // 
+            // treeListColumn5
+            // 
+            this.treeListColumn5.Caption = "TreeListColumn2";
+            this.treeListColumn5.FieldName = "TreeListColumn2";
+            this.treeListColumn5.MinWidth = 87;
+            this.treeListColumn5.Name = "treeListColumn5";
+            this.treeListColumn5.Visible = true;
+            this.treeListColumn5.VisibleIndex = 0;
+            this.treeListColumn5.Width = 87;
+            // 
             // navGroupInventario
             // 
             this.navGroupInventario.Caption = "Inventario";
@@ -491,19 +535,6 @@
             this.navGroupControlBancario.Name = "navGroupControlBancario";
             this.navGroupControlBancario.SmallImageIndex = 4;
             // 
-            // navGroupCuentasxPagar
-            // 
-            this.navGroupCuentasxPagar.Caption = "Cuentas por Pagar";
-            this.navGroupCuentasxPagar.ControlContainer = this.navBarGroupControlContainer6;
-            this.navGroupCuentasxPagar.Expanded = true;
-            this.navGroupCuentasxPagar.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
-            this.navGroupCuentasxPagar.GroupClientHeight = 214;
-            this.navGroupCuentasxPagar.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
-            this.navGroupCuentasxPagar.LargeImageIndex = 5;
-            this.navGroupCuentasxPagar.Name = "navGroupCuentasxPagar";
-            this.navGroupCuentasxPagar.SmallImageIndex = 5;
-            this.navGroupCuentasxPagar.Visible = false;
-            // 
             // navGroupCuentasXCobrar
             // 
             this.navGroupCuentasXCobrar.Caption = "Cuentas por Cobrar";
@@ -512,6 +543,17 @@
             this.navGroupCuentasXCobrar.Name = "navGroupCuentasXCobrar";
             this.navGroupCuentasXCobrar.SmallImageIndex = 6;
             this.navGroupCuentasXCobrar.Visible = false;
+            // 
+            // navGroupCompras
+            // 
+            this.navGroupCompras.Caption = "Compras";
+            this.navGroupCompras.ControlContainer = this.navBarGroupControlContainer5;
+            this.navGroupCompras.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
+            this.navGroupCompras.GroupClientHeight = 260;
+            this.navGroupCompras.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            this.navGroupCompras.LargeImageIndex = 7;
+            this.navGroupCompras.Name = "navGroupCompras";
+            this.navGroupCompras.SmallImageIndex = 7;
             // 
             // navGroupAdministracion
             // 
@@ -523,48 +565,6 @@
             this.navGroupAdministracion.LargeImageIndex = 8;
             this.navGroupAdministracion.Name = "navGroupAdministracion";
             this.navGroupAdministracion.SmallImageIndex = 8;
-            // 
-            // navBarGroupControlContainer6
-            // 
-            this.navBarGroupControlContainer6.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.navBarGroupControlContainer6.Appearance.Options.UseBackColor = true;
-            this.navBarGroupControlContainer6.Controls.Add(this.treelstCuentasPorPagar);
-            this.navBarGroupControlContainer6.Name = "navBarGroupControlContainer6";
-            this.navBarGroupControlContainer6.Size = new System.Drawing.Size(198, 214);
-            this.navBarGroupControlContainer6.TabIndex = 5;
-            // 
-            // treelstCuentasPorPagar
-            // 
-            this.treelstCuentasPorPagar.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn6});
-            this.treelstCuentasPorPagar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treelstCuentasPorPagar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treelstCuentasPorPagar.Location = new System.Drawing.Point(0, 0);
-            this.treelstCuentasPorPagar.Name = "treelstCuentasPorPagar";
-            this.treelstCuentasPorPagar.OptionsBehavior.Editable = false;
-            this.treelstCuentasPorPagar.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.False;
-            this.treelstCuentasPorPagar.OptionsLayout.AddNewColumns = false;
-            this.treelstCuentasPorPagar.OptionsView.ShowColumns = false;
-            this.treelstCuentasPorPagar.OptionsView.ShowFilterPanelMode = DevExpress.XtraTreeList.ShowFilterPanelMode.Never;
-            this.treelstCuentasPorPagar.OptionsView.ShowHorzLines = false;
-            this.treelstCuentasPorPagar.OptionsView.ShowIndentAsRowStyle = true;
-            this.treelstCuentasPorPagar.OptionsView.ShowIndicator = false;
-            this.treelstCuentasPorPagar.OptionsView.ShowVertLines = false;
-            this.treelstCuentasPorPagar.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.Default;
-            this.treelstCuentasPorPagar.Size = new System.Drawing.Size(198, 214);
-            this.treelstCuentasPorPagar.StateImageList = this.navbarImageCollection;
-            this.treelstCuentasPorPagar.TabIndex = 3;
-            this.treelstCuentasPorPagar.DoubleClick += new System.EventHandler(this.treelstCuentasPorPagar_DoubleClick);
-            // 
-            // treeListColumn6
-            // 
-            this.treeListColumn6.Caption = "TreeListColumn2";
-            this.treeListColumn6.FieldName = "TreeListColumn2";
-            this.treeListColumn6.MinWidth = 87;
-            this.treeListColumn6.Name = "treeListColumn6";
-            this.treeListColumn6.Visible = true;
-            this.treeListColumn6.VisibleIndex = 0;
-            this.treeListColumn6.Width = 87;
             // 
             // frmMain
             // 
@@ -594,8 +594,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl)).EndInit();
             this.navBarControl.ResumeLayout(false);
-            this.navBarGroupControlContainer5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treelstCompras)).EndInit();
+            this.navBarGroupControlContainer6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treelstCuentasPorPagar)).EndInit();
             this.NavBarGroupControlContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListInventario)).EndInit();
             this.NavBarGroupControlContainer2.ResumeLayout(false);
@@ -604,8 +604,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeListAdministracion)).EndInit();
             this.navBarGroupControlContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListControlBancario)).EndInit();
-            this.navBarGroupControlContainer6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treelstCuentasPorPagar)).EndInit();
+            this.navBarGroupControlContainer5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treelstCompras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

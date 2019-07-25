@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumento));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation4 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
@@ -68,6 +68,10 @@
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.slkupSubTipoDocumentoCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.slkupClaseCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.dtpFechaVencimientoCredito = new DevExpress.XtraEditors.DateEdit();
             this.dtpFechaDocumentoCredito = new DevExpress.XtraEditors.DateEdit();
             this.txtMontoCredito = new DevExpress.XtraEditors.TextEdit();
@@ -120,10 +124,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.slkupClaseCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.slkupSubTipoDocumentoCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -151,6 +151,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoCredito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupClaseCredito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoCredito.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoCredito.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoCredito.Properties.CalendarTimeProperties)).BeginInit();
@@ -183,10 +187,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupClaseCredito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoCredito.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -252,18 +252,18 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation3.Group = null;
-            reduceOperation3.ItemLinkIndex = 0;
-            reduceOperation3.ItemLinksCount = 0;
-            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            reduceOperation4.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation4.Group = null;
-            reduceOperation4.ItemLinkIndex = 0;
-            reduceOperation4.ItemLinksCount = 0;
-            reduceOperation4.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation4);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation1.Group = null;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation2.Group = null;
+            reduceOperation2.ItemLinkIndex = 0;
+            reduceOperation2.ItemLinksCount = 0;
+            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -366,6 +366,7 @@
             this.slkupSubTipoClaseDebito.Properties.View = this.gridView3;
             this.slkupSubTipoClaseDebito.Size = new System.Drawing.Size(135, 20);
             this.slkupSubTipoClaseDebito.TabIndex = 4;
+            this.slkupSubTipoClaseDebito.EditValueChanged += new System.EventHandler(this.slkupSubTipoClaseDebito_EditValueChanged);
             // 
             // gridView3
             // 
@@ -574,6 +575,42 @@
             this.groupControl2.Size = new System.Drawing.Size(745, 249);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Datos Generales";
+            // 
+            // slkupSubTipoDocumentoCredito
+            // 
+            this.slkupSubTipoDocumentoCredito.Location = new System.Drawing.Point(123, 54);
+            this.slkupSubTipoDocumentoCredito.Name = "slkupSubTipoDocumentoCredito";
+            this.slkupSubTipoDocumentoCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupSubTipoDocumentoCredito.Properties.View = this.gridView6;
+            this.slkupSubTipoDocumentoCredito.Size = new System.Drawing.Size(135, 20);
+            this.slkupSubTipoDocumentoCredito.TabIndex = 4;
+            // 
+            // gridView6
+            // 
+            this.gridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView6.OptionsView.ShowGroupPanel = false;
+            // 
+            // slkupClaseCredito
+            // 
+            this.slkupClaseCredito.Location = new System.Drawing.Point(123, 23);
+            this.slkupClaseCredito.MenuManager = this.ribbonControl1;
+            this.slkupClaseCredito.Name = "slkupClaseCredito";
+            this.slkupClaseCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.slkupClaseCredito.Properties.View = this.gridView5;
+            this.slkupClaseCredito.Size = new System.Drawing.Size(135, 20);
+            this.slkupClaseCredito.TabIndex = 4;
+            this.slkupClaseCredito.EditValueChanged += new System.EventHandler(this.slkupClaseCredito_EditValueChanged);
+            // 
+            // gridView5
+            // 
+            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
             // 
             // dtpFechaVencimientoCredito
             // 
@@ -1047,42 +1084,6 @@
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // slkupClaseCredito
-            // 
-            this.slkupClaseCredito.Location = new System.Drawing.Point(123, 23);
-            this.slkupClaseCredito.MenuManager = this.ribbonControl1;
-            this.slkupClaseCredito.Name = "slkupClaseCredito";
-            this.slkupClaseCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupClaseCredito.Properties.View = this.gridView5;
-            this.slkupClaseCredito.Size = new System.Drawing.Size(135, 20);
-            this.slkupClaseCredito.TabIndex = 4;
-            this.slkupClaseCredito.EditValueChanged += new System.EventHandler(this.slkupClaseCredito_EditValueChanged);
-            // 
-            // gridView5
-            // 
-            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView5.OptionsView.ShowGroupPanel = false;
-            // 
-            // slkupSubTipoDocumentoCredito
-            // 
-            this.slkupSubTipoDocumentoCredito.Location = new System.Drawing.Point(123, 54);
-            this.slkupSubTipoDocumentoCredito.Name = "slkupSubTipoDocumentoCredito";
-            this.slkupSubTipoDocumentoCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupSubTipoDocumentoCredito.Properties.View = this.gridView6;
-            this.slkupSubTipoDocumentoCredito.Size = new System.Drawing.Size(135, 20);
-            this.slkupSubTipoDocumentoCredito.TabIndex = 4;
-            // 
-            // gridView6
-            // 
-            this.gridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView6.Name = "gridView6";
-            this.gridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView6.OptionsView.ShowGroupPanel = false;
-            // 
             // frmDocumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1123,6 +1124,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoCredito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slkupClaseCredito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoCredito.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaVencimientoCredito.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaDocumentoCredito.Properties.CalendarTimeProperties)).EndInit();
@@ -1156,10 +1161,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupClaseCredito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupSubTipoDocumentoCredito.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

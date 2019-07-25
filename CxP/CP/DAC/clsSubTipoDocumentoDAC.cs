@@ -11,12 +11,12 @@ namespace CP.DAC
 {
     public static class clsSubTipoDocumentoDAC
     {
-        public static DataSet Get(String TipoDocumento, String IDClase, String Descr)
+        public static DataSet Get(int IDSubTipo, String TipoDocumento, String IDClase, String Descr)
         {
             String strSQL = "dbo.cppGetSubTipoDocumento";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
-            oCmd.Parameters.Add(new SqlParameter("@IDSubTipo", TipoDocumento));
+            oCmd.Parameters.Add(new SqlParameter("@IDSubTipo", IDSubTipo));
             oCmd.Parameters.Add(new SqlParameter("@TipoDocumento", TipoDocumento));
             oCmd.Parameters.Add(new SqlParameter("@IDClase", IDClase));
             oCmd.Parameters.Add(new SqlParameter("@Descr", Descr));

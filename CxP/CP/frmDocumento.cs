@@ -144,11 +144,24 @@ namespace CP
             if (this.slkupClaseCredito.EditValue != null)
             {
 
-                //_dtClaseDocumentoCredito = clsClaseDocumentoDAC.Get("C", "*", "*").Tables[0];
+                _dtSubTipoDocumentoCredito = clsSubTipoDocumentoDAC.Get(-1,"C",this.slkupClaseCredito.EditValue.ToString(), "*").Tables[0];
 
                 ////_dtCentrosConstante = _dtCentros.Clone();
-                //Util.Util.ConfigLookupEdit(this.slkupSubTipoClaseDebito, _dtClaseDocumentoDebito, "Descr", "IDClase", 300, 300);
-                //Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipoClaseDebito, "[{'ColumnCaption':'IDClase','ColumnField':'IDClase','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+                Util.Util.ConfigLookupEdit(this.slkupSubTipoDocumentoCredito, _dtSubTipoDocumentoCredito, "Descr", "IDSubTipo", 300, 300);
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipoDocumentoCredito, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
+            }
+        }
+
+        private void slkupSubTipoClaseDebito_EditValueChanged(object sender, EventArgs e)
+        {
+            if (this.slkupSubTipoClaseDebito.EditValue != null)
+            {
+
+                _dtSubTipoDocumentoDebito = clsSubTipoDocumentoDAC.Get(-1,"D", this.slkupSubTipoClaseDebito.EditValue.ToString(), "*").Tables[0];
+
+                ////_dtCentrosConstante = _dtCentros.Clone();
+                Util.Util.ConfigLookupEdit(this.slkupSubTipoDocumentoDebito, _dtSubTipoDocumentoDebito, "Descr", "IDSubTipo", 300, 300);
+                Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipoDocumentoDebito, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
             }
         }
 
