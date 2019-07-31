@@ -143,7 +143,8 @@ namespace CP
         {
             if (this.slkupClaseCredito.EditValue != null)
             {
-
+                
+                ((Control)this.tabDebito).Enabled = false;
                 _dtSubTipoDocumentoCredito = clsSubTipoDocumentoDAC.Get(-1,"C",this.slkupClaseCredito.EditValue.ToString(), "*").Tables[0];
 
                 ////_dtCentrosConstante = _dtCentros.Clone();
@@ -156,7 +157,8 @@ namespace CP
         {
             if (this.slkupSubTipoClaseDebito.EditValue != null)
             {
-
+                ((Control)this.tabCredito).Enabled = false;
+                
                 _dtSubTipoDocumentoDebito = clsSubTipoDocumentoDAC.Get(-1,"D", this.slkupSubTipoClaseDebito.EditValue.ToString(), "*").Tables[0];
 
                 ////_dtCentrosConstante = _dtCentros.Clone();
@@ -164,6 +166,23 @@ namespace CP
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipoDocumentoDebito, "[{'ColumnCaption':'IDSubTipo','ColumnField':'IDSubTipo','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
             }
         }
+
+        private void frmDocumento_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMonto_TextChanged(object sender, EventArgs e)
+        {
+            this.txtSubTotal.Text = this.txtMontoDebito.Text.ToString();
+        }
+
+        private void txtIVA_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
 
     }
 }

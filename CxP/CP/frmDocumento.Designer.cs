@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumento));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation5 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation6 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
@@ -40,7 +40,7 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabOpcion = new System.Windows.Forms.TabControl();
             this.tabDebito = new System.Windows.Forms.TabPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.slkupSubTipoDocumentoDebito = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -127,7 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabOpcion.SuspendLayout();
             this.tabDebito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -252,18 +252,18 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation1.Group = null;
-            reduceOperation1.ItemLinkIndex = 0;
-            reduceOperation1.ItemLinksCount = 0;
-            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.Group = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation5.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation5.Group = null;
+            reduceOperation5.ItemLinkIndex = 0;
+            reduceOperation5.ItemLinksCount = 0;
+            reduceOperation5.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            reduceOperation6.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation6.Group = null;
+            reduceOperation6.ItemLinkIndex = 0;
+            reduceOperation6.ItemLinksCount = 0;
+            reduceOperation6.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation5);
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation6);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -277,7 +277,7 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.tabControl1);
+            this.layoutControl1.Controls.Add(this.tabOpcion);
             this.layoutControl1.Controls.Add(this.txtSaldo);
             this.layoutControl1.Controls.Add(this.txtDescrProveedor);
             this.layoutControl1.Controls.Add(this.txtIdProveedor);
@@ -290,19 +290,19 @@
             this.layoutControl1.TabIndex = 2;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // tabControl1
+            // tabOpcion
             // 
-            this.tabControl1.Controls.Add(this.tabDebito);
-            this.tabControl1.Controls.Add(this.tabCredito);
-            this.tabControl1.Controls.Add(this.tabDetalle);
-            this.tabControl1.Controls.Add(this.tabRetenciones);
-            this.tabControl1.Controls.Add(this.tabEmbarque);
-            this.tabControl1.Controls.Add(this.tabNotas);
-            this.tabControl1.Location = new System.Drawing.Point(12, 56);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(790, 422);
-            this.tabControl1.TabIndex = 7;
+            this.tabOpcion.Controls.Add(this.tabDebito);
+            this.tabOpcion.Controls.Add(this.tabCredito);
+            this.tabOpcion.Controls.Add(this.tabDetalle);
+            this.tabOpcion.Controls.Add(this.tabRetenciones);
+            this.tabOpcion.Controls.Add(this.tabEmbarque);
+            this.tabOpcion.Controls.Add(this.tabNotas);
+            this.tabOpcion.Location = new System.Drawing.Point(12, 56);
+            this.tabOpcion.Name = "tabOpcion";
+            this.tabOpcion.SelectedIndex = 0;
+            this.tabOpcion.Size = new System.Drawing.Size(790, 422);
+            this.tabOpcion.TabIndex = 7;
             // 
             // tabDebito
             // 
@@ -406,6 +406,7 @@
             this.txtMontoDebito.Name = "txtMontoDebito";
             this.txtMontoDebito.Size = new System.Drawing.Size(135, 20);
             this.txtMontoDebito.TabIndex = 2;
+            this.txtMontoDebito.TextChanged += new System.EventHandler(this.txtMonto_TextChanged);
             // 
             // txtDocumentoDebito
             // 
@@ -643,6 +644,7 @@
             this.txtMontoCredito.Name = "txtMontoCredito";
             this.txtMontoCredito.Size = new System.Drawing.Size(135, 20);
             this.txtMontoCredito.TabIndex = 2;
+            this.txtMontoCredito.TextChanged += new System.EventHandler(this.txtMonto_TextChanged);
             // 
             // txtDocumentoCredito
             // 
@@ -836,6 +838,7 @@
             this.txtIVA.Name = "txtIVA";
             this.txtIVA.Size = new System.Drawing.Size(131, 20);
             this.txtIVA.TabIndex = 0;
+            this.txtIVA.TextChanged += new System.EventHandler(this.txtIVA_TextChanged);
             // 
             // txtSubTotal
             // 
@@ -1066,7 +1069,7 @@
             // 
             // layoutControlItem4
             // 
-            this.layoutControlItem4.Control = this.tabControl1;
+            this.layoutControlItem4.Control = this.tabOpcion;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 44);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(794, 426);
@@ -1094,10 +1097,11 @@
             this.Name = "frmDocumento";
             this.Ribbon = this.ribbonControl1;
             this.Text = "frmDocumento";
+            this.Load += new System.EventHandler(this.frmDocumento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tabOpcion.ResumeLayout(false);
             this.tabDebito.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -1177,7 +1181,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabOpcion;
         private System.Windows.Forms.TabPage tabDebito;
         private System.Windows.Forms.TabPage tabCredito;
         private System.Windows.Forms.TabPage tabDetalle;

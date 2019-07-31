@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumentoInv));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.hlblAsiento = new DevExpress.XtraEditors.HyperlinkLabelControl();
@@ -110,7 +109,7 @@
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnAddDoc = new DevExpress.XtraBars.BarButtonItem();
             this.btnSaveDoc = new DevExpress.XtraBars.BarButtonItem();
@@ -321,6 +320,7 @@
             this.txtReferencia.Size = new System.Drawing.Size(625, 103);
             this.txtReferencia.StyleController = this.layoutControl2;
             this.txtReferencia.TabIndex = 0;
+            this.txtReferencia.EditValueChanged += new System.EventHandler(this.txtReferencia_EditValueChanged);
             this.txtReferencia.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtReferencia_KeyUp);
             this.txtReferencia.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtReferencia_PreviewKeyDown);
             // 
@@ -813,7 +813,6 @@
             this.slkupBodegaDestino.StyleController = this.layoutControl3;
             this.slkupBodegaDestino.TabIndex = 5;
             this.slkupBodegaDestino.EditValueChanged += new System.EventHandler(this.slkupBodegaDestino_EditValueChanged);
-
             this.slkupBodegaDestino.KeyDown += new System.Windows.Forms.KeyEventHandler(this.slkupcontrol_KeyDown);
             // 
             // gridView3

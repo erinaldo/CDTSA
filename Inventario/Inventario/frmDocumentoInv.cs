@@ -1187,6 +1187,11 @@ namespace CI
                 }
             }
         }
+
+        private void txtReferencia_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     
 
     
