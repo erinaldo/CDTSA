@@ -174,12 +174,38 @@ namespace CP
 
         private void txtMonto_TextChanged(object sender, EventArgs e)
         {
-            this.txtSubTotal.Text = this.txtMontoDebito.Text.ToString();
+            decimal SubTotal = Convert.ToDecimal( this.txtMontoDebito.Text.ToString());
+            this.txtSubTotal.Text = SubTotal.ToString("N2") ;
         }
 
         private void txtIVA_TextChanged(object sender, EventArgs e)
         {
+            ActualizarMontos();
+        }
 
+        private void ActualizarMontos() {
+            decimal SubTotal = (this.txtSubTotal.Text.Trim() == "") ? 0m : Convert.ToDecimal(this.txtSubTotal.Text.Trim());
+            decimal IVA = (this.txtIVA.Text.Trim() == "") ? 0m : Convert.ToDecimal(this.txtIVA.Text.Trim());
+            decimal Retenciones = (this.txtRetencionesAplicadas.Text.Trim() == "") ? 0m : Convert.ToDecimal(this.txtRetencionesAplicadas.Text);
+
+            this.txtMontoTotal.Text = (SubTotal + IVA).ToString("N2");
+            decimal MontoTotal = (this.txtMontoTotal.Text.ToString() == "") ? 0m : Convert.ToDecimal(this.txtMontoTotal.Text);
+            this.txtMontoTotalSup.Text = MontoTotal.ToString("N2");
+            this.txtMontoTotalaPagar.Text = (Convert.ToDecimal(this.txtMontoTotalSup.Text) - Retenciones).ToString("N2");
+        }
+        private void txtSubTotal_EditValueChanged(object sender, EventArgs e)
+        {
+            ActualizarMontos();
+        }
+
+        private void txtIVA_EditValueChanged(object sender, EventArgs e)
+        {
+            ActualizarMontos();
+        }
+
+        private void txtRetencionesAplicadas_EditValueChanged(object sender, EventArgs e)
+        {
+            ActualizarMontos();
         }
 
       
