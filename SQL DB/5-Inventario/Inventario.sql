@@ -1040,7 +1040,7 @@ GO
 
 /* INSERT DE TIPO TRANSACIONES */
 INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
-VALUES ('FI','Inventario Físico')
+VALUES ('FI','Inventario FÃ­sico')
 
 go
 
@@ -1071,7 +1071,7 @@ VALUES ('VT','Ventas')
 GO
 
 INSERT INTO dbo.globalClaseTipoTran(Transaccion,Descr)
-VALUES ('DV','Devolución sobre Ventas')
+VALUES ('DV','DevoluciÃ³n sobre Ventas')
 
 GO
 
@@ -1161,13 +1161,13 @@ begin
 	
 	if Exists ( SELECT IDProducto  from  dbo.invExistenciaBodega    Where IDProducto  = @IDProducto AND Existencia>0 )	
 	begin 
-		RAISERROR ( 'El artículo tiene existencia en Bodega, no se puede eliminar', 16, 1) ;
+		RAISERROR ( 'El artÃ­culo tiene existencia en Bodega, no se puede eliminar', 16, 1) ;
 		return				
 	END
 
 	if Exists ( Select IDLote  from  dbo.invLote    Where IDProducto  = @IDProducto AND IDLote<>0)	
 	begin 
-		RAISERROR ( 'El artículo tiene asociado lotes, por favor elimine los lotes antes de eliminar el producto', 16, 1) ;
+		RAISERROR ( 'El artÃ­culo tiene asociado lotes, por favor elimine los lotes antes de eliminar el producto', 16, 1) ;
 		return				
 	end
 	
@@ -2336,7 +2336,7 @@ WHERE ISNULL(B.Cantidad,0)<> ISNULL(C.Cantidad,0)
 GO
 
 
---//Generación de Paquetes
+--//GeneraciÃ³n de Paquetes
 
 CREATE PROCEDURE dbo.invCreaPaqueteInvFisico(@IDBodega AS INT,@IDPaquete AS NVARCHAR(20),@IDTransaccion AS INT OUTPUT,@Fecha AS DATE,@ProductoNoInvSetCero AS BIT,@Usuario AS NVARCHAR(50))
 AS 
@@ -2479,12 +2479,12 @@ DECLARE @Naturaleza AS NVARCHAR(1)
 
 IF (@Modulo = 'FAC')
 BEGIN
-	--//Leer parametros de configuración
+	--//Leer parametros de configuraciÃ³n
 	SELECT TOP	1 @IDPaquete = IDPaquete, @TipoCambioCont= TipoCambioCont  FROM dbo.fafParametros
 	
 	IF (@IDPaquete IS NULL)
 	BEGIN
-		RAISERROR ( 'GENERACIÓN DEL DOCUMENTO: Revise los parametros de Factura, si el paquete de inventario se encuentra establecido', 16, 1) ;
+		RAISERROR ( 'GENERACIÃ“N DEL DOCUMENTO: Revise los parametros de Factura, si el paquete de inventario se encuentra establecido', 16, 1) ;
 		return		
 	END
 	
@@ -2621,7 +2621,7 @@ SELECT  @IDEjercicio =IDEjercicio ,
 
 IF (@Cerrado =1 OR @Activo=0) 
 BEGIN
-	RAISERROR ( 'GENERACIÓN DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
+	RAISERROR ( 'GENERACIÃ“N DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
 	return		
 END
 
@@ -2695,7 +2695,7 @@ FROM #tmpFactura
 	  FROM #tmpFactura WHERE ID =1
 	  
 /*
-  §•• NOTA••§
+  Â§Â•Â• NOTAÂ•Â•Â§
   Pendiente la contabilizacion de Descuentos y Bonificaciones.
 */
 
@@ -2771,7 +2771,7 @@ SELECT  @IDEjercicio =IDEjercicio ,
 
 IF (@Cerrado =1 OR @Activo=0) 
 BEGIN
-	RAISERROR ( 'GENERACIÓN DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
+	RAISERROR ( 'GENERACIÃ“N DEL ASIENTO CONTABLE: La fecha del documento que desea generar esta fuera del periodo de trabajo', 16, 1) ;
 	return		
 END
 
@@ -3284,7 +3284,7 @@ SET NOCOUNT ON
 
 DECLARE @FechaSaldoAnterior  AS DATETIME
 
---           ||–––––––mov––––––||–––––––––––transacciones––––––––––––||––––mov–––––||
+--           ||Â–Â–Â–Â–Â–Â–Â–movÂ–Â–Â–Â–Â–Â–||Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–transaccionesÂ–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–||Â–Â–Â–Â–movÂ–Â–Â–Â–Â–||
 --	 Perido Ant					FechaInicio														 Mes Ant				FechaCorte
 
 DECLARE @ResultSaldoInicial AS TABLE(IDProducto  BIGINT,IDLote  INT,IDBodega INT,Saldo decimal(28,4))
@@ -3410,7 +3410,7 @@ DECLARE @ResultSaldoInicial AS TABLE(IDProducto  BIGINT,IDLote  INT,IDBodega INT
 DECLARE @ResultSaldoFinal AS TABLE(IDProducto  BIGINT,IDLote  INT,IDBodega INT,Saldo decimal(28,4))
 
 
---           ||–––––––mov––––––||–––––––––––transacciones––––––––––––||––––mov–––––||
+--           ||Â–Â–Â–Â–Â–Â–Â–movÂ–Â–Â–Â–Â–Â–||Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–transaccionesÂ–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–Â–||Â–Â–Â–Â–movÂ–Â–Â–Â–Â–||
 --	 Perido Ant					FechaInicio														 Mes Ant				FechaCorte
 
 DECLARE @Result AS TABLE(IDProducto  BIGINT,IDLote  INT,IDBodega INT,SaldoInicial  decimal(28,4), Entradas DECIMAL(28,4),Salidas DECIMAL(28,4), SaldoFinal DECIMAL(28,4))
