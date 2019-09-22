@@ -103,14 +103,14 @@ namespace CP
             _dtClaseDocumentoCredito = clsClaseDocumentoDAC.Get("C", "*", "*").Tables[0];
             _dtClaseDocumentoDebito = clsClaseDocumentoDAC.Get("D", "*", "*").Tables[0];
 
-
+                                             
 
 
             //_dtCentrosConstante = _dtCentros.Clone();
             Util.Util.ConfigLookupEdit(this.slkupSubTipoClaseDebito, _dtClaseDocumentoDebito, "Descr", "IDClase", 300, 300);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupSubTipoClaseDebito, "[{'ColumnCaption':'IDClase','ColumnField':'IDClase','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
 
-            Util.Util.ConfigLookupEdit(this.slkupClaseCredito, _dtClaseDocumentoDebito, "Descr", "IDClase", 300, 300);
+            Util.Util.ConfigLookupEdit(this.slkupClaseCredito, _dtClaseDocumentoCredito, "Descr", "IDClase", 300, 300);
             Util.Util.ConfigLookupEditSetViewColumns(this.slkupClaseCredito, "[{'ColumnCaption':'IDClase','ColumnField':'IDClase','width':30},{'ColumnCaption':'Descripción','ColumnField':'Descr','width':70}]");
             
 
@@ -174,8 +174,11 @@ namespace CP
 
         private void txtMonto_TextChanged(object sender, EventArgs e)
         {
-            decimal SubTotal = Convert.ToDecimal( this.txtMontoDebito.Text.ToString());
-            this.txtSubTotal.Text = SubTotal.ToString("N2") ;
+            //if (this.tabOpcion.SelectedTab == 1)
+            //{
+            //    decimal SubTotal = Convert.ToDecimal(this.txtMontoDebito.Text.ToString());
+            //    this.txtSubTotal.Text = SubTotal.ToString("N2");
+            //}
         }
 
         private void txtIVA_TextChanged(object sender, EventArgs e)
@@ -204,6 +207,11 @@ namespace CP
         }
 
         private void txtRetencionesAplicadas_EditValueChanged(object sender, EventArgs e)
+        {
+            ActualizarMontos();
+        }
+
+        private void txtSubTotal_EditValueChanged_1(object sender, EventArgs e)
         {
             ActualizarMontos();
         }

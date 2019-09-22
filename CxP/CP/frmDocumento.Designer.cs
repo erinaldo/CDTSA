@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocumento));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation5 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation6 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation7 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation8 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
             this.btnGuardar = new DevExpress.XtraBars.BarButtonItem();
@@ -252,18 +252,18 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation5.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation5.Group = null;
-            reduceOperation5.ItemLinkIndex = 0;
-            reduceOperation5.ItemLinksCount = 0;
-            reduceOperation5.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            reduceOperation6.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation6.Group = null;
-            reduceOperation6.ItemLinkIndex = 0;
-            reduceOperation6.ItemLinksCount = 0;
-            reduceOperation6.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation5);
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation6);
+            reduceOperation7.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation7.Group = null;
+            reduceOperation7.ItemLinkIndex = 0;
+            reduceOperation7.ItemLinksCount = 0;
+            reduceOperation7.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            reduceOperation8.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation8.Group = null;
+            reduceOperation8.ItemLinkIndex = 0;
+            reduceOperation8.ItemLinksCount = 0;
+            reduceOperation8.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation7);
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation8);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -404,6 +404,8 @@
             // 
             this.txtMontoDebito.Location = new System.Drawing.Point(123, 113);
             this.txtMontoDebito.Name = "txtMontoDebito";
+            this.txtMontoDebito.Properties.Mask.EditMask = "f2";
+            this.txtMontoDebito.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtMontoDebito.Size = new System.Drawing.Size(135, 20);
             this.txtMontoDebito.TabIndex = 2;
             this.txtMontoDebito.TextChanged += new System.EventHandler(this.txtMonto_TextChanged);
@@ -642,6 +644,7 @@
             // 
             this.txtMontoCredito.Location = new System.Drawing.Point(123, 110);
             this.txtMontoCredito.Name = "txtMontoCredito";
+            this.txtMontoCredito.Properties.Mask.EditMask = "f2";
             this.txtMontoCredito.Size = new System.Drawing.Size(135, 20);
             this.txtMontoCredito.TabIndex = 2;
             this.txtMontoCredito.TextChanged += new System.EventHandler(this.txtMonto_TextChanged);
@@ -808,6 +811,7 @@
             // 
             this.txtMontoTotalaPagar.Location = new System.Drawing.Point(479, 118);
             this.txtMontoTotalaPagar.Name = "txtMontoTotalaPagar";
+            this.txtMontoTotalaPagar.Properties.ReadOnly = true;
             this.txtMontoTotalaPagar.Size = new System.Drawing.Size(131, 20);
             this.txtMontoTotalaPagar.TabIndex = 0;
             // 
@@ -815,6 +819,7 @@
             // 
             this.txtRetencionesAplicadas.Location = new System.Drawing.Point(479, 83);
             this.txtRetencionesAplicadas.Name = "txtRetencionesAplicadas";
+            this.txtRetencionesAplicadas.Properties.ReadOnly = true;
             this.txtRetencionesAplicadas.Size = new System.Drawing.Size(131, 20);
             this.txtRetencionesAplicadas.TabIndex = 0;
             // 
@@ -822,6 +827,7 @@
             // 
             this.txtMontoTotalSup.Location = new System.Drawing.Point(479, 41);
             this.txtMontoTotalSup.Name = "txtMontoTotalSup";
+            this.txtMontoTotalSup.Properties.ReadOnly = true;
             this.txtMontoTotalSup.Size = new System.Drawing.Size(131, 20);
             this.txtMontoTotalSup.TabIndex = 0;
             // 
@@ -829,6 +835,7 @@
             // 
             this.txtMontoTotal.Location = new System.Drawing.Point(119, 122);
             this.txtMontoTotal.Name = "txtMontoTotal";
+            this.txtMontoTotal.Properties.ReadOnly = true;
             this.txtMontoTotal.Size = new System.Drawing.Size(131, 20);
             this.txtMontoTotal.TabIndex = 0;
             // 
@@ -836,6 +843,9 @@
             // 
             this.txtIVA.Location = new System.Drawing.Point(119, 83);
             this.txtIVA.Name = "txtIVA";
+            this.txtIVA.Properties.Mask.BeepOnError = true;
+            this.txtIVA.Properties.Mask.EditMask = "f2";
+            this.txtIVA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtIVA.Size = new System.Drawing.Size(131, 20);
             this.txtIVA.TabIndex = 0;
             this.txtIVA.TextChanged += new System.EventHandler(this.txtIVA_TextChanged);
@@ -845,8 +855,10 @@
             this.txtSubTotal.Location = new System.Drawing.Point(119, 45);
             this.txtSubTotal.MenuManager = this.ribbonControl1;
             this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.Properties.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(131, 20);
             this.txtSubTotal.TabIndex = 0;
+            this.txtSubTotal.EditValueChanged += new System.EventHandler(this.txtSubTotal_EditValueChanged_1);
             // 
             // tabRetenciones
             // 

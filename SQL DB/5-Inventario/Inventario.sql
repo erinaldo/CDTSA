@@ -2031,7 +2031,7 @@ AND A.Fecha BETWEEN @FechaInicial AND @FechaFinal
 GO 
 
 
-CREATE  ALTER   PROCEDURE [dbo].[invGetProductoByID] @IDProducto BIgint	,@Descr AS NVARCHAR(250)
+CREATE  PROCEDURE [dbo].[invGetProductoByID] @IDProducto BIgint	,@Descr AS NVARCHAR(250)
 AS 
 	SELECT IDProducto,P.Descr ,Alias ,Clasif1,C1.Descr DescrClasif1 ,Clasif2 ,C2.Descr DescrClasif2,Clasif3,C3.Descr DescrClasif3 ,Clasif4 ,C4.Descr DescrClasif4,
 				Clasif5 ,C5.Descr DescrClasif5 ,Clasif6, C6.Descr DescrClasif6 ,P.CostoPromDolar,P.CostoPromLocal,P.CostoUltDolar,P.CostoUltLocal,CodigoBarra,IDCuentaContable ,P.IDUnidad ,UM.Descr DescrUnidadMedida,FactorEmpaque ,TipoImpuesto , I.Descr DescrTipoImpuesto,
@@ -3369,7 +3369,7 @@ BEGIN
 	INNER JOIN dbo.invProducto Pr ON B.IDProducto=Pr.IDProducto
 	INNER JOIN dbo.invUnidadMedida U ON pr.IDUnidad=U.IDUnidad
 	WHERE Fecha  BETWEEN @FechaInicial AND @FechaFinal
-	AND A.IDProducto= @IDProducto AND (a.IDBodega = @IDBodega  OR @IDBodega=-1)
+	AND B.IDProducto= @IDProducto AND (B.IDBodega = @IDBodega  OR @IDBodega=-1)
 END
 ELSE
 BEGIN
@@ -3387,7 +3387,7 @@ BEGIN
 	INNER JOIN dbo.invLote L ON B.IDProducto=l.IDProducto AND B.IDLote =L.IDLote
 	INNER JOIN dbo.invUnidadMedida U ON pr.IDUnidad=U.IDUnidad
 	WHERE Fecha  BETWEEN @FechaInicial AND @FechaFinal
-	AND A.IDProducto= @IDProducto AND (a.IDBodega = @IDBodega  OR @IDBodega=-1)
+	AND b.IDProducto= @IDProducto AND (b.IDBodega = @IDBodega  OR @IDBodega=-1)
 END
 
 DROP TABLE  #Movimientos

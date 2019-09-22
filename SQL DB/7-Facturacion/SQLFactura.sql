@@ -1636,7 +1636,7 @@ as
 if @SoloFacturacion is null 
 	set @SoloFacturacion = 0
 set nocount on
-Select U.Usuario, S.Descr, U.IDBodega, B.Descr, U.CodigoConsecMask
+Select U.Usuario, S.Descr, U.IDBodega, B.Descr
 From  dbo.invUsuarioBodega U inner join dbo.secUsuario S on U.Usuario = S.Usuario 
 inner join dbo.invBodega B on U.IDBodega = B.IDBodega 
 Where U.Usuario = @Usuario and ((@SoloFacturacion = 1 and  Puedefacturar = 1) or @SoloFacturacion = 0 )
