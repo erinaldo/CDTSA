@@ -140,17 +140,6 @@
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
-            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.lyClasif1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lyClasif2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lyClasif3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lyClasif4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lyClasif5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lyClasif6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem21 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -181,6 +170,17 @@
             this.emptySpaceItem18 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem19 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem20 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.lyClasif1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.lyClasif6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem14 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem15 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem21 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -255,17 +255,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -296,6 +285,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
@@ -1420,135 +1420,6 @@
             this.layoutControlGroup3,
             this.tabAuditoria});
             // 
-            // layoutControlGroup4
-            // 
-            this.layoutControlGroup4.AppearanceTabPage.Header.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlGroup4.AppearanceTabPage.Header.Options.UseFont = true;
-            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.Options.UseFont = true;
-            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.Options.UseForeColor = true;
-            this.layoutControlGroup4.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlGroup4.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
-            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.lyClasif1,
-            this.lyClasif2,
-            this.lyClasif3,
-            this.lyClasif4,
-            this.lyClasif5,
-            this.lyClasif6,
-            this.layoutControlItem25,
-            this.emptySpaceItem14,
-            this.emptySpaceItem15,
-            this.emptySpaceItem21});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(677, 322);
-            this.layoutControlGroup4.Text = "Clasificaciones";
-            // 
-            // lyClasif1
-            // 
-            this.lyClasif1.Control = this.slkupClasif1;
-            this.lyClasif1.CustomizationFormText = "Clasificacion2:";
-            this.lyClasif1.Location = new System.Drawing.Point(0, 0);
-            this.lyClasif1.Name = "lyClasif1";
-            this.lyClasif1.Size = new System.Drawing.Size(677, 24);
-            this.lyClasif1.Text = "Clasificacion1:";
-            this.lyClasif1.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // lyClasif2
-            // 
-            this.lyClasif2.Control = this.slkupClasif2;
-            this.lyClasif2.CustomizationFormText = "Clasificacion2:";
-            this.lyClasif2.Location = new System.Drawing.Point(0, 24);
-            this.lyClasif2.Name = "lyClasif2";
-            this.lyClasif2.Size = new System.Drawing.Size(677, 24);
-            this.lyClasif2.Text = "Clasificacion2:";
-            this.lyClasif2.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // lyClasif3
-            // 
-            this.lyClasif3.Control = this.slkupClasif3;
-            this.lyClasif3.CustomizationFormText = "Clasificacion2:";
-            this.lyClasif3.Location = new System.Drawing.Point(0, 48);
-            this.lyClasif3.Name = "lyClasif3";
-            this.lyClasif3.Size = new System.Drawing.Size(677, 24);
-            this.lyClasif3.Text = "Clasificacion3:";
-            this.lyClasif3.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // lyClasif4
-            // 
-            this.lyClasif4.Control = this.slkupClasif4;
-            this.lyClasif4.CustomizationFormText = "Clasificacion2:";
-            this.lyClasif4.Location = new System.Drawing.Point(0, 72);
-            this.lyClasif4.Name = "lyClasif4";
-            this.lyClasif4.Size = new System.Drawing.Size(677, 24);
-            this.lyClasif4.Text = "Clasificacion4:";
-            this.lyClasif4.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // lyClasif5
-            // 
-            this.lyClasif5.Control = this.slkupClasif5;
-            this.lyClasif5.CustomizationFormText = "Clasificacion2:";
-            this.lyClasif5.Location = new System.Drawing.Point(0, 96);
-            this.lyClasif5.Name = "lyClasif5";
-            this.lyClasif5.Size = new System.Drawing.Size(677, 24);
-            this.lyClasif5.Text = "Clasificacion5:";
-            this.lyClasif5.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // lyClasif6
-            // 
-            this.lyClasif6.Control = this.slkupClasif6;
-            this.lyClasif6.CustomizationFormText = "Clasificacion2:";
-            this.lyClasif6.Location = new System.Drawing.Point(0, 120);
-            this.lyClasif6.Name = "lyClasif6";
-            this.lyClasif6.Size = new System.Drawing.Size(677, 24);
-            this.lyClasif6.Text = "Clasificacion6:";
-            this.lyClasif6.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // layoutControlItem25
-            // 
-            this.layoutControlItem25.AppearanceItemCaption.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.layoutControlItem25.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem25.Control = this.slkupCuentaArticulo;
-            this.layoutControlItem25.Location = new System.Drawing.Point(10, 169);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(667, 24);
-            this.layoutControlItem25.Text = "Cuenta Contable:";
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(145, 13);
-            // 
-            // emptySpaceItem14
-            // 
-            this.emptySpaceItem14.AllowHotTrack = false;
-            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 144);
-            this.emptySpaceItem14.MaxSize = new System.Drawing.Size(0, 25);
-            this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 25);
-            this.emptySpaceItem14.Name = "emptySpaceItem14";
-            this.emptySpaceItem14.Size = new System.Drawing.Size(677, 25);
-            this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem15
-            // 
-            this.emptySpaceItem15.AllowHotTrack = false;
-            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 193);
-            this.emptySpaceItem15.Name = "emptySpaceItem15";
-            this.emptySpaceItem15.Size = new System.Drawing.Size(677, 129);
-            this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem21
-            // 
-            this.emptySpaceItem21.AllowHotTrack = false;
-            this.emptySpaceItem21.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red;
-            this.emptySpaceItem21.AppearanceItemCaption.Options.UseForeColor = true;
-            this.emptySpaceItem21.CustomizationFormText = "*";
-            this.emptySpaceItem21.Location = new System.Drawing.Point(0, 169);
-            this.emptySpaceItem21.Name = "emptySpaceItem21";
-            this.emptySpaceItem21.Size = new System.Drawing.Size(10, 24);
-            this.emptySpaceItem21.Text = "*";
-            this.emptySpaceItem21.TextSize = new System.Drawing.Size(145, 0);
-            this.emptySpaceItem21.TextVisible = true;
-            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.AppearanceTabPage.Header.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1876,6 +1747,135 @@
             this.emptySpaceItem20.Text = "*";
             this.emptySpaceItem20.TextSize = new System.Drawing.Size(145, 0);
             this.emptySpaceItem20.TextVisible = true;
+            // 
+            // layoutControlGroup4
+            // 
+            this.layoutControlGroup4.AppearanceTabPage.Header.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlGroup4.AppearanceTabPage.Header.Options.UseFont = true;
+            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.Options.UseFont = true;
+            this.layoutControlGroup4.AppearanceTabPage.HeaderActive.Options.UseForeColor = true;
+            this.layoutControlGroup4.AppearanceTabPage.HeaderHotTracked.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlGroup4.AppearanceTabPage.HeaderHotTracked.Options.UseFont = true;
+            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.lyClasif1,
+            this.lyClasif2,
+            this.lyClasif3,
+            this.lyClasif4,
+            this.lyClasif5,
+            this.lyClasif6,
+            this.layoutControlItem25,
+            this.emptySpaceItem14,
+            this.emptySpaceItem15,
+            this.emptySpaceItem21});
+            this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup4.Name = "layoutControlGroup4";
+            this.layoutControlGroup4.Size = new System.Drawing.Size(677, 322);
+            this.layoutControlGroup4.Text = "Clasificaciones";
+            // 
+            // lyClasif1
+            // 
+            this.lyClasif1.Control = this.slkupClasif1;
+            this.lyClasif1.CustomizationFormText = "Clasificacion2:";
+            this.lyClasif1.Location = new System.Drawing.Point(0, 0);
+            this.lyClasif1.Name = "lyClasif1";
+            this.lyClasif1.Size = new System.Drawing.Size(677, 24);
+            this.lyClasif1.Text = "Clasificacion1:";
+            this.lyClasif1.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // lyClasif2
+            // 
+            this.lyClasif2.Control = this.slkupClasif2;
+            this.lyClasif2.CustomizationFormText = "Clasificacion2:";
+            this.lyClasif2.Location = new System.Drawing.Point(0, 24);
+            this.lyClasif2.Name = "lyClasif2";
+            this.lyClasif2.Size = new System.Drawing.Size(677, 24);
+            this.lyClasif2.Text = "Clasificacion2:";
+            this.lyClasif2.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // lyClasif3
+            // 
+            this.lyClasif3.Control = this.slkupClasif3;
+            this.lyClasif3.CustomizationFormText = "Clasificacion2:";
+            this.lyClasif3.Location = new System.Drawing.Point(0, 48);
+            this.lyClasif3.Name = "lyClasif3";
+            this.lyClasif3.Size = new System.Drawing.Size(677, 24);
+            this.lyClasif3.Text = "Clasificacion3:";
+            this.lyClasif3.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // lyClasif4
+            // 
+            this.lyClasif4.Control = this.slkupClasif4;
+            this.lyClasif4.CustomizationFormText = "Clasificacion2:";
+            this.lyClasif4.Location = new System.Drawing.Point(0, 72);
+            this.lyClasif4.Name = "lyClasif4";
+            this.lyClasif4.Size = new System.Drawing.Size(677, 24);
+            this.lyClasif4.Text = "Clasificacion4:";
+            this.lyClasif4.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // lyClasif5
+            // 
+            this.lyClasif5.Control = this.slkupClasif5;
+            this.lyClasif5.CustomizationFormText = "Clasificacion2:";
+            this.lyClasif5.Location = new System.Drawing.Point(0, 96);
+            this.lyClasif5.Name = "lyClasif5";
+            this.lyClasif5.Size = new System.Drawing.Size(677, 24);
+            this.lyClasif5.Text = "Clasificacion5:";
+            this.lyClasif5.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // lyClasif6
+            // 
+            this.lyClasif6.Control = this.slkupClasif6;
+            this.lyClasif6.CustomizationFormText = "Clasificacion2:";
+            this.lyClasif6.Location = new System.Drawing.Point(0, 120);
+            this.lyClasif6.Name = "lyClasif6";
+            this.lyClasif6.Size = new System.Drawing.Size(677, 24);
+            this.lyClasif6.Text = "Clasificacion6:";
+            this.lyClasif6.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.AppearanceItemCaption.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.layoutControlItem25.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem25.Control = this.slkupCuentaArticulo;
+            this.layoutControlItem25.Location = new System.Drawing.Point(10, 169);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(667, 24);
+            this.layoutControlItem25.Text = "Cuenta Contable:";
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(145, 13);
+            // 
+            // emptySpaceItem14
+            // 
+            this.emptySpaceItem14.AllowHotTrack = false;
+            this.emptySpaceItem14.Location = new System.Drawing.Point(0, 144);
+            this.emptySpaceItem14.MaxSize = new System.Drawing.Size(0, 25);
+            this.emptySpaceItem14.MinSize = new System.Drawing.Size(10, 25);
+            this.emptySpaceItem14.Name = "emptySpaceItem14";
+            this.emptySpaceItem14.Size = new System.Drawing.Size(677, 25);
+            this.emptySpaceItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem14.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem15
+            // 
+            this.emptySpaceItem15.AllowHotTrack = false;
+            this.emptySpaceItem15.Location = new System.Drawing.Point(0, 193);
+            this.emptySpaceItem15.Name = "emptySpaceItem15";
+            this.emptySpaceItem15.Size = new System.Drawing.Size(677, 129);
+            this.emptySpaceItem15.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // emptySpaceItem21
+            // 
+            this.emptySpaceItem21.AllowHotTrack = false;
+            this.emptySpaceItem21.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red;
+            this.emptySpaceItem21.AppearanceItemCaption.Options.UseForeColor = true;
+            this.emptySpaceItem21.CustomizationFormText = "*";
+            this.emptySpaceItem21.Location = new System.Drawing.Point(0, 169);
+            this.emptySpaceItem21.Name = "emptySpaceItem21";
+            this.emptySpaceItem21.Size = new System.Drawing.Size(10, 24);
+            this.emptySpaceItem21.Text = "*";
+            this.emptySpaceItem21.TextSize = new System.Drawing.Size(145, 0);
+            this.emptySpaceItem21.TextVisible = true;
             // 
             // layoutControlGroup3
             // 
@@ -2215,17 +2215,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lyClasif6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
@@ -2256,6 +2245,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lyClasif6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();

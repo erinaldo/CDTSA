@@ -517,6 +517,8 @@ namespace MainMenu
                     nodeConsecutivos.Tag = "frmConsecutivos";
                     TreeListNode nodeClasificaciones = tl.AppendNode(new object[] { "Clasificaciones" }, nodeAdministracion.Id, 11, 11, 11);
                     nodeClasificaciones.Tag = "frmCatalogoClasificaciones";
+                    TreeListNode nodeUnidadesMedida = tl.AppendNode(new object[] { "Unidades de Medida" }, nodeAdministracion.Id, 11, 11, 11);
+                    nodeUnidadesMedida.Tag = "frmUnidadMedida";
                     TreeListNode nodePaquetes = tl.AppendNode(new object[] { "Paquetes" }, nodeAdministracion.Id, 11, 11, 11);
                     nodePaquetes.Tag = "frmPaquetes";
                     TreeListNode nodeCuentasContables = tl.AppendNode(new object[] { "Cuentas Contables" }, nodeAdministracion.Id, 11, 11, 11);
@@ -791,6 +793,14 @@ namespace MainMenu
                     ofrmSaldos.WindowState = FormWindowState.Maximized;
                     ShowPagesRibbonMan(false);
                     ofrmSaldos.Show();
+                    break;
+
+                case "frmUnidadMedida":
+                    CI.frmUnidadMedida ofrmUnidad = new CI.frmUnidadMedida();
+                    ofrmUnidad.MdiParent = this;
+                    ofrmUnidad.WindowState = FormWindowState.Maximized;
+                    ShowPagesRibbonMan(false);
+                    ofrmUnidad.Show();
                     break;
             }
 

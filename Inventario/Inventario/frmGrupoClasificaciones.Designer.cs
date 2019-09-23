@@ -118,7 +118,7 @@
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(71, 13);
             this.labelControl6.TabIndex = 0;
-            this.labelControl6.Text = "Clasificacion 5:";
+            this.labelControl6.Text = "Clasificacion 6:";
             // 
             // txtDescrC2
             // 

@@ -131,6 +131,7 @@
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2010;
             this.ribbonControl.Size = new System.Drawing.Size(804, 143);
             this.ribbonControl.StatusBar = this.ribbonStatusBar1;
+
             // 
             // btnAgregar
             // 
