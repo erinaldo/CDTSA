@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="15.2.7.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v15.2, Version=15.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="rptFacturaV2" ReportUnit="TenthsOfAMillimeter" Margins="119, 140, 294, 97" PageWidth="2159" PageHeight="2794" ScriptLanguage="VisualBasic" Version="15.2" DataMember="fafPrintFacturaLote" DataSource="#Ref-0" Dpi="254">
+  <Parameters>
+    <Item1 Ref="3" Visible="false" ValueInfo="41" Name="IDFactura" Type="#Ref-2" />
+  </Parameters>
+  <CalculatedFields>
+    <Item1 Ref="4" Name="LoteCantidad" Expression="[LoteProveedor]+' - '+ToStr(Round([CantidadLote],2))" DataMember="fafPrintFacturaLote" />
+  </CalculatedFields>
+  <Bands>
+    <Item1 Ref="5" ControlType="DetailBand" Name="Detail" HeightF="46" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254">
+      <MultiColumn Ref="6" ColumnCount="4" Layout="AcrossThenDown" Mode="UseColumnCount" />
+      <Controls>
+        <Item1 Ref="7" ControlType="XRLabel" Name="XrLabel16" Text="XrLabel16" SizeF="365.495361,33.0200424" LocationFloat="88.89998, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="8" PropertyName="Text" DataMember="fafPrintFacturaLote.LoteCantidad" />
+          </DataBindings>
+          <StylePriority Ref="9" UseFont="false" />
+        </Item1>
+        <Item2 Ref="10" ControlType="XRLabel" Name="XrLabel15" Text="Lote " SizeF="62.4416351,33.02" LocationFloat="0, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <StylePriority Ref="11" UseFont="false" />
+        </Item2>
+      </Controls>
+    </Item1>
+    <Item2 Ref="12" ControlType="TopMarginBand" Name="TopMargin" HeightF="294" TextAlignment="TopLeft" Dpi="254" Font="Shruti, 9.75pt" Padding="0,0,0,0,254">
+      <Controls>
+        <Item1 Ref="13" ControlType="XRLabel" Name="XrLabel31" Text="XrLabel31" TextAlignment="TopLeft" SizeF="304.2709,58.4199829" LocationFloat="318.928741, 201.824219" Dpi="254" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="14" PropertyName="Text" DataMember="fafPrintFacturaLote.DescrTipo" />
+          </DataBindings>
+          <StylePriority Ref="15" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="16" ControlType="XRLabel" Name="XrLabel30" Text="Tipo de Venta :" TextAlignment="TopRight" SizeF="254.000015,58.4199829" LocationFloat="27.8871937, 201.824158" Dpi="254" Padding="5,5,0,0,254">
+          <StylePriority Ref="17" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="18" ControlType="XRLabel" Name="XrLabel13" TextAlignment="TopLeft" SizeF="285.750366,58.42" LocationFloat="1522.783, 73.0250244" Dpi="254" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="19" PropertyName="Text" DataMember="fafPrintFacturaLote.Factura" />
+          </DataBindings>
+          <StylePriority Ref="20" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="21" ControlType="XRLabel" Name="XrLabel12" Text="Factura : " TextAlignment="TopRight" SizeF="161.395874,58.42" LocationFloat="1361.387, 73.0250244" Dpi="254" Padding="5,5,0,0,254">
+          <StylePriority Ref="22" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="23" ControlType="XRLabel" Name="XrLabel11" Text="FACTURA " SizeF="254,58.42" LocationFloat="804.704, 73.0250244" Dpi="254" Font="Verdana, 12pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="24" UseFont="false" />
+        </Item5>
+        <Item6 Ref="25" ControlType="XRLabel" Name="XrLabel10" TextAlignment="TopLeft" SizeF="89.958374,58.4199829" LocationFloat="1160.304, 201.824219" Dpi="254" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="26" PropertyName="Text" DataMember="fafPrintFacturaLote.Simbolo" />
+          </DataBindings>
+          <StylePriority Ref="27" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="28" ControlType="XRLabel" Name="XrLabel9" Text="Moneda Factura : " TextAlignment="TopRight" SizeF="394.2296,58.4200134" LocationFloat="746.495361, 201.824219" Dpi="254" Padding="5,5,0,0,254">
+          <StylePriority Ref="29" UseTextAlignment="false" />
+        </Item7>
+        <Item8 Ref="30" ControlType="XRLabel" Name="XrLabel8" TextAlignment="TopLeft" SizeF="285.750366,58.4199829" LocationFloat="1522.783, 201.824219" Dpi="254" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="31" PropertyName="Text" DataMember="fafPrintFacturaLote.TipoCambio" />
+          </DataBindings>
+          <StylePriority Ref="32" UseTextAlignment="false" />
+        </Item8>
+        <Item9 Ref="33" ControlType="XRLabel" Name="XrLabel7" TextAlignment="TopLeft" SizeF="285.750366,58.4200134" LocationFloat="1522.783, 143.4042" Dpi="254" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="34" FormatString="{0:dd/MM/yyyy}" PropertyName="Text" DataMember="fafPrintFacturaLote.Fecha" />
+          </DataBindings>
+          <StylePriority Ref="35" UseTextAlignment="false" />
+        </Item9>
+        <Item10 Ref="36" ControlType="XRLabel" Name="XrLabel6" Text="Tipo Cambio :" TextAlignment="TopRight" SizeF="240.77124,58.4200134" LocationFloat="1282.012, 201.824219" Dpi="254" Padding="5,5,0,0,254">
+          <StylePriority Ref="37" UseTextAlignment="false" />
+        </Item10>
+        <Item11 Ref="38" ControlType="XRLabel" Name="XrLabel5" Text="Fecha  :" TextAlignment="TopRight" SizeF="161.396,58.4200134" LocationFloat="1361.387, 143.4042" Dpi="254" Padding="5,5,0,0,254">
+          <StylePriority Ref="39" UseTextAlignment="false" />
+        </Item11>
+        <Item12 Ref="40" ControlType="XRLabel" Name="XrLabel4" Text="Cliente :" TextAlignment="TopRight" SizeF="254.000015,58.4200134" LocationFloat="27.8871937, 143.4042" Dpi="254" Font="Shruti, 9.75pt" Padding="5,5,0,0,254">
+          <StylePriority Ref="41" UseFont="false" UseTextAlignment="false" />
+        </Item12>
+        <Item13 Ref="42" ControlType="XRLabel" Name="XrLabel1" TextAlignment="TopLeft" SizeF="627.0624,58.4200134" LocationFloat="318.928741, 143.4042" Dpi="254" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="43" PropertyName="Text" DataMember="fafPrintFacturaLote.Nombre" />
+          </DataBindings>
+          <StylePriority Ref="44" UseTextAlignment="false" />
+        </Item13>
+      </Controls>
+      <StylePriority Ref="45" UseFont="false" />
+    </Item2>
+    <Item3 Ref="46" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="97" TextAlignment="TopLeft" Dpi="254" Padding="0,0,0,0,254" />
+    <Item4 Ref="47" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="48" Dpi="254">
+      <Controls>
+        <Item1 Ref="48" ControlType="XRLabel" Name="XrLabel20" Text="Cantidad" SizeF="173.566742,33.0199738" LocationFloat="22.5952873, 9.948324" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="49" UseFont="false" />
+        </Item1>
+        <Item2 Ref="50" ControlType="XRLabel" Name="XrLabel21" Text="Producto / Lote" TextAlignment="TopLeft" SizeF="328.453735,33.0199776" LocationFloat="206.375, 9.94835949" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="51" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="52" ControlType="XRLabel" Name="XrLabel22" Text="Precio" TextAlignment="TopRight" SizeF="134.9375,33.0199738" LocationFloat="775.2294, 9.948278" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="53" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="54" ControlType="XRLabel" Name="XrLabel24" Text="Desc" TextAlignment="TopRight" SizeF="140.229187,33.0199738" LocationFloat="950.2244, 9.948278" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="55" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="56" ControlType="XRLabel" Name="XrLabel25" Text="DescEsp" TextAlignment="TopRight" SizeF="173.566772,33.0199738" LocationFloat="1090.45349, 9.948278" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="57" UseFont="false" UseTextAlignment="false" />
+        </Item5>
+        <Item6 Ref="58" ControlType="XRLabel" Name="XrLabel28" Text="SubTotal" TextAlignment="TopRight" SizeF="209.020752,33.0199738" LocationFloat="1282.012, 9.948278" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="59" UseFont="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="60" ControlType="XRLabel" Name="XrLabel29" Text="Impuesto" TextAlignment="TopRight" SizeF="194.522461,33.0199738" LocationFloat="1491.03284, 9.948278" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="61" UseFont="false" UseTextAlignment="false" />
+        </Item7>
+        <Item8 Ref="62" ControlType="XRLabel" Name="XrLabel26" Multiline="true" Text="Total&#xD;&#xA;" TextAlignment="TopRight" SizeF="132.450317,33.0199776" LocationFloat="1744.87427, 9.94835949" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="63" UseFont="false" UseTextAlignment="false" />
+        </Item8>
+      </Controls>
+    </Item4>
+    <Item5 Ref="64" ControlType="ReportFooterBand" Name="ReportFooter" PrintAtBottom="true" HeightF="287" Dpi="254">
+      <Controls>
+        <Item1 Ref="65" ControlType="XRLabel" Name="XrLabel43" Text="Impuesto" TextAlignment="TopLeft" SizeF="198.808228,33.01999" LocationFloat="1454.99683, 159.0675" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="66" UseFont="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="67" ControlType="XRLabel" Name="XrLabel42" TextAlignment="TopRight" SizeF="182.562744,33.01999" LocationFloat="1691.95715, 159.0675" Dpi="254" Font="Times New Roman, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <Summary Ref="68" FormatString="{0:#,##0.00}" Running="Report" />
+          <DataBindings>
+            <Item1 Ref="69" PropertyName="Text" DataMember="fafPrintFacturaLote.Impuesto" />
+          </DataBindings>
+          <StylePriority Ref="70" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="71" ControlType="XRLabel" Name="XrLabel41" Text="TotalFinal" TextAlignment="TopLeft" SizeF="198.808228,33.01999" LocationFloat="1454.99683, 203.517563" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="72" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="73" ControlType="XRLabel" Name="XrLabel40" Text="SubTotFinal" TextAlignment="TopLeft" SizeF="198.807983,33.0199966" LocationFloat="1454.99707, 116.522453" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="74" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="75" ControlType="XRLabel" Name="XrLabel39" Text="DescEsp" TextAlignment="TopLeft" SizeF="198.807983,33.0199966" LocationFloat="1454.99707, 83.5025" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="76" UseFont="false" UseTextAlignment="false" />
+        </Item5>
+        <Item6 Ref="77" ControlType="XRLabel" Name="XrLabel38" Text="Descuento" TextAlignment="TopLeft" SizeF="198.807983,33.0199776" LocationFloat="1454.99707, 45.1907921" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="78" UseFont="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="79" ControlType="XRLabel" Name="XrLabel37" Text="SubTotal " TextAlignment="TopLeft" SizeF="198.807983,33.0199776" LocationFloat="1454.99707, 0" Dpi="254" Font="Verdana, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="80" UseFont="false" UseTextAlignment="false" />
+        </Item7>
+        <Item8 Ref="81" ControlType="XRLabel" Name="XrLabel36" TextAlignment="TopRight" SizeF="185.36731,31.9616547" LocationFloat="1691.95715, 204.575851" Dpi="254" Font="Times New Roman, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <Summary Ref="82" FormatString="{0:#,##0.00}" Running="Report" />
+          <DataBindings>
+            <Item1 Ref="83" PropertyName="Text" DataMember="fafPrintFacturaLote.TotalFinal" />
+          </DataBindings>
+          <StylePriority Ref="84" UseFont="false" UseTextAlignment="false" />
+        </Item8>
+        <Item9 Ref="85" ControlType="XRLabel" Name="XrLabel35" TextAlignment="TopRight" SizeF="185.366821,33.0199661" LocationFloat="1691.95776, 116.522453" Dpi="254" Font="Times New Roman, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <Summary Ref="86" FormatString="{0:#,###.00}" Running="Report" />
+          <DataBindings>
+            <Item1 Ref="87" PropertyName="Text" DataMember="fafPrintFacturaLote.SubTotalFinal" />
+          </DataBindings>
+          <StylePriority Ref="88" UseFont="false" UseTextAlignment="false" />
+        </Item9>
+        <Item10 Ref="89" ControlType="XRLabel" Name="XrLabel34" TextAlignment="TopRight" SizeF="185.367188,33.0199966" LocationFloat="1691.95776, 83.5025" Dpi="254" Font="Times New Roman, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <Summary Ref="90" FormatString="{0:#,##0.00}" Running="Report" />
+          <DataBindings>
+            <Item1 Ref="91" PropertyName="Text" DataMember="fafPrintFacturaLote.DescuentoEspecial" />
+          </DataBindings>
+          <StylePriority Ref="92" UseFont="false" UseTextAlignment="false" />
+        </Item10>
+        <Item11 Ref="93" ControlType="XRLabel" Name="XrLabel33" TextAlignment="TopRight" SizeF="185.367065,33.0199776" LocationFloat="1691.95752, 45.1907921" Dpi="254" Font="Times New Roman, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <Summary Ref="94" FormatString="{0:#,##0.00}" Running="Report" />
+          <DataBindings>
+            <Item1 Ref="95" PropertyName="Text" DataMember="fafPrintFacturaLote.Descuento" />
+          </DataBindings>
+          <StylePriority Ref="96" UseFont="false" UseTextAlignment="false" />
+        </Item11>
+        <Item12 Ref="97" ControlType="XRLabel" Name="XrLabel32" TextAlignment="TopRight" SizeF="185.36731,33.0199776" LocationFloat="1691.95752, 0" Dpi="254" Font="Times New Roman, 8pt, style=Bold" Padding="5,5,0,0,254">
+          <Summary Ref="98" FormatString="{0:#,##0.00}" Running="Report" />
+          <DataBindings>
+            <Item1 Ref="99" PropertyName="Text" DataMember="fafPrintFacturaLote.SubTotal" />
+          </DataBindings>
+          <StylePriority Ref="100" UseFont="false" UseTextAlignment="false" />
+        </Item12>
+      </Controls>
+    </Item5>
+    <Item6 Ref="101" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="46" Dpi="254">
+      <GroupFields>
+        <Item1 Ref="102" FieldName="IDProducto" />
+      </GroupFields>
+      <Controls>
+        <Item1 Ref="103" ControlType="XRLabel" Name="XrLabel44" Text="XrLabel44" SizeF="153.458252,43.39166" LocationFloat="1110.56213, 0" Dpi="254" Font="Times New Roman, 8.25pt, charSet=0" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="104" FormatString="{0:#,##0.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.DescuentoEspecial" />
+          </DataBindings>
+          <StylePriority Ref="105" UseFont="false" />
+        </Item1>
+        <Item2 Ref="106" ControlType="XRLabel" Name="XrLabel2" SizeF="582.083252,43.39166" LocationFloat="164.041718, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="107" PropertyName="Text" DataMember="fafPrintFacturaLote.DescrProducto" />
+          </DataBindings>
+          <StylePriority Ref="108" UseFont="false" />
+        </Item2>
+        <Item3 Ref="109" ControlType="XRLabel" Name="XrLabel3" TextAlignment="TopRight" SizeF="127.000046,43.39166" LocationFloat="9.524934, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="110" FormatString="{0:#,###.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.Cantidad" />
+          </DataBindings>
+          <StylePriority Ref="111" UseFont="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="112" ControlType="XRLabel" Name="XrLabel27" TextAlignment="TopRight" SizeF="134.937561,43.39168" LocationFloat="775.2294, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="113" FormatString="{0:#,##0.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.Precio" />
+          </DataBindings>
+          <StylePriority Ref="114" UseFont="false" UseTextAlignment="false" />
+        </Item4>
+        <Item5 Ref="115" ControlType="XRLabel" Name="XrLabel14" TextAlignment="TopRight" SizeF="140.229248,43.39166" LocationFloat="950.2246, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="116" FormatString="{0:#,##0.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.Descuento" />
+          </DataBindings>
+          <StylePriority Ref="117" UseFont="false" UseTextAlignment="false" />
+        </Item5>
+        <Item6 Ref="118" ControlType="XRLabel" Name="XrLabel17" TextAlignment="TopRight" SizeF="209.020874,43.39168" LocationFloat="1313.76208, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="119" FormatString="{0:#,##0.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.SubTotalFinal" />
+          </DataBindings>
+          <StylePriority Ref="120" UseFont="false" UseTextAlignment="false" />
+        </Item6>
+        <Item7 Ref="121" ControlType="XRLabel" Name="XrLabel18" TextAlignment="TopRight" SizeF="182.562866,43.39166" LocationFloat="1691.95715, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="122" FormatString="{0:#,##0.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.TotalFinal" />
+          </DataBindings>
+          <StylePriority Ref="123" UseFont="false" UseTextAlignment="false" />
+        </Item7>
+        <Item8 Ref="124" ControlType="XRLabel" Name="XrLabel19" TextAlignment="TopRight" SizeF="145.520874,43.39168" LocationFloat="1540.03418, 0" Dpi="254" Font="Times New Roman, 8pt" Padding="5,5,0,0,254">
+          <DataBindings>
+            <Item1 Ref="125" FormatString="{0:#,##0.00}" PropertyName="Text" DataMember="fafPrintFacturaLote.Impuesto" />
+          </DataBindings>
+          <StylePriority Ref="126" UseFont="false" UseTextAlignment="false" />
+        </Item8>
+      </Controls>
+    </Item6>
+  </Bands>
+  <ComponentStorage>
+    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v15.2" Name="SqlDataSource1" Base64="PFNxbERhdGFTb3VyY2U+PE5hbWU+U3FsRGF0YVNvdXJjZTE8L05hbWU+PENvbm5lY3Rpb24gTmFtZT0iQ2VkX0Nvbm5lY3Rpb24iIEZyb21BcHBDb25maWc9InRydWUiIC8+PFF1ZXJ5IFR5cGU9IlN0b3JlZFByb2NRdWVyeSIgTmFtZT0iZmFmUHJpbnRGYWN0dXJhTG90ZSI+PFBhcmFtZXRlciBOYW1lPSJASURGYWN0dXJhIiBUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuRXhwcmVzc2lvbiI+KFN5c3RlbS5JbnQ2NCwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5KShbUGFyYW1ldGVycy5JREZhY3R1cmFdKTwvUGFyYW1ldGVyPjxQcm9jTmFtZT5mYWZQcmludEZhY3R1cmFMb3RlPC9Qcm9jTmFtZT48L1F1ZXJ5PjxSZXN1bHRTY2hlbWE+PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9ImZhZlByaW50RmFjdHVyYUxvdGUiPjxGaWVsZCBOYW1lPSJJREZhY3R1cmEiIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJGYWN0dXJhIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkZlY2hhIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iSURUaXBvIiBUeXBlPSJJbnQxNiIgLz48RmllbGQgTmFtZT0iRGVzY3JUaXBvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRpcG9DYW1iaW8iIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IklEVGlwb0VudHJlZ2EiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJEZXNjckVudHJlZ2EiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iSURDbGllbnRlIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTm9tYnJlIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkVzVGVsZVZlbnRhIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJBbnVsYWRhIiBUeXBlPSJCb29sZWFuIiAvPjxGaWVsZCBOYW1lPSJEZXNjclBsYXpvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IklETW9uZWRhIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iRGVzY3JNb25lZGEiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iU2ltYm9sbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJJREJvZGVnYSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IkRlc2NyQm9kZWdhIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IklEUHJvZHVjdG8iIFR5cGU9IkludDY0IiAvPjxGaWVsZCBOYW1lPSJEZXNjclByb2R1Y3RvIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkNhbnRpZGFkIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJDYW50RmFjdHVyYWRhIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJDYW50Qm9uaWZpY2FkYSIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iQm9uaWZpY2EiIFR5cGU9IkJvb2xlYW4iIC8+PEZpZWxkIE5hbWU9IkJvbmlmQ29uUHJvZCIgVHlwZT0iQm9vbGVhbiIgLz48RmllbGQgTmFtZT0iUHJlY2lvIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJDb3N0byIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iRGVzY3VlbnRvIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJEZXNjdWVudG9Fc3BlY2lhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU3ViVG90YWwiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IkltcHVlc3RvIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJTdWJUb3RhbEZpbmFsIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJUb3RhbEZpbmFsIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJMb3RlUHJvdmVlZG9yIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkNhbnRpZGFkTG90ZSIgVHlwZT0iRGVjaW1hbCIgLz48L1ZpZXc+PC9EYXRhU2V0PjwvUmVzdWx0U2NoZW1hPjwvU3FsRGF0YVNvdXJjZT4=" />
+  </ComponentStorage>
+  <ObjectStorage>
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v15.2" Ref="2" Content="System.Int64" Type="System.Type" />
+  </ObjectStorage>
+</XtraReportsLayoutSerializer>

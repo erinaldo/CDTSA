@@ -117,6 +117,10 @@ namespace CI.Consultas
                 
             }
 
+            if (Result == "") {
+                Result = "*";
+            }
+
             return Result;
         }
 
