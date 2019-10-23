@@ -16,6 +16,7 @@ using CDTSA.Properties;
 using ControlBancario;
 using CI;
 using CO;
+using Facturacion;
 
 namespace MainMenu
 {
@@ -28,6 +29,7 @@ namespace MainMenu
         {
             InitializeComponent();
             CreateNodes(treeListInventario);
+            CreateNodes(treeListFactura);
             CreateNodes(treeListContabilidad);
             CreateNodes(treeListAdministracion);
             CreateNodes(treeListControlBancario);
@@ -47,6 +49,9 @@ namespace MainMenu
 
             this.treeListControlBancario.DoubleClick -= treeListControlBancario_DoubleClick;
             this.treeListControlBancario.DoubleClick += treeListControlBancario_DoubleClick;
+
+            this.treeListFactura.DoubleClick -= treeListFactura_DoubleClick;
+            this.treeListFactura.DoubleClick += treeListFactura_DoubleClick;
             
         }
 
@@ -244,6 +249,26 @@ namespace MainMenu
         }
 
 
+        void treeListFactura_DoubleClick(object sender, EventArgs e)
+        {
+            DevExpress.XtraTreeList.Nodes.TreeListNode node = default(DevExpress.XtraTreeList.Nodes.TreeListNode);
+            node = ((TreeList)sender).FocusedNode;
+            if (Application.OpenForms[node.Tag.ToString()] != null)
+            {
+                Application.OpenForms[node.Tag.ToString()].Activate();
+                return;
+            }
+            switch (node.Tag.ToString())
+            {
+                case "frmClientes":
+                    Facturacion.frmClientes ofrmCliente = new frmClientes();
+                    ofrmCliente.MdiParent = this;
+                    ShowPagesRibbonMan(false);
+                    ofrmCliente.Show();
+                    break;
+                 
+            }
+        }
 
         void treeListAdministracion_DoubleClick(object sender, EventArgs e)
         {
@@ -352,7 +377,7 @@ namespace MainMenu
                 this.navGroupAdministracion.Visible = false;
 
             //Desactivar Factura
-            this.navGroupFacturación.Visible = false;
+            //this.navGroupFacturación.Visible = false;
         }
 
         void treeListContabilidad_DoubleClick(object sender, EventArgs e)
@@ -581,7 +606,10 @@ namespace MainMenu
                    
                     break;
 
-
+                case "treeListFactura":
+                    TreeListNode nodeCliente = tl.AppendNode(new object[] { "Clientes" }, -1, 11, 11, 11);
+                    nodeCliente.Tag = "frmClientes";
+                    break;
 
                 case "treeListContabilidad":
                     TreeListNode nodeCuentas = tl.AppendNode(new object[] { "Cuentas Contables" }, -1, 11, 11, 11);

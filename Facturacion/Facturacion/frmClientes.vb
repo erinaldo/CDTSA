@@ -34,7 +34,7 @@ Public Class frmClientes
     End Sub
     Sub seteaControlsNewRecord()
         If gbAdd Then
-            tableData = cManager.GetDataTable("ccfClientes", "Max(IDCliente) IDCliente", "", "IDCliente")
+            tableData = cManager.GetDataTable("ccfClientes", "isnull(Max(IDCliente),0) IDCliente", "", "IDCliente")
             If tableData.Rows.Count > 0 Then
                 Me.txtIDCliente.Text = CInt(tableData.Rows(0)(0)) + 1
             End If

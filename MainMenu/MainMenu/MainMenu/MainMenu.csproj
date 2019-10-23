@@ -255,6 +255,10 @@
       <Project>{dca3f3c2-1618-492b-ab85-4117ed7aae52}</Project>
       <Name>CP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Facturacion\Facturacion\Facturacion.vbproj">
+      <Project>{757b1caf-a56c-474a-92ab-eca5eee75eb7}</Project>
+      <Name>Facturacion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Inventario\Inventario\Inventario.csproj">
       <Project>{4c93329e-8656-4dd9-aebd-6a806e8b70d4}</Project>
       <Name>Inventario</Name>
