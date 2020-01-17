@@ -63,6 +63,7 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@Clasif4", SqlDbType.Int).SourceColumn = "Clasif4";
                 oAdaptador.InsertCommand.Parameters.Add("@Clasif5", SqlDbType.Int).SourceColumn = "Clasif5";
                 oAdaptador.InsertCommand.Parameters.Add("@Clasif6", SqlDbType.Int).SourceColumn = "Clasif6";
+                oAdaptador.InsertCommand.Parameters.Add("@IDProveedor", SqlDbType.Int).SourceColumn = "IDProveedor";
                 oAdaptador.InsertCommand.Parameters.Add("@IDCuentaContable", SqlDbType.Int).SourceColumn = "IDCuentaContable";
                 oAdaptador.InsertCommand.Parameters.Add("@CodigoBarra", SqlDbType.NChar).SourceColumn = "CodigoBarra";
                 oAdaptador.InsertCommand.Parameters.Add("@IDUnidad", SqlDbType.Int).SourceColumn = "IDUnidad";
@@ -88,6 +89,7 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@Clasif4", SqlDbType.Int).SourceColumn = "Clasif4";
                 oAdaptador.UpdateCommand.Parameters.Add("@Clasif5", SqlDbType.Int).SourceColumn = "Clasif5";
                 oAdaptador.UpdateCommand.Parameters.Add("@Clasif6", SqlDbType.Int).SourceColumn = "Clasif6";
+                oAdaptador.UpdateCommand.Parameters.Add("@IDProveedor", SqlDbType.Int).SourceColumn = "IDProveedor";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDCuentaContable", SqlDbType.Int).SourceColumn = "IDCuentaContable";
                 oAdaptador.UpdateCommand.Parameters.Add("@CodigoBarra", SqlDbType.NChar).SourceColumn = "CodigoBarra";
                 oAdaptador.UpdateCommand.Parameters.Add("@IDUnidad", SqlDbType.Int).SourceColumn = "IDUnidad";
@@ -115,6 +117,7 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@Clasif4", SqlDbType.Int).SourceColumn = "Clasif4";
                 oAdaptador.DeleteCommand.Parameters.Add("@Clasif5", SqlDbType.Int).SourceColumn = "Clasif5";
                 oAdaptador.DeleteCommand.Parameters.Add("@Clasif6", SqlDbType.Int).SourceColumn = "Clasif6";
+                oAdaptador.DeleteCommand.Parameters.Add("@IDProveedor", SqlDbType.Int).SourceColumn = "IDProveedor";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDCuentaContable", SqlDbType.Int).SourceColumn = "IDCuentaContable";
                 oAdaptador.DeleteCommand.Parameters.Add("@CodigoBarra", SqlDbType.NChar).SourceColumn = "CodigoBarra";
                 oAdaptador.DeleteCommand.Parameters.Add("@IDUnidad", SqlDbType.Int).SourceColumn = "IDUnidad";
@@ -148,7 +151,7 @@ namespace CI.DAC
         public static DataSet GetDataEmpty()
         {
             String strSQL = "SELECT  IDProducto ,Descr ,Alias ,CostoUltLocal ,CostoUltDolar ,CostoPromLocal ,CostoPromDolar ,PrecioPublicoLocal ,PrecioFarmaciaLocal ,PrecioCIFLocal ," +
-                            "PrecioFOBLocal ,PrecioDolar ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,IDCuentaContable,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,EsMuestra , " +
+                            "PrecioFOBLocal ,PrecioDolar ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6,IDProveedor ,IDCuentaContable,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,EsMuestra , " +
                             "EsControlado ,EsEtico ," +
                             "Activo ,UserInsert ,UserUpdate ,CreateDate ,UpdateDate  FROM dbo.invProducto WHERE 1=2";
 
@@ -218,6 +221,24 @@ namespace CI.DAC
             DataSet DS = new DataSet();
             oAdap.Fill(DS);
             DS.Tables[0].TableName = "Data";
+            return DS;
+        }
+
+        public static DataSet GetlstProvedores(long IDProveedor, String Nombre, int IDCategoria)
+        {
+            String strSQL = "dbo.cppGetProveedor";
+
+            SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());
+
+            oCmd.Parameters.Add(new SqlParameter("@IDProveedor", IDProveedor));
+            oCmd.Parameters.Add(new SqlParameter("@Nombre", Nombre));
+            oCmd.Parameters.Add(new SqlParameter("@IDCategoria", IDCategoria));
+            oCmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter oAdap = new SqlDataAdapter(oCmd);
+            DataSet DS = new DataSet();
+
+            oAdap.Fill(DS, "Data");
             return DS;
         }
 

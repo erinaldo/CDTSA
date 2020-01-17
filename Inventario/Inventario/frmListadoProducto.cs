@@ -22,9 +22,6 @@ namespace CI
         public int _iEsControlado;
         public int _iEsMuestra;
         public int _iEsEtico;
-        public int _iBajaPrecioDistribuidor;
-        public int _iBajaPrecioProveedor;
-        public int _iBonificaFactura;
         public int _TipoImpuesto;
         public int _iClasificacion1;
         public int _iClasificacion2;
@@ -94,9 +91,6 @@ namespace CI
                 _iEsControlado = -1;
                 _iEsEtico = -1;
                 _iEsMuestra = -1;
-                _iBajaPrecioDistribuidor = -1;
-                _iBajaPrecioProveedor = -1;
-                _iBonificaFactura = -1;
                 _TipoImpuesto = -1;
                 _iClasificacion1 = -1;
                 _iClasificacion2 = -1;
@@ -107,8 +101,8 @@ namespace CI
 
 
                 sSql = "SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra ,IDUnidad ,FactorEmpaque,IDCuentaContable ,TipoImpuesto ," +
-                        "EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ," +
-                        "BonificaCOCantidad , Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate  FROM dbo.invProducto";
+                        "EsMuestra ,EsControlado ,EsEtico," +
+                        " Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate  FROM dbo.invProducto";
               
 
                 this.gridView.FocusedRowChanged += GridView_FocusedRowChanged;
@@ -153,7 +147,7 @@ namespace CI
 
         private void BtnFiltro_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            frmFiltroProducto ofrmFiltro = new frmFiltroProducto(_IDProducto,_Descripcion,_Alias,_CodigoBarra,_iEsControlado,_iEsMuestra,_iEsEtico,_iBajaPrecioDistribuidor,_iBajaPrecioProveedor,_iBonificaFactura,_TipoImpuesto,_iClasificacion1,_iClasificacion2,_iClasificacion3,_iClasificacion4,_iClasificacion5,_iClasificacion6);
+            frmFiltroProducto ofrmFiltro = new frmFiltroProducto(_IDProducto,_Descripcion,_Alias,_CodigoBarra,_iEsControlado,_iEsMuestra,_iEsEtico,_TipoImpuesto,_iClasificacion1,_iClasificacion2,_iClasificacion3,_iClasificacion4,_iClasificacion5,_iClasificacion6);
             ofrmFiltro.FormClosed += OfrmFiltro_FormClosed;
             ofrmFiltro.ShowDialog();
         }
@@ -170,9 +164,6 @@ namespace CI
             _iEsControlado = ofrmFiltro.iEsControlado;
             _iEsEtico = ofrmFiltro.iEsEtico;
             _iEsMuestra = ofrmFiltro.iEsMuestra;
-            _iBajaPrecioDistribuidor = ofrmFiltro.iBajaPrecioDistribuidor;
-            _iBajaPrecioProveedor = ofrmFiltro.iBajaPrecioProveedor;
-            _iBonificaFactura = ofrmFiltro.iBonificaFactura;
             _TipoImpuesto = ofrmFiltro.TipoImpuesto;
             _iClasificacion1 = ofrmFiltro.iClasificacion1;
             _iClasificacion2 = ofrmFiltro.iClasificacion2;
@@ -196,12 +187,6 @@ namespace CI
                 sWhereSql = string.Format("{0}  EsEtico= 0 and ", sWhereSql);
             if (_iEsMuestra == 0)
                 sWhereSql = string.Format("{0}  EsMuestra= 0 and ", sWhereSql);
-            if (_iBajaPrecioDistribuidor == 0)
-                sWhereSql = string.Format("{0}  BajaPrecioDistribuidor= 0 and ", sWhereSql);
-            if (_iBajaPrecioProveedor == 0)
-                sWhereSql = string.Format("{0}  BajaPrecioProveedor = 0 and ", sWhereSql);
-            if (_iBonificaFactura == 0)
-                sWhereSql = string.Format("{0}  BonificaFA = 0 and ", sWhereSql);
             if (_TipoImpuesto != -1)
                 sWhereSql = string.Format("{0}  TipoImpuesto = {1} and ", sWhereSql,_TipoImpuesto);
             if (_iClasificacion1 != -1)

@@ -21,9 +21,6 @@ namespace CI
         public int iEsControlado {get;set;}
         public int iEsMuestra {get;set;}
         public int iEsEtico {get;set;}
-        public int iBajaPrecioDistribuidor{get;set;}
-        public int iBajaPrecioProveedor{get;set;}
-        public int iBonificaFactura {get;set;}
         public int TipoImpuesto {get;set;}
         public int iClasificacion1 {get;set;}
         public int iClasificacion2 {get;set;}
@@ -43,8 +40,7 @@ namespace CI
         }
 
         public frmFiltroProducto(int IDProducto,String sDescripcion, String sAlias,String sCodigoBarra, int iEsControlado,int iEsMuestra,int iEsEstico,
-                                        int iBajaPrecioDistribuidor,int iBajaPrecioProveedor, int iBonificaFactura,int iTipoImpuesto, int iClasificacion1,
-                                int iClasificacion2, int iClasificacion3,int iClasificacion4 , int iClasificacion5, int iClasificacion6)
+                                 int iTipoImpuesto, int iClasificacion1,int iClasificacion2, int iClasificacion3,int iClasificacion4 , int iClasificacion5, int iClasificacion6)
         {
             InitializeComponent();
             this.IDProducto = IDProducto;
@@ -54,9 +50,6 @@ namespace CI
             this.iEsControlado = iEsControlado;
             this.iEsEtico = iEsEstico;
             this.iEsMuestra = iEsMuestra;
-            this.iBajaPrecioDistribuidor = iBajaPrecioDistribuidor;
-            this.iBajaPrecioProveedor = iBajaPrecioProveedor;
-            this.iBonificaFactura = iBonificaFactura;
             this.TipoImpuesto = iTipoImpuesto;
             this.iClasificacion1 = iClasificacion1;
             this.iClasificacion2 = iClasificacion2;
@@ -105,9 +98,6 @@ namespace CI
             this.chkEsControlado.EditValue = Convert.ToBoolean(this.iEsControlado);
             this.chkEsMuestra.EditValue = Convert.ToBoolean(this.iEsMuestra);
             this.chkEsEtico.EditValue = Convert.ToBoolean(this.iEsEtico);
-            this.chkBajaPrecioDistribuidor.EditValue = Convert.ToBoolean(this.iBajaPrecioDistribuidor);
-            this.chkBajaPrecioProveedor.EditValue = Convert.ToBoolean(this.iBajaPrecioProveedor);
-            this.chkBonificaFactura.EditValue = Convert.ToBoolean(this.iBonificaFactura);
             this.slkImpuesto.EditValue = Convert.ToInt32(this.TipoImpuesto);
             this.slkupClasificacion1.EditValue = Convert.ToInt32(this.iClasificacion1);
             this.slkupClasificacion2.EditValue = Convert.ToInt32(this.iClasificacion2);
@@ -149,9 +139,6 @@ namespace CI
             this.iEsControlado = Convert.ToInt32(this.chkEsControlado.EditValue);
             this.iEsMuestra = Convert.ToInt32(this.chkEsMuestra.EditValue);
             this.iEsEtico = Convert.ToInt32(this.chkEsEtico.EditValue);
-            this.iBajaPrecioDistribuidor = Convert.ToInt32(this.chkBajaPrecioDistribuidor.EditValue);
-            this.iBajaPrecioProveedor = Convert.ToInt32(this.chkBajaPrecioProveedor.EditValue);
-            this.iBonificaFactura = Convert.ToInt32(this.chkBonificaFactura.EditValue);
             this.TipoImpuesto = (this.slkImpuesto.EditValue==null) ? -1: Convert.ToInt32(this.slkImpuesto.EditValue);
             this.iClasificacion1 = (this.slkupClasificacion1.EditValue == null) ? -1 : Convert.ToInt32(this.slkupClasificacion1.EditValue);
             this.iClasificacion2 =(this.slkupClasificacion2.EditValue==null) ? -1: Convert.ToInt32(this.slkupClasificacion2.EditValue);
@@ -176,9 +163,6 @@ namespace CI
         private void btnTodos_Click(object sender, EventArgs e)
         {
             //limpiar filtros
-            this.chkBajaPrecioDistribuidor.EditValue = true;
-            this.chkBajaPrecioProveedor.EditValue = true;
-            this.chkBonificaFactura.EditValue = true;
             this.chkEsControlado.EditValue = true;
             this.chkEsEtico.EditValue = true;
             this.chkEsMuestra.EditValue = true;
@@ -195,6 +179,11 @@ namespace CI
             this.slkupClasificacion6.EditValue = null;
             ObtenerFiltro();
             this.Close();
+        }
+
+        private void frmFiltroProducto_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
