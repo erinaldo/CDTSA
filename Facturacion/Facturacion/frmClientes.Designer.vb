@@ -22,11 +22,7 @@ Partial Class frmClientes
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmClientes))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.chkCredito = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkEditaNombre = New DevExpress.XtraEditors.CheckEdit()
-        Me.gridLookUpMoneda = New DevExpress.XtraEditors.GridLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gridLookUpNivel = New DevExpress.XtraEditors.GridLookUpEdit()
+        Me.SearchLookUpEditClienteCorp = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.BarButtonNuevo = New DevExpress.XtraBars.BarButtonItem()
@@ -57,6 +53,14 @@ Partial Class frmClientes
         Me.BarButtonItem9 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonFind = New DevExpress.XtraBars.BarButtonItem()
         Me.BarSubItem6 = New DevExpress.XtraBars.BarSubItem()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.chkMiembroCorp = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkCorporativo = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkCredito = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkEditaNombre = New DevExpress.XtraEditors.CheckEdit()
+        Me.gridLookUpMoneda = New DevExpress.XtraEditors.GridLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gridLookUpNivel = New DevExpress.XtraEditors.GridLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PictureBoxFoto = New System.Windows.Forms.PictureBox()
         Me.txtIDCliente = New DevExpress.XtraEditors.TextEdit()
@@ -130,26 +134,26 @@ Partial Class frmClientes
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup6 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.chkCorporativo = New DevExpress.XtraEditors.CheckEdit()
-        Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.chkMiembroCorp = New DevExpress.XtraEditors.CheckEdit()
-        Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SearchLookUpEditClienteCorp = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.SearchLookUpEditClienteCorp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkMiembroCorp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkCorporativo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCredito.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkEditaNombre.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridLookUpMoneda.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridLookUpNivel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBoxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtIDCliente.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,17 +228,13 @@ Partial Class frmClientes
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkCorporativo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkMiembroCorp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEditClienteCorp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -281,51 +281,16 @@ Partial Class frmClientes
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'chkCredito
+        'SearchLookUpEditClienteCorp
         '
-        Me.chkCredito.Location = New System.Drawing.Point(24, 120)
-        Me.chkCredito.Name = "chkCredito"
-        Me.chkCredito.Properties.Caption = "Cliente de Crédito"
-        Me.chkCredito.Size = New System.Drawing.Size(176, 19)
-        Me.chkCredito.StyleController = Me.LayoutControl1
-        Me.chkCredito.TabIndex = 40
-        '
-        'chkEditaNombre
-        '
-        Me.chkEditaNombre.Location = New System.Drawing.Point(204, 120)
-        Me.chkEditaNombre.Name = "chkEditaNombre"
-        Me.chkEditaNombre.Properties.Caption = "Se puede Editar su Nombre al Facturar"
-        Me.chkEditaNombre.Size = New System.Drawing.Size(211, 19)
-        Me.chkEditaNombre.StyleController = Me.LayoutControl1
-        Me.chkEditaNombre.TabIndex = 39
-        '
-        'gridLookUpMoneda
-        '
-        Me.gridLookUpMoneda.Location = New System.Drawing.Point(442, 206)
-        Me.gridLookUpMoneda.Name = "gridLookUpMoneda"
-        Me.gridLookUpMoneda.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.gridLookUpMoneda.Properties.View = Me.GridView3
-        Me.gridLookUpMoneda.Size = New System.Drawing.Size(124, 20)
-        Me.gridLookUpMoneda.StyleController = Me.LayoutControl1
-        Me.gridLookUpMoneda.TabIndex = 38
-        '
-        'GridView3
-        '
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'gridLookUpNivel
-        '
-        Me.gridLookUpNivel.Location = New System.Drawing.Point(121, 206)
-        Me.gridLookUpNivel.MenuManager = Me.BarManager1
-        Me.gridLookUpNivel.Name = "gridLookUpNivel"
-        Me.gridLookUpNivel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.gridLookUpNivel.Properties.View = Me.GridView2
-        Me.gridLookUpNivel.Size = New System.Drawing.Size(220, 20)
-        Me.gridLookUpNivel.StyleController = Me.LayoutControl1
-        Me.gridLookUpNivel.TabIndex = 37
+        Me.SearchLookUpEditClienteCorp.Location = New System.Drawing.Point(655, 230)
+        Me.SearchLookUpEditClienteCorp.MenuManager = Me.BarManager1
+        Me.SearchLookUpEditClienteCorp.Name = "SearchLookUpEditClienteCorp"
+        Me.SearchLookUpEditClienteCorp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SearchLookUpEditClienteCorp.Properties.View = Me.SearchLookUpEdit1View
+        Me.SearchLookUpEditClienteCorp.Size = New System.Drawing.Size(195, 20)
+        Me.SearchLookUpEditClienteCorp.StyleController = Me.LayoutControl1
+        Me.SearchLookUpEditClienteCorp.TabIndex = 43
         '
         'BarManager1
         '
@@ -555,6 +520,81 @@ Partial Class frmClientes
         Me.BarSubItem6.Id = 18
         Me.BarSubItem6.Name = "BarSubItem6"
         '
+        'SearchLookUpEdit1View
+        '
+        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
+        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'chkMiembroCorp
+        '
+        Me.chkMiembroCorp.Location = New System.Drawing.Point(423, 230)
+        Me.chkMiembroCorp.MenuManager = Me.BarManager1
+        Me.chkMiembroCorp.Name = "chkMiembroCorp"
+        Me.chkMiembroCorp.Properties.Caption = "Miembro Corporativo"
+        Me.chkMiembroCorp.Size = New System.Drawing.Size(131, 19)
+        Me.chkMiembroCorp.StyleController = Me.LayoutControl1
+        Me.chkMiembroCorp.TabIndex = 42
+        '
+        'chkCorporativo
+        '
+        Me.chkCorporativo.Location = New System.Drawing.Point(338, 230)
+        Me.chkCorporativo.MenuManager = Me.BarManager1
+        Me.chkCorporativo.Name = "chkCorporativo"
+        Me.chkCorporativo.Properties.Caption = "Corporativo"
+        Me.chkCorporativo.Size = New System.Drawing.Size(81, 19)
+        Me.chkCorporativo.StyleController = Me.LayoutControl1
+        Me.chkCorporativo.TabIndex = 41
+        Me.chkCorporativo.ToolTip = "Es un Cliente que agruipa a varios Clientres Miembros de una Corporacion de Clien" & _
+    "tes"
+        '
+        'chkCredito
+        '
+        Me.chkCredito.Location = New System.Drawing.Point(24, 120)
+        Me.chkCredito.Name = "chkCredito"
+        Me.chkCredito.Properties.Caption = "Cliente de Crédito"
+        Me.chkCredito.Size = New System.Drawing.Size(153, 19)
+        Me.chkCredito.StyleController = Me.LayoutControl1
+        Me.chkCredito.TabIndex = 40
+        '
+        'chkEditaNombre
+        '
+        Me.chkEditaNombre.Location = New System.Drawing.Point(181, 120)
+        Me.chkEditaNombre.Name = "chkEditaNombre"
+        Me.chkEditaNombre.Properties.Caption = "Se puede Editar su Nombre al Facturar"
+        Me.chkEditaNombre.Size = New System.Drawing.Size(211, 19)
+        Me.chkEditaNombre.StyleController = Me.LayoutControl1
+        Me.chkEditaNombre.TabIndex = 39
+        '
+        'gridLookUpMoneda
+        '
+        Me.gridLookUpMoneda.Location = New System.Drawing.Point(435, 206)
+        Me.gridLookUpMoneda.Name = "gridLookUpMoneda"
+        Me.gridLookUpMoneda.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.gridLookUpMoneda.Properties.View = Me.GridView3
+        Me.gridLookUpMoneda.Size = New System.Drawing.Size(119, 20)
+        Me.gridLookUpMoneda.StyleController = Me.LayoutControl1
+        Me.gridLookUpMoneda.TabIndex = 38
+        '
+        'GridView3
+        '
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'gridLookUpNivel
+        '
+        Me.gridLookUpNivel.Location = New System.Drawing.Point(121, 206)
+        Me.gridLookUpNivel.MenuManager = Me.BarManager1
+        Me.gridLookUpNivel.Name = "gridLookUpNivel"
+        Me.gridLookUpNivel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.gridLookUpNivel.Properties.View = Me.GridView2
+        Me.gridLookUpNivel.Size = New System.Drawing.Size(213, 20)
+        Me.gridLookUpNivel.StyleController = Me.LayoutControl1
+        Me.gridLookUpNivel.TabIndex = 37
+        '
         'GridView2
         '
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
@@ -565,9 +605,9 @@ Partial Class frmClientes
         'PictureBoxFoto
         '
         Me.PictureBoxFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBoxFoto.Location = New System.Drawing.Point(748, 48)
+        Me.PictureBoxFoto.Location = New System.Drawing.Point(750, 48)
         Me.PictureBoxFoto.Name = "PictureBoxFoto"
-        Me.PictureBoxFoto.Size = New System.Drawing.Size(102, 91)
+        Me.PictureBoxFoto.Size = New System.Drawing.Size(100, 91)
         Me.PictureBoxFoto.TabIndex = 36
         Me.PictureBoxFoto.TabStop = False
         '
@@ -575,7 +615,7 @@ Partial Class frmClientes
         '
         Me.txtIDCliente.Location = New System.Drawing.Point(121, 48)
         Me.txtIDCliente.Name = "txtIDCliente"
-        Me.txtIDCliente.Size = New System.Drawing.Size(61, 20)
+        Me.txtIDCliente.Size = New System.Drawing.Size(56, 20)
         Me.txtIDCliente.StyleController = Me.LayoutControl1
         Me.txtIDCliente.TabIndex = 35
         '
@@ -583,24 +623,24 @@ Partial Class frmClientes
         '
         Me.txtCedula.Location = New System.Drawing.Point(121, 494)
         Me.txtCedula.Name = "txtCedula"
-        Me.txtCedula.Size = New System.Drawing.Size(103, 20)
+        Me.txtCedula.Size = New System.Drawing.Size(99, 20)
         Me.txtCedula.StyleController = Me.LayoutControl1
         Me.txtCedula.TabIndex = 33
         '
         'chkActivo
         '
-        Me.chkActivo.Location = New System.Drawing.Point(691, 48)
+        Me.chkActivo.Location = New System.Drawing.Point(672, 48)
         Me.chkActivo.Name = "chkActivo"
         Me.chkActivo.Properties.Caption = "Activo"
-        Me.chkActivo.Size = New System.Drawing.Size(53, 19)
+        Me.chkActivo.Size = New System.Drawing.Size(74, 19)
         Me.chkActivo.StyleController = Me.LayoutControl1
         Me.chkActivo.TabIndex = 32
         '
         'MemoEditDireccion
         '
-        Me.MemoEditDireccion.Location = New System.Drawing.Point(325, 446)
+        Me.MemoEditDireccion.Location = New System.Drawing.Point(321, 446)
         Me.MemoEditDireccion.Name = "MemoEditDireccion"
-        Me.MemoEditDireccion.Size = New System.Drawing.Size(525, 68)
+        Me.MemoEditDireccion.Size = New System.Drawing.Size(529, 68)
         Me.MemoEditDireccion.StyleController = Me.LayoutControl1
         Me.MemoEditDireccion.TabIndex = 31
         '
@@ -608,17 +648,17 @@ Partial Class frmClientes
         '
         Me.txtCelular.Location = New System.Drawing.Point(121, 470)
         Me.txtCelular.Name = "txtCelular"
-        Me.txtCelular.Size = New System.Drawing.Size(103, 20)
+        Me.txtCelular.Size = New System.Drawing.Size(99, 20)
         Me.txtCelular.StyleController = Me.LayoutControl1
         Me.txtCelular.TabIndex = 30
         '
         'gridLookUpPlazo
         '
-        Me.gridLookUpPlazo.Location = New System.Drawing.Point(667, 206)
+        Me.gridLookUpPlazo.Location = New System.Drawing.Point(655, 206)
         Me.gridLookUpPlazo.Name = "gridLookUpPlazo"
         Me.gridLookUpPlazo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridLookUpPlazo.Properties.View = Me.GridView1
-        Me.gridLookUpPlazo.Size = New System.Drawing.Size(183, 20)
+        Me.gridLookUpPlazo.Size = New System.Drawing.Size(195, 20)
         Me.gridLookUpPlazo.StyleController = Me.LayoutControl1
         Me.gridLookUpPlazo.TabIndex = 29
         '
@@ -647,11 +687,11 @@ Partial Class frmClientes
         '
         'txtInteres
         '
-        Me.txtInteres.Location = New System.Drawing.Point(291, 230)
+        Me.txtInteres.Location = New System.Drawing.Point(283, 230)
         Me.txtInteres.Name = "txtInteres"
         Me.txtInteres.Properties.Mask.EditMask = "n"
         Me.txtInteres.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtInteres.Size = New System.Drawing.Size(50, 20)
+        Me.txtInteres.Size = New System.Drawing.Size(51, 20)
         Me.txtInteres.StyleController = Me.LayoutControl1
         Me.txtInteres.TabIndex = 26
         '
@@ -659,7 +699,7 @@ Partial Class frmClientes
         '
         Me.txtTelefono.Location = New System.Drawing.Point(121, 446)
         Me.txtTelefono.Name = "txtTelefono"
-        Me.txtTelefono.Size = New System.Drawing.Size(103, 20)
+        Me.txtTelefono.Size = New System.Drawing.Size(99, 20)
         Me.txtTelefono.StyleController = Me.LayoutControl1
         Me.txtTelefono.TabIndex = 25
         '
@@ -675,11 +715,11 @@ Partial Class frmClientes
         'DateEditIngreso
         '
         Me.DateEditIngreso.EditValue = Nothing
-        Me.DateEditIngreso.Location = New System.Drawing.Point(633, 96)
+        Me.DateEditIngreso.Location = New System.Drawing.Point(632, 96)
         Me.DateEditIngreso.Name = "DateEditIngreso"
         Me.DateEditIngreso.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DateEditIngreso.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEditIngreso.Size = New System.Drawing.Size(111, 20)
+        Me.DateEditIngreso.Size = New System.Drawing.Size(114, 20)
         Me.DateEditIngreso.StyleController = Me.LayoutControl1
         Me.DateEditIngreso.TabIndex = 22
         '
@@ -697,7 +737,7 @@ Partial Class frmClientes
         Me.gridlookupSucursal.Name = "gridlookupSucursal"
         Me.gridlookupSucursal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupSucursal.Properties.View = Me.GridLookUpEdit8View
-        Me.gridlookupSucursal.Size = New System.Drawing.Size(310, 20)
+        Me.gridlookupSucursal.Size = New System.Drawing.Size(300, 20)
         Me.gridlookupSucursal.StyleController = Me.LayoutControl1
         Me.gridlookupSucursal.TabIndex = 18
         '
@@ -714,7 +754,7 @@ Partial Class frmClientes
         Me.txtLimite.Name = "txtLimite"
         Me.txtLimite.Properties.Mask.EditMask = "n2"
         Me.txtLimite.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtLimite.Size = New System.Drawing.Size(69, 20)
+        Me.txtLimite.Size = New System.Drawing.Size(61, 20)
         Me.txtLimite.StyleController = Me.LayoutControl1
         Me.txtLimite.TabIndex = 17
         '
@@ -724,7 +764,7 @@ Partial Class frmClientes
         Me.gridlookupTipo.Name = "gridlookupTipo"
         Me.gridlookupTipo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupTipo.Properties.View = Me.GridLookUpEdit7View
-        Me.gridlookupTipo.Size = New System.Drawing.Size(134, 20)
+        Me.gridlookupTipo.Size = New System.Drawing.Size(133, 20)
         Me.gridlookupTipo.StyleController = Me.LayoutControl1
         Me.gridlookupTipo.TabIndex = 16
         '
@@ -737,19 +777,19 @@ Partial Class frmClientes
         '
         'txtRuc
         '
-        Me.txtRuc.Location = New System.Drawing.Point(633, 72)
+        Me.txtRuc.Location = New System.Drawing.Point(632, 72)
         Me.txtRuc.Name = "txtRuc"
-        Me.txtRuc.Size = New System.Drawing.Size(111, 20)
+        Me.txtRuc.Size = New System.Drawing.Size(114, 20)
         Me.txtRuc.StyleController = Me.LayoutControl1
         Me.txtRuc.TabIndex = 15
         '
         'gridlookupSubZona
         '
-        Me.gridlookupSubZona.Location = New System.Drawing.Point(532, 326)
+        Me.gridlookupSubZona.Location = New System.Drawing.Point(522, 326)
         Me.gridlookupSubZona.Name = "gridlookupSubZona"
         Me.gridlookupSubZona.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupSubZona.Properties.View = Me.GridLookUpEdit6View
-        Me.gridlookupSubZona.Size = New System.Drawing.Size(318, 20)
+        Me.gridlookupSubZona.Size = New System.Drawing.Size(328, 20)
         Me.gridlookupSubZona.StyleController = Me.LayoutControl1
         Me.gridlookupSubZona.TabIndex = 14
         '
@@ -766,7 +806,7 @@ Partial Class frmClientes
         Me.gridlookupZona.Name = "gridlookupZona"
         Me.gridlookupZona.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupZona.Properties.View = Me.GridLookUpEdit5View
-        Me.gridlookupZona.Size = New System.Drawing.Size(310, 20)
+        Me.gridlookupZona.Size = New System.Drawing.Size(300, 20)
         Me.gridlookupZona.StyleController = Me.LayoutControl1
         Me.gridlookupZona.TabIndex = 13
         '
@@ -779,11 +819,11 @@ Partial Class frmClientes
         '
         'gridlookupMunicipio
         '
-        Me.gridlookupMunicipio.Location = New System.Drawing.Point(532, 302)
+        Me.gridlookupMunicipio.Location = New System.Drawing.Point(522, 302)
         Me.gridlookupMunicipio.Name = "gridlookupMunicipio"
         Me.gridlookupMunicipio.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupMunicipio.Properties.View = Me.GridLookUpEdit4View
-        Me.gridlookupMunicipio.Size = New System.Drawing.Size(318, 20)
+        Me.gridlookupMunicipio.Size = New System.Drawing.Size(328, 20)
         Me.gridlookupMunicipio.StyleController = Me.LayoutControl1
         Me.gridlookupMunicipio.TabIndex = 12
         '
@@ -800,7 +840,7 @@ Partial Class frmClientes
         Me.gridlookupDepto.Name = "gridlookupDepto"
         Me.gridlookupDepto.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupDepto.Properties.View = Me.GridLookUpEdit3View
-        Me.gridlookupDepto.Size = New System.Drawing.Size(310, 20)
+        Me.gridlookupDepto.Size = New System.Drawing.Size(300, 20)
         Me.gridlookupDepto.StyleController = Me.LayoutControl1
         Me.gridlookupDepto.TabIndex = 11
         '
@@ -813,11 +853,11 @@ Partial Class frmClientes
         '
         'gridlookupVendedor
         '
-        Me.gridlookupVendedor.Location = New System.Drawing.Point(532, 350)
+        Me.gridlookupVendedor.Location = New System.Drawing.Point(522, 350)
         Me.gridlookupVendedor.Name = "gridlookupVendedor"
         Me.gridlookupVendedor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.gridlookupVendedor.Properties.View = Me.GridLookUpEdit2View
-        Me.gridlookupVendedor.Size = New System.Drawing.Size(318, 20)
+        Me.gridlookupVendedor.Size = New System.Drawing.Size(328, 20)
         Me.gridlookupVendedor.StyleController = Me.LayoutControl1
         Me.gridlookupVendedor.TabIndex = 10
         '
@@ -830,7 +870,7 @@ Partial Class frmClientes
         '
         'GridLookUpCategoria
         '
-        Me.GridLookUpCategoria.Location = New System.Drawing.Point(356, 96)
+        Me.GridLookUpCategoria.Location = New System.Drawing.Point(355, 96)
         Me.GridLookUpCategoria.Name = "GridLookUpCategoria"
         Me.GridLookUpCategoria.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.GridLookUpCategoria.Properties.View = Me.GridLookUpEdit1View
@@ -849,15 +889,15 @@ Partial Class frmClientes
         '
         Me.txtFarmacia.Location = New System.Drawing.Point(201, 72)
         Me.txtFarmacia.Name = "txtFarmacia"
-        Me.txtFarmacia.Size = New System.Drawing.Size(331, 20)
+        Me.txtFarmacia.Size = New System.Drawing.Size(330, 20)
         Me.txtFarmacia.StyleController = Me.LayoutControl1
         Me.txtFarmacia.TabIndex = 8
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(283, 48)
+        Me.txtNombre.Location = New System.Drawing.Point(278, 48)
         Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(404, 20)
+        Me.txtNombre.Size = New System.Drawing.Size(390, 20)
         Me.txtNombre.StyleController = Me.LayoutControl1
         Me.txtNombre.TabIndex = 6
         '
@@ -875,7 +915,7 @@ Partial Class frmClientes
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.CaptionImage = CType(resources.GetObject("LayoutControlGroup2.CaptionImage"), System.Drawing.Image)
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem11, Me.LayoutControlItem18, Me.LayoutControlItem26, Me.EmptySpaceItem4, Me.LayoutControlItem25, Me.LayoutControlItem23, Me.LayoutControlItem30, Me.LayoutControlItem29})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem11, Me.LayoutControlItem18, Me.LayoutControlItem26, Me.LayoutControlItem25, Me.LayoutControlItem23, Me.LayoutControlItem29, Me.EmptySpaceItem4, Me.LayoutControlItem30})
         Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(854, 143)
@@ -886,16 +926,16 @@ Partial Class frmClientes
         Me.LayoutControlItem1.Control = Me.txtFarmacia
         Me.LayoutControlItem1.Location = New System.Drawing.Point(80, 24)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(432, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(431, 24)
         Me.LayoutControlItem1.Text = "Nombre Farmacia"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.txtNombre
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(162, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(157, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(505, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(491, 24)
         Me.LayoutControlItem3.Text = "Nombre"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -904,14 +944,14 @@ Partial Class frmClientes
         Me.LayoutControlItem12.Control = Me.gridlookupTipo
         Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(235, 24)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(234, 24)
         Me.LayoutControlItem12.Text = "Tipo"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.GridLookUpCategoria
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(235, 48)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(234, 48)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(277, 24)
         Me.LayoutControlItem5.Text = "Categoria"
@@ -929,18 +969,18 @@ Partial Class frmClientes
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.txtRuc
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(512, 24)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(511, 24)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(212, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(215, 24)
         Me.LayoutControlItem11.Text = "RUC"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem18
         '
         Me.LayoutControlItem18.Control = Me.DateEditIngreso
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(512, 48)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(511, 48)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(212, 24)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(215, 24)
         Me.LayoutControlItem18.Text = "Ingreso"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -949,42 +989,45 @@ Partial Class frmClientes
         Me.LayoutControlItem26.Control = Me.txtIDCliente
         Me.LayoutControlItem26.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
-        Me.LayoutControlItem26.Size = New System.Drawing.Size(162, 24)
+        Me.LayoutControlItem26.Size = New System.Drawing.Size(157, 24)
         Me.LayoutControlItem26.Text = "Código"
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(94, 13)
         '
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(395, 72)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(372, 72)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(329, 23)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(354, 23)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem25
         '
         Me.LayoutControlItem25.Control = Me.PictureBoxFoto
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(724, 0)
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(726, 0)
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
-        Me.LayoutControlItem25.Size = New System.Drawing.Size(106, 95)
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(104, 95)
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem25.TextVisible = False
         '
         'LayoutControlItem23
         '
         Me.LayoutControlItem23.Control = Me.chkActivo
-        Me.LayoutControlItem23.Location = New System.Drawing.Point(667, 0)
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(648, 0)
         Me.LayoutControlItem23.Name = "LayoutControlItem23"
-        Me.LayoutControlItem23.Size = New System.Drawing.Size(57, 24)
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(78, 24)
         Me.LayoutControlItem23.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem23.TextVisible = False
         '
         'LayoutControlItem30
         '
         Me.LayoutControlItem30.Control = Me.chkEditaNombre
-        Me.LayoutControlItem30.Location = New System.Drawing.Point(180, 72)
+        Me.LayoutControlItem30.Location = New System.Drawing.Point(157, 72)
+        Me.LayoutControlItem30.MaxSize = New System.Drawing.Size(215, 23)
+        Me.LayoutControlItem30.MinSize = New System.Drawing.Size(215, 23)
         Me.LayoutControlItem30.Name = "LayoutControlItem30"
         Me.LayoutControlItem30.Size = New System.Drawing.Size(215, 23)
+        Me.LayoutControlItem30.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem30.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem30.TextVisible = False
         '
@@ -993,7 +1036,7 @@ Partial Class frmClientes
         Me.LayoutControlItem29.Control = Me.chkCredito
         Me.LayoutControlItem29.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem29.Name = "LayoutControlItem29"
-        Me.LayoutControlItem29.Size = New System.Drawing.Size(180, 23)
+        Me.LayoutControlItem29.Size = New System.Drawing.Size(157, 23)
         Me.LayoutControlItem29.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem29.TextVisible = False
         '
@@ -1018,9 +1061,9 @@ Partial Class frmClientes
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.gridlookupMunicipio
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(411, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(401, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(419, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(429, 24)
         Me.LayoutControlItem8.Text = "Municipio"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1029,7 +1072,7 @@ Partial Class frmClientes
         Me.LayoutControlItem9.Control = Me.gridlookupZona
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(411, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(401, 24)
         Me.LayoutControlItem9.Text = "Zona"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1038,16 +1081,16 @@ Partial Class frmClientes
         Me.LayoutControlItem7.Control = Me.gridlookupDepto
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(411, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(401, 24)
         Me.LayoutControlItem7.Text = "Departamento"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.gridlookupSubZona
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(411, 24)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(401, 24)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(419, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(429, 24)
         Me.LayoutControlItem10.Text = "Subzona"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1056,16 +1099,16 @@ Partial Class frmClientes
         Me.LayoutControlItem14.Control = Me.gridlookupSucursal
         Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(411, 24)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(401, 24)
         Me.LayoutControlItem14.Text = "Sucursal"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.gridlookupVendedor
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(411, 48)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(401, 48)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(419, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(429, 24)
         Me.LayoutControlItem6.Text = "Vendedor"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1083,7 +1126,7 @@ Partial Class frmClientes
         Me.LayoutControlItem2.Control = Me.txtTelefono
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(204, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(200, 24)
         Me.LayoutControlItem2.Text = "Telefono"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1101,16 +1144,16 @@ Partial Class frmClientes
         Me.LayoutControlItem15.Control = Me.txtCelular
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(204, 24)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(200, 24)
         Me.LayoutControlItem15.Text = "Celular"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.MemoEditDireccion
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(204, 24)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(200, 24)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(626, 72)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(630, 72)
         Me.LayoutControlItem16.Text = "Dirección"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1119,7 +1162,7 @@ Partial Class frmClientes
         Me.LayoutControlItem24.Control = Me.txtCedula
         Me.LayoutControlItem24.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem24.Name = "LayoutControlItem24"
-        Me.LayoutControlItem24.Size = New System.Drawing.Size(204, 24)
+        Me.LayoutControlItem24.Size = New System.Drawing.Size(200, 24)
         Me.LayoutControlItem24.Text = "Cedula"
         Me.LayoutControlItem24.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1161,9 +1204,9 @@ Partial Class frmClientes
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.gridLookUpPlazo
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(546, 0)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(534, 0)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(284, 24)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(296, 24)
         Me.LayoutControlItem22.Text = "Plazo"
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1172,16 +1215,16 @@ Partial Class frmClientes
         Me.LayoutControlItem27.Control = Me.gridLookUpNivel
         Me.LayoutControlItem27.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(321, 24)
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(314, 24)
         Me.LayoutControlItem27.Text = "Nivel Precio"
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlItem28
         '
         Me.LayoutControlItem28.Control = Me.gridLookUpMoneda
-        Me.LayoutControlItem28.Location = New System.Drawing.Point(321, 0)
+        Me.LayoutControlItem28.Location = New System.Drawing.Point(314, 0)
         Me.LayoutControlItem28.Name = "LayoutControlItem28"
-        Me.LayoutControlItem28.Size = New System.Drawing.Size(225, 24)
+        Me.LayoutControlItem28.Size = New System.Drawing.Size(220, 24)
         Me.LayoutControlItem28.Text = "Moneda"
         Me.LayoutControlItem28.TextSize = New System.Drawing.Size(94, 13)
         '
@@ -1190,19 +1233,46 @@ Partial Class frmClientes
         Me.LayoutControlItem13.Control = Me.txtLimite
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(170, 24)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(162, 24)
         Me.LayoutControlItem13.Text = "Limite Credito"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem31
+        '
+        Me.LayoutControlItem31.Control = Me.chkCorporativo
+        Me.LayoutControlItem31.Location = New System.Drawing.Point(314, 24)
+        Me.LayoutControlItem31.Name = "LayoutControlItem31"
+        Me.LayoutControlItem31.Size = New System.Drawing.Size(85, 24)
+        Me.LayoutControlItem31.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem31.TextVisible = False
+        '
+        'LayoutControlItem32
+        '
+        Me.LayoutControlItem32.Control = Me.chkMiembroCorp
+        Me.LayoutControlItem32.Location = New System.Drawing.Point(399, 24)
+        Me.LayoutControlItem32.Name = "LayoutControlItem32"
+        Me.LayoutControlItem32.Size = New System.Drawing.Size(135, 24)
+        Me.LayoutControlItem32.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem32.TextVisible = False
         '
         'LayoutControlItem19
         '
         Me.LayoutControlItem19.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem19.Control = Me.txtInteres
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(170, 24)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(162, 24)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(151, 24)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(152, 24)
         Me.LayoutControlItem19.Text = "% Interes"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem33
+        '
+        Me.LayoutControlItem33.Control = Me.SearchLookUpEditClienteCorp
+        Me.LayoutControlItem33.Location = New System.Drawing.Point(534, 24)
+        Me.LayoutControlItem33.Name = "LayoutControlItem33"
+        Me.LayoutControlItem33.Size = New System.Drawing.Size(296, 24)
+        Me.LayoutControlItem33.Text = "Cliente Corporación"
+        Me.LayoutControlItem33.TextSize = New System.Drawing.Size(94, 13)
         '
         'LayoutControlGroup5
         '
@@ -1224,73 +1294,6 @@ Partial Class frmClientes
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(977, 10)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
-        'chkCorporativo
-        '
-        Me.chkCorporativo.Location = New System.Drawing.Point(345, 230)
-        Me.chkCorporativo.MenuManager = Me.BarManager1
-        Me.chkCorporativo.Name = "chkCorporativo"
-        Me.chkCorporativo.Properties.Caption = "Corporativo"
-        Me.chkCorporativo.Size = New System.Drawing.Size(83, 19)
-        Me.chkCorporativo.StyleController = Me.LayoutControl1
-        Me.chkCorporativo.TabIndex = 41
-        Me.chkCorporativo.ToolTip = "Es un Cliente que agruipa a varios Clientres Miembros de una Corporacion de Clien" & _
-    "tes"
-        '
-        'LayoutControlItem31
-        '
-        Me.LayoutControlItem31.Control = Me.chkCorporativo
-        Me.LayoutControlItem31.Location = New System.Drawing.Point(321, 24)
-        Me.LayoutControlItem31.Name = "LayoutControlItem31"
-        Me.LayoutControlItem31.Size = New System.Drawing.Size(87, 24)
-        Me.LayoutControlItem31.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem31.TextVisible = False
-        '
-        'chkMiembroCorp
-        '
-        Me.chkMiembroCorp.Location = New System.Drawing.Point(432, 230)
-        Me.chkMiembroCorp.MenuManager = Me.BarManager1
-        Me.chkMiembroCorp.Name = "chkMiembroCorp"
-        Me.chkMiembroCorp.Properties.Caption = "Miembro Corporativo"
-        Me.chkMiembroCorp.Size = New System.Drawing.Size(134, 19)
-        Me.chkMiembroCorp.StyleController = Me.LayoutControl1
-        Me.chkMiembroCorp.TabIndex = 42
-        '
-        'LayoutControlItem32
-        '
-        Me.LayoutControlItem32.Control = Me.chkMiembroCorp
-        Me.LayoutControlItem32.Location = New System.Drawing.Point(408, 24)
-        Me.LayoutControlItem32.Name = "LayoutControlItem32"
-        Me.LayoutControlItem32.Size = New System.Drawing.Size(138, 24)
-        Me.LayoutControlItem32.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem32.TextVisible = False
-        '
-        'SearchLookUpEditClienteCorp
-        '
-        Me.SearchLookUpEditClienteCorp.Location = New System.Drawing.Point(667, 230)
-        Me.SearchLookUpEditClienteCorp.MenuManager = Me.BarManager1
-        Me.SearchLookUpEditClienteCorp.Name = "SearchLookUpEditClienteCorp"
-        Me.SearchLookUpEditClienteCorp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEditClienteCorp.Properties.View = Me.SearchLookUpEdit1View
-        Me.SearchLookUpEditClienteCorp.Size = New System.Drawing.Size(183, 20)
-        Me.SearchLookUpEditClienteCorp.StyleController = Me.LayoutControl1
-        Me.SearchLookUpEditClienteCorp.TabIndex = 43
-        '
-        'LayoutControlItem33
-        '
-        Me.LayoutControlItem33.Control = Me.SearchLookUpEditClienteCorp
-        Me.LayoutControlItem33.Location = New System.Drawing.Point(546, 24)
-        Me.LayoutControlItem33.Name = "LayoutControlItem33"
-        Me.LayoutControlItem33.Size = New System.Drawing.Size(284, 24)
-        Me.LayoutControlItem33.Text = "Cliente Corporación"
-        Me.LayoutControlItem33.TextSize = New System.Drawing.Size(94, 13)
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
         'frmClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1307,13 +1310,17 @@ Partial Class frmClientes
         Me.Text = "Clientes"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.SearchLookUpEditClienteCorp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkMiembroCorp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkCorporativo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCredito.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkEditaNombre.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridLookUpMoneda.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridLookUpNivel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBoxFoto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtIDCliente.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1388,17 +1395,13 @@ Partial Class frmClientes
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkCorporativo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkMiembroCorp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEditClienteCorp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

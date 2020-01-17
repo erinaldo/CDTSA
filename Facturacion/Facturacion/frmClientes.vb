@@ -34,7 +34,7 @@ Public Class frmClientes
     End Sub
     Sub seteaControlsNewRecord()
         If gbAdd Then
-            tableData = cManager.GetDataTable("ccfClientes", "isnull(Max(IDCliente),0) IDCliente", "", "IDCliente")
+            tableData = cManager.GetDataTable("ccfClientes", "ISNULL(Max(IDCliente),0) IDCliente", "", "IDCliente")
             If tableData.Rows.Count > 0 Then
                 Me.txtIDCliente.Text = CInt(tableData.Rows(0)(0)) + 1
             End If
@@ -45,6 +45,7 @@ Public Class frmClientes
             Me.chkCredito.Checked = True
             Me.chkEditaNombre.Checked = False
             Me.DateEditIngreso.Enabled = False
+
             Me.txtLimite.Text = "0"
             Me.txtInteres.Text = "0"
             Me.txtNombre.Text = ""
@@ -67,7 +68,7 @@ Public Class frmClientes
             Me.gridlookupMunicipio.Text = ""
             Me.gridlookupZona.Text = ""
             Me.gridlookupSubZona.Text = ""
-            Me.chkEditaNombre.Text = ""
+            Me.SearchLookUpEditClienteCorp.Enabled = False
             Me.SearchLookUpEditClienteCorp.Text = ""
         End If
     End Sub
@@ -317,7 +318,7 @@ Public Class frmClientes
             sparameterValues = sparameterValues & IIf(Me.chkCredito.Checked = True, 1, 0).ToString() & ","
             sparameterValues = sparameterValues & IIf(Me.chkCorporativo.Checked = True, 1, 0).ToString() & ","
             sparameterValues = sparameterValues & IIf(Me.chkMiembroCorp.Checked = True, 1, 0).ToString() & ","
-            If IsNothing(Me.SearchLookUpEditClienteCorp.EditValue) Then
+            If Me.SearchLookUpEditClienteCorp.Text = "" Then
                 sparameterValues = sparameterValues & "null"
             Else
                 sparameterValues = sparameterValues & Me.SearchLookUpEditClienteCorp.EditValue.ToString()
@@ -334,7 +335,10 @@ Public Class frmClientes
             'End If
 
             MessageBox.Show("El registro ha sido guardado exitosamente ", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-
+            If gbAdd = True Or gbEdit = True Then
+                gbAdd = False
+                gbEdit = True
+            End If
         Catch ex As Exception
             MessageBox.Show("Error " & ex.Message & " parametros ")
         End Try
@@ -359,7 +363,7 @@ Public Class frmClientes
         Select Case sender.name
             ' Case "txtNombre" ', "tex_otros"
             '    e.KeyChar = Chr(Solo_Letras(Asc(e.KeyChar)))
-            Case "txtIDCliente", "txtRuc", "txtLimite", "txtTelefono", "txtCelular", "txtInteres"
+            Case "txtIDCliente", "txtLimite", "txtTelefono", "txtCelular", "txtInteres"
                 e.KeyChar = Chr(Solo_Numeros(Asc(e.KeyChar)))
         End Select
     End Sub
@@ -368,18 +372,21 @@ Public Class frmClientes
         If Len(txtIDCliente.Text.Trim) = 0 Then MsgBox("Dato no Puede quedar en Balnco", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : txtIDCliente.Focus() : Return False : Exit Function
         If Len(txtNombre.Text.Trim) = 0 Then MsgBox("Dato no Puede quedar en Balnco", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : txtNombre.Focus() : Return False : Exit Function
         If Len(txtFarmacia.Text.Trim) = 0 Then MsgBox("Dato no Puede quedar en Balnco", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : txtFarmacia.Focus() : Return False : Exit Function
-        If gridlookupTipo.EditValue = Nothing Then MsgBox("Debe seleccionar un Tipo de Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupTipo.Focus() : Return False : Exit Function
-        If GridLookUpCategoria.EditValue = Nothing Then MsgBox("Debe seleccionar una Categoria del Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.GridLookUpCategoria.Focus() : Return False : Exit Function
+        If gridlookupTipo.Text = "" Then MsgBox("Debe seleccionar un Tipo de Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupTipo.Focus() : Return False : Exit Function
+        If GridLookUpCategoria.Text = "" Then MsgBox("Debe seleccionar una Categoria del Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.GridLookUpCategoria.Focus() : Return False : Exit Function
         If Me.DateEditIngreso.EditValue = Nothing Then MsgBox("La feha de ingreso no puede quedar vacia", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.DateEditIngreso.Focus() : Return False : Exit Function
-        If gridLookUpNivel.EditValue = Nothing Then MsgBox("Debe seleccionar un NIvel de Precios del Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridLookUpNivel.Focus() : Return False : Exit Function
-        If gridLookUpMoneda.EditValue = Nothing Then MsgBox("Debe seleccionar una Moneda para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridLookUpMoneda.Focus() : Return False : Exit Function
-        If gridLookUpPlazo.EditValue = Nothing Then MsgBox("Debe seleccionar un Plazo del Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridLookUpPlazo.Focus() : Return False : Exit Function
-        If gridlookupDepto.EditValue = Nothing Then MsgBox("Debe seleccionar un Departamento para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupDepto.Focus() : Return False : Exit Function
-        If gridlookupMunicipio.EditValue = Nothing Then MsgBox("Debe seleccionar un Departamento para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupMunicipio.Focus() : Return False : Exit Function
-        If gridlookupZona.EditValue = Nothing Then MsgBox("Debe seleccionar una Zona para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupZona.Focus() : Return False : Exit Function
-        If gridlookupSubZona.EditValue = Nothing Then MsgBox("Debe seleccionar una SubZona para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupSubZona.Focus() : Return False : Exit Function
-        If gridlookupSucursal.EditValue = Nothing Then MsgBox("Debe seleccionar una Sucursal para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupSucursal.Focus() : Return False : Exit Function
-        If gridlookupVendedor.EditValue = Nothing Then MsgBox("Debe seleccionar un Vendedor para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupVendedor.Focus() : Return False : Exit Function
+        If gridLookUpNivel.Text = "" Then MsgBox("Debe seleccionar un NIvel de Precios del Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridLookUpNivel.Focus() : Return False : Exit Function
+        If gridLookUpMoneda.Text = "" Then MsgBox("Debe seleccionar una Moneda para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridLookUpMoneda.Focus() : Return False : Exit Function
+        If gridLookUpPlazo.Text = "" Then MsgBox("Debe seleccionar un Plazo del Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridLookUpPlazo.Focus() : Return False : Exit Function
+        If gridlookupDepto.Text = "" Then MsgBox("Debe seleccionar un Departamento para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupDepto.Focus() : Return False : Exit Function
+        If gridlookupMunicipio.Text = "" Then MsgBox("Debe seleccionar un Departamento para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupMunicipio.Focus() : Return False : Exit Function
+        If gridlookupZona.Text = "" Then MsgBox("Debe seleccionar una Zona para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupZona.Focus() : Return False : Exit Function
+        If gridlookupSubZona.Text = "" Then MsgBox("Debe seleccionar una SubZona para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupSubZona.Focus() : Return False : Exit Function
+        If gridlookupSucursal.Text = "" Then MsgBox("Debe seleccionar una Sucursal para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupSucursal.Focus() : Return False : Exit Function
+        If gridlookupVendedor.Text = "" Then MsgBox("Debe seleccionar un Vendedor para el Cliente", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupVendedor.Focus() : Return False : Exit Function
+        If chkCorporativo.EditValue = 1 Then
+            If SearchLookUpEditClienteCorp.Text = "" Then MsgBox("Debe seleccionar un Cliente Corporativo", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : Me.gridlookupVendedor.Focus() : Return False : Exit Function
+        End If
         'If Len(Me.MemoEditDireccion.Text.Trim) = 0 Then MsgBox("Dato no Puede quedar en Balnco", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : MemoEditDireccion.Focus() : Return False : Exit Function
         'If Len(Me.txtDueno.Text.Trim) = 0 Then MsgBox("Dato no Puede quedar en Balnco", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : txtDueno.Focus() : Return False : Exit Function
         'If Len(Me.txtCedula.Text.Trim) = 0 Then MsgBox("Dato no Puede quedar en Balnco", MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Ayuda") : txtCedula.Focus() : Return False : Exit Function
@@ -453,6 +460,8 @@ Public Class frmClientes
         End If
         If chkCorporativo.Checked = True Then
             Me.SearchLookUpEditClienteCorp.Text = ""
+            Me.SearchLookUpEditClienteCorp.Enabled = True
+        Else
             Me.SearchLookUpEditClienteCorp.Enabled = False
         End If
     End Sub

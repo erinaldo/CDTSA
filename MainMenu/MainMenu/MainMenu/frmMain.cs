@@ -260,13 +260,160 @@ namespace MainMenu
             }
             switch (node.Tag.ToString())
             {
-                case "frmClientes":
-                    Facturacion.frmClientes ofrmCliente = new frmClientes();
-                    ofrmCliente.MdiParent = this;
+                case "frmDetalles":
+                    Facturacion.frmDetalles ofrmDetalles = new frmDetalles();
+                    ofrmDetalles.gsFormDetalleName = "CLIENTE"  ;
+                    ofrmDetalles.gsCaptionFrm = "Clientes";
+                    ofrmDetalles.gsTableName = "ccfClientes";
+                    ofrmDetalles.gsCodeName = "IDCliente";
+                    ofrmDetalles.gbCodeNumeric = true;
+                    ofrmDetalles.gsDescrName = "Nombre";
+                    ofrmDetalles.gsFieldsRest = "Activo";
+                    ofrmDetalles.gsOrder = "IDCliente";
+                    ofrmDetalles.MdiParent = this;
                     ShowPagesRibbonMan(false);
-                    ofrmCliente.Show();
+                    ofrmDetalles.Show();
                     break;
-                 
+                case "optDepartamento":
+                    Facturacion.frmCatalogos ofrmDepartamento = new frmCatalogos();
+                     ofrmDepartamento.MdiParent = this;
+                     ofrmDepartamento.gsCaptionFrm = "Departamentos";
+                     ofrmDepartamento.gsTableName = "globalDepto";
+                    ofrmDepartamento.gsCodeName = "IDDepto";
+                    ofrmDepartamento.gbCodeNumeric = true;
+                    ofrmDepartamento.gsDescrName = "Descr";
+                    ofrmDepartamento.gsFieldsRest = "Activo";
+                    ofrmDepartamento.gsOrder = "IDDepto";
+                    ShowPagesRibbonMan(false);
+                    ofrmDepartamento.Show();
+                    break;
+                case "optMunicipio":
+                    Facturacion.frmSubCatalogo ofrmMunicipio = new frmSubCatalogo();
+                    ofrmMunicipio.gsCaptionFrm = "Master Departamento / Municipios";
+                    ofrmMunicipio.gsStoreProcNameMaster = "fafGetMasterMunicipios";
+                    ofrmMunicipio.gsParametersValuesMaster = "-1,-1";
+                    ofrmMunicipio.gsTableNameMaster = "globalDepto";
+                    ofrmMunicipio.gsCodeNameMaster = "IDDepto";
+                    ofrmMunicipio.gbCodeNumericMaster = true;
+                    ofrmMunicipio.gsDescrNameMaster = "Descr";
+                    ofrmMunicipio.gsFieldsRestMaster = "Activo";
+                    
+                    ofrmMunicipio.gsTableName = "globalMunicipio";
+                    ofrmMunicipio.gsCodeName = "IDMunicipio";
+                    ofrmMunicipio.gbCodeNumeric = true;
+                    ofrmMunicipio.gsDescrName = "Descr";
+                    ofrmMunicipio.gsFieldsRest = "Activo";
+                    
+                    ofrmMunicipio.Show();
+                    break;
+
+                case "optZona":
+                    Facturacion.frmCatalogos ofrmZona = new frmCatalogos();
+                    ofrmZona.gsCaptionFrm = "Master Departamento / Municipios";
+                    ofrmZona.gsCaptionFrm = "Zonas";
+                    ofrmZona.gsTableName = "globalZona";
+                    ofrmZona.gsOrder = "IDZona";
+                    ofrmZona.gsCodeName = "IDZona";
+                    ofrmZona.gbCodeNumeric = true ;
+                    ofrmZona.gsDescrName = "Descr" ;
+                    ofrmZona.gsFieldsRest = " Activo";
+                    
+                    ofrmZona.Show();
+                    break;
+                case "optSubZona":
+                    Facturacion.frmSubCatalogo frmSubZona = new frmSubCatalogo();
+                    frmSubZona.gsCaptionFrm = "Master Zona / SubZona";
+                    frmSubZona.gsStoreProcNameMaster = "fafGetMasterSubZonas";
+                    frmSubZona.gsParametersValuesMaster = "-1,-1";
+                    frmSubZona.gsTableNameMaster = "globalZona";
+                    frmSubZona.gsCodeNameMaster = "IDZona";
+                    frmSubZona.gbCodeNumericMaster = true;
+                    frmSubZona.gsDescrNameMaster = "Descr";
+                    frmSubZona.gsFieldsRestMaster = "Activo";
+                    frmSubZona.gsTableName = "globalSubZona";
+                    frmSubZona.gsCodeName = "IDSubZona";
+                    frmSubZona.gbCodeNumeric = true;
+                    frmSubZona.gsDescrName = "Descr";
+                    frmSubZona.gsFieldsRest = "Activo";
+
+                    frmSubZona.Show();
+                    break;
+                case "optConsecutivosMascaras":
+                    Facturacion.frmDetalles frm = new frmDetalles();
+                    frm.gsFormDetalleName = "CONSECUTIVOMASK";
+                    frm.gsCaptionFrm = "Consecutivos";
+                    frm.gsTableName = "globalConsecMask";
+                    frm.gsCodeName = "Codigo";
+                    frm.gbCodeNumeric = false;
+                    frm.gsDescrName = "Descr";
+                    frm.gsFieldsRest = "Consecutivo, Mascara,Activo";
+                    frm.gsOrder = "Codigo";
+                    frm.Show();
+                    break;
+                case "optPlazos":
+                    Facturacion.frmCatalogos frmPlazos=  new frmCatalogos();
+                    frmPlazos.gsCaptionFrm = "Plazos de Creditos";
+                    frmPlazos.gsTableName = "ccfPlazo";
+                    frmPlazos.gsCodeName = "Plazo";
+                    frmPlazos.gbCodeNumeric = true;
+                    frmPlazos.gsDescrName = "Descr";
+                    frmPlazos.gsFieldsRest = "Activo";
+                    frmPlazos.gsOrder = "Plazo";
+
+                    frmPlazos.Show();
+                    break;
+                case "optTipoEntrega":
+                    Facturacion.frmCatalogos frmTipoEntrega = new frmCatalogos();
+                    frmTipoEntrega.gsCaptionFrm = "Tipos de Entrega a Clientes";
+                    frmTipoEntrega.gsTableName = "fafTipoEntrega";
+                    frmTipoEntrega.gsCodeName = "IDTipoEntrega";
+                    frmTipoEntrega.gbCodeNumeric = true;
+                    frmTipoEntrega.gsDescrName = "Descr";
+                    frmTipoEntrega.gsFieldsRest = "Activo";
+                    frmTipoEntrega.gsOrder = "IDTipoEntrega";
+
+                    frmTipoEntrega.Show();
+
+                    break;
+                case "optTipoCliente":
+                     Facturacion.frmCatalogos frmTipoCliente = new frmCatalogos();
+                     frmTipoCliente.gsCaptionFrm = "Tipos de Cliente";
+                     frmTipoCliente.gsTableName = "fafTipoCliente";
+                     frmTipoCliente.gsCodeName = "IDTipo";
+                    frmTipoCliente.gbCodeNumeric = true;
+                    frmTipoCliente.gsDescrName = "Descr";
+                    frmTipoCliente.gsFieldsRest = "Activo";
+                    frmTipoCliente.gsOrder = "IDTipo";
+
+                    frmTipoCliente.Show();
+                    break;
+                case "optCategoriaCliente":
+                     Facturacion.frmCatalogos frmCategoriaCliente = new frmCatalogos();
+                     frmCategoriaCliente.gsCaptionFrm = "Categoria Cliente";
+                     frmCategoriaCliente.gsTableName = "fafCategoriaCliente";
+                     frmCategoriaCliente.gsCodeName = "IDCategoria";
+                    frmCategoriaCliente.gbCodeNumeric = true;
+                    frmCategoriaCliente.gsDescrName = "Descr";
+                    frmCategoriaCliente.gsFieldsRest = "Activo";
+                    frmCategoriaCliente.gsOrder = "IDCategoria";
+
+                    frmCategoriaCliente.Show();
+                    break;
+                case "optVendedores":
+                    Facturacion.frmDetalles ofrmVendedores =  new frmDetalles();
+                    ofrmVendedores.gsFormDetalleName = "VENDEDOR";
+                    ofrmVendedores.gsCaptionFrm = "Vendedores";
+                    ofrmVendedores.gsTableName = "fafVendedor";
+                    ofrmVendedores.gsCodeName = "IDVendedor";
+                    ofrmVendedores.gbCodeNumeric = true;
+                    ofrmVendedores.gsDescrName = "Nombre";
+                    ofrmVendedores.gsFieldsRest = "Activo";
+                    ofrmVendedores.gsOrder = "IDVendedor";
+
+                    ofrmVendedores.Show();
+                    break;
+
+
             }
         }
 
@@ -607,8 +754,28 @@ namespace MainMenu
                     break;
 
                 case "treeListFactura":
+                    TreeListNode nodeDepartamento = tl.AppendNode(new object[] { "Departamento" }, -1, 11, 11, 11);
+                    nodeDepartamento.Tag = "optDepartamento";
+                    TreeListNode nodeMunicipio = tl.AppendNode(new object[] { "Municipio" }, -1, 11, 11, 11);
+                    nodeMunicipio.Tag = "optMunicipio";
+                    TreeListNode nodeZona = tl.AppendNode(new object[] { "Zona" }, -1, 11, 11, 11);
+                    nodeZona.Tag = "optZona";
+                    TreeListNode nodeSubZona = tl.AppendNode(new object[] { "Sub Zona" }, -1, 11, 11, 11);
+                    nodeSubZona.Tag = "optSubZona";
+                    TreeListNode nodeConsecutivosMarscaras = tl.AppendNode(new object[] { "Consecutivos de Mascaras" }, -1, 11, 11, 11);
+                    nodeConsecutivosMarscaras.Tag = "optConsecutivosMascaras";
+                    TreeListNode nodePlazos = tl.AppendNode(new object[] { "Plazos" }, -1, 11, 11, 11);
+                    nodePlazos.Tag = "optPlazos";
+                    TreeListNode nodeTipoEntrega = tl.AppendNode(new object[] { "Tipo Entrega" }, -1, 11, 11, 11);
+                    nodeTipoEntrega.Tag = "optTipoEntrega";
+                    TreeListNode nodeTipoCliente = tl.AppendNode(new object[] { "Tipo Cliente" }, -1, 11, 11, 11);
+                    nodeTipoCliente.Tag = "optTipoCliente";
+                    TreeListNode nodeCategoriaCliente = tl.AppendNode(new object[] { "Categoria Cliente" }, -1, 11, 11, 11);
+                    nodeCategoriaCliente.Tag = "optCategoriaCliente";
+                    TreeListNode nodeVendedores = tl.AppendNode(new object[] { "Vendedores" }, -1, 11, 11, 11);
+                    nodeVendedores.Tag = "optVendedores";
                     TreeListNode nodeCliente = tl.AppendNode(new object[] { "Clientes" }, -1, 11, 11, 11);
-                    nodeCliente.Tag = "frmClientes";
+                    nodeCliente.Tag = "frmDetalles";
                     break;
 
                 case "treeListContabilidad":
