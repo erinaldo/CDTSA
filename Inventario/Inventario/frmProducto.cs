@@ -105,17 +105,11 @@ namespace CI
             _currentRow["CodigoBarra"] = "";
             _currentRow["IDCuentaContable"] = -1;
             _currentRow["IDUnidad"] = -1;
-            _currentRow["FactorEmpaque"] = 0;
+            _currentRow["FactorEmpaque"] = 1;
             _currentRow["TipoImpuesto"] = 0;
             _currentRow["EsMuestra"] = false;
             _currentRow["EsControlado"] = false;
             _currentRow["EsEtico"] = false;
-            _currentRow["BajaPrecioDistribuidor"] = false;
-            _currentRow["BajaPrecioProveedor"] = false;
-            _currentRow["PorcDescuentoAlzaProveedor"] = 0;
-            _currentRow["BonificaFA"] = false;
-            _currentRow["BonificaCOPorCada"] = 0;
-            _currentRow["BonificaCOCantidad"] = 0;
             _currentRow["Activo"] = true;
             _currentRow["UserInsert"] = sUsuario;
             _currentRow["UserUpdate"] = DateTime.Now;
@@ -141,7 +135,6 @@ namespace CI
             this.txtDescr.EditValue = _currentRow["Descr"].ToString();
             this.txtAlias.EditValue = _currentRow["Alias"].ToString();
             this.txtCodigoBarra.Text = _currentRow["CodigoBarra"].ToString(); 
-            this.txtFactorEmpaque.EditValue = ((decimal) _currentRow["FactorEmpaque"]).ToString("N" + Util.Util.DecimalLenght);
             this.slkupUnidadMedida.EditValue = _currentRow["IDUnidad"];
             //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
             this.slkupTipoImpuesto.EditValue = _currentRow["TipoImpuesto"].ToString();
@@ -149,14 +142,7 @@ namespace CI
             this.chkEsMuestra.EditValue = _currentRow["EsMuestra"];
             this.chkEsControlado.EditValue = _currentRow["EsControlado"];
             this.chkEsEtico.EditValue = _currentRow["EsEtico"];
-            this.chkBajaPrecioDistribuidor.EditValue = _currentRow["BajaPrecioDistribuidor"];
-            this.chkBajaPrecioProveedor.EditValue = _currentRow["BajaPrecioProveedor"];
-            this.chkBonificaFactura.EditValue = _currentRow["BonificaFA"];
-
-            this.txtBonificaCOCantidad.EditValue = ((Decimal)_currentRow["BonificaCOPorCada"]).ToString("N" + Util.Util.DecimalLenght);
-            this.txtBonificaCOPorCada.EditValue = ((Decimal)_currentRow["BonificaCOCantidad"]).ToString("N" + Util.Util.DecimalLenght); 
-            this.txtPorcDescAlzaProveedor.EditValue = ((Decimal)_currentRow["PorcDescuentoAlzaProveedor"]).ToString("N" + Util.Util.DecimalLenght); 
-
+            
             //TODO Actualizar los Costos
             this.txtCostoPromDolar.EditValue = ((Decimal)_currentRow["CostoPromDolar"]).ToString("N" + Util.Util.DecimalLenght);
             this.txtCostoPromLocal.EditValue = ((Decimal)_currentRow["CostoPromLocal"]).ToString("N" + Util.Util.DecimalLenght);
@@ -192,7 +178,6 @@ namespace CI
             this.txtDescr.ReadOnly = !Activo;
             this.txtAlias.ReadOnly = !Activo;
             this.txtCodigoBarra.ReadOnly = !Activo;
-            this.txtFactorEmpaque.ReadOnly = !Activo;
             this.slkupUnidadMedida.ReadOnly = !Activo;
             //this.dtpFecha.Text = Convert.ToDateTime(_currentRow["Fecha"]).ToShortDateString();
             this.slkupTipoImpuesto.ReadOnly = !Activo;
@@ -200,14 +185,7 @@ namespace CI
             this.chkEsControlado.ReadOnly = !Activo;
             this.chkEsEtico.ReadOnly = !Activo;
             this.chkEsMuestra.ReadOnly = !Activo;
-            this.chkBajaPrecioDistribuidor.ReadOnly = !Activo;
-            this.chkBajaPrecioProveedor.ReadOnly = !Activo;
-            this.chkBonificaFactura.ReadOnly = !Activo;
-
-            this.txtBonificaCOCantidad.ReadOnly = !Activo;
-            this.txtBonificaCOPorCada.ReadOnly = !Activo;
-            this.txtPorcDescAlzaProveedor.ReadOnly = !Activo;
-
+            
             this.txtCostoPromDolar.ReadOnly = !Activo;
             this.txtCostoPromLocal.ReadOnly = !Activo;
 
@@ -304,8 +282,6 @@ namespace CI
                 sMensaje = sMensaje + "     • Ingrese la descripción del Producto. \n\r";
             if (this.slkupUnidadMedida.EditValue == null)
                 sMensaje = sMensaje + "     • Ingrese la unidad de Medida del Producto. \n\r";
-            if (this.txtFactorEmpaque.Text == "")
-                sMensaje = sMensaje + "     • Digite el Factor de Empaque del Producto. \n\r";
             if (this.slkupTipoImpuesto.EditValue == null)
                 sMensaje = sMensaje + "     • Ingrese el Tipo de Impuesto del Producto. \n\r";
             if (this.slkupCuentaArticulo.EditValue == null)
@@ -358,17 +334,11 @@ namespace CI
                     _currentRow["IDCuentaContable"] = Convert.ToInt32(this.slkupCuentaArticulo.EditValue);
                     _currentRow["CodigoBarra"] = this.txtCodigoBarra.EditValue;
                     _currentRow["IDUnidad"] = this.slkupUnidadMedida.EditValue;
-                    _currentRow["FactorEmpaque"] = this.txtFactorEmpaque.EditValue;
+                    _currentRow["FactorEmpaque"] = 1;
                     _currentRow["TipoImpuesto"] = this.slkupTipoImpuesto.EditValue;
                     _currentRow["EsMuestra"] = this.chkEsMuestra.EditValue;
                     _currentRow["EsControlado"] = this.chkEsControlado.EditValue;
                     _currentRow["EsEtico"] = this.chkEsEtico.EditValue;
-                    _currentRow["BajaPrecioDistribuidor"] = this.chkBajaPrecioDistribuidor.EditValue;
-                    _currentRow["BajaPrecioProveedor"] = this.chkBajaPrecioProveedor.EditValue;
-                    _currentRow["PorcDescuentoAlzaProveedor"] = this.txtPorcDescAlzaProveedor.EditValue.ToString() =="" ? 0:this.txtPorcDescAlzaProveedor.EditValue;
-                    _currentRow["BonificaFA"] = this.chkBonificaFactura.EditValue;
-                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue.ToString() == "" ? 0:this.txtBonificaCOPorCada.EditValue;
-                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue.ToString()=="" ? 0: this.txtBonificaCOCantidad.EditValue;
                     _currentRow["Activo"] = this.chkActivo.EditValue;
                     _currentRow["UserInsert"] = sUsuario;
                     _currentRow["UserUpdate"] = sUsuario;
@@ -437,17 +407,11 @@ namespace CI
                     _currentRow["IDCuentaContable"] = Convert.ToInt32(this.slkupCuentaArticulo.EditValue);
                     _currentRow["CodigoBarra"] = this.txtCodigoBarra.EditValue;
                     _currentRow["IDUnidad"] = this.slkupUnidadMedida.EditValue;
-                    _currentRow["FactorEmpaque"] = this.txtFactorEmpaque.EditValue;
+                    _currentRow["FactorEmpaque"] = 1;
                     _currentRow["TipoImpuesto"] = this.slkupTipoImpuesto.EditValue;
                     _currentRow["EsMuestra"] = this.chkEsMuestra.EditValue;
                     _currentRow["EsControlado"] = this.chkEsControlado.EditValue;
                     _currentRow["EsEtico"] = this.chkEsEtico.EditValue;
-                    _currentRow["BajaPrecioDistribuidor"] = this.chkBajaPrecioDistribuidor.EditValue;
-                    _currentRow["BajaPrecioProveedor"] = this.chkBajaPrecioProveedor.EditValue;
-                    _currentRow["PorcDescuentoAlzaProveedor"] = (this.txtPorcDescAlzaProveedor.EditValue=="") ? 0.0 : this.txtPorcDescAlzaProveedor.EditValue;
-                    _currentRow["BonificaFA"] = this.chkBonificaFactura.EditValue;
-                    _currentRow["BonificaCOPorCada"] = this.txtBonificaCOPorCada.EditValue=="" ? 0 : this.txtBonificaCOPorCada.EditValue;
-                    _currentRow["BonificaCoCantidad"] = this.txtBonificaCOCantidad.EditValue == "" ? 0 : this.txtBonificaCOCantidad.EditValue;
                     _currentRow["Activo"] = this.chkActivo.EditValue;
                     _currentRow["UserInsert"] = sUsuario;
                     _currentRow["UserUpdate"] = sUsuario;
@@ -526,19 +490,11 @@ namespace CI
             this.txtCodigoBarra.EditValue = "";
             this.slkupUnidadMedida.EditValue = null;
             this.slkupTipoImpuesto.EditValue = null;
-            this.txtFactorEmpaque.EditValue = "";
             this.chkActivo.EditValue = true;
             this.chkEsControlado.EditValue = false;
             this.chkEsMuestra.EditValue = false;
             this.chkEsEtico.EditValue = false;
-            this.chkBajaPrecioDistribuidor.EditValue = false;
-            this.chkBajaPrecioProveedor.EditValue = false;
-            this.chkBonificaFactura.EditValue = false;
-
-            this.txtBonificaCOCantidad.EditValue = "";
-            this.txtBonificaCOPorCada.EditValue = "";
-            this.txtPorcDescAlzaProveedor.EditValue = "";
-
+            
             this.txtCostoPromLocal.EditValue = "";
             this.txtCostoPromDolar.EditValue = "";
             this.txtUltimoCostoDolar.EditValue = "";
@@ -627,25 +583,11 @@ namespace CI
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupTipoImpuesto, "[{'ColumnCaption':'ID Impuesto','ColumnField':'IDImpuesto','width':30},{'ColumnCaption':'Descripcion','ColumnField':'Descr','width':70}]");
 
                 //Setting default decimals
-                Util.Util.SetFormatTextEdit(txtFactorEmpaque, Util.Util.FormatType.Numerico);
-                Util.Util.SetFormatTextEdit(txtPorcDescAlzaProveedor, Util.Util.FormatType.Numerico);
-                Util.Util.SetFormatTextEdit(txtBonificaCOCantidad, Util.Util.FormatType.Numerico);
-                Util.Util.SetFormatTextEdit(txtBonificaCOPorCada, Util.Util.FormatType.Numerico);
                 Util.Util.SetFormatTextEdit(txtUltimoCostoDolar, Util.Util.FormatType.Numerico);
                 Util.Util.SetFormatTextEdit(txtUltimoCostoLocal, Util.Util.FormatType.Numerico);
                 Util.Util.SetFormatTextEdit(txtCostoPromDolar, Util.Util.FormatType.Numerico);
                 Util.Util.SetFormatTextEdit(txtCostoPromLocal, Util.Util.FormatType.Numerico);
 
-                this.txtFactorEmpaque.GotFocus += textEdit_Enter;
-                //this.txtFactorEmpaque.Click += textEdit_Enter;
-                this.txtBonificaCOCantidad.GotFocus += textEdit_Enter;
-                //this.txtBonificaCOCantidad.Click += textEdit_Enter;
-                this.txtPorcDescAlzaProveedor.GotFocus += textEdit_Enter;
-                //this.txtPorcDescAlzaProveedor.Click += textEdit_Enter;
-                this.txtBonificaCOCantidad.GotFocus += textEdit_Enter;
-                //this.txtBonificaCOCantidad.Click += textEdit_Enter;
-                this.txtBonificaCOPorCada.GotFocus += textEdit_Enter;
-                //this.txtBonificaCOPorCada.Click += textEdit_Enter;
                 
                 
                 UpdateControlsFromDataRow(_currentRow);

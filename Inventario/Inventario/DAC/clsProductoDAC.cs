@@ -71,12 +71,6 @@ namespace CI.DAC
                 oAdaptador.InsertCommand.Parameters.Add("@EsMuestra", SqlDbType.Bit).SourceColumn = "EsMuestra";
                 oAdaptador.InsertCommand.Parameters.Add("@EsControlado", SqlDbType.Bit).SourceColumn = "EsControlado";
                 oAdaptador.InsertCommand.Parameters.Add("@EsEtico", SqlDbType.Bit).SourceColumn = "EsEtico";
-                oAdaptador.InsertCommand.Parameters.Add("@BajaPrecioDistribuidor", SqlDbType.Bit).SourceColumn = "BajaPrecioDistribuidor";
-                oAdaptador.InsertCommand.Parameters.Add("@BajaPrecioProveedor", SqlDbType.Bit).SourceColumn = "BajaPrecioProveedor";
-                oAdaptador.InsertCommand.Parameters.Add("@PorcDescuentoAlzaProveedor", SqlDbType.Decimal).SourceColumn = "PorcDescuentoAlzaProveedor";
-                oAdaptador.InsertCommand.Parameters.Add("@BonificaFA", SqlDbType.Bit).SourceColumn = "BonificaFA";
-                oAdaptador.InsertCommand.Parameters.Add("@BonificaCOPorCada", SqlDbType.Decimal).SourceColumn = "BonificaCOPorCada";
-                oAdaptador.InsertCommand.Parameters.Add("@BonificaCOCantidad", SqlDbType.Decimal).SourceColumn = "BonificaCOCantidad";
                 oAdaptador.InsertCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.InsertCommand.Parameters.Add("@UserInsert", SqlDbType.NChar).SourceColumn = "UserInsert";
                 oAdaptador.InsertCommand.Parameters.Add("@UserUpdate", SqlDbType.NChar).SourceColumn = "UserUpdate";
@@ -102,12 +96,6 @@ namespace CI.DAC
                 oAdaptador.UpdateCommand.Parameters.Add("@EsMuestra", SqlDbType.Bit).SourceColumn = "EsMuestra";
                 oAdaptador.UpdateCommand.Parameters.Add("@EsControlado", SqlDbType.Bit).SourceColumn = "EsControlado";
                 oAdaptador.UpdateCommand.Parameters.Add("@EsEtico", SqlDbType.Bit).SourceColumn = "EsEtico";
-                oAdaptador.UpdateCommand.Parameters.Add("@BajaPrecioDistribuidor", SqlDbType.Bit).SourceColumn = "BajaPrecioDistribuidor";
-                oAdaptador.UpdateCommand.Parameters.Add("@BajaPrecioProveedor", SqlDbType.Bit).SourceColumn = "BajaPrecioProveedor";
-                oAdaptador.UpdateCommand.Parameters.Add("@PorcDescuentoAlzaProveedor", SqlDbType.Decimal).SourceColumn = "PorcDescuentoAlzaProveedor";
-                oAdaptador.UpdateCommand.Parameters.Add("@BonificaFA", SqlDbType.Bit).SourceColumn = "BonificaFA";
-                oAdaptador.UpdateCommand.Parameters.Add("@BonificaCOPorCada", SqlDbType.Decimal).SourceColumn = "BonificaCOPorCada";
-                oAdaptador.UpdateCommand.Parameters.Add("@BonificaCOCantidad", SqlDbType.Decimal).SourceColumn = "BonificaCOCantidad";
                 oAdaptador.UpdateCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.UpdateCommand.Parameters.Add("@UserInsert", SqlDbType.NChar).SourceColumn = "UserInsert";
                 oAdaptador.UpdateCommand.Parameters.Add("@UserUpdate", SqlDbType.NChar).SourceColumn = "UserUpdate";
@@ -135,12 +123,6 @@ namespace CI.DAC
                 oAdaptador.DeleteCommand.Parameters.Add("@EsMuestra", SqlDbType.Bit).SourceColumn = "EsMuestra";
                 oAdaptador.DeleteCommand.Parameters.Add("@EsControlado", SqlDbType.Bit).SourceColumn = "EsControlado";
                 oAdaptador.DeleteCommand.Parameters.Add("@EsEtico", SqlDbType.Bit).SourceColumn = "EsEtico";
-                oAdaptador.DeleteCommand.Parameters.Add("@BajaPrecioDistribuidor", SqlDbType.Bit).SourceColumn = "BajaPrecioDistribuidor";
-                oAdaptador.DeleteCommand.Parameters.Add("@BajaPrecioProveedor", SqlDbType.Bit).SourceColumn = "BajaPrecioProveedor";
-                oAdaptador.DeleteCommand.Parameters.Add("@PorcDescuentoAlzaProveedor", SqlDbType.Decimal).SourceColumn = "PorcDescuentoAlzaProveedor";
-                oAdaptador.DeleteCommand.Parameters.Add("@BonificaFA", SqlDbType.Bit).SourceColumn = "BonificaFA";
-                oAdaptador.DeleteCommand.Parameters.Add("@BonificaCOPorCada", SqlDbType.Decimal).SourceColumn = "BonificaCOPorCada";
-                oAdaptador.DeleteCommand.Parameters.Add("@BonificaCOCantidad", SqlDbType.Decimal).SourceColumn = "BonificaCOCantidad";
                 oAdaptador.DeleteCommand.Parameters.Add("@Activo", SqlDbType.Bit).SourceColumn = "Activo";
                 oAdaptador.DeleteCommand.Parameters.Add("@UserInsert", SqlDbType.NChar).SourceColumn = "UserInsert";
                 oAdaptador.DeleteCommand.Parameters.Add("@UserUpdate", SqlDbType.NChar).SourceColumn = "UserUpdate";
@@ -167,7 +149,7 @@ namespace CI.DAC
         {
             String strSQL = "SELECT  IDProducto ,Descr ,Alias ,CostoUltLocal ,CostoUltDolar ,CostoPromLocal ,CostoPromDolar ,PrecioPublicoLocal ,PrecioFarmaciaLocal ,PrecioCIFLocal ," +
                             "PrecioFOBLocal ,PrecioDolar ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,IDCuentaContable,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,EsMuestra , " +
-                            "EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ," +
+                            "EsControlado ,EsEtico ," +
                             "Activo ,UserInsert ,UserUpdate ,CreateDate ,UpdateDate  FROM dbo.invProducto WHERE 1=2";
 
             SqlCommand oCmd = new SqlCommand(strSQL, ConnectionManager.GetConnection());

@@ -77,20 +77,14 @@ CREATE     TABLE  [dbo].[invProducto](
 	[Clasif4] [int] NOT NULL DEFAULT 4,
 	[Clasif5] [int] NOT NULL DEFAULT 5,
 	[Clasif6] [int] NOT NULL DEFAULT 6,
+	[IDProveedor] [int] NOT NULL,
 	[IDCuentaContable] [BigInt]  ,
 	[CodigoBarra] [nvarchar](50) NULL,
 	[IDUnidad] [int] NOT NULL,
-	[FactorEmpaque] [decimal](28, 4) NULL DEFAULT 1,
 	[TipoImpuesto] INT NOT NULL,
 	[EsMuestra] BIT DEFAULT 0,
 	[EsControlado] BIT DEFAULT 0,
 	[EsEtico] BIT DEFAULT 0,
-	[BajaPrecioDistribuidor] BIT DEFAULT 0,
-	[BajaPrecioProveedor] BIT DEFAULT 0,
-	[PorcDescuentoAlzaProveedor] DECIMAL(28,4) DEFAULT 0,
-	[BonificaFA] BIT DEFAULT 0,
-	[BonificaCOPorCada] DECIMAL(28,4) DEFAULT 0,
-	[BonificaCOCantidad] DECIMAL(28,4) DEFAULT 0,
 	[Activo] [bit] NOT NULL DEFAULT 1,
 	[UserInsert] NVARCHAR(50) NULL,
 	[UserUpdate] NVARCHAR(50) NULL,
@@ -147,6 +141,12 @@ GO
 ALTER TABLE [dbo].[invProducto] CHECK CONSTRAINT [fkinvProductoclas6]
 GO
 
+ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProveedorProducto] FOREIGN KEY([IDProveedor])
+REFERENCES [dbo].[cppProveedor] ([IDProveedor])
+GO
+
+ALTER TABLE [dbo].[invProveedorProducto] CHECK CONSTRAINT [fkdboinvProveedorProductoProv]
+GO
 
 
 ALTER TABLE [dbo].[invProducto]  WITH CHECK ADD  CONSTRAINT [fkinvProductoUnd] FOREIGN KEY([IDUnidad])
@@ -917,34 +917,6 @@ GO
 ALTER TABLE [dbo].[cppProveedor] CHECK CONSTRAINT [fk_cppProveedor_cbRUC]
 GO
 
-CREATE  TABLE [dbo].[invProveedorProducto](
-	[IDProveedor] [int] NOT NULL,
-	[IDProducto] [bigint] NOT NULL,
-	[PrecioUltDolar] DECIMAL(28,4) DEFAULT 0,
-	[PrecioDolar] DECIMAL(28,4)  DEFAULT 0,
- CONSTRAINT [pkinvProveedorProducto] PRIMARY KEY CLUSTERED 
-(
-	[IDProveedor] ASC,
-	[IDProducto] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-ALTER TABLE [dbo].[invProveedorProducto]  WITH CHECK ADD  CONSTRAINT [fkdboinvProveedorProductoProd] FOREIGN KEY([IDProducto])
-REFERENCES [dbo].[invProducto] ([IDProducto])
-GO
-
-ALTER TABLE [dbo].[invProveedorProducto] CHECK CONSTRAINT [fkdboinvProveedorProductoProd]
-GO
-
-ALTER TABLE [dbo].[invProveedorProducto]  WITH CHECK ADD  CONSTRAINT [fkdboinvProveedorProductoProv] FOREIGN KEY([IDProveedor])
-REFERENCES [dbo].[cppProveedor] ([IDProveedor])
-GO
-
-ALTER TABLE [dbo].[invProveedorProducto] CHECK CONSTRAINT [fkdboinvProveedorProductoProv]
-GO
-
 
 CREATE TABLE [dbo].[invHistCostoPromedio](
 	[IDCostoProm] [bigint] IDENTITY(1,1) NOT NULL,
@@ -1123,20 +1095,16 @@ GO
 
 CREATE  Procedure  [dbo].[invUpdateProducto] @Operacion nvarchar(1), @IDProducto BIGINT OUTPUT, @Descr nvarchar(250), @Alias nvarchar(20),
 @Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT,@IDCuentaContable AS BIGINT, @CodigoBarra NVARCHAR(50),@IDUnidad INT,
-@FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @BajaPrecioDistribuidor BIT,
-@BajaPrecioProveedor BIT, @PorcDescuentoAlzaProveedor DECIMAL(28,4), @BonificaFA BIT, @BonificaCOPorCada DECIMAL(28,4),
-@BonificaCOCantidad DECIMAL(28,4), @Activo BIT,@UserInsert NVARCHAR(50),@UserUpdate NVARCHAR(50),@UpdateDate DATETIME
+@FactorEmpaque DECIMAL(28,4), @TipoImpuesto INT, @EsMuestra BIT, @EsControlado BIT, @EsEtico BIT, @Activo BIT,@UserInsert NVARCHAR(50),@UserUpdate NVARCHAR(50),@UpdateDate DATETIME
 as
 set nocount on 
 
 if upper(@Operacion) = 'I'
 BEGIN
 	INSERT INTO dbo.invProducto( Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,IDCuentaContable,CodigoBarra ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
-	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
-	          Activo ,UserInsert ,UserUpdate  ,UpdateDate)
+	          EsMuestra ,EsControlado ,EsEtico ,Activo ,UserInsert ,UserUpdate  ,UpdateDate)
 	VALUES (@Descr,@Alias,@Clasif1,@Clasif2,@Clasif3,@Clasif4,@Clasif5,@Clasif6,@IDCuentaContable,@CodigoBarra,@IDUnidad,@FactorEmpaque,@TipoImpuesto,
-		@EsMuestra,@EsControlado,@EsEtico,@BajaPrecioDistribuidor,@BajaPrecioProveedor,@PorcDescuentoAlzaProveedor,@BonificaFA,@BonificaCOPorCada,@BonificaCOCantidad,
-		@Activo,@UserInsert,@UserUpdate,@UpdateDate)
+		@EsMuestra,@EsControlado,@EsEtico,	@Activo,@UserInsert,@UserUpdate,@UpdateDate)
 		
 	SET @IDProducto = @@IDENTITY
 		
@@ -1180,8 +1148,7 @@ if upper(@Operacion) = 'U'
 BEGIN
 	UPDATE dbo.invProducto SET Descr=@Descr, Alias = @Alias,Clasif1=@Clasif1,Clasif2=@Clasif2,Clasif3=@Clasif3,Clasif4=@Clasif4,Clasif5=@Clasif5,Clasif6=@Clasif6,
 	IDCuentaContable = @IDCuentaContable,CodigoBarra =@CodigoBarra,IDUnidad=@IDUnidad,FactorEmpaque=@FactorEmpaque,TipoImpuesto=@TipoImpuesto,EsMuestra=@EsMuestra,EsControlado=@EsControlado,
-	EsEtico=@EsEtico,BajaPrecioDistribuidor=@BajaPrecioDistribuidor,BajaPrecioProveedor=@BajaPrecioProveedor,PorcDescuentoAlzaProveedor=@PorcDescuentoAlzaProveedor,
-	BonificaFA=@BonificaFA,BonificaCOPorCada=@BonificaCOPorCada,BonificaCOCantidad=@BonificaCOCantidad,Activo=@Activo,UserUpdate=@UserUpdate,UpdateDate=@UpdateDate
+	EsEtico=@EsEtico,Activo=@Activo,UserUpdate=@UserUpdate,UpdateDate=@UpdateDate
 	WHERE IDProducto=@IDProducto
 	
 end
@@ -1190,13 +1157,12 @@ end
 
 GO
 
-CREATE  PROCEDURE [dbo].[invGetProducto] @IDProducto BIgint	,@Descr AS NVARCHAR(250),@Alias NVARCHAR(20),@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),
+CREATE   PROCEDURE [dbo].[invGetProducto] @IDProducto BIgint	,@Descr AS NVARCHAR(250),@Alias NVARCHAR(20),@Clasif1 int, @Clasif2 INT, @Clasif3 INT ,@Clasif4 INT , @Clasif5 INT, @Clasif6 INT, @CodigoBarra NVARCHAR(50),
 															@EsMuestra INT,@EsControlado INT,@EsEtico INT
 AS 
 	SELECT IDProducto,Descr ,Alias ,Clasif1 ,Clasif2 ,Clasif3 ,Clasif4 ,Clasif5 ,Clasif6 ,CodigoBarra,IDCuentaContable ,IDUnidad ,FactorEmpaque ,TipoImpuesto ,
-	          EsMuestra ,EsControlado ,EsEtico ,BajaPrecioDistribuidor ,BajaPrecioProveedor ,PorcDescuentoAlzaProveedor ,BonificaFA ,BonificaCOPorCada ,BonificaCOCantidad ,
-	          CostoUltLocal,CostoUltDolar,CostoPromLocal,CostoPromDolar,
-	          Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate FROM dbo.invProducto 
+	          EsMuestra ,EsControlado ,EsEtico , CostoUltLocal,CostoUltDolar,CostoPromLocal,CostoPromDolar,Activo ,UserInsert ,UserUpdate  ,UpdateDate,CreateDate 
+	          FROM dbo.invProducto 
 	          WHERE (IDProducto=@IDProducto OR  @IDProducto=-1)
 	          AND (Clasif1 =@Clasif1 OR @Clasif1=-1) AND (Clasif2 =@Clasif2 OR @Clasif2=-1) AND (Clasif3 =@Clasif3 OR @Clasif3=-1)
 	          AND (Clasif4 =@Clasif4 OR @Clasif4=-1) AND (Clasif5 =@Clasif5 OR @Clasif5=-1) AND (Clasif6 =@Clasif6 OR @Clasif6=-1)
@@ -1314,6 +1280,7 @@ AS
 SELECT B.IDGrupo,B.Descr DescrGrupo, IDClasificacion,A.Descr,A.Activo  FROM dbo.invClasificacion A
 INNER JOIN dbo.invGrupoClasif B ON A.IDGrupo = B.IDGrupo
  WHERE  (IDClasificacion = @IDClasificacion OR @IDClasificacion=-1) AND  (A.IDGrupo=@IDGrupo OR @IDGrupo=-1) AND (A.Descr LIKE '%'+@Descr+'%' OR @Descr = '*') AND A.Activo=1
+ORDER BY B.IDGrupo 
 
 
 GO
@@ -2054,7 +2021,7 @@ CREATE  PROCEDURE dbo.invGetGrupoClasif (@IDGrupo AS int	,@Descr AS nvarchar(250
 AS 
 SELECT IDGrupo,Descr ,Etiqueta,Activo FROM dbo.invGrupoClasif
 WHERE (IDGrupo=@IDGrupo OR @IDGrupo=-1) AND (Descr LIKE '%Descr%' OR @Descr ='*')
-AND Activo=1
+AND Activo=1 AND IDGrupo<>0
 
 GO
  
