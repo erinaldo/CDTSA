@@ -23,7 +23,8 @@ namespace CO
         private bool isEdition = false;
         private String Accion = "";
         private long IDProveedor;
-        private int IDNit,IDImpuesto,IDCategoria,IDPais,IDMoneda,IDCondicionPago,IDTipoContribuyente; 
+        private String RUC;
+        private int IDCategoria,IDPais,IDMoneda,IDCondicionPago; 
         private DateTime FechaIngreso;
         private string NombreProveedor,Alias,Contacto,Telefono,email,Direccion;
         private decimal Descuento, InteresMora;
@@ -82,15 +83,13 @@ namespace CO
             this.dtpFechaIngreso.ReadOnly = !Activo;
             this.txtAlias.ReadOnly = !Activo;
             this.txtContacto.ReadOnly = !Activo;
-            this.slkupNIT.ReadOnly = !Activo;
+            this.txtNIT.ReadOnly = !Activo;
             this.txtTelefono.ReadOnly = !Activo;
-            this.slkupImpuesto.ReadOnly = !Activo;
             this.slkupMoneda.ReadOnly = !Activo;
             this.slkupCategoria.ReadOnly = !Activo;
             this.chkMultimoneda.ReadOnly = !Activo;
             this.chkPagosCongelados.ReadOnly = !Activo;
             this.rdgOrigen.ReadOnly = !Activo;
-            this.rgpTipoContribuyente.ReadOnly = !Activo;
             this.slkupPais.ReadOnly = !Activo;
             this.slkupCondicionPago.ReadOnly = !Activo;
             this.txtDescuento.ReadOnly = !Activo;
@@ -113,15 +112,13 @@ namespace CO
             this.dtpFechaIngreso.EditValue = null;
             this.txtAlias.EditValue = null;
             this.txtContacto.EditValue = null;
-            this.slkupNIT.EditValue = null;
+            this.txtNIT.EditValue = null;
             this.txtTelefono.EditValue = null;
-            this.slkupImpuesto.EditValue = null;
             this.slkupMoneda.EditValue = null;
             this.slkupCategoria.EditValue = null;
             this.chkMultimoneda.Checked = false;
             this.chkPagosCongelados.Checked = false;
             this.rdgOrigen.EditValue = null;
-            this.rgpTipoContribuyente.EditValue = null;
             this.slkupPais.EditValue = null;
             this.slkupCondicionPago.EditValue = null;
             this.txtDescuento.EditValue = null;
@@ -174,10 +171,8 @@ namespace CO
                 sMensaje = sMensaje + "     • Seleccione el Origen del Proveedor. \n\r";
             if (this.dtpFechaIngreso.EditValue == null || this.dtpFechaIngreso.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Seleccione la fecha de ingreso del proveedor \n\r";
-            if (this.slkupNIT.EditValue == null || this.slkupNIT.EditValue.ToString() == "")
+            if (this.txtNIT.EditValue == null || this.txtNIT.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Seleccione el Tipo de Contribuyente \n\r";
-            if (this.slkupImpuesto.EditValue == null || this.slkupImpuesto.EditValue.ToString() == "")
-                sMensaje = sMensaje + "     • Seleccione el Tipo de impuesto del proveedor \n\r";
             if (this.slkupCategoria.EditValue == null || this.slkupCategoria.EditValue.ToString() == "")
                 sMensaje = sMensaje + "     • Seleccione la categoria del proveedor \n\r";
             if (this.slkupMoneda.EditValue == null || this.slkupMoneda.EditValue.ToString() == "")
@@ -198,13 +193,11 @@ namespace CO
         private void ObtenerDatos() {
             this.IDProveedor = (this.txtIDProveedor.EditValue != null ) ? Convert.ToInt64(this.txtIDProveedor.EditValue) : -1 ;
             this.NombreProveedor = this.txtNombreProveedor.EditValue.ToString();
-            this.IDNit = Convert.ToInt32(this.slkupNIT.EditValue);
+            this.RUC = this.txtNIT.EditValue.ToString();
             this.IDCategoria = Convert.ToInt32(this.slkupCategoria.EditValue);
             this.IDPais = Convert.ToInt32(this.slkupPais.EditValue);
             this.IDMoneda = Convert.ToInt32(this.slkupMoneda.EditValue);
             this.IDCondicionPago = Convert.ToInt32(this.slkupCondicionPago.EditValue);
-            this.IDTipoContribuyente = Convert.ToInt32(this.rgpTipoContribuyente.SelectedIndex);
-            this.IDImpuesto = Convert.ToInt32(this.slkupImpuesto.EditValue);
             this.FechaIngreso = Convert.ToDateTime(this.dtpFechaIngreso.EditValue);
             this.NombreProveedor = Convert.ToString(this.txtNombreProveedor.EditValue);
             this.Alias = (this.txtAlias.EditValue == null) ? "" : this.txtAlias.EditValue.ToString();
@@ -243,10 +236,10 @@ namespace CO
 
                 ObtenerDatos();
                 DAC.clsProveedorDAC.UpdateProveedor(Operacion,
-                    IDProveedor, NombreProveedor, IDNit, !Inactivo,
+                    IDProveedor, NombreProveedor, RUC, !Inactivo,
                     Alias, IDPais, IDMoneda,FechaIngreso, Contacto,
-                   Telefono, IDImpuesto, IDCategoria, IDCondicionPago, Descuento,
-                    InteresMora, email, Direccion,MultiMoneda,PagosCongelados,isLocal,IDTipoContribuyente, ConnectionManager.Tran);
+                   Telefono, IDCategoria, IDCondicionPago, Descuento,
+                    InteresMora, email, Direccion,MultiMoneda,PagosCongelados,isLocal, ConnectionManager.Tran);
 
                  ConnectionManager.CommitTran();
 
@@ -283,7 +276,7 @@ namespace CO
                     try
                     {
                         ConnectionManager.BeginTran();
-                        DAC.clsProveedorDAC.UpdateProveedor("D",(long)this.txtIDProveedor.EditValue,"",-1,false,"",-1,-1,DateTime.Now,"","",-1,-1,-1,0,0,"","",false,false,false,-1,ConnectionManager.Tran);
+                        DAC.clsProveedorDAC.UpdateProveedor("D",(long)this.txtIDProveedor.EditValue,"","",false,"",-1,-1,DateTime.Now,"","",-1,-1,0,0,"","",false,false,false,ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
                     }
                             
@@ -302,15 +295,13 @@ namespace CO
             this.dtpFechaIngreso.EditValue = Convert.ToDateTime(dt.Rows[0]["FechaIngreso"]);
             this.txtAlias.EditValue = dt.Rows[0]["Alias"].ToString();
             this.txtContacto.EditValue = dt.Rows[0]["Contacto"].ToString();
-            this.slkupNIT.EditValue = Convert.ToInt32(dt.Rows[0]["IDRuc"]);
+            this.txtNIT.EditValue = dt.Rows[0]["RUC"].ToString();
             this.txtTelefono.EditValue = dt.Rows[0]["Telefono"].ToString();
-            this.slkupImpuesto.EditValue = Convert.ToInt32(dt.Rows[0]["IDImpuesto"]);
             this.slkupCategoria.EditValue = Convert.ToInt32(dt.Rows[0]["IDCategoria"]);
             this.chkActivo.EditValue = Convert.ToBoolean(dt.Rows[0]["Activo"]);
             this.chkMultimoneda.EditValue = Convert.ToBoolean(dt.Rows[0]["Multimoneda"]);
             this.chkPagosCongelados.EditValue = Convert.ToBoolean(dt.Rows[0]["PagosCongelados"]);
             this.rdgOrigen.SelectedIndex = Convert.ToBoolean(dt.Rows[0]["IsLocal"])==true ? 0:1;
-            this.rgpTipoContribuyente.SelectedIndex = Convert.ToInt32(dt.Rows[0]["TipoContribuyente"]);
             this.slkupPais.EditValue = Convert.ToInt32(dt.Rows[0]["IDPais"]);
             this.slkupMoneda.EditValue = Convert.ToInt32(dt.Rows[0]["IDMoneda"]);
             this.slkupCondicionPago.EditValue = Convert.ToInt32(dt.Rows[0]["IDCondicionPago"]);
@@ -328,12 +319,7 @@ namespace CO
             {
                 HabilitarControles(false);
 
-                Util.Util.ConfigLookupEdit(this.slkupNIT, ControlBancario.DAC.RucDAC.GetData(-1).Tables[0],"RUC","IDRuc");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupNIT, "[{'ColumnCaption':'RUC','ColumnField':'IDRuc','width':30},{'ColumnCaption':'RUC','ColumnField':'RUC','width':70}]");
-
-                Util.Util.ConfigLookupEdit(this.slkupImpuesto,DAC.clsGlobalImpuestoDAC.Get(-1).Tables[0], "Descr", "IDImpuesto");
-                Util.Util.ConfigLookupEditSetViewColumns(this.slkupImpuesto, "[{'ColumnCaption':'IDImpuesto','ColumnField':'IDImpuesto','width':30},{'ColumnCaption':'Descr','ColumnField':'Descr','width':70}]");
-
+                
                 Util.Util.ConfigLookupEdit(this.slkupCategoria, DAC.clsCategoriaProveedorDAC.Get(-1,"*").Tables[0], "Descr", "IDCategoria");
                 Util.Util.ConfigLookupEditSetViewColumns(this.slkupCategoria, "[{'ColumnCaption':'IDCategoria','ColumnField':'IDCategoria','width':30},{'ColumnCaption':'Descr','ColumnField':'Descr','width':70}]");
 

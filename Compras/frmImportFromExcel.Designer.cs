@@ -56,13 +56,11 @@
             this.ColStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColDescrStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtFileName = new DevExpress.XtraEditors.TextEdit();
-            this.btnAsociar = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -84,7 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
@@ -115,7 +112,6 @@
             this.layoutControl1.Controls.Add(this.btnAceptar);
             this.layoutControl1.Controls.Add(this.dtgDetalle);
             this.layoutControl1.Controls.Add(this.txtFileName);
-            this.layoutControl1.Controls.Add(this.btnAsociar);
             this.layoutControl1.Controls.Add(this.simpleButton1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
@@ -361,17 +357,6 @@
             this.txtFileName.StyleController = this.layoutControl1;
             this.txtFileName.TabIndex = 1;
             // 
-            // btnAsociar
-            // 
-            this.btnAsociar.Image = ((System.Drawing.Image)(resources.GetObject("btnAsociar.Image")));
-            this.btnAsociar.Location = new System.Drawing.Point(803, 12);
-            this.btnAsociar.Name = "btnAsociar";
-            this.btnAsociar.Size = new System.Drawing.Size(129, 22);
-            this.btnAsociar.StyleController = this.layoutControl1;
-            this.btnAsociar.TabIndex = 15;
-            this.btnAsociar.Text = "Asociar a Proveedor";
-            this.btnAsociar.Click += new System.EventHandler(this.btnAsociar_Click);
-            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -381,7 +366,6 @@
             this.layoutControlItem4,
             this.layoutControlItem2,
             this.emptySpaceItem1,
-            this.layoutControlItem3,
             this.emptySpaceItem2,
             this.emptySpaceItem3,
             this.emptySpaceItem4,
@@ -427,20 +411,8 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(652, 0);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(139, 40);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(272, 40);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.btnAsociar;
-            this.layoutControlItem3.Location = new System.Drawing.Point(791, 0);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(133, 26);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(133, 26);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(133, 40);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
@@ -532,7 +504,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
@@ -567,7 +538,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDesc;
         private DevExpress.XtraGrid.Columns.GridColumn colPorcDesc;
         private DevExpress.XtraGrid.Columns.GridColumn colComentario;
-        private DevExpress.XtraEditors.SimpleButton btnAsociar;
         private DevExpress.XtraGrid.Columns.GridColumn ColStatus;
         private DevExpress.XtraGrid.Columns.GridColumn ColDescrStatus;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
@@ -576,7 +546,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;

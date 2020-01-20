@@ -5,6 +5,8 @@ ALTER TABLE dbo.cppProveedor ADD Contacto NVARCHAR(250) DEFAULT ''
 GO
 ALTER TABLE dbo.cppProveedor ADD Telefono NVARCHAR(250) DEFAULT ''
 GO 
+ALTER TABLE  dbo.cppProveedor ADD RUC NVARCHAR(50)
+GO
 ALTER TABLE dbo.cppProveedor ADD IDImpuesto INT
 GO
 ALTER TABLE dbo.cppProveedor ADD IDCategoria INT 
@@ -31,8 +33,6 @@ ALTER TABLE dbo.cppProveedor ADD PagosCongelados BIT DEFAULT 0
 go	
 ALTER TABLE dbo.cppProveedor ADD 	IsLocal BIT DEFAULT 0
 go	
-ALTER TABLE  dbo.cppProveedor ADD TipoContribuyente INT
-GO
 
 CREATE TABLE dbo.cppCategoriaProveedor(
 	IDCategoria INT NOT NULL,
@@ -362,42 +362,6 @@ CONSTRAINT [pkglobalPais] PRIMARY KEY CLUSTERED
 	IDPais ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
-GO
-
-
-CREATE   TABLE dbo.invArticuloProveedor (
-	IDProducto BIGINT NOT NULL,
-	IDProveedor int NOT NULL,
-	IDPaisManofactura int,
-	LoteMinCompra decimal(28,4),
-	PesoMinimoCompra decimal(28,4),
-	Notas NVARCHAR(256),
-	CreateDate datetime,
-	CreatedBy nvarchar(50),
-	UpdatedDate datetime,
-	UpdatedBy nvarchar(50)
-	CONSTRAINT [pkinvArticuloProveedor] PRIMARY KEY CLUSTERED 
-(
-	[IDProducto] ASC,
-	IDProveedor ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-ALTER TABLE [dbo].invArticuloProveedor  WITH CHECK ADD  CONSTRAINT [fkinvArticuloProveedor_Producto] FOREIGN KEY([IDProducto])
-REFERENCES [dbo].invProducto (IDProducto)
-
-GO
-ALTER TABLE [dbo].invArticuloProveedor  WITH CHECK ADD  CONSTRAINT [fkinvArticuloProveedor_Proveedor] FOREIGN KEY(IDProveedor)
-REFERENCES [dbo].cppProveedor (IDProveedor)
-
-GO
-
-
-ALTER TABLE [dbo].invArticuloProveedor  WITH CHECK ADD  CONSTRAINT [fkinvArticuloProveedor_Pais] FOREIGN KEY(IDPaisManofactura)
-REFERENCES [dbo].globalPais (IDPais)
 
 GO
 
@@ -735,62 +699,6 @@ WHERE (A.IDEmbarque =@IDEmbarque AND @IDEmbarque =-1)
 
 GO
 
-CREATE  PROCEDURE dbo.invGetArticuloProveedor(@IDProducto AS BIGINT,@IDProveedor AS INT)
-AS	
-SELECT  A.IDProducto ,P.Descr DescrProducto,
-        A.IDProveedor ,PR.Nombre NombreProveedor,
-        A.IDPaisManofactura ,C.Descr DescrPais,
-        A.LoteMinCompra ,
-        A.PesoMinimoCompra,
-        A.Notas
-         FROM dbo.invArticuloProveedor A
-INNER JOIN dbo.invProducto P ON A.IDProducto = P.IDProducto
-INNER JOIN dbo.cppProveedor PR ON A.IDProveedor=PR.IDProveedor
-LEFT JOIN dbo.globalPais C ON A.IDPaisManofactura = C.IDPais
-WHERE (A.IDProducto = @IDProducto OR @IDProducto =-1) AND (A.IDProveedor=@IDProveedor OR @IDProveedor=-1)
-
-
-go
-
-CREATE PROCEDURE dbo.invUpdateArticuloProveedor (@Operacion AS NVARCHAR(1),@IDProducto AS BIGINT,@IDProveedor AS INT, 
-				@IDPaisManoFactura AS INT,@LoteMinCompra AS DECIMAL(28,4),@PesoMinimoCompra AS DECIMAL(28,4),@Notas NVARCHAR(256),@Usuario AS NVARCHAR(50), @Fecha AS DATETIME)
-AS 
-IF (@Operacion='I')
-BEGIN
-	INSERT INTO dbo.invArticuloProveedor( IDProducto ,IDProveedor ,IDPaisManofactura ,LoteMinCompra ,PesoMinimoCompra,Notas,CreateDate,CreatedBy)
-	VALUES (@IDProducto,@IDProveedor,@IDPaisManoFactura,@LoteMinCompra,@PesoMinimoCompra,@Notas,@Fecha,@Usuario)
-END			
-IF (@Operacion='U')
-BEGIN
-	UPDATE dbo.invArticuloProveedor SET  IDPaisManofactura=@IDPaisManoFactura,
-				LoteMinCompra=@LoteMinCompra, PesoMinimoCompra = @PesoMinimoCompra, Notas=@Notas,UpdatedBy = @Usuario, UpdatedDate= @Fecha
-	WHERE IDProducto=@IDProducto AND IDProveedor= @IDProveedor
-END
-IF (@Operacion='D')
-	DELETE FROM dbo.invArticuloProveedor WHERE IDProducto=@IDProducto AND IDProveedor=@IDProveedor
-
-GO
-
-CREATE  PROCEDURE dbo.invGetProductosSinAsociarProveedor(@IDProveedor AS INT,@IDClasificacion1 AS INT,@IDClasificacion2 AS INT,
-		@IDClasificacion3 AS INT,@IDClasificacion4  AS INT,@IDClasificacion5  AS INT,@IDClasificacion6 AS INT)
-AS
-SELECT  IDProducto ,A.Descr ,Alias ,Clasif1 ,C.Descr DescrClasif1,Clasif2,D.Descr DescrClasif2 ,Clasif3 ,E.Descr DescrClasif3,
-				Clasif4, F.Descr DescrClasif4 ,Clasif5,G.Descr DescrClasif5 ,Clasif6, H.Descr DescrClasif6
-FROM dbo.invProducto A
-LEFT  JOIN dbo.invClasificacion c ON A.Clasif1= C.IDClasificacion AND IDGrupo=1
-LEFT  JOIN dbo.invClasificacion d ON A.Clasif2= d.IDClasificacion AND D.IDGrupo=2
-LEFT  JOIN dbo.invClasificacion e ON A.Clasif3= e.IDClasificacion AND e.IDGrupo=3
-LEFT  JOIN dbo.invClasificacion f ON A.Clasif4= f.IDClasificacion AND f.IDGrupo=4
-LEFT  JOIN dbo.invClasificacion g ON A.Clasif5= g.IDClasificacion AND g.IDGrupo=5
-LEFT  JOIN dbo.invClasificacion h ON A.Clasif6= h.IDClasificacion AND h.IDGrupo=6
-WHERE IDProducto  NOT IN (SELECT IDProducto  FROM dbo.invArticuloProveedor WHERE IDProveedor=@IDProveedor) AND A.Activo=1
-AND (A.Clasif1 = @IDClasificacion1 OR @IDClasificacion1=-1) AND (A.Clasif2 = @IDClasificacion2  OR @IDClasificacion2 = -1) AND 
-(A.Clasif3=@IDClasificacion3 OR @IDClasificacion3=-1) AND (A.Clasif4 = @IDClasificacion4 OR @IDClasificacion4=-1) AND 
-(A.Clasif5 = @IDClasificacion5 OR @IDClasificacion5=-1)  AND (A.Clasif6=@IDClasificacion6 OR @IDClasificacion6=-1)
-
-
-GO
-
 CREATE  PROCEDURE dbo.invGetSolicitudCompra_OrdenCompra(@IDSolicitud AS INT,@IDOrdenCompra AS INT,@IDProducto AS BIGINT)
 AS 
 SELECT  IDSolicitud ,IDOrdenCompra ,IDProducto ,Cantidad CantOrdenada ,Usuario ,Fecha  FROM dbo.invSolicitudOrdenCompra 
@@ -853,7 +761,7 @@ CREATE  PROCEDURE dbo.invGetProveedor(@IDProveedor AS INT,@Nombre NVARCHAR(250))
 AS	
 SELECT  IDProveedor ,
         Nombre ,
-        IDRuc ,
+        RUC ,
         Activo  FROM dbo.cppProveedor WHERE (IDProveedor = @IDProveedor OR @IDProveedor=-1) AND (Nombre LIKE '%' + @Nombre + '%' OR @Nombre ='*')
         
 GO
@@ -875,7 +783,6 @@ SELECT A.IDSolicitud,A.Fecha,A.FechaRequerida,B.IDProducto,P.Descr DescrProducto
  FROM dbo.invSolicitudCompra A
 INNER JOIN dbo.invSolicitudCompraDetalle B ON A.IDSolicitud = B.IDSolicitud
 INNER JOIN dbo.invProducto P ON B.IDProducto = P.IDProducto
-INNER JOIN dbo.invArticuloProveedor D ON P.IDProducto = D.IDProducto
 LEFT JOIN dbo.invSolicitudOrdenCompra OS ON B.IDProducto=OS.IDProducto AND B.IDSolicitud=OS.IDSolicitud
 WHERE (A.IDSolicitud BETWEEN @IDSolicitudDesde AND @IDSolicitudHasta) AND (FechaRequerida  BETWEEN @FechaRequeridaDesde AND @FechaRequeridaHasta)
 AND (P.Clasif1 = @IDClasif1 OR @IDClasif1=-1) AND  (P.Clasif2 = @IDClasif2 OR @IDClasif2=-1) AND  (P.Clasif3 = @IDClasif3 OR @IDClasif3=-1) 
@@ -1011,25 +918,25 @@ END
 
 GO
 
-CREATE   PROCEDURE dbo.invUpdateProveedor(@Operacion AS  nvarchar(1), @IDProveedor AS int	 OUTPUT,@Nombre AS nvarchar(250),@IDRuc AS int	,
+CREATE   PROCEDURE dbo.invUpdateProveedor(@Operacion AS  nvarchar(1), @IDProveedor AS int	 OUTPUT,@Nombre AS nvarchar(250),@RUC AS NVARCHAR(50)	,
 @Activo AS bit	,@Alias nvarchar(50), @IDPais AS int,@IDMoneda AS int,@FechaIngreso AS datetime,@Contacto AS nvarchar(50), @Telefono nvarchar(50), 
-@IDImpuesto AS int,@IDCategoria AS int	,@IDCondicionPago AS int	,@PorcDescuento AS decimal(28,4), @PorcInteresMora AS decimal(28,4),
-@Email AS nvarchar(50),@Direccion AS nvarchar(500),@MultiMoneda bit ,@PagosCongelados bit ,@IsLocal bit ,@TipoContribuyente int )
+@IDCategoria AS int	,@IDCondicionPago AS int	,@PorcDescuento AS decimal(28,4), @PorcInteresMora AS decimal(28,4),
+@Email AS nvarchar(50),@Direccion AS nvarchar(500),@MultiMoneda bit ,@PagosCongelados bit ,@IsLocal bit )
 AS 
 IF (@Operacion ='I') 
 BEGIN
 	SET @IDProveedor = (SELECT  ISNULL(MAX(IDProveedor),0) + 1 FROM dbo.cppProveedor )
-	INSERT INTO dbo.cppProveedor(IDProveedor, Nombre ,IDRuc ,Activo ,Alias ,IDPais ,IDMoneda ,FechaIngreso ,Contacto ,Telefono ,IDImpuesto ,IDCategoria ,IDCondicionPago ,
-	          PorcDesc ,PorcInteresMora ,email ,Direccion,MultiMoneda,PagosCongelados,IsLocal,TipoContribuyente)
-	VALUES  (@IDProveedor, @Nombre ,@IDRuc,@Activo,@Alias,@IDPais,@IDMoneda,@FechaIngreso,@Contacto,@Telefono,@IDImpuesto,@IDCategoria,@IDCondicionPago,@PorcDescuento,@PorcInteresMora,@Email, @Direccion,@MultiMoneda,@PagosCongelados,@IsLocal,@TipoContribuyente)
+	INSERT INTO dbo.cppProveedor(IDProveedor, Nombre ,RUC ,Activo ,Alias ,IDPais ,IDMoneda ,FechaIngreso ,Contacto ,Telefono  ,IDCategoria ,IDCondicionPago ,
+	          PorcDesc ,PorcInteresMora ,email ,Direccion,MultiMoneda,PagosCongelados,IsLocal)
+	VALUES  (@IDProveedor, @Nombre ,@RUC,@Activo,@Alias,@IDPais,@IDMoneda,@FechaIngreso,@Contacto,@Telefono,@IDCategoria,@IDCondicionPago,@PorcDescuento,@PorcInteresMora,@Email, @Direccion,@MultiMoneda,@PagosCongelados,@IsLocal)
 
 END
 IF (@Operacion='U')
 BEGIN
 	UPDATE dbo.cppProveedor SET Nombre = @Nombre ,Alias = @Alias, IDPais = @IDPais, IDMoneda= @IDMoneda,FechaIngreso=@FechaIngreso,
-				Contacto =@Contacto,Telefono = @Telefono, IDImpuesto = @IDImpuesto, IDCategoria = @IDCategoria,IDCondicionPago =@IDCondicionPago,
+				Contacto =@Contacto,Telefono = @Telefono, IDCategoria = @IDCategoria,IDCondicionPago =@IDCondicionPago,RUC=@RUC,
 				PorcDesc = @PorcDescuento, PorcInteresMora = @PorcInteresMora, email = @Email, Direccion = @Direccion, MultiMoneda = @MultiMoneda, 
-				PagosCongelados = @PagosCongelados, IsLocal = @IsLocal,TipoContribuyente =@TipoContribuyente
+				PagosCongelados = @PagosCongelados, IsLocal = @IsLocal
 	WHERE IDProveedor = @IDProveedor
 END
 IF (@Operacion='D') 
@@ -1037,16 +944,13 @@ BEGIN
 	DELETE FROM dbo.cppProveedor WHERE IDProveedor =@IDProveedor
 END
 
-
 GO
 
 CREATE   PROCEDURE dbo.cppGetProveedor(@IDProveedor AS INT,@Nombre AS NVARCHAR(20), @IDCategoria AS INT)
 AS 
-SELECT    IDProveedor ,A.Nombre ,A.Alias ,Contacto ,A.IDRuc ,B.RUC,Telefono ,A.IDImpuesto, C.Descr DescrImpuesto ,a.IDCategoria ,D.Descr DescrCategoria,A.IDPais ,E.Descr Pais,a.IDMoneda ,F.Descr Moneda,A.IDCondicionPago ,G.Descr DescrCondicionPago,
-        FechaIngreso ,PorcDesc ,PorcInteresMora ,Email ,Direccion ,A.Activo ,MultiMoneda ,PagosCongelados ,IsLocal ,TipoContribuyente
+SELECT    IDProveedor ,A.Nombre ,A.Alias ,Contacto ,A.RUC,Telefono ,a.IDCategoria ,D.Descr DescrCategoria,A.IDPais ,E.Descr Pais,a.IDMoneda ,F.Descr Moneda,A.IDCondicionPago ,G.Descr DescrCondicionPago,
+        FechaIngreso ,PorcDesc ,PorcInteresMora ,Email ,Direccion ,A.Activo ,MultiMoneda ,PagosCongelados ,IsLocal
 FROM dbo.cppProveedor A
-LEFT JOIN dbo.cbRUC B ON A.IDRuc=B.IDRuc
-LEFT JOIN dbo.globalImpuesto C ON A.IDImpuesto = C.IDImpuesto
 LEFT JOIN dbo.cppCategoriaProveedor D ON A.IDCategoria = D.IDCategoria
 LEFT JOIN dbo.globalPais E ON A.IDPais = E.IDPais
 LEFT JOIN dbo.globalMoneda F ON F.IDMoneda = A.IDMoneda

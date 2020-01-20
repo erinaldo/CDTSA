@@ -1031,14 +1031,7 @@ namespace CO
                 long IDProducto = Convert.ToInt64(view.GetRowCellValue(e.RowHandle, view.Columns[0]));
                 int IDProveedor = Convert.ToInt32(this.slkupProveedor.EditValue);
 
-                DataTable dt = clsArticuloProveedorDAC.Get(IDProducto, IDProveedor).Tables[0];
-
-                if (dt.Rows.Count == 0)
-                {
-                    //mostrar el mensaje de asocicion
-                    frmArticuloProveedor ofrmArticuloProveedor = new frmArticuloProveedor(IDProveedor, IDProducto, "Add", true);
-                    ofrmArticuloProveedor.ShowDialog();
-                }
+               
                 //validar si el producto 
             }
 

@@ -902,7 +902,6 @@ GO
 CREATE TABLE [dbo].[cppProveedor](
 	[IDProveedor] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](250) NULL,
-	[IDRuc] int NULL DEFAULT 0,
 	[Activo] [bit] NULL DEFAULT 0,
  CONSTRAINT [pkcppProveedor] PRIMARY KEY CLUSTERED 
 (
@@ -910,14 +909,7 @@ CREATE TABLE [dbo].[cppProveedor](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
-
-ALTER TABLE [dbo].[cppProveedor]  WITH CHECK ADD  CONSTRAINT [fk_cppProveedor_cbRUC] FOREIGN KEY([IDRuc])
-REFERENCES [dbo].[cbRUC] ([IDRuc])
 GO
-
-ALTER TABLE [dbo].[cppProveedor] CHECK CONSTRAINT [fk_cppProveedor_cbRUC]
-GO
-
 
 CREATE TABLE [dbo].[invHistCostoPromedio](
 	[IDCostoProm] [bigint] IDENTITY(1,1) NOT NULL,

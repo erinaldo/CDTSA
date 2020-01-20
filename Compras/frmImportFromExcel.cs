@@ -291,17 +291,7 @@ namespace CO
             }
         }
 
-        private void btnAsociar_Click(object sender, EventArgs e)
-        {
-
-           if (this.gridView1.GetSelectedRows() != null ) {
-
-                long IDProducto =  Convert.ToInt64(_currentRowDetalle["IDProducto"]);
-                frmArticuloProveedor ofrmArticuloProveedor = new frmArticuloProveedor(IDProveedor, IDProducto, "Add", true);
-                ofrmArticuloProveedor.ShowDialog();
-                ValidarDatos();
-            }
-        }
+      
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {

@@ -151,7 +151,7 @@ namespace CO
                     try
                     {
                         ConnectionManager.BeginTran();
-                        DAC.clsProveedorDAC.UpdateProveedor("D", Convert.ToInt64(_currentRow["IDProveedor"]), "", -1, false, "", -1, -1, DateTime.Now, "", "", -1, -1, -1, 0, 0, "", "", false, false, false, -1, ConnectionManager.Tran);
+                        DAC.clsProveedorDAC.UpdateProveedor("D", Convert.ToInt64(_currentRow["IDProveedor"]), "", "", false, "", -1, -1, DateTime.Now, "", "", -1, -1, 0, 0, "", "", false, false, false, ConnectionManager.Tran);
                         ConnectionManager.CommitTran();
                         PopulateGrid();
                     }

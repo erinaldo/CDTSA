@@ -124,12 +124,6 @@
     <Compile Include="frmImportFromExcel.Designer.cs">
       <DependentUpon>frmImportFromExcel.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmArticuloProveedor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmArticuloProveedor.Designer.cs">
-      <DependentUpon>frmArticuloProveedor.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmDevolucion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,12 +141,6 @@
     </Compile>
     <Compile Include="frmImportarSolicitudCompra.Designer.cs">
       <DependentUpon>frmImportarSolicitudCompra.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmListadoArticuloProveedor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmListadoArticuloProveedor.Designer.cs">
-      <DependentUpon>frmListadoArticuloProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="frmListadoEmbarque.cs">
       <SubType>Form</SubType>
@@ -213,9 +201,6 @@
     <EmbeddedResource Include="frmImportFromExcel.resx">
       <DependentUpon>frmImportFromExcel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmArticuloProveedor.resx">
-      <DependentUpon>frmArticuloProveedor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmDevolucion.resx">
       <DependentUpon>frmDevolucion.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,9 +209,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmImportarSolicitudCompra.resx">
       <DependentUpon>frmImportarSolicitudCompra.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmListadoArticuloProveedor.resx">
-      <DependentUpon>frmListadoArticuloProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmListadoEmbarque.resx">
       <DependentUpon>frmListadoEmbarque.cs</DependentUpon>

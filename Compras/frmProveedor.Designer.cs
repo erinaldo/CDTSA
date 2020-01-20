@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedor));
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation3 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnAgregar = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditar = new DevExpress.XtraBars.BarButtonItem();
@@ -43,7 +43,6 @@
             this.tabGeneral = new DevExpress.XtraTab.XtraTabPage();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.rdgOrigen = new DevExpress.XtraEditors.RadioGroup();
-            this.rgpTipoContribuyente = new DevExpress.XtraEditors.RadioGroup();
             this.chkMultimoneda = new DevExpress.XtraEditors.CheckEdit();
             this.chkActivo = new DevExpress.XtraEditors.CheckEdit();
             this.chkPagosCongelados = new DevExpress.XtraEditors.CheckEdit();
@@ -51,12 +50,9 @@
             this.txtContacto = new DevExpress.XtraEditors.TextEdit();
             this.txtAlias = new DevExpress.XtraEditors.TextEdit();
             this.dtpFechaIngreso = new DevExpress.XtraEditors.DateEdit();
-            this.slkupNIT = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.slkupImpuesto = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.slkupCategoria = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtNIT = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -67,12 +63,9 @@
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -125,6 +118,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.emptySpaceItem17 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -134,7 +128,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdgOrigen.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rgpTipoContribuyente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMultimoneda.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPagosCongelados.Properties)).BeginInit();
@@ -143,12 +136,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupNIT.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupImpuesto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCategoria.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNIT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -159,12 +149,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
@@ -220,6 +207,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -285,12 +273,12 @@
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1});
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation3.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation3.Group = null;
-            reduceOperation3.ItemLinkIndex = 0;
-            reduceOperation3.ItemLinksCount = 0;
-            reduceOperation3.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation3);
+            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation2.Group = null;
+            reduceOperation2.ItemLinkIndex = 0;
+            reduceOperation2.ItemLinksCount = 0;
+            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.Gallery;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
             this.ribbonPage1.Text = "Opciones Generales";
             // 
             // ribbonPageGroup1
@@ -339,7 +327,6 @@
             // layoutControl2
             // 
             this.layoutControl2.Controls.Add(this.rdgOrigen);
-            this.layoutControl2.Controls.Add(this.rgpTipoContribuyente);
             this.layoutControl2.Controls.Add(this.chkMultimoneda);
             this.layoutControl2.Controls.Add(this.chkActivo);
             this.layoutControl2.Controls.Add(this.chkPagosCongelados);
@@ -347,9 +334,8 @@
             this.layoutControl2.Controls.Add(this.txtContacto);
             this.layoutControl2.Controls.Add(this.txtAlias);
             this.layoutControl2.Controls.Add(this.dtpFechaIngreso);
-            this.layoutControl2.Controls.Add(this.slkupNIT);
-            this.layoutControl2.Controls.Add(this.slkupImpuesto);
             this.layoutControl2.Controls.Add(this.slkupCategoria);
+            this.layoutControl2.Controls.Add(this.txtNIT);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
@@ -371,19 +357,6 @@
             this.rdgOrigen.Size = new System.Drawing.Size(167, 25);
             this.rdgOrigen.StyleController = this.layoutControl2;
             this.rdgOrigen.TabIndex = 11;
-            // 
-            // rgpTipoContribuyente
-            // 
-            this.rgpTipoContribuyente.Location = new System.Drawing.Point(538, 224);
-            this.rgpTipoContribuyente.MenuManager = this.ribbonControl1;
-            this.rgpTipoContribuyente.Name = "rgpTipoContribuyente";
-            this.rgpTipoContribuyente.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(1)), "Formal"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(2)), "Informal"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((short)(3)), "Gasto Menor")});
-            this.rgpTipoContribuyente.Size = new System.Drawing.Size(167, 57);
-            this.rgpTipoContribuyente.StyleController = this.layoutControl2;
-            this.rgpTipoContribuyente.TabIndex = 12;
             // 
             // chkMultimoneda
             // 
@@ -456,47 +429,9 @@
             this.dtpFechaIngreso.StyleController = this.layoutControl2;
             this.dtpFechaIngreso.TabIndex = 1;
             // 
-            // slkupNIT
-            // 
-            this.slkupNIT.Location = new System.Drawing.Point(88, 84);
-            this.slkupNIT.MenuManager = this.ribbonControl1;
-            this.slkupNIT.Name = "slkupNIT";
-            this.slkupNIT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupNIT.Properties.View = this.gridView2;
-            this.slkupNIT.Size = new System.Drawing.Size(417, 20);
-            this.slkupNIT.StyleController = this.layoutControl2;
-            this.slkupNIT.TabIndex = 4;
-            // 
-            // gridView2
-            // 
-            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            // 
-            // slkupImpuesto
-            // 
-            this.slkupImpuesto.Location = new System.Drawing.Point(88, 153);
-            this.slkupImpuesto.MenuManager = this.ribbonControl1;
-            this.slkupImpuesto.Name = "slkupImpuesto";
-            this.slkupImpuesto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.slkupImpuesto.Properties.View = this.gridView3;
-            this.slkupImpuesto.Size = new System.Drawing.Size(417, 20);
-            this.slkupImpuesto.StyleController = this.layoutControl2;
-            this.slkupImpuesto.TabIndex = 6;
-            // 
-            // gridView3
-            // 
-            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            // 
             // slkupCategoria
             // 
-            this.slkupCategoria.Location = new System.Drawing.Point(88, 177);
+            this.slkupCategoria.Location = new System.Drawing.Point(88, 150);
             this.slkupCategoria.MenuManager = this.ribbonControl1;
             this.slkupCategoria.Name = "slkupCategoria";
             this.slkupCategoria.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -513,6 +448,16 @@
             this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView4.OptionsView.ShowGroupPanel = false;
             // 
+            // txtNIT
+            // 
+            this.txtNIT.Location = new System.Drawing.Point(88, 84);
+            this.txtNIT.MenuManager = this.ribbonControl1;
+            this.txtNIT.Name = "txtNIT";
+            this.txtNIT.Properties.NullText = "[EditValue is null]";
+            this.txtNIT.Size = new System.Drawing.Size(417, 20);
+            this.txtNIT.StyleController = this.layoutControl2;
+            this.txtNIT.TabIndex = 4;
+            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -524,14 +469,13 @@
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlGroup3,
-            this.layoutControlGroup4,
             this.emptySpaceItem3,
             this.emptySpaceItem2,
             this.emptySpaceItem4,
-            this.layoutControlItem9,
             this.layoutControlItem10,
             this.emptySpaceItem5,
-            this.layoutControlGroup5});
+            this.layoutControlGroup5,
+            this.emptySpaceItem17});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "Root";
             this.layoutControlGroup2.Size = new System.Drawing.Size(729, 305);
@@ -566,7 +510,7 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.slkupNIT;
+            this.layoutControlItem7.Control = this.txtNIT;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(497, 24);
@@ -620,30 +564,12 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // layoutControlGroup4
-            // 
-            this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem14});
-            this.layoutControlGroup4.Location = new System.Drawing.Point(514, 182);
-            this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(195, 103);
-            this.layoutControlGroup4.Text = "Tipo de Contribuyente";
-            // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.rgpTipoContribuyente;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(171, 61);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
-            // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 203);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 176);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(497, 82);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(497, 109);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
@@ -651,30 +577,21 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 120);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(497, 21);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(497, 18);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 189);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(0, 162);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
             this.emptySpaceItem4.Size = new System.Drawing.Size(497, 14);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.slkupImpuesto;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 141);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(497, 24);
-            this.layoutControlItem9.Text = "Impuesto:";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(73, 13);
-            // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.slkupCategoria;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 165);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 138);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(497, 24);
             this.layoutControlItem10.Text = "Categoría:";
@@ -1175,6 +1092,14 @@
             this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // emptySpaceItem17
+            // 
+            this.emptySpaceItem17.AllowHotTrack = false;
+            this.emptySpaceItem17.Location = new System.Drawing.Point(514, 182);
+            this.emptySpaceItem17.Name = "emptySpaceItem17";
+            this.emptySpaceItem17.Size = new System.Drawing.Size(195, 103);
+            this.emptySpaceItem17.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // frmProveedor
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.True;
@@ -1196,7 +1121,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rdgOrigen.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rgpTipoContribuyente.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMultimoneda.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPagosCongelados.Properties)).EndInit();
@@ -1205,12 +1129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAlias.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaIngreso.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupNIT.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slkupImpuesto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slkupCategoria.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNIT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
@@ -1221,12 +1142,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
@@ -1282,6 +1200,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem17)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1317,7 +1236,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.RadioGroup rdgOrigen;
-        private DevExpress.XtraEditors.RadioGroup rgpTipoContribuyente;
         private DevExpress.XtraEditors.CheckEdit chkMultimoneda;
         private DevExpress.XtraEditors.CheckEdit chkActivo;
         private DevExpress.XtraEditors.CheckEdit chkPagosCongelados;
@@ -1328,12 +1246,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
@@ -1374,15 +1289,13 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupPais;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraEditors.SearchLookUpEdit slkupNIT;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraEditors.SearchLookUpEdit slkupImpuesto;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCategoria;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupMoneda;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraEditors.SearchLookUpEdit slkupCondicionPago;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraEditors.TextEdit txtNIT;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem17;
     }
 }
