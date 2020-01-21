@@ -26,8 +26,8 @@ namespace CDTSA.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=Current;Persist Security Info=True;User ID=sa;Passw" +
-            "ord=admin911!")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.2.22;Initial Catalog=Cedetsa;Persist Security Info=True;User " +
+            "ID=sa;Password=Admin911!")]
         public string StringConCedetsa {
             get {
                 return ((string)(this["StringConCedetsa"]));
@@ -37,8 +37,8 @@ namespace CDTSA.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=Current;Persist Security Info=True;User ID=sa;Passw" +
-            "ord=admin911!")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.2.22;Initial Catalog=Dasa;Persist Security Info=True;User ID=" +
+            "sa;Password=Admin911!")]
         public string StringConDasa {
             get {
                 return ((string)(this["StringConDasa"]));
